@@ -1,0 +1,444 @@
+@charset "utf-8";
+/* CSS Document by ravindergosain.com */
+/*RESET CSS*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	/*vertical-align: baseline;*/
+	vertical-align:middle;
+	font-family:'MyriadProRegular',arial;
+}
+a{text-decoration:none;}
+
+strong{font-family:'MyriadProSemiBold'}
+
+h3{font-size:18px; font-family:'MyriadProRegular',arial; padding-bottom:10px;}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {	display: block;}
+body {	line-height: 1;background:#2c2c2c;}
+ol, ul {	list-style: none;}
+blockquote, q {	quotes: none;}
+blockquote:before, blockquote:after,
+q:before, q:after {	content: '';	content: none;}
+table {	border-collapse: collapse;	border-spacing: 0;}
+.clear{display:block; clear:both}
+
+#global-wrapper-outer{width:100%; margin:0 auto;}
+#global-wrapper-inner{width:100%; float:left; margin:0;}
+
+#global-container-outer{width:96%; margin:0 auto;}
+#global-container{width:96%; float:left; margin:0}
+
+
+#login-page-wrapper{width:100%; background:#2c2c2c; border-top:15px solid #000;}
+#login-page-container{width:96%; margin:0 auto;}
+
+.logo-holder{float:left; margin:25px;}
+.login-bg-image{ margin:25px auto 0 auto; width:1000px; height:562px; background:url(../images/login-bg-img1.jpg) center top no-repeat;}
+.login-details-bg{width:329px; height:541px; position:absolute; margin:21px 0 0 546px; background:url(../images/sign-in-bg.png) top left no-repeat; border-bottom:10px solid #000000;}
+.login-detail-div{margin:94px 0 0 24px}
+.login-detail-div .uname{width:250px; padding:6px 15px; font-size:14px; background:none; border:none; margin-bottom:10px;}
+.login-detail-div .pwd{width:250px; padding:6px 15px; font-size:14px; background:none; border:none; margin:10px 0}
+
+.login-sbt{font-family:'MyriadProLight'; font-weight:normal; background:#000000 url(../images/front-arrow.png)108px center no-repeat; padding:8px 0 8px 0; width:135px; color:#fff; font-size:16px; text-transform:uppercase; border:1px solid #515151; margin:10px 15px 15px 0; cursor:pointer }
+
+.forgot-pw{font-size:14px; color:#acacac; padding:5px}
+.forgot-pw:hover{color:#ffffff;}
+.reg-msg{background:#18479a; padding:25px; width:225px; color:#ffffff; font-size:13px; line-height:16px; margin:100px 0 0 25px;}
+
+.register-bt{display:block; font-family:'MyriadProLight'; font-weight:normal; background:#faa21b url(../images/front-arrow.png)125px center no-repeat; padding:12px 0 8px 40px; width:120px; color:#fff; font-size:20px; text-transform:uppercase; -moz-border-radius: 5px;  -webkit-border-radius: 5px;  border-radius: 5px; margin:-15px 0 0 125px; }
+/**===========================
+GLOBAL HEADER CONTENT
+===========================**/
+
+#global-header{float:left; width:96%; margin:0 auto; }
+.logo{ float:left; margin:20px 30px}
+.logo-login{ float:left; margin:20px 0 20px 600px;}
+
+.header-links{float:right; /*width:280px;*/ font-size:12px; text-align:right; margin:40px 32px 0 0}
+.header-links ul li{float:left;  border-left:1px solid #5c5c5c}
+.header-links ul li a{color:#faa31c; display:block;padding:5px 12px;}
+.header-links ul li a:hover{color:#fff;}
+.header-links ul li .logout-top{color:#F00; background:url(../images/logout-black.png) right center no-repeat; padding:5px 25px 5px 12px; display:block}
+.header-links ul li .logout-top:hover{color:#9F0}
+
+.header-links ul .loggedin{font-size:14px; border:none; color:#ffffff; padding:5px 12px;}
+
+#middle-wrapper{float:left; width:100%; background:#fff;}
+#middle-container{width:90%; margin:0 auto; padding:25px; font-size:12px;}
+#middle-container-wide{width:96%; margin:0 auto; padding:25px; font-size:12px;}
+
+#nav-wrapper{float:left; width:100%; background:#104196;}
+#nav-container{width:100%; margin:0 auto; height:36px;}
+/*======================================================*/
+.main-hdr{font-size:32px; font-family:'MyriadProLight'; margin-top:25px; padding-bottom:4px; border-bottom:1px dotted #c0c0c0}
+.main-hdr-quotation{background:#faa31c; font-size:32px; font-family:'MyriadProLight'; margin-top:25px; padding:6px 15px; color:#fff;}
+.page-hdr{font-size:18px; padding:10px; background:#faa21b; margin:15px 0 40px 0; text-transform:uppercase; color:#fff; display:block; text-align:center}
+strong{font-family:'MyriadProBold';}
+
+/*****=============
+DASHBOARD
+===============*/
+.dashboard-navs{float:left; width:260px; margin:25px 40px 25px 0; padding:0 40px 0 0; border-right:1px dotted #CCC;}
+
+
+.dashboard-navs ul li{background:url(../images/circle-arrow-orange.png) left 10px no-repeat; padding:13px 0 13px 54px; margin-bottom:15px;}
+.dashboard-navs ul li a{font-size:16px; color:#1a1a1a; text-transform:uppercase; display:block; padding:10px 0; font-family:'MyriadProSemiBold';}
+.dashboard-navs ul li a:hover{color:#104196}
+.dashboard-navs ul li ul li{background:url(../images/small-arrow-orange.png) left 8px no-repeat; padding:0 0 0 20px; margin:0}
+.dashboard-navs ul li ul li a{font-size:14px; color:#535353; text-transform:uppercase;  display:block; padding:7px 0;}
+.dashboard-navs ul li ul li a:hover{color:#104196}
+.dashboard-navs ul li ul li ul li{background:url(../images/tiny-arrow-grey.png) left 6px no-repeat; padding:0 0 0 16px; margin:0}
+.dashboard-navs ul li ul li ul li a{font-size:12px; color:#909090; text-transform:none;  display:block; padding:5px 0;}
+.dashboard-navs ul li ul li ul li a:hover{color:#104196}
+
+/*****=============
+DASHBOARD
+===============*/
+.roles-navs{float:left; width:260px; margin:25px 40px 25px 0; padding:0 40px 0 0; border-right:1px dotted #CCC;}
+
+
+.roles-navs ul li{/*background:url(../images/circle-arrow-orange.png) left 10px no-repeat;*/ font-size:16px; color:#1a1a1a; text-transform:uppercase; padding:13px 0 13px 25px; margin-bottom:15px;}
+/*.roles-navs ul li a{ display:block; padding:10px 0;}
+.roles-navs ul li a:hover{color:#104196}*/
+.roles-navs ul li ul li{/*background:url(../images/small-arrow-orange.png) left 8px no-repeat;*/ padding:5px 0 0 20px; margin:5px 0; font-size:12px;}
+/*.roles-navs ul li ul li a{font-size:14px; color:#535353; text-transform:uppercase;  display:block; padding:7px 0;}
+.roles-navs ul li ul li a:hover{color:#104196}*/
+.roles-navs ul li ul li ul li{/*background:url(../images/tiny-arrow-grey.png) left 6px no-repeat;*/ padding:2px 0 2px 16px; margin:0}
+/*.roles-navs ul li ul li ul li a{font-size:12px; color:#909090; text-transform:none;  display:block; padding:5px 0;}
+.roles-navs ul li ul li ul li a:hover{color:#104196}*/
+
+/**========================
+VIEW ONLINE SALES
+=============================*/
+
+.main-txtnames{font-size:14px; text-transform:uppercase}
+.inputsize{font-size:12px; padding:2px; color:#666;  border:1px solid #ddd;}
+.date-range{width:90px; padding:2px 8px; font-size:11px; font-style:italic; border:1px solid #ddd; margin:0 3px}
+
+.report table tr{border-bottom:1px dotted #ddd; text-align:center;}
+.report table tr td{ padding:6px 0}
+.report table .hdrs{background:#dadada}
+.report table .hdrs td{border-right:1px solid #f2f2f2}
+.report table .hdrs2{background:#ccc}
+.report table .hdrs2 td{border-right:1px solid #f2f2f2}
+.sales-tb{margin:20px 0}
+
+/**========================
+Channel Partners
+=============================*/
+
+.cp-name-hdr{background:#999; margin:25px 0 5px 0; color:#fff; font-size:20px; text-transform:uppercase; padding:8px; 15px;}
+
+.cp-links{margin:80px 0 30px 40px; width:450px;}
+.cp-links ul li a{border:1px dotted #cfcfcf; -moz-border-radius: 5px;  -webkit-border-radius: 5px;  border-radius: 5px; background:#f2f2f2 url(../images/circle-arrow-orange.png) 15px center no-repeat; display:block; height:20px; padding: 14px 75px; font-size:24px; margin-bottom:16px; color:#545454}
+.cp-links ul li a:hover{background:url(../images/circle-arrow-blue.png) 15px center no-repeat;}
+/**========================
+Add Channel Partners*/
+.add-newcp{width:900px; margin:25px 0 5px 0; font-size:14px;}
+.add-newcp .mndry{text-align:right; padding:5px 0; font-size:11px; color:#aaa}
+.add-newcp table{border-top:6px solid #faa21b; border-bottom:3px solid #faa21b; background:#f8f8f8; }
+.add-newcp table tr td{padding:12px 15px 12px 25px;}
+.add-newcp table tr td .inputbxs{background:none; border:1px solid #ccc; padding:5px 12px; width:220px;}
+
+/**========================
+VIEW Channel Partners*/
+.view-cp{margin:25px 0; font-size:14px; background:#f5f5f5; border:1px solid #ddd; padding:15px;}
+.view-cp .searchc{width:550px; font-family:'MyriadProSemibold'; padding-bottom:2px; border-bottom:1px dotted #bbb}
+.view-cp table tr td{padding:6px 0;}
+.view-cp table tr .activecp{ padding-left:15px; border-left:1px dotted #999}
+.view-cp table tr .activecp .count{font-size:18px; color:#104196}
+.view-cp .inputs{ width:150px; padding:2px 3px; font-size:11px; border:1px solid #ddd; margin:0 3px}
+.view-cp .addnewcp{background:url(../images/add.png)left center no-repeat; padding:10px 0 10px 28px; font-family:'MyriadProSemiBold'; margin:10px 0 0 0; display:block} .view-cp .addnewcp:hover{color:#000}
+
+.view-cp-list{margin-top:25px; width:90%; padding:25px;margin:auto;}
+.view-cp-list table tr td{vertical-align:top;}
+.viewcplist-inner table tr{border-bottom:1px dotted #ddd; text-align:center;}
+.viewcplist-inner table tr td{ padding:6px 0}
+.viewcplist-inner table .hdrs{background:#dadada}
+.viewcplist-inner table .hdrs td{border-right:1px solid #f2f2f2}
+
+.cp-tools{margin:0;  height:20px; padding:15px 25px; background:#faa31c; color:#fff;}
+.cp-tools .hdrtools{font-size:22px; float:left; width:100px; color:#fff; border-right:1px solid #fff; margin:0 25px 0 0; text-transform:uppercase; font-family:'MyriadProLight'}
+.cp-tools ul li{margin:2px 25px 0 0; float:left }
+.cp-tools ul li a{font-size:16px; background:url(../images/front-arrow.png)left center no-repeat; padding-left:18px; color:#fff}
+.cp-tools ul li a:hover{color:#104196}
+
+
+/*========SEND MAIL=====*/
+.send-mail{margin:25px 0; font-size:14px; background:#f5f5f5; border:1px solid #ddd; padding:25px}
+.send-mail table tr .totd{vertical-align:top; }
+.send-mail table tr td{padding:6px 0;}
+.send-mail .inputs{ width:150px; padding:2px 3px; font-size:11px; border:1px solid #ddd; margin:0 3px}
+.send-mail textarea{font-family:arial; font-size:11px;}
+.send-mail .emaillisting{width:180px; height:40px; padding:2px 5px; }
+.send-mail .subject{ width:650px; padding:2px 3px; font-size:11px; border:1px solid #ddd; margin:0 3px}
+.send-mail .ccto{ width:300px; padding:2px 3px; font-size:11px; border:1px solid #ddd; margin:0 3px}
+.send-mail .message{ width:650px; height:75px; padding:2px 3px; font-size:11px; border:1px solid #ddd; margin:0 3px}
+
+/**========================
+CUSTOMER SECTION
+=============================*/
+.view-customer{margin:15px 0; font-size:14px; background:#faa31c; padding:8px 15px; color:#fff; text-transform:uppercase; font-family:'MyriadProLight';}
+.view-customer .b2b{width:140px; margin:0 15px; background-color:#ffb43f; border:1px solid #fcd69b; color:#444;}
+.customer-list{height:15px; padding:15px 25px; background:#f5f5f5; color:#000; font-size:14px;  border:1px solid #eee;}
+.customer-list .hdrlist{font-size:16px; float:left; width:180px; color:#000; border-right:1px solid #ccc; margin:0 25px 0 0; text-transform:uppercase; font-family:'MyriadProSemibold';}
+.customer-list .count{font-size:18px; color:#000; }
+.customer-list .addnewcp{background:url(../images/add.png)left center no-repeat; padding:10px 0 10px 28px; font-family:'MyriadProSemiBold'; margin:0 0 0 50px;} .customer-list .addnewcp:hover{color:#000}
+
+
+/*==============TOOL TIP STYLING=======*/
+	/* * {margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:11px; font-weight:bold; line-height:16px}
+	.container {margin:10px auto; width:950px; height:300px; background:#eee; padding:50px 0 0 0}
+	
+ ----------------------------------------------------- */
+	/* navigation styles - BEGIN */ 
+	
+	/* style for horizontal nav */	
+	#navigation_horiz {width:80px; clear:both; padding:0; margin:0 auto}
+	#navigation_horiz  ul {height:15px; display:block}
+	#navigation_horiz  ul li {display:block; float:left; width:80px; height:15px; background:none; margin:0 1px 0 0; position:relative}
+	#navigation_horiz  ul li a.navlink {display:block; width:80px; height:auto; padding: 2px 0 0 0; text-align:center; color:#104196; font-weight:bold; text-decoration:none}
+	#navigation_horiz .dropdown {text-align:left;position:absolute; padding:10px; border-bottom-right-radius:3px; border-bottom-left-radius:3px; -moz-border-radius-bottomright:3px; -moz-border-radius-bottomleft:3px; background:#104196; color:#fff;}
+	#navigation_horiz .dropdown a{color:white; background: url(../images/front-arrow-small.png)left center no-repeat; padding-left:15px;}
+	#navigation_horiz .dropdown a:hover{text-decoration:underline}
+	#navigation_horiz .dropdown p{margin:3px 0}	
+	
+	/* navigation styles - END */ 
+	/* ----------------------------------------------------- */
+
+/*====================
+PHOTOGRAPHER SECTION
+======================*/
+
+.area-wrapper{background:#eee; margin:15px 0; padding:25px; border:1px solid #ddd;}
+.area-wrapper table{background:none; border:none}
+.area-wrapper table tr td{padding:15px 10px; vertical-align:top}
+.pgrapher-account{margin:15px 0 5px 0; padding:15px; background:#e1e1e1; font-size:14px; line-height:22px; border-bottom:2px solid #ccc}
+
+
+/*========BUTTONS==========*/
+
+.bt-back{display:block; padding:12px 0 8px 50px; margin:25px 0;   width:90px; font-family:'MyriadProLight'; font-weight:normal; background:#444444 url(../images/back-arrow.png)25px center no-repeat;  color:#fff; font-size:20px; text-transform:uppercase; -moz-border-radius: 5px;  -webkit-border-radius: 5px;  border-radius: 5px; }
+
+.bt-sbt-upload{font-family:'MyriadProLight'; font-weight:normal; background:#faa21b url(../images/front-arrow.png)120px center no-repeat; padding:12px 15px 8px 0; width:150px; color:#fff; font-size:20px; text-transform:uppercase; -moz-border-radius: 5px;  -webkit-border-radius: 5px;  border-radius: 5px; border:none; cursor:pointer }
+
+.bt-sbt-global-small{font-family:'MyriadProLight'; font-weight:normal; background:#faa21b url(../images/front-arrow-small.png)80px center no-repeat; padding:4px 6px 4px 0; width:100px; color:#fff; font-size:16px; text-transform:uppercase; -moz-border-radius: 4px;  -webkit-border-radius: 4px;  border-radius: 4px; border:none; cursor:pointer }
+.bt-sbt-global-small:hover{background:#104196 url(../images/front-arrow-small.png)80px center no-repeat;}
+
+.bt-sbt-global-small-blue{font-family:'MyriadProLight'; font-weight:normal; background:#08558d url(../images/front-arrow-small.png)80px center no-repeat; padding:4px 6px 4px 0; width:100px; color:#fff; font-size:16px; text-transform:uppercase; -moz-border-radius: 4px;  -webkit-border-radius: 4px;  border-radius: 4px; border:none; cursor:pointer }
+.bt-sbt-global-small-blue:hover{background:#104196 url(../images/front-arrow-small.png)80px center no-repeat;}
+
+.bt-add{font-family:'MyriadProLight'; font-weight:normal; background:#faa21b url(../images/front-arrow.png)120px center no-repeat; padding:12px 15px 8px 0; width:150px; color:#fff; font-size:20px; text-transform:uppercase; -moz-border-radius: 5px;  -webkit-border-radius: 5px;  border-radius: 5px; border:none; cursor:pointer }
+.bt-add-tooltip{font-family:'MyriadProLight'; font-weight:normal; background:#faa21b url(../images/front-arrow.png)120px center no-repeat; padding:12px 15px 8px 0; width:100px; color:#fff; font-size:20px; text-transform:uppercase; -moz-border-radius: 5px;  -webkit-border-radius: 5px;  border-radius: 5px; border:none; cursor:pointer }
+
+.bt-add-invoice{font-family:'MyriadProLight'; font-weight:normal; background:#104196 url(../images/front-arrow.png)160px center no-repeat; padding:12px 15px 8px 0; width:200px; color:#fff; font-size:20px; text-transform:uppercase; -moz-border-radius: 5px;  -webkit-border-radius: 5px;  border-radius: 5px; border:none; cursor:pointer }
+
+.bt-print-invoice{font-family:'MyriadProLight'; font-weight:normal; background:#faa21b url(../images/front-arrow.png)160px center no-repeat; padding:12px 15px 8px 0; width:200px; color:#fff; font-size:20px; text-transform:uppercase; -moz-border-radius: 5px;  -webkit-border-radius: 5px;  border-radius: 5px; border:none; cursor:pointer }
+
+.bt-sbt-global{display:block; font-family:'MyriadProLight'; font-weight:normal; background:#faa21b url(../images/front-arrow.png)100px center no-repeat; padding:12px 0 8px 40px; width:90px; color:#fff; font-size:20px; text-transform:uppercase; -moz-border-radius: 5px;  -webkit-border-radius: 5px;  border-radius: 5px; }
+.bt-create-quote{font-family:'MyriadProLight'; font-weight:normal; background:#ff0000 url(../images/front-arrow.png)220px center no-repeat; padding:12px 15px 8px 0; width:250px; color:#fff; font-size:20px; text-transform:uppercase; -moz-border-radius: 5px;  -webkit-border-radius: 5px;  border-radius: 5px; border:none; cursor:pointer }
+
+
+
+
+
+.print{width:45px; font-size:12px; background:url(../images/icon-print.png) left center no-repeat; padding:2px 0 2px 20px; display:block;}
+.delete{width:40px; margin:auto; font-size:12px; background:url(../images/icon-trash.png) left top no-repeat; padding:2px 0 2px 8px; display:block;}
+
+
+/*===================
+MANAGE QUOTATION
+====================*/
+
+.manage-order{ margin:25px 0 5px 0; font-size:12px;}
+.manage-order .mndry{text-align:right; padding:5px 0; font-size:11px; color:#aaa}
+.manage-order .creat-ordertable{background:#f8f8f8; border-top:8px solid #08558d;}
+.manage-order .creat-ordertable tr {border-bottom:1px solid #d5d5d5; border-collapse:collapse;}
+.manage-order .creat-ordertable .darktr{background:#eee; }
+.manage-order .creat-ordertable .bottomtr{background:#eee;  font-size:16px; border:1px solid #ccc; border-radius:4px; }
+.manage-order .creat-ordertable .bottomtr a{color:#444;  text-shadow:1px 1px 1px #fff}
+.manage-order .creat-ordertable .bottomtr a:hover{color:#08558d;}
+.manage-order .creat-ordertable tr td{padding:8px 15px 8px 25px; }
+.manage-order .creat-ordertable tr .bold{background:#eee; font-family:'MyriadProBold'; color:#08558d}
+.manage-order .creat-ordertable .darktr .bold{background:#e5e5e5;}
+.manage-order .creat-ordertable tr td .inputbxs{background:none; border:1px solid #ccc; padding:5px 12px; width:220px;}
+.manage-order .inputs{ width:150px; padding:2px 3px; font-size:11px; border:1px solid #ddd;}
+.manage-order .txtar{ width:425px; padding:2px 3px; font-size:11px; border:1px solid #ddd; font-family:Arial, Helvetica, sans-serif}
+.manage-order .total-price{/*padding:10px 20px; width:100px; text-align:center;*/ background:#08558d; font-size:20px; color:#fff; text-shadow:1px 1px 1px #000}
+.manage-order .report-table{background:#f5f5f5; margin:0; border-bottom:0}
+.manage-order .report-table .hdrtr{background:#388fc4; color:#fff;}
+.manage-order .report-table .hdrtr td{border-right:1px solid #f7f7f7; text-align:center}
+.manage-order .report-table .hdrtr td{margin:0; padding:3px;}
+
+.manage-order .quo-view-table{background:#f5f5f5; margin:8px 0; border-bottom:0}
+.manage-order .quo-view-table .hdrtr{background:#388fc4; color:#fff;}
+.manage-order .quo-view-table .hdrtr td{border-right:1px solid #f7f7f7; text-align:center; margin:0; padding:3px;}
+.manage-order .quo-view-table tr td{padding:5px 5px; text-align:center}
+.manage-order .quo-view-table tr{border-bottom:1px dotted #ddd;}
+
+.manage-order .quotation-table {margin:8px 0; font-size:14px; text-transform:uppercase}
+.manage-order .quotation-table tr td{padding:0px 5px }
+.manage-order .quotation-table tr{border:none}
+.manage-order .quotation-table .cartwiseopt{width:180px; height:20px; font-size:12px;}
+.manage-order .quotation-table .imgidbox{width:145px; padding:0 5px; font-size:12px;}
+
+.view-qt{margin:25px 0; font-size:14px; background:#f5f5f5; border:1px solid #ddd; padding:15px;}
+.view-qt .searchc{width:550px; font-family:'MyriadProSemibold'; padding-bottom:2px; border-bottom:1px dotted #bbb}
+.view-qt table tr td{padding:6px 0;}
+.view-qt table tr .bold{font-family:'MyriadProSemiBold'; color:#08558d; font-size:14px;}
+.view-qt table tr .activecp{ padding-left:15px; border-left:1px dotted #999}
+.view-qt table tr .activecp .count{font-size:18px; color:#104196}
+.view-qt .inputs{ width:150px; padding:2px 3px; font-size:11px; border:1px solid #ddd; margin:0 3px}
+.view-qt .addnewcp{background:url(../images/add.png)left center no-repeat; padding:10px 0 10px 28px; font-family:'MyriadProSemiBold'; margin:10px 0 0 0; display:block} .view-qt .addnewcp:hover{color:#000}
+
+.print-quote{width:80%; margin:25px 0}
+.print-quote .toptr2{border-top:10px solid #faa21b}
+.print-quote table tr{border-top:1px solid #ddd}
+.print-quote table tr td{padding:8px 15px; vertical-align:text-top; line-height:16px;}
+.print-quote table tr td .sale{font-size:14px; text-decoration:underline; font-weight:bold; margin-bottom:5px;}
+
+/*QUOTATION DETAILS*/
+.manage-order .quotation-div{background:#f6f6f7; width:900px; margin:25px auto; padding:15px 25px 30px 25px ; text-shadow:1px 1px 1px #fff; box-shadow:0px 0px 10px 0px #888888; border-radius:5px; -webkit-border-radius: 5px;  border-radius: 5px;}
+
+.manage-order .quotation-div .quotation-pg-div{width:875px; height:25px; margin:10px 0 25px 0; padding:8px 0 8px 25px; border-bottom:1px dotted #388fc4}
+.manage-order .quotation-div .quotation-pg-div .pgs{float:right;}
+.manage-order .quotation-div .quotation-pg-div ul li{float:left; margin-left:5px;}
+.manage-order .quotation-div .quotation-pg-div ul .active{width:28px; height:15px; padding:7px 0; font-size:16px;text-align:center; color:#fff; background:url(../images/circle-bg-on.png) no-repeat;  text-shadow:none}
+.manage-order .quotation-div .quotation-pg-div ul li a{display:block; width:28px; height:15px; padding:7px 0; font-size:16px;text-align:center; color:#fff; background:url(../images/circle-bg-off.png) no-repeat; text-shadow:none}
+.manage-order .quotation-div .quotation-pg-div ul li a:hover{background:url(../images/circle-bg-on.png) no-repeat}
+
+
+table.quotation-tbl{font-family:'MyriadProRegular'; font-size:14px; font-weight:normal;}
+.manage-order .quotation-tbl tr td .thumb{margin:25px auto;}
+.manage-order .detailtble tr{border-bottom:none}
+.manage-order .quotation-tbl tr{border-bottom:none}
+.manage-order .quotation-tbl tr .thumbtd{width:150px; font-family:'MyriadProSemiBold'; text-align:center; font-size:16px; text-transform:uppercase; color:#094f73; border-right:0px dotted #388fc4; }
+.manage-order .quotation-tbl tr td{ vertical-align:top;}
+
+.manage-order .detailtble .qtd{width:120px; text-align:right; /*border-bottom:1px solid #fff;*/ padding:8px 15px; font-size:14px;}
+.manage-order .detailtble .answertd-odd{width:160px;background:#c3d4dc; color:#094f73; border-bottom:1px solid #fff; padding:8px 15px; font-size:16px; font-family:'MyriadProSemiBold';}
+.manage-order .detailtble .answertd-even{width:160px;background:#e5eaf0; color:#094f73;  padding:8px 15px; font-size:16px; font-family:'MyriadProSemiBold';}
+
+.manage-order .detailtble .discount{width:100px;background:#e5eaf0;border-bottom:1px solid #d4e1ea; color:#094f73;  padding:5px 25px; font-size:20px; font-family:'MyriadProSemiBold';}
+.manage-order .detailtble .tprice{width:100px;background:#c3d4dc; color:#094f73;  padding:5px 25px; font-size:20px; font-family:'MyriadProSemiBold';text-shadow:1px 1px 1px #fff;}
+.manage-order .quotation-tbl  .uploadpo{margin:15px 0 15px 50px; width:200px; text-align:center;  padding:10px 25px; border:1px solid #c3d4dc; font-family:'MyriadProSemiBold'; line-height:22px;}
+
+.bt-convert{font-family:'MyriadProLight'; font-weight:normal; background:#5ca2cf url(../images/front-arrow-small.png)125px center no-repeat; padding:4px 6px 4px 0; width:140px; color:#fff; font-size:16px; text-transform:uppercase; /*-moz-border-radius: 4px;  -webkit-border-radius: 4px;  border-radius: 4px; border:none;*/ cursor:pointer; display:block; text-shadow:none; margin-left:150px; }
+.bt-convert:hover{background:#104196 url(../images/front-arrow-small.png)125px center no-repeat;}
+
+/**=================
+Manage Images
+==================**/
+.image-filterDiv{background:#08558d; padding:15px 25px; color:#fff; font-size:14px;}
+.image-filterDiv .count{font-size:24px; color:#FF0; padding:0 5px;}
+.image-filterDiv .hdr{text-transform:uppercase; padding-bottom:2px; margin:10px 0; border-bottom:1px dotted #09C; color:#00FF33}
+.image-filterDiv tr td{padding:2px;}
+
+.multi-view-images-paging{background:#f2f2f2; width:100%; margin:40px auto 0 auto; height:20px; padding:10px 0 10px 0; font-size:14px;}
+.multi-view-images-paging table{float:right; margin-right:25px;}
+.mult-view-images-table{vertical-align:middle; margin:0 0 10px 0}
+.mult-view-images-table tr{border-bottom:1px solid #ddd}
+.mult-view-images-table tr td{padding:2px 0; text-align:center;  padding:5px 0}
+.mult-view-images-table .hdrtr{background:#69aed8; color:#fff;}
+.mult-view-images-table .hdrtr td{border-right:1px solid #fff; padding:5px 0}
+
+/**===========================
+GLOBAL FOOTER CONTENT
+===========================**/
+#global-footer-wrapper{width:100%; float:left; margin:25px 0 0 0; padding-bottom:45px; background:#2c2c2c;}
+#global-footer-container{width:1000px; margin:25px auto; }
+.copyright{float:left; width:auto; float:left; margin:0 auto; padding:0 25px;font-size:12px; color:#a1a1a1; }
+.privacy-holder{float:left; width:auto; float:right; margin:0 auto; padding:0 25px; font-size:12px;}
+.privacy-holder a{color:#a1a1a1; text-decoration:none }
+.n-property{color:#faa11a; font-family:'MyriadProSemiBold', arial;}
+
+/*=== MY ACCOUNT===*/
+#global-footer .myac-btm{ margin-left:75px;}
+#global-footer .myac-btm .myac-hd{font-size:18px; text-transform:uppercase; color:#222; padding:0 35px 10px 0;}
+
+/*===SUBSCRIPTION+SOCIALS===*/
+.subscription{float:right; width:300px; padding-left:68px; border-left:1px solid #c2c2c2}
+.subs-hd{font-size:14px; color:#333; padding:0 25px 15px 0;}
+.sub-input{-moz-border-radius: 6px;  -webkit-border-radius: 6px;  border-radius: 6px; border: 1px solid #acacac; width:150px; outline:0; padding:10px; font-size:11px;}
+.sub-btn{border:0; padding-right:20px; font-size:18px; background:url(../images/arrow-a.png) right center no-repeat; cursor:pointer; font-family:'MyriadProRegular'}
+
+.socials{display:block; width:200px; clear:both; margin:15px 0 0 0; font-size:14px;}
+.connect{display:block; padding:6px 0}
+.facebook{float:left; position:static; display:block; text-indent:-2000px; height:56px; width:56px; margin-right:4px; background:url(../images/social-media-icons.png) no-repeat;}
+.twitter{float:left; position:static; display:block; text-indent:-2000px; height:56px; width:57px;margin-right:4px; background:url(../images/social-media-icons.png) -58px center no-repeat;}
+.youtube{float:left; position:static; display:block; text-indent:-2000px; height:56px; width:58px; margin-right:4px; background:url(../images/social-media-icons.png) -117px center no-repeat;}
+
+.conditions{float:left; width:290px; font-size:11px; line-height:18px; color:#666; display:block; clear:left; margin-top:20px; padding-top:16px; border-top:1px solid #c3c3c3;}
+.conditions a{color:#666}
+.conditions a:hover{text-decoration:underline}
+
+/**===========================
+LOGIN /SIGNUP SECTION
+===========================**/
+* {padding:0; margin:0;}	
+.signup {padding:10px;	width:225px; background:#fff; height:250px; padding:25px; font-size:12px;}
+.signup h3{border-top:1px dotted #d2d2d2; margin:25px 0 10px 0; padding:4px 0; font-size:12px; font-family:'MyriadProSemiBold'}
+.tabs li {list-style:none; display:inline; }
+.tabs a {padding:5px 10px;	display:inline-block; font-family:'MyriadProRegular'; font-size:22px; background:#faa21b;color:#fff;text-decoration:none;}
+.tabs a.active {background:#fff;color:#000;	}
+.signup .inptbx{width:200px; color:#999; padding:2px 10px; margin:5px 0;}
+.signup-bt{float:left;width:60px; padding:10px 35px 8px 15px; margin:15px 0 0 0; display:block; text-align:center; font-size:14px; text-transform:uppercase; color:#fff; background:#faa21b url(../images/arrow-shop.png) right center no-repeat;border:1px solid #faa21b;}
+.signup-bt:hover{background:#000 url(../images/arrow-shop.png) right center no-repeat; border:1px solid #000;}
+
+.signup-back{float:left;width:40px; padding:10px 15px 8px 15px; margin:15px 15px 0 0; display:block; text-align:center; font-size:14px; text-transform:uppercase; color:#444; background:#dbdbdb; border:1px solid #c2c2c2;}
+.signup-back:hover{background:#000; color:#fff}
+
+.signup .forgot-pw{color:#999; text-decoration:underline}
+#overlay-bx {
+width: 100%;
+position: fixed;
+z-index: 9999;
+height: 100%;
+background: rgba(0, 0, 0, 0);
+}
+.my_tgl_bxx {
+position: absolute;
+z-index: 99999;
+top: 1011px;
+width: 550px;
+min-height: 100px;
+left: 700px;
+padding: 10px;
+border: 1px solid rgb(204, 204, 204);
+box-shadow: 0 0 10px rgb(204, 204, 204);
+display: inline;
+background: rgb(237, 237, 237);
+}
+
+.my_tgl_bxx_new {
+position: absolute;
+z-index: 99999;
+top: 400px;
+width: 550px;
+min-height: 200px;
+left: 300px;
+padding: 10px;
+border: 1px solid rgb(204, 204, 204);
+box-shadow: 0 0 10px rgb(204, 204, 204);
+display: inline;
+background: rgb(237, 237, 237);
+}

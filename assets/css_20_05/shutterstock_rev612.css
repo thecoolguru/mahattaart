@@ -1,0 +1,291 @@
+
+/* page containers */
+.search_results #bodyContent {
+    padding: 0 34px 0;
+}
+#cat_container {
+    min-width: 930px;
+    margin-right: 17px;
+    position: relative;
+}
+
+/* main grid styles */
+#grid {
+	clear: both;
+	margin-right: 13px;
+}
+.gc {
+    position: relative;
+	float: left;
+	display: table;
+	border: 1px solid #fff;
+	text-align: center;
+	border-collapse: collapse;
+}
+.gc:hover {
+    background-color: #f0f0f0;
+    border-color: #d0d0d0;
+}
+.gc>div {
+    display: table-cell;
+    vertical-align: middle;
+}
+.small_grid .gc {
+	width: 104px;
+	height: 135px;
+    margin: 0;
+}
+.small_grid .descriptions_on  .gc {
+	height: 157px;
+}
+.large_grid .gc {
+	width: 154px;
+	height: 182px;
+    margin: 2px;
+}
+.large_grid .descriptions_on  .gc {
+	height: 210px;                                          
+}
+.gc a {
+    padding-bottom: 0;
+}
+.gc td {
+    vertical-align: middle;
+    padding: 0;
+}
+.gc img {
+    border: 0;
+}
+.gc_thumb,
+.gc_desc {
+    display: block;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.gc_desc {
+    /*  truncation fallback */
+    max-height: 2.55em;
+    margin: 3px 0 2px 0;
+    line-height: 1.2;
+	font-size: 10px;
+}
+.gc_desc,
+.gc_desc:hover {
+	text-decoration: none;
+	color:  #404040;
+}
+.large_grid .gc_desc {
+	margin: 3px 0 4px 0;
+}
+.gc_thumb { /* thumbnail container */
+    border: 1px solid #D0D0D0;
+    background-color: #D0D0D0;
+    margin-bottom: 4px;
+}
+.descriptions_on .gc_thumb { 
+	margin-bottom: 0;
+}
+.gc .lbx_btn,
+.gc .pic_btn {
+	position: relative; 
+	margin: 0 5px;
+    	display: inline-block;
+    	background-repeat: no-repeat;
+    	cursor: pointer;
+    	cursor: hand;
+	visibility: hidden;
+	padding-top: 1px;
+	padding-left: 1px;
+}
+.lbx_btn {
+    background: url('http://s4.picdn.net/images/lightbox_rev11.png') no-repeat 0px 0px;
+	width: 18px;
+    height: 17px;
+}
+.lbx_btn:hover {
+	background-position: 0 -18px;
+}
+.small_grid a.lbx_btn{
+	margin-left: 10px;
+}
+.ie .small_grid a.lbx_btn{
+    margin-right: 4px;
+}
+.ie .large_grid a.lbx_btn{
+    margin-right: 0px;
+	margin-left: 2px;
+}
+.pic_btn {
+    background: url('http://s5.picdn.net/images/pic_icon_active_rev9.png') no-repeat 0px 0px;
+    height: 15px;
+    width: 15px;
+    top: -1px;
+}
+.pic_btn:hover {
+    background-position: 0 -16px;
+}
+.gc:hover .lbx_btn,
+.gc:hover .pic_btn {
+	visibility: visible;
+}
+.gc_desc  {
+	display: none;
+}
+.descriptions_on .gc_desc {
+	display: block;
+}
+
+/* lightbox layer on search results grid */
+.gc_btns {
+    position: relative;
+}
+
+
+/* page containers */
+#grid.mosaic_grid {
+    margin-right: 0;
+}
+.grid_navigation {
+	min-width: auto;
+}
+
+/* mosaic grid cells */
+.mosaic_cell {
+    position: relative;
+    float: left;
+    text-align: center;
+    margin: 3px;
+    box-shadow: 0 0 0 1px #ebebeb;
+    background: #fff;
+}
+.mosaic_cell:active {
+    background: #ebebeb;
+}
+.mosaic_cell:hover {
+	box-shadow: 0 0 0 1px #d9d9d9;
+}
+.lte8 .mosaic_cell {
+    border: 1px solid #ebebeb;
+}
+.lte8 .mosaic_cell:hover {
+    border: 1px solid #d9d9d9;
+}
+.mosaic_cell .gc_btns {
+	background: rgb(240, 240, 240);
+	background: rgba(240, 240, 240, 0.96);
+	height: 40px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	display: none;
+}
+.mosaic_cell:hover .gc_btns {
+	display: block; 
+}
+.mosaic_cell > a {
+	display: block;
+	padding: 0;
+}
+.mosaic_cell > a img {
+    width: 100%;
+    border: none;
+}
+.gc_clip { /* hides/clips off image annotations */
+    display: block;
+    position: relative; /* used for vertical centering */
+    overflow: hidden;
+    margin: 0 auto;
+} 
+
+/* image description */
+.mosaic_cell .gc_desc {
+    margin: 0;
+    padding: 5px 0 2px;
+    width: 100%;
+    height: 13px;
+    position: absolute;
+    bottom: -20px;
+    white-space:nowrap;
+}
+.descriptions_on .mosaic_cell {
+    margin-bottom: 20px;
+}
+
+/* lightbox/pic buttons */
+.mosaic_cell .lbx_btn, 
+.mosaic_cell .pic_btn {
+	top: 16px;
+	right: 16px;
+	display: inline-block;
+	margin: 11px 4px 0 4px;
+	padding: 0 6px;
+	vertical-align: middle;
+	cursor: pointer;
+	background-position: 6px 0;
+	width: 15px;
+}
+.mosaic_cell .lbx_btn:hover {
+	background-position: 6px -18px;
+}
+.mosaic_cell .pic_btn:hover {
+	background-position: 6px -16px;
+}
+
+/* add to lightbox layer */
+.mosaic_cell .pulldown_content_container,
+.mosaic_cell #add_to_lightbox_multiple {
+    top: auto;
+}
+.mosaic_cell #add_to_lightbox_multiple {
+    bottom: 50px;
+}
+
+
+/* Image Preview Styles: White */
+.mosaic_search_page #photo-details-container {
+	margin: 12px 0 0 12px;
+	padding: 18px;
+}
+
+/* Next Button Styles */
+#mosaic_next_button {
+	text-align: center;
+	clear: both;
+	margin: 30px 0;
+}
+.mosaic_search_page #search-results-next-button {
+	padding: 14px 130px;
+	font-weight: normal;
+}
+.mosaic_search_page #search-results-next-button span {
+	font-size: 16px;
+}
+
+/* Loading Styles: Hide hover states */
+.mosaic_search_page.search_loading #grid .gc_btns {
+	visibility: hidden;
+}
+
+/* Lightbox Tip */
+.mosaic_cell.gc_zero_lb .gc_btns {
+	display: block;
+	z-index: 60;
+}
+.mosaic_search_page .zero_lb_shadow_container {
+	margin-top: -20px;
+}
+
+
+/* Scrolling */
+.scrolling #photo-details-container {
+    visibility: hidden;
+}
+
+/* Window Resizing (safari) 
+   esmiling: based on the Mavericks scrollbar setting, the browser doesn't account for the 
+   width of scrollbars while resizing when we get the width of 100% containers in the page.
+   This css hackery below makes safari resizing smooth for the mosaic.
+*/
+

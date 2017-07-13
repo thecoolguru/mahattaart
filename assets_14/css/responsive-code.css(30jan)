@@ -1,0 +1,109 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* XS Portrait */
+@media (max-width: 479px) {
+
+}
+
+/* xs */
+@media (max-width: 767px) {
+
+}
+
+/* sm */
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/* md */
+@media (min-width: 992px) and (max-width: 1199px) {
+	.search-input {
+	  padding: 8px 0;
+	}	
+	.search-input button {
+	  font-size: 12px;
+	  margin-top: -32px;
+	  right: 32px;
+	}
+	.header-content .fll {
+	  height: 40px;
+	  margin: 8px 20px;
+	}
+	h1.ttto::before {
+	  width: 39%;
+	}
+	h1.ttto::after {
+	  width: 35%;
+	}
+	.top-cate h1 {
+	  font-size: 35px;
+	}
+	.first-a > a {
+	  height: 170px !important;
+	  width: 180px !important;
+	}
+	.first-b > a {
+	  height: 120px !important;
+	  width: 180px !important;
+	}
+	.modern-a > a {
+	  height: 150px !important;
+	  width: 175px !important;
+	}
+	.modern-b > a {
+	  height: 140px !important;
+	  width: 175px !important;
+	}
+	.fiine-a > a {
+	  height: 200px !important;
+	  width: 150px !important;
+	}
+	.animals-b > a {
+	  height: 120px  !important;
+	  width: 180px !important;
+	}
+	.modern-a > a {
+	  height: 120px !important;
+	  width: 145px !important;
+	}
+	.modern-b > a {
+	  height: 110px !important;
+	  width: 145px !important;
+	}
+	.photography-a > a {
+	  height: 170px !important;
+	  width: 180px !important;
+	}
+	.photography-b > a {
+	  height: 170px !important;
+	  width: 150px !important;
+	}
+	.photography-a img {
+	  height: 100%;
+	  width: 100%;
+	}
+	.line {
+	  width: 100%;
+	}
+	.footer-content {
+	  width: 90%;
+	}
+}
+
+/* lg */ 
+@media (min-width: 1200px) {
+	.search-input {
+	  padding: 8px;
+	}	
+	.search-input button {
+	  margin-top: -32px;
+	  right: 38px;
+	}
+}
+
+
+xs = extra small screens (mobile phones)
+sm = small screens (tablets)
+md = medium screens (some desktops)
+lg = large screens (remaining desktops) 
