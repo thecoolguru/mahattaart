@@ -14,7 +14,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div class="main-container container">
     	
         <div class="pagination" style="margin:0px;">
-        	<span> <a href="<?= base_url()?>index.php/frontend/index">HOME</a> > <span> Subjects </span> </span>
+        	<span> <a href="<?= base_url()?>frontend/index">HOME</a> > <span> Subjects </span> </span>
         </div>
         
         <!-- art style -->
@@ -29,7 +29,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                     	<?php  $subject=$this->frontend_model->get_header_images(1);
   //print_r($subject);
     					foreach($subject as $result){ ?>
-						<li><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?php echo $result->keyword;?>/none/none/none/none"><?php echo $result->title;?></a></li>
+						<li><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?php echo $result->keyword;?>/none/none/none/none"><?php echo $result->title;?></a></li>
 						<?php }?>
                     </ul>
                 </div>
@@ -179,13 +179,13 @@ $jump=$next+2;
 <ul class="pagination" style="padding:0px; margin:0px;">
 
 
- <li><? echo '<a href="' . base_url() . 'index.php/search/dosearch/'.$category_id.'/'.$prev.'/'.$limit.'/'.$search_text.'/'.$sort_by.'/'.$filter_product_type.'/'.$filter_collection.'/'.$filter_medium.'/'.$size.'/'.$price_slab.'/'.$shape.'/'.$filterColor.'"> '.$page.' </a>'; ?></li>
+ <li><? echo '<a href="' . base_url() . 'search/dosearch/'.$category_id.'/'.$prev.'/'.$limit.'/'.$search_text.'/'.$sort_by.'/'.$filter_product_type.'/'.$filter_collection.'/'.$filter_medium.'/'.$size.'/'.$price_slab.'/'.$shape.'/'.$filterColor.'"> '.$page.' </a>'; ?></li>
                            
                             
-                            <li><? echo '<a href="' . base_url() . 'index.php/search/dosearch/'.$category_id.'/'.$next.'/'.$limit.'/'.$search_text.'/'.$sort_by.'/'.$filter_product_type.'/'.$filter_collection.'/'.$filter_medium.'/'.$size.'/'.$price_slab.'/'.$shape.'/'.$filterColor.'">'; ?><?=$next;?></a></li>
+                            <li><? echo '<a href="' . base_url() . 'search/dosearch/'.$category_id.'/'.$next.'/'.$limit.'/'.$search_text.'/'.$sort_by.'/'.$filter_product_type.'/'.$filter_collection.'/'.$filter_medium.'/'.$size.'/'.$price_slab.'/'.$shape.'/'.$filterColor.'">'; ?><?=$next;?></a></li>
                           
    
-  <li class="page-item Next"> <? echo '<a class="page-link Next"  aria-label="Next" href="' . base_url() . 'index.php/search/dosearch/'.$category_id.'/'.$next.'/'.$limit.'/'.$search_text.'/'.$sort_by.'/'.$filter_product_type.'/'.$filter_collection.'/'.$filter_medium.'/'.$size.'/'.$price_slab.'/'.$shape.'/'.$filterColor.'">'?> <!--<span aria-hidden="true" style="color:#666666;">  </span> --> </a> </li>
+  <li class="page-item Next"> <? echo '<a class="page-link Next"  aria-label="Next" href="' . base_url() . 'search/dosearch/'.$category_id.'/'.$next.'/'.$limit.'/'.$search_text.'/'.$sort_by.'/'.$filter_product_type.'/'.$filter_collection.'/'.$filter_medium.'/'.$size.'/'.$price_slab.'/'.$shape.'/'.$filterColor.'">'?> <!--<span aria-hidden="true" style="color:#666666;">  </span> --> </a> </li>
 
 </ul>
 
@@ -254,7 +254,7 @@ $jump=$next+2;
          ?>
 						<div class="artist_Photo col-sm-3 col-md-3 ">
                         	<div class="col-md-12 thumbnail">
-                                <a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?php echo $values->keyword;?>/none/none/none/none">
+                                <a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?php echo $values->keyword;?>/none/none/none/none">
                                 <img src="<?php print base_url();?><?=$values->image?>" title="<?php echo $values->title;?>" width="100%" /></a>
 								<div class="artist_tag"><?php echo strtoupper($values->title);?></div>
                             </div>

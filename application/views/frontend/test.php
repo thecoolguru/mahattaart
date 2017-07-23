@@ -4,11 +4,11 @@
         	<div>
             	<h1>Quick  <span>Links</span></h1>
                 <ul>
-                	<li><a href="<?=base_url()?>index.php/frontend/about">About WallsnArt</a></li>
-                    <li><a href="<?=base_url()?>index.php/frontend/media_center">Media Center</a></li>
+                	<li><a href="<?=base_url()?>frontend/about">About WallsnArt</a></li>
+                    <li><a href="<?=base_url()?>frontend/media_center">Media Center</a></li>
                     <li><a href="#">Find Art</a></li>
-                    <li><a href="<?=base_url()?>index.php/frontend/partner">Partners</a></li>
-                    <li><a href="<?=base_url()?>index.php/frontend/career">Career</a></li>
+                    <li><a href="<?=base_url()?>frontend/partner">Partners</a></li>
+                    <li><a href="<?=base_url()?>frontend/career">Career</a></li>
                 </ul>
             </div>
             
@@ -16,8 +16,8 @@
             <div>
             	<h1>Let us <span>Help</span></h1>
                 <ul>
-                	<li><a href="<?=base_url()?>index.php/frontend/contact">Contact Us</a></li>
-                    <li><a href="<?=base_url()?>index.php/frontend/faq">FAQ's</a></li>
+                	<li><a href="<?=base_url()?>frontend/contact">Contact Us</a></li>
+                    <li><a href="<?=base_url()?>frontend/faq">FAQ's</a></li>
                     <li><a href="#">Ordering</a></li>
                     <li><a href="#">shipping & Delivery</a></li>
                 </ul>
@@ -28,7 +28,7 @@
                 <ul>
                 	<li>
 					
-                  	<a href="<?php print base_url();?>index.php/user/profile">My Profile My Profile</a></li>
+                  	<a href="<?php print base_url();?>user/profile">My Profile My Profile</a></li>
                         
                     <li><a href="#">Track My Order</a></li>
                     <li><a href="#">Order History</a></li>
@@ -38,8 +38,8 @@
              <div>
             	<h1>Term &  <span>Policies</span></h1>
                 <ul>
-                	<li><a href="<?=base_url()?>index.php/frontend/terms_of_use">Terms of Use</a></li>
-                    <li><a href="<?=base_url()?>index.php/frontend/privacy_policy">Privacy Policy</a></li>
+                	<li><a href="<?=base_url()?>frontend/terms_of_use">Terms of Use</a></li>
+                    <li><a href="<?=base_url()?>frontend/privacy_policy">Privacy Policy</a></li>
                 </ul>
             </div>
             
@@ -47,7 +47,7 @@
             	<h1>Newsletter <span>WallnArt</span></h1>
                 <span>
 				
-                    <form name="newsletter" id="other" method="post" action="<?php echo base_url()?>index.php/frontend/submit_email">
+                    <form name="newsletter" id="other" method="post" action="<?php echo base_url()?>frontend/submit_email">
                     <input name="email_newsletter" type="text"  class="news-input" id="email_newsletter" value="Your Email Address"  onFocus="if(this.value == 'Your Email Address') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Your Email Address';}"/>
 					<div class="clear"></div>
 					<span id="err"></span>
@@ -61,7 +61,7 @@
             
         </div>
        
-       <p class="copyright"><a href="<?=base_url()?>index.php/frontend/terms_of_use">Terms  of Use</a>© Copyright 2010-2014 | WallnArt</p>
+       <p class="copyright"><a href="<?=base_url()?>frontend/terms_of_use">Terms  of Use</a>© Copyright 2010-2014 | WallnArt</p>
        
     </footer>
     <!-- footer -->
@@ -248,7 +248,7 @@ $result=$this->frontend_model->get_all_lightboxes($user_id); foreach($result as 
 			//alert(datastring);
             $.ajax({
                 type: "POST",
-                url: "<?php print base_url() ?>index.php/frontend/login",
+                url: "<?php print base_url() ?>frontend/login",
                 data: datastring,
                 success: function(data)
                 {
@@ -256,7 +256,7 @@ $result=$this->frontend_model->get_all_lightboxes($user_id); foreach($result as 
                     if(data=="successful")
                     {
                         
-                        //window.location.assign('<?=base_url()?>index.php/user/index');
+                        //window.location.assign('<?=base_url()?>user/index');
                         location.replace('<?=base_url()?>index.php');
                         allclose('');
                     }
@@ -336,7 +336,7 @@ function checkRegisterValidation(){
             $('#cpassword_error').html("");
             $.ajax({
                 type: "POST",
-                url: "<?php print base_url() ?>index.php/frontend/register",
+                url: "<?php print base_url() ?>frontend/register",
                 data: $("#signup_form").serialize(),
                 success: function(data)
                 {
@@ -345,7 +345,7 @@ function checkRegisterValidation(){
                     {
                          //alert(data);
 		     $("#success_result").html("<center><span style='color:red; font-size:18px;'>Thank You For Registering!</span></center>");
-                       // location.replace('<?php print base_url() ?>index.php/frontend/register_success');
+                       // location.replace('<?php print base_url() ?>frontend/register_success');
                     allclose('');
                     }
                     else

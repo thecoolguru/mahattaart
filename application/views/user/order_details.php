@@ -101,8 +101,8 @@
             	<p>Let Us Help</p>
             	<div class="list">
                 	<ul>
-                    	<li><a href="<?=base_url()?>index.php/frontend/contact">Contact us</a></li>
-                        <li><a href="<?=base_url()?>index.php/frontend/faq">FAQ's</a></li>
+                    	<li><a href="<?=base_url()?>frontend/contact">Contact us</a></li>
+                        <li><a href="<?=base_url()?>frontend/faq">FAQ's</a></li>
                         <li><a href="#">Ordering</a></li>
                         <li><a href="#">Shipping & Delivery</a></li>
                     </ul>
@@ -111,19 +111,19 @@
                 <p>My Account</p>
             	<div class="list">
                 	<ul>
-                    	<li><a href="<?=base_url()?>index.php/frontend/contact">My Profile</a></li>
+                    	<li><a href="<?=base_url()?>frontend/contact">My Profile</a></li>
                         <li><a href="#">Track My Order</a></li>
-                        <li><a href="<?=base_url()?>index.php/user/order_history">Order History</a></li>
+                        <li><a href="<?=base_url()?>user/order_history">Order History</a></li>
                     </ul>
                 </div>
                 
                 <p>Mahatta art</p>
             	<div class="list">
                 	<ul>
-                    	<li><a href="<?=base_url()?>index.php/frontend/about">The Company</a></li>
-<!--                        <li><a href="<?=base_url()?>index.php/frontend/media_center">Media Center</a></li>-->
-                        <li><a href="<?=base_url()?>index.php/frontend/career">Careers</a></li>
-                        <li><a href="<?=base_url()?>index.php/frontend/partner">Partners</a></li>
+                    	<li><a href="<?=base_url()?>frontend/about">The Company</a></li>
+<!--                        <li><a href="<?=base_url()?>frontend/media_center">Media Center</a></li>-->
+                        <li><a href="<?=base_url()?>frontend/career">Careers</a></li>
+                        <li><a href="<?=base_url()?>frontend/partner">Partners</a></li>
                     </ul>
                 </div>
                 
@@ -192,7 +192,7 @@ $image_id=$search_data_r['results'][0]['image_id'];
 							    <li><?=$order_id->sr_id;?></li>
                                 <li><?=$order_id->invoice_id;?></li>
                                 <li><?=$order_id->sku_id;?></li>
-                                <li style="background:rgba(0, 0, 0, 0) url('<?=base_url()?>images/uploaded_pdf/mount/<?=$order_id->mount_color;?>.jpg') no-repeat scroll 0 0 / cover ; border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/<?=$order_id->frame_color;?>.jpg') 10 10 10 10 round round;margin-left:50px" class="mainhor"><a href="<?=base_url()?>index.php/search/image_detail/<?=$file_name?>/<?=$image_id?>/<?=$collection_id?>"><img src="http://static.mahattaart.com/398/<?=$order_id->sku_id;?>"width="100%" /></a></li>
+                                <li style="background:rgba(0, 0, 0, 0) url('<?=base_url()?>images/uploaded_pdf/mount/<?=$order_id->mount_color;?>.jpg') no-repeat scroll 0 0 / cover ; border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/<?=$order_id->frame_color;?>.jpg') 10 10 10 10 round round;margin-left:50px" class="mainhor"><a href="<?=base_url()?>search/image_detail/<?=$file_name?>/<?=$image_id?>/<?=$collection_id?>"><img src="http://static.mahattaart.com/398/<?=$order_id->sku_id;?>"width="100%" /></a></li>
                                  <li><?=$order_id->updated_status;?></li>
 								 
 								 <li><?php 

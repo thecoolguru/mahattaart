@@ -18,7 +18,7 @@ MIDDLE SECTION CONTENT
 <!--===MIDDLE PAGE CONTAINER STARTS====-->
 <div id="middle-page-container">
 	<div class="breadcrum">
-		<a href="<?=base_url()?>index.php/frontend/index">Home</a> Bestsellers
+		<a href="<?=base_url()?>frontend/index">Home</a> Bestsellers
 	</div>
 
 	<!--=======LEFT SIDE PANEL STARTS========-->
@@ -78,12 +78,12 @@ MIDDLE SECTION CONTENT
 				<li>
 					<ul>
 						<li><a
-							href="<?php echo base_url();?>index.php/frontend/art_subject"
+							href="<?php echo base_url();?>frontend/art_subject"
 							class="parnt">SUBJECTS</a></li>
 						<?php $result=$this->search_model->get_subjects_section_list();
     					foreach($result as $results){?>
 						<li><a
-							href="<?php echo base_url();?>index.php/search/search_view?searchtext=<?php echo $results['keywords'];?>&page=<?php if(isset($_GET['page'])){echo $_GET['page']; }else echo '1';?>&per_page=<?php if(isset($_GET['per_page'])){echo $_GET['per_page']; }else echo '16';?>&main_category=<?php echo $results['main_category_name'];?>&sub_categ_name=&art_type=&same_fine_art=&same_vintage_art=&same_indian_art=&same_photography=&lot_pl=&artstyles=&product_type=&product_type_id=&collection_main_category=&collection_nm=&top_photographers=&sortby=6"><?php echo $results['main_category_name'];?>
+							href="<?php echo base_url();?>search/search_view?searchtext=<?php echo $results['keywords'];?>&page=<?php if(isset($_GET['page'])){echo $_GET['page']; }else echo '1';?>&per_page=<?php if(isset($_GET['per_page'])){echo $_GET['per_page']; }else echo '16';?>&main_category=<?php echo $results['main_category_name'];?>&sub_categ_name=&art_type=&same_fine_art=&same_vintage_art=&same_indian_art=&same_photography=&lot_pl=&artstyles=&product_type=&product_type_id=&collection_main_category=&collection_nm=&top_photographers=&sortby=6"><?php echo $results['main_category_name'];?>
 						</a></li>
 						<?php }?>
 					</ul>
@@ -91,7 +91,7 @@ MIDDLE SECTION CONTENT
 				<li>
 					<ul>
 						<li><a
-							href="<?php echo base_url();?>index.php/frontend/art_subject"
+							href="<?php echo base_url();?>frontend/art_subject"
 							class="parnt">ART STYLES</a></li>
 						<?php $art_filt1=$this->frontend_model->get_keyword_per_fine_art('Fine Art');
 						$art_filt2=$this->frontend_model->get_keyword_per_vintage_art('Vintage Art');
@@ -100,36 +100,36 @@ MIDDLE SECTION CONTENT
 
 						?>
 						<li><a
-							href="<?php echo base_url();?>index.php/search/search_view?searchtext=<?php echo $art_filt1->keywords;?>&page=<?php if(isset($_GET['page'])){echo $_GET['page']; }else echo '1';?>&per_page=<?php if(isset($_GET['per_page'])){echo $_GET['per_page']; }else echo '16';?>&main_category=&sub_categ_name=&art_type=&same_fine_art=&same_vintage_art=&same_indian_art=&same_photography=&lot_pl=f1&artstyles=<?php echo $art_filt1->fine_art_type;?>&product_type=&product_type_id=&collection_main_category=&collection_nm=&top_photographers=&sortby=6">Fine
+							href="<?php echo base_url();?>search/search_view?searchtext=<?php echo $art_filt1->keywords;?>&page=<?php if(isset($_GET['page'])){echo $_GET['page']; }else echo '1';?>&per_page=<?php if(isset($_GET['per_page'])){echo $_GET['per_page']; }else echo '16';?>&main_category=&sub_categ_name=&art_type=&same_fine_art=&same_vintage_art=&same_indian_art=&same_photography=&lot_pl=f1&artstyles=<?php echo $art_filt1->fine_art_type;?>&product_type=&product_type_id=&collection_main_category=&collection_nm=&top_photographers=&sortby=6">Fine
 								Art</a></li>
 						<li><a
-							href="<?php echo base_url();?>index.php/search/search_view?searchtext=<?php echo $art_filt2->keywords;?>&page=<?php if(isset($_GET['page'])){echo $_GET['page']; }else echo '1';?>&per_page=<?php if(isset($_GET['per_page'])){echo $_GET['per_page']; }else echo '16';?>&main_category=&sub_categ_name=&art_type=&same_fine_art=&same_vintage_art=&same_indian_art=&same_photography=&lot_pl=v1&artstyles=<?php echo $art_filt2->vintage_art_type;?>&product_type=&product_type_id=&collection_main_category=&collection_nm=&top_photographers=&sortby=6">Vintage
+							href="<?php echo base_url();?>search/search_view?searchtext=<?php echo $art_filt2->keywords;?>&page=<?php if(isset($_GET['page'])){echo $_GET['page']; }else echo '1';?>&per_page=<?php if(isset($_GET['per_page'])){echo $_GET['per_page']; }else echo '16';?>&main_category=&sub_categ_name=&art_type=&same_fine_art=&same_vintage_art=&same_indian_art=&same_photography=&lot_pl=v1&artstyles=<?php echo $art_filt2->vintage_art_type;?>&product_type=&product_type_id=&collection_main_category=&collection_nm=&top_photographers=&sortby=6">Vintage
 								Art</a></li>
 						<li><a
-							href="<?php echo base_url();?>index.php/search/search_view?searchtext=<?php echo $art_filt3->keywords;?>&page=<?php if(isset($_GET['page'])){echo $_GET['page']; }else echo '1';?>&per_page=<?php if(isset($_GET['per_page'])){echo $_GET['per_page']; }else echo '16';?>&main_category=&sub_categ_name=&art_type=&same_fine_art=&same_vintage_art=&same_indian_art=&same_photography=&lot_pl=i1&artstyles=<?php echo $art_filt3->indian_art_type;?>&product_type=&product_type_id=&collection_main_category=&collection_nm=&top_photographers=&sortby=6">Indian
+							href="<?php echo base_url();?>search/search_view?searchtext=<?php echo $art_filt3->keywords;?>&page=<?php if(isset($_GET['page'])){echo $_GET['page']; }else echo '1';?>&per_page=<?php if(isset($_GET['per_page'])){echo $_GET['per_page']; }else echo '16';?>&main_category=&sub_categ_name=&art_type=&same_fine_art=&same_vintage_art=&same_indian_art=&same_photography=&lot_pl=i1&artstyles=<?php echo $art_filt3->indian_art_type;?>&product_type=&product_type_id=&collection_main_category=&collection_nm=&top_photographers=&sortby=6">Indian
 								Art</a></li>
 						<li><a
-							href="<?php echo base_url();?>index.php/search/search_view?searchtext=<?php echo $art_filt4->keywords;?>&page=<?php if(isset($_GET['page'])){echo $_GET['page']; }else echo '1';?>&per_page=<?php if(isset($_GET['per_page'])){echo $_GET['per_page']; }else echo '16';?>&main_category=&sub_categ_name=&art_type=&same_fine_art=&same_vintage_art=&same_indian_art=&same_photography=&lot_pl=p1&artstyles=<?php echo $art_filt4->photography_type;?>&product_type=&product_type_id=&collection_main_category=&collection_nm=&top_photographers=&sortby=6">photography</a>
+							href="<?php echo base_url();?>search/search_view?searchtext=<?php echo $art_filt4->keywords;?>&page=<?php if(isset($_GET['page'])){echo $_GET['page']; }else echo '1';?>&per_page=<?php if(isset($_GET['per_page'])){echo $_GET['per_page']; }else echo '16';?>&main_category=&sub_categ_name=&art_type=&same_fine_art=&same_vintage_art=&same_indian_art=&same_photography=&lot_pl=p1&artstyles=<?php echo $art_filt4->photography_type;?>&product_type=&product_type_id=&collection_main_category=&collection_nm=&top_photographers=&sortby=6">photography</a>
 						</li>
 					</ul>
 				</li>
 				<li>
 					<ul>
 						<li><a
-							href="<?php echo base_url();?>index.php/frontend/product_type"
+							href="<?php echo base_url();?>frontend/product_type"
 							class="parnt">Product Types</a></li>
 						<li><a
-							href="<?php echo base_url();?>index.php/search/search_view?searchtext=11or13or23or126or140&page=<?php if(isset($_GET['page'])){echo $_GET['page']; } else echo '1';?>&per_page=<?php if(isset($_GET['per_page'])){echo $_GET['per_page']; }else echo '16';?>&main_category=&sub_categ_name=&art_type=&same_fine_art=&same_vintage_art=&same_indian_art=&same_photography=&lot_pl=&artstyles=&product_type=Prints&product_type_id=1&collection_main_category=&collection_nm=&top_photographers=&sortby=<?php if(isset($_GET['sortby'])){echo $_GET['sortby'];}?>">Art Prints</a>
+							href="<?php echo base_url();?>search/search_view?searchtext=11or13or23or126or140&page=<?php if(isset($_GET['page'])){echo $_GET['page']; } else echo '1';?>&per_page=<?php if(isset($_GET['per_page'])){echo $_GET['per_page']; }else echo '16';?>&main_category=&sub_categ_name=&art_type=&same_fine_art=&same_vintage_art=&same_indian_art=&same_photography=&lot_pl=&artstyles=&product_type=Prints&product_type_id=1&collection_main_category=&collection_nm=&top_photographers=&sortby=<?php if(isset($_GET['sortby'])){echo $_GET['sortby'];}?>">Art Prints</a>
 						</li>
 						<li><a
-							href="<?php echo base_url();?>index.php/search/search_view?searchtext=11or13or23or126or140&page=<?php if(isset($_GET['page'])){echo $_GET['page']; } else echo '1';?>&per_page=<?php if(isset($_GET['per_page'])){echo $_GET['per_page']; }else echo '16';?>&main_category=&sub_categ_name=&art_type=&same_fine_art=&same_vintage_art=&same_indian_art=&same_photography=&lot_pl=&artstyles=&product_type=Posters&product_type_id=3&collection_main_category=&collection_nm=&top_photographers=&sortby=<?php if(isset($_GET['sortby'])){echo $_GET['sortby'];}?>">Posters</a>
+							href="<?php echo base_url();?>search/search_view?searchtext=11or13or23or126or140&page=<?php if(isset($_GET['page'])){echo $_GET['page']; } else echo '1';?>&per_page=<?php if(isset($_GET['per_page'])){echo $_GET['per_page']; }else echo '16';?>&main_category=&sub_categ_name=&art_type=&same_fine_art=&same_vintage_art=&same_indian_art=&same_photography=&lot_pl=&artstyles=&product_type=Posters&product_type_id=3&collection_main_category=&collection_nm=&top_photographers=&sortby=<?php if(isset($_GET['sortby'])){echo $_GET['sortby'];}?>">Posters</a>
 						</li>
 						<li><a
-							href="<?php echo base_url();?>index.php/search/search_view?searchtext=11or13or23or126or140&page=<?php if(isset($_GET['page'])){echo $_GET['page']; } else echo '1';?>&per_page=<?php if(isset($_GET['per_page'])){echo $_GET['per_page']; }else echo '16';?>&main_category=&sub_categ_name=&art_type=&same_fine_art=&same_vintage_art=&same_indian_art=&same_photography=&lot_pl=&artstyles=&product_type=Canvas&product_type_id=2&collection_main_category=&collection_nm=&top_photographers=&sortby=<?php if(isset($_GET['sortby'])){echo $_GET['sortby'];}?>">Canvas</a>
+							href="<?php echo base_url();?>search/search_view?searchtext=11or13or23or126or140&page=<?php if(isset($_GET['page'])){echo $_GET['page']; } else echo '1';?>&per_page=<?php if(isset($_GET['per_page'])){echo $_GET['per_page']; }else echo '16';?>&main_category=&sub_categ_name=&art_type=&same_fine_art=&same_vintage_art=&same_indian_art=&same_photography=&lot_pl=&artstyles=&product_type=Canvas&product_type_id=2&collection_main_category=&collection_nm=&top_photographers=&sortby=<?php if(isset($_GET['sortby'])){echo $_GET['sortby'];}?>">Canvas</a>
 						</li>
 						
 						<li><a
-							href="<?php echo base_url();?>index.php/search/search_view?searchtext=11or13or23or126or140&page=<?php if(isset($_GET['page'])){echo $_GET['page']; } else echo '1';?>&per_page=<?php if(isset($_GET['per_page'])){echo $_GET['per_page']; }else echo '16';?>&main_category=&sub_categ_name=&art_type=&same_fine_art=&same_vintage_art=&same_indian_art=&same_photography=&lot_pl=&artstyles=&product_type=Framed Art&product_type_id=4&collection_main_category=&collection_nm=&top_photographers=&sortby=<?php if(isset($_GET['sortby'])){echo $_GET['sortby'];}?>">Translight
+							href="<?php echo base_url();?>search/search_view?searchtext=11or13or23or126or140&page=<?php if(isset($_GET['page'])){echo $_GET['page']; } else echo '1';?>&per_page=<?php if(isset($_GET['per_page'])){echo $_GET['per_page']; }else echo '16';?>&main_category=&sub_categ_name=&art_type=&same_fine_art=&same_vintage_art=&same_indian_art=&same_photography=&lot_pl=&artstyles=&product_type=Framed Art&product_type_id=4&collection_main_category=&collection_nm=&top_photographers=&sortby=<?php if(isset($_GET['sortby'])){echo $_GET['sortby'];}?>">Translight
 								</a></li>						
 					</ul>
 			

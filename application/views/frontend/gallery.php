@@ -41,7 +41,7 @@ function leftpanel(a)
      { 
     var dert="http://s3.amazonaws.com/wallsnart/158/";
     
-   url="<?php echo base_url();?>index.php/frontend/gallery?selected_lightbox_id="+a;
+   url="<?php echo base_url();?>frontend/gallery?selected_lightbox_id="+a;
  $.getJSON(url,
    function(data){
    {   $.each(data,function (i,dat) {
@@ -83,7 +83,7 @@ function add_to_lightbox(c,a)
     		        //alert(datastring);
                   $.ajax({ 
                      type: "POST",
-			url: "<?php print base_url();?>index.php/frontend/lightbox_dropdown",
+			url: "<?php print base_url();?>frontend/lightbox_dropdown",
 			data: datastring,
 			success: function(datam)
 			{ 
@@ -93,7 +93,7 @@ function add_to_lightbox(c,a)
 				}
                         else{      var dert="http://s3.amazonaws.com/wallsnart/158/";
                                    $("#bulb"+c).css('background-position','bottom');
-					url='<?php echo base_url();?>index.php/frontend/lightbox_dropdown?lightbox_id='+lightbox+'&image_id='+a,
+					url='<?php echo base_url();?>frontend/lightbox_dropdown?lightbox_id='+lightbox+'&image_id='+a,
    					$.getJSON(url,
    					function(data){
    							{                                                     
@@ -129,7 +129,7 @@ function add_to_lightbox(c,a)
 <li><a href="javascript:;" onclick="show_lightbox_form();">Create New LightBox</a></li>
 <!--<li><a href="#">Name Of light Boxes</a></li>-->
 </ul>
-<ul><form name="light_form" id="light_form"method="post" action="<?php echo base_url();?>index.php/frontend/gallery/">
+<ul><form name="light_form" id="light_form"method="post" action="<?php echo base_url();?>frontend/gallery/">
 <li><input type="text"name="gal_input_box" id="gal_input_box" placeholder="Name Of lightbox" size="20"style="display:none;"/></li>
 <li><textarea name="text_area_gal" id="text_area_gal" placeholder="Description" rows="3" cols="17" style="display:none;"></textarea></li>
 <li><input type="submit" value ="Create" id="gall_sub" name="gal_sub" style="background-color:orange; width:70px; height:30px;font-weight=bold;display:none;"/></li>
@@ -187,7 +187,7 @@ $image=$this->search_model->get_image_data($imgs->image_id);
 <div class="galDetailsContainer">
 <div class="galTitle"><?php print substr($image->images_caption,0,10); ?></div>
 <div class="galArtistProduct">
-<a class="gal-artist" href="<?php echo base_url();?>index.php/frontend/artist" title=""><?php  print $image->images_photographer; ?></a>
+<a class="gal-artist" href="<?php echo base_url();?>frontend/artist" title=""><?php  print $image->images_photographer; ?></a>
 <a href="javascript:;" onclick="javascript:add_to_lightbox('<?php echo $i;?>','<?php echo $image->images_id;?>');"><div class="bulb" id="bulb<?php echo $i;?>"></div></a><br/>
 <div class="gal-type-size"><span class="gal-product-size-multi"><?php $sizes=$this->search_model->get_sizes_available($image->images_filename);
 if($sizes){

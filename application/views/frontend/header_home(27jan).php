@@ -35,12 +35,12 @@
 </span> </div>
 <div class="col-md-5 help">
 <ul style="margin:0;padding:3px 0">
-<li> <a href="<?php print base_url(); ?>index.php/frontend/contact"> <i class="glyphicon glyphicon-earphone"></i> Help </a> </li>
-<li> <a <?php     if(!$this->session->userdata('userid')){?> href="javascript:void(0)" onclick="login('')" <?php  }else{ ?> href="<?php  echo base_url();?>index.php/frontend/lightbox" <?php }?>> <i class="glyphicon glyphicon-user"></i> My Gallery </a> </li>
+<li> <a href="<?php print base_url(); ?>frontend/contact"> <i class="glyphicon glyphicon-earphone"></i> Help </a> </li>
+<li> <a <?php     if(!$this->session->userdata('userid')){?> href="javascript:void(0)" onclick="login('')" <?php  }else{ ?> href="<?php  echo base_url();?>frontend/lightbox" <?php }?>> <i class="glyphicon glyphicon-user"></i> My Gallery </a> </li>
 <?php if($this->session->userdata('userid')){
             $user_id=$this->session->userdata('userid');
             $user_data=$this->user_model->get_user_details($user_id);?>
-<a href="<?=base_url()?>index.php/frontend/logout">Sign Out</a> <a href="<?=base_url()?>index.php/user/profile"> Welcome
+<a href="<?=base_url()?>frontend/logout">Sign Out</a> <a href="<?=base_url()?>user/profile"> Welcome
 <?php if ($user_data->first_name){
                         echo $user_data->first_name;
                     }else echo "User";?>
@@ -51,7 +51,7 @@
 <?php }
 			if($this->session->userdata('userid')){
 			?>
-<li> <a style="position:relative" href="<?=base_url()?>index.php/cart/cart_view"> <i class="glyphicon glyphicon-shopping-cart cart-size"> </i> <span id="HeaderCartCount" class="hdr-cart-count">
+<li> <a style="position:relative" href="<?=base_url()?>cart/cart_view"> <i class="glyphicon glyphicon-shopping-cart cart-size"> </i> <span id="HeaderCartCount" class="hdr-cart-count">
 <?php if($this->session->userdata('userid')){
                         $num=$this->cart_model->count_cart_byid($this->session->userdata('userid')); $sum=0;foreach($num as $quant){
                             $sum=$sum + $quant['qty'];
@@ -97,7 +97,7 @@
 <nav id="menu">
 <ul>
 <li> <a href="<?php print base_url(); ?>">HOME </a> </li>
-<li><a href="<?php print base_url(); ?>index.php/frontend/art_subject"> SUBJECTS </a>
+<li><a href="<?php print base_url(); ?>frontend/art_subject"> SUBJECTS </a>
 <ul>
 <div id="mouse-over">
 <?php 
@@ -105,17 +105,17 @@
          
           
             ?>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$sub_val[0]->keyword?>"><img src="<?php print base_url();?><?=$sub_val[0]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($sub_val[0]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$sub_val[0]->keyword?>"><img src="<?php print base_url();?><?=$sub_val[0]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($sub_val[0]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$sub_val[1]->keyword?>"><img src="<?php print base_url();?><?=$sub_val[1]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($sub_val[1]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$sub_val[1]->keyword?>"><img src="<?php print base_url();?><?=$sub_val[1]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($sub_val[1]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$sub_val[2]->keyword?>"><img src="<?php print base_url();?><?=$sub_val[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($sub_val[2]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$sub_val[2]->keyword?>"><img src="<?php print base_url();?><?=$sub_val[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($sub_val[2]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$sub_val[3]->keyword?>"><img src="<?php print base_url();?><?=$sub_val[3]->menu_image?>" border="0"width="100%" height="100%"> <span class="dblock1"> <?php echo ucwords($sub_val[3]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$sub_val[3]->keyword?>"><img src="<?php print base_url();?><?=$sub_val[3]->menu_image?>" border="0"width="100%" height="100%"> <span class="dblock1"> <?php echo ucwords($sub_val[3]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$sub_val[4]->keyword?>"><img src="<?php print base_url();?><?=$sub_val[4]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($sub_val[4]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$sub_val[4]->keyword?>"><img src="<?php print base_url();?><?=$sub_val[4]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($sub_val[4]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$sub_val[5]->keyword?>"><img src="<?php print base_url();?><?=$sub_val[5]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($sub_val[5]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$sub_val[5]->keyword?>"><img src="<?php print base_url();?><?=$sub_val[5]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($sub_val[5]->title)?>
 </span></a></div>
 <div style="clear:both"></div>
 <div class="sub-hor fist-sub-bar">
@@ -174,7 +174,7 @@
 </div>
 </ul>
 </li>
-<li> <a href="<?php echo base_url();?>index.php/frontend/artists"> ARTISTS </a>
+<li> <a href="<?php echo base_url();?>frontend/artists"> ARTISTS </a>
 <ul>
 <div id="mouse-over">
 <?php  
@@ -182,17 +182,17 @@
           //print_r($drop2);
           
             ?>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop2[0]->keyword?>"><img src="<?php print base_url();?><?=$drop2[0]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop2[0]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop2[0]->keyword?>"><img src="<?php print base_url();?><?=$drop2[0]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop2[0]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop2[1]->keyword?>"><img src="<?php print base_url();?><?=$drop2[1]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop2[1]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop2[1]->keyword?>"><img src="<?php print base_url();?><?=$drop2[1]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop2[1]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop2[2]->keyword?>"><img src="<?php print base_url();?><?=$drop2[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop2[2]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop2[2]->keyword?>"><img src="<?php print base_url();?><?=$drop2[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop2[2]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/michelangelo/3/none/none/none/<?=$drop2[3]->keyword?>"><img src="<?php print base_url();?><?=$drop2[3]->menu_image?>" border="0"width="100%" height="100%"> <span class="dblock1"> <?php echo ucwords($drop2[3]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/michelangelo/3/none/none/none/<?=$drop2[3]->keyword?>"><img src="<?php print base_url();?><?=$drop2[3]->menu_image?>" border="0"width="100%" height="100%"> <span class="dblock1"> <?php echo ucwords($drop2[3]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop2[4]->keyword?>"><img src="<?php print base_url();?><?=$drop2[4]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop2[4]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop2[4]->keyword?>"><img src="<?php print base_url();?><?=$drop2[4]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop2[4]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop2[5]->keyword?>"><img src="<?php print base_url();?><?=$drop2[5]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop2[5]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop2[5]->keyword?>"><img src="<?php print base_url();?><?=$drop2[5]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop2[5]->title)?>
 </span></a></div>
 <div style="clear:both"></div>
 <div class="sub-hor fist-sub-bar">
@@ -200,7 +200,7 @@
 <div class="n-layer">
 <ul class="menu2">
 <div class="col-md-8" style="width:724px;border-right:solid 1px #FC0;margin:8px 0">
-<div class="artist"> <a style="display:block;padding:8px 0;text-align:center;font-weight:600" href="<?php echo base_url();?>index.php/frontend/artists">International Artist </a>
+<div class="artist"> <a style="display:block;padding:8px 0;text-align:center;font-weight:600" href="<?php echo base_url();?>frontend/artists">International Artist </a>
 <div style="float:left;width:230px">
 <?php
                         $subjects=$this->search_model->get_subcategory(84);
@@ -239,7 +239,7 @@
 </div>
 <div class="col-md-2">
 <div class="artist">
-<div style="float:left;margin:8px 0"> <a style="display:block;padding:8px 0;text-align:center;font-weight:600" href="<?php echo base_url();?>index.php/frontend/artists"> Indian Artist </a>
+<div style="float:left;margin:8px 0"> <a style="display:block;padding:8px 0;text-align:center;font-weight:600" href="<?php echo base_url();?>frontend/artists"> Indian Artist </a>
 <div style="width:230px;float:left">
 <?php 
                        for($i=0;$i<=count($subjects);$i++){
@@ -257,7 +257,7 @@
 <div class="col-md-1">
 <div class="col-sm-2" style="width:230px;float:left">
 <div style="width:12px;float:left;margin:8px 0">
-<div style="width:170px;float:left;border-left:solid 1px #FC0;margin:8px 0;padding:0 10px"> <a style="display:block;padding:8px 0;text-align:center;font-weight:600" href="<?php echo base_url();?>index.php/frontend/artists"> NEW & EXCLUSIVE </a>
+<div style="width:170px;float:left;border-left:solid 1px #FC0;margin:8px 0;padding:0 10px"> <a style="display:block;padding:8px 0;text-align:center;font-weight:600" href="<?php echo base_url();?>frontend/artists"> NEW & EXCLUSIVE </a>
 <div style="width:160px;float:left"> <a href="#"> <img src="<?php print base_url();?>assets/img/art-style/get.JPG" border="0" width="100%"> </a>
 <p>Get to know today's </p>
 </div>
@@ -274,7 +274,7 @@
 </div>
 </ul>
 </li>
-<li> <a href="<?php echo base_url();?>index.php/frontend/art_styles">ART STYLES </a>
+<li> <a href="<?php echo base_url();?>frontend/art_styles">ART STYLES </a>
 <ul>
 <div id="mouse-over">
 <?php 
@@ -282,17 +282,17 @@
           //print_r($drop3);
           
             ?>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop3[0]->keyword?>"><img src="<?php print base_url();?><?=$drop3[0]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop3[0]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop3[0]->keyword?>"><img src="<?php print base_url();?><?=$drop3[0]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop3[0]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop3[1]->keyword?>"><img src="<?php print base_url();?><?=$drop3[1]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop3[1]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop3[1]->keyword?>"><img src="<?php print base_url();?><?=$drop3[1]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop3[1]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop3[2]->keyword?>"><img src="<?php print base_url();?><?=$drop3[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop3[2]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop3[2]->keyword?>"><img src="<?php print base_url();?><?=$drop3[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop3[2]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop3[3]->keyword?>"><img src="<?php print base_url();?><?=$drop3[3]->menu_image?>" border="0"width="100%" height="100%"> <span class="dblock1"> <?php echo ucwords($drop3[3]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop3[3]->keyword?>"><img src="<?php print base_url();?><?=$drop3[3]->menu_image?>" border="0"width="100%" height="100%"> <span class="dblock1"> <?php echo ucwords($drop3[3]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop3[4]->keyword?>"><img src="<?php print base_url();?><?=$drop3[4]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop3[4]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop3[4]->keyword?>"><img src="<?php print base_url();?><?=$drop3[4]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop3[4]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop3[5]->keyword?>"><img src="<?php print base_url();?><?=$drop3[5]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop3[5]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop3[5]->keyword?>"><img src="<?php print base_url();?><?=$drop3[5]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop3[5]->title)?>
 </span></a></div>
 <div style="clear:both"></div>
 <div class="sub-hor fist-sub-bar">
@@ -350,7 +350,7 @@
 </div>
 </ul>
 </li>
-<li> <a href="<?php print base_url(); ?>index.php/frontend/product_type">PRODUCTS</a>
+<li> <a href="<?php print base_url(); ?>frontend/product_type">PRODUCTS</a>
 <ul>
 <div id="mouse-over">
 <?php 
@@ -361,19 +361,19 @@
 <div>
 <div class="product-up product-our col-md-3">
 <p style="padding:5px 0;font-size:18px"> <?php echo ucwords($drop5[0]->title)?> </p>
-<a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop5[0]->keyword?>"><img src="<?php print base_url();?><?=$drop5[0]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1">
+<a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop5[0]->keyword?>"><img src="<?php print base_url();?><?=$drop5[0]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1">
 </span></a></div>
 <div class="product-up2 product-our col-md-3">
 <p style="padding:5px 0;font-size:18px"> <?php echo ucwords($drop5[1]->title)?> </p>
-<a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop5[1]->keyword?>"><img src="<?php print base_url();?><?=$drop5[1]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1">
+<a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop5[1]->keyword?>"><img src="<?php print base_url();?><?=$drop5[1]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1">
 </span></a></div>
 <div class="product-up product-our col-md-3">
 <p style="padding:5px 0;font-size:18px"> <?php echo ucwords($drop5[2]->title)?> </p>
-<a href="<?php print base_url(); ?>index.php/search/search_canvas/none/1/64/<?=$drop5[2]->keyword?>"><img src="<?php print base_url();?><?=$drop5[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1">
+<a href="<?php print base_url(); ?>search/search_canvas/none/1/64/<?=$drop5[2]->keyword?>"><img src="<?php print base_url();?><?=$drop5[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1">
 </span></a> </div>
 <div class="product-up product-our col-md-3">
 <p style="padding:5px 0;font-size:18px"> <?php echo ucwords($drop5[3]->title)?> </p>
-<a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop5[3]->keyword?>"><img src="<?php print base_url();?><?=$drop5[3]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1">
+<a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop5[3]->keyword?>"><img src="<?php print base_url();?><?=$drop5[3]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1">
 </span></a> </div>
 </div>
 <div style="clear:both"></div>
@@ -411,7 +411,7 @@
 </div>
 </ul>
 </li>
-<li><a href="<?php print base_url(); ?>index.php/frontend/collection">COLLECTIONS</a>
+<li><a href="<?php print base_url(); ?>frontend/collection">COLLECTIONS</a>
 <ul>
 <div id="mouse-over">
 <?php 
@@ -528,7 +528,7 @@
 </div>
 </ul>
 </li>
-<li> <a href="<?php print base_url(); ?>index.php/frontend/rooms">ROOMS</a>
+<li> <a href="<?php print base_url(); ?>frontend/rooms">ROOMS</a>
 <ul>
 <div id="mouse-over">
 <?php 
@@ -545,27 +545,27 @@
                                      if($spit0[1]=='frontend'){
                                               $url0=$drop6[0]->keyword;
                                           }else{
-                                              $url0="index.php/search/dosearch/none/1/64/".$drop6[0]->keyword."";
+                                              $url0="search/dosearch/none/1/64/".$drop6[0]->keyword."";
                                           }if($spit1[1]=='frontend'){
                                               $url1=$drop6[1]->keyword;
                                           }else{
-                                              $url1="index.php/search/dosearch/none/1/64/".$drop6[1]->keyword."";
+                                              $url1="search/dosearch/none/1/64/".$drop6[1]->keyword."";
                                           }if($spit2[1]=='frontend'){
                                               $url2=$drop6[2]->keyword;
                                           }else{
-                                              $url2="index.php/search/dosearch/none/1/64/".$drop6[2]->keyword."";
+                                              $url2="search/dosearch/none/1/64/".$drop6[2]->keyword."";
                                           }if($spit3[1]=='frontend'){
                                               $url3=$drop6[3]->keyword;
                                           }else{
-                                              $url3="index.php/search/dosearch/none/1/64/".$drop6[3]->keyword."";
+                                              $url3="search/dosearch/none/1/64/".$drop6[3]->keyword."";
                                           }if($spit4[1]=='frontend'){
                                               $url4=$drop6[4]->keyword;
                                           }else{
-                                              $url4="index.php/search/dosearch/none/1/64/".$drop6[4]->keyword."";
+                                              $url4="search/dosearch/none/1/64/".$drop6[4]->keyword."";
                                           }if($spit5[1]=='frontend'){
                                               $url5=$drop6[5]->keyword;
                                           }else{
-                                              $url5="index.php/search/dosearch/none/1/64/".$drop6[5]->keyword."";
+                                              $url5="search/dosearch/none/1/64/".$drop6[5]->keyword."";
                                           }
 										 
 		  //echo $url2.'_'.$url;
@@ -638,7 +638,7 @@
 </div>
 </ul>
 </li>
-<li> <a href="<?php print base_url(); ?>index.php/frontend/places">PLACES</a>
+<li> <a href="<?php print base_url(); ?>frontend/places">PLACES</a>
 <ul>
 <div id="mouse-over">
 <?php 
@@ -646,17 +646,17 @@
           //print_r($drop7);
           
             ?>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop7[0]->keyword?>"><img src="<?php print base_url();?><?=$drop7[0]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop7[0]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop7[0]->keyword?>"><img src="<?php print base_url();?><?=$drop7[0]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop7[0]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop7[1]->keyword?>"><img src="<?php print base_url();?><?=$drop7[1]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop7[1]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop7[1]->keyword?>"><img src="<?php print base_url();?><?=$drop7[1]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop7[1]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop7[2]->keyword?>"><img src="<?php print base_url();?><?=$drop7[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop7[2]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop7[2]->keyword?>"><img src="<?php print base_url();?><?=$drop7[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop7[2]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop7[3]->keyword?>"><img src="<?php print base_url();?><?=$drop7[3]->menu_image?>" border="0"width="100%" height="100%"> <span class="dblock1"> <?php echo ucwords($drop7[3]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop7[3]->keyword?>"><img src="<?php print base_url();?><?=$drop7[3]->menu_image?>" border="0"width="100%" height="100%"> <span class="dblock1"> <?php echo ucwords($drop7[3]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop7[4]->keyword?>"><img src="<?php print base_url();?><?=$drop7[4]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop7[4]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop7[4]->keyword?>"><img src="<?php print base_url();?><?=$drop7[4]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop7[4]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop7[5]->keyword?>"><img src="<?php print base_url();?><?=$drop7[5]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop7[5]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop7[5]->keyword?>"><img src="<?php print base_url();?><?=$drop7[5]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop7[5]->title)?>
 </span></a></div>
 <div style="clear:both"></div>
 <div class="sub-hor fist-sub-bar">
@@ -723,7 +723,7 @@
 </div>
 </ul>
 </li>
-<li> <a href="<?php print base_url(); ?>index.php/frontend/themes">THEMES</a>
+<li> <a href="<?php print base_url(); ?>frontend/themes">THEMES</a>
 <ul>
 <div id="mouse-over">
 <?php 
@@ -731,17 +731,17 @@
           //print_r($drop8);
           
             ?>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop8[0]->keyword?>"><img src="<?php print base_url();?><?=$drop8[0]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop8[0]->keyword)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop8[0]->keyword?>"><img src="<?php print base_url();?><?=$drop8[0]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop8[0]->keyword)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop8[1]->keyword?>"><img src="<?php print base_url();?><?=$drop8[1]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop8[1]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop8[1]->keyword?>"><img src="<?php print base_url();?><?=$drop8[1]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop8[1]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop8[2]->keyword?>"><img src="<?php print base_url();?><?=$drop8[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop8[2]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop8[2]->keyword?>"><img src="<?php print base_url();?><?=$drop8[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop8[2]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop8[3]->keyword?>"><img src="<?php print base_url();?><?=$drop8[3]->menu_image?>" border="0"width="100%" height="100%"> <span class="dblock1"> <?php echo ucwords($drop8[3]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop8[3]->keyword?>"><img src="<?php print base_url();?><?=$drop8[3]->menu_image?>" border="0"width="100%" height="100%"> <span class="dblock1"> <?php echo ucwords($drop8[3]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/Jesus%20Christ/3/none/none/none/<?=$drop8[4]->keyword?>"><img src="<?php print base_url();?><?=$drop8[4]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop8[4]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/Jesus%20Christ/3/none/none/none/<?=$drop8[4]->keyword?>"><img src="<?php print base_url();?><?=$drop8[4]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop8[4]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/sunrise/3/none/none/none/<?=$drop8[5]->keyword?>"><img src="<?php print base_url();?><?=$drop8[5]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop8[5]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/sunrise/3/none/none/none/<?=$drop8[5]->keyword?>"><img src="<?php print base_url();?><?=$drop8[5]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop8[5]->title)?>
 </span></a></div>
 <div style="clear:both"></div>
 <div class="sub-hor fist-sub-bar">
@@ -810,8 +810,8 @@
 </li>
 <li> <a href="#">MAHATTA DESIGNS</a>
 <ul class="normal-sub">
-<li style="width:150px"> <a style="padding:6px 16px 10px 10px" href="<?php print base_url(); ?>index.php/frontend/curators"> Curators </a> </li>
-<li style="width:150px"> <a style="padding:6px 16px 10px 10px" href="<?php print base_url(); ?>index.php/frontend/curators"> Testimonials </a> </li>
+<li style="width:150px"> <a style="padding:6px 16px 10px 10px" href="<?php print base_url(); ?>frontend/curators"> Curators </a> </li>
+<li style="width:150px"> <a style="padding:6px 16px 10px 10px" href="<?php print base_url(); ?>frontend/curators"> Testimonials </a> </li>
 </ul>
 </li>
 </ul>

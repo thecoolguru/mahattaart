@@ -16,7 +16,7 @@ MIDDLE SECTION CONTENT
 ======================================= -->
 
 <!--===MIDDLE PAGE CONTAINER STARTS====--><div id="middle-page-container">
-<div class="breadcrum"><a href="<?=base_url()?>index.php/frontend/index">Home</a> <a href="<?=base_url()?>index.php/frontend/contact">Customer Service</a> FAQs </div>
+<div class="breadcrum"><a href="<?=base_url()?>frontend/index">Home</a> <a href="<?=base_url()?>frontend/contact">Customer Service</a> FAQs </div>
 
 <!--=======LEFT SIDE PANEL STARTS========--><div class="left-panel-page">
 <div class="main-cat-name"> Let us Help</div>

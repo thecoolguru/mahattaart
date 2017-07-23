@@ -71,7 +71,7 @@
 	}
 	$.ajax({
 	   type:'post',
-	   url:'<?=base_url()?>index.php/frontend/save_art_advisory',
+	   url:'<?=base_url()?>frontend/save_art_advisory',
 	   data:'name='+name+'&email_add='+email_add+'&contact='+contact+'&comment='+comment,
 	   success:function(response){
 	   alert(response)

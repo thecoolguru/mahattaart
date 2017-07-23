@@ -12,7 +12,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
 ?>
 <div class="main-container container">
-  <div class="pagination" style="margin:0px;"><span><a href="<?=base_url()?>index.php/frontend/index">HOME</a> ><span> Places</span></span></div>
+  <div class="pagination" style="margin:0px;"><span><a href="<?=base_url()?>frontend/index">HOME</a> ><span> Places</span></span></div>
   <div class="art-style">
     <aside class="left-panel-page">
       <p>PLACES</p>
@@ -22,7 +22,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                        
 		                 foreach($sub_val as $values){
                             ?>
-          <li><a href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$values->keyword?>/all"><?php echo $values->title;?></a></li>
+          <li><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><?php echo $values->title;?></a></li>
           <?php }?>
         </ul>
       </div>
@@ -168,13 +168,13 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 		                 foreach($sub_val as $values){
                             ?>
         <div class="col-md-4 col-sm-6">
-          <div class="thems-our1"><a href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php echo base_url()?><?=$values->image?>"   width="138px" height="130" border="0"></a>
+          <div class="thems-our1"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php echo base_url()?><?=$values->image?>"   width="138px" height="130" border="0"></a>
             <p>
               <?=$values->title?>
             </p>
           </div>
-          <div class="thems-our2"><a href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php echo base_url()?><?=$values->image2?>"  width="138px" height="130" border="0"></a>
-            <p><a href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$values->keyword?>/all"> + more </a></p>
+          <div class="thems-our2"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php echo base_url()?><?=$values->image2?>"  width="138px" height="130" border="0"></a>
+            <p><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"> + more </a></p>
           </div>
         </div>
         <?php }?>

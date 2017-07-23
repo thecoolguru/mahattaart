@@ -16,7 +16,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>In Room View</title>
-    <link href="<?php echo base_url()?>index.php/css/wallsnart2.2.css" type="text/css" rel="stylesheet"  />
+    <link href="<?php echo base_url()?>css/wallsnart2.2.css" type="text/css" rel="stylesheet"  />
     <link media="screen" rel="stylesheet" href="<?php echo base_url()?>assets/css/colorbox.css" />
     <script src="<?php echo base_url()?>assets/js/colorbox/jquery.colorbox.js"></script>
 </head>

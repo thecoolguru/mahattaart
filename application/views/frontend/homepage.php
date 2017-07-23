@@ -26,7 +26,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div class="carousel-caption caption2" style="top:2%">
 <div class="welcomee">
 <h1 class="text-font"> Framed Art Prints </h1>
-<span class="slidercantant"> <span class="centers" style="padding:5px 0 0 0;display:block"> Buy Museum Quality Prints from the World's </span> <span class="centers" style="padding:5px 0 0 0;display:block"> renowned Artists and Photographers </span> <span class="centers" style="padding:5px 0 0 0;display:block"> &nbsp;</span> <a class="buttonslide" href="<?php echo base_url();?>index.php/search/dosearch/1/64/fine art painting/1"><span> EXPLORE NOW </span></a> </span> <span class="centers" style="padding:5px 0 0 0;display:block">&nbsp;</span> <span class="centers" style="padding:5px 0 0 0;display:block"> Framed Prints, Canvas Gallery Wrap, Posters! </span> </span> </div>
+<span class="slidercantant"> <span class="centers" style="padding:5px 0 0 0;display:block"> Buy Museum Quality Prints from the World's </span> <span class="centers" style="padding:5px 0 0 0;display:block"> renowned Artists and Photographers </span> <span class="centers" style="padding:5px 0 0 0;display:block"> &nbsp;</span> <a class="buttonslide" href="<?php echo base_url();?>search/dosearch/1/64/fine art painting/1"><span> EXPLORE NOW </span></a> </span> <span class="centers" style="padding:5px 0 0 0;display:block">&nbsp;</span> <span class="centers" style="padding:5px 0 0 0;display:block"> Framed Prints, Canvas Gallery Wrap, Posters! </span> </span> </div>
 <div class="carousel-caption caption3" style="left:58%;top:54%"> <span style="font-size:14px;padding:10px;margin-right: 14%;"> Berthe Morisot </span> </div>
 </div>
 </div>
@@ -35,7 +35,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div class="welcomee">
 <h1 class="text-font"> Free Art Search Assistance </h1>
 <br />
-<span class="slidercantant"> <span class="centers" style="padding:5px 0 0 0;display:block"> Any specific art requirements for your </span> <span class="centers" style="padding:5px 0 0 0;display:block"> projects or home! </span> <span class="centers" style="padding:5px 0 0 0;display:block"> &nbsp;</span> <a class="buttonslide" href="<?php echo base_url();?>index.php/frontend/contact"><span> CONTACT US </span></a> </span>
+<span class="slidercantant"> <span class="centers" style="padding:5px 0 0 0;display:block"> Any specific art requirements for your </span> <span class="centers" style="padding:5px 0 0 0;display:block"> projects or home! </span> <span class="centers" style="padding:5px 0 0 0;display:block"> &nbsp;</span> <a class="buttonslide" href="<?php echo base_url();?>frontend/contact"><span> CONTACT US </span></a> </span>
 <div class="carousel-caption caption3" style="top:43%;left:70%"> <span style="font-size:14px;padding:10px; margin-right:73%;"> Claude Monet </span> </div>
 </div>
 </div>
@@ -161,34 +161,34 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div class="track-group stc2" id="shoptop-test-a" style="display: block ! important;">
 <div id="shoptop-layout-a" class="shopTopCategories">
 <div class="category">
-<a class="st-botanical" href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$top_cat[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat[0]->image?>" class="white-frame-bg"/> <br/>  <?=$top_cat[0]->title?> </a>
+<a class="st-botanical" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$top_cat[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat[0]->image?>" class="white-frame-bg"/> <br/>  <?=$top_cat[0]->title?> </a>
 </div>
 <div class="category">
-<a class="st-botanical" href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$top_cat6[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat6[0]->image?>" class="brown-frame-bg" /> <br/> <?=$top_cat6[0]->title?> </a>
+<a class="st-botanical" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$top_cat6[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat6[0]->image?>" class="brown-frame-bg" /> <br/> <?=$top_cat6[0]->title?> </a>
 </div>
 <div class="category">
-<a class="st-botanical" href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$top_cat2[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat2[0]->image?>" class="white-frame-bg" />  <br/>  <?=$top_cat2[0]->title?></a>
+<a class="st-botanical" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$top_cat2[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat2[0]->image?>" class="white-frame-bg" />  <br/>  <?=$top_cat2[0]->title?></a>
 </div>
 <div class="category">
-<a class="st-botanical" href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$top_cat7[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat7[0]->image?>" class="black-frame-bg" />  <br/>  <?=$top_cat7[0]->title?></a>
+<a class="st-botanical" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$top_cat7[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat7[0]->image?>" class="black-frame-bg" />  <br/>  <?=$top_cat7[0]->title?></a>
 </div>
 <div class="category">
-<a class="st-botanical" href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$top_cat3[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat3[0]->image?>" class="brown-frame-bg" />  <br/>  <?=$top_cat3[0]->title?></a>
+<a class="st-botanical" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$top_cat3[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat3[0]->image?>" class="brown-frame-bg" />  <br/>  <?=$top_cat3[0]->title?></a>
 </div>
 <div class="category">
-<a class="st-botanical" href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$top_cat8[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat8[0]->image?>" class="white-frame-bg"  />  <br/>  <?=$top_cat8[0]->title?></a>
+<a class="st-botanical" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$top_cat8[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat8[0]->image?>" class="white-frame-bg"  />  <br/>  <?=$top_cat8[0]->title?></a>
 </div>
 <div class="category">
-<a class="st-botanical" href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$top_cat4[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat4[0]->image?>" class="black-frame-bg"  />  <br/>  <?=$top_cat4[0]->title?></a>
+<a class="st-botanical" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$top_cat4[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat4[0]->image?>" class="black-frame-bg"  />  <br/>  <?=$top_cat4[0]->title?></a>
 </div>
 <div class="category">
-<a class="st-botanical" href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$top_cat9[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat9[0]->image?>" class="brown-frame-bg"  /> <br/>   <?=$top_cat9[0]->title?></a>
+<a class="st-botanical" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$top_cat9[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat9[0]->image?>" class="brown-frame-bg"  /> <br/>   <?=$top_cat9[0]->title?></a>
 </div>
 <div class="category">
-<a class="st-botanical" href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$top_cat5[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat5[0]->image?>" class="white-frame-bg"  />  <br/>  <?=$top_cat5[0]->title?></a>
+<a class="st-botanical" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$top_cat5[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat5[0]->image?>" class="white-frame-bg"  />  <br/>  <?=$top_cat5[0]->title?></a>
 </div>
 <div class="category">
-<a class="st-botanical" href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$top_cat10[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat10[0]->image?>" class="black-frame-bg"  />  <br/>  <?=$top_cat10[0]->title?></a>
+<a class="st-botanical" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$top_cat10[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat10[0]->image?>" class="black-frame-bg"  />  <br/>  <?=$top_cat10[0]->title?></a>
 </div>
 </div>
 </div>
@@ -214,19 +214,19 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                                      if($spit0[1]=='frontend'){
                                               $url0=$bottom_top[0]->keyword;
                                           }else{
-                                              $url0="index.php/search/dosearch/1/32/".$bottom_top[0]->keyword."/all";
+                                              $url0="search/dosearch/1/32/".$bottom_top[0]->keyword."/all";
                                           }if($spit1[1]=='frontend'){
                                               $url1=$bottom_top[1]->keyword;
                                           }else{
-                                              $url1="index.php/search/dosearch/1/32/".$bottom_top[1]->keyword."/all";
+                                              $url1="search/dosearch/1/32/".$bottom_top[1]->keyword."/all";
                                           }if($spit2[1]=='frontend'){
                                               $url2=$bottom_top[2]->keyword;
                                           }else{
-                                              $url2="index.php/search/dosearch/1/32/".$bottom_top[2]->keyword."/all";
+                                              $url2="search/dosearch/1/32/".$bottom_top[2]->keyword."/all";
                                           }if($spit3[1]=='frontend'){
                                               $url3=$bottom_top[3]->keyword;
                                           }else{
-                                              $url3="index.php/search/dosearch/1/32/".$bottom_top[3]->keyword."/all";
+                                              $url3="search/dosearch/1/32/".$bottom_top[3]->keyword."/all";
                                           }
 										 
 		  

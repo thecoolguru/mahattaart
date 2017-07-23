@@ -262,12 +262,13 @@ $per_page = 10;
     $email_regd=$_POST['email_regd'];
    
 
-  //echo $email_regd;die;
+  //echo trim($email_regd);
    
-$maill=$this->frontend_model->check_email_exist($email_regd);
+$maill=$this->frontend_model->check_email_exist(trim($email_regd));
         $verify_email=$this->frontend_model->verify_email($email_regd);
        $first=$verify_email->first_name;
        $last=$verify_email->last_name;
+	   
 if(!empty($first)||!empty($last)){
    $first_name=$first;
     $last_name=$last;
@@ -278,6 +279,7 @@ else{
 }
   // echo $email_regd;
      //print_r($username);die;
+	 
 		if($maill==1)
 		{
 			//$imgfb=base_url();
@@ -364,13 +366,13 @@ table td a.a_link{font-size:3em; padding:0 20px}
         
       $this->email->clear(TRUE);
          $this->email->from('info@mahattaart.com', 'MahattaArt');
-			$this->email->to($email_regd);
+			$this->email->to(trim($email_regd));
 			$this->email->subject('Welcome to Mahatta Art');
 			$this->email->message($message);
 			$send=$this->email->send();
 			if($send){
 						//print "1";
-                        echo "Check Your email.";
+                        echo "Check Your mail box.";
                          //echo $email_regd;       
                              }
                      else{
@@ -461,7 +463,7 @@ table td a.a_link{font-size:3em; padding:0 20px}
     </tr>
     <tr>
     	<td>
-        	<p>Email address:'.$email.' </p>
+        	<p>Email address: '.$email.' </p>
         </td>
     </tr>
     <tr>
@@ -549,7 +551,7 @@ table td a.a_link{font-size:3em; padding:0 20px}
 ';      
         $this->email->clear(TRUE);
          $this->email->from('info@mahattart.com', 'MahattaArt');
-			$this->email->to($email);
+			$this->email->to(trim($email));
 			$this->email->subject('Welcome to Mahatta Art');
 			$this->email->message($messages);
 			$send=$this->email->send();

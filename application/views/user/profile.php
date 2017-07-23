@@ -101,8 +101,8 @@
             	<p>Let Us Help</p>
             	<div class="list">
                 	<ul>
-                    	<li><a href="<?=base_url()?>index.php/frontend/contact">Contact us</a></li>
-                        <li><a href="<?=base_url()?>index.php/frontend/faq">FAQ's</a></li>
+                    	<li><a href="<?=base_url()?>frontend/contact">Contact us</a></li>
+                        <li><a href="<?=base_url()?>frontend/faq">FAQ's</a></li>
                         <li><a href="#">Ordering</a></li>
                         <li><a href="#">Shipping & Delivery</a></li>
                     </ul>
@@ -111,19 +111,19 @@
                 <p>My Account</p>
             	<div class="list">
                 	<ul>
-                    	<li><a href="<?=base_url()?>index.php/frontend/contact">My Profile</a></li>
+                    	<li><a href="<?=base_url()?>frontend/contact">My Profile</a></li>
                         <li><a href="#">Track My Order</a></li>
-                        <li><a href="<?=base_url()?>index.php/user/order_history">Order History</a></li>
+                        <li><a href="<?=base_url()?>user/order_history">Order History</a></li>
                     </ul>
                 </div>
                 
                 <p>MAHATTA-ART</p>
             	<div class="list">
                 	<ul>
-                    	<li><a href="<?=base_url()?>index.php/frontend/about">The Company</a></li>
-<!--                        <li><a href="<?=base_url()?>index.php/frontend/media_center">Media Center</a></li>-->
-                        <li><a href="<?=base_url()?>index.php/frontend/career">Careers</a></li>
-                        <li><a href="<?=base_url()?>index.php/frontend/partner">Partners</a></li>
+                    	<li><a href="<?=base_url()?>frontend/about">The Company</a></li>
+<!--                        <li><a href="<?=base_url()?>frontend/media_center">Media Center</a></li>-->
+                        <li><a href="<?=base_url()?>frontend/career">Careers</a></li>
+                        <li><a href="<?=base_url()?>frontend/partner">Partners</a></li>
                     </ul>
                 </div>
                 
@@ -146,7 +146,7 @@
     MARGIN-TOP: 30%;">
 	 <p align="center"><span style="color: red; margin-right: 125px;
     "><?php print $msg;?></span></p><br>
-                        <form method="post"action="<?php echo base_url();?>index.php/user/profile"name="form1"id="form1">
+                        <form method="post"action="<?php echo base_url();?>user/profile"name="form1"id="form1">
                       <table width="100%" border="0" cellspacing="0" cellpadding="0">
                       
                         <tr>

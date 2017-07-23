@@ -208,7 +208,7 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
     <div class="form-group">
       
         <div class="col-xs-10">
-                               <input type="text" style="width:40px" name="qty_update" id="qty_update<?=$i?>" value="<?=$image['qty']?>" >
+                               <input type="text" style="width:40px" maxlength="4" name="qty_update" class="by_keyup_update" id="qty_update<?=$i?>" value="<?=$image['qty']?>" >
 		                        
         </div>
     </div>
@@ -508,14 +508,38 @@ function checkValidateSelect1()
      
      
 }// end function ...
+function by_keyup_update(id_val){
+$(".by_keyup_update").keyup(function () { 
+//alert(id_val)
+   // var id=$('.by_keyup_update').attr('id');
+	//alert(id)
+    var newValue = $('#qty_update'+id_val).val().replace(/[^1-9]/g,'');
+	//	alert(newValue.length)
+	
+	if(newValue.length>=1){
+	//alert('sss')
+	var newValue = $('#qty_update'+id_val).val().replace(/[^0-9]/g,'');
+	//alert(newValue.length)
+	
+	}
+	
+    $('#qty_update'+id_val).val(newValue);
+	 
+ });
+ }
 
 	function edit_qty(x){
 	//alert(x);
+	by_keyup_update(x);
 	$('#p_qty'+x).hide();
 	$('#edit_button'+x).hide();
 	$('#divfor_update'+x).show();
 	
 	}
+	
+	
+
+	
 	function choose_qty(sn,filenam,imgsize,papersurface,imgprice,mainqty,frame_s,frame_name,mount_name,glass){
 	//alert(mainqty);
 	//alert('coose');

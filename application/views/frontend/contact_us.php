@@ -13,7 +13,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 ?>
 <div class="main-container container">
         <div class="pagination" style="margin:0">
-        	<span> <a href="<?=base_url()?>index.php/frontend/index"> HOME </a> > Let Us Help > <span> Contact </span> </span>
+        	<span> <a href="<?=base_url()?>frontend/index"> HOME </a> > Let Us Help > <span> Contact </span> </span>
         </div>    	
         <!-- art style -->
         <div class="art-style">
@@ -23,28 +23,28 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
             	<div class="list">
                 	<ul>
                     	<li class="active-cat-link" style="color:#339900; font-size:16px;">Contact us</li>
-                        <li><a href="<?=base_url()?>index.php/frontend/faq">FAQ's</a></li>
-                        <li><a href="<?php echo base_url()?>index.php/frontend/ordering">Ordering</a></li>
-                        <li><a href="<?php echo base_url()?>index.php/frontend/shipping">Shipping & Delivery</a></li>
+                        <li><a href="<?=base_url()?>frontend/faq">FAQ's</a></li>
+                        <li><a href="<?php echo base_url()?>frontend/ordering">Ordering</a></li>
+                        <li><a href="<?php echo base_url()?>frontend/shipping">Shipping & Delivery</a></li>
                     </ul>
                 </div>
           <?php if($this->session->userdata('userid')){?>
                 <p>My Account</p>
             	<div class="list">
                 	<ul>
-                    	<li><a href="<?php print base_url();?>index.php/user/profile">My Profile</a></li>
-                           <li><a href="<?php echo base_url()?>index.php/frontend/ordering">Track My Order</a></li>
-                               <li><a href="<?php echo base_url()?>index.php/frontend/ordering">Order History</a></li>
+                    	<li><a href="<?php print base_url();?>user/profile">My Profile</a></li>
+                           <li><a href="<?php echo base_url()?>frontend/ordering">Track My Order</a></li>
+                               <li><a href="<?php echo base_url()?>frontend/ordering">Order History</a></li>
                     </ul>
                 </div>
                 <?php }?>
                 <p>Mahatta-Art</p>
             	<div class="list">
                 	<ul>
-                    	<li><a href="<?=base_url()?>index.php/frontend/about">The Company</a></li>
+                    	<li><a href="<?=base_url()?>frontend/about">The Company</a></li>
                        
-                        <li><a href="<?=base_url()?>index.php/frontend/career">Careers</a></li>
-                        <li><a href="<?=base_url()?>index.php/frontend/partner">Partners</a></li>
+                        <li><a href="<?=base_url()?>frontend/career">Careers</a></li>
+                        <li><a href="<?=base_url()?>frontend/partner">Partners</a></li>
                     </ul>
                 </div>
                 

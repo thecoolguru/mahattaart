@@ -1,5 +1,5 @@
 <div class="main-container container">
-  <div class="pagination" style="margin:0PX;"> <span> <a href="<?=base_url()?>index.php/frontend/index">HOME</a> > <span> Themes</span> </span> </div>
+  <div class="pagination" style="margin:0PX;"> <span> <a href="<?=base_url()?>frontend/index">HOME</a> > <span> Themes</span> </span> </div>
   <!-- art style -->
   <div class="art-style">
     <!-- aside -->
@@ -10,7 +10,7 @@
           <?php  
   
 		    foreach($sub_val as $values){?>
-          <li><a href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?php echo  $values->keyword ;?>/all"><?php echo $values->title;?></a></li>
+          <li><a href="<?php print base_url(); ?>search/dosearch/1/32/<?php echo  $values->keyword ;?>/all"><?php echo $values->title;?></a></li>
           <?php }?>
         </ul>
       </div>
@@ -162,7 +162,7 @@
 		    foreach($sub_val as $values){
          ?>
             <div class="artist_Photo col-sm-3 col-md-2 ">
-              <div class="col-md-12 thumbnail"> <a href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$values->keyword?>/all"> <img src="<?php print base_url();?><?=$values->image?>" width="163" height="163" border="0" class="img-responsive" /> </a>
+              <div class="col-md-12 thumbnail"> <a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"> <img src="<?php print base_url();?><?=$values->image?>" width="163" height="163" border="0" class="img-responsive" /> </a>
                 <div class="artist_tag">
                   <?=$values->title?>
                 </div>

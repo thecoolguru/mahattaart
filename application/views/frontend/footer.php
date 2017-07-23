@@ -5,11 +5,11 @@
         	<div class="col-xs-6 col-sm-3 col-md-3" style="padding-right:0">
             	<h1>Quick  <span>Links</span></h1>
                 <ul>
-                	<li><a href="<?php echo base_url()?>index.php/frontend/about">About Mahatta Art</a></li>
-<!--                    <li><a href="<?php echo base_url()?>index.php/frontend/media_center">Media Center</a></li>-->
-                    <li><a href="<?php echo base_url()?>index.php/frontend/findart">Find Art</a></li>
-                    <li><a href="<?php echo base_url()?>index.php/frontend/partner">Partners</a></li>
-                    <li><a href="<?php echo base_url()?>index.php/frontend/career">Career</a></li>
+                	<li><a href="<?php echo base_url()?>frontend/about">About Mahatta Art</a></li>
+<!--                    <li><a href="<?php echo base_url()?>frontend/media_center">Media Center</a></li>-->
+                    <li><a href="<?php echo base_url()?>frontend/findart">Find Art</a></li>
+                    <li><a href="<?php echo base_url()?>frontend/partner">Partners</a></li>
+                    <li><a href="<?php echo base_url()?>frontend/career">Career</a></li>
                    <!-- <li><a href="http://mahatta.com/submission/photographer.php">Become a contributor</a></li>-->
                      <li><a href="http://mahatta.com/submission/">Become a contributor</a></li>
                 </ul>
@@ -23,11 +23,11 @@
             <div class="col-xs-6 col-sm-3 col-md-3">
             	<h1>Let us <span>Help</span></h1>
                 <ul>
-                	<li><a href="<?php echo base_url()?>index.php/frontend/contact">Contact Us</a></li>
-                    <li><a href="<?php echo base_url()?>index.php/frontend/faq">FAQ's</a></li>
-                    <li><a href="<?php echo base_url()?>index.php/frontend/ordering">Ordering</a></li>
-                    <li><a href="<?php echo base_url()?>index.php/frontend/shipping">Shipping & Delivery</a></li>
-                     <li><a href="<?php echo base_url()?>index.php/return">Returns</a></li>
+                	<li><a href="<?php echo base_url()?>frontend/contact">Contact Us</a></li>
+                    <li><a href="<?php echo base_url()?>frontend/faq">FAQ's</a></li>
+                    <li><a href="<?php echo base_url()?>frontend/ordering">Ordering</a></li>
+                    <li><a href="<?php echo base_url()?>frontend/shipping">Shipping & Delivery</a></li>
+                     <li><a href="<?php echo base_url()?>return">Returns</a></li>
                 </ul>
             </div>
             <?php  if($this->session->userdata('userid')){ ?>
@@ -36,7 +36,7 @@
                 <ul>
                 	<li>
 					
-                  	<a href="<?php print base_url();?>index.php/user/profile">My Profile</a></li>
+                  	<a href="<?php print base_url();?>user/profile">My Profile</a></li>
                         
                     <li><a href="#">Track My Order</a></li>
                     <li><a href="#">Order History</a></li>
@@ -46,8 +46,8 @@
              <div class="col-xs-6 col-sm-3 col-md-3">
             	<h1>Term &  <span>Policies </span></h1>
                 <ul>
-                	<li><a href="<?php echo base_url()?>index.php/frontend/terms_of_use">Terms of Use </a></li>
-                    <li><a href="<?php echo base_url()?>index.php/frontend/privacy_policy">Privacy Policy</a></li>
+                	<li><a href="<?php echo base_url()?>frontend/terms_of_use">Terms of Use </a></li>
+                    <li><a href="<?php echo base_url()?>frontend/privacy_policy">Privacy Policy</a></li>
                 </ul>
             </div>
             
@@ -55,7 +55,7 @@
             	<h1>Newsletter <span></span></h1>
                 <span>
 				
-                    <form name="newsletter" id="other" method="post" action="<?php echo base_url()?>index.php/frontend/submit_email()">
+                    <form name="newsletter" id="other" method="post" action="<?php echo base_url()?>frontend/submit_email()">
                     <input name="email_newsletter" type="text"  class="news-input" id="email_newsletter" value="Your Email Address"  onFocus="if(this.value == 'Your Email Address') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Your Email Address';}"/>
 					<div class="clear"></div>
 					<span id="err"></span>
@@ -69,7 +69,7 @@
             
         </div>
        
-       <p class="copyright"><a href="<?php echo base_url()?>index.php/frontend/terms_of_use">Terms  of Use  </a> &nbsp; © Copyright &nbsp;2017 | Mahatta Art</p>
+       <p class="copyright"><a href="<?php echo base_url()?>frontend/terms_of_use">Terms  of Use  </a> &nbsp; © Copyright &nbsp;2017 | Mahatta Art</p>
        
     </footer>
     <!-- footer -->
@@ -513,7 +513,7 @@ $result=$this->frontend_model->get_all_lightboxes2($user_id);
 		
             $.ajax({
                type:"POST",
-               url:"<?=base_url()?>index.php/frontend/login",
+               url:"<?=base_url()?>frontend/login",
                data:datastring,
               
                 success: function(response)
@@ -589,7 +589,7 @@ function mail_registration_confirm(){
         
          $.ajax({
             type:"post",
-           url:"<?=base_url()?>index.php/frontend/mail_registration_confirm_front",
+           url:"<?=base_url()?>frontend/mail_registration_confirm_front",
              data:"email_reg="+email_reg,
              success:function(response){
                 $('#error_msg').html(response); 
@@ -614,7 +614,7 @@ function mail_registration_confirm(){
         
          $.ajax({
             type:"post",
-           url:"<?=base_url()?>index.php/frontend/updateforpassword",
+           url:"<?=base_url()?>frontend/updateforpassword",
              data:"email_regd="+email_regd,
              success:function(response){
 			 
@@ -673,7 +673,7 @@ function checkRegisterValidation(){
             $('#cpassword_error').html("");
             $.ajax({
                 type: "POST",
-                url: "<?php print base_url() ?>index.php/frontend/register",
+                url: "<?php print base_url() ?>frontend/register",
                 data: $("#signup_form").serialize(),
                 success: function(response)
                 {

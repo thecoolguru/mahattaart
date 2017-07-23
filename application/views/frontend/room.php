@@ -14,7 +14,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div  class="main-container container">
     	
          <div class="pagination" style="margin:0px;">
-        	<span> <a href="<?=base_url()?>index.php/frontend/index">HOME</a> > <span> Room</span> </span>
+        	<span> <a href="<?=base_url()?>frontend/index">HOME</a> > <span> Room</span> </span>
         </div>
         
         <!-- art style -->
@@ -37,7 +37,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                                           if($spit[1]=='frontend'){
                                               $url=$values->keyword;
                                           }else{
-                                              $url="index.php/search/dosearch/1/32/".$values->keyword."/all";
+                                              $url="search/dosearch/1/32/".$values->keyword."/all";
                                           }
 						    
                             ?>
@@ -164,7 +164,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 					if($spit[1]=='frontend'){
 					$url=$values->keyword;
 					}else{
-					$url="index.php/search/dosearch/1/64/".$values->keyword."/all";
+					$url="search/dosearch/1/64/".$values->keyword."/all";
 					}
                             ?>
 				

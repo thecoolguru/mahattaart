@@ -310,7 +310,7 @@ var height=parseInt(split[1]);
 		
         $.ajax({
             type: 'post',
-             url: '<?=base_url()?>index.php/frontend/get_web_price_detials',
+             url: '<?=base_url()?>frontend/get_web_price_detials',
             data:'print_paper='+print_sizes+'&quality='+quality,
             success: function(response){
                // alert(response)
@@ -330,7 +330,7 @@ var height=parseInt(split[1]);
 function call_set_sizes(surface,cat_id)
 {
     //alert(1);
-window.location = "<?php print base_url(); ?>index.php/search/image_detail/<?php print $image_detail[0]['image_filename']; ?>/"+cat_id +'/'+surface;
+window.location = "<?php print base_url(); ?>search/image_detail/<?php print $image_detail[0]['image_filename']; ?>/"+cat_id +'/'+surface;
 }
 
 
@@ -487,7 +487,9 @@ else if(c_height>role_size){
 <script type="text/javascript">
 function frame_it_price_send(a,b,c)
 {  
-
+if($('#total_cost').html()==0){
+return false;
+}
     var print_type= document.getElementById('print_sizes').value;
   // alert(print_type);
     var cost=document.getElementById('total_cost').innerHTML;
@@ -500,7 +502,7 @@ function frame_it_price_send(a,b,c)
 			 var sizee=sz.trim();
 			// alert('jjjj')
     var wo_bodered_size=document.getElementById('sizes').value;
-    var url='<?=base_url()?>index.php/frontend/frame_it/<?=$f_shape;?>/'+print_type+'/'+cost+'/'+wo_bodered_size+'/'+sizee+'/'+c+'/'+<?php echo "'".$collection_range."'";?>+'/'+<?=$api_image_id?>+'/'+<?=$images_id?>;
+    var url='<?=base_url()?>frontend/frame_it/<?=$f_shape;?>/'+print_type+'/'+cost+'/'+wo_bodered_size+'/'+sizee+'/'+c+'/'+<?php echo "'".$collection_range."'";?>+'/'+<?=$api_image_id?>+'/'+<?=$images_id?>;
     window.location.assign(url);
 }
 
@@ -538,7 +540,7 @@ function show_status(live_id,a,cat_id)
  var datastring='image_id='+a+'&price='+ k +'&size='+ n+'&print_type='+print_type;
     $.ajax({
              type: "POST",
-	      	 url: "<?php print base_url() ?>index.php/cart/check_image_exist_status",
+	      	 url: "<?php print base_url() ?>cart/check_image_exist_status",
              data:datastring,
              success:function(datam)  
              {    
@@ -548,7 +550,7 @@ function show_status(live_id,a,cat_id)
                    }
                 else
                    {
-                     var url="<?=base_url()?>index.php/cart/cart_view?img_id="+a+"&search_text="+type+"&price="+k+"&size="+n+"&print_type="+print_type+"&cat_id="+cat_id+'&live_id='+live_id;
+                     var url="<?=base_url()?>cart/cart_view?img_id="+a+"&search_text="+type+"&price="+k+"&size="+n+"&print_type="+print_type+"&cat_id="+cat_id+'&live_id='+live_id;
                      window.location.assign(url);
                    }
               }
@@ -651,10 +653,10 @@ function toTitleCase(str)
         </div>
         <div class="frame-step-button-wrapper">
             <div class="frame-step-continue-shopping-button">
-                <a  style="color:white" href="<?=base_url().'index.php/'.$continue_shopping_redirect?>">CONTINUE SHOPPING</a>
+                <a  style="color:white" href="<?=base_url().''.$continue_shopping_redirect?>">CONTINUE SHOPPING</a>
             </div>
             <div class="frame-step-proceed-to-cart-button">
-              <a style="color:white" href="<?=base_url().'index.php/cart/cart_view'?>">  PROCEED TO CART</a>
+              <a style="color:white" href="<?=base_url().'cart/cart_view'?>">  PROCEED TO CART</a>
             </div>
         </div>
     </div>
@@ -902,7 +904,7 @@ var height=parseInt(split[1]);
         
         $.ajax({
             type: 'post',
-             url: '<?=base_url()?>index.php/frontend/get_web_price_detials',
+             url: '<?=base_url()?>frontend/get_web_price_detials',
             data:'print_paper='+value+'&quality='+quality,
             success: function(response){
                // alert(response);

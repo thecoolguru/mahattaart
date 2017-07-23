@@ -50,7 +50,7 @@ function closeSelf(){
             <a href="mailto:sales@wallsnart.com">sales@wallsnart.com </a></div>
         <div class="seperator"></div>
         <div class="form-container">
-            <form action="<?php echo base_url();?>index.php/frontend/query_normal" method="post">
+            <form action="<?php echo base_url();?>frontend/query_normal" method="post">
                 Would you prefer us to revert back at:
                 <br>
                 

@@ -18,7 +18,7 @@ function choosesize2() {
 
 function call_details(imageid)
 {
-	var url="<?php print base_url();?>index.php/search/image_detail/"+imageid;
+	var url="<?php print base_url();?>search/image_detail/"+imageid;
 	window.location=url;
 }
 
@@ -28,7 +28,7 @@ function frame_it_price_send(a)
 	var b=''; 
 	var cost=0;
     //var cost=document.getElementById('total_cost').innerHTML;
-    var url='<?=base_url()?>index.php/frontend/frame_new/'+a;
+    var url='<?=base_url()?>frontend/frame_new/'+a;
     window.location=url;
 }
 
@@ -36,7 +36,7 @@ function call_remove(imageid,lightbox_id)
 {
 	//loalert(lightbox_id);
 	var user_input=confirm("Are you sure to delete image "+imageid);
-	var url="<?php print base_url();?>index.php/frontend/remove_gallery_image/"+imageid+"/"+lightbox_id;
+	var url="<?php print base_url();?>frontend/remove_gallery_image/"+imageid+"/"+lightbox_id;
 	if(user_input==true)	
 		window.location=url;
 }
@@ -50,7 +50,7 @@ function show_status(a)
     var datastring='image_id='+a+'&price='+ k +'&size='+ j+'&print_type='+l;
     $.ajax({
              type: "POST",
-	      url: "<?php print base_url() ?>index.php/cart/check_image_exist_status",
+	      url: "<?php print base_url() ?>cart/check_image_exist_status",
              data:datastring,
              success:function(datam)  
              {    
@@ -60,7 +60,7 @@ function show_status(a)
                     }
                   else
                    {
-                     var url="<?=base_url()?>index.php/cart/cart_view?img_id="+a+"&search_text="+type+"&price="+k+"&size="+j+"&print_type="+l;
+                     var url="<?=base_url()?>cart/cart_view?img_id="+a+"&search_text="+type+"&price="+k+"&size="+j+"&print_type="+l;
                      window.location.assign(url);
 
                    }
@@ -91,7 +91,7 @@ $(document).ready(function() {
 	  var nm=$('#fname').val();
       var de=$('#desc').val();
 	  var ck='1';
-      var url='<?php echo base_url();?>index.php/frontend/lightbox?check='+ck +'&lt_nm='+ nm +'&lt_des='+de;
+      var url='<?php echo base_url();?>frontend/lightbox?check='+ck +'&lt_nm='+ nm +'&lt_des='+de;
 	  //alert(url);
       window.location.assign(url);
 	 
@@ -106,7 +106,7 @@ $(document).ready(function() {
 <div class="main-container">
     	
         <div class="pagination">
-        	<span><a href="<?php echo base_url();?>index.php/frontend/index">Home</a> My
+        	<span><a href="<?php echo base_url();?>frontend/index">Home</a> My
 		Galleries</span> 
         </div>
         
@@ -122,7 +122,7 @@ $(document).ready(function() {
                     	<li><a href="#" class="parnt">My Galleries</a></li>
       <?php if(isset($resultant)){ $i=0; foreach($resultant as $resulting){ $rows=$this->frontend_model->count_images_lightbox($resulting->lightbox_id);?>
       <input type="hidden" id="lightbox_id<?php echo $i;?>" name="lightbox_id<?php echo $i;?>"value="<?php echo $resulting->lightbox_id;?>">
-      <li><a href="<?php echo base_url();?>index.php/frontend/lightbox_view?lightbox_id=<?php echo $resulting->lightbox_id;?>&page=1&per_page=16"><?php echo $resulting->lightbox_name;?></td>
+      <li><a href="<?php echo base_url();?>frontend/lightbox_view?lightbox_id=<?php echo $resulting->lightbox_id;?>&page=1&per_page=16"><?php echo $resulting->lightbox_name;?></td>
       <?php }$i++;}?></a></li>
                     </ul>
                 </div>
@@ -147,9 +147,9 @@ $(document).ready(function() {
 	$numberOfRows = $count;
 	$totalPages = ceil($numberOfRows / $resultsPerPage);
 	if($page > 1)
-		echo '<a href="' . base_url() . 'index.php/frontend/lightbox_view?lightbox_id='.$id.'&page='.($page-1).'&per_page='.$per_page.'">&#9664;</a>&nbsp';
+		echo '<a href="' . base_url() . 'frontend/lightbox_view?lightbox_id='.$id.'&page='.($page-1).'&per_page='.$per_page.'">&#9664;</a>&nbsp';
     if ($page < $totalPages)
-        echo '<a href="' . base_url() . 'index.php/frontend/lightbox_view?lightbox_id='.$id.'&page='.($page+1).'&per_page='.$per_page.'">&#9654;</a>&nbsp;';
+        echo '<a href="' . base_url() . 'frontend/lightbox_view?lightbox_id='.$id.'&page='.($page+1).'&per_page='.$per_page.'">&#9654;</a>&nbsp;';
 	?>
 </form>
                     </p>
@@ -174,7 +174,7 @@ foreach($image as $images){
       <!-- Thumbnail and diplay start here-->
 <div class="galImageContainer">
 	<div class="galImageCell">
-	<a href="<?php echo base_url();?>index.php/search/image_detail/<?php echo $result->images_id;?>"><img class="galImage " src="http://www.indiapicture.in/wallsnart/158/<?php echo $result->images_filename;?>" alt="<?php print substr($result->images_caption,0,10); ?>" title="<?php print substr($result->images_caption,0,10); ?>"  border="0"></a>
+	<a href="<?php echo base_url();?>search/image_detail/<?php echo $result->images_id;?>"><img class="galImage " src="http://www.indiapicture.in/wallsnart/158/<?php echo $result->images_filename;?>" alt="<?php print substr($result->images_caption,0,10); ?>" title="<?php print substr($result->images_caption,0,10); ?>"  border="0"></a>
 	</div>
 </div>
 

@@ -20,9 +20,9 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 THE ACTUAL ORBIT SLIDER CONTENT 
 ======================================= -->
 		<div id="featured">
-			<a href="<?php print base_url();?>index.php/frontend/art_subject"><img src="<?php echo base_url();?>assets/images/home1.jpg" width="990" border="0" /> </a> 
-			<a href="<?php print base_url();?>index.php/frontend/product_type"><img src="<?php echo base_url();?>assets/images/home2.jpg" width="990" border="0" /> </a>
-			<a href="<?php print base_url()?>index.php/frontend/collection"><img src="<?php echo base_url();?>assets/images/home3.jpg" width="990" border="0" /> </a>
+			<a href="<?php print base_url();?>frontend/art_subject"><img src="<?php echo base_url();?>assets/images/home1.jpg" width="990" border="0" /> </a> 
+			<a href="<?php print base_url();?>frontend/product_type"><img src="<?php echo base_url();?>assets/images/home2.jpg" width="990" border="0" /> </a>
+			<a href="<?php print base_url()?>frontend/collection"><img src="<?php echo base_url();?>assets/images/home3.jpg" width="990" border="0" /> </a>
 		</div>
 
 

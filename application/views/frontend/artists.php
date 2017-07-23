@@ -35,7 +35,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 p{padding: 1px 13px; font-weight:inherit; border:none;color: #444; font-weight:bold;} 
 </style>
 <div class="container">
-  <div class="pagination" style="margin:0px;"> <span> <a href="<?=base_url()?>index.php/frontend/index">HOME</a> > <span> Artists </span> </span> </div>
+  <div class="pagination" style="margin:0px;"> <span> <a href="<?=base_url()?>frontend/index">HOME</a> > <span> Artists </span> </span> </div>
   <!-- art style -->
   <div class="art-style">
     <!-- aside -->
@@ -47,7 +47,7 @@ p{padding: 1px 13px; font-weight:inherit; border:none;color: #444; font-weight:b
             <?php
                         foreach($sub_val as $values){
                             ?>
-            <li> <a href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?php echo $values->keyword;?>/all"><?php print ucwords($values->title); ?></a> </li>
+            <li> <a href="<?php print base_url(); ?>search/dosearch/1/32/<?php echo $values->keyword;?>/all"><?php print ucwords($values->title); ?></a> </li>
             <?php } ?>
           </ul>
         </div>
@@ -106,7 +106,7 @@ p{padding: 1px 13px; font-weight:inherit; border:none;color: #444; font-weight:b
 		    foreach($sub_val as $values){
          ?>
             <div class="artist_Photo">
-              <div class="col-md-12 thumbnail"> <a href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$values->keyword?>/all"> <img src="<?php print base_url();?><?=$values->image?>"  border="0" class="img-responsive" /> </a>
+              <div class="col-md-12 thumbnail"> <a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"> <img src="<?php print base_url();?><?=$values->image?>"  border="0" class="img-responsive" /> </a>
                 <div class="artist_tag">
                   <?=$values->title?>
                 </div>

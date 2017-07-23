@@ -17,7 +17,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 {
  var r=confirm('Do you really want to delete the image?');
    if(r==true){
- var url='<?php echo base_url();?>index.php/frontend/lightbox_view/<?php echo $id;?>/'+a;
+ var url='<?php echo base_url();?>frontend/lightbox_view/<?php echo $id;?>/'+a;
   window.location.assign(url);}
 }*/
 </script>

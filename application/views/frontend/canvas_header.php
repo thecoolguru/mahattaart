@@ -35,17 +35,17 @@
 
 function get_more_find_art(a,b)
 {
-    var url='<?php echo base_url();?>index.php/search/search_view?searchtext='+a+'&art_type='+b;
+    var url='<?php echo base_url();?>search/search_view?searchtext='+a+'&art_type='+b;
     window.location.assign(url);
 }
 function subject_subcateg(main_category,keyword)
 {
-    var url ='<?php echo base_url();?>index.php/search/search_view?main_categ='+main_category+'&searchtext='+keyword+'&sortby=6';
+    var url ='<?php echo base_url();?>search/search_view?main_categ='+main_category+'&searchtext='+keyword+'&sortby=6';
     window.location.assign(url);
 }
 function artstyles_link(a,b,c)
 {
-    var url='<?php echo base_url();?>index.php/search/search_view?artstyles='+a+'&searchtext='+b+'&sortby=6&lot_pl='+c;
+    var url='<?php echo base_url();?>search/search_view?artstyles='+a+'&searchtext='+b+'&sortby=6&lot_pl='+c;
     window.location.assign(url);
 }
 
@@ -86,48 +86,48 @@ function changeview(id)
 
 function call_search(category_id)
 {
-    var url="<?php print base_url(); ?>index.php/search/dosearch/"+category_id;
+    var url="<?php print base_url(); ?>search/dosearch/"+category_id;
     location.replace(url);
 }
 function call_artists($keyword)
 {
-    var url='<?=base_url()?>index.php/search/dosearch/none/1/64/'+$keyword+'/3/none/none/none';
+    var url='<?=base_url()?>search/dosearch/none/1/64/'+$keyword+'/3/none/none/none';
     window.location.assign(url);
 }
 function call_artstyles($keyword)
 {
-    var url='<?=base_url()?>index.php/search/dosearch/none/1/64/'+$keyword+'/3/none/none/none';
+    var url='<?=base_url()?>search/dosearch/none/1/64/'+$keyword+'/3/none/none/none';
     window.location.assign(url);
 }
 
 function page_view(per_page)
 {
-    var url='<?=base_url()?>index.php/search/dosearch/<?php print $category_id;?>/<?php print $page;?>/'+per_page+'/<?php print $search_text;?>/<?php print $sort_by;?>/<?php print $filter_product_type;  ?>/<?php print $filter_collection;  ?>/<?php print $filter_medium;  ?>/<?php print $size;  ?>/<?php print $price_slab;  ?>/<?php print $shape ?>/<?php print $filterColor ?>';
+    var url='<?=base_url()?>search/dosearch/<?php print $category_id;?>/<?php print $page;?>/'+per_page+'/<?php print $search_text;?>/<?php print $sort_by;?>/<?php print $filter_product_type;  ?>/<?php print $filter_collection;  ?>/<?php print $filter_medium;  ?>/<?php print $size;  ?>/<?php print $price_slab;  ?>/<?php print $shape ?>/<?php print $filterColor ?>';
     window.location.assign(url);
 }
 
 function call_filter(id)
 {
     //alert(id);
-    var url='<?=base_url()?>index.php/search/dosearch/<?php print $category_id;?>/<?php print $page;?>/<?php print $limit; ?>/<?php print $search_text;?>/<?php print $sort_by;?>/<?php print $filter_product_type;  ?>/'+id+'/<?php print $filter_medium;  ?>/<?php print $size;  ?>/<?php print $price_slab;  ?>/<?php print $shape ?>/<?php echo $filterColor; ?>';
+    var url='<?=base_url()?>search/dosearch/<?php print $category_id;?>/<?php print $page;?>/<?php print $limit; ?>/<?php print $search_text;?>/<?php print $sort_by;?>/<?php print $filter_product_type;  ?>/'+id+'/<?php print $filter_medium;  ?>/<?php print $size;  ?>/<?php print $price_slab;  ?>/<?php print $shape ?>/<?php echo $filterColor; ?>';
     window.location.assign(url);
 }
 
 function call_filter2(id)
 {
-    var url='<?=base_url()?>index.php/search/dosearch/<?php print $category_id;?>/<?php print $page;?>/<?php print $limit; ?>/<?php print $search_text;?>/<?php print $sort_by;?>/<?php print $filter_product_type;  ?>/<?php print $filter_collection;  ?>/'+id+'/<?php print $size;  ?>/<?php print $price_slab;  ?>/<?php print $shape ?>';
+    var url='<?=base_url()?>search/dosearch/<?php print $category_id;?>/<?php print $page;?>/<?php print $limit; ?>/<?php print $search_text;?>/<?php print $sort_by;?>/<?php print $filter_product_type;  ?>/<?php print $filter_collection;  ?>/'+id+'/<?php print $size;  ?>/<?php print $price_slab;  ?>/<?php print $shape ?>';
     window.location.assign(url);
 }
 
 function call_filter3(id)
 {
-    var url='<?=base_url()?>index.php/search/dosearch/<?php print $category_id;?>/<?php print $page;?>/<?php print $limit; ?>/<?php print $search_text;?>/<?php print $sort_by;?>/'+id+'/<?php print $filter_collection;  ?>/<?php print $filter_medium;  ?>/<?php print $size;  ?>/<?php print $price_slab;  ?>/<?php print $shape ?>';
+    var url='<?=base_url()?>search/dosearch/<?php print $category_id;?>/<?php print $page;?>/<?php print $limit; ?>/<?php print $search_text;?>/<?php print $sort_by;?>/'+id+'/<?php print $filter_collection;  ?>/<?php print $filter_medium;  ?>/<?php print $size;  ?>/<?php print $price_slab;  ?>/<?php print $shape ?>';
     window.location.assign(url);
 }
 
 function call_filter_subject(category_id)
 {
-    var url='<?=base_url()?>index.php/search/dosearch/'+category_id+'/<?php print $page;?>/<?php print $limit; ?>/<?php print $search_text;?>/<?php print $sort_by;?>/<?php print $filter_product_type;  ?>/<?php print $filter_collection;  ?>/<?php print $filter_medium;  ?>/<?php print $size;  ?>/<?php print $price_slab;  ?>/<?php print $shape ?>';
+    var url='<?=base_url()?>search/dosearch/'+category_id+'/<?php print $page;?>/<?php print $limit; ?>/<?php print $search_text;?>/<?php print $sort_by;?>/<?php print $filter_product_type;  ?>/<?php print $filter_collection;  ?>/<?php print $filter_medium;  ?>/<?php print $size;  ?>/<?php print $price_slab;  ?>/<?php print $shape ?>';
     window.location.assign(url);
 }
 
@@ -144,8 +144,8 @@ function call_filter_price(slab)
 		
 	
 	
-   // var url='<?=base_url()?>index.php/search/dosearch/<?php print $category_id;?>/<?php print $page;?>/<?php print $limit; ?>/<?php echo $search_text;?>/<?php echo $sort_by;?>/<?php print $filter_product_type;  ?>/<?php print $filter_collection;  ?>/<?php print $filter_medium;  ?>/'+sel_size+'/'+slab+'/<?php print $shape ?>';
-    var url='<?=base_url()?>index.php/search/dosearch/<?php print $category_id;?>/<?php print $page;?>/<?php print $limit; ?>/<?php echo $search_text;?>/<?php echo $sort_by;?>/<?php print $filter_product_type;  ?>/<?php print $filter_collection;  ?>/<?php print $filter_medium;  ?>/12/'+slab+'/<?php print $shape ?>';
+   // var url='<?=base_url()?>search/dosearch/<?php print $category_id;?>/<?php print $page;?>/<?php print $limit; ?>/<?php echo $search_text;?>/<?php echo $sort_by;?>/<?php print $filter_product_type;  ?>/<?php print $filter_collection;  ?>/<?php print $filter_medium;  ?>/'+sel_size+'/'+slab+'/<?php print $shape ?>';
+    var url='<?=base_url()?>search/dosearch/<?php print $category_id;?>/<?php print $page;?>/<?php print $limit; ?>/<?php echo $search_text;?>/<?php echo $sort_by;?>/<?php print $filter_product_type;  ?>/<?php print $filter_collection;  ?>/<?php print $filter_medium;  ?>/12/'+slab+'/<?php print $shape ?>';
     //alert(url);
     window.location.assign(url);
 	//}
@@ -153,14 +153,14 @@ function call_filter_price(slab)
 
 function call_filter_color(filterColor){
  
- //var url='<?=base_url()?>index.php/search/dosearch/<?php print $category_id;?>/<?php print $page;?>/<?php print $limit; ?>/<?php echo $search_text;?><?php print $sort_by;?>/<?php print $filter_product_type;  ?>/<?php print $filter_collection;  ?>/<?php print $filter_medium;  ?>/<?php print $size;  ?>/<?php print $price_slab;  ?>/<?php print $shape ?>/'+filterColor;
-  var url='<?=base_url()?>index.php/search/dosearch/<?php print $category_id;?>/<?php print $page;?>/<?php print $limit; ?>/<?php echo $search_text;?>/<?php echo $sort_by;?>/<?php print $filter_product_type;  ?>/<?php print $filter_collection;  ?>/<?php print $filter_medium;  ?>/12/<?php print $price_slab;  ?>/<?php print $shape ?>/'+filterColor;  
+ //var url='<?=base_url()?>search/dosearch/<?php print $category_id;?>/<?php print $page;?>/<?php print $limit; ?>/<?php echo $search_text;?><?php print $sort_by;?>/<?php print $filter_product_type;  ?>/<?php print $filter_collection;  ?>/<?php print $filter_medium;  ?>/<?php print $size;  ?>/<?php print $price_slab;  ?>/<?php print $shape ?>/'+filterColor;
+  var url='<?=base_url()?>search/dosearch/<?php print $category_id;?>/<?php print $page;?>/<?php print $limit; ?>/<?php echo $search_text;?>/<?php echo $sort_by;?>/<?php print $filter_product_type;  ?>/<?php print $filter_collection;  ?>/<?php print $filter_medium;  ?>/12/<?php print $price_slab;  ?>/<?php print $shape ?>/'+filterColor;  
     window.location.assign(url);	
 }
 
 function call_filter_shapes(shape)
 {
-    var url='<?=base_url()?>index.php/search/dosearch/<?php print $category_id;?>/<?php print $page;?>/<?php print $limit; ?>/<?php echo $search_text;?>/<?php print $sort_by;?>/<?php print $filter_product_type;  ?>/<?php print $filter_collection;  ?>/<?php print $filter_medium;  ?>/<?php print $size;  ?>/<?php print $price_slab;  ?>/'+shape+'/<?php echo $filterColor; ?>';
+    var url='<?=base_url()?>search/dosearch/<?php print $category_id;?>/<?php print $page;?>/<?php print $limit; ?>/<?php echo $search_text;?>/<?php print $sort_by;?>/<?php print $filter_product_type;  ?>/<?php print $filter_collection;  ?>/<?php print $filter_medium;  ?>/<?php print $size;  ?>/<?php print $price_slab;  ?>/'+shape+'/<?php echo $filterColor; ?>';
     window.location.assign(url);
 }
 
@@ -168,7 +168,7 @@ function call_filter_shapes(shape)
 function category_filter(category)
 {
     //alert(1);
-    var url='<?=base_url()?>index.php/search/dosearch/none/1/64/'+category+'/none/none/none/none';
+    var url='<?=base_url()?>search/dosearch/none/1/64/'+category+'/none/none/none/none';
     window.location.assign(url);
 }
 
@@ -176,9 +176,9 @@ function category_filter(category)
 function call_collection(filter_collection)
 {
     //alert(id);
-	var url='<?=base_url()?>index.php/search/dosearch/none/1/none/none/none/none/'+filter_collection;
+	var url='<?=base_url()?>search/dosearch/none/1/none/none/none/none/'+filter_collection;
 	
-   //var url='<?=base_url()?>index.php/search/dosearch/'+filter_collection;  
+   //var url='<?=base_url()?>search/dosearch/'+filter_collection;  
     window.location.assign(url);
 }
 
@@ -186,7 +186,7 @@ function call_collection(filter_collection)
 function call_products(product_type)
 {
     //alert(id);
-    var url='<?=base_url()?>index.php/search/dosearch/none/1/64/none/none/'+product_type+'/none/none';
+    var url='<?=base_url()?>search/dosearch/none/1/64/none/none/'+product_type+'/none/none';
     window.location.assign(url);
 }
 
@@ -200,10 +200,10 @@ function OnClickSearch()
    
            
             var sort=$('#sortby_dropdown').val();
-            //var url='<?php echo base_url();?>index.php/search/dosearch/'+keyword+'/'+sort;
-            //var url='<?php echo base_url();?>index.php/search/dosearch/<?php if(isset($category_id)){print $category_id;} else {print "none";} ?>/<?php if(isset($page)){print $page;} else {print "none";} ?>/<?php if(isset($limit)){print $limit;} else {print "none";} ?>/'+keyword+'/'+sort;
-           // var url='<?php echo base_url();?>index.php/search/dosearch/none/none/none/'+keyword+'/'+sort+'/none/none/none';
-             var url='<?php echo base_url();?>index.php/search/dosearch/none/1/64/'+searchtext+'/'+3+'/none/none/none';
+            //var url='<?php echo base_url();?>search/dosearch/'+keyword+'/'+sort;
+            //var url='<?php echo base_url();?>search/dosearch/<?php if(isset($category_id)){print $category_id;} else {print "none";} ?>/<?php if(isset($page)){print $page;} else {print "none";} ?>/<?php if(isset($limit)){print $limit;} else {print "none";} ?>/'+keyword+'/'+sort;
+           // var url='<?php echo base_url();?>search/dosearch/none/none/none/'+keyword+'/'+sort+'/none/none/none';
+             var url='<?php echo base_url();?>search/dosearch/none/1/64/'+searchtext+'/'+3+'/none/none/none';
 			window.location.assign(url);
             return  true;
        
@@ -229,10 +229,10 @@ function checkSubmit(e)
             $('#search_error').html("");
             var keyword=$('#searchtext').val();
             var sort=$('#sortby_dropdown').val();
-            //var url='<?php echo base_url();?>index.php/search/dosearch/'+keyword+'/'+sort;
-            //var url='<?php echo base_url();?>index.php/search/dosearch/<?php if(isset($category_id)){print $category_id;} else {print "none";} ?>/<?php if(isset($page)){print $page;} else {print "none";} ?>/<?php if(isset($limit)){print $limit;} else {print "none";} ?>/'+keyword+'/'+sort;
-           // var url='<?php echo base_url();?>index.php/search/dosearch/none/none/none/'+keyword+'/'+sort+'/none/none/none';
-             var url='<?php echo base_url();?>index.php/search/search_canvas/none/1/64/'+keyword+'/'+3+'/none/none/none';
+            //var url='<?php echo base_url();?>search/dosearch/'+keyword+'/'+sort;
+            //var url='<?php echo base_url();?>search/dosearch/<?php if(isset($category_id)){print $category_id;} else {print "none";} ?>/<?php if(isset($page)){print $page;} else {print "none";} ?>/<?php if(isset($limit)){print $limit;} else {print "none";} ?>/'+keyword+'/'+sort;
+           // var url='<?php echo base_url();?>search/dosearch/none/none/none/'+keyword+'/'+sort+'/none/none/none';
+             var url='<?php echo base_url();?>search/search_canvas/none/1/64/'+keyword+'/'+3+'/none/none/none';
 			window.location.assign(url);
             return  true;
         }
@@ -277,14 +277,14 @@ $(document).ready(function(){
             $('#cpassword_error').html("");
             $.ajax({
                 type: "POST",
-                url: "<?php print base_url() ?>index.php/frontend/register",
+                url: "<?php print base_url() ?>frontend/register",
                 data: $("#signup_form").serialize(),
                 success: function(data)
                 {
                     if(data=="successful")
                     {
 						$("#success_result").html("<center><span style='color:red; font-size:18px;'>Thank You For Registering!</span></center>");
-                       // location.replace('<?php print base_url() ?>index.php/frontend/register_success');
+                       // location.replace('<?php print base_url() ?>frontend/register_success');
                     }
                     else
                     {
@@ -316,7 +316,7 @@ $(document).ready(function(){
 		else{
 		$.ajax({
 			type:"POST",
-			url:"<?php print base_url() ?>index.php/contact/process",
+			url:"<?php print base_url() ?>contact/process",
 			data:$("#contactus_save").serialize(),
 			success:function(data){
 //alert(data);
@@ -363,14 +363,14 @@ $(document).ready(function(){
 			//alert(datastring);
             $.ajax({
                 type: "POST",
-                url: "<?php print base_url() ?>index.php/frontend/login",
+                url: "<?php print base_url() ?>frontend/login",
                 data: datastring,
                 success: function(data)
                 {
 
                     if(data=="successful")
                     {
-                        //window.location.assign('<?=base_url()?>index.php/user/index');
+                        //window.location.assign('<?=base_url()?>user/index');
                         location.replace('<?=base_url()?>index.php');
                     }
                     else
@@ -397,7 +397,7 @@ $(document).ready(function(){
             var datastring='email=' + email;
             $.ajax({
                 type: "POST",
-                url: "<?php print base_url() ?>index.php/frontend/forgot_password",
+                url: "<?php print base_url() ?>frontend/forgot_password",
                 data: datastring,
                 success: function(data)
                 {
@@ -520,7 +520,7 @@ $(document).ready(function(){
      
      $.ajax({
 	             type: "POST",
-		      url: "<?php print base_url() ?>index.php/frontend/get_light_boxName",
+		      url: "<?php print base_url() ?>frontend/get_light_boxName",
 		      data:"img_id="+img_id,
 		      success: function(response)
 		      {    
@@ -556,7 +556,7 @@ $(document).ready(function(){
 	   $("#lightbox_error").html("successfully created Gallary");
 	    $.ajax({
 	             type: "POST",
-		      url: "<?php print base_url() ?>index.php/frontend/create_lightbox",
+		      url: "<?php print base_url() ?>frontend/create_lightbox",
 		      data: $("#lightbox_submit").serialize(),
 		      success: function(response)
 		      {    
@@ -709,12 +709,12 @@ $(document).ready(function(){
            <ul style="margin:0px; padding:3px 0px;">
            
            
-           <li> <a href="<?php print base_url(); ?>index.php/frontend/contact"> <i class="glyphicon glyphicon-earphone"></i>  Help </a> </li>
+           <li> <a href="<?php print base_url(); ?>frontend/contact"> <i class="glyphicon glyphicon-earphone"></i>  Help </a> </li>
            <li>  <a <?php    if(!$this->session->userdata('userid')){?>
                 href="javascript:void(0)"
                 onclick="login('');"
             <?php  }else{ ?>
-                href="<?php  echo base_url();?>index.php/frontend/lightbox" 
+                href="<?php  echo base_url();?>frontend/lightbox" 
             <?php }?>> <i class="glyphicon glyphicon-user"></i>  My Gallery </a>    </li>
             
             
@@ -724,10 +724,10 @@ $(document).ready(function(){
             $user_id=$this->session->userdata('userid');
             $user_data=$this->user_model->get_user_details($user_id);?>
             
-                <a  href="<?=base_url()?>index.php/frontend/logout">Sign Out</a>
+                <a  href="<?=base_url()?>frontend/logout">Sign Out</a>
            
            
-                <a  href="<?=base_url()?>index.php/user/profile"> Welcome 
+                <a  href="<?=base_url()?>user/profile"> Welcome 
 				
 				<?php if ($user_data->first_name){
                         echo $user_data->first_name;
@@ -740,7 +740,7 @@ $(document).ready(function(){
             <?php }
 			if($this->session->userdata('userid')){
 			?>
-           <li> <a style="position:relative" href="<?=base_url()?>index.php/cart/cart_view"> <i class="glyphicon glyphicon-shopping-cart cart-size">  </i>   <span id="HeaderCartCount" class="hdr-cart-count"><?php if($this->session->userdata('userid')){
+           <li> <a style="position:relative" href="<?=base_url()?>cart/cart_view"> <i class="glyphicon glyphicon-shopping-cart cart-size">  </i>   <span id="HeaderCartCount" class="hdr-cart-count"><?php if($this->session->userdata('userid')){
                         $num=$this->cart_model->count_cart_byid($this->session->userdata('userid')); $sum=0;foreach($num as $quant){
                             $sum=$sum + $quant['qty'];
                         } print $sum;
@@ -1187,7 +1187,7 @@ html.open-menu nav#menu {
   <ul>
   <li> <a href="#">HOME </a> </li>
   
-    <li><a href="<?php print base_url(); ?>index.php/frontend/art_subject"> SUBJECTS </a>
+    <li><a href="<?php print base_url(); ?>frontend/art_subject"> SUBJECTS </a>
     
             
     <ul>
@@ -1203,17 +1203,17 @@ html.open-menu nav#menu {
          
           
             ?>
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$sub_val[0]->keyword?>" ><img src="<?php print base_url();?><?=$sub_val[0]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($sub_val[0]->title)?><!--Animal--> </span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$sub_val[0]->keyword?>" ><img src="<?php print base_url();?><?=$sub_val[0]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($sub_val[0]->title)?><!--Animal--> </span></a></div>
 			
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$sub_val[1]->keyword?>" ><img src="<?php print base_url();?><?=$sub_val[1]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($sub_val[1]->title)?><!--Animal--> </span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$sub_val[1]->keyword?>" ><img src="<?php print base_url();?><?=$sub_val[1]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($sub_val[1]->title)?><!--Animal--> </span></a></div>
 			
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$sub_val[2]->keyword?>" ><img src="<?php print base_url();?><?=$sub_val[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($sub_val[2]->title)?>   <!--Cuisine--></span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$sub_val[2]->keyword?>" ><img src="<?php print base_url();?><?=$sub_val[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($sub_val[2]->title)?>   <!--Cuisine--></span></a></div>
 			
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$sub_val[3]->keyword?>"><img src="<?php print base_url();?><?=$sub_val[3]->menu_image?>" border="0"width="100%" height="100%"> <span class="dblock1"> <?php echo ucwords($sub_val[3]->title)?>  <!--Abstract--></span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$sub_val[3]->keyword?>"><img src="<?php print base_url();?><?=$sub_val[3]->menu_image?>" border="0"width="100%" height="100%"> <span class="dblock1"> <?php echo ucwords($sub_val[3]->title)?>  <!--Abstract--></span></a></div>
             
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$sub_val[4]->keyword?>"><img src="<?php print base_url();?><?=$sub_val[4]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($sub_val[4]->title)?> <!--Cuisine--></span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$sub_val[4]->keyword?>"><img src="<?php print base_url();?><?=$sub_val[4]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($sub_val[4]->title)?> <!--Cuisine--></span></a></div>
             
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$sub_val[5]->keyword?>"><img src="<?php print base_url();?><?=$sub_val[5]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1">  <?php echo ucwords($sub_val[5]->title)?>  <!--Animal--> </span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$sub_val[5]->keyword?>"><img src="<?php print base_url();?><?=$sub_val[5]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1">  <?php echo ucwords($sub_val[5]->title)?>  <!--Animal--> </span></a></div>
            
            
             
@@ -1331,7 +1331,7 @@ html.open-menu nav#menu {
             </div>
            
             <div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="#"> See all Subjects </a> </a> </div>
-			<!--<div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="<?php print base_url(); ?>index.php/frontend/art_subject"> See all Subjects </a> </a> </div>-->
+			<!--<div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="<?php print base_url(); ?>frontend/art_subject"> See all Subjects </a> </a> </div>-->
             
             </div>
     
@@ -1353,7 +1353,7 @@ html.open-menu nav#menu {
     
     
     <li> 
-	<a href="<?php echo base_url();?>index.php/frontend/artists"> ARTISTS </a>
+	<a href="<?php echo base_url();?>frontend/artists"> ARTISTS </a>
     
     <ul>
     
@@ -1364,14 +1364,14 @@ html.open-menu nav#menu {
           //print_r($drop2);
           
             ?>
-            <div  id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop2[0]->keyword?>" ><img src="<?php print base_url();?><?=$drop2[0]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop2[0]->title)?> <!--Architecture--></span></a></div>
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop2[1]->keyword?>" ><img src="<?php print base_url();?><?=$drop2[1]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop2[1]->title)?><!--Animal--> </span></a></div>
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop2[2]->keyword?>" ><img src="<?php print base_url();?><?=$drop2[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop2[2]->title)?>   <!--Cuisine--></span></a></div>
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/michelangelo/3/none/none/none/<?=$drop2[3]->keyword?>"><img src="<?php print base_url();?><?=$drop2[3]->menu_image?>" border="0"width="100%" height="100%"> <span class="dblock1"> <?php echo ucwords($drop2[3]->title)?>  <!--Abstract--></span></a></div>
+            <div  id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop2[0]->keyword?>" ><img src="<?php print base_url();?><?=$drop2[0]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop2[0]->title)?> <!--Architecture--></span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop2[1]->keyword?>" ><img src="<?php print base_url();?><?=$drop2[1]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop2[1]->title)?><!--Animal--> </span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop2[2]->keyword?>" ><img src="<?php print base_url();?><?=$drop2[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop2[2]->title)?>   <!--Cuisine--></span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/michelangelo/3/none/none/none/<?=$drop2[3]->keyword?>"><img src="<?php print base_url();?><?=$drop2[3]->menu_image?>" border="0"width="100%" height="100%"> <span class="dblock1"> <?php echo ucwords($drop2[3]->title)?>  <!--Abstract--></span></a></div>
             
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop2[4]->keyword?>"><img src="<?php print base_url();?><?=$drop2[4]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop2[4]->title)?> <!--Cuisine--></span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop2[4]->keyword?>"><img src="<?php print base_url();?><?=$drop2[4]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop2[4]->title)?> <!--Cuisine--></span></a></div>
             
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop2[5]->keyword?>"><img src="<?php print base_url();?><?=$drop2[5]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1">  <?php echo ucwords($drop2[5]->title)?>  <!--Animal--> </span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop2[5]->keyword?>"><img src="<?php print base_url();?><?=$drop2[5]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1">  <?php echo ucwords($drop2[5]->title)?>  <!--Animal--> </span></a></div>
            
             
             <div style="clear:both;"></div>
@@ -1392,7 +1392,7 @@ html.open-menu nav#menu {
 		 <div class="artist">
 		
         
-        <a style="display:block; padding:8px 0px; text-align:center; font-weight:600;" href="<?php echo base_url();?>index.php/frontend/artists">International Artist  </a>
+        <a style="display:block; padding:8px 0px; text-align:center; font-weight:600;" href="<?php echo base_url();?>frontend/artists">International Artist  </a>
                     <div style="float:left; width:230px;">
                     
                  
@@ -1463,7 +1463,7 @@ html.open-menu nav#menu {
                    
                    <div style="float:left; margin:8px 0px;">
         
-        <a style="display:block; padding:8px 0px; text-align:center; font-weight:600;" href="<?php echo base_url();?>index.php/frontend/artists"> Indian Artist  </a>
+        <a style="display:block; padding:8px 0px; text-align:center; font-weight:600;" href="<?php echo base_url();?>frontend/artists"> Indian Artist  </a>
                     <div style="width:230px; float:left;">
                     
                  
@@ -1505,7 +1505,7 @@ html.open-menu nav#menu {
         
                     <div style="width:170px; float:left;border-left: solid 1px #FC0; margin:8px 0px; padding:0px 10px;">
         
-        <a style="display:block; padding:8px 0px; text-align:center; font-weight:600;" href="<?php echo base_url();?>index.php/frontend/artists"> NEW & EXCLUSIVE  </a>
+        <a style="display:block; padding:8px 0px; text-align:center; font-weight:600;" href="<?php echo base_url();?>frontend/artists"> NEW & EXCLUSIVE  </a>
                     <div style="width:160px; float:left;">
                     
                
@@ -1561,7 +1561,7 @@ html.open-menu nav#menu {
            
             <div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;" href="#"> See all Artists </a> </div>
 			
-			 <!--<div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;" href="<?php echo base_url();?>index.php/frontend/artists"> See all Artists </a> </div>-->
+			 <!--<div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;" href="<?php echo base_url();?>frontend/artists"> See all Artists </a> </div>-->
             
             </div>
     
@@ -1575,7 +1575,7 @@ html.open-menu nav#menu {
     <!---3333-->
     
     
-    <li> <a href="<?php echo base_url();?>index.php/frontend/art_styles">ART STYLES </a>
+    <li> <a href="<?php echo base_url();?>frontend/art_styles">ART STYLES </a>
     
     
     <ul>
@@ -1591,14 +1591,14 @@ html.open-menu nav#menu {
           //print_r($drop3);
           
             ?>
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop3[0]->keyword?>" ><img src="<?php print base_url();?><?=$drop3[0]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop3[0]->title)?> <!--Architecture--></span></a></div>
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop3[1]->keyword?>" ><img src="<?php print base_url();?><?=$drop3[1]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop3[1]->title)?><!--Animal--> </span></a></div>
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop3[2]->keyword?>" ><img src="<?php print base_url();?><?=$drop3[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop3[2]->title)?>   <!--Cuisine--></span></a></div>
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop3[3]->keyword?>"><img src="<?php print base_url();?><?=$drop3[3]->menu_image?>" border="0"width="100%" height="100%"> <span class="dblock1"> <?php echo ucwords($drop3[3]->title)?>  <!--Abstract--></span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop3[0]->keyword?>" ><img src="<?php print base_url();?><?=$drop3[0]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop3[0]->title)?> <!--Architecture--></span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop3[1]->keyword?>" ><img src="<?php print base_url();?><?=$drop3[1]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop3[1]->title)?><!--Animal--> </span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop3[2]->keyword?>" ><img src="<?php print base_url();?><?=$drop3[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop3[2]->title)?>   <!--Cuisine--></span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop3[3]->keyword?>"><img src="<?php print base_url();?><?=$drop3[3]->menu_image?>" border="0"width="100%" height="100%"> <span class="dblock1"> <?php echo ucwords($drop3[3]->title)?>  <!--Abstract--></span></a></div>
             
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop3[4]->keyword?>"><img src="<?php print base_url();?><?=$drop3[4]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop3[4]->title)?> <!--Cuisine--></span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop3[4]->keyword?>"><img src="<?php print base_url();?><?=$drop3[4]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop3[4]->title)?> <!--Cuisine--></span></a></div>
             
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop3[5]->keyword?>"><img src="<?php print base_url();?><?=$drop3[5]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1">  <?php echo ucwords($drop3[5]->title)?>  <!--Animal--> </span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop3[5]->keyword?>"><img src="<?php print base_url();?><?=$drop3[5]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1">  <?php echo ucwords($drop3[5]->title)?>  <!--Animal--> </span></a></div>
            
            
             
@@ -1710,7 +1710,7 @@ html.open-menu nav#menu {
            
             <div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="#">See all Art Styles</a> </div>
 			
-			<!--<div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="<?php echo base_url();?>index.php/frontend/art_styles">See all Art Styles</a> </div>-->
+			<!--<div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="<?php echo base_url();?>frontend/art_styles">See all Art Styles</a> </div>-->
             
             </div>
     
@@ -1728,7 +1728,7 @@ html.open-menu nav#menu {
         <!----5 end----> 
     
     
-    <li> <a href="<?php print base_url(); ?>index.php/frontend/product_type">PRODUCTS</a>
+    <li> <a href="<?php print base_url(); ?>frontend/product_type">PRODUCTS</a>
     
      <ul>
     
@@ -1746,15 +1746,15 @@ html.open-menu nav#menu {
             
             <div>
 			
-            <div class="product-up product-our col-md-3"> <p style="padding:5px 0px; font-size:18px;"> <?php echo ucwords($drop5[0]->title)?> </p> <a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop5[0]->keyword?>"><img src="<?php print base_url();?><?=$drop5[0]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <!--Cuisine--></span></a></div>
+            <div class="product-up product-our col-md-3"> <p style="padding:5px 0px; font-size:18px;"> <?php echo ucwords($drop5[0]->title)?> </p> <a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop5[0]->keyword?>"><img src="<?php print base_url();?><?=$drop5[0]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <!--Cuisine--></span></a></div>
             
-            <div class="product-up2 product-our col-md-3"><p style="padding:5px 0px; font-size:18px;"> <?php echo ucwords($drop5[1]->title)?> </p> <a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop5[1]->keyword?>"><img src="<?php print base_url();?><?=$drop5[1]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><!--Cuisine--></span></a></div>
+            <div class="product-up2 product-our col-md-3"><p style="padding:5px 0px; font-size:18px;"> <?php echo ucwords($drop5[1]->title)?> </p> <a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop5[1]->keyword?>"><img src="<?php print base_url();?><?=$drop5[1]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><!--Cuisine--></span></a></div>
             
-            <div class="product-up product-our col-md-3"><p style="padding:5px 0px; font-size:18px;"> <?php echo ucwords($drop5[2]->title)?> </p><a href="<?php print base_url(); ?>index.php/search/search_canvas/none/1/64/<?=$drop5[2]->keyword?>"><img src="<?php print base_url();?><?=$drop5[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <!--Cuisine--></span></a>
+            <div class="product-up product-our col-md-3"><p style="padding:5px 0px; font-size:18px;"> <?php echo ucwords($drop5[2]->title)?> </p><a href="<?php print base_url(); ?>search/search_canvas/none/1/64/<?=$drop5[2]->keyword?>"><img src="<?php print base_url();?><?=$drop5[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <!--Cuisine--></span></a>
           </div>
           
           
-          <div class="product-up product-our col-md-3"><p style="padding:5px 0px; font-size:18px;"> <?php echo ucwords($drop5[3]->title)?> </p><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop5[3]->keyword?>"><img src="<?php print base_url();?><?=$drop5[3]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <!--Cuisine--></span></a>
+          <div class="product-up product-our col-md-3"><p style="padding:5px 0px; font-size:18px;"> <?php echo ucwords($drop5[3]->title)?> </p><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop5[3]->keyword?>"><img src="<?php print base_url();?><?=$drop5[3]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <!--Cuisine--></span></a>
           </div>
             
             </div>
@@ -1839,7 +1839,7 @@ html.open-menu nav#menu {
            
             <div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="#">See all Products</a> </div>
 			
-			 <!--<div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="<?php print base_url(); ?>index.php/frontend/product_type">See all Products</a> </div>-->
+			 <!--<div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="<?php print base_url(); ?>frontend/product_type">See all Products</a> </div>-->
             
             </div>
     
@@ -1857,7 +1857,7 @@ html.open-menu nav#menu {
       
       
     
-     <li><a href="<?php print base_url(); ?>index.php/frontend/collection">COLLECTIONS</a>
+     <li><a href="<?php print base_url(); ?>frontend/collection">COLLECTIONS</a>
        <ul>
         <div id="mouse-over">
           
@@ -2022,7 +2022,7 @@ html.open-menu nav#menu {
             <div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="#">See all Collections</a></a> </div>
 			
 			
-			<!--<div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="<?php print base_url(); ?>index.php/frontend/collection">See all Collections</a></a> </div>-->
+			<!--<div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="<?php print base_url(); ?>frontend/collection">See all Collections</a></a> </div>-->
             
             </div>
       </ul>
@@ -2044,7 +2044,7 @@ html.open-menu nav#menu {
     
     <li>
 	
-	<a href="<?php print base_url(); ?>index.php/frontend/rooms">ROOMS</a>
+	<a href="<?php print base_url(); ?>frontend/rooms">ROOMS</a>
     <ul>
     
     <div id="mouse-over">
@@ -2067,27 +2067,27 @@ html.open-menu nav#menu {
                                      if($spit0[1]=='frontend'){
                                               $url0=$drop6[0]->keyword;
                                           }else{
-                                              $url0="index.php/search/dosearch/none/1/64/".$drop6[0]->keyword."";
+                                              $url0="search/dosearch/none/1/64/".$drop6[0]->keyword."";
                                           }if($spit1[1]=='frontend'){
                                               $url1=$drop6[1]->keyword;
                                           }else{
-                                              $url1="index.php/search/dosearch/none/1/64/".$drop6[1]->keyword."";
+                                              $url1="search/dosearch/none/1/64/".$drop6[1]->keyword."";
                                           }if($spit2[1]=='frontend'){
                                               $url2=$drop6[2]->keyword;
                                           }else{
-                                              $url2="index.php/search/dosearch/none/1/64/".$drop6[2]->keyword."";
+                                              $url2="search/dosearch/none/1/64/".$drop6[2]->keyword."";
                                           }if($spit3[1]=='frontend'){
                                               $url3=$drop6[3]->keyword;
                                           }else{
-                                              $url3="index.php/search/dosearch/none/1/64/".$drop6[3]->keyword."";
+                                              $url3="search/dosearch/none/1/64/".$drop6[3]->keyword."";
                                           }if($spit4[1]=='frontend'){
                                               $url4=$drop6[4]->keyword;
                                           }else{
-                                              $url4="index.php/search/dosearch/none/1/64/".$drop6[4]->keyword."";
+                                              $url4="search/dosearch/none/1/64/".$drop6[4]->keyword."";
                                           }if($spit5[1]=='frontend'){
                                               $url5=$drop6[5]->keyword;
                                           }else{
-                                              $url5="index.php/search/dosearch/none/1/64/".$drop6[5]->keyword."";
+                                              $url5="search/dosearch/none/1/64/".$drop6[5]->keyword."";
                                           }
 										 
 		  
@@ -2135,7 +2135,7 @@ html.open-menu nav#menu {
                                      if($spit0[1]=='frontend'){
                                               $url=$subjects[$i]->keyword;
                                           }else{
-                                              $url="index.php/search/dosearch/none/1/64/".$subjects[$i]->keyword."";
+                                              $url="search/dosearch/none/1/64/".$subjects[$i]->keyword."";
                                           }
 						
                             ?>
@@ -2224,7 +2224,7 @@ html.open-menu nav#menu {
             <div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="#">See all Rooms</a> </div>
 			
 			
-			<!-- <div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="<?php print base_url(); ?>index.php/frontend/rooms">See all Rooms</a> </div>-->
+			<!-- <div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="<?php print base_url(); ?>frontend/rooms">See all Rooms</a> </div>-->
             
             </div>
     
@@ -2239,7 +2239,7 @@ html.open-menu nav#menu {
     
       <!--7--->
     
-    <li> <a href="<?php print base_url(); ?>index.php/frontend/places">PLACES</a>
+    <li> <a href="<?php print base_url(); ?>frontend/places">PLACES</a>
     
     
     <ul>
@@ -2255,14 +2255,14 @@ html.open-menu nav#menu {
           //print_r($drop7);
           
             ?>
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop7[0]->keyword?>" ><img src="<?php print base_url();?><?=$drop7[0]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop7[0]->title)?> <!--Architecture--></span></a></div>
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop7[1]->keyword?>" ><img src="<?php print base_url();?><?=$drop7[1]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop7[1]->title)?><!--Animal--> </span></a></div>
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop7[2]->keyword?>" ><img src="<?php print base_url();?><?=$drop7[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop7[2]->title)?>   <!--Cuisine--></span></a></div>
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop7[3]->keyword?>"><img src="<?php print base_url();?><?=$drop7[3]->menu_image?>" border="0"width="100%" height="100%"> <span class="dblock1"> <?php echo ucwords($drop7[3]->title)?>  <!--Abstract--></span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop7[0]->keyword?>" ><img src="<?php print base_url();?><?=$drop7[0]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop7[0]->title)?> <!--Architecture--></span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop7[1]->keyword?>" ><img src="<?php print base_url();?><?=$drop7[1]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop7[1]->title)?><!--Animal--> </span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop7[2]->keyword?>" ><img src="<?php print base_url();?><?=$drop7[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop7[2]->title)?>   <!--Cuisine--></span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop7[3]->keyword?>"><img src="<?php print base_url();?><?=$drop7[3]->menu_image?>" border="0"width="100%" height="100%"> <span class="dblock1"> <?php echo ucwords($drop7[3]->title)?>  <!--Abstract--></span></a></div>
             
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop7[4]->keyword?>"><img src="<?php print base_url();?><?=$drop7[4]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop7[4]->title)?> <!--Cuisine--></span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop7[4]->keyword?>"><img src="<?php print base_url();?><?=$drop7[4]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop7[4]->title)?> <!--Cuisine--></span></a></div>
             
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop7[5]->keyword?>"><img src="<?php print base_url();?><?=$drop7[5]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1">  <?php echo ucwords($drop7[5]->title)?>  <!--Animal--> </span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop7[5]->keyword?>"><img src="<?php print base_url();?><?=$drop7[5]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1">  <?php echo ucwords($drop7[5]->title)?>  <!--Animal--> </span></a></div>
            
            
           
@@ -2385,7 +2385,7 @@ html.open-menu nav#menu {
            
             <div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="#">See all Places </a></a> </div>
 			
-			<!-- <div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="<?php print base_url(); ?>index.php/frontend/places">See all Places </a></a> </div>-->
+			<!-- <div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="<?php print base_url(); ?>frontend/places">See all Places </a></a> </div>-->
 			 
             
             </div>
@@ -2400,7 +2400,7 @@ html.open-menu nav#menu {
     
     
       <!--8--->
-    <li> <a href="<?php print base_url(); ?>index.php/frontend/themes">THEMES</a>
+    <li> <a href="<?php print base_url(); ?>frontend/themes">THEMES</a>
     
     <ul>
     
@@ -2415,17 +2415,17 @@ html.open-menu nav#menu {
           //print_r($drop8);
           
             ?>
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop8[0]->keyword?>" ><img src="<?php print base_url();?><?=$drop8[0]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop8[0]->keyword)?> <!--Architecture--></span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop8[0]->keyword?>" ><img src="<?php print base_url();?><?=$drop8[0]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop8[0]->keyword)?> <!--Architecture--></span></a></div>
 			
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop8[1]->keyword?>" ><img src="<?php print base_url();?><?=$drop8[1]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop8[1]->title)?><!--Animal--> </span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop8[1]->keyword?>" ><img src="<?php print base_url();?><?=$drop8[1]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop8[1]->title)?><!--Animal--> </span></a></div>
 			
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop8[2]->keyword?>" ><img src="<?php print base_url();?><?=$drop8[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop8[2]->title)?>   <!--Cuisine--></span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop8[2]->keyword?>" ><img src="<?php print base_url();?><?=$drop8[2]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"> <?php echo ucwords($drop8[2]->title)?>   <!--Cuisine--></span></a></div>
 			
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/<?=$drop8[3]->keyword?>"><img src="<?php print base_url();?><?=$drop8[3]->menu_image?>" border="0"width="100%" height="100%"> <span class="dblock1"> <?php echo ucwords($drop8[3]->title)?>  <!--Abstract--></span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/<?=$drop8[3]->keyword?>"><img src="<?php print base_url();?><?=$drop8[3]->menu_image?>" border="0"width="100%" height="100%"> <span class="dblock1"> <?php echo ucwords($drop8[3]->title)?>  <!--Abstract--></span></a></div>
             
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/Jesus%20Christ/3/none/none/none/<?=$drop8[4]->keyword?>"><img src="<?php print base_url();?><?=$drop8[4]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop8[4]->title)?> <!--Cuisine--></span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/Jesus%20Christ/3/none/none/none/<?=$drop8[4]->keyword?>"><img src="<?php print base_url();?><?=$drop8[4]->menu_image?>" border="0" width="100%" height="100%"><span class="dblock1"><?php echo ucwords($drop8[4]->title)?> <!--Cuisine--></span></a></div>
             
-            <div id="sub-pic"><a href="<?php print base_url(); ?>index.php/search/dosearch/none/1/64/sunrise/3/none/none/none/<?=$drop8[5]->keyword?>"><img src="<?php print base_url();?><?=$drop8[5]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1">  <?php echo ucwords($drop8[5]->title)?>  <!--Animal--> </span></a></div>
+            <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/none/1/64/sunrise/3/none/none/none/<?=$drop8[5]->keyword?>"><img src="<?php print base_url();?><?=$drop8[5]->menu_image?>"  border="0" width="100%" height="100%"><span class="dblock1">  <?php echo ucwords($drop8[5]->title)?>  <!--Animal--> </span></a></div>
            
            
             
@@ -2554,7 +2554,7 @@ html.open-menu nav#menu {
             <div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="#">See all Themes </a></a> </div>
 			
 			
-			<!--<div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="<?php print base_url(); ?>index.php/frontend/themes">See all Themes </a></a> </div>-->
+			<!--<div class="rowour" style="text-align:center;"> <a style="padding:10px; color:#960; font-size:20px; text-align:center;"href="<?php print base_url(); ?>frontend/themes">See all Themes </a></a> </div>-->
 			
             
             </div>
@@ -2572,8 +2572,8 @@ html.open-menu nav#menu {
     
    
                 <ul class="normal-sub">
-                <li style="width:150px;"> <a style="padding: 6px 16px 10px 10px;" href="<?php print base_url(); ?>index.php/frontend/curators">  Curators  </a> </li>
-                <li style="width:150px;"> <a style="padding: 6px 16px 10px 10px;" href="<?php print base_url(); ?>index.php/frontend/curators"> Testimonials </a> </li>
+                <li style="width:150px;"> <a style="padding: 6px 16px 10px 10px;" href="<?php print base_url(); ?>frontend/curators">  Curators  </a> </li>
+                <li style="width:150px;"> <a style="padding: 6px 16px 10px 10px;" href="<?php print base_url(); ?>frontend/curators"> Testimonials </a> </li>
                 
                 </ul>
                
@@ -2668,7 +2668,7 @@ html.open-menu nav#menu {
     	 var datastring='gallery_img_id='+image_id+'&lightbox_id='+ a + '&image_id='+img_id+'&price='+ k +'&size='+ j +'&print_type='+l;
     	 $.ajax({
              type: "POST",
-	     url: "<?php print base_url() ?>index.php/frontend/check_img_exist_status",
+	     url: "<?php print base_url() ?>frontend/check_img_exist_status",
              data:datastring,
              success:function(datam)  
              {
@@ -2682,7 +2682,7 @@ html.open-menu nav#menu {
                   
             $.ajax({
     type: "POST",
-            url: "<?php print base_url() ?>index.php/frontend/check_img_exist_status",
+            url: "<?php print base_url() ?>frontend/check_img_exist_status",
     data:str,
     success:function(datam)  
     {
@@ -2713,7 +2713,7 @@ html.open-menu nav#menu {
     
         $.ajax({
            type:'post',
-           url:'<?php print base_url() ?>index.php/cart/cart_detail_save',
+           url:'<?php print base_url() ?>cart/cart_detail_save',
            data:'image_id='+image_id+'&image_filename='+image_filename+'&user_id='+user_id+'&total_size='+total_size+'&action_method=search',
            success:function(response){
               // alert(response);
@@ -2738,7 +2738,7 @@ $(document).on('click','#frame_add_to_cart', function(){
        
         $.ajax({
            type:'post',
-           url:'<?php print base_url() ?>index.php/cart/cart_detail_save',
+           url:'<?php print base_url() ?>cart/cart_detail_save',
            data:'print_sizes='+print_sizes+'&total_cost='+total_cost+'&image_id='+image_id+'&api_image_id='+api_image_id+'&image_filename='+image_filename+'&user_id='+user_id+'&total_size='+total_size+'&action_method=search',
            success:function(response){
               if(response!='')
@@ -2774,7 +2774,7 @@ $(document).on('click','#frame_add_to_cart', function(){
      
         $.ajax({
              type: "POST",
-	     url: "<?=base_url()?>index.php/frontend/frameit_addtocart",
+	     url: "<?=base_url()?>frontend/frameit_addtocart",
              data: "glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mat1_color+"&mat_size="+mat1_size+"&frame_color="+frame_color+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price,
              success:function(response)  
              {

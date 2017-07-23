@@ -15,7 +15,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div class="main-container container">
     	
         <div class="pagination" style="margin:0px;">
-        	<span> <a href="<?=base_url()?>index.php/frontend/index">HOME</a> > <span> Artists</span> </span>
+        	<span> <a href="<?=base_url()?>frontend/index">HOME</a> > <span> Artists</span> </span>
         </div>
         
         <!-- art style -->
@@ -30,7 +30,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                         foreach($sub_val as $values){
                             ?>
                     	<li>
-                                <a href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?php echo $values->keyword;?>/all"><?php print ucwords($values->title); ?></a>
+                                <a href="<?php print base_url(); ?>search/dosearch/1/32/<?php echo $values->keyword;?>/all"><?php print ucwords($values->title); ?></a>
                             </li>
                         <?php } ?>
                     </ul>
@@ -174,17 +174,17 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                 
                 <div class="row">
 				
-<a href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$values->keyword?>/all" ><img src="<?php print base_url();?><?=$values->image?>" style="float: left; border: none; box-shadow: 2px 2px 5px <?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$values->keyword?>/all" class="col-md-4 col-lg-6 col-sm-6"></a>
+<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" ><img src="<?php print base_url();?><?=$values->image?>" style="float: left; border: none; box-shadow: 2px 2px 5px <?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" class="col-md-4 col-lg-6 col-sm-6"></a>
 
-<a href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image2?>" style=" margin-bottom:10px; padding-left:0;<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$values->keyword?>/all" class="col-md-2 col-lg-3 col-sm-3"></a>
+<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image2?>" style=" margin-bottom:10px; padding-left:0;<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" class="col-md-2 col-lg-3 col-sm-3"></a>
 
 
 
-<a href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image3;?>" style=" margin-bottom:10px ;padding-left:0;<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$values->keyword?>/all" class="col-md-2 col-lg-3 col-sm-3"></a>
+<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image3;?>" style=" margin-bottom:10px ;padding-left:0;<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" class="col-md-2 col-lg-3 col-sm-3"></a>
 
-<a href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image4;?>" style=" margin-bottom:10px; padding-left:0;<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$values->keyword?>/all" class="col-md-2 col-lg-3 col-sm-3"></a>
+<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image4;?>" style=" margin-bottom:10px; padding-left:0;<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" class="col-md-2 col-lg-3 col-sm-3"></a>
 
-<a style="position:relative;"href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image5;?>" style=" margin-bottom:10px; padding-left:0; <?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$values->keyword?>/all" class="col-md-2 col-lg-3 col-sm-3"></a>
+<a style="position:relative;"href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image5;?>" style=" margin-bottom:10px; padding-left:0; <?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" class="col-md-2 col-lg-3 col-sm-3"></a>
 
 
 <div style="display: inline-block; width: 100%; height: 0px; overflow: hidden; visibility: hidden;">
@@ -193,7 +193,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
 
 <div style="position:absolute;margin-left: 283px; text-align:center;"> 
-<a style="position:absolute; padding:5px 3px; background: rgba(0, 0, 0, .5); color:<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$values->keyword?> FFF;bottom:8px; width:62px; font-size:14px; color:#FFF;" href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?=$values->keyword?>/all"> + more </a> </div> 
+<a style="position:absolute; padding:5px 3px; background: rgba(0, 0, 0, .5); color:<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?> FFF;bottom:8px; width:62px; font-size:14px; color:#FFF;" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"> + more </a> </div> 
 
 </div>
                 </div>

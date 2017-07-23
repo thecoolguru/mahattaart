@@ -13,7 +13,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
  }
  if($this->session->userdata('userid')=='')
 {
-     header('location:'.base_url().'index.php/frontend/logout');
+     header('location:'.base_url().'frontend/logout');
  }
 ?>
 <?php
@@ -24,7 +24,7 @@ function sorting_lightbox(a)
 {
   if(a==1||a==2)
   { 
-   var url="<?php echo base_url();?>index.php/frontend/lightbox_sorting/"+a;
+   var url="<?php echo base_url();?>frontend/lightbox_sorting/"+a;
      window.location.assign(url);
   }
 }
@@ -33,7 +33,7 @@ function edit(a,b,c,d)
 {	 
 	 $.ajax({
 		type: "GET",
-	       url: "<?php print base_url();?>index.php/frontend/edit_lightbox?lightbox_id="+a +"&lightbox_name="+b+"&filename="+d,
+	       url: "<?php print base_url();?>frontend/edit_lightbox?lightbox_id="+a +"&lightbox_name="+b+"&filename="+d,
 	       success: function(data)
 		   {   
               //alert(data);		   
@@ -66,7 +66,7 @@ $(document).ready(function($){
 	  var nm=$('#fname').val();
       var de=$('#desc').val();
 	  var ck='1';
-      var url='<?php echo base_url();?>index.php/frontend/lightbox?check='+ck +'&lt_nm='+ nm +'&lt_des='+de;
+      var url='<?php echo base_url();?>frontend/lightbox?check='+ck +'&lt_nm='+ nm +'&lt_des='+de;
 	  //alert(url);
       window.location.assign(url);
 	  //alert("Gallery created");
@@ -96,7 +96,7 @@ $(document).ready(function() {
 	  var nm=$('#fname').val();
       var de=$('#desc').val();
 	  var ck='1';
-      var url='<?php echo base_url();?>index.php/frontend/lightbox?check='+ck +'&lt_nm='+ nm +'&lt_des='+de;
+      var url='<?php echo base_url();?>frontend/lightbox?check='+ck +'&lt_nm='+ nm +'&lt_des='+de;
 	  //alert(url);
       window.location.assign(url);
 	 
@@ -118,7 +118,7 @@ function Genrate_images_id(lightbox_id)
 //       alert(fileName_id);
         $.ajax({
              type:"POST",
-	     url:"<?php echo base_url();?>index.php/frontend/GetLight_box_details",
+	     url:"<?php echo base_url();?>frontend/GetLight_box_details",
              data:"light_box_id="+lightbox_id, 
              success:function(data)  
              {    
@@ -139,7 +139,7 @@ function Genrate_images_id(lightbox_id)
 function call_remove(imageid,name,page_no)
 {	
 	var user_input=confirm("Are you sure you want to delete gallery" +name);
-	var url="<?php print base_url();?>index.php/frontend/delete_lightbox/"+imageid+"/"+page_no;
+	var url="<?php print base_url();?>frontend/delete_lightbox/"+imageid+"/"+page_no;
 	if(user_input==true)
 		window.location=url;
 }
@@ -174,7 +174,7 @@ function ShareGalleryValidation()
 
 <div id="share_gallery" class="mailid">
 		<!----------------------------------Sign up---------------------------------->
-		<form action="<?php print base_url();?>index.php/frontend/share_lightbox" method="post" name="login_form" id="login_form">
+		<form action="<?php print base_url();?>frontend/share_lightbox" method="post" name="login_form" id="login_form">
 		<a href="javascript:close();" onclick="close_sharegallary();" style="float: right;color: black;">Close</a>			
 				<table width="100%" border="0" cellspacing="0" cellpadding="0">
 					<tr>
@@ -215,7 +215,7 @@ function ShareGalleryValidation()
 
 <div id="generate_images_id" class="mailid">
 		<!----------------------------------Sign up---------------------------------->
-		<form action="<?php print base_url();?>index.php/frontend/share_lightbox" method="post" name="login_form" id="login_form">
+		<form action="<?php print base_url();?>frontend/share_lightbox" method="post" name="login_form" id="login_form">
 		<a href="javascript:close();" onclick="close_sharegallary();" style="float: right;color: black;">Close</a>			
                 <h3>File name</h3>	
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -303,7 +303,7 @@ input[type=text] {
 <div class="main-container">
     	
         <div class="pagination">
-        	<span><a href="<?php echo base_url();?>index.php/frontend/index">Home</a> -> <a href="<?php  echo base_url();?>index.php/frontend/lightbox"> My
+        	<span><a href="<?php echo base_url();?>frontend/index">Home</a> -> <a href="<?php  echo base_url();?>frontend/lightbox"> My
                         Gallery</a></span> 
         </div>
         
@@ -312,14 +312,14 @@ input[type=text] {
         	
             <!-- aside -->
             <aside class="left-panel-page">
-                <p><a href="<?php  echo base_url();?>index.php/frontend/lightbox">My Gallery</a></p>
+                <p><a href="<?php  echo base_url();?>frontend/lightbox">My Gallery</a></p>
             	<div class="list">
                 	<ul>
                     	<?php if(isset($result)){ 
 							$i=0; foreach($result as $results){
 							$rows=$this->frontend_model->count_images_lightbox($results->lightbox_id);?>
 						<input type="hidden" id="lightbox_id<?php echo $i;?>" name="lightbox_id<?php echo $i;?>" value="<?php echo $results->lightbox_id;?>" />
-						<li><a href="<?php echo base_url();?>index.php/frontend/lightbox_view/<?php echo $results->lightbox_id;?>">
+						<li><a href="<?php echo base_url();?>frontend/lightbox_view/<?php echo $results->lightbox_id;?>">
                                                     <?php echo $results->lightbox_name;?></td>
 						 <?php }$i++;}?> </a>
 						</li>
@@ -403,9 +403,9 @@ input[type=text] {
 							?>
 					<tr id="entry_no<?php echo $i;?>">
 						<td><?php if($resultant){?>
-                                  <a href="<?php echo base_url();?>index.php/frontend/lightbox_view/<?php echo $results->lightbox_id;?>"><img src="http://static.mahattaart.com/158/<?php print $resultant;?>" style="width: 100px" /></a>
+                                  <a href="<?php echo base_url();?>frontend/lightbox_view/<?php echo $results->lightbox_id;?>"><img src="http://static.mahattaart.com/158/<?php print $resultant;?>" style="width: 100px" /></a>
 							<?php }else{ echo "No Image";}?></td>
-						<td><a href="<?php echo base_url();?>index.php/frontend/lightbox_view/<?php echo $results->lightbox_id;?>"><?php echo $results->lightbox_name;?></a></td>
+						<td><a href="<?php echo base_url();?>frontend/lightbox_view/<?php echo $results->lightbox_id;?>"><?php echo $results->lightbox_name;?></a></td>
 						<td><?php if($results->lightbox_description)echo $results->lightbox_description;else echo "--";?>
 						</td>
 						<td><?php if($rows)echo $rows; else echo '0';?></td>
@@ -422,7 +422,7 @@ input[type=text] {
 
                                                     <br /> 
                                                     <?php if($rows){?>
-							<a href="<?php echo base_url();?>index.php/frontend/lightbox_view/<?php echo $results->lightbox_id;?>">View</a>
+							<a href="<?php echo base_url();?>frontend/lightbox_view/<?php echo $results->lightbox_id;?>">View</a>
                                                          <?}else {
 
                                                        }?>

@@ -4,7 +4,7 @@ $rows=$this->frontend_model->count_images_lightbox($lt_id);
 <td>
 	<img src="http://www.indiapicture.in/wallsnart/158/<?php print $filename;?>" />
 </td>
-<form name="form1" method="get" id="form1" action="<?php echo base_url();?>index.php/frontend/lightbox">
+<form name="form1" method="get" id="form1" action="<?php echo base_url();?>frontend/lightbox">
 	<td><input name="lt_nm" type="text" id="lt_nm" value="<?php echo $lt_nm;?>" class="galname-edit" />
 	</td>
 	<td>

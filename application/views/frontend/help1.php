@@ -17,14 +17,14 @@
      var datastring='email=' + email  +  '&contact=' + contact ;
      $.ajax({
          type: "POST",
-         url: "<?php print base_url()?>index.php/frontend/query",
+         url: "<?php print base_url()?>frontend/query",
          data: datastring,
          success: function(data)
          {
              alert('you will be contacted by our sales team shortly');
           /*   if(data=="successful")
              {
-                 window.location.assign('<?=base_url()?>index.php/user/index');
+                 window.location.assign('<?=base_url()?>user/index');
              }
              else
              {
@@ -61,7 +61,7 @@
             <a href="mailto:sales@wallsnart.com">sales@wallsnart.com </a></div>
         <div class="seperator"></div>
         <div class="form-container">
-            <form action="<?php echo base_url();?>index.php/frontend/query" method="post">
+            <form action="<?php echo base_url();?>frontend/query" method="post">
                 Would you prefer us to revert back at:
                 <br>
                    <?php

@@ -499,7 +499,7 @@ else{
         html2canvas( [ document.getElementById('frame-it') ], {
             onrendered: function(canvas)
             {var img=canvas.toDataURL()
-                $.post("<?php echo base_url()?>index.php/frontend/save_frame",
+                $.post("<?php echo base_url()?>frontend/save_frame",
 				{data:img},
 				function(file)
                 {
@@ -525,10 +525,10 @@ bi = style.backgroundImage.slice(50, -2);
         html2canvas( [ document.getElementById('frame-it') ], {
             onrendered: function(canvas)
             {var img=canvas.toDataURL()
-                $.post("<?php echo base_url()?>index.php/frontend/save_frame",{data:img},function(file)
+                $.post("<?php echo base_url()?>frontend/save_frame",{data:img},function(file)
                 {
                     //alert(file);
-                    window.location.href="<?php echo base_url()?>index.php/frontend/room_view/<?php echo $size;?>/"+file;
+                    window.location.href="<?php echo base_url()?>frontend/room_view/<?php echo $size;?>/"+file;
 
                 });
               // $('#img_val').val(canvas.toDataURL("image/png"));
@@ -671,16 +671,16 @@ bi = style.backgroundImage.slice(50, -2);
         {
             id=46
         }
-        window.location.href="<?php echo base_url()?>index.php/frontend/frame_detail/"+id;
+        window.location.href="<?php echo base_url()?>frontend/frame_detail/"+id;
     }
     function larger_image(){
 
         html2canvas( [ document.getElementById('frame-it') ], {
             onrendered: function(canvas)
             {var img=canvas.toDataURL()
-                $.post("<?php echo base_url()?>index.php/frontend/save_frame",{data:img},function(file)
+                $.post("<?php echo base_url()?>frontend/save_frame",{data:img},function(file)
                 {
-                    window.location.href="<?php echo base_url()?>index.php/frontend/larger_image/"+file;
+                    window.location.href="<?php echo base_url()?>frontend/larger_image/"+file;
 
                 });
                 //$('#img_val').val(canvas.toDataURL("image/png"));
@@ -709,11 +709,11 @@ bi = style.backgroundImage.slice(50, -2);
         var datastring='framewidth=' + framewidth +'&frameprice='+frameprice+'&matprice='+matprice+'&printprice='+printprice+'&total='+total+'&imageid='+imageid+'&image_name='+$file+'&frameid='+frameid+'&glassprice='+glass_price+'&fittingprice='+fitting_price+'&printsize='+print_size+'&type='+type+'&image='+imagename ;
         $.ajax({
             type: "POST",
-            url: "<?php print base_url() ?>index.php/frontend/save_frame_details",
+            url: "<?php print base_url() ?>frontend/save_frame_details",
             data: datastring,
             success: function(data)
             {
-               window.location.href="<?php echo base_url()?>index.php/frontend/download_frame/"+$file
+               window.location.href="<?php echo base_url()?>frontend/download_frame/"+$file
             }
         });
 
@@ -943,7 +943,7 @@ $('#unchkforacrylic').trigger('click');
 		$.ajax({
 	  //alert(glass)
             type: "POST",
-            url: "<?=base_url();?>index.php/frontend/get_frame_code_web_price",
+            url: "<?=base_url();?>frontend/get_frame_code_web_price",
             data:'frame_cat='+frame_cat,
 			//dataType :'json',
             success: function(data)
@@ -1070,7 +1070,7 @@ $('#unchkforacrylic').trigger('click');
 	$('.for_first_slide').click();
 	$.ajax({
 	    type:"post",
-		url:"<?=base_url()?>index.php/frontend/get_all_mount_for_slide",
+		url:"<?=base_url()?>frontend/get_all_mount_for_slide",
 		data:'mount='+obj,
 		//dataType: "json",
 		success: function(success){
@@ -1257,7 +1257,7 @@ $('#total_price').html(total1.toFixed(2));
       change_mount(mount,FrameSize);
 	  $.ajax({
 	      type:'post',
-		  url:'<?=base_url()?>index.php/frontend/get_frame_by_frame_color',
+		  url:'<?=base_url()?>frontend/get_frame_by_frame_color',
 		  data:'FrameSize='+frame_size_mm,
 		  success:function(response){
 		//alert(response)
@@ -1752,7 +1752,7 @@ function addToCart()
         $.ajax({
 		//final_frame_size
              type: "POST",
-	     url: "<?=base_url()?>index.php/frontend/frameit_addtocart",
+	     url: "<?=base_url()?>frontend/frameit_addtocart",
              data: "glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print,
 			 
              success:function(data)  
@@ -1798,10 +1798,10 @@ $('#large_image_dive').hide();
         </div>
         <div class="frame-step-button-wrapper">
             <div class="frame-step-continue-shopping-button">
-                <a style="color:white" href="<?=base_url().'index.php/'.$continue_shopping_redirect?>">CONTINUE SHOPPING</a>
+                <a style="color:white" href="<?=base_url().''.$continue_shopping_redirect?>">CONTINUE SHOPPING</a>
             </div>
             <div class="frame-step-proceed-to-cart-button">
-              <a style="color:white" href="<?=base_url().'index.php/cart/cart_view'?>">  PROCEED TO CART</a>
+              <a style="color:white" href="<?=base_url().'cart/cart_view'?>">  PROCEED TO CART</a>
             </div>
         </div>
     </div>
@@ -3134,7 +3134,7 @@ var MountCost=$('#MountCost').html();
 	  $.ajax({
 	  //alert(glass)
             type: "POST",
-            url: "<?php print base_url() ?>index.php/frontend/get_web_glass_rate",
+            url: "<?php print base_url() ?>frontend/get_web_glass_rate",
             data:'glass='+glass,
             success: function(data)
             {
@@ -3198,7 +3198,7 @@ $('.for_first_slide').click();
 var total_slide,total_s="";
    $.ajax({
             type:"post",
-			url:"<?=base_url()?>index.php/frontend/get_frame_by_frame_color",
+			url:"<?=base_url()?>frontend/get_frame_by_frame_color",
 			data:'frame_color='+frame_color,
 			success: function(response){
 			//alert(response);

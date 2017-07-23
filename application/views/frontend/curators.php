@@ -15,7 +15,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div  class="inner-main-container">
     	
         <div class="pagination">
-        	<span> <a href="<?=base_url()?>index.php/frontend/index">HOME</a> > <span> Curators </span> </span>
+        	<span> <a href="<?=base_url()?>frontend/index">HOME</a> > <span> Curators </span> </span>
         </div>
         
         <!-- art style -->

@@ -31,7 +31,7 @@ MIDDLE SECTION CONTENT
 ======================================= -->
 
 <!--===MIDDLE PAGE CONTAINER STARTS====--><div id="middle-page-container">
-<div class="breadcrum"><a href="<?=base_url()?>index.php/frontend/index">Home</a> Artists </div>
+<div class="breadcrum"><a href="<?=base_url()?>frontend/index">Home</a> Artists </div>
 
 <!--=======LEFT SIDE PANEL STARTS========--><div class="left-panel-page">
 <div class="main-cat-name"> Artists</div>
@@ -41,7 +41,7 @@ MIDDLE SECTION CONTENT
 <ul class="sub-cat-links-alphabet">
 <li class="parnt1">ALPHABETICAL SEARCH</li>
 <?php for($i=0;$i<26;$i++){?>
-<li><a href="<?php echo base_url();?>index.php/frontend/artist_alphabetic_search?search_text=<?php echo $alphaa_arr[$i];?>" id="<?php echo $alphaa_arr[$i];?>"><?php echo $alphaa_arr[$i];?></a></li><?php }?>
+<li><a href="<?php echo base_url();?>frontend/artist_alphabetic_search?search_text=<?php echo $alphaa_arr[$i];?>" id="<?php echo $alphaa_arr[$i];?>"><?php echo $alphaa_arr[$i];?></a></li><?php }?>
 
 </ul>
 </li>
@@ -49,8 +49,8 @@ MIDDLE SECTION CONTENT
 <li>
 <ul><?php  $alpha_arr=array('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');
 for($i=0;$i<26;$i++){?>
-<li><a href="<?php echo base_url()?>index.php/frontend/artist_alphabetic_search?search_txt=<?php echo $txt.$alpha_arr[$i]; ?>" id="<?php echo $txt.$alpha_arr[$i];?>"><?php echo $txt.$alpha_arr[$i];?></a></li><?php }?>
-<!--<li><a  href="<?php echo base_url()?>index.php/frontend/artist_alphabetic_search?search_text=Az" id="Az">Az</a></li>-->
+<li><a href="<?php echo base_url()?>frontend/artist_alphabetic_search?search_txt=<?php echo $txt.$alpha_arr[$i]; ?>" id="<?php echo $txt.$alpha_arr[$i];?>"><?php echo $txt.$alpha_arr[$i];?></a></li><?php }?>
+<!--<li><a  href="<?php echo base_url()?>frontend/artist_alphabetic_search?search_text=Az" id="Az">Az</a></li>-->
 </ul></li>
 </ul>
 </div>
@@ -78,14 +78,14 @@ if(isset($artist)){
 <div class="galThumbContainer" >
 <div class="galImageContainer">
 	<div class="galImageCell">
-	<a href="<?php echo base_url();?>index.php/search/get_all_images/<?php echo $data['image']['0']['artist_name']; ?>"><img class="galImage  " src="https://s3.amazonaws.com/wallsnart/158/<?php print $data['image']['0']['images_filename'];?>" alt="<?php print $data['image']['0']['images_description'];?>" title="<?php print $data['image']['0']['images_description'];?>"></a>
+	<a href="<?php echo base_url();?>search/get_all_images/<?php echo $data['image']['0']['artist_name']; ?>"><img class="galImage  " src="https://s3.amazonaws.com/wallsnart/158/<?php print $data['image']['0']['images_filename'];?>" alt="<?php print $data['image']['0']['images_description'];?>" title="<?php print $data['image']['0']['images_description'];?>"></a>
 	</div>
 </div>
 
 <div class="galDetailsContainer">
 <div class="galTitle"><?php print $data['image']['0']['images_caption']; ?></div>
 <div class="galArtistProduct">
-<a class="gal-artist" href="<?php echo base_url();?>index.php/search/get_all_images/<?php echo $data['image']['0']['artist_name'];?>" title=""><?php echo $data['image']['0']['artist_name'];?></a>
+<a class="gal-artist" href="<?php echo base_url();?>search/get_all_images/<?php echo $data['image']['0']['artist_name'];?>" title=""><?php echo $data['image']['0']['artist_name'];?></a>
 <div class="gal-type-size">
 <span class="gal-product-size-multi"><?php $this->load->model('search_model');
 $sizes=$this->search_model->get_sizes_available($data['image']['0']['images_filename']);

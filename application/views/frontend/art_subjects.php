@@ -14,7 +14,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div class="container">
     	
         <div class="pagination" style="margin:0px;">
-        	<span> <a href="<?= base_url()?>index.php/frontend/index">HOME</a> > <span> Subjects </span> </span>
+        	<span> <a href="<?= base_url()?>frontend/index">HOME</a> > <span> Subjects </span> </span>
         </div>
         
         <!-- art style -->
@@ -29,7 +29,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                     	<?php   
   //print_r($subject);
     					foreach($sub_val as $result){ ?>
-						<li><a href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?php echo $result->keyword;?>/all"><?php echo $result->title;?></a></li>
+						<li><a href="<?php print base_url(); ?>search/dosearch/1/32/<?php echo $result->keyword;?>/all"><?php echo $result->title;?></a></li>
 						<?php }?>
                     </ul>
                 </div>
@@ -170,7 +170,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
          ?>
 						<div class="artist_Photo">
                         	<div class="col-md-12 thumbnail">
-                                <a href="<?php print base_url(); ?>index.php/search/dosearch/1/32/<?php echo $values->keyword;?>/all">
+                                <a href="<?php print base_url(); ?>search/dosearch/1/32/<?php echo $values->keyword;?>/all">
                                 <img src="<?php print base_url();?><?=$values->image?>" title="<?php echo $values->title;?>" width="100%" /></a>
 								<div class="artist_tag"><?php echo strtoupper($values->title);?></div>
                             </div>

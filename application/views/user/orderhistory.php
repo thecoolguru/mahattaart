@@ -101,8 +101,8 @@
             	<p>Let Us Help</p>
             	<div class="list">
                 	<ul>
-                    	<li><a href="<?=base_url()?>index.php/frontend/contact">Contact us</a></li>
-                        <li><a href="<?=base_url()?>index.php/frontend/faq">FAQ's</a></li>
+                    	<li><a href="<?=base_url()?>frontend/contact">Contact us</a></li>
+                        <li><a href="<?=base_url()?>frontend/faq">FAQ's</a></li>
                         <li><a href="#">Ordering</a></li>
                         <li><a href="#">Shipping & Delivery</a></li>
                     </ul>
@@ -111,19 +111,19 @@
                 <p>My Account</p>
             	<div class="list">
                 	<ul>
-                    	<li><a href="<?=base_url()?>index.php/frontend/contact">My Profile</a></li>
+                    	<li><a href="<?=base_url()?>frontend/contact">My Profile</a></li>
                         <li><a href="#">Track My Order</a></li>
-                        <li><a href="<?=base_url()?>index.php/user/order_history">Order History</a></li>
+                        <li><a href="<?=base_url()?>user/order_history">Order History</a></li>
                     </ul>
                 </div>
                 
                 <p>Mahatta Art</p>
             	<div class="list">
                 	<ul>
-                    	<li><a href="<?=base_url()?>index.php/frontend/about">The Company</a></li>
-<!--                        <li><a href="<?=base_url()?>index.php/frontend/media_center">Media Center</a></li>-->
-                        <li><a href="<?=base_url()?>index.php/frontend/career">Careers</a></li>
-                        <li><a href="<?=base_url()?>index.php/frontend/partner">Partners</a></li>
+                    	<li><a href="<?=base_url()?>frontend/about">The Company</a></li>
+<!--                        <li><a href="<?=base_url()?>frontend/media_center">Media Center</a></li>-->
+                        <li><a href="<?=base_url()?>frontend/career">Careers</a></li>
+                        <li><a href="<?=base_url()?>frontend/partner">Partners</a></li>
                     </ul>
                 </div>
                 
@@ -193,7 +193,7 @@
                                 <li><?=$order_details->order_amount;?></li>
                                 <li></li>
 								 <li></li>
-                                <li class="last-child"><a href="<?=base_url()?>index.php/user/order_details_of_history/<?=$order_details->inv_order_id;?>">view details</a></li>
+                                <li class="last-child"><a href="<?=base_url()?>user/order_details_of_history/<?=$order_details->inv_order_id;?>">view details</a></li>
                             </ul>        
                         </div>
                <?php
