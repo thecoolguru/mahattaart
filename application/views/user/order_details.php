@@ -87,17 +87,17 @@
 	}		
 	     
 </script>
-<div class="main-container">
-    	
+<div class="container">
+<div class="row">
+        <!-- art style -->
+        <div class="art-style col-md-12">
         <div class="pagination">
  <span> <a href="<?php print base_url();?>index.php">HOME</a> > My Account > <span> Profile</span> </span>
         </div>
-        
-        <!-- art style -->
-        <div class="art-style">
+        <div class="row">
         	
             <!-- aside -->
-            <aside style="width: 150px;">
+            <aside class="left-panel-page col-md-2 col-xs-3">
             	<p>Let Us Help</p>
             	<div class="list">
                 	<ul>
@@ -131,41 +131,35 @@
             <!-- aside -->
             
             <!-- right panel -->
-            <div class="right-panel">
-            	
-                <!--  Art Movements -->
-                	<div class="art-movements">
-                        <div class="art-inner" style="position:absolute;">
-                            <p>My Profile</p>
-                            <img src="<?php print base_url();?>assets/img/profile.jpg" width="710" height="210" border="0">
-                        </div>
-                    </div>
-					
-            
-            <!-- right panel -->
-            <div class="right-panel">
+            <div class="right-panel-page col-md-10 col-xs-9">
             	
                 <!--  Art Movements -->
                 	<div class="art-movements">
                         <div class="art-inner">
                             <p>Order History</p>
-                            <img src="img/oderhistry.jpg" width="697" height="210" border="0">
+                            <img src="<?php print base_url();?>assets/img/profile.jpg" class="img-responsive">
                         </div>
                     </div>
-                    
-                    <div class="orderhistroywrap">
-                        <div class="orderhistroy">
-                            <ul>
-							    <li>Product.Id-</li>
-                                <li>Order ID</li>
-                                <li>File Name</li>
-                                <li>Product Image</li>
-                               
-                                <li>Status</li>
-								 <li>AWB No./Courier Partner(Useful for tracking.)</li>
-								 
-                            </ul>        
-                        </div>
+					
+            
+            <!-- right panel -->
+            
+                
+                
+                <div class="row">
+<div class="col-md-12">
+<table class="table table-striped orderhistroywrap">
+    <thead>
+        <tr style=" background-color:#d4d4d4">
+            <th>Product Id</th>
+            <th>Order ID</th>
+            <th>File Name</th>
+            <th>Product Image</th>
+            <th>Status</th>
+            <th>AWB No./Courier Partner(Useful for tracking.)</th>
+        </tr>
+    </thead>
+    <tbody>
                  <?php 
 				 //print_r($order_idd);
 				// $orders=$this->frontend_model->get_tbl_order_details();
@@ -187,39 +181,39 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
 $image_id=$search_data_r['results'][0]['image_id'];
 
 				 ?>
-                        <div class="odd">
-                            <ul>
-							    <li><?=$order_id->sr_id;?></li>
-                                <li><?=$order_id->invoice_id;?></li>
-                                <li><?=$order_id->sku_id;?></li>
-                                <li style="background:rgba(0, 0, 0, 0) url('<?=base_url()?>images/uploaded_pdf/mount/<?=$order_id->mount_color;?>.jpg') no-repeat scroll 0 0 / cover ; border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/<?=$order_id->frame_color;?>.jpg') 10 10 10 10 round round;margin-left:50px" class="mainhor"><a href="<?=base_url()?>search/image_detail/<?=$file_name?>/<?=$image_id?>/<?=$collection_id?>"><img src="http://static.mahattaart.com/398/<?=$order_id->sku_id;?>"width="100%" /></a></li>
-                                 <li><?=$order_id->updated_status;?></li>
-								 
-								 <li><?php 
-								 foreach($xyz as $trk_id){
-								 //$trk_id->sub_tracking_id;
-								 ?><p><?=$trk_id->tracking_id;?></p><br> <?php
-								 }
-								 ?></li>
-								
-                               
-                            </ul>        
-                        </div>
-               <?php
-			   }
-			   ?>
-                        
-                    </div>
-                </div>
+        <tr>
+            <td><?=$order_id->sr_id;?></td>
+            <td><?=$order_id->invoice_id;?></td>
+            <td><?=$order_id->sku_id;?></td>
+            <td style="background:rgba(0, 0, 0, 0) url('<?=base_url()?>images/uploaded_pdf/mount/<?=$order_id->mount_color;?>.jpg') no-repeat scroll 0 0 / cover ; border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/<?=$order_id->frame_color;?>.jpg') 10 10 10 10 round round; width:110px" class="mainhor"><a href="<?=base_url()?>search/image_detail/<?=$file_name?>/<?=$image_id?>/<?=$collection_id?>"><img src="http://static.mahattaart.com/398/<?=$order_id->sku_id;?>"width="100%" /></a></td>
+            <td class="odd"><?=$order_id->updated_status;?></td>
+            <td>
+				<?php 
+                foreach($xyz as $trk_id){
+                //$trk_id->sub_tracking_id;
+                ?><p><?=$trk_id->tracking_id;?></p><br> <?php
+                }
+                ?>
+            </td>
+        </tr>
+                        <?php
+                        }
+                        ?>
+    </tbody>
+</table>
+</div>
+</div>
                 <!--  Art Movements -->
  
             </div>
             <!-- right panel -->
             
         </div>
+        </div>
         <!-- art style -->
         
     </div>
+</div>
     <!-- container -->
     
     

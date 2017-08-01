@@ -1,1 +1,50 @@
-@charset "utf-8";.carouselA{margin-bottom:0;padding:0 40px}.carousel-controlA{left:-12px}.carousel-controlA.right{right:-12px}.carousel-indicatorsA{right:50%;top:auto;bottom:0;margin-right:-19px}.carousel-indicatorsA li{background:#c0c0c0}.carousel-indicatorsA .active{background:#333}.carousel-controlA{background:#222 none repeat scroll 0 0!important;border:3px solid #fff;border-radius:23px;color:#fff;font-size:60px;font-weight:100;height:45px;line-height:30px;margin-top:-20px;opacity:.5;position:absolute;text-align:center;top:50%;width:45px}div.container{border:medium none!important;margin:0 auto!important}.thumbnail{margin-bottom:0!important}
+@charset "utf-8";
+/* CSS Document */
+
+/* Removes the default 20px margin and creates some padding space for the indicators and controls */
+.carouselA {
+  margin-bottom: 0;
+  padding: 0 40px;
+}
+/* Reposition the controls slightly */
+.carousel-controlA {
+	left: -12px;
+}
+.carousel-controlA.right {
+	right: -12px;
+}
+/* Changes the position of the indicators */
+.carousel-indicatorsA {
+	right: 50%;
+	top: auto;
+	bottom: 0px;
+	margin-right: -19px;
+}
+/* Changes the colour of the indicators */
+.carousel-indicatorsA li {
+	background: #c0c0c0;
+}
+.carousel-indicatorsA .active {
+background: #333333;
+}
+
+.carousel-controlA {
+  background: #222222 none repeat scroll 0 0 !important;
+  border: 3px solid #ffffff;
+  border-radius: 23px;
+  color: #ffffff;
+  font-size: 60px;
+  font-weight: 100;
+  height: 45px;
+  line-height: 30px;
+  margin-top: -20px;
+  opacity: 0.5;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  width: 45px;
+}
+
+.thumbnail {
+  margin-bottom: 0 !important;
+}

@@ -35,94 +35,98 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 p{padding: 1px 13px; font-weight:inherit; border:none;color: #444; font-weight:bold;} 
 </style>
 <div class="container">
-  <div class="pagination" style="margin:0px;"> <span> <a href="<?=base_url()?>frontend/index">HOME</a> > <span> Artists </span> </span> </div>
+<div class="row">
+  
   <!-- art style -->
-  <div class="art-style">
+  <div class="art-style col-md-12">
+  <div class="pagination" style="margin:0px;"> <span> <a href="<?=base_url()?>frontend/index">HOME</a> > <span> Artists </span> </span> </div>
     <!-- aside -->
-    <aside class="left-panel-page">
-      <div id="firstpane" class="menu_list">
-        <p class="menu_head">Artist</p>
-        <div class="list">
-          <ul>
-            <?php
-                        foreach($sub_val as $values){
-                            ?>
-            <li> <a href="<?php print base_url(); ?>search/dosearch/1/32/<?php echo $values->keyword;?>/all"><?php print ucwords($values->title); ?></a> </li>
-            <?php } ?>
-          </ul>
-        </div>
-      </div>
-    </aside>
-    <!-- aside -->
-    <div class="right-panel-page">
-      <div>
-        <style>
-		.pagination li { display:inline-block;}
-		.cat-cont-outer ul li{ width:auto !important;}
-		.main-title{cursor: pointer;
-    margin-bottom: 2px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    color: #333;
-    font-size: 13px;
-    margin: 9px 0px 4px 0px;  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /*  font-family: "Times New Roman",serif;*/
-
-	}
-	
-.Next{    background: url(<?php print base_url(); ?>uploaded_pdf/Gallery_ImageSprite.png) no-repeat -49px -26px;
-    width: 18px;
-    height: 18px;
-    vertical-align: bottom;
-    border: 0;}
-    
-.pdc {
-    color: #F44349 !important;
-    font-family: "Helvetica Neue","HelveticaNeue-Light","Helvetica Neue Light",Helvetica,Arial,"Lucida Grande",sans-serif;
-    font-size: 12px;
-	padding:0px 15px;
-}
-.products a{ font-size:11px; text-decoration:underline !important; color: rgb(136, 136, 136); font-size: 11px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
-	
-.producttype a{font-size:12px;color:#999;}
-.lineth{text-decoration: line-through;}
-.wrap-inner{ height:150px;}
-.wrap-inner img {max-width:100%; 
-  max-height:100%;
-  margin:auto;
-  display:block;}
-    
-    </style>
-        <!--  Art Movements -->
-        <div class="art-movements">
-          <div class="row">
-            <p>Artists</p>
-          </div>
-          <span style="margin-left:40%">
-          <?php   echo $this->pagination->create_links(); ?>
-          </span><br>
-          <div class="art-cate row">
-            <?php 
-		    foreach($sub_val as $values){
-         ?>
-            <div class="artist_Photo">
-              <div class="col-md-12 thumbnail"> <a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"> <img src="<?php print base_url();?><?=$values->image?>"  border="0" class="img-responsive" /> </a>
-                <div class="artist_tag">
-                  <?=$values->title?>
-                </div>
-              </div>
+    <div class="row">
+        <aside class="left-panel-page col-md-2 col-xs-3">
+          <div id="firstpane" class="menu_list">
+            <p class="menu_head">Artist</p>
+            <div class="list">
+              <ul>
+                <?php
+                            foreach($sub_val as $values){
+                                ?>
+                <li> <a href="<?php print base_url(); ?>search/dosearch/1/32/<?php echo $values->keyword;?>/all"><?php print ucwords($values->title); ?></a> </li>
+                <?php } ?>
+              </ul>
             </div>
-            <?php }?>
+          </div>
+        </aside>
+        <!-- aside -->
+        <div class="right-panel-page col-md-10 col-xs-9">
+          <div class="row">
+            <style>
+            .pagination li { display:inline-block;}
+            .cat-cont-outer ul li{ width:auto !important;}
+            .main-title{cursor: pointer;
+        margin-bottom: 2px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #333;
+        font-size: 13px;
+        margin: 9px 0px 4px 0px;  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /*  font-family: "Times New Roman",serif;*/
+    
+        }
+        
+    .Next{    background: url(<?php print base_url(); ?>uploaded_pdf/Gallery_ImageSprite.png) no-repeat -49px -26px;
+        width: 18px;
+        height: 18px;
+        vertical-align: bottom;
+        border: 0;}
+        
+    .pdc {
+        color: #F44349 !important;
+        font-family: "Helvetica Neue","HelveticaNeue-Light","Helvetica Neue Light",Helvetica,Arial,"Lucida Grande",sans-serif;
+        font-size: 12px;
+        padding:0px 15px;
+    }
+    .products a{ font-size:11px; text-decoration:underline !important; color: rgb(136, 136, 136); font-size: 11px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+        
+    .producttype a{font-size:12px;color:#999;}
+    .lineth{text-decoration: line-through;}
+    .wrap-inner{ height:150px;}
+    .wrap-inner img {max-width:100%; 
+      max-height:100%;
+      margin:auto;
+      display:block;}
+        
+        </style>
+            <!--  Art Movements -->
+            <div class="art-movements col-md-12">
+                <p>Artists</p>
+              <span style="margin-left:40%">
+              <?php   echo $this->pagination->create_links(); ?>
+              </span>
+              </div>
+                <?php 
+                foreach($sub_val as $values){
+             ?>
+                <div class="artist_Photo col-md-2 col-sm-3 col-xs-6">
+                  <div class="thumbnail"> 
+                  <a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all">
+                  	<img src="<?php print base_url();?><?=$values->image?>" class="img-responsive" />
+                  </a>
+                  <div class="artist_tag">
+                    <?=$values->title?>
+                  </div>
+                  </div>
+                </div>
+                <?php }?>
+            <span style="margin-left:50%">
+            <?php   echo $this->pagination->create_links(); ?>
+            </span><br>
           </div>
         </div>
-        <span style="margin-left:50%">
-        <?php   echo $this->pagination->create_links(); ?>
-        </span><br>
-      </div>
-    </div>
+    </a>
     <!--=======RIGHT SIDE PANEL ENDS========-->
   </div>
   <!-- container -->
+</div>
 </div>
 <!-- aside -->
 
@@ -148,10 +152,11 @@ $(document).ready(function()
 </script>
 <style>
 .thumbnail {
-  border: 0 none;
-  box-shadow: none;
-  margin: 0;
-  padding: 0;
+    border: 0 none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
 }
 
 </style>

@@ -1,1 +1,57 @@
-﻿#mcts1,#mcts1 div{box-sizing:content-box}#mcts1{width:90%;margin:0 auto;padding:36px 5%;background:#e4e3e5 url(loading.gif) no-repeat 50% 50%;position:relative;font-size:0}#mcts1 div.item{padding:2px;margin-right:6px;background-color:White;border:1px solid #ddd;text-align:center;position:relative}#mcts1 img{border:0}#mcts1 .navPrev,#mcts1 .navNext,#mcts1 .navPlay,#mcts1 .navPause{width:39px;height:87px;position:absolute;display:inline-block;z-index:5;cursor:pointer}#mcts1 .navPrev{top:70px;left:40px;background:url(../img/arrow_big01.png) left top;z-index:200}#mcts1 .navNext{top:70px;right:40px;background:url(../img/arrow_big02.png) left top;z-index:200}#mcts1 .navNextDisabled,#mcts1 .navNextDisabled:hover{background-position:-16px 0;cursor:default}#mcts1 .navPause,#mcts1 .navPlay{left:360px;top:130px}#mcts1 .navPause{background-position:0 -66px}#mcts1 .navPause:hover{background-position:0 -88px}#mcts1 .navPlay{background-position:-16px -66px}#mcts1 .navPlay:hover{background-position:-16px -88px}#shadow01{background:url(../img/shadow01.png);height:234px;left:0;width:131px;position:absolute;z-index:50}#shadow02{background:url(../img/shadow02.png);height:234px;margin:-234px 0 0 0;width:131px;position:absolute;right:0;z-index:150}
+﻿
+#mcts1, #mcts1 div { box-sizing:content-box; }
+
+#mcts1 
+{
+
+    width:90%;
+    margin: 0 auto;
+    padding:36px 5%;
+    background:#e4e3e5 url(loading.gif) no-repeat 50% 50%;
+    /* Do not alter the below settings*/
+    position:relative;
+    font-size:0px;
+}
+
+
+  
+/*-------- div.item is each thumbnail's wrapper created by the javascript ------*/
+#mcts1 div.item 
+{
+    padding:2px;
+    margin-right:6px; /* this specifies the distance between each thumbnail */
+    background-color:White;
+    border:1px solid #ddd;
+    text-align:center;
+    position:relative;
+}
+
+#mcts1 img 
+{
+    border:none;
+}
+
+
+/*---------built-in navigation buttons-------*/
+#mcts1 .navPrev, #mcts1 .navNext, #mcts1 .navPlay, #mcts1 .navPause 
+{
+    width:39px; height:87px; position:absolute;  
+     
+    display:inline-block; z-index:5; cursor:pointer;
+}
+#mcts1 .navPrev {top:70px;left:40px; background:url(../img/arrow_big01.png) left top ; z-index:200;}
+
+
+#mcts1 .navNext {top:70px;right:40px; background:url(../img/arrow_big02.png) left top; z-index:200;}  
+#mcts1 .navNextDisabled, #mcts1 .navNextDisabled:hover {background-position:-16px 0; cursor:default;} 
+
+#mcts1 .navPause, #mcts1 .navPlay {left:360px;top:130px;}
+#mcts1 .navPause {background-position:0 -66px;} 
+#mcts1 .navPause:hover {background-position:0 -88px;} 
+#mcts1 .navPlay {background-position:-16px -66px;} 
+#mcts1 .navPlay:hover {background-position:-16px -88px;} 
+
+/*---------built-in navigation bullets--------*/
+/* Note: the navBullets won't be available when "scrollByEachThumb" was set to false in the Javascript.*/
+#shadow01{background:url(../img/shadow01.png); height:234px; left:0;  width:131px; position:absolute; z-index:50;}
+#shadow02{background:url(../img/shadow02.png); height:234px; margin:-234px 0 0 0;  width:131px; position:absolute; right:0; z-index:150;}

@@ -13,14 +13,10 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
 ?>
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/popular-art-slider.css" type="text/css">
-<!--<script src="<?php echo base_url()?>assets/js/popular-art-slider.js"></script>-->
-
-
-<script src="<?php print base_url();?>assets/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url()?>assets/js/jquery.flexslider.js"></script>
 
-<div class="main-container container">
-<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top:2px">
+<div class="container"><div class="row">
+<div id="myCarousel" class="carousel slide col-md-12" data-ride="carousel" style="margin-top:2px">
 <div class="carousel-inner" role="listbox">
 <div class="item active"> <img src="<?php echo base_url();?>assets/img/slider/sofa.jpg" alt="Chania">
 <div class="carousel-caption caption2" style="top:2%">
@@ -64,84 +60,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 </div>
 </div>
 <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev" > <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
-<!--<style>
-.overlay {
-  color: #fff;
-  height: 100%;
-  left: 0;
-  padding: 10px 30px;
-  position: absolute;
-  top: 0;
-  transition: opacity 500ms ease 0s;
-  vertical-align: middle;
-  width: 100%;
-}
-.recent-work-inner .buttonslide {
-  background-color: rgba(46, 52, 60, 0.5);
-  border: 1px solid #fff;
-  color: #fff;
-  font-size: 16px;
-  margin: 0;
-  padding: 8px 10px;
-  text-align: center;
-}
-
-.recent-work-inner .text-font >a {
-  color: #fff;
-  display: inline-block;
-  font-family: Oswald;
-  font-size: 30pt;
-  font-weight: normal;
-  letter-spacing: 1px;
-  line-height: 100%;
-  text-shadow: 2px 2px 15px #222;
-  width: 100%;
-}
-.overlay p:last-child {
-    background: #ff0000;
-}
-</style>
--->
-<!--<div class="container">
-	<div class="row">
-    	<div class="col-md-6 pull-right" style="padding:0px;margin-bottom:5px">
-			<a href="#"> <img src="<?php echo base_url();?>assets/img/slider/sofa.jpg" class="img-responsive"/> </a>
-            <div class="overlay">
-                <div class="recent-work-inner">
-                    <h3 class="text-font"><a href="#"> Framed Art Prints  </a></h3>
-                    <p> Buy Museum Quality Prints from the World's </p>
-                    <p style="margin-bottom:20px">renowned Artists and Photographers</p>
-                    <a class="buttonslide" href="images/portfolio/full/item2.png" rel="prettyPhoto"> EXPLORE NOW </a>
-                </div> 
-            </div>    
-        </div>
-    	<div class="col-md-6" style="min-height:477px; padding-left:0px">
-			<a href="#"> <img src="<?php echo base_url();?>assets/img/slider/hold.jpg" class="img-responsive" style="height:477px"/> </a>    
-            <div class="overlay">
-                <div class="recent-work-inner">
-                    <h3 class="text-font"><a href="#"> Free Art Search Assistance </a></h3>
- 					<p style="margin-bottom:20px">Any specific art requirements for your  projects or home!  </p>                     
-                    <a class="buttonslide" href="images/portfolio/full/item2.png" rel="prettyPhoto"> CONTACT US </a>
-                </div> 
-            </div>    
-        </div>
-    	<div class="col-md-6 pull-right" style="padding:0px">
-			<a href="#"> <img src="<?php echo base_url();?>assets/img/slider/flo.jpg" class="img-responsive"/> </a>    
-            <div class="overlay">
-                <div class="recent-work-inner">
-                    <h3 class="text-font"><a href="#"> Are you an Artist? <br/> Join us and earn </a></h3>
-                    <p> 50% on print paid to artists Global exposure with 100+ international art contributors </p>
-					<p>Free worldwide marketing promotions Updates on latest market trends </p>
-					<p style="margin-bottom:20px">Removes tedious burden of logistics Helps to focus only on making art</p>
-                    <a class="buttonslide" href="images/portfolio/full/item2.png" rel="prettyPhoto">START SELLING </a>
-                </div> 
-            </div>    
-        </div>
-    </div>
-</div>-->
-
-
-<div class="top-cate">
+<div class="top-cate col-md-12">
 <h1 class="ttto">TOP CATEGORIES </h1>
 </div>
 <?php
@@ -157,7 +76,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 		 $top_cat10= $this->frontend_model->get_home_top_category_images('top category','10');
         ?>
 
-<div class="tpl-cbs"><div class="tpl-cb floatLeft">
+<div class="tpl-cbs col-md-12"><div class="tpl-cb floatLeft">
 <div class="track-group stc2" id="shoptop-test-a" style="display: block ! important;">
 <div id="shoptop-layout-a" class="shopTopCategories">
 <div class="category">
@@ -199,7 +118,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 </div>-->
 <div style="clear:both"></div>
 <!--bottom top area-->
-<div class="gallery-section">
+<div class="col-md-12">
 <?php
         $bottom_top= $this->frontend_model->get_home_top_category_images('bottom top');
 		
@@ -231,18 +150,15 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 										 
 		  
         ?>
-<style>
-	.bg {
-	  background-color: #eee;
-	  font-size: 14px;
-	  height: 210px;
-	}
-	.margn{margin:2px 0; float:left}
-</style>
-<div>
-<div class="col-md-6 margn box">
-<div class="col-xs-4 col-md-6 col-sm-4 " style="padding-right:0"> <a href="<?php print base_url(); ?><?=$url0;?>"> <img src="<?php echo base_url();?><?=$bottom_top[0]->image?>" width="267" height="210" border="0" class="fll"> </a> </div>
-<div class="col-xs-8 col-md-6 col-sm-8 bg ">
+
+<div class="row" style="padding-top:40px">
+<div class="col-md-6 col-sm-6 margn box">
+<div class="row">
+<div class="col-xs-6 col-md-6 col-sm-6  bg">
+<a href="<?php print base_url(); ?><?=$url0;?>">
+<img src="<?php echo base_url();?><?=$bottom_top[0]->image?>" class="img-responsive" /> </a>
+</div>
+<div class="col-xs-6 col-md-6 col-sm-6 bg_content">
 <h4>
 <?=$bottom_top[0]->field1?>
 </h4>
@@ -255,9 +171,11 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div style="text-align:right;padding:5px 0"> <a style="color:#6699FF" href="<?php print base_url(); ?><?=$url0;?>"> Read More. </a> </div>
 </div>
 </div>
-<div class="col-md-6 margn box">
-<div class="col-xs-4 col-md-6 col-sm-4 " style="padding-right:0"> <a href="<?php echo base_url();?><?=$url1?>"> <img src="<?php echo base_url();?><?=$bottom_top[1]->image?>" width="267" height="210" border="0" class="fll"> </a> </div>
-<div class="col-xs-8 col-md-6 col-sm-8 bg ">
+</div>
+<div class="col-md-6 col-sm-6 margn box">
+<div class="row">
+<div class="col-xs-6 col-md-6 col-sm-6  bg"> <a href="<?php echo base_url();?><?=$url1?>"> <img src="<?php echo base_url();?><?=$bottom_top[1]->image?>" class="img-resonsive"> </a> </div>
+<div class="col-xs-6 col-md-6 col-sm-6 bg_content ">
 <h4>
 <?=$bottom_top[1]->field1?>
 </h4>
@@ -270,9 +188,13 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div style="text-align:right;padding:5px 0"> <a style="color:#6699FF" href="<?php echo base_url();?><?=$url1?>"> Read More. </a> </div>
 </div>
 </div>
-<div class="col-md-6 margn box">
-<div class="col-xs-4 col-md-6 col-sm-4 " style="padding-right:0"> <a href="javascript:call_collection(3)"> <img src="<?php echo base_url();?><?=$bottom_top[2]->image?>" width="267" height="210" border="0" class="fll"> </a> </div>
-<div class="col-xs-8 col-md-6 col-sm-8 bg ">
+</div>
+</div>
+<div class="row">
+<div class="col-md-6 col-sm-6 margn box">
+<div class="row">
+<div class="col-xs-6 col-md-6 col-sm-6  bg "> <a href="javascript:call_collection(3)"> <img src="<?php echo base_url();?><?=$bottom_top[2]->image?>" class="img-responsive"> </a> </div>
+<div class="col-xs-6 col-md-6 col-sm-6 bg_content ">
 <h4>
 <?=$bottom_top[2]->field1?>
 </h4>
@@ -280,14 +202,16 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <?=$bottom_top[2]->title?>
 </h5>
 <p>
-<?=$bottom_top[2]->description?>
+<?=ucfirst(strtolower($bottom_top[2]->description))?>
 </p>
 <div style="text-align:right;"> <a style="color:#6699FF" href="javascript:call_collection(3)"> Read More. </a> </div>
 </div>
 </div>
-<div class="col-md-6 margn box">
-<div class="col-xs-4 col-md-6 col-sm-4 " style="padding-right:0"> <a href="<?php print base_url(); ?><?=$url3;?>"> <img src="<?php echo base_url();?><?=$bottom_top[3]->image?>" width="267" height="210" border="0" class="fll"></a> </div>
-<div class="col-xs-8 col-md-6 col-sm-8 bg ">
+</div>
+<div class="col-md-6 col-sm-6 margn box">
+<div class="row">
+<div class="col-xs-6 col-md-6 col-sm-6  bg"> <a href="<?php print base_url(); ?><?=$url3;?>"> <img src="<?php echo base_url();?><?=$bottom_top[3]->image?>" class="img-responsive"></a> </div>
+<div class="col-xs-6 col-md-6 col-sm-6 bg_content">
 <h4>
 <?=$bottom_top[3]->field1?>
 </h4>
@@ -300,9 +224,10 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div style="text-align:right;padding:5px 0"> <a style="color:#6699FF" href="<?php print base_url(); ?><?=$url3;?>"> Read More. </a> </div>
 </div>
 </div>
-<div style="clear:both"></div>
 </div>
 </div>
+</div>
+</div></div>
 
 </div>
 
@@ -403,30 +328,30 @@ $(document).ready(function () {
 }
 
 .shopTopCategories {
-  box-sizing: border-box;
-  column-gap: 0;
-  margin: 0 auto -16px;
-  max-width: 100%;
-  text-align: center;
+	box-sizing: border-box;
+	column-gap: 30px;
+	margin: 0 auto -16px;
+	max-width: 100%;
+	text-align: center;
 }
 .shopTopCategories .category {
   display: inline-block;
   margin: 0 auto 16px;
 }
 .shopTopCategories .category a {
-  color: #4c4c4c;
-  display: block;
-  font-family: BebasFamily,BebasNeue,"Bebas Neue",Helvetica,Arial,sans-serif;
-  font-size: 17px;
-  font-weight: 200;
-  letter-spacing: 0.05em;
-  text-align: center;
-  text-decoration: none;
-  text-transform:uppercase
+	color: #4c4c4c;
+	display: block;
+	font-family: BebasFamily,BebasNeue,"Bebas Neue",Helvetica,Arial,sans-serif;
+	font-size: 17px;
+	font-weight: 200;
+	letter-spacing: 0.05em;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
 }
-.shopTopCategories .category img {
-  height: auto;
-  width: 80%;
+.shopTopCategories .category {
+	display: inline-block;
+	margin: 0 auto 16px;
 }
 .tpl-cb {
   width: 100%;
@@ -434,14 +359,13 @@ $(document).ready(function () {
 .floatLeft {
   float: left;
 }
-
 .white-frame-bg {
-  border-color: transparent;
-  border-image: url("<?php print base_url(); ?>header_images/white_frame_bg.jpg") 5% round;
-  border-style: solid;
-  border-width: 10px;
-  padding:5px;
-  margin-bottom:10px
+	border-color: transparent;
+	border-image: url("<?php print base_url(); ?>header_images/white_frame_bg.jpg") 5% round;
+	border-style: solid;
+	border-width: 10px;
+	padding: 5px;
+	margin-bottom: 10px;
 }
 
 .brown-frame-bg {
@@ -462,4 +386,8 @@ $(document).ready(function () {
   margin-bottom:10px
 }
 
+.shopTopCategories .category img {
+	height: auto;
+	width: 80%;
+}
 </style>

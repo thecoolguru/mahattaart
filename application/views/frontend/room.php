@@ -11,17 +11,17 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
  }
  
 ?>
-<div  class="main-container container">
-    	
-         <div class="pagination" style="margin:0px;">
+<div class="container">
+<div  class="row">
+        <!-- art style -->
+        <div class="art-style col-md-12">
+
+		<div class="pagination" style="margin:0px;">
         	<span> <a href="<?=base_url()?>frontend/index">HOME</a> > <span> Room</span> </span>
         </div>
-        
-        <!-- art style -->
-        <div class="art-style" >
-        	
+        <div class="row">
             <!-- aside -->
-             <aside class="left-panel-page">
+             <aside class="left-panel-page col-md-2 col-xs-3">
             	<p>Popular Rooms</p>
             	<div class="list">
 				
@@ -59,21 +59,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
             <!-- aside -->
             
             <!-- right panel -->
-        
-            
-            
-            
-            
-              <div class="right-panel-page">	
-              
-              
-              
-              
-              
-              
-              
-              
-                        
+              <div class="right-panel-page col-md-10 col-xs-9">	                        
            <style>
 	 
  
@@ -153,78 +139,72 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
            
               <!--  Art Movements -->
                 <div class="art-movements">
-                
                 <span style="margin-left:40%"><?php   echo $this->pagination->create_links(); ?></span><br>
-                <div class="art-inner" style="margin:0px; padding:0px;">
+                </div>
+
+                <div class="row">
                 
                 <?php
-                        
-					foreach($sub_val as $values){
-					$spit= split('/',$values->keyword);
-					if($spit[1]=='frontend'){
-					$url=$values->keyword;
-					}else{
-					$url="search/dosearch/1/64/".$values->keyword."/all";
-					}
-                            ?>
-				
-				<div class="our-room col-md-6 col-sm-6">
+                
+                foreach($sub_val as $values){
+                $spit= split('/',$values->keyword);
+                if($spit[1]=='frontend'){
+                $url=$values->keyword;
+                }else{
+                $url="search/dosearch/1/64/".$values->keyword."/all";
+                }
+                ?>
+                
+                <div class="our-room col-md-6 col-sm-6">
                 
                 <h2 style="margin:0px;"><?=ucwords($values->title);?></h2>
                 
-                <div class="ourr-room" style="display: inline-block; width: 100%; padding-top: 10px; text-align: justify; position:relative;">
+                <div class="ourr-room row" style="padding-top: 10px;position:relative;">
                 
-<a href="<?php print base_url(); ?><?=$url?>" class="col-sm-4 col-md-4" style="padding-left:0; margin-bottom:5px"><img src="<?php print base_url(); ?><?=$values->image?>" class="img-responsive" /></a>
-
-<a href="<?php print base_url(); ?><?=$url?>" class="col-sm-4 col-md-4" style="padding-left:0; margin-bottom:5px"><img src="<?php print base_url(); ?><?=$values->image2?>" class="img-responsive" /></a>
-
-
-<a href="<?php print base_url(); ?><?=$url?>" class="col-sm-4 col-md-4" style="padding-left:0; margin-bottom:5px"><img src="<?php print base_url(); ?><?=$values->image3?>" class="img-responsive" /></a>
-
-
-<div style="display: inline-block; width: 100%; height: 0px; overflow: hidden; visibility: hidden;">
-&nbsp;
-</div>
-<div style=""> 
-<a href="<?php print base_url(); ?><?=$url?>"> + more </a> </div> 
-
-</div></div>
-
-<?php }?>
-
-
-<!--div--->
-
+                <a href="<?php print base_url(); ?><?=$url?>" class="col-xs-4 col-sm-4 col-md-4" style="padding-left:0; margin-bottom:5px"><img src="<?php print base_url(); ?><?=$values->image?>" class="img-responsive" /></a>
+                
+                <a href="<?php print base_url(); ?><?=$url?>" class="col-xs-4 col-sm-4 col-md-4" style="padding-left:0; margin-bottom:5px"><img src="<?php print base_url(); ?><?=$values->image2?>" class="img-responsive" /></a>
+                
+                
+                <a href="<?php print base_url(); ?><?=$url?>" class="col-xs-4 col-sm-4 col-md-4" style="padding-left:0; margin-bottom:5px"><img src="<?php print base_url(); ?><?=$values->image3?>" class="img-responsive" /></a>
+                
+                
+                <div style="display: inline-block; width: 100%; height: 0px; overflow: hidden; visibility: hidden;">
+                &nbsp;
                 </div>
+                <div class="col-md-12"> 
+                <a href="<?php print base_url(); ?><?=$url?>"> + more </a> </div> 
+                
+                </div></div>
+                
+                <?php }?>
                 
                 
+                <!--div--->
                 
-                    
-                    
-                    
                 </div>
-
                 
                 
             </div>
             <!-- right panel -->
-            
-                
+        </div>
         </div>
         <!-- art style -->
         <span style="margin-left:50%"><?php   echo $this->pagination->create_links(); ?></span><br>
     </div>
+</div>
     
     <style>
 
 @media (min-width: 768px) and (max-width: 991px) {
 .ourr-room div > a {
-  background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
-  color: #fff;
-  font-size: 14px;
-  padding: 5px 3px;
-  position: absolute;
-  width: 119px;
+	background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+	color: #fff;
+	font-size: 14px;
+	padding: 5px 20px;
+	position: absolute;
+	/* width: 119px; */
+	right: 15px;
 }
 	.ourr-room > div {
 	  left: 0;
@@ -235,13 +215,14 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
-	.ourr-room div > a {
-  background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
-  color: #fff;
-  font-size: 14px;
-  padding: 5px 3px;
-  position: absolute;
-  width: 105px;
+.ourr-room div > a {
+	background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+	color: #fff;
+	font-size: 14px;
+	padding: 5px 20px;
+	position: absolute;
+	/* width: 105px; */
+	right: 15px;
 }
 	.ourr-room > div {
 	  left: 0;
@@ -255,13 +236,14 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
 
 @media (min-width: 1200px){
-	.ourr-room div > a {
-  background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
-  color: #fff;
-  font-size: 14px;
-  padding: 5px 3px;
-  position: absolute;
-  width: 130px;
+.ourr-room div > a {
+	background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+	color: #fff;
+	font-size: 14px;
+	padding: 5px 20px;
+	position: absolute;
+	/* width: 130px; */
+	right: 15px;
 }
 	.ourr-room > div {
 	  left: 0;

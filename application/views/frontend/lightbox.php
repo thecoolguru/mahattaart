@@ -291,27 +291,24 @@ input[type=text] {
 </style>
 <link rel="stylesheet" href="<?php echo base_url();?>assets/css/gallery.css" type="text/css">
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/jqueryplugins.js"></script>
-
 <!--Add to cart -sizes window-->
 <link type="text/css" href="<?php echo base_url();?>assets/css/jquery.window.css" rel="stylesheet" />
-
 <!-- JavaScript Includes -->
-
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-ui.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.window.js"></script>
-
-<div class="main-container">
-    	
+<div class="container">
+	<div class="row">
+        <!-- art style -->
+        <div class="art-style col-md-12">
         <div class="pagination">
         	<span><a href="<?php echo base_url();?>frontend/index">Home</a> -> <a href="<?php  echo base_url();?>frontend/lightbox"> My
                         Gallery</a></span> 
         </div>
         
-        <!-- art style -->
-        <div class="art-style">
+        	<div class="row">
         	
             <!-- aside -->
-            <aside class="left-panel-page">
+            <aside class="left-panel-page col-md-2 col-xs-3">
                 <p><a href="<?php  echo base_url();?>frontend/lightbox">My Gallery</a></p>
             	<div class="list">
                 	<ul>
@@ -330,7 +327,7 @@ input[type=text] {
             <!-- aside -->
             
             <!-- right panel -->
-            <div class="right-panel-page">
+            <div class="right-panel-page col-md-10 col-xs-9">
             	
                 <div class="sortby">
                 	<p>
@@ -351,19 +348,97 @@ input[type=text] {
 				<?php if($this->session->flashdata('share_message')){print $this->session->flashdata('share_message');}?>
                     
                 </div>
-                
-                  
-                
-                
                 <!-- gallery block -->
                 <div class="gallery-img">
-				<p style="margin-left:40%"><?php   echo $this->pagination->create_links(); ?></p>
+                <div class="art-movements col-md-12">
+				<span style="margin-left:40%"><?php   echo $this->pagination->create_links(); ?></span>    
+                </div>
                 	<form>
-				
-				
-				<table width="100%" border="0" cellspacing="0" class="mygal-table">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr style=" background-color:#d4d4d4">
+                                <th></th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>No. of Images</th>
+                                <th>Created on</th>
+                                <th>Tools</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        					<?php 
+					//print_r($images);
+					if(isset($result)){ 
+						$i=0;foreach($result as $results){
+						 //echo $results->image_id;
+							$rows=$this->frontend_model->count_images_lightbox($results->lightbox_id);
+							$images=$this->frontend_model->get_images_lightbox($results->lightbox_id); 
+							$img_count=count($images);
+							$resultant="";
+							if($img_count!='0'){
+								$img_arr=array();$j=0;
+								foreach($images as $image)
+								{
+									$img_arr[$j]=$image->image_id;
+									$j++;
+								}
+								$img_src=$this->frontend_model->get_most_selling_image($img_arr);
+
+								$counts=count($img_src);
+									
+								$max_sales_counter=$img_src['0']->sales_counter;
+								$resultant=$img_src['0']->images_filename;
+								for($k=1;$k<$counts;$k++)
+								{
+									if(($img_src[$k]->sales_counter)>$max_sales_counter)
+									{
+										$resultant=$img_src[$k]->images_filename;
+									}
+								}
+							}
+							?>
+                            <tr id="entry_no<?php echo $i;?>">
+						<td><?php if($resultant){?>
+                                  <a href="<?php echo base_url();?>frontend/lightbox_view/<?php echo $results->lightbox_id;?>"><img src="http://static.mahattaart.com/158/<?php print $resultant;?>" style="width: 100px" /></a>
+							<?php }else{ echo "No Image";}?></td>
+						<td><a href="<?php echo base_url();?>frontend/lightbox_view/<?php echo $results->lightbox_id;?>"><?php echo $results->lightbox_name;?></a></td>
+						<td><?php if($results->lightbox_description)echo $results->lightbox_description;else echo "--";?>
+						</td>
+						<td><?php if($rows)echo $rows; else echo '0';?></td>
+						<td><?php echo date('d-m-Y ',strtotime($results->creation_date)); ?>
+						</td>
+
+						<td>
+                                                <?php if($rows){?>
+                                               <a href="javascript:edit('<?php echo $results->lightbox_id;?>','<?php echo $results->lightbox_name;?>','<?php echo $i;?>','<?php print $resultant;?>');"
+							id="ed-lt-bx">Edit</a>
+                                                  <?}else {
+
+                                                       }?>
+
+                                                    
+                                                    <?php if($rows){?>
+							<a href="<?php echo base_url();?>frontend/lightbox_view/<?php echo $results->lightbox_id;?>">View</a>
+                                                         <?}else {
+
+                                                       }?>
+							 <a href="javascript:call_remove('<?php echo $results->lightbox_id;?>','<?php echo $results->lightbox_name;?>','<?=$page_no?>');">Remove</a>
+							 <a href="javascript:share_gallery('<?php echo $results->lightbox_id;?>');">Share Gallery</a>
+                                                         <a href="javascript:Genrate_images_id('<?php echo $results->lightbox_id;?>');">Generate Image Id</a>
+						</td>
+					</tr>					<?php $i++;
+						}
+}?>
+
+                        </tbody>
+                    </table>
+
+
+				<!--<table width="100%" border="0" cellspacing="0" class="mygal-table">
 					<tr class="galhdr">
-						<td width="100">&nbsp;</td>
+						<td width="100"><?php if($resultant){?>
+                                  <a href="<?php echo base_url();?>frontend/lightbox_view/<?php echo $results->lightbox_id;?>"><img src="http://static.mahattaart.com/158/<?php print $resultant;?>" style="width: 100px" /></a>
+							<?php }else{ echo "No Image";}?></td>
 						<td width="100">Name</td>
 						<td width="200">Description</td>
 						<td width="65">No. of Images</td>
@@ -434,9 +509,11 @@ input[type=text] {
 					<?php $i++;
 						}
 }?>
-				</table>
+				</table>-->
 			</form>
-			<p style="margin-left:40%"><?php   echo $this->pagination->create_links(); ?></p>
+                <div class="art-movements col-md-12">
+				<span style="margin-left:40%"><?php   echo $this->pagination->create_links(); ?></span>    
+                </div>
                 </div>
                 <!-- gallery block -->
                 
@@ -461,6 +538,8 @@ input[type=text] {
             <!-- right panel -->
             
         </div>
+        </div>
         <!-- art style -->
         
     </div>
+</div>

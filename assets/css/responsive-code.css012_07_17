@@ -1,0 +1,781 @@
+.thumbnail {
+    border: 0 none;
+    box-shadow: none;
+    margin: 0;
+    padding: 0
+}
+a:focus,
+a:hover {
+    text-decoration: none  !important;;
+}
+@media(max-width:479px) {
+    #menu {
+        display: none
+    }
+    .hamburger {
+        display: block !important;
+    }
+	.ourr-room div > a {
+		background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+		color: #fff;
+		font-size: 14px;
+		padding: 5px 20px;
+		position: absolute;
+		/* width: 119px; */
+		right: 15px;
+	}
+	.art-style aside p {
+		margin: 0;
+		border-bottom: solid 1px #bcbcbc;
+		border-top: solid 1px #bcbcbc;
+		font-size: 12px !important;
+		text-transform: uppercase;
+		color: #000;
+		font-family: 'BebasNeueRegular',Arial,Helvetica,sans-serif;
+		font-size: ;
+	}
+	.bg {
+	height: 210px;
+	overflow: hidden;
+	padding-right: 0;
+}
+
+	.bg_content{
+	  background-color: #eee;
+	  font-size: 14px;
+	  height: 210px;
+	}
+	.margn{margin:2px 0;}
+
+	.margn h4 {
+		font-size: 20px !important;
+		margin: 5px 0 0;
+	}
+	.bg_content p {
+	font-size: 12px;
+	font-weight: normal;
+	}	
+
+}
+@media(max-width:767px) {
+    #menu {
+        display: none
+    }
+    .hamburger {
+        display: block !important;
+    }
+    .search-input {
+        padding: 8px 0
+    }
+    .search-input button {
+        margin-top: -35px
+    }
+    .top-cate h1 {
+        background: rgba(0, 0, 0, 0) url("../img/icon_category.jpg") no-repeat scroll 35% 0 / 21px auto
+    }
+    h1.ttto::before {
+        background: #000 none repeat scroll 0 0;
+        border-radius: 42px;
+        content: "";
+        height: 1px;
+        left: 0;
+        position: absolute;
+        top: 15px;
+        width: 30%
+    }
+    h1.ttto::after {
+        background: #000 none repeat scroll 0 0;
+        border-radius: 42px;
+        content: "";
+        height: 1px;
+        position: absolute;
+        right: 0;
+        top: 15px;
+        width: 28% !important;
+    }
+    .buttonslide {
+        font-size: 11px !important;
+    }
+    .centers {
+        color: #fff;
+        letter-spacing: 0;
+        width: 100%;
+        font-size: 7pt !important;
+    }
+    h1.text-font {
+        color: #fff;
+        display: inline-block;
+        font-family: Oswald;
+        font-size: 15pt;
+        font-weight: normal;
+        letter-spacing: 1px;
+        line-height: 100%;
+        text-shadow: 2px 2px 15px #222;
+        width: 100%
+    }
+    .artist_Photo .artist_tag {
+        background-color: rgba(0, 0, 0, 0.5);
+        bottom: 0;
+        color: #fff;
+        font-size: 13px;
+        opacity: .9;
+        padding: 6px;
+        position: absolute;
+        width: 100%;
+        z-index: 1000
+    }
+    .list ul li {
+        background: rgba(0, 0, 0, 0) url("../img/bulet.png") no-repeat scroll 0 8px;
+        font-size: 10px;
+        list-style: outside none none;
+        margin: 0;
+        padding: 4px 4px 4px 12px
+    }
+    .pagination span {
+        color: #00f;
+        font-size: 8px !important;
+    }
+	.art-style aside p {
+		font-size: 18px !important;
+		letter-spacing: 1px !important;
+		word-wrap: break-word;
+		word-break: break-all;
+	}
+	.left-panel-page {
+		width: 14%;
+		padding-right: 0;
+	}
+    .right-panel-page {
+        border-left: 1px solid #ccc;
+        float: left;
+        padding-left: 25px;
+        width: 84%
+    }
+    .footer-content div ul li a {
+        color: #fff;
+        font-size: 11px;
+        padding-left: 20px;
+        text-transform: uppercase
+    }
+    .footer-content.container>div {
+        margin-top: 20px
+    }
+    .fll {
+        float: inherit;
+        margin: 0 auto
+    }
+	#slide{display:none}
+	.bg {
+	height: 210px;
+	overflow: hidden;
+	padding-right: 0;
+}
+
+	.bg_content{
+	  background-color: #eee;
+	  font-size: 14px;
+	  height: 210px;
+	}
+	.margn{margin:2px 0;}
+
+	.margn h4 {
+		font-size: 20px !important;
+		margin: 5px 0 0;
+	}
+	.bg_content p {
+	font-size: 12px;
+	font-weight: normal;
+	}	
+	.artist_Photo {
+		margin: 15px 0;
+	}
+	.career-page h3 {
+		font-size: 22px !important;
+	}
+	.faqquestion p strong {
+		font-size: 12px !important;
+	}
+	.viwepr.pull-right {
+	float: left !important;
+	}
+
+}
+@media(min-width:320px) and (max-width:479px) {
+	.left-panel-page {
+		width: 30%;
+		padding-right: 0;
+	}
+	
+	.right-panel-page {
+		border-left: 1px solid #ccc;
+		padding-left: 25px;
+		width: 70%;
+	}
+	.artist_Photo {
+		margin: 15px 0;
+	}
+	.heart_details {
+		float: left !important;
+	}
+
+}
+
+@media(min-width:768px) and (max-width:991px) {
+    #menu {
+        display: none
+    }
+    .hamburger {
+        display: block !important;
+    }
+    .fll {
+        float: inherit;
+        margin: 0 auto
+    }
+    .sub-hor {
+        margin: 115px 0 21px;
+        width: 100%
+    }
+    h1.ttto::before {
+        background: #000 none repeat scroll 0 0;
+        border-radius: 42px;
+        content: "";
+        height: 1px;
+        left: 0;
+        position: absolute;
+        top: 15px;
+        width: 36%
+    }
+    h1.ttto::after {
+        background: #000 none repeat scroll 0 0;
+        border-radius: 42px;
+        content: "";
+        height: 1px;
+        position: absolute;
+        right: 0;
+        top: 15px;
+        width: 30%
+    }
+    .ourr-room>div {
+        bottom: 5px;
+        left: 0;
+        position: absolute;
+        right: 0;
+        text-align: center
+    }
+    .our-room {
+        height: 158px !important;;
+        margin-bottom: 13px
+    }
+    .margn.box {
+        height: 212px
+    }
+    .search-input button {
+        font-size: 12px;
+        margin-top: -32px;
+        right: 32px
+    }
+    .cart-size {
+        font-size: 14px
+    }
+    .search-input {
+        padding: 6px 0
+    }
+    .search-input button {
+        margin-top: -28px;
+        right: 15px
+    }
+    .first-a>a {
+        height: 140px !important;;
+        width: 150px !important;
+    }
+    .first-b>a {
+        height: 90px !important;;
+        width: 150px !important;
+    }
+    .modern-a>a {
+        height: 120px !important;;
+        width: 145px !important;
+    }
+    .modern-b>a {
+        height: 110px !important;;
+        width: 145px !important;
+    }
+    .fiine-a>a {
+        height: 170px !important;;
+        width: 120px !important;
+    }
+    .animals-b>a {
+        height: 90px !important;;
+        width: 150px !important;
+    }
+    .modern-a>a {
+        height: 90px !important;;
+        width: 115px !important;
+    }
+    .modern-b>a {
+        height: 80px !important;;
+        width: 115px !important;
+    }
+    .photography-a>a {
+        height: 140px !important;;
+        width: 150px !important;
+    }
+    .photography-b>a {
+        height: 140px !important;;
+        width: 120px !important;
+    }
+    .photography-a img {
+        height: 100%;
+        width: 100%
+    }
+    .line {
+        width: 100%
+    }
+    .footer-content {
+        width: 90%
+    }
+    .top-cate h1 {
+        font-size: 30px
+    }
+    figcaption {
+        font-size: 14px !important;
+    }
+    .galcont.col-md-3 {
+        margin: 10px 0 !important;
+    }
+    .galcont.col-md-3 img {
+        width: 90%
+    }
+    .cat-cont-outer {
+        width: auto !important;
+    }
+    .galcont.col-md-3>p {
+        background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+        bottom: -8px;
+        color: #fff;
+        font-size: 14px;
+        padding: 5px;
+        position: absolute;
+        width: 80%
+    }
+    .galcont.col-md-3>p {
+        background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+        bottom: -10px;
+        color: #fff;
+        font-size: 14px;
+        padding: 5px;
+        position: absolute;
+        width: 74%
+    }
+    .artist_Photo .artist_tag {
+        background-color: rgba(0, 0, 0, 0.5);
+        bottom: 0;
+        color: #fff;
+        font-size: 13px;
+        opacity: .9;
+        padding: 6px;
+        position: absolute;
+        width: 100%;
+        z-index: 1000
+    }
+    .shopTopCategories {
+        column-width: 16em
+    }
+    .shopTopCategories .category {
+        width: 17em
+    }
+    .footer-content div ul li a {
+        color: #fff;
+        font-size: 11px;
+        padding-left: 20px;
+        text-transform: uppercase
+    }
+    .footer-content div h1 {
+        color: #fff;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 17px;
+        margin: 0;
+        padding: 0;
+        text-transform: uppercase
+    }
+    .collections-one ul {
+        margin-top: 155px !important;
+    }
+    .artist_Photo {
+        margin: 15px 0;
+    }
+    .list ul li {
+        background: rgba(0, 0, 0, 0) url("../img/bulet.png") no-repeat scroll 0 8px;
+        font-size: 14px;
+        list-style: outside none none;
+        margin: 0;
+        padding: 4px 4px 4px 12px
+    }
+    .left-panel-page {
+        float: left;
+        width: 14%
+    }
+    .right-panel-page {
+        float: left;
+        width: 86%;
+        padding-left: 25px;
+        border-left: 1px solid #ccc
+    }
+
+    #sub-pic {
+        float: left;
+        padding: 10px;
+        width: 115px !important;
+    }
+	.bg {
+	height: 210px;
+	overflow: hidden;
+	padding-right: 0;
+}
+
+	.bg_content{
+	  background-color: #eee;
+	  font-size: 14px;
+	  height: 210px;
+	}
+	.margn{margin:2px 0;}
+}
+@media(min-width:992px) and (max-width:1199px) {
+    h1.ttto::before {
+        background: #000 none repeat scroll 0 0;
+        border-radius: 42px;
+        content: "";
+        height: 1px;
+        left: 0;
+        position: absolute;
+        top: 15px;
+        width: 38%
+    }
+    h1.ttto::after {
+        background: #000 none repeat scroll 0 0;
+        border-radius: 42px;
+        content: "";
+        height: 1px;
+        position: absolute;
+        right: 0;
+        top: 15px;
+        width: 34%
+    }
+
+    .margn h5 {
+        font-family: "BebasNeueRegular" !important;;
+        font-size: 20px !important;;
+        font-weight: bold;
+        margin: 5px 0;
+        text-transform: uppercase
+    }
+    .bg.margn>p {
+        font-size: 13px !important;
+    }
+    .search-input {
+        padding: 8px 0
+    }
+    .search-input button {
+        font-size: 12px;
+        margin-top: -32px;
+        right: 32px
+    }
+    .header-content .fll {
+        height: 40px;
+        margin: 8px 20px
+    }
+    .top-cate h1 {
+        font-size: 35px
+    }
+    .first-a>a {
+        height: 170px !important;;
+        width: 180px !important;
+    }
+    .first-b>a {
+        height: 120px !important;;
+        width: 180px !important;
+    }
+    .modern-a>a {
+        height: 150px !important;;
+        width: 175px !important;
+    }
+    .modern-b>a {
+        height: 140px !important;;
+        width: 175px !important;
+    }
+    .fiine-a>a {
+        height: 200px !important;;
+        width: 150px !important;
+    }
+    .animals-b>a {
+        height: 120px !important;;
+        width: 180px !important;
+    }
+    .modern-a>a {
+        height: 120px !important;;
+        width: 145px !important;
+    }
+    .modern-b>a {
+        height: 110px !important;;
+        width: 145px !important;
+    }
+    .photography-a>a {
+        height: 170px !important;;
+        width: 180px !important;
+    }
+    .photography-b>a {
+        height: 170px !important;;
+        width: 150px !important;
+    }
+    .photography-a img {
+        height: 100%;
+        width: 100%
+    }
+
+    .line {
+        width: 100%
+    }
+    .footer-content {
+        width: 90%
+    }
+    .galcont.col-md-3 {
+        margin: 10px 0 !important;
+    }
+    .galcont.col-md-3 img {
+        width: 90%
+    }
+    .cat-cont-outer {
+        width: auto !important;
+    }
+    .galcont.col-md-3>p {
+        background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+        bottom: -9px;
+        color: #fff;
+        font-size: 14px;
+        padding: 5px;
+        position: absolute;
+        width: 78%
+    }
+    .artist_Photo .artist_tag {
+        background-color: rgba(0, 0, 0, 0.5) !important;;
+        bottom: 0 !important;;
+        color: #fff !important;;
+        font-size: 13px !important;;
+        opacity: .9 !important;;
+        padding: 6px !important;;
+        position: absolute !important;;
+        width: 100% !important;;
+        z-index: 1000 !important;
+    }
+    .shopTopCategories {
+        column-width: 15em
+    }
+    .shopTopCategories .category {
+        width: 16em
+    }
+    .artist_Photo {
+        margin: 15px 0;
+    }
+    .list ul li {
+        background: rgba(0, 0, 0, 0) url("../img/bulet.png") no-repeat scroll 0 8px;
+        font-size: 14px;
+        list-style: outside none none;
+        margin: 0;
+        padding: 4px 4px 4px 12px
+    }
+	.left-panel-page {
+		float: left;
+		width: 14%;
+		padding-right: 0;
+	}
+    .right-panel-page {
+        float: left;
+        width: 86%;
+        padding-left: 25px;
+        border-left: 1px solid #ccc
+    }
+
+    #sub-pic {
+        float: left;
+        height: auto;
+        margin-bottom: 2px;
+        padding: 10px;
+        width: 151px !important;
+    }
+	.bg {
+	height: 210px;
+	overflow: hidden;
+	padding-right: 0;
+}
+
+	.bg_content{
+	  background-color: #eee;
+	  font-size: 14px;
+	  height: 210px;
+	}
+	.margn{margin:2px 0;}
+}
+@media(min-width:992px) and (max-width:1199px) {
+    .collections-one ul {
+        margin-top: 200px !important;
+    }
+}
+@media(min-width:1200px) {
+    h1.ttto::before {
+        background: #000 none repeat scroll 0 0;
+        border-radius: 42px;
+        content: "";
+        height: 1px;
+        left: 0;
+        position: absolute;
+        top: 15px;
+        width: 38%
+    }
+    h1.ttto::after {
+        background: #000 none repeat scroll 0 0;
+        border-radius: 42px;
+        content: "";
+        height: 1px;
+        position: absolute;
+        right: 0;
+        top: 15px;
+        width: 34%
+    }
+    .search-input {
+        padding: 24px 10px
+    }
+
+    .galcont.col-md-3 {
+        margin: 10px 0 !important;
+    }
+    .galcont.col-md-3 img {
+        width: 90%
+    }
+    .cat-cont-outer {
+        width: auto !important;
+    }
+    .galcont.col-md-3>p {
+        background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
+        bottom: -9px;
+        color: #fff;
+        font-size: 14px;
+        padding: 5px;
+        position: absolute;
+        width: 80%
+    }
+	.artist_Photo .artist_tag {
+		background-color: rgba(0, 0, 0, 0.5)  !important;;
+		bottom: 0  !important;;
+		color: #fff  !important;;
+		font-size: 13px  !important;;
+		opacity: .9  !important;;
+		padding: 6px  !important;;
+		position: absolute  !important;;
+		width: 100%  !important;;
+		z-index: 2  !important;;
+		font-family: HelveticaNeue,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+    .shopTopCategories {
+        column-width: 15em
+    }
+    .shopTopCategories .category {
+        width: 16em
+    }
+    .artist_Photo {
+        margin: 15px 0;
+    }
+    .list ul li {
+        background: rgba(0, 0, 0, 0) url("../img/bulet.png") no-repeat scroll 0 8px;
+        font-size: 14px;
+        list-style: outside none none;
+        margin: 0;
+        padding: 4px 4px 4px 12px
+    }
+    .left-panel-page {
+        float: left;
+        width: 14%;
+		padding-right:0
+    }
+    .right-panel-page {
+        float: left;
+        width: 86%;
+        padding-left: 25px;
+        border-left: 1px solid #ccc
+    }
+    #sub-pic {
+        float: left;
+        height: auto;
+        margin-bottom: 2px;
+        padding: 10px;
+        width: 180px !important;
+    }
+}
+@media(min-width:1200px) {
+    .collections-one ul {
+        margin-top: 250px !important;
+    }
+    .margn h5 {
+        font-family: "BebasNeueRegular" !important;;
+        font-size: 20px;
+        font-weight: bold;
+        margin: 5px 0;
+        text-transform: uppercase
+    }
+    .bg.margn>p {
+        font-size: 13px
+    }
+		.bg {
+		height: 210px;
+		overflow: hidden;
+		padding-right: 0;
+	}
+	
+	.bg_content{
+	  background-color: #eee;
+	  font-size: 14px;
+	  height: 210px;
+	}
+	.margn{margin:2px 0;}
+
+}
+@media(min-width:1600px) {
+    .artist_Photo .artist_tag {
+        width: 100% !important;
+    }
+    .shopTopCategories {
+        column-width: 21em !important;
+    }
+    .shopTopCategories .category {
+        width: 22em !important;
+    }
+    .carousel-inner>.item>a>img,
+    .carousel-inner>.item>img,
+    .img-responsive,
+    .thumbnail a>img,
+    .thumbnail>img {
+        display: block;
+        height: auto
+    }
+}
+@media(min-width:1900px) {
+    .artist_Photo .artist_tag {
+        width: 100% !important;
+    }
+    .shopTopCategories {
+        column-width: 24em !important;
+    }
+    .shopTopCategories .category {
+        width: 25em !important;
+    }
+}
+@media(min-width:2500px) {
+    .artist_Photo .artist_tag {
+        width: 100% !important;
+    }
+    .shopTopCategories {
+        column-width: 49em !important;
+    }
+    .shopTopCategories .category {
+        width: 50em !important;
+    }
+}

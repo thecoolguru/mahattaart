@@ -1,9 +1,12 @@
-<div class="main-container container">
-  <div class="pagination" style="margin:0PX;"> <span> <a href="<?=base_url()?>frontend/index">HOME</a> > <span> Themes</span> </span> </div>
+<div class="container">
+	<div class="row">
+  
   <!-- art style -->
-  <div class="art-style">
+  <div class="art-style col-md-12">
+  <div class="pagination" style="margin:0PX;"> <span> <a href="<?=base_url()?>frontend/index">HOME</a> > <span> Themes</span> </span> </div>
+  <div class="row">
     <!-- aside -->
-    <aside class="left-panel-page">
+    <aside class="left-panel-page col-md-2 col-xs-3">
       <p>THEMES</p>
       <div class="list">
         <ul>
@@ -19,8 +22,7 @@
     <style>
 .cl{ clear:both;}.thems-our{ width:290px; float:left; margin-bottom:20px;} .thems-our1{ float:left; width:145px;margin-bottom:5px;} .thems-middle{ margin:0px 12px;}.thems-our1 p { font-size:14px;font-family: 'MyriadProRegular',arial; padding:5px 0px;} .thems-our2 p {font-size:14px;font-family: 'MyriadProRegular',arial; padding:5px 3px; float:right;} 
 </style>
-    <div class="right-panel-page" style="width:86%; margin-top:0px;">
-      <div class="cat-cont-outer">
+    <div class="right-panel-page col-md-10 col-xs-9">
         <style>
 	 
  
@@ -101,68 +103,19 @@
   box-shadow: none;
   margin: 0;
   padding: 0;
+  position:relative
 }
 
 </style>
-        <div class="row" style="margin:0px; padding-bottom:10px; border-bottom: 1px solid #D6D6D6;">
-          
-          <!--cdcdc-->
-          <style>
-.sortours{float:left;} .right-panel-page{ margin-top:0px !important;} .art-cate{ margin:12px 0px;} .cat-cont-outer ul li{ width:inherit !important; padding-bottom:inherit !important; }
-</style>
-          <div class="srtours pull-right" style="float:left;">
-            
-            <div class="ourpp">
-              
-            </div>
-          </div>
-          <style>
-		
-		
-		.main-title{cursor: pointer;
-    margin-bottom: 2px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    color: #333;
-    font-size: 13px;
-    margin: 9px 0px 4px 0px;  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /*  font-family: "Times New Roman",serif;*/
-
-	}
-	
-.Next{    background: url(http://dev.wallsnart.com/uploaded_pdf/Gallery_ImageSprite.png) no-repeat -49px -26px;
-    width: 18px;
-    height: 18px;
-    vertical-align: bottom;
-    border: 0;}
-    
-.pdc {
-    color: #F44349 !important;
-    font-family: "Helvetica Neue","HelveticaNeue-Light","Helvetica Neue Light",Helvetica,Arial,"Lucida Grande",sans-serif;
-    font-size: 12px;
-	padding:0px 15px;
-}
-.products a{ font-size:11px; text-decoration:underline !important; color: rgb(136, 136, 136); font-size: 11px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
-	
-.producttype a{font-size:12px;color:#999;}
-.lineth{text-decoration: line-through;}
-.wrap-inner{ height:150px;}
-.wrap-inner img {max-width:100%; 
-  max-height:100%;
-  margin:auto;
-  display:block;}
-    
-    </style>
-        </div>
-		<span style="margin-left:40%"><?php   echo $this->pagination->create_links(); ?></span><br> 
-        <!--  Art Movements -->
         <div class="art-movements">
-          <div class="art-cate row">
+			<span style="margin-left:40%"><?php   echo $this->pagination->create_links(); ?></span>          
+        </div>
+    <div class="row">
             <?php 
 		    foreach($sub_val as $values){
          ?>
-            <div class="artist_Photo col-sm-3 col-md-2 ">
-              <div class="col-md-12 thumbnail"> <a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"> <img src="<?php print base_url();?><?=$values->image?>" width="163" height="163" border="0" class="img-responsive" /> </a>
+            <div class="artist_Photo col-md-2 col-sm-3 col-xs-6">
+              <div class="thumbnail"> <a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"> <img src="<?php print base_url();?><?=$values->image?>" class="img-responsive" /> </a>
                 <div class="artist_tag">
                   <?=$values->title?>
                 </div>
@@ -170,18 +123,13 @@
             </div>
             <?php }?>
           </div>
+        <div class="art-movements">
+			<span style="margin-left:40%"><?php   echo $this->pagination->create_links(); ?></span>          
         </div>
-<span style="margin-left:40%"><?php   echo $this->pagination->create_links(); ?></span><br> 
-        <!--  Art Movements -->
-        <!--  Trending Art -->
-        <!--  Trending Art -->
-        <!--  Photography  -->
-        <!--  Photography -->
-      </div>
-
     </div>
     <!-- right panel -->
     <!-- right panel -->
-  </div>
+  </div></div>
   <!-- art style -->
+</div>
 </div>

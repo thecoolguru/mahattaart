@@ -12,13 +12,15 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
  
 ?>
 
-<div class="main-container container">
+<div class="container">
+<div class="row">
   <div class="pagination" style="margin:0px;"> <span> <a href="<?=base_url()?>frontend/index">HOME</a> > <span> Collections</span> </span> </div>
   <!-- art style -->
-  <div class="art-style">
+  <div class="art-style col-md-12">
+  <div class="row">
     <div class="art-style">
       <!-- aside -->
-      <aside class="left-panel-page">
+      <aside class="left-panel-page col-md-2 col-xs-3">
         <p>Illustration</p>
         <div class="list">
           <ul>
@@ -60,8 +62,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
         </div>
       </aside>
       <!-- aside -->
-      <div class="right-panel-page">
-        <div class="cat-cont-outer">
+      <div class="right-panel-page col-md-10 col-xs-9">
           <style>
 	 
  
@@ -138,39 +139,24 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 .pagination li a {font-family: "Times New Roman",serif; font-size:13px;}
 
 </style>
-          
-          <!--  Art Movements -->
-          <div class="art-movements row">
-            <div class="art-cate">
               <?php 
 		    foreach($sub_val as $values){
 			 if($values->title!='Illustration' && $values->title!='Photography' && $values->title!='Poster'&& $values->title!='Painting'){
          ?>
-              <div class="artist_Photo">
-                        	<div class="col-md-12 thumbnail">
-                                <a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->collection_id?>/all"><img src="<?php print base_url();?><?=$values->image?>" border="0"></a>
+              <div class="artist_Photo col-md-2 col-sm-3 col-xs-6">
+                        	<div class="thumbnail">
+                                <a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->collection_id?>/all">
+                                <img src="<?php print base_url();?><?=$values->image?>" /></a>
 								<div class="artist_tag"><?=$values->title?></div>
                             </div>
                         </div>
               <?php }}?>
-            </div>
-          </div>
-          <!--  Art Movements -->
-          <!--  Trending Art -->
-          <!--  Trending Art -->
-          <!--  Photography  -->
-          <!--  Photography -->
-        </div>
       </div>
-      <!-- aside -->
-      <!-- aside -->
-      <!-- right panel -->
-      <div class="right-panel-collection"> </div>
-      <!-- right panel -->
     </div>
     <!-- art style -->
   </div>
-</div>
+  </div>
+</div></div>
 
 <style>
 
@@ -187,10 +173,11 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 }
 
 .thumbnail {
-  border: 0 none;
-  box-shadow: none;
-  margin: 0;
-  padding: 0;
+	border: 0 none;
+	box-shadow: none;
+	margin: 0;
+	padding: 0;
+	position: relative;
 }
 
 </style>

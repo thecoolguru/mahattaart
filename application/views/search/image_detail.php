@@ -487,9 +487,7 @@ else if(c_height>role_size){
 <script type="text/javascript">
 function frame_it_price_send(a,b,c)
 {  
-if($('#total_cost').html()==0){
-return false;
-}
+
     var print_type= document.getElementById('print_sizes').value;
   // alert(print_type);
     var cost=document.getElementById('total_cost').innerHTML;
@@ -713,21 +711,44 @@ function toTitleCase(str)
 }
 </style>
 
-<div class="main-container" style="width:78%">
+<div class="container">
+<div class="row">
+<div class="art-style col-md-12">
   <div class="pagination"> <span><a href="<?php print base_url();?>">Home</a> <a href="javascript:history.back();">Search Result</a> Image Detail </span> </span> </div>
   <!-- Decortive art -->
   
 	<?php
 	//print_r($image_detail);
 	?>							
-  <div class="decorative">
-    <div class="decorative-l-c"> <img src="http://static.mahattaart.com/398/<?php print $image_detail[0]['image_filename'];?>"  /> <br>
+<div class="decorative">
+  <!--<div class="decorative-l-c">
+                	
+                        <img src="<?=base_url()?>assets/img/frameit.jpg" width="298" height="156" border="0">
+                    <p class="btn-centre">
+                		<a href="javascript:void(0)" onclick="frameit('');" >Frame It</a>
+                    </p>
+                </div>-->
+  <div class="backblack" id="back" onClick="allclose('')" style="display:none;">&nbsp;</div>
+  <div class="frameit" id="frameitpop" style="display:none;" >
+    <div style="float: right" ><a href="#" onClick="allclose('')" >X</a></div>
+    <p style="overflow:hidden;">"This section is under maintenance. Kindly contact us</br>
+      at <b style="color:red;">011- 41828972</b> or mail us at <a href="#" style="color:red;">info@wallsnart.com</a> </br>
+      to complete the purchase oder."</p>
+  </div>
+  <div class="make-dt"></div>
+  
+</div>
+<!-- Decortive art -->
+<input type="hidden"  value="<?php echo $pricing_range;?>" id="pricing_ran" name="pricing_ran"/>
+</div>
+    <div class="decorative-l-c col-md-4 col-sm-4">
+    <img src="http://static.mahattaart.com/398/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive"  /> 
       <br>
       View: <a href="javascript:" onClick="get_room();">View in room</a> | <a href="#"
 								onClick="get_win();">Enlarge image</a> </div>
 								
 								
-    <div class="decorative-r-c" style="margin-left: 11%;">
+    <div class="decorative-r-c col-md-8 col-sm-8">
 	
       <h1>Portrait of&nbsp;<?php  echo $image_detail[0]['image_photographer'];?> </h1>
       <p><?php print substr($image_detail->images_caption,0,30); ?></p>
@@ -799,42 +820,19 @@ function toTitleCase(str)
     </div>
     <div style="clear:both;"></div>
   </div>
-  <p style="padding-left:120px">Ships in 24 Hours</p>
-  <p> <a <?php if(!$this->session->userdata('userid')){?>
-								href="javascript:void(0)" onclick="login('');"
-<?php }else{?>
-						href="#!" id="frame_add_to_cart"
-								<?php  } ?> > BUY PRINT </a> &nbsp; <a href="javascript:" onClick="frame_it_price_send(1,'<?php print $type;?>','<?php echo $image_detail[0]['image_filename'] ;?>');"> Add Frame </a> &nbsp; <a <?php   if($this->session->userdata('userid')){?>
-								href="javascript:;" onclick="addtogallery('<?=$api_image_id?>','<?=$image_id?>');" id="tgl" <?php }
-else {?>
-								href="javascript:void(0)" onclick="login('');"
-<?php }?> >Add to Gallery </a> &nbsp; <!--<a <?php if(!$this->session->userdata('userid')){?>
-								href="javascript:void(0)" onclick="login('');"
-<?php }else{?>
-								href="#!" id="frame_add_to_cart"
-								<?php  } ?> >Add to Cart</a>--> </p>
+  <div class="row">
+  <p  class="col-md-4 text-center">Ships in 24 Hours</p></div>
+  <div class="row" style="margin-bottom:10px">
+  <p> <a <?php if(!$this->session->userdata('userid')){?> href="javascript:void(0)" onclick="login('');"
+<?php }else{?> href="#!" id="frame_add_to_cart" <?php  } ?> > BUY PRINT </a> &nbsp; <a href="javascript:" onClick="frame_it_price_send(1,'<?php print $type;?>','<?php echo $image_detail[0]['image_filename'] ;?>');"> Add Frame </a> &nbsp; <a <?php   if($this->session->userdata('userid')){?>
+href="javascript:;" onclick="addtogallery('<?=$api_image_id?>','<?=$image_id?>');" id="tgl" <?php }
+else {?> href="javascript:void(0)" onclick="login('');" <?php }?> >Add to Gallery </a> &nbsp; <!--<a <?php if(!$this->session->userdata('userid')){?>
+href="javascript:void(0)" onclick="login('');" <?php }else{?> href="#!" id="frame_add_to_cart"
+<?php  } ?> >Add to Cart</a>--> </p>
+                                
+                                </div>
 </div>
 </div>
-<div class="decorative">
-  <!--<div class="decorative-l-c">
-                	
-                        <img src="<?=base_url()?>assets/img/frameit.jpg" width="298" height="156" border="0">
-                    <p class="btn-centre">
-                		<a href="javascript:void(0)" onclick="frameit('');" >Frame It</a>
-                    </p>
-                </div>-->
-  <div class="backblack" id="back" onClick="allclose('')" style="display:none;">&nbsp;</div>
-  <div class="frameit" id="frameitpop" style="display:none;" >
-    <div style="float: right" ><a href="#" onClick="allclose('')" >X</a></div>
-    <p style="overflow:hidden;">"This section is under maintenance. Kindly contact us</br>
-      at <b style="color:red;">011- 41828972</b> or mail us at <a href="#" style="color:red;">info@wallsnart.com</a> </br>
-      to complete the purchase oder."</p>
-  </div>
-  <div class="make-dt"></div>
-  
-</div>
-<!-- Decortive art -->
-<input type="hidden"  value="<?php echo $pricing_range;?>" id="pricing_ran" name="pricing_ran"/>
 </div>
 <div id="new" class="newid">
   <div align="right"> <a href="javascript:void(0)"

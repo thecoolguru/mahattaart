@@ -1,0 +1,203 @@
+/* CSS Document */
+.clickable{
+    cursor: pointer;   
+}
+
+.panel-heading span {
+	margin-top: -20px;
+	font-size: 15px;
+}
+.panel-heading.h2a_ms_photos {
+  background: #f1f1f1 none repeat scroll 0 0;
+  border-bottom: 1px solid #d6d6d6;
+  color:#000
+}
+
+.h2a_ms_photos > h3 {
+  color: #000;
+  font-family: "BebasNeueRegular";
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.panel-title > i {
+  background: #fff none repeat scroll 0 0;
+  border: 1px solid #888;
+  border-radius: 50%;
+  color: #888;
+  display: block;
+  float: left;
+  height: 20px;
+  margin-right: 8px;
+  padding: 1px 6px;
+  position: relative;
+  top: 0;
+  width: 20px;
+  font-style:normal;
+}
+
+.panel.panel-primary.h2a_ms_selector {
+  border: 1px solid #d6d6d6;
+  border-radius: 0;
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+.pull-right.add_photo {
+  margin-top: -15px;
+}
+.pull-right.add_photo > a {
+  color: #888;
+  font-size: 12px;
+  text-decoration: none;
+}
+#itemslider3 h5 {
+  font-size: 9px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.addtocartcontainer_page {
+  background: #f1f1f1 none repeat scroll 0 0;
+  border: 1px solid #d6d6d6;
+  float: left;
+  margin-top: 20px;
+  padding: 10px;
+  width: 100%;
+}
+.page_price_label > p {
+  color: #888;
+  font-size: 13px;
+}
+.page_price_label span {
+  color: #000;
+  font-weight: bold;
+  padding-left: 10px;
+}
+.popup-button2 {
+  background: rgba(0, 0, 0, 0) -moz-linear-gradient(center top , #ef9223 0px, #f26522 100%) repeat scroll 0 0;
+  border: 1px solid #f26522;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "BebasNeueRegular";
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1;
+  margin: 15px 0;
+  padding: 10px 30px;
+  text-transform: uppercase;
+}
+.popup-button2:hover{ background: rgba(0, 0, 0, 0) -moz-linear-gradient(center top , #fff 0px, #fff 100%) repeat scroll 0 0; color:#000; border:1px solid #d6d6d6}
+.addtocartcontainer_popup_details > a {
+  color: #888;
+  font-size: 12px;
+  text-decoration: underline;
+}
+.addtocartcontainer_popup_details > a:hover {
+  color: #ef9223;
+}
+.addtocartcontainer_popup_details {
+  margin: 20px 0 0;
+}
+.addtocartcontainer_page2 > h2 {
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.addtocartcontainer_page2 {
+  border: 1px solid #d6d6d6;
+  float: left;
+  margin-top: 10px;
+  width: 100%;
+}
+.addtocartcontainer_heading {
+  background: #f1f1f1 none repeat scroll 0 0;
+  min-height: 35px;
+  padding-left: 20px;
+  padding-top: 7px;
+}
+.addtocartcontainer_header, .addtocartcontainer_footer {
+  color: #888;
+  font-size: 12px;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+.addtocartcontainer_footer {
+  margin-bottom: 20px;
+}
+.addtocartcontainer_page2 > ul {
+  list-style-type: square;
+  margin: 14px 0 0;
+  padding-left: 33px;
+}
+.addtocartcontainer_page2 > ul li {
+  color: #888;
+  font-size: 13px;
+  line-height: 12px;
+  padding-bottom: 5px;
+}
+.popup-button3 {
+  background: rgba(0, 0, 0, 0) -moz-linear-gradient(center top , #fff 0px, #fff 100%) repeat scroll 0 0;
+  border: 1px solid #d6d6d6;
+  color: #000;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  margin: 0 0 5px;
+  padding: 10px 15px;
+  text-transform: uppercase;
+}
+
+.popup-button3:hover {
+  background: rgba(0, 0, 0, 0) -moz-linear-gradient(center top , #000 0px, #000 100%) repeat scroll 0 0;
+  border: 1px solid #000;
+  color: #fff;
+}
+.addtocartcontainer_footer a {
+  color: #888;
+  text-decoration: underline;
+}
+.addtocartcontainer_heading > h2 {
+  font-family: "BebasNeueRegular";
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin:0
+}
+.tabs-section .nav-tabs {
+  border-bottom: medium none;
+}
+.bor tr td a {
+  border: 1px solid #eee;
+  float: left;
+  height: 18px;
+  margin: 1px;
+  width: 12px;
+}
+.panel-body p {
+  color: #888;
+  font-size: 11px;
+  line-height:1.2em
+}
+
+.panel-body .control-label {
+  color: #888;
+}
+.panel-body-txt {
+  color: #888;
+}
+.page_price_label > h3 {
+  color: #888;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.page_price_label h3 > p > a {
+  color: #888;
+  font-size: 11px;
+}

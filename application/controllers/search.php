@@ -267,11 +267,7 @@ redirect(base_url());
 			$data['image_name']=$filename;
 			$data['collection_id']=$collection_id;
 
-			 if($collection_id<=8){
-			 $coll_id= $collection_id-1;
-			 }else{
-			$coll_id= $collection_id-4;
-			 }
+			
 			 
 			$click_to_enlarge = "http://api.indiapicture.in/wallsnart/get_collection.php";
 			
@@ -280,9 +276,16 @@ redirect(base_url());
 			$search_data_raw = file_get_contents($click_to_enlarge, false, $context);
 			$search_data = json_decode($search_data_raw,TRUE);
 			//print_r($search_data);
-			 $data['collection_name']=$search_data[$coll_id]['collection_name'];
+			// $data['collection_name']=$search_data[$coll_id]['collection_name'];
 
-			
+			for($x=0;$x<=$collection_id;$x++){
+	   if($search_data[$x]['id']==$collection_id){
+	 //  echo $x;
+	   $data['collection_name']=$search_data[$x]['collection_name'];
+	   
+	   }
+	   
+	   }
               
             $click_to_enlarge = "http://api.indiapicture.in/wallsnart/function.php?param=click_to_enlarge&images_id=$api_image_id";
              

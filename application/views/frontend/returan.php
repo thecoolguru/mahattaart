@@ -12,45 +12,45 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
  
 ?>
 
-<div class="main-container container">
-<div class="pagination" style="margin:0"> <span> <a href="#">HOME</a> > Mahatta-Art > <span> FAQ's</span> </span> </div>
+<div class="container">
+<div class="row">
+
 <!-- art style -->
-<div class="art-style">
+<div class="art-style col-md-12">
+<div class="pagination" style="margin:0"> <span> <a href="#">HOME</a> > Mahatta-Art > <span> FAQ's</span> </span> </div><div class="row">
 <!-- aside -->
-<aside class="left-panel-page">
+<aside class="left-panel-page col-md-2 col-xs-3">
   <p>Let Us Help</p>
   <div class="list">
     <ul>
-      <li ><a href="<?=base_url()?>frontend/contact">Contact us</a></li>
-      <li class="active-cat-link" style="color:#339900; font-size:16px;">FAQ's</li>
-      <li><a href="<?php echo base_url()?>frontend/ordering">Ordering</a></li>
-        <li><a href="<?php echo base_url()?>frontend/shipping">Shipping & Delivery</a></li>
+      <li ><a href="<?=base_url()?>index.php/frontend/contact">Contact us</a></li>
+      <li class="active-cat-link" style="color:#339900; font-size:16px;word-break: break-all;">FAQ's</li>
+      <li><a href="<?php echo base_url()?>index.php/frontend/ordering">Ordering</a></li>
+        <li><a href="<?php echo base_url()?>index.php/frontend/shipping">Shipping & Delivery</a></li>
     </ul>
   </div>
-  <?php if($this->session->userdata('userid')){ ?>
   <p>My Account</p>
   <div class="list">
     <ul>
-      <li><a href="<?php print base_url();?>user/profile">My Profile</a></li>
-      <li><a href="<?php echo base_url()?>frontend/ordering">Track My Order</a></li>
-      <li><a href="<?php echo base_url()?>frontend/ordering">Order History</a></li>
+      <li><a href="<?php print base_url();?>index.php/user/profile">My Profile</a></li>
+      <li><a href="<?php echo base_url()?>index.php/frontend/ordering">Track My Order</a></li>
+      <li><a href="<?php echo base_url()?>index.php/frontend/ordering">Order History</a></li>
     </ul>
   </div>
-  <?php } ?>
   <p>Mahatta-Art</p>
   <div class="list">
     <ul>
-      <li><a href="<?=base_url()?>frontend/about">The Company</a></li>
-     
-      <li><a href="<?=base_url()?>frontend/career">Careers</a></li>
-      <li ><a href="<?=base_url()?>frontend/Partner">Partners</a></li>
+      <li><a href="<?=base_url()?>index.php/frontend/about">The Company</a></li>
+      <li><a href="<?=base_url()?>index.php/frontend/media_center">Media Center</a></li>
+      <li><a href="<?=base_url()?>index.php/frontend/career">Careers</a></li>
+      <li ><a href="<?=base_url()?>index.php/frontend/Partner">Partners</a></li>
     </ul>
   </div>
 </aside>
 <!-- aside --> 
 
 <!-- right panel -->
-<div class="right-panel-page">
+<div class="right-panel-page col-md-10 col-xs-9">
 
 <!--  Art Movements 
 <div class="art-movements">
@@ -124,10 +124,10 @@ Once a return request is authorized from our end, refund will be processed withi
 </div>
 <!--  Art Movements -->
 
-</div>
+</div></div>
 <!-- right panel -->
 
-</div>
+</div></div>
 
 <style>
 

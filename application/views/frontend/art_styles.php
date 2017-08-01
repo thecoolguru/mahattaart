@@ -12,17 +12,15 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
  
 ?>
 
-<div class="main-container container">
-    	
-        <div class="pagination" style="margin:0px;">
-        	<span> <a href="<?=base_url()?>frontend/index">HOME</a> > <span> Artists</span> </span>
-        </div>
-        
+<div class="container">
+<div class="row">
         <!-- art style -->
-        <div class="art-style">
-        	
-            <!-- aside -->
-            <aside class="left-panel-page">
+        <div class="art-style col-md-12">
+            <div class="pagination" style="margin:0px;">
+                        <span> <a href="<?=base_url()?>frontend/index">HOME</a> > <span> Artists</span> </span>
+                    </div>        	
+             <div class="row">
+            <aside class="left-panel-page col-md-2 col-xs-3">
             	<p>International</p>
             	<div class="list">
                 	<ul>
@@ -42,7 +40,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
             <!-- aside -->
             
             <!-- right panel -->
-           <div class="right-panel-page" style="width:86%; margin-top:0px;">	
+           <div class="right-panel-page col-md-10 col-xs-9">	
            
              
            
@@ -161,11 +159,12 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     
     </style>
            
-         <span style="margin-left:40%"><?php   echo $this->pagination->create_links(); ?></span><br> 
+         <span style="margin-left:40%; display:block"><?php   echo $this->pagination->create_links(); ?></span>
                 
                        <?php 
            //$sub_val=$this->frontend_model->get_header_images(3);
 		    foreach($sub_val as $values){
+
          ?>
            	   
 				      <div class="art-inner1 col-lg-6 col-md-12 col-sm-12">
@@ -174,17 +173,17 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                 
                 <div class="row">
 				
-<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" ><img src="<?php print base_url();?><?=$values->image?>" style="float: left; border: none; box-shadow: 2px 2px 5px <?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" class="col-md-4 col-lg-6 col-sm-6"></a>
+<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" ><img src="<?php print base_url();?><?=$values->image?>" style="float: left; border: none; box-shadow: 2px 2px 5px <?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" class="col-xs-6 col-md-4 col-lg-6 col-sm-4"></a>
 
-<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image2?>" style=" margin-bottom:10px; padding-left:0;<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" class="col-md-2 col-lg-3 col-sm-3"></a>
+<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image2?>" style=" margin-bottom:10px; padding-left:0;<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" class="col-xs-3 col-md-2 col-lg-3 col-sm-2"></a>
 
 
 
-<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image3;?>" style=" margin-bottom:10px ;padding-left:0;<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" class="col-md-2 col-lg-3 col-sm-3"></a>
+<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image3;?>" style=" margin-bottom:10px ;padding-left:0;<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" class="col-xs-3 col-md-2 col-lg-3 col-sm-2"></a>
 
-<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image4;?>" style=" margin-bottom:10px; padding-left:0;<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" class="col-md-2 col-lg-3 col-sm-3"></a>
+<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image4;?>" style=" margin-bottom:10px; padding-left:0;<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" class="col-xs-3 col-md-2 col-lg-3 col-sm-2"></a>
 
-<a style="position:relative;"href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image5;?>" style=" margin-bottom:10px; padding-left:0; <?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" class="col-md-2 col-lg-3 col-sm-3"></a>
+<a style="position:relative;"href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image5;?>" style=" margin-bottom:10px; padding-left:0; <?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" class="col-xs-3 col-md-2 col-lg-3 col-sm-2"></a>
 
 
 <div style="display: inline-block; width: 100%; height: 0px; overflow: hidden; visibility: hidden;">
@@ -200,15 +199,14 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 				<?php }?>
 				
 		<!--div--->		   
-		               
-                    
                 </div>
                <span style="margin-left:50%"><?php   echo $this->pagination->create_links(); ?></span><br>      
-                
+             </div>   
           </div>
             <!-- right panel -->
             
         </div>
+</div>
         <!-- art style -->
         
     </div>

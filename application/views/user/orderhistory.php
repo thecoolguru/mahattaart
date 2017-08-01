@@ -87,17 +87,17 @@
 	}		
 	     
 </script>
-<div class="main-container">
-    	
+<div class="container">
+<div class="row">
+    	<!-- art style -->
+        <div class="art-style col-md-12">
         <div class="pagination">
  <span> <a href="<?php print base_url();?>index.php">HOME</a> > My Account > <span> Profile</span> </span>
         </div>
-        
-        <!-- art style -->
-        <div class="art-style">
+        <div class="row">
         	
             <!-- aside -->
-            <aside style="width: 150px;">
+            <aside class="left-panel-page col-md-2 col-xs-3">
             	<p>Let Us Help</p>
             	<div class="list">
                 	<ul>
@@ -145,72 +145,59 @@
 			
 			?>
 			
-            <div class="right-panel">
-            	<div style="color:red;" class=""><?=$massage;?></div>
-                <!--  Art Movements -->
-                	<div class="art-movements">
-                        <div class="art-inner" style="position:absolute;">
-                            <p>My Profile</p>
-                            <img src="<?php print base_url();?>assets/img/profile.jpg" width="710" height="210" border="0">
-                        </div>
-                    </div>
-					
-            
-            <!-- right panel -->
-            <div class="right-panel">
-            	
+            <div class="right-panel-page col-md-10 col-xs-9">
                 <!--  Art Movements -->
                 	<div class="art-movements">
                         <div class="art-inner">
                             <p>Order History</p>
-                            <img src="img/oderhistry.jpg" width="697" height="210" border="0">
                         </div>
                     </div>
-                    
-                    <div class="orderhistroywrap">
-                        <div class="orderhistroy">
-                            <ul>
-                                <li>Order ID</li>
-                                <li>Order Dated</li>
-                                <li>Delivery Date</li>
-                                <li>Total Amount</li>
-                                <li>Status</li>
-								 <li>AWB No./Courier Partner(Useful for tracking.)</li>
-								 <li></li>
-                            </ul>        
-                        </div>
-                 <?php 
-				 $orders=$this->frontend_model->get_tbl_order_details();
-				// print_r($orders);
-				 foreach($orders as $order_details){
-				// print_r($order_details);
-				 ?>
-                        <div class="odd">
-                            <ul>
-                                <li><?=$order_details->inv_order_id;?></li>
-                                <li><?=$order_details->order_date;?></li>
-                                <li></li>
-                                <li><?=$order_details->order_amount;?></li>
-                                <li></li>
-								 <li></li>
-                                <li class="last-child"><a href="<?=base_url()?>user/order_details_of_history/<?=$order_details->inv_order_id;?>">view details</a></li>
-                            </ul>        
-                        </div>
-               <?php
-			   }
-			   ?>
-                        
-                    </div>
-                </div>
+                    <img src="<?php print base_url();?>assets/img/profile.jpg" class="img-responsive">
+            <!-- right panel -->
+<div class="row">
+<div class="col-md-12">
+<table class="table table-striped orderhistroywrap">
+    <thead>
+        <tr style=" background-color:#d4d4d4">
+            <th>Order ID</th>
+            <th>Order Dated</th>
+            <th>Delivery Date</th>
+            <th>Total Amount</th>
+            <th>Status</th>
+            <th>AWB No./Courier Partner(Useful for tracking.)</th>
+        </tr>
+    </thead>
+    <tbody>
+<?php 
+$orders=$this->frontend_model->get_tbl_order_details();
+// print_r($orders);
+foreach($orders as $order_details){
+// print_r($order_details);
+?>
+        <tr>
+            <td><?=$order_details->inv_order_id;?></td>
+            <td><?=$order_details->order_date;?></td>
+            <td></td>
+            <td><?=$order_details->order_amount;?></td>
+            <td></td>
+            <td class="odd"><a href="<?=base_url()?>user/order_details_of_history/<?=$order_details->inv_order_id;?>">view details</a></td>
+        </tr>
+                        <?php
+                        }
+                        ?>
+    </tbody>
+</table>
+</div>
+</div>
                 <!--  Art Movements -->
  
             </div>
             <!-- right panel -->
             
-        </div>
+        </div></div>
         <!-- art style -->
         
-    </div>
+    </div></div>
     <!-- container -->
     
     

@@ -36,7 +36,8 @@ if(!$key){
     transform: perspective(600px) rotateY(12deg);
 }   
 	</style>		
-<div class="main-container">
+<div class="container">
+<div class="row">
     	
         <div class="pagination">
         	<span> <a href="<?=base_url()?>index.php/frontend/index">HOME</a> > <span> Check Out</span> </span>
@@ -44,7 +45,7 @@ if(!$key){
         
         <!-- checkout -->
         <div class="checkout">
-        	<div class="checkout-l-c">
+        	<div class="checkout-l-c col-md-5 col-sm-5 col-xs-12">
             	<p>Shipping Information <a id="select" href="javascript:void(0)" onClick="drop('slidedrop','select')" class="drop"><i class="ci"></i></a></p>
                 
                 <div style="display:block;" id="slidedrop">
@@ -695,7 +696,7 @@ if(!$key){
                     -->
               </div>
                 
-            </div>
+            </div></div>
         </div>
         <!-- checkout -->
         
