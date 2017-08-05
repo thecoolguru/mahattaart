@@ -450,7 +450,7 @@ if($bride[0]=='BRID'){
 	$image_collection_id=$data[1];
 	$link='bridge';
  }else{
-	$img_src="http://static.mahattaart.com/158/".$item['image_filename'];
+	$img_src="http://static.mahattaart.com/130x150/media/".$item['image_filename'];
 	$image_filename=$item['image_filename'];
 	$image_id=$item['image_id'];
 	$image_collection_id=$item['image_collection_id'];
