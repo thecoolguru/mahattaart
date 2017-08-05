@@ -25,12 +25,12 @@
 <link href="<?php print base_url();?>assets/css/responsive-code.css" rel="stylesheet" type="text/css" />
 
  <!-- jquery -->    
-<script src="<?php print base_url();?>assets/js/bootstrap.min.js"></script>
 <script src="<?php print base_url();?>assets/js/jquery-1.8.0.min.js"></script>
 <script src="<?php print base_url();?>assets/js/jquery.js"></script>
 <script src="<?php print base_url();?>assets/js/jquery.bxslider.min.js"></script>
 <script src="<?php print base_url();?>assets/js/thumbnail-slider.js" type="text/javascript"></script>
 <script src="<?php print base_url();?>assets/js/custom.js"></script>
+<script src="<?php print base_url();?>assets/js/bootstrap.min.js"></script>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -412,10 +412,11 @@
 	</script>
 
 
-<header role="banner" class="navbar navbar-default">
+<header role="banner" class="navbar navbar-default" style="min-height:auto">
 <div class="news pull-right">
 <p style="float:right"> <a href="#" class="header_link"> <i class="glyphicon glyphicon-earphone"></i> +91-8800639075</a> &nbsp; &nbsp; <a href="mailto:info@mahattaart.com" class="header_link"> <i class="glyphicon glyphicon-envelope"></i> info@mahattaart.com</a> </p>
 </div>
+</header>
 <style>.search-input:focus+button{z-index:3}</style>
 <div class="header-content container" onMouseOver="return dropdownout('drop1','drop2','drop3','drop4','drop5','drop6','drop7','drop8','drop9')">
 <div class="row">
@@ -423,7 +424,7 @@
     <a href="<?php  echo base_url();?>">
     <img class="fll img-responsive" src="<?php  echo base_url();?>assets/img/one.png" style="margin: 0 auto;" /></a>
    	</div>
-    <div class="col-md-4 col-sm-4 col-xs-12">
+    <div class="col-md-4 col-sm-5 col-xs-12">
 
 <div id="imaginary_container"> 
     <div class="input-group stylish-input-group">
@@ -454,8 +455,8 @@
 
     
     </div>
-    <div class="col-md-5 col-sm-8 col-xs-12 help">
-    <ul class="nav navbar-nav navbar-right menu-list text-center">
+    <div class="col-md-5 col-sm-7 col-xs-12 help">
+    <ul class="nav navbar-nav navbar-right menu-list text-center" style="margin-right:0">
 <li> <a href="<?php print base_url(); ?>frontend/contact"> <i class="glyphicon glyphicon-earphone"></i> Help </a> </li>
 <li> <a <?php     if(!$this->session->userdata('userid')){?> href="javascript:void(0)" onclick="login('')" <?php  }else{ ?> href="<?php  echo base_url();?>frontend/lightbox" <?php }?>> <i class="glyphicon glyphicon-user"></i> My Gallery </a> </li>
 <?php if($this->session->userdata('userid')){
@@ -523,13 +524,341 @@
             </div>
 </div></div>
 
-<style>#dsend{background:none repeat scroll 0 0 orange;border:0;color:#fff;width:60%;font-size:22px;font-weight:bolder;padding:3px;border-radius:3px;cursor:pointer;margin-top:20px}#slide{width:445px;top:100px;z-index:9;top:0;bottom:0;position:fixed}#heade{margin-top:50px;width:400px;height:530px;position:absolute;right:0;border:1px solid #d8d8d8;margin-left:40px;padding:20px 40px;border-radius:3px;background:white;box-shadow:0 0 8px gray}#sideba{position:absolute;top:180px;left:0px;box-shadow:0 0 8px gray}#sideba img{cursor:pointer}#sidebar1 img{cursor:pointer}#sidebar1{position:absolute;top:180px;left:0px;box-shadow:0 0 8px gray}h3{font-family:'Roboto Slab',serif}.formtex{margin-top:10px;padding:6px;width:100%;font-size:15px;border-radius:2px;border:3px solid #98d0f1}h4{font-size:15px}</style>
-</header>
-<style>.product-up p,.product-up2 p{text-align:center!important}p{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;margin:inherit}div#overlay{display:none}a#toggle{position:fixed;top:10px;left:10px;width:40px;height:40px;background-color:#444;text-align:center;color:white;display:none;transition:all ease-out .3s}.artist li{float:none!important}.artstyle2{width:199px!important}a#toggle i{position:relative;top:50%;transform:translateY(-50%)}main#content{padding:10px}#menu{text-align:center;transition:all ease-out .3s}#menu ul{margin:0;padding:0;position:relative}#menu ul li{float:left}.menu2 li{float:none!important}.fistn-layer{width:20%}#menu .menu2 li a{padding:5px 13px;}#menu ul li>a>i{margin-left:15px;transition:all ease-out .3s;-webkit-transition:all ease-out .1s}.menu2{width:auto!important}#menu ul li ul{display:none;position:absolute;top:16px;width:200px;text-align:left;margin:auto;left:0;width:100%;margin:0 auto;right:0}#menu .menu2{position:static!important}#menu .menu2 li a{color:#000!important}#menu ul li ul li{display:block}#menu ul li ul li a{display:block}#menu li>a:hover{color:#ff9800;text-decoration:none}#menu .menu2 li:hover>a{color:#e19a28!important}#menu ul li:hover>a>i{transform:rotateZ(90deg);text-decoration:none}#menu ul li:hover ul{display:block}#mouse-over{width:100%;background:#fff;padding:12px;position:absolute;top:16px;left:0;border:3px solid #e19a28;min-height:470px;-webkit-box-shadow:0 6px 7px #CCC;-moz-box-shadow:0 6px 7px #CCC;box-shadow:0 6px 7px #CCC;z-index:9999}#sub-pi img{float:left}.n-layer{float:left}.rowour{background-color:##f7f7f7;width:100%}#menu ul li>a>i{display:none}.collections-one ul{line-height:15px}.collections-one ul li>a{padding:3px 18px!important;color:#000!important}.collections-one li>a:hover{color:#e19a28!important}.normal-sub{left:inherit!important;width:192px!important;z-index:9999;top:34px!important;margin:0 19% 0 0!important}.collct ul li{float:none!important}.product-our{width:254px}.normal-sub li a{background-color:rgba(0,0,0,0.6)}.normal-sub li a:hover{background-color:rgba(0,0,0,0.8)}.artist{float:left}@media screen and (max-width:767px){a#toggle{display:block}#menu ul li>a>i{display:block}.artist{float:none;width:auto}main#content{margin-top:65px;transition:all ease-out .3s}.n-layer{float:none}#menu{position:fixed;width:250px;height:100%;top:0;left:0;overflow:hidden;overflow-y:auto;background-color:#444;transform:translateX(-250px)}#menu ul{text-align:left;background-color:transparent}#menu ul li{display:block}#menu ul li a{display:block}#menu ul li a>i{float:right}#menu ul li ul{display:none;position:static;width:100%}#menu ul li:hover>ul{display:none}#menu ul li:hover>a>i{transform:rotateZ(0)}#menu ul li.open>a{background-color:#444}#menu ul li.open>a>i{transform:rotateZ(90deg)}#menu ul li.open>ul{display:block}div#overlay{display:block;visibility:hidden;position:fixed;left:0;top:0;width:100%;height:100%;background-color:#444;transition:all ease-out .3s;z-index:1;opacity:0}html.open-menu{overflow:hidden}html.open-menu div#overlay{visibility:visible;opacity:1;width:calc(-150%);left:250px}html.open-menu a#toggle,html.open-menu main#content{transform:translateX(250px)}html.open-menu nav#menu{z-index:3;transform:translateX(0)}#mouse-over{position:static}.n-layer,#mouse-over{width:auto}
-.nav > li > a:hover, .nav > li > a:focus {
-	text-decoration: none;
-	background-color: transparent;
-}
+<style>
+    #dsend {
+        background: none repeat scroll 0 0 orange;
+        border: 0;
+        color: #fff;
+        width: 60%;
+        font-size: 22px;
+        font-weight: bolder;
+        padding: 3px;
+        border-radius: 3px;
+        cursor: pointer;
+        margin-top: 20px
+    }
+    #slide {
+        width: 445px;
+        top: 100px;
+        z-index: 9;
+        top: 0;
+        bottom: 0;
+        position: fixed
+    }
+    #heade {
+        margin-top: 50px;
+        width: 400px;
+        height: 530px;
+        position: absolute;
+        right: 0;
+        border: 1px solid #d8d8d8;
+        margin-left: 40px;
+        padding: 20px 40px;
+        border-radius: 3px;
+        background: white;
+        box-shadow: 0 0 8px gray
+    }
+    #sideba {
+        position: absolute;
+        top: 180px;
+        left: 0px;
+        box-shadow: 0 0 8px gray
+    }
+    #sideba img {
+        cursor: pointer
+    }
+    #sidebar1 img {
+        cursor: pointer
+    }
+    #sidebar1 {
+        position: absolute;
+        top: 180px;
+        left: 0px;
+        box-shadow: 0 0 8px gray
+    }
+    h3 {
+        font-family: 'Roboto Slab', serif
+    }
+    .formtex {
+        margin-top: 10px;
+        padding: 6px;
+        width: 100%;
+        font-size: 15px;
+        border-radius: 2px;
+        border: 3px solid #98d0f1
+    }
+    h4 {
+        font-size: 15px
+    }
+</style>
+<style>
+    .product-up p,
+    .product-up2 p {
+        text-align: center!important
+    }
+    p {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        margin: inherit
+    }
+    div#overlay {
+        display: none
+    }
+    a#toggle {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        width: 40px;
+        height: 40px;
+        background-color: #444;
+        text-align: center;
+        color: white;
+        display: none;
+        transition: all ease-out .3s
+    }
+    .artist li {
+        float: none!important
+    }
+    .artstyle2 {
+        width: 199px!important
+    }
+    a#toggle i {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%)
+    }
+    main#content {
+        padding: 10px
+    }
+    #menu {
+        text-align: center;
+        transition: all ease-out .3s
+    }
+    #menu ul {
+        margin: 0;
+        padding: 0;
+        position: relative
+    }
+    #menu ul li {
+        float: left
+    }
+    .menu2 li {
+        float: none!important
+    }
+    .fistn-layer {
+        width: 20%
+    }
+    #menu .menu2 li a {
+        padding: 5px 13px;
+    }
+    #menu ul li>a>i {
+        margin-left: 15px;
+        transition: all ease-out .3s;
+        -webkit-transition: all ease-out .1s
+    }
+    .menu2 {
+        width: auto!important
+    }
+    #menu ul li ul {
+        display: none;
+        position: absolute;
+        top: 16px;
+        width: 200px;
+        text-align: left;
+        margin: auto;
+        left: 0;
+        width: 100%;
+        margin: 0 auto;
+        right: 0
+    }
+    #menu .menu2 {
+        position: static!important
+    }
+    #menu .menu2 li a {
+        color: #000!important
+    }
+    #menu ul li ul li {
+        display: block
+    }
+    #menu ul li ul li a {
+        display: block
+    }
+    #menu li>a:hover {
+        color: #ff9800;
+        text-decoration: none
+    }
+    #menu .menu2 li:hover>a {
+        color: #e19a28!important
+    }
+    #menu ul li:hover>a>i {
+        transform: rotateZ(90deg);
+        text-decoration: none
+    }
+    #menu ul li:hover ul {
+        display: block
+    }
+    #mouse-over {
+        width: 100%;
+        background: #fff;
+        padding: 12px;
+        position: absolute;
+        top: 16px;
+        left: 0;
+        border: 3px solid #e19a28;
+        min-height: 470px;
+        -webkit-box-shadow: 0 6px 7px #CCC;
+        -moz-box-shadow: 0 6px 7px #CCC;
+        box-shadow: 0 6px 7px #CCC;
+        z-index: 9999
+    }
+    #sub-pi img {
+        float: left
+    }
+    .n-layer {
+        float: left
+    }
+    .rowour {
+        background-color: ##f7f7f7;
+        width: 100%
+    }
+    #menu ul li>a>i {
+        display: none
+    }
+    .collections-one ul {
+        line-height: 15px
+    }
+    .collections-one ul li>a {
+        padding: 3px 18px!important;
+        color: #000!important
+    }
+    .collections-one li>a:hover {
+        color: #e19a28!important
+    }
+    .normal-sub {
+        left: inherit!important;
+        width: 192px!important;
+        z-index: 9999;
+        top: 34px!important;
+        margin: 0 19% 0 0!important
+    }
+    .collct ul li {
+        float: none!important
+    }
+    .product-our {
+        width: 254px
+    }
+    .normal-sub li a {
+        background-color: rgba(0, 0, 0, 0.6)
+    }
+    .normal-sub li a:hover {
+        background-color: rgba(0, 0, 0, 0.8)
+    }
+    .artist {
+        float: left
+    }
+    @media screen and (max-width: 767px) {
+        a#toggle {
+            display: block
+        }
+        #menu ul li>a>i {
+            display: block
+        }
+        .artist {
+            float: none;
+            width: auto
+        }
+        main#content {
+            margin-top: 65px;
+            transition: all ease-out .3s
+        }
+        .n-layer {
+            float: none
+        }
+        #menu {
+            position: fixed;
+            width: 250px;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            overflow-y: auto;
+            background-color: #444;
+            transform: translateX(-250px)
+        }
+        #menu ul {
+            text-align: left;
+            background-color: transparent
+        }
+        #menu ul li {
+            display: block
+        }
+        #menu ul li a {
+            display: block
+        }
+        #menu ul li a>i {
+            float: right
+        }
+        #menu ul li ul {
+            display: none;
+            position: static;
+            width: 100%
+        }
+        #menu ul li:hover>ul {
+            display: none
+        }
+        #menu ul li:hover>a>i {
+            transform: rotateZ(0)
+        }
+        #menu ul li.open>a {
+            background-color: #444
+        }
+        #menu ul li.open>a>i {
+            transform: rotateZ(90deg)
+        }
+        #menu ul li.open>ul {
+            display: block
+        }
+        div#overlay {
+            display: block;
+            visibility: hidden;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #444;
+            transition: all ease-out .3s;
+            z-index: 1;
+            opacity: 0
+        }
+        html.open-menu {
+            overflow: hidden
+        }
+        html.open-menu div#overlay {
+            visibility: visible;
+            opacity: 1;
+            width: calc(-150%);
+            left: 250px
+        }
+        html.open-menu a#toggle,
+        html.open-menu main#content {
+            transform: translateX(250px)
+        }
+        html.open-menu nav#menu {
+            z-index: 3;
+            transform: translateX(0)
+        }
+        #mouse-over {
+            position: static
+        }
+        .n-layer,
+        #mouse-over {
+            width: auto
+        }
+        .nav > li > a:hover,
+        .nav > li > a:focus {
+            text-decoration: none;
+            background-color: transparent;
+        }
 </style>
 
 

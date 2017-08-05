@@ -275,19 +275,7 @@ textarea {
     height: 80px;
     width: 100%;
 }
-* {
-    padding: 0;
-    margin: 0;
-}
-input[type=text] {
-    margin-top: 10px;
-    padding: 6px;
-    width: 100%;
-    font-size: 15px;
-    border-radius: 2px;
-    height: 34px !important;
-    border: 1px solid;
-}
+
 </style>
 <link rel="stylesheet" href="<?php echo base_url();?>assets/css/gallery.css" type="text/css">
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/jqueryplugins.js"></script>

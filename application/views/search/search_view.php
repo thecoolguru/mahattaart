@@ -422,7 +422,7 @@ if($shape!="?#!" &&  $shape!=""){
 </div>
 </div></div>
 </div>
-<div class="gallery-img">
+<div class="gallery-img row">
 <ul>
 <?php 
 //print_r($search_data);

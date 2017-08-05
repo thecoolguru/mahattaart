@@ -280,12 +280,13 @@ redirect(base_url());
 
 			for($x=0;$x<=$collection_id;$x++){
 	   if($search_data[$x]['id']==$collection_id){
-	 //  echo $x;
+	/// echo $x;
 	   $data['collection_name']=$search_data[$x]['collection_name'];
 	   
 	   }
 	   
 	   }
+	   
               
             $click_to_enlarge = "http://api.indiapicture.in/wallsnart/function.php?param=click_to_enlarge&images_id=$api_image_id";
              

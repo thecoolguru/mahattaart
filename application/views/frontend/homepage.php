@@ -118,7 +118,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 </div>-->
 <div style="clear:both"></div>
 <!--bottom top area-->
-<div class="col-md-12">
+<div class="col-md-12" style="margin-bottom:30px">
 <?php
         $bottom_top= $this->frontend_model->get_home_top_category_images('bottom top');
 		
@@ -202,7 +202,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <?=$bottom_top[2]->title?>
 </h5>
 <p>
-<?=ucfirst(strtolower($bottom_top[2]->description))?>
+<?=$bottom_top[2]->description?>
 </p>
 <div style="text-align:right;"> <a style="color:#6699FF" href="javascript:call_collection(3)"> Read More. </a> </div>
 </div>

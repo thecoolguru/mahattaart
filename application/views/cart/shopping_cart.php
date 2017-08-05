@@ -49,7 +49,7 @@ box-shadow:2px 2px 1px black inset;
     transform: perspective(600px) rotateY(12deg);
 }   
 			 </style>
-<div class="main-container">
+<div class="container">
     	
         <div class="pagination">
         	<span> <a href="<?=base_url()?>index.php/frontend/index">HOME</a> > <span> Check Out</span> </span>
@@ -63,16 +63,25 @@ box-shadow:2px 2px 1px black inset;
     </div> 
     <br>
         <!-- shopping cart -->
-        <div class="shoppingcart">
-                	<ul>
-					    <li>S.No.</li>
-                    	<li class="item">Item</li>
-                        <li class="des">Description</li>
-                        <li class="qua">Detail</li>
-                        <li class="qua">Quantity</li>
-                        <li class="pri">Price<?php echo $image['mount'];?></li>
-                    </ul>
-                </div>
+		<div class="row">
+		 <div id="no-more-tables">
+        <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                	<thead class="cf">
+                                                <tr>
+                                                                <th>S.No.</th>
+                                                                <th>Item</th>
+                                                                <th>Description</th>
+                                                                <th>Detail</th>
+                                                                <th>Quantity</th>
+																  <th>Price</th>
+																<th>Tax(%)</th>
+																<th>Tax Amt.</th>
+                                                                <th >Total Price</th>
+																  <th>Delete</th>
+																
+                                                </tr>
+                                </thead>
+								<tbody>
        <?php //echo $this->session->userdata('userid');
        
        if($this->session->userdata('userid')){ 
@@ -114,15 +123,16 @@ box-shadow:2px 2px 1px black inset;
                     //echo $image['image_id'];
                     ?>
         
-                <div class="shoppingcart <?=$classes;?>">
-                	<ul>
-                            <li> <div><?=$i;?></div></li>
-                            <li class="item">
+               
+                	 
+                                                <tr>
+                            <td> <div><?=$i;?></div></td>
+                            <td class="item">
                              <?php   
 							 if($image['frame_color']=='Streched Canvas Gallary Wrap'){?>
 							 
 							 <div class="showforprintonly" id="topa2">
-                                <img src="http://static.mahattaart.com/158/<?= $image['image_name'];?>" width="100%" />
+                                <img src="http://static.mahattaart.com/158/<?= $image['image_name'];?>"  />
                              </div>
 							 <?php
 							 }else{
@@ -150,7 +160,7 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
  ?>
              
                             <div class="" id="topa2">
-                               <a href="<?=base_url()?>index.php/search/image_detail/<?=$file_name?>/<?=$image['image_id']?>/<?=$collection_id?>">  <img src="http://static.mahattaart.com/158/<?= $image['image_name'];?>" width="100%" /></a>
+                               <a href="<?=base_url()?>index.php/search/image_detail/<?=$file_name?>/<?=$image['image_id']?>/<?=$collection_id?>">  <img src="http://static.mahattaart.com/158/<?= $image['image_name'];?>"  /></a>
                                   
                            
                 </div>
@@ -160,11 +170,11 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
 		  <?php } ?>
                                 
                    
-                            </li>
+                            </td>
 							
                             <br>
-                            <li class="des"><?php echo substr($search_data_r['results'][0]['image_description'],0,130)?> </li>
-                        <li class="des"><h4>
+                            <td class="des"><?php echo substr($search_data_r['results'][0]['image_description'],0,130)?> </td>
+                        <td class="des"><h4>
 					<strong><?php // print substr($row->images_caption,0,20); ?>
                                             <?php echo $file_name;?></strong>
 				</h4>
@@ -175,6 +185,8 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
 				}echo $print_type.'<br>';
 				//echo $image['image_size'];
 				if($image['frame_cost']==0){
+				$tax_prctg=12;
+				
 				?>
 				
 				Art Print:
@@ -185,6 +197,7 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
 				  }
 				}
 				if($image['frame_cost']!=0){
+				$tax_prctg=18;
 				?>
 				Framed Art Print:<?=$image['framed_image_size'].'(Inch)<br>'?>
 				Frame Size:<?=$image['frame_size'].'(Inch)<br>'?>
@@ -194,8 +207,8 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
                                <?php } ?>
                                 Glass:<?php echo $image['glass_type'];}?>
 				
-                        </li>
-                        <li class="qua">
+                        </td>
+                        <td class="qua">
                                 <input name="f" type="text" readonly id="p_qty<?=$i?>" class="qua-inp" 
                                        value="<?= $image['qty'];?>"  style="margin-left:30px;border:none;"/>
                                 
@@ -224,31 +237,26 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
     </div>
 </form>
 								</div>
-								</li>
-                                <li class="pri" >Rs.<?php  echo $image['price']; ?></li>
-                        <li>
-                        	<p>
-                            	
-                                <span class="dblock">
+								</td>
+                                <td class="pri" >Rs.<?php  echo $wd_tax_price=$image['price']; ?>
                   <input type="hidden" id="hidid<?=$i?>" value="<?= $image['cart_id'];?>" />
                     <input type="hidden" id="hidprice<?=$i?>" value="<?=$image['price'];?>" />
-<!--	<a href="#" class="edit" onclick="update('<?=$i?>');">Update</a>
-            <a href="#" class="edit">View</a>
-                                </span>-->
-                                <span class="dblock">
-          <!--  <a href="<?=base_url()?>index.php/cart/Cart_remove/<?=$image['user_id'];?>/<?=$image['cart_id']?>"
-               class="remove"style="    width: 19px;
-" ><img src="<?=base_url()?>assets/img/remove.png"></span></a>-->
-                                    
-                                	
-                                </span>
-                    		</p>
-                        </li>
-						<li>
+								</td>
+								<td><?=$tax_prctg?></td>
+								<td><?php   
+								$tax_amt=(($wd_tax_price*$tax_prctg)/100);
+								echo round($tax_amt,2);
+								
+								?></td>
+								
+								<td><?php $total_amt_product=$wd_tax_price + $tax_amt ;
+								echo round($total_amt_product,2);
+								?></td>
+                       
+						<td>
 						<a href="<?=base_url()?>index.php/cart/Cart_remove/<?=$image['user_id'];?>/<?=$image['cart_id']?>"><div><span class="fnl-cart-wishopt cart-removepopupshow"><span class="glyphicon glyphicon-trash"></span>Remove</span></div></a>
-						</li>
-                    </ul>
-                </div>
+						</td>
+						</tr>
         
         <?php $i++; if($image['updated_price']<>'' && $image['updated_price']<>'0'){
         $price=$image['updated_price']; 
@@ -257,9 +265,15 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
                  $price=$image['price'];   
                 }
                 $subtotal=$subtotal+$price; 
-		} 
+		} ?>
 		
+          						
+                    </tbody>
+					</table>
                 
+				</div>
+				</div>
+     <?php
                 
   }else{
        $subtotal=0; $i=1;
@@ -350,55 +364,10 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
         
         
 		</div>
-<form action="<?php print base_url();?>index.php/frontend/share_ShoppingCartlightbox" method="post" name="login_form" id="login_form">
-                <div id="black" style="display:none;" onClick="closebox('')">&nbsp;</div>
-    <div id="gift" style="display:none;" class="pop-up">
-    <a href="#" onClick="closebox()"><img src="<?php echo base_url()?>assets/img/close.png" class="close" /></a>
-    <h1>Add A Personal Message</h1>
-  
-    <input type="hidden" id="shara_gallary_image_id" value="">
-    <div id="pop-form">
-    <span id="email_next_error" style="color: red"></span><br>
-        <input name=""  type="text" id="email_to" placeholder="To" />
-        <input name=""  type="text" id="subject" placeholder="Subject" class="" />
-        <textarea name="" cols="" id="message" rows="" class=""  placeholder="Message"></textarea>
-        <input type="submit" name="send" value="send" class="send" onclick="ShareGalleryValidation();">
-    </div>
-    <div id="pop-form"><img src="<?php echo base_url()?>assets/img/Git-pop-up.png" /></div>
-    <p>Cash on delivery not available on gift wrap orders. Gift packaging slip, invoice and product tags would not include any pricing, discount or payment information<br />
-    <br />
-    To keep this gift a surprise, please mention your own phone number while filling the shipping details. However, you may receive a call from our delivery partner for coordinating the delivery</p>
-    </div>
-</form>
+
 <script type="text/javascript">
-    function ShareGalleryValidation()
-    {
-        if($('#email_to').val()=='')
-        {
-          $('#email_next_error').html('Enter email id');
-          $('#email_to').focus();
-          return false;
-        }   
-     if($('#subject').val()=='')
-        {
-          $('#email_next_error').html('Enter subject');
-          $('#subject').focus();
-          return false;
-        }  
-        
-       if($('#message').val()=='')
-        {
-          $('#email_next_error').html('Enter message');
-          $('#message').focus();
-          return false;
-        }   
-        
-    }// end funciton
-function getShareGallary(images_id)
-{
-    //alert(images_id);
-    document.getElementById('shara_gallary_image_id').value=images_id;
-}
+    
+
 function update(i)
 {  
      var row_id=$('#hidid' +i).val();
@@ -448,66 +417,7 @@ function Cart_remove(id)
               }
          });
 }
-function checkValidateSelect1()
-{
-    
-//     if($('#name').val()=='' || $('#pincode').val()=='' || $('#address').val()=='' || $('#city').val()=='' || $('#state').val()=='' || $('#phone').val()=='')
-//     {
-//         document.getElementById('field_blank').innerHTML="Fill the blank field";
-//         return false;
-//     }else{ 
-//    drop('slidedrop1','select1');
-//     }
-     if(document.getElementById('name').value=='')
-     {
-      document.getElementById('name').style.border = "1px solid #ff0000";
-      document.getElementById('name').focus();
-      return false;
-     }else
-     if(document.getElementById('pincode').value=='')
-     {
-         
-      document.getElementById('pincode').style.border = "1px solid #ff0000";
-      document.getElementById('pincode').focus();
-      document.getElementById('name').style.border = "";
-      return false;
-     }else
-     if(document.getElementById('address').value=='')
-     {
-      document.getElementById('address').style.border = "1px solid #ff0000";
-      document.getElementById('address').focus();
-      document.getElementById('pincode').style.border = "";
-      return false;
-     }else
-         if(document.getElementById('city').value=='')
-     {
-      document.getElementById('city').style.border = "1px solid #ff0000";
-      document.getElementById('city').focus();
-       document.getElementById('address').style.border = "";
-      return false;
-     }else
-         if(document.getElementById('state').value=='')
-     {
-      document.getElementById('state').style.border = "1px solid #ff0000";
-      document.getElementById('state').focus();
-       document.getElementById('city').style.border = "";
-      return false;
-     }else
-         if(document.getElementById('phone').value=='')
-     {
-      document.getElementById('phone').style.border = "1px solid #ff0000";
-      document.getElementById('phone').focus();
-      document.getElementById('state').style.border = "";
-      return false;
-     }else
-     {
-         document.getElementById('phone').style.border = "";
-        drop('slidedrop1','select1');
-         return true;
-     }
-     
-     
-}// end function ...
+
 function by_keyup_update(id_val){
 $(".by_keyup_update").keyup(function () { 
 //alert(id_val)
@@ -563,28 +473,7 @@ $(".by_keyup_update").keyup(function () {
 	});
 	
 	}
-function changeview(id)
-{
-	
-	if(id==1)
-	{
-		$('#tab2').hide();
-		$('#tab1').show();
-	}
-	else if(id==2)
-	{
-		$('#tab2').show();
-		$('#tab1').hide();
-		
-	}
-	else
-	{
-		$('#tab1').hide();
-		$('#tab2').hide();
-		$('#retrievepw').show();
-	}
-	
-}
+
 	
 function update_cart(i,cart_id){   
        
