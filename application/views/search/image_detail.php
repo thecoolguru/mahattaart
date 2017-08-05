@@ -839,7 +839,7 @@ href="javascript:void(0)" onclick="login('');" <?php }else{?> href="#!" id="fram
 									onclick="document.getElementById('new').style.display='none';document.getElementById('fade').style.display='none'">Close</a> </div>
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr> </tr>
-    <tr> <img src="http://static.mahattaart.com/1100/<?php print $image_detail[0]['image_filename'];?>" /> </tr>
+    <tr> <img src="http://static.mahattaart.com/400x380/media/<?php print $image_detail[0]['image_filename'];?>" /> </tr>
   </table>
 </div>
 <div id="new1" class="newid1">
