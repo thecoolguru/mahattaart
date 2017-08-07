@@ -156,7 +156,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div class="row">
 <div class="col-xs-6 col-md-6 col-sm-6  bg">
 <a href="<?php print base_url(); ?><?=$url0;?>">
-<img src="<?php echo base_url();?><?=$bottom_top[0]->image?>" class="img-responsive" /> </a>
+<img src="<?php echo base_url();?><?=$bottom_top[0]->image?>" class="img-responsive" width="100%" /> </a>
 </div>
 <div class="col-xs-6 col-md-6 col-sm-6 bg_content">
 <h4>
@@ -174,7 +174,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 </div>
 <div class="col-md-6 col-sm-6 margn box">
 <div class="row">
-<div class="col-xs-6 col-md-6 col-sm-6  bg"> <a href="<?php echo base_url();?><?=$url1?>"> <img src="<?php echo base_url();?><?=$bottom_top[1]->image?>" class="img-resonsive"> </a> </div>
+<div class="col-xs-6 col-md-6 col-sm-6  bg"> <a href="<?php echo base_url();?><?=$url1?>"> <img src="<?php echo base_url();?><?=$bottom_top[1]->image?>" class="img-resonsive" width="100%"> </a> </div>
 <div class="col-xs-6 col-md-6 col-sm-6 bg_content ">
 <h4>
 <?=$bottom_top[1]->field1?>
@@ -193,7 +193,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div class="row">
 <div class="col-md-6 col-sm-6 margn box">
 <div class="row">
-<div class="col-xs-6 col-md-6 col-sm-6  bg "> <a href="javascript:call_collection(3)"> <img src="<?php echo base_url();?><?=$bottom_top[2]->image?>" class="img-responsive"> </a> </div>
+<div class="col-xs-6 col-md-6 col-sm-6  bg "> <a href="javascript:call_collection(3)"> <img src="<?php echo base_url();?><?=$bottom_top[2]->image?>" class="img-responsive" width="100%"> </a> </div>
 <div class="col-xs-6 col-md-6 col-sm-6 bg_content ">
 <h4>
 <?=$bottom_top[2]->field1?>
@@ -202,7 +202,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <?=$bottom_top[2]->title?>
 </h5>
 <p>
-<?=$bottom_top[2]->description?>
+<?=ucfirst(strtolower($bottom_top[2]->description))?>
 </p>
 <div style="text-align:right;"> <a style="color:#6699FF" href="javascript:call_collection(3)"> Read More. </a> </div>
 </div>
@@ -210,7 +210,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 </div>
 <div class="col-md-6 col-sm-6 margn box">
 <div class="row">
-<div class="col-xs-6 col-md-6 col-sm-6  bg"> <a href="<?php print base_url(); ?><?=$url3;?>"> <img src="<?php echo base_url();?><?=$bottom_top[3]->image?>" class="img-responsive"></a> </div>
+<div class="col-xs-6 col-md-6 col-sm-6  bg"> <a href="<?php print base_url(); ?><?=$url3;?>"> <img src="<?php echo base_url();?><?=$bottom_top[3]->image?>" class="img-responsive" width="100%"></a> </div>
 <div class="col-xs-6 col-md-6 col-sm-6 bg_content">
 <h4>
 <?=$bottom_top[3]->field1?>

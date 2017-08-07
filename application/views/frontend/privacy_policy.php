@@ -25,29 +25,30 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
             	<p>Let Us Help</p>
             	<div class="list">
                 	<ul>
-                    	<li ><a href="<?=base_url()?>index.php/frontend/contact">Contact us</a></li>
-                        <li><a href="<?=base_url()?>index.php/frontend/faq">FAQ's</a></li>
+                    	<li ><a href="<?=base_url()?>frontend/contact">Contact us</a></li>
+                        <li><a href="<?=base_url()?>frontend/faq">FAQ's</a></li>
                         <li><a href="#">Ordering</a></li>
                         <li><a href="#">Shipping & Delivery</a></li>
                     </ul>
                 </div>
-
+<?php if($this->session->userdata('userid'))
+{?>
                 <p>My Account</p>
             	<div class="list">
                 	<ul>
-                    	<li><a href="<?=base_url()?>index.php/frontend/profile">My Profile</a></li>
+                    	<li><a href="<?=base_url()?>frontend/profile">My Profile</a></li>
                         <li><a href="#">Track My Order</a></li>
                         <li><a href="#">Order History</a></li>
                     </ul>
                 </div>
-                
+                <?php } ?>
                 <p>Mahatta-Art</p>
             	<div class="list">
                 	<ul>
-                    	<li><a href="<?=base_url()?>index.php/frontend/about">The Company</a></li>
-                        <li><a href="<?=base_url()?>index.php/frontend/media_center">Media Center</a></li>
-                        <li><a href="<?=base_url()?>index.php/frontend/career">Careers</a></li>
-                        <li ><a href="<?=base_url()?>index.php/frontend/Partner">Partners</a></li>
+                    	<li><a href="<?=base_url()?>frontend/about">The Company</a></li>
+                      
+                        <li><a href="<?=base_url()?>frontend/career">Careers</a></li>
+                        <li ><a href="<?=base_url()?>frontend/Partner">Partners</a></li>
                     </ul>
                 </div>
                 

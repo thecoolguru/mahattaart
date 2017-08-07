@@ -11,43 +11,40 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
  }
  
 ?>
-<div class="container">
-<div class="row">
-            	
-        <!-- art style -->
-        <div class="art-style col-md-12">
+<div class="main-container container">
         <div class="pagination" style="margin:0">
             <span> <a href="#">HOME</a> > Mahatta-Art > <span> Career</span> </span>
-        </div>
-        	<div class="row">
-                        <!-- aside -->
-            <aside class="left-panel-page col-md-2 col-xs-3">
+        </div>    	
+        <!-- art style -->
+        <div class="art-style">
+            <!-- aside -->
+            <aside class="left-panel-page">
             <p>Let Us Help</p>
             	<div class="list">
                 	<ul>
-                    	<li ><a href="<?=base_url()?>index.php/frontend/contact">Contact us</a></li>
-                        <li><a href="<?=base_url()?>index.php/frontend/faq">FAQ's</a></li>
-                        <li><a href="<?php echo base_url()?>index.php/frontend/ordering">Ordering</a></li>
-                        <li><a href="<?php echo base_url()?>index.php/frontend/shipping">Shipping & Delivery</a></li>
+                    	<li ><a href="<?=base_url()?>frontend/contact">Contact us</a></li>
+                        <li><a href="<?=base_url()?>frontend/faq">FAQ's</a></li>
+                        <li><a href="<?php echo base_url()?>frontend/ordering">Ordering</a></li>
+                        <li><a href="<?php echo base_url()?>frontend/shipping">Shipping & Delivery</a></li>
                     </ul>
                 </div>
-
+<?php if($this->session->userdata('userid')){ ?>
                 <p>My Account</p>
             	<div class="list">
                 	<ul>
-                    	<li><a href="<?php print base_url();?>index.php/user/profile">My Profile</a></li>
-                        <li><a href="<?php echo base_url()?>index.php/frontend/ordering">Track My Order</a></li>
-                        <li><a href="<?php echo base_url()?>index.php/frontend/ordering">Order History</a></li>
+                    	<li><a href="<?php print base_url();?>user/profile">My Profile</a></li>
+                        <li><a href="<?php echo base_url()?>frontend/ordering">Track My Order</a></li>
+                        <li><a href="<?php echo base_url()?>frontend/ordering">Order History</a></li>
                     </ul>
                 </div>
-                
+                <?php } ?>
                 <p>Mahatta-Art</p>
             	<div class="list">
                 	<ul>
-                    	<li><a href="<?=base_url()?>index.php/frontend/about">The Company</a></li>
-                        <li><a href="<?=base_url()?>index.php/frontend/media_center">Media Center</a></li>
+                    	<li><a href="<?=base_url()?>frontend/about">The Company</a></li>
+                        
                         <li class="active-cat-link" style="color:#339900; font-size:16px;">Careers</li>
-                        <li ><a href="<?=base_url()?>index.php/frontend/Partner">Partners</a></li>
+                        <li ><a href="<?=base_url()?>frontend/Partner">Partners</a></li>
                     </ul>
                 </div>
                 
@@ -55,17 +52,17 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
             <!-- aside -->
             
             <!-- right panel -->
-            <div class="right-panel-page col-md-10 col-xs-9">
+            <div class="right-panel-page">
             	
                 <!--  Art Movements -->
-                <div class="row">
                 	<div class="art-movements col-sm-12" style="padding-left:0 !important">
-                        <div class="art-inner">
+                        <div class="art-inner" style="margin:0 !important">
                             <p>Career</p>
                             <img src="<?php print base_url();?>assets/img/career.jpg" border="0" class="img-responsive" />
                         </div>
                     </div>
-                    <div class="career-page col-sm-12">
+                    
+                    <div class="career-page col-sm-12" style="padding-left:0 !important">
                         <h2>About Working for MahattaArt</h2>
                         <p>MahattaArt is made up of talented people who are original thinkers and who love a culture where innovation, creativity and results are valued. 
                         Since its inception in 2010, MahattaArt has grown to be a professional development and advancement for our employees. MahattaArt is an ambitious company, 
@@ -83,13 +80,9 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                         <p>Delhi</p>
                     </div>
                 </div>
-                    
-                </div>
                 <!--  Art Movements -->
  
-
-            </div>
             </div>
             <!-- right panel -->
             
-        </div></div>
+        </div>

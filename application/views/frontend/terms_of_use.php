@@ -11,43 +11,41 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
  }
  
 ?>
-<div class="container">
-<div class="row">
+<div class="main-container container">
+      <div class="pagination" style="margin:0">
+            <span> <a href="<?=base_url()?>frontend/index"> HOME </a> > Terms & Policies > <span> Terms of Use </span> </span>
+      </div>
       <!-- art style -->
-        <div class="art-style col-md-12">
-          <div class="pagination" style="margin:0">
-                <span> <a href="<?=base_url()?>index.php/frontend/index"> HOME </a> > Terms & Policies > <span> Terms of Use </span> </span>
-          </div>
-            <div class="row">	
+        <div class="art-style">	
         	
             <!-- aside -->
-            <aside class="left-panel-page col-md-2 col-xs-3">
+            <aside class="left-panel-page">
             	<p>Let Us Help</p>
             	<div class="list">
                 	<ul>
-                    	<li ><a href="<?=base_url()?>index.php/frontend/contact">Contact us</a></li>
-                        <li><a href="<?=base_url()?>index.php/frontend/faq">FAQ's</a></li>
+                    	<li ><a href="<?=base_url()?>frontend/contact">Contact us</a></li>
+                        <li><a href="<?=base_url()?>frontend/faq">FAQ's</a></li>
                         <li><a href="#">Ordering</a></li>
                         <li><a href="#">Shipping & Delivery</a></li>
                     </ul>
                 </div>
-
+      <?php if($this->session->userdata('userid')){ ?>
                 <p>My Account</p>
             	<div class="list">
                 	<ul>
-                    	<li><a href="<?=base_url()?>index.php/frontend/profile">My Profile</a></li>
+                    	<li><a href="<?=base_url()?>frontend/profile">My Profile</a></li>
                         <li><a href="#">Track My Order</a></li>
                         <li><a href="#">Order History</a></li>
                     </ul>
                 </div>
-                
+                <?php } ?>
                 <p>Mahatta-Art</p>
             	<div class="list">
                 	<ul>
-                    	<li><a href="<?=base_url()?>index.php/frontend/about">The Company</a></li>
-                        <li><a href="<?=base_url()?>index.php/frontend/media_center">Media Center</a></li>
-                        <li><a href="<?=base_url()?>index.php/frontend/career">Careers</a></li>
-                        <li ><a href="<?=base_url()?>index.php/frontend/Partner">Partners</a></li>
+                    	<li><a href="<?=base_url()?>frontend/about">The Company</a></li>
+                        
+                        <li><a href="<?=base_url()?>frontend/career">Careers</a></li>
+                        <li ><a href="<?=base_url()?>frontend/Partner">Partners</a></li>
                     </ul>
                 </div>
                 
@@ -55,13 +53,13 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
             <!-- aside -->
             
             <!-- right panel -->
-            <div class="right-panel-page col-md-10 col-xs-9">
+            <div class="right-panel-page">
             	
                 <!--  Art Movements -->
                 	<div class="art-movements">
                         <div class="art-inner">
                             <p>Terms of Use</p>
-                            <img src="<?php print base_url();?>assets/img/terms.jpg" class="img-responsive" />
+                            <img src="<?php print base_url();?>assets/img/terms.jpg" width="100%" border="0" />
                         </div>
                     </div>
                     
@@ -137,7 +135,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                 </div>
                 <!--  Art Movements -->
  
-            </div></div>
+            </div>
             <!-- right panel -->
             
-        </div></div>
+        </div>

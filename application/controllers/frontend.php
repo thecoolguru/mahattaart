@@ -279,7 +279,7 @@ else{
 }
   // echo $email_regd;
      //print_r($username);die;
-	 
+	 //echo $maill;
 		if($maill==1)
 		{
 			//$imgfb=base_url();

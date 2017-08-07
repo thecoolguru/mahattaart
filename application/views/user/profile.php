@@ -290,7 +290,7 @@
 </div>
 </div>
 <div class="form-group">
-<label class="col-md-3 control-label">Martial Status</label>
+<label class="col-md-3 control-label">Marital Status</label>
 <div class="col-md-9">
 <select name="mstatus" id="mstatus" class="country form-control">
 <option value="" <?php if($detail->martial_status==''){?> selected="selected" <?php } ?>>Select Martial Status</option>
