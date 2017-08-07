@@ -100,7 +100,6 @@ p{padding: 1px 13px; font-weight:inherit; border:none;color: #444; font-weight:b
             <div class="art-movements col-md-12">
                 <p>Artists</p>
               <span style="margin-left:40%">
-              <?php   echo $this->pagination->create_links(); ?>
               </span>
               </div>
                 <?php 
@@ -118,7 +117,6 @@ p{padding: 1px 13px; font-weight:inherit; border:none;color: #444; font-weight:b
                 </div>
                 <?php }?>
             <span style="margin-left:50%">
-            <?php   echo $this->pagination->create_links(); ?>
             </span><br>
           </div>
         </div>

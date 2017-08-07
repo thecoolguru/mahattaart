@@ -294,15 +294,17 @@ public function get_header_images($cat_id)
     }
 	
 
-public function get_header_images_inner($cat_id,$limit,$start)
+public function get_header_images_inner($cat_id,$limit=0,$start=0)
     {
 	
         $this->db->select('*');
         $this->db->where('cat_id',$cat_id);
         $this->db->where('status','1');
-	$this->db->order_by('title','asc');
-	$this->db->limit($limit,$start);
-	$query=$this->db->get('header_images');
+        $this->db->order_by('title','asc');
+        if($limit != 0){
+            $this->db->limit($limit,$start);
+        }
+        $query=$this->db->get('header_images');
         return $query->result(); 
     }
 

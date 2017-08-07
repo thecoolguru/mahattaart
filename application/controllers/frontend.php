@@ -152,7 +152,7 @@ redirect(base_url());
 		}   
 		$qry .= "limit {$per_page} offset {$offset} ";
 		 
-		$data["sub_val"] = $this->frontend_model->get_header_images_inner(6,$config["per_page"], $offset); 
+		$data["sub_val"] = $this->frontend_model->get_header_images_inner(6,0,0);
 	
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/room',$data);
@@ -850,10 +850,7 @@ $subject = 'Registration confirmation';
 	}
     public function artists($offset=0)
     {
-	
-	
-	$per_page = 20;  
-		//$qry = "SELECT * FROM users ORDER BY `u_id` DESC";
+        $per_page = 20;
 		$offset = ($this->uri->segment(3) != '' ? $this->uri->segment(3):0);
 		$config["total_rows"] = $this->frontend_model->get_header_images_count(2);
 		$config['per_page']= $per_page;
@@ -871,7 +868,7 @@ $subject = 'Registration confirmation';
 		}   
 		$qry .= "limit {$per_page} offset {$offset} ";
 		 
-		$data["sub_val"] = $this->frontend_model->get_header_images_inner(2,$config["per_page"], $offset); 
+		$data["sub_val"] = $this->frontend_model->get_header_images_inner(2);
 
 
 
@@ -992,7 +989,7 @@ $subject = 'Registration confirmation';
 		}   
 		$qry .= "limit {$per_page} offset {$offset} ";
 		 
-		$data["sub_val"] = $this->frontend_model->get_header_images_inner(3,$config["per_page"], $offset); 
+		$data["sub_val"] = $this->frontend_model->get_header_images_inner(3);
 	
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/art_styles',$data);
@@ -1022,7 +1019,7 @@ $subject = 'Registration confirmation';
 		
 		$qry .= "limit {$per_page} offset {$offset} ";
 		
-		$data["sub_val"] = $this->frontend_model->get_header_images_inner('1',$config["per_page"], $offset); 
+		$data["sub_val"] = $this->frontend_model->get_header_images_inner('1');
 		
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/art_subjects',$data);

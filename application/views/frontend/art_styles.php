@@ -159,7 +159,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     
     </style>
            
-         <span style="margin-left:40%; display:block"><?php   echo $this->pagination->create_links(); ?></span>
+         <span style="margin-left:40%; display:block"></span>
                 
                        <?php 
            //$sub_val=$this->frontend_model->get_header_images(3);
@@ -200,7 +200,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 				
 		<!--div--->		   
                 </div>
-               <span style="margin-left:50%"><?php   echo $this->pagination->create_links(); ?></span><br>      
+               <span style="margin-left:50%"></span><br>      
              </div>   
           </div>
             <!-- right panel -->
