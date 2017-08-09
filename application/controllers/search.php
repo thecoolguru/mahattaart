@@ -487,7 +487,111 @@ $search_data = json_decode($search_data_raw,TRUE);
 	
 	
 	
-	
+	public function dosearch_cat($page="none",$limit="none",$search_text="none",$category_id="none",$shap="?#!",$color="%@$#")
+	{
+	// echo $category_id;
+	  $page_no=1;
+		if($page!="none")
+		{
+			$page_no=$page;
+		}
+		$no_of_res=11;
+		if($limit!="none")
+		{
+			$no_of_res=$limit;
+		}
+		$data['action']='dosearch_cat';
+           $srch_trm_raw = str_replace("%20","-",$search_text);
+
+	   if($shap!="?#!" ||  $color!="%@$#"){
+	   	$key=$search_keys;
+	   }else{
+	   	$key='*';
+	   }
+		if(is_numeric($search_text)==true){ 
+		
+		
+		if($category_id=='1' || $category_id=='2' || $category_id=='3' || $category_id=='4' || $category_id=='all' ){
+		 if($shap!="?#!"){
+			$shapes='-'.$shap;
+		  }if($color!="%@$#"){
+			$colors='-'.$color;
+		  }
+		  $search_keys=$srch_trm_raw.$shapes.$colors;
+		}elseif($category_id!='none'){
+		  $search_keys=$srch_trm_raw.'-'.$category_id;
+		}
+   
+		if($category_id=='all' && $shap!='?#!'){
+$search_api="http://api.indiapicture.in/wallsnart/live.collection_filter.php?key=$search_keys&collection_id=$search_text&page=$page_no&per_page=$limit";
+		}
+		elseif($category_id=='all' && $shap=='?#!'){
+$search_api = "http://api.indiapicture.in/wallsnart/collection.php?collection_id=$srch_trm_raw&page=$page_no&per_page=$limit";
+		}
+		 elseif(($category_id!='all') && ($category_id=='1' || $category_id=='2' || $category_id=='3' || $category_id=='4')){
+	$search_api="http://api.indiapicture.in/wallsnart/live.collection_filter.php?key=$search_keys&category=$category_id&collection_id=$search_text&page=$page_no&per_page=$limit";
+	 }
+	 elseif($category_id!='1' || $category_id!='2' || $category_id!='3' || $category_id!='4' &&  $shap!='?#!'){
+	 $search_ap="http://api.indiapicture.in/wallsnart/live.collection_filter.php?key=$search_keys&collection_id=$search_text&page=$page_no&per_page=$limit";
+	 }elseif($category_id=='1' || $category_id=='2' || $category_id=='3' || $category_id=='4' ){
+	   
+	  $search_api="http://api.indiapicture.in/wallsnart/live.collection_filter.php?key=$key&category=$category_id&collection_id=$search_text&page=$page_no&per_page=$limit";
+	}
+	  
+	 
+		}else
+		{ 
+		if($category_id=='1' || $category_id=='2' || $category_id=='3' || $category_id=='4' || $category_id=='all' ){
+		 if($shap!="?#!"){
+			$shapes='-'.$shap;
+		  }if($color!="%@$#"){
+			$colors='-'.$color;
+		  }
+		  $search_keys=$srch_trm_raw.$shapes.$colors;
+		}elseif($category_id!='none'){
+		  $search_keys=$srch_trm_raw.'-'.$category_id;
+		}
+		
+			if($category_id=='1' || $category_id=='2' || $category_id=='3' || $category_id=='4' ){
+	 $search_api = "http://api.indiapicture.in/wallsnart/search_filter.php?q=$search_keys&page=$page&category=$category_id&per_page=$limit";
+	}else{
+	$search_api = "http://api.indiapicture.in/wallsnart/search.php?q=$search_keys&page=$page&per_page=$limit";
+	}
+		}
+//echo $search_api;
+
+$get_res=$this->search_model->search_allany($page_no,$no_of_res,$search_keys);
+//print_r($get_res);
+$total_search=0;
+for($c=0;$c<count($get_res);$c++){
+$total_search= $total_search+$get_res[$c]['total'];
+}
+
+ $data['total']=$total_search;
+$data['search_data']=$get_res;
+  
+  
+
+              
+		$data['color']=$color;
+		$data['size']=$filter_size;
+		$data['price_slab']=$filter_price_slab;
+	    $data['category_id']=$category_id;
+		$data['page']=$page_no;
+		$data['limit']=$no_of_res;
+		$data['search_text']=$search_text;
+		$data['search_keys']=$search_text;
+		$data['sort_by']=$sort_by;
+		$data['filter_product_type']=str_replace('%20', ' ', $filter_product_type);
+		$data['filter_collection']=$filter_collection;
+		$data['filter_medium']=$filter_medium;
+		$data['shape'] = $shap;
+		//$data['search_data']=$this->search_model->get_search_data($category_id,$page_no,$no_of_res,$search_text,$sort_by,$filter_product_type,$filter_collection,$filter_medium,$filter_size,$filter_price_slab,$shape,$filterColor);
+		
+		$this->load->view('frontend/header',$data);
+		$this->load->view('search/search_view_cat',$data);
+		$this->load->view('frontend/footer');
+	}
 	
 	
 	   public function dosearch($page="none",$limit="none",$search_text="none",$category_id="none",$shap="?#!",$color="%@$#")

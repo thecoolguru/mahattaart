@@ -88,17 +88,16 @@ box-shadow:2px 2px 1px black inset;
 		$data=$this->cart_model->get_usercart($this->session->userdata('userid')); 
                //print_r($data);
                 $subtotal=0; $i=1;
-       
+          $update_srno=$_REQUEST['search'];
+		  $qty_update_tbl=$_REQUEST['qty_update'];
 		   $sr_no=$data[0]['sr_no'];
 		  // print_r($sr_no);
                 foreach($data as $image){
-                    
+                   //  echo $image['cart_id'].'ssss';
                     //$row=$this->search_model->get_image_data($image['image_id']); 
                     $size_data = getimagesize("http://static.mahattaart.com/158/".$image['image_name']);
                    $cart_id=$image['cart_id'];
-				   if($sr_no=="0" || $sr_no==""){
-				   $this->cart_model->update_serail_noforcart($i,$cart_id);
-				   }
+				  
             $image_alignment="";
               $image_width=$size_data[0];
             $image_height=$size_data[1];
@@ -245,12 +244,13 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
 								<td><?=$tax_prctg?></td>
 								<td><?php   
 								$tax_amt=(($wd_tax_price*$tax_prctg)/100);
-								echo round($tax_amt,2);
+								echo $tax_amt_fnl=round($tax_amt,2);
 								
 								?></td>
 								
 								<td><?php $total_amt_product=$wd_tax_price + $tax_amt ;
-								echo round($total_amt_product,2);
+								echo $total_amt_product_fnl=round($total_amt_product,2);
+								
 								?></td>
                        
 						<td>
@@ -258,14 +258,20 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
 						</td>
 						</tr>
         
-        <?php $i++; if($image['updated_price']<>'' && $image['updated_price']<>'0'){
+        <?php if($image['updated_price']<>'' && $image['updated_price']<>'0'){
         $price=$image['updated_price']; 
+		
         
                 }else{
                  $price=$image['price'];   
                 }
-                $subtotal=$subtotal+$price; 
-		} ?>
+                $subtotal=$subtotal+$total_amt_product_fnl; 
+				//echo $total_amt_product_fnl;
+				//echo $i.'sss';
+				if($update_srno=='removed' || $image['tax_goods']=='' || $qty_update_tbl!=''){
+				   $this->cart_model->update_serail_noforcart($this->session->userdata('userid'),$i,$cart_id,$tax_prctg,$tax_amt_fnl,$total_amt_product_fnl);
+				  }
+		$i++; } ?>
 		
           						
                     </tbody>
@@ -274,7 +280,7 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
 				</div>
 				</div>
      <?php
-                
+            
   }else{
        $subtotal=0; $i=1;
                 foreach($this->cart->contents() as $image){
@@ -336,15 +342,12 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
                             <td class="data1">Gift Wrap Charges</td>
                             <td class="data1">Rs. xxxx</td>
                           </tr>-->
+                          
                           <tr>
-                            <td class="data1">Tax Collected (*) VAT</td>
-                            <td class="data1">Rs. <?='5%'?></td>
-                          </tr>
-                          <tr>
-                            <td class="data2">Payable Amount </t	d>
+                            <td class="data2">Payable Amount </td>
                             <td class="data2">Rs. <?php  $TexTotal=$subtotal+$shppigCarge;
-                               $afterTex=$TexTotal*5/100;
-                               echo round(($subtotal+$afterTex),2);
+                               
+                               echo round(($TexTotal),2);
                                ?></td>
                           </tr>
                         </table>

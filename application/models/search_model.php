@@ -12,7 +12,34 @@ class Search_model extends CI_Model
         $query=$this->db->get('tbl_images_search');
         return $query->row();
     }
-	
+	public function search_allany($page_no,$no_of_res,$search_keys){
+	$array_cat=array("cat","lion","bird");
+	/*
+	$this->db->select('*');
+	$this->db->where('title',$search_keys);
+	$this->db->where('cat_id','1');
+	$query=$this->db->get('header_images');
+	$result=$query->result();
+	$array_cat=explode(",",$result[0]->keyword);
+	*/
+//echo 'ss'.count($array_cat).'ss';
+for($x=0;$x<3;$x++){
+ $search_api = "http://api.indiapicture.in/wallsnart/search.php?q=$array_cat[$x]&page=$page_no&per_page=$no_of_res";
+$opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
+$context = stream_context_create($opts);
+//echo $search_api;
+
+$search_data_raw = file_get_contents($search_api, false, $context);
+$search_data[] = json_decode($search_data_raw,TRUE);
+//$variable=$search_data['results'];
+//print_r($search_data);
+////$data['action']='dosearch';
+//$data_result=$search_data['results'];
+//return $search_data;
+
+}
+return $search_data;
+	}
 	public function get_image_id_based_on_fileName($fileName)
 {
         $sql_1="select images_id from tbl_images_search where images_filename='".$fileName."'";

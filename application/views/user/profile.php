@@ -145,80 +145,9 @@
                     <div class="profile">
                     	<div class="row">
                         	<div class="col-md-6 col-sm-6 col-xs-12 col-md-push-3 col-sm-push-3">
-<!--<form method="post"action="<?php echo base_url();?>user/profile"name="form1"id="form1">
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
 
-<tr>
-<td>Email ID</td>
-<td><input name="email" type="text" id="email" class="email"value="<?php echo $detail->email_id;?>" readonly/></td>
-</tr>
-<tr>
-<td><label for="lname">Password</label></td>
-<td><input type="text" name="pwd" id="pwd" class="lname" value="<?php echo $detail->password;?>"/>
-<br/><span style="color: red" id="pwd_error"></span></td>
-</tr>
-
-<tr>
-<td>First Name</td>
-<td><input type="text" name="fname" id="fname" class="addline2"value="<?php echo $detail->first_name;?>"/>
-<br/><span style="color: red" id="fname_error"></span></td>
-
-
-</tr>
-<tr>
-<td>Last Name</td>
-<td><input type="text" name="lastname" id="name" class="city"value="<?php echo $detail->last_name;?>"  /></td>
-</tr>
-<tr>
-<td>Address</td>
-<td><input type="text" name="address" id="address" class="state" value="<?php echo $detail->address;?>"/></td>
-</tr>
-<tr>
-<td>Country</td>
-<td><?php $country_list=get_country_name();?>
-<select id="country" name="country" class="country">
-                          <option value="-1">Select Country</option>
-                      
-                          <?php foreach($country_list as $key=>$country)	{?>
-                          <option value="<?php echo $key;?>" <?php if($detail->country==$key){?> selected="selected" <?php }?>>
-                              <?php print $country; ?>
-                          </option> 
-                          <?php	} ?>
-                  </select></td>
-</tr>
-<tr>
-<td>ZIP Code</td>
-<td><input type="text" onkeypress="return numbersonly(event) " maxlength="6" name="zip" id="zip" class="zip" value="<?php echo $detail->zip_code;?>"/></td>
-</tr>
-<tr>
-<td>Phone / Contact Number</td>
-<td><input type="text" name="phone" onkeypress="return numbersonly(event) " maxlength="12" id="phone" class="phone"value="<?php echo $detail->contact;?>" />
-<br/><span style="color: red" id="phone_error"></span></td></tr>
- <tr>
-<td>Gender</td>
-<td><select name="gender" id="gender" class="country">
-<option value="" <?php if($detail->gender==''){?> selected="selected" <?php } ?>>Select gender</option>
-<option <?php if($detail->gender=='Male'){?> selected="selected" <?php } ?>>Male</option>
-<option <?php if($detail->gender=='Female'){?> selected="selected" <?php } ?>>Female</option>
-
-</select></td>
-</tr>
-  <tr>
-<td>Marital Status</td>
-<td><select name="mstatus" id="mstatus" class="country">
-   <option value="" <?php if($detail->martial_status==''){?> selected="selected" <?php } ?>>Select Martial Status</option>
-<option <?php if($detail->martial_status=='Married'){?> selected="selected" <?php } ?>>Married</option>
-<option <?php if($detail->martial_status=='Unmarried'){?> selected="selected" <?php } ?>>Unmarried</option>
-
- </select></td>
-</tr>
-<tr>
-<td>Company Name</td>
-<td><input type="text" name="company_name" id="company_name" class="state" value="<?=$detail->company_name;?>"/></td>
-</tr>
-</table>
-<input type="submit"value="Save" style=" width:120px; height:25px; background-color:#336699; color:#FFFFFF; border-radius: 5px; border:none; margin-top:30px; margin-left:144px;" ></form>-->
-
+ <p align="center"><span style="color: red; margin-right: 125px;
+    "><?php print $msg;?></span></p><br>
 <form class="form-horizontal" method="post"action="<?php echo base_url();?>user/profile"name="form1"id="form1">
 <div class="form-group">
 <label class="col-md-3 control-label">Email ID</label>
@@ -309,7 +238,7 @@
 
 <div class="form-group">
 <div class="col-md-9 col-md-push-3">
-<button type="button" class="btn social_icon" style="background-color:#0099cc; color:#fff;"> Save </button>
+<input type="submit"value="Save" style=" width:120px; height:25px; background-color:#336699; color:#FFFFFF; border-radius: 5px; border:none; margin-top:30px; margin-left:144px;" >
 </div>
 </div>
 </form>

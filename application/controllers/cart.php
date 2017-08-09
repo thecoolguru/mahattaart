@@ -198,7 +198,51 @@ class Cart extends CI_Controller
 
 
 
-
+public function update_customer(){
+	
+	  $user_id=$this->session->userdata('userid');
+	  $name=$this->input->post('name');
+	   $getpurpose=$this->input->post('getpurpose');
+	  $company_name=$this->input->post('company_name');
+	  $lastname=$this->input->post('lastname');
+	 $pincode=$this->input->post('pincode');
+	 $address=$this->input->post('address');
+	 $city=$this->input->post('city');
+	 $state=$this->input->post('state');
+	 $phone=$this->input->post('phone');
+	 $email_reciept=$this->input->post('email_reciept');
+	 $data=array('first_name'=>$name,
+	 'zip_code'=>$pincode,'address'=>$address,'city'=>$city,'state'=>$state,'contact'=>$phone,'last_name'=>$lastname,'email_reciept'=>$email_reciept,'purpose'=>$getpurpose
+	 );
+	//print_r($data);
+	 $this->frontend_model->update_customer($data,$state);
+	 $cart_det=$this->cart_model->get_usercart($user_id);
+	 if($state=='Delhi'){
+	 $gst='half';
+	 }else{
+	  $gst='full';
+	 }
+	 foreach($cart_det as $cart){
+	 $tax_goods=$cart['tax_goods'];
+	 $tax_amount=$cart['tax_amount'];
+	 $cart_id=$cart['cart_id'];
+	 if($gst=='half'){
+	 $tax_cgst=($tax_goods/2);
+	 $tax_amt_cgst=round(($tax_amount/2),2);
+	 $data_cart=array('tax_cgst'=>$tax_cgst,'tax_amt_cgst'=>$tax_amt_cgst,'tax_sgst'=>$tax_cgst,'tax_amt_sgst'=>$tax_amt_cgst,'tax_igst'=>'','tax_amt_igst'=>'');
+		 }else{
+	 $tax_igst=$tax_goods;
+	 $tax_amt_igst=$tax_amount;
+	 $data_cart=array('tax_igst'=>$tax_igst,'tax_amt_igst'=>$tax_amt_igst,'tax_cgst'=>'','tax_amt_cgst'=>'','tax_sgst'=>'','tax_amt_sgst'=>'');
+	 }
+	$this->db->where('user_id',$user_id);
+	$this->db->where_in('cart_id',$cart_id);
+	$query=$this->db->update('tbl_cart',$data_cart);
+	
+	 }
+	 
+	
+	}
         
 
         

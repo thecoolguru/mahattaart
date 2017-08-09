@@ -45,7 +45,7 @@ if(!$key){
         
         <!-- checkout -->
         <div class="checkout">
-        	<div class="checkout-l-c col-md-5 col-sm-5 col-xs-12">
+        	<div class="checkout-l-c col-md-7 col-sm-7 col-xs-12">
             	<p>Shipping Information <a id="select" href="javascript:void(0)" onClick="drop('slidedrop','select')" class="drop"><i class="ci"></i></a></p>
                 
                 <div style="display:block;" id="slidedrop">
@@ -314,19 +314,35 @@ if(!$key){
                	
                             <div class="clr"></div>
                             <div class="detail">
-                            
-                            <table width="100%" cellpadding="10px" cellspacing="0px">
-                              <tr>
-                                <td>Product</td>
-                                <td>Unit Price</td>
-                                <td>Quantity</td>
-                                <td>Total Rs.</td>
-								<input type="hidden" class="" value="<?php   $_REQUEST['qty_update'];?>"
+							
+                            <div class="row">
+		 <div id="no-more-tables">
+                           <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                	<thead class="cf">
+                                                <tr>
+                                                                <th>S.No.</th>
+                                                                <th>Item</th>
+                                                               
+                                                               
+                                                                <th>Quantity</th>
+																  <th>Price</th>
+																<th>Tax(%)</th>
+																<th>Tax Amt.</th>
+                                                                <th >Total Price</th>
+																  
+																
+                                                </tr>
+                                </thead>
+								<tbody>
+								
                               </tr>
                               <?php if($this->session->userdata('userid')){ 
-		$data=$this->cart_model->get_usercart($this->session->userdata('userid')); $subtotal=0; $i=1;
+							  $grand_total=0;
+							 $qty_update_tbl=$_REQUEST['qty_update'];
+		$data=$this->cart_model->get_usercart($this->session->userdata('userid')); $subtotal=0; $i=1;$sr=1;
 		foreach($data as $image){?>
                               <tr>
+							  <td><?=$sr?></td>
                                   <td>
 								  <div class="mainhor" style="border-image: url('<?php echo base_url();?>images/uploaded_pdf/frames/horizontal/<?= $image['frame_color'];?>.jpg') 15 15 15 15 round round;">
                                       <div style=" background:url('<?=base_url()?>images/uploaded_pdf/mount/<?=$image['mount_color']?>.jpg') no-repeat scroll 0% 0% / cover; padding:10px">
@@ -350,7 +366,7 @@ if(!$key){
                                     </div> 
 									</div> 
                                   </td>
-                                <td><?php echo round($image['price']/$image['qty'],2);?></td>
+                                
                                 <td><span id="qty_btn<?=$image['cart_id']?>"><?= $image['qty'];?></span><button style="margin-left:10px;" id="edit_button<?=$image['cart_id']?>" onclick="edit_qty(<?=$image['cart_id']?>);"><span class="glyphicon glyphicon-pencil"></span>Edit</button>
 								<div id="divfor_update<?=$image['cart_id']?>" style="display:none;">
 								<form class="form-horizontal">
@@ -380,18 +396,31 @@ if(!$key){
                                 <td>
                                     <?php if($image['updated_price']){?>
             <img
-                src="<?=base_url()?>assets/images/rupee-img-price.gif" /> <?= $image['updated_price'];?>
+                src="<?=base_url()?>assets/images/rupee-img-price.gif" /> <?php echo $price_updt_ornot=$image['updated_price'];?>
                 <?php } else{?>
                 <img
-                    src="<?=base_url()?>assets/images/rupee-img-price.gif" /> <?= $image['price'];?>
+                    src="<?=base_url()?>assets/images/rupee-img-price.gif" /> <?php echo $price_updt_ornot=$image['price'];?>
                 <?php }?>
                                    
                                     
                                 </td>
+								<?php $cart_id=$image['cart_id'];?>
+								<td><?php echo $tax_prctg=$image['tax_goods'];?></td>
+								<td><?php $tax_amt=(($price_updt_ornot*$tax_prctg)/100);
+								echo $tax_amt_fnl=round($tax_amt,2);?></td>
+								<td><?php echo $total_price_per=$tax_amt_fnl+$price_updt_ornot;?></td>
                               </tr>
-                <?php } } ?>
+                <?php 
+				
+				 $grand_total=$grand_total+$total_price_per;
+				 if($qty_update_tbl!=''){
+				 $this->cart_model->update_serail_noforcart($this->session->userdata('userid'),$sr,$cart_id,$tax_prctg,$tax_amt_fnl,$total_price_per);
+				 }
+				$sr++; } } ?>
+				</tbody>
                             </table>
-                            
+                            </div>
+							</div>
                             </div>
 							
                             <script>
@@ -432,70 +461,32 @@ if(!$key){
                             
                             
                             <table width="100%" cellpadding="10px;" cellspacing="0">
-<!--                              <tr>
-                                <td>Discount</td>
-                                <td>33</td>
-                              </tr>
-                              <tr>
-                                <td>Sub Total Rs.2308.00</td>
-                                <td>699</td>
-                              </tr>
-                              <tr>
-                                <td>Tax Collected (*)  Rs.xxx</td>
-                                <td>15</td>
-                              </tr>
-                              <tr>
-                                <td>Shipping Charges Rs.xxx</td>
-                                <td>34</td>
-                              </tr>
-                              <tr>
-                                <td>Gift Wrap Charges Rs.xxx</td>
-                                <td>0</td>
-                              </tr>-->
-                                 <?php
-                                 foreach($data as $image){
-                                    if($image['cart_quantity']>1)
-            {
-            $subtotal=$subtotal+$image['updated_price'];
-            }
-            else
-            {
-                $subtotal=$subtotal+$image['price'];
-            }
-                                 }
-                                    ?>
+
+                                
                               <tr>
                                 <td>Payable Amount</td>
                                 <td><img
-                    src="<?=base_url()?>assets/images/rupee-img-price.gif" /> <?= $subtotal;?></td>
+                    src="<?=base_url()?>assets/images/rupee-img-price.gif" /> <?= $grand_total;?></td>
                               </tr>
-							   <tr>
-                                <td>Payable Amount Inclusive of 5% Tax.</td>
-                                <td><img
-                    src="<?=base_url()?>assets/images/rupee-img-price.gif" /> <?php 
-					echo $inclusive_tax=round(($subtotal+($subtotal*5)/100),2);
-					
-					//echo $subtotal;?></td>
-					
-                              </tr>
+							   
 							   <tr>
 							   
                                 <td>Apply Coupon Code</td>
                                 <td><input type="text" name="apply_coupon"  id="apply_coupon"><button class="">Apply</button></td>
                               </tr>
 							   <tr>
-                                <td>Final Amount Payable Inclusive of 5% Tax</td>
+                                <td>Grand Total Amount</td>
                                 <td><img
                     src="<?=base_url()?>assets/images/rupee-img-price.gif" /> <?php
 					
-					echo $inclusive_tax=round(($subtotal+($subtotal*5)/100),2);
+					 echo $grand_total;
 					
 					 ?></td>
                               </tr>
 							 
                             </table>
 							
-							<form  method="post" action="http://mahattaart.com/index.php/cart/CCAvenue_check_out" name="payment_ccavenue" method="post">
+				        <form  method="post" action="http://mahattaart.com/index.php/cart/CCAvenue_check_out" name="payment_ccavenue" method="post">
                          
 						 <?php
 						 $seven_d_r_no=mt_rand(1000000,9999999);
@@ -517,7 +508,7 @@ if(!$key){
 	<input type="hidden" name="merchant_id" value="<?php echo '64544'; ?>">
   
  <input type="hidden" name="currency" value="<?php echo 'INR' ?>">
- <input type="hidden" name="amount" value="<?php echo $inclusive_tax; ?>">
+ <input type="hidden" name="amount" value="<?php echo $grand_total; ?>">
   <input type="hidden" name="order_id" value="<?=$order_id_auto?>">
   <input type="hidden" name="redirect_url" value="<?=$redirect_url?>" />
 <input type="hidden" name="cancel_url" value="<?=$cancel_url?>" />
@@ -525,7 +516,7 @@ if(!$key){
 <input type="hidden" name="billing_name" id="billing_name" value="" />
 <input type="hidden" name="billing_address" id="billing_address" value="" />
 <input type="hidden" name="billing_city" id="billing_city" value="" />
-<input type="hidden" name="billing_state" id="billing_state" value="" />
+<input type="hiden" name="billing_state" id="billing_state" value="" />
 <input type="hidden" name="billing_zip" id="billing_zip" value="" />
 <input type="hidden" name="billing_country"  id="billing_country" value="India" />
 <input type="hidden" name="billing_tel" id="billing_tel" value="" />
@@ -874,10 +865,11 @@ function checkValidateSelect1()
 	 //alert(setaddress)
 	  $.ajax({
 	      type:'post',
-		  url:'<?=base_url()?>index.php/frontend/update_customer',
+		  url:'<?=base_url()?>index.php/cart/update_customer',
 		  data:'name='+firstname+'&company_name='+company_name+'&pincode='+pincode+'&address='+address+'&city='+city+'&state='+state+'&phone='+phone+'&lastname='+lastname+'&email_reciept='+email_reciept+'&getpurpose='+purpose,
 		  success: function(response){
 		//alert(response);
+	
 		
 		  
 		  }

@@ -875,12 +875,12 @@
          
           
             ?>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$sub_val[0]->keyword?>/all"><img src="<?php print base_url();?><?=$sub_val[0]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[0]->title)?> </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$sub_val[1]->keyword?>/all"><img src="<?php print base_url();?><?=$sub_val[1]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[1]->title)?> </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$sub_val[2]->keyword?>/all"><img src="<?php print base_url();?><?=$sub_val[2]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[2]->title)?> </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$sub_val[3]->keyword?>/all"><img src="<?php print base_url();?><?=$sub_val[3]->menu_image?>" border="0" class="img-responsive" /> <span class="dblock1"> <?php echo ucwords($sub_val[3]->title)?> </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$sub_val[4]->keyword?>/all"><img src="<?php print base_url();?><?=$sub_val[4]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"><?php echo ucwords($sub_val[4]->title)?> </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$sub_val[5]->keyword?>/all"><img src="<?php print base_url();?><?=$sub_val[5]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[5]->title)?> </span></a></div>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/11/<?=$sub_val[0]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[0]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[0]->title)?> </span></a></div>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/11/<?=$sub_val[1]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[1]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[1]->title)?> </span></a></div>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/11/<?=$sub_val[2]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[2]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[2]->title)?> </span></a></div>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/11/<?=$sub_val[3]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[3]->menu_image?>" border="0" class="img-responsive" /> <span class="dblock1"> <?php echo ucwords($sub_val[3]->title)?> </span></a></div>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[4]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[4]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"><?php echo ucwords($sub_val[4]->title)?> </span></a></div>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[5]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[5]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[5]->title)?> </span></a></div>
 <div style="clear:both"></div>
 <div class="sub-hor fist-sub-bar">
 <div class="rowour">
