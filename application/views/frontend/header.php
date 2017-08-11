@@ -500,7 +500,7 @@
               <div id="sidebar1" onClick="close_panel()"><img src="http://beta.mahattaart.com/images/contact.png"></div>
                 <div id="heade">
                   <div id="results" style="color:red"></div>
-                  <form name="frm_contact" id="contactus_save">
+                  <form name="frm_contact" id="contactus_save" style="position:relative; margin:30px 0">
                   <div class="pull-left" style="display:block;width:100%;margin-bottom:10px">
                       <div class="pull-left">
                           <strong>Call us at:</strong><br>
@@ -518,25 +518,25 @@
                   <input class="formtex" type="text" name="dcompany" placeholder="Your Company" id="dcompany">
                   <input class="formtex" type="text" name="dcity" placeholder="Your City" id="dcity">
                   <textarea class="formtex" placeholder="Your Query" name="dtarea" id="dtarea"></textarea>
-                  <button class="center-block" id="dsend">Send Message</button>
+                  <button class="center-block" id="dsend">Submit</button>
                   </form>
                 </div>
             </div>
 </div></div>
 
 <style>
-    #dsend {
-        background: none repeat scroll 0 0 orange;
-        border: 0;
-        color: #fff;
-        width: 60%;
-        font-size: 22px;
-        font-weight: bolder;
-        padding: 3px;
-        border-radius: 3px;
-        cursor: pointer;
-        margin-top: 20px
-    }
+#dsend {
+	background: none repeat scroll 0 0 orange;
+	border: 0;
+	color: #fff;
+	/* width: 50%; */
+	font-size: 16px;
+	/* font-weight: bold; */
+	padding: 8px 30px;
+	border-radius: 3px;
+	cursor: pointer;
+	margin-top: 20px;
+}
     #slide {
         width: 445px;
         top: 100px;

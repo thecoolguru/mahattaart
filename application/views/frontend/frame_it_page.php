@@ -1961,8 +1961,8 @@ $bordered_ac_srface='Giclee Print ';
   <div class="pagination" style="margin:0px ;"> <span><a href="<?php print base_url();?>">Home</a> > Frame It </span> </div>
     <div class="frame-it-wrapper col-md-12">
     <div class="row">
-      <div class="col-md-4 col-sm-4 col-xs-12 col-md-push-1 col-sm-push-1 col-xs-push-1">
-      <div class="frame-it-main">
+      <div class="col-md-7 col-sm-7 col-xs-12">
+      <div class="frame-it-main text-center">
    <!--   starts for print only div-->
    		<div  class="clickbttonforprint" style="display:none;">
 		  <img src="http://static.mahattaart.com/398/<?=$image_name;?>">
@@ -2234,7 +2234,7 @@ $(".after_first_slide"+z+"").append(item_images);
 </script>
         </div>
       </div>
-      <div class="col-md-6 col-sm-6 col-xs-12 col-xs-push-2">
+      <div class="col-md-5 col-sm-5 col-xs-12">
         <div class="frame-it-right-panel">
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -2343,7 +2343,7 @@ $(".after_first_slide"+z+"").append(item_images);
               <td align="right" ><strong><img src="<?=base_url()?>assets/images/frameit/rupee.gif" alt="r" align="absmiddle" /><span id="FrameCost"><?php echo round($FrameCost,2)?> </span></strong></td>
             </tr>
             <tr class="for_print_hide for_mount_re">
-              <td><strong>Mount Size:</s	trong></td>
+              <td><strong>Mount Size:</strong></td>
               <td>&nbsp;</td>
               <td align="right" id="mount_size">1"</td>
             </tr>
@@ -2402,17 +2402,9 @@ onclick="save_to_cart();" class="buyprint">Buy Print Only </a>
 $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow');    });
 	
 </script>
-          <div class="view"> <a style="width: auto;
-    margin: 0;
-    padding: 6px 8px;
-    background:#d3131b;
-    color: #fff;
-    text-decoration: none !important;
-" <?php  if(!$this->session->userdata('userid')){?>
-								href="javascript:void(0)" onclick="login('');"
-<?php }else{?>
-								href="javascript:addToCart()"
-								<?php  }?> >Add to Cart</a>&nbsp;<a style="width: auto;color:white; margin: 0;padding: 6px 8px; background:#d3131b;" href="javascript:;"  onclick="addtogallery('<?=$api_image_id;?>','<?=$image_name;?>');" id="tgl">SAVE TO GALLERY</a> </div>
+          <div class="view"> 
+          <a style="width:auto;margin: 0; padding: 6px 8px;background:#d3131b;color: #fff;text-decoration: none !important;" <?php  if(!$this->session->userdata('userid')){?> href="javascript:void(0)" onclick="login('');"<?php }else{?> href="javascript:addToCart()" <?php  }?> >Add to Cart</a>
+          <a style="width: auto;color:white; margin: 0;padding: 6px 8px; background:#d3131b;" href="javascript:;"  onclick="addtogallery('<?=$api_image_id;?>','<?=$image_name;?>');" id="tgl">SAVE TO GALLERY</a> </div>
 								<div style="margin-top:10px;margin-left:20px">
 		
 		</div>
@@ -2420,7 +2412,8 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
         </div>
       </div>
     </div></div>
-    <div class="col-md-12">
+    
+    <div class="row"><div class="col-md-12">
     <div class="tabs-wrapper" <?php if ($img_shape->shapes=='Slim' || $img_shape->shapes=='Vertical'){ ?> style="margin-top: 116px;" <?php }?>>
     <div class="row">
           <ul id="tabs" class="col-md-8" style="margin-bottom:0">
@@ -2457,7 +2450,7 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
   </style>
 				 
           <div class="row">
-              <div class="col-md-2"><div id="content">
+              <div class="col-md-2 col-sm-2 col-xs-3"><div id="content">
               
                 <div id="tab7" style="display:block;">
                   <table width="70%" border="0" cellspacing="0" cellpadding="0">
@@ -2672,7 +2665,7 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
                   </tr>
     
               </table>-->
-                    <table width="50%" border="0" cellpadding="4" cellspacing="0" style="margin:auto;" class="bor" id="mat2" style="display:none;">
+                    <table width="50%" border="0" cellpadding="4" cellspacing="0" class="bor" id="mat2" style="display:none;margin:auto;">
                     
                     <tr>
                       <td><a href="javascript:;" class="color256" onClick="change_color2d('<?php echo $comps['1'];?>','<?php echo $mount_list->framenmount_sale_price;?>','<?php echo $mount_list->framenmount_colour;?>');">
@@ -2805,7 +2798,7 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
                 </div>
                 
       </div></div>
-      <div id="tab5" style="display:none;">
+      <div id="tab5" style="display:none;" class="col-md-10 col-sm-10">
                   <table class="bor">
                     <tr>
                       <td><a href="javascript:;" class="color1" onClick="javascript:change_wallcolor('#FFFBF8');"></a></td>
@@ -2887,7 +2880,7 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
                       </tr>
                       </table>
                 </div>
-      <div id="myCarousel" class="carousel slide col-md-10" data-ride="carousel">
+      <div id="myCarousel" class="carousel slide col-md-10 col-sm-10" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active for_first_slide"></li>
@@ -2922,7 +2915,7 @@ $rows_slider=round($rows);
   //color,size,shape,f_code,f_rate,f_name
   ?>	
   
-	  <span class="col-md-3" onClick="return myfun('<?=$tbl_web_pricee[$x]->frame_color?>','<?=$tbl_web_pricee[$x]->frame_size_inch;?>','<?=$f_shape?>','<?=$tbl_web_pricee[$x]->frame;?>','<?=$tbl_web_pricee[$x]->frame_rate;?>','<?=$tbl_web_pricee[$x]->frame_size;?>');"><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/<?=$tbl_web_pricee[$x]->frame_code.'.jpg'?>" alt="first" class="img-responsive"style="margin:10px;">
+	  <span class="col-md-3 col-sm-3 col-xs-12" onClick="return myfun('<?=$tbl_web_pricee[$x]->frame_color?>','<?=$tbl_web_pricee[$x]->frame_size_inch;?>','<?=$f_shape?>','<?=$tbl_web_pricee[$x]->frame;?>','<?=$tbl_web_pricee[$x]->frame_rate;?>','<?=$tbl_web_pricee[$x]->frame_size;?>');"><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/<?=$tbl_web_pricee[$x]->frame_code.'.jpg'?>" alt="first" class="img-responsive"style="margin:10px;">
       	<div class="text-center">
 		<?=$tbl_web_pricee[$x]->frame;?>
         </div>
@@ -3002,6 +2995,6 @@ $rows_slider=round($rows);
   		</div>
   
 </div>
-	</div>
+	</div></div>
 	</div>
 	</div>

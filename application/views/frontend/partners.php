@@ -11,15 +11,17 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
  }
  
 ?>
-<div class="main-container container">
+<div class="container">
+<div class="row">
+        <!-- art style -->
+        <div class="art-style col-md-12">
         <div class="pagination" style="margin:0">
             <span> <a href="#">HOME</a> > Mahatta-Art > <span> Partner</span> </span>
         </div>    	
-        <!-- art style -->
-        <div class="art-style">
+        <div class="row">
         	
             <!-- aside -->
-            <aside class="left-panel-page">
+            <aside class="left-panel-page col-md-2 col-xs-3">
             	<p>Let Us Help</p>
             	<div class="list">
                 	<ul>
@@ -53,7 +55,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
             <!-- aside -->
             
             <!-- right panel -->
-            <div class="right-panel-page">
+            <div class="right-panel-page col-md-10 col-xs-9">
             	
                 <!--  Art Movements -->
                 	<div class="art-movements">
@@ -63,19 +65,21 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                         </div>
                     </div>
                     
-                    <div class="career-page">
-                     	<div class="partner">
-                        	<ul>
-                            	<li><a href="#"><img src="<?php print base_url();?>assets/img/EClogo.jpg" class="img-responsive" /></a></li>
-                            	<li><a href="#"><img src="<?php print base_url();?>assets/img/UIGlogo.jpg" class="img-responsive" /></a></li>
-                            	<li><a href="#"><img src="<?php print base_url();?>assets/img/tetralogoandname.jpg" class="img-responsive" /></a></li>
-                            </ul>
+                    <div class="row partner">
+                        	<div class="col-xs-12 col-sm-4 col-md-4">
+                            	<img src="<?php print base_url();?>assets/img/EClogo.jpg" class="img-responsive" />
+                            </div>
+                        	<div class="col-xs-12 col-sm-4 col-md-4">
+                            	<img src="<?php print base_url();?>assets/img/UIGlogo.jpg" class="img-responsive" />
+                            </div>
+                        	<div class="col-xs-12 col-sm-4 col-md-4">
+                            	<img src="<?php print base_url();?>assets/img/tetralogoandname.jpg" class="img-responsive" />
+                            </div>
                         </div>
-                    </div>
                 </div>
                 <!--  Art Movements -->
  
-            </div>
+            </div></div>
             <!-- right panel -->
             
-        </div>
+        </div></div>

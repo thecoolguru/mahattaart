@@ -11,14 +11,16 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
  }
  
 ?>
-<div class="main-container container">
+<div class="container">
+<div class="row">
+        <!-- art style -->
+        <div class="art-style col-md-12">
         <div class="pagination" style="margin:0">
             <span> <a href="#">HOME</a> > Mahatta-Art > <span> Career</span> </span>
         </div>    	
-        <!-- art style -->
-        <div class="art-style">
+        <div class="row">
             <!-- aside -->
-            <aside class="left-panel-page">
+            <aside class="left-panel-page col-md-2 col-xs-3">
             <p>Let Us Help</p>
             	<div class="list">
                 	<ul>
@@ -52,17 +54,17 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
             <!-- aside -->
             
             <!-- right panel -->
-            <div class="right-panel-page">
+            <div class="right-panel-page col-md-10 col-xs-9"><div class="row">
             	
                 <!--  Art Movements -->
-                	<div class="art-movements col-sm-12" style="padding-left:0 !important">
-                        <div class="art-inner" style="margin:0 !important">
+                	<div class="art-movements col-sm-12">
+                        <div class="art-inner">
                             <p>Career</p>
                             <img src="<?php print base_url();?>assets/img/career.jpg" border="0" class="img-responsive" />
                         </div>
                     </div>
                     
-                    <div class="career-page col-sm-12" style="padding-left:0 !important">
+                    <div class="career-page col-sm-12">
                         <h2>About Working for MahattaArt</h2>
                         <p>MahattaArt is made up of talented people who are original thinkers and who love a culture where innovation, creativity and results are valued. 
                         Since its inception in 2010, MahattaArt has grown to be a professional development and advancement for our employees. MahattaArt is an ambitious company, 
@@ -79,10 +81,10 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                         <h2 class="margin-top">Location</h2>
                         <p>Delhi</p>
                     </div>
-                </div>
+                </div></div>
                 <!--  Art Movements -->
  
-            </div>
+            </div></div>
             <!-- right panel -->
             
-        </div>
+        </div></div>

@@ -11,15 +11,17 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
  }
  
 ?>
-<div class="main-container container">
-      <div class="pagination" style="margin:0">
-            <span> <a href="<?=base_url()?>frontend/index"> HOME </a> > Terms & Policies > <span> Terms of Use </span> </span>
-      </div>
+<div class="container">
+<div class="row">
       <!-- art style -->
-        <div class="art-style">	
+        <div class="art-style col-md-12">
+          <div class="pagination" style="margin:0">
+                <span> <a href="<?=base_url()?>frontend/index"> HOME </a> > Terms & Policies > <span> Terms of Use </span> </span>
+          </div>
+        <div class="row">	
         	
             <!-- aside -->
-            <aside class="left-panel-page">
+            <aside class="left-panel-page col-md-2 col-xs-3">
             	<p>Let Us Help</p>
             	<div class="list">
                 	<ul>
@@ -53,7 +55,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
             <!-- aside -->
             
             <!-- right panel -->
-            <div class="right-panel-page">
+            <div class="right-panel-page col-md-10 col-xs-9">
             	
                 <!--  Art Movements -->
                 	<div class="art-movements">
@@ -135,7 +137,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                 </div>
                 <!--  Art Movements -->
  
-            </div>
+            </div></div>
             <!-- right panel -->
             
-        </div>
+        </div></div>

@@ -146,8 +146,7 @@
                     	<div class="row">
                         	<div class="col-md-6 col-sm-6 col-xs-12 col-md-push-3 col-sm-push-3">
 
- <p align="center"><span style="color: red; margin-right: 125px;
-    "><?php print $msg;?></span></p><br>
+ <p class="text-center"><span style="color: red;"><?php print $msg;?></span></p><br>
 <form class="form-horizontal" method="post"action="<?php echo base_url();?>user/profile"name="form1"id="form1">
 <div class="form-group">
 <label class="col-md-3 control-label">Email ID</label>
@@ -238,7 +237,7 @@
 
 <div class="form-group">
 <div class="col-md-9 col-md-push-3">
-<input type="submit"value="Save" style=" width:120px; height:25px; background-color:#336699; color:#FFFFFF; border-radius: 5px; border:none; margin-top:30px; margin-left:144px;" >
+<input type="submit" value="Save" class="btn social_icon" style="background-color:#0099cc; color:#fff;">
 </div>
 </div>
 </form>

@@ -11,19 +11,16 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
  }
  
 ?>
-<div class="main-container container">
+<div class="container">
+<div class="row">
     	
         <!-- about content -->
-        <div class="pagination">
-        	<span> <a href="<?=base_url()?>frontend/index">HOME</a> > <span> ABOUT MAHATTA  ART</span> </span>
+        <div class="art-style col-md-12">
+            <div class="pagination">
+                <span> <a href="<?=base_url()?>frontend/index">HOME</a> > <span> ABOUT MAHATTA  ART</span> </span>
+            </div>
         </div>
-        
-        
-        
-        
-      
-        	
-       <div class="aboute abuth1">
+       <div class="aboute abuth1 col-md-12">
        
       <h1>History </h1>  
        
@@ -36,13 +33,7 @@ In 2002, Mahatta evolved in to the digital photography by venturing in to the on
 
         </div>
 
-        	
-        
-      
-        
-        
-        
-         <div class="para03">
+         <div class="aboute para03 col-md-12">
         		<h1>Who are we? </h1>
             <div class="row">
             <div class="col-md-6 about2">
@@ -60,13 +51,7 @@ We are a print on demand business model with more than 5.5 Lakh Images including
              
            
         </div>
-        
-        
-        
-        
-        
-        
-        <div class="para02">
+        <div class="aboute para02 col-md-12">
         	<h1>Our Mission</h1>
             <div class="row">
             <div class="col-md-3 col-sm-6 about-img">
@@ -98,10 +83,7 @@ We empower artists to make use of our platform and processes to sell their artwo
              
            
         </div>
-        
-        
-        
-        <div class=" para03 para05">
+        <div class="para03 para05 col-md-12">
         	<h1>Our Vision</h1>
             <div class="row">
             
@@ -117,17 +99,7 @@ We empower artists to make use of our platform and processes to sell their artwo
              
            
         </div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <div class="para02">
+        <div class="para02 col-md-12">
         	<h1 class="blue"></h1>
         	<article>
             	<img src="<?php print base_url();?>assets/img/gra-1.jpg" width="302" height="165" border="0" class="width01 img-responsive">
@@ -141,15 +113,16 @@ We empower artists to make use of our platform and processes to sell their artwo
         </div>
         <!-- about content -->
         
-    </div>
+    </div></div>
     
-    <style>.aboute p {
+    <style>
+	.aboute p {
    
     font-size: 13px;
   
     text-align: justify;
     color: #868686;
-	margin:15px 0px 15px 0px;
+	margin:10px 0px;
 }
 
 
@@ -183,6 +156,5 @@ We empower artists to make use of our platform and processes to sell their artwo
     font-weight: normal;
     color: #000;
     margin: 5px 0 5px 0;    padding: 4px;text-transform:lowercase;}
-	.about2 p{ padding: 10px 0px 10px 0px;}
 
 </style>

@@ -97,8 +97,7 @@
  
 .centre{ margin:0 13px !important;}
 
-.career-page{margin:10px 0; padding-left:0}
-.career-page h2{margin:0; padding:0 0 8px 0; font-size:27px; /*color:#0e3e92;*/ color:#000; font-family: 'BebasNeueRegular',Arial,Helvetica,sans-serif;font-size:}
+.career-page h2{margin-bottom:0; padding:0 0 8px 0; font-size:27px; /*color:#0e3e92;*/ color:#000; font-family: 'BebasNeueRegular',Arial,Helvetica,sans-serif;font-size:}
 .career-page p{margin:0; padding:0 0 10px 0; font-size:13px; color:#868686;line-height:20px;}
 .career-page span{font-style:normal; font-size:13px; color:#868686;}
 .career-page span a{color:#0e3e92;}
@@ -419,7 +418,7 @@ p.cartfare{font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#6d6d
 .detail{margin:0; padding:10px; width:auto;} 
 .detail table{margin:0; border:1px solid #e0e0ed; background:#ffffff; padding:4px;}
 .detail table tr td{vertical-align:top; padding:10px;}
-.detail table tr:first-child{font-size:15px; color:#000;}
+.detail table tr:first-child{font-size:15px; color:#000;background:#e0e0de;}
 .detail table tr:last-child{ color:#333;}
 .detail table tr strong{font-size:12px; margin:0; padding:0; background:none; border:none;}
 
