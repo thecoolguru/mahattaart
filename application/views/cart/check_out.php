@@ -375,7 +375,7 @@ if(!$key){
     <div class="form-group">
       
         <div class="col-xs-10">
-                               <input type="text" style="width:30px" name="qty_update" value="<?=$image['qty']?>" id="qty_update<?=$image['cart_id']?>" >
+						   <input type="text" style="width:30px" class="by_keyup_update" name="qty_update" value="<?=$image['qty']?>" id="qty_update<?=$image['cart_id']?>" >
 		                       
         </div>
     </div>
@@ -432,6 +432,7 @@ if(!$key){
 	
 							function edit_qty(x){
 	//alert(x);
+	by_keyup_update(x);
 	$('#qty_btn'+x).hide();
 	$('#edit_button'+x).hide();
 	$('#divfor_update'+x).show();
@@ -516,7 +517,7 @@ if(!$key){
 <input type="hidden" name="billing_name" id="billing_name" value="" />
 <input type="hidden" name="billing_address" id="billing_address" value="" />
 <input type="hidden" name="billing_city" id="billing_city" value="" />
-<input type="hiden" name="billing_state" id="billing_state" value="" />
+<input type="hidden" name="billing_state" id="billing_state" value="" />
 <input type="hidden" name="billing_zip" id="billing_zip" value="" />
 <input type="hidden" name="billing_country"  id="billing_country" value="India" />
 <input type="hidden" name="billing_tel" id="billing_tel" value="" />
@@ -956,4 +957,23 @@ $(document).ready(function(){
 $('#disablefordetails').click(function(){return false;});
 
 });
+function by_keyup_update(id_val){
+$(".by_keyup_update").keyup(function () { 
+//alert(id_val)
+   // var id=$('.by_keyup_update').attr('id');
+	//alert(id)
+    var newValue = $('#qty_update'+id_val).val().replace(/[^1-9]/g,'');
+	//	alert(newValue.length)
+	
+	if(newValue.length>=1){
+	//alert('sss')
+	var newValue = $('#qty_update'+id_val).val().replace(/[^0-9]/g,'');
+	//alert(newValue.length)
+	
+	}
+	
+    $('#qty_update'+id_val).val(newValue);
+	 
+ });
+ }
 </script>

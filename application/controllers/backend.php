@@ -8759,13 +8759,7 @@ if($_FILES['menu_image']['name']){
     
    $menu_image=$edit_menu_image; 
 }
-//echo $edit_file;
-if(move_uploaded_file($_FILES['file']['tmp_name'],base_url().$edit_file))
-{
- echo "Successful";
-}else{
-	echo "Error";
-}
+
 
 
              if(isset($edit_id) && $edit_id<>'')
@@ -8779,7 +8773,7 @@ image='".$header_file."',image2='".$header_file2."',image3='".$header_file3."',i
              $insert="insert into header_images  set menu_image='".$menu_image."',
 image='".$header_file."',image2='".$header_file2."',image3='".$header_file3."',image4='".$header_file4."',image5='".$header_file5."', radio_val='".$radio_val."', field1='".$field1."',  image_no='".$noofimage."', keyword='".$url."', description='".addslashes($desc)."',  cat_id='".$category."', title_name='".$title_name."', title ='".$title."' , status='".$status."',create_on='".date('Y-m-d h:t')."'";
         $execute=mysql_query($insert);
-             }die;
+             }
              if($execute)
              {
                  $data['msg']="Header ".$title_name." image $action successfully";
