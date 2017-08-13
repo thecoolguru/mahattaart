@@ -267,7 +267,7 @@ redirect(base_url());
 			$data['image_name']=$filename;
 			$data['collection_id']=$collection_id;
 
-			
+			 
 			 
 			$click_to_enlarge = "http://api.indiapicture.in/wallsnart/get_collection.php";
 			
@@ -276,17 +276,16 @@ redirect(base_url());
 			$search_data_raw = file_get_contents($click_to_enlarge, false, $context);
 			$search_data = json_decode($search_data_raw,TRUE);
 			//print_r($search_data);
-			// $data['collection_name']=$search_data[$coll_id]['collection_name'];
-
-			for($x=0;$x<=$collection_id;$x++){
+			 
+       for($x=0;$x<=$collection_id;$x++){
 	   if($search_data[$x]['id']==$collection_id){
-	/// echo $x;
+	 //  echo $x;
 	   $data['collection_name']=$search_data[$x]['collection_name'];
 	   
 	   }
 	   
 	   }
-	   
+			
               
             $click_to_enlarge = "http://api.indiapicture.in/wallsnart/function.php?param=click_to_enlarge&images_id=$api_image_id";
              
@@ -487,7 +486,7 @@ $search_data = json_decode($search_data_raw,TRUE);
 	
 	
 	
-	public function dosearch_cat($page="none",$limit="none",$search_text="none",$category_id="none",$shap="?#!",$color="%@$#")
+	  public function dosearch_cat($page="none",$limit="none",$search_text="none",$category_id="none",$shap="?#!",$color="%@$#")
 	{
 	// echo $category_id;
 	  $page_no=1;
@@ -495,7 +494,7 @@ $search_data = json_decode($search_data_raw,TRUE);
 		{
 			$page_no=$page;
 		}
-		$no_of_res=11;
+		$no_of_res=64;
 		if($limit!="none")
 		{
 			$no_of_res=$limit;
@@ -592,6 +591,7 @@ $data['search_data']=$get_res;
 		$this->load->view('search/search_view_cat',$data);
 		$this->load->view('frontend/footer');
 	}
+        
 	
 	
 	   public function dosearch($page="none",$limit="none",$search_text="none",$category_id="none",$shap="?#!",$color="%@$#")
@@ -602,7 +602,7 @@ $data['search_data']=$get_res;
 		{
 			$page_no=$page;
 		}
-		$no_of_res=32;
+		$no_of_res=7;
 		if($limit!="none")
 		{
 			$no_of_res=$limit;
@@ -665,7 +665,7 @@ $search_api = "http://api.indiapicture.in/wallsnart/collection.php?collection_id
 	$search_api = "http://api.indiapicture.in/wallsnart/search.php?q=$search_keys&page=$page&per_page=$limit";
 	}
 		}
-//echo $search_api;
+echo $search_api;
 
 
 

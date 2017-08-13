@@ -994,7 +994,7 @@ $('#unchkforacrylic').trigger('click');
 		}
 			var f_shape=$('#frame_shape').val();
 			var frame_shape="'"+f_shape+"'";
-			td_inner += '<span onClick="myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');" class="col-md-3"><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive" /><div class="text-center">'+explode5+'</div><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></span>';
+			td_inner += '<span onClick="myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');" class="col-md-3 col-sm-3 col-xs-6 col-sm-3"><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive" /><div class="text-center">'+explode5+'</div><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></span>';
 			
 			}
 			
@@ -1049,7 +1049,7 @@ $('#unchkforacrylic').trigger('click');
 		mount_avail='';
 		}
 				//color,size,shape,f_code,f_rate
-	   item_images='<span onClick="myfun('+frame_color+','+frame_s+','+frame_shp+','+f_name+','+f_rate+','+f_name_mm+');" class="col-md-3"><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+frame_c+'.jpg" alt="second" width="200" height="200"  class="img-responsive" style=""><div class="text-center">'+explode5+'</div><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></span>';
+	   item_images='<span onClick="myfun('+frame_color+','+frame_s+','+frame_shp+','+f_name+','+f_rate+','+f_name_mm+');" class="col-md-3 col-sm-3 col-xs-6 col-sm-3"><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+frame_c+'.jpg" alt="second" width="200" height="200"  class="img-responsive" style=""><div class="text-center">'+explode5+'</div><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></span>';
 	
 	$(".after_first_slide"+z+"").append(item_images);
 	
@@ -1102,7 +1102,7 @@ $('#unchkforacrylic').trigger('click');
 		mount_avail='';
 		}
 		
-			td_inner +='<span onClick="return myfun('+mount_rate+','+mount_code+','+mount_name+');" class="col-md-3"><img src="<?php echo base_url()?>images/uploaded_pdf/mount/'+breaks[0]+'.jpg" width="200px" height="200px" style="margin:10px; class="img-responsive""/><div class="text-center">'+breaks[2]+'</div><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></span>';
+			td_inner +='<span onClick="return myfun('+mount_rate+','+mount_code+','+mount_name+');" class="col-md-3 col-sm-3 col-xs-6"><img src="<?php echo base_url()?>images/uploaded_pdf/mount/'+breaks[0]+'.jpg" style="margin:10px;" class="img-responsive""/><div class="text-center">'+breaks[2]+'</div><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></span>';
 			}
 		 
 		//alert(td_inner)
@@ -1136,7 +1136,7 @@ $('#unchkforacrylic').trigger('click');
 		}
 				
 				//color,size,shape,f_code,f_rate
-	   item_images='<span onClick="myfun('+mount_rate+','+mount_code+','+mount_name+');" class="col-md-3"><img src="<?php echo base_url()?>images/uploaded_pdf/mount/'+breaks[0]+'.jpg" alt="second" width="200" height="200" style="margin:10px;" class="img-responsive"><div class="text-center">'+breaks[2]+'</div><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></span>';
+	   item_images='<span onClick="myfun('+mount_rate+','+mount_code+','+mount_name+');" class="col-md-3 col-sm-3 col-xs-6 col-sm-3"><img src="<?php echo base_url()?>images/uploaded_pdf/mount/'+breaks[0]+'.jpg" alt="second" style="margin:10px;" class="img-responsive"><div class="text-center">'+breaks[2]+'</div><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></span>';
 	//alert(item_images);
 	$(".after_first_slide"+z+"").append(item_images);
 	
@@ -1300,7 +1300,7 @@ $('#total_price').html(total1.toFixed(2));
 		mount_avail='';
 		}
 			//   alert(frame_shape+f_name+f_color+f_size+f_rate+f_code);
-			td_inner += '<span onClick="return myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');" class="col-md-3"><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" width="200px" height="200px" style="margin-left:20px"; class="img-responsive"/><div class="text-center">'+explode5+'</div><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></span>';
+			td_inner += '<span onClick="return myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');" class="col-md-3 col-sm-3 col-xs-6 col-sm-3"><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" width="200px" height="200px" style="margin-left:20px"; class="img-responsive"/><div class="text-center">'+explode5+'</div><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></span>';
 			
 			}
 			//alert(td_inner)
@@ -1351,7 +1351,7 @@ $('#total_price').html(total1.toFixed(2));
 				var frame_shp="'"+shape+"'";
 				
 				//color,size,shape,f_code,f_rate
-	   item_images='<span onClick="myfun('+frame_color+','+frame_s+','+shape+','+frame_n+','+frame_r+','+frame_name_mm+');" class="col-md-3"><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+frame_c+'" alt="second" width="200" height="200" style="margin-left:70px;" class="img-responsive"><div class="text-center">'+explode1+'</div></span>';
+	   item_images='<span onClick="myfun('+frame_color+','+frame_s+','+shape+','+frame_n+','+frame_r+','+frame_name_mm+');" class="col-md-3 col-sm-3 col-xs-6 col-sm-3"><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+frame_c+'" alt="second" width="200" height="200" style="margin-left:70px;" class="img-responsive"><div class="text-center">'+explode1+'</div></span>';
 	
 	$(".after_first_slide"+z+"").append(item_images);
 	
@@ -2170,7 +2170,7 @@ var total_slide,total_s="";
 			   // alerfffff
 			  
 			   
-			td_inner += '<span onClick="return myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');" class="col-md-3"><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" width="200px" height="200px" style="margin-left:30px"; class="img-responsive"/><div class="text-center">'+explode1+'</div></span>';
+			td_inner += '<span onClick="return myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');" class="col-md-3 col-sm-3 col-xs-6 col-sm-3"><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" width="200px" height="200px" style="margin-left:30px"; class="img-responsive"/><div class="text-center">'+explode1+'</div></span>';
 			}
 			//alert(td_inner)
 			
@@ -2216,7 +2216,7 @@ var total_slide,total_s="";
 				var frame_shp="'"+shape+"'";
 				
 				//color,size,shape,f_code,f_rate
-	   item_images ='<span onClick="myfun('+frame_color+','+frame_s+','+frame_shp+','+frame_n+','+frame_r+','+frame_n_mm+');" class="col-md-3"><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+frame_c+'.jpg" alt="second" width="200" height="200" style="margin-left:30px;" class="img-responsive"><div class="text-center">'+explode1+'</div></span>';
+	   item_images ='<span onClick="myfun('+frame_color+','+frame_s+','+frame_shp+','+frame_n+','+frame_r+','+frame_n_mm+');" class="col-md-3 col-sm-3 col-xs-6"><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+frame_c+'.jpg" alt="second" width="200" height="200" style="margin-left:30px;" class="img-responsive"><div class="text-center">'+explode1+'</div></span>';
 $(".after_first_slide"+z+"").append(item_images);
 	
 	         }
@@ -2403,7 +2403,7 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
 	
 </script>
           <div class="view"> 
-          <a style="width:auto;margin: 0; padding: 6px 8px;background:#d3131b;color: #fff;text-decoration: none !important;" <?php  if(!$this->session->userdata('userid')){?> href="javascript:void(0)" onclick="login('');"<?php }else{?> href="javascript:addToCart()" <?php  }?> >Add to Cart</a>
+          <a style="width:auto;margin: 0; padding: 6px 8px;background:#d3131b;color: #fff;text-decoration: none !important;" <?php  if(!$this->session->userdata('userid')){?> onclick="login('');"<?php }else{?> href="javascript:addToCart()" <?php  }?> >Add to Cart</a>
           <a style="width: auto;color:white; margin: 0;padding: 6px 8px; background:#d3131b;" href="javascript:;"  onclick="addtogallery('<?=$api_image_id;?>','<?=$image_name;?>');" id="tgl">SAVE TO GALLERY</a> </div>
 								<div style="margin-top:10px;margin-left:20px">
 		
@@ -2423,7 +2423,14 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
             <!-- <li><a href="#" name="tab4" id="cr1">Cropping</a></li>-->
             <li><a href="#" onClick="slide_show_hide();" name="tab5" id="wa1">Wall Color frames </a></li>
           </ul>
-          <div class="undo-restore col-md-4 text-right"><a href="javascript:;" onclick="undoinput();" id="btnUndo"><img src="<?=base_url()?>assets/images/frameit/undo.gif" width="67" height="19" alt="undo" /></a><a href="javascript:;" onclick="redo();" id="btnRedo"><img src="<?=base_url()?>assets/images/frameit/restore.gif" width="119" height="19" alt="restore" /></a></div>
+          <div class="undo-restore col-md-4">
+              <ul id="tabs_icon" class="pull-right" style="margin-bottom:0">
+                <li><a href="javascript:;" onclick="undoinput();" id="btnUndo"><img src="<?=base_url()?>assets/images/frameit/undo.gif" class="img-responsive" alt="undo" /></a></li>
+                <li><a href="javascript:;" onclick="redo();" id="btnRedo"><img src="<?=base_url()?>assets/images/frameit/restore.gif" class="img-responsive" alt="restore" /></a></li>
+              </ul>
+          	
+          	
+          </div>
     </div>
 		  <?php
 		  
@@ -2453,10 +2460,10 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
               <div class="col-md-2 col-sm-2 col-xs-3"><div id="content">
               
                 <div id="tab7" style="display:block;">
-                  <table width="70%" border="0" cellspacing="0" cellpadding="0">
+                  <table border="0" cellspacing="0" cellpadding="0" class="table">
                     <tr>
                     <td><input type="hidden" value="" class="for_check_printor_frame" /></td>
-                      <td /width="180"><h4 class="choose-colors"> Select frame style</h4>
+                      <td><h4 class="choose-colors"> Select frame style</h4>
                         <ul class="choose-colors-type">
                         <?php
                         //print_r($frame_cat);
@@ -2493,7 +2500,7 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
                         //print_r($frame_c);
                         ?>
                         <li>
-                        <a href="javascript:" onclick="get_frame_color('<?=$frame_co->frame_color;?>');"><?=$frame_co->frame_color;?>
+                        <a href="javascript:" onclick="get_frame_color('<?=$frame_co->frame_color;?>');"><?=$frame_co->frame_color;?> </a>
                         </li>
                         <?php
                         }
@@ -2772,13 +2779,6 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
                    }
                    });
                 </script>  
-                  
-                      <tr>
-                        <td>&nbsp;</td>
-                        <td align="center">&nbsp;</td>
-                        <td>&nbsp;</td>
-                      </tr>
-                    </table>
                   </form>
                    
                 </div>
@@ -2798,7 +2798,7 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
                 </div>
                 
       </div></div>
-      <div id="tab5" style="display:none;" class="col-md-10 col-sm-10">
+      <div id="tab5" style="display:none;" class="col-md-12 col-sm-12 col-xs-12">
                   <table class="bor">
                     <tr>
                       <td><a href="javascript:;" class="color1" onClick="javascript:change_wallcolor('#FFFBF8');"></a></td>
@@ -2828,8 +2828,6 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
                       <td><a href="javascript:;" class="color25" onClick="javascript:change_wallcolor('#ADFF2F');"></a></td>
                       <td><a href="javascript:;" class="color26" onClick="javascript:change_wallcolor('#FF69B4');"></a></td>
                       <td><a href="javascript:;" class="color27" onClick="javascript:change_wallcolor('#CD5C5C');"></a></td>
-                    </tr>
-                    <tr>
                       <td><a href="javascript:;" class="color28" onClick="javascript:change_wallcolor('#FFFFF0');"></a></td>
                       <td><a href="javascript:;" class="color29" onClick="javascript:change_wallcolor('#F0E68C');"></a></td>
                       <td><a href="javascript:;" class="color30" onClick="javascript:change_wallcolor('#E6E6FA');"></a></td>
@@ -2842,6 +2840,8 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
                       <td><a href="javascript:;" class="color37" onClick="javascript:change_wallcolor('#FAFAD2');"></a></td>
                       <td><a href="javascript:;" class="color38" onClick="javascript:change_wallcolor('#D3D3D3');"></a></td>
                       <td><a href="javascript:;" class="color39" onClick="javascript:change_wallcolor('#90EE90');"></a></td>
+                      </tr>
+                      <tr>
                       <td><a href="javascript:;" class="color40" onClick="javascript:change_wallcolor('#FFB6C1');"></a></td>
                       <td><a href="javascript:;" class="color41" onClick="javascript:change_wallcolor('#FFA07A');"></a></td>
                       <td><a href="javascript:;" class="color42" onClick="javascript:change_wallcolor('#20B2AA');"></a></td>
@@ -2857,9 +2857,7 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
                       <td><a href="javascript:;" class="color52" onClick="javascript:change_wallcolor('#BA55D3');"></a></td>
                       <td><a href="javascript:;" class="color53" onClick="javascript:change_wallcolor('#9370DB');"></a></td>
                       <td><a href="javascript:;" class="color54" onClick="javascript:change_wallcolor('#3CB371');"></a></td>
-                      </tr>
-                      <tr>
-                                            <td><a href="javascript:;" class="color55" onClick="javascript:change_wallcolor('#7B68EE');"></a></td>
+                      <td><a href="javascript:;" class="color55" onClick="javascript:change_wallcolor('#7B68EE');"></a></td>
                       <td><a href="javascript:;"class="color56" onClick="javascript:change_wallcolor('#00FA9A');"></a></td>
                       <td><a href="javascript:;" class="color57" onClick="javascript:change_wallcolor('#48D1CC');"></a></td>
                       <td><a href="javascript:;" class="color58" onClick="javascript:change_wallcolor('#C71585');"></a></td>
@@ -2880,7 +2878,7 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
                       </tr>
                       </table>
                 </div>
-      <div id="myCarousel" class="carousel slide col-md-10 col-sm-10" data-ride="carousel">
+      <div id="myCarousel" class="carousel slide col-md-10 col-sm-10 col-xs-9" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active for_first_slide"></li>
@@ -2915,7 +2913,7 @@ $rows_slider=round($rows);
   //color,size,shape,f_code,f_rate,f_name
   ?>	
   
-	  <span class="col-md-3 col-sm-3 col-xs-12" onClick="return myfun('<?=$tbl_web_pricee[$x]->frame_color?>','<?=$tbl_web_pricee[$x]->frame_size_inch;?>','<?=$f_shape?>','<?=$tbl_web_pricee[$x]->frame;?>','<?=$tbl_web_pricee[$x]->frame_rate;?>','<?=$tbl_web_pricee[$x]->frame_size;?>');"><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/<?=$tbl_web_pricee[$x]->frame_code.'.jpg'?>" alt="first" class="img-responsive"style="margin:10px;">
+	  <span class="col-md-3 col-sm-3 col-xs-6" onClick="return myfun('<?=$tbl_web_pricee[$x]->frame_color?>','<?=$tbl_web_pricee[$x]->frame_size_inch;?>','<?=$f_shape?>','<?=$tbl_web_pricee[$x]->frame;?>','<?=$tbl_web_pricee[$x]->frame_rate;?>','<?=$tbl_web_pricee[$x]->frame_size;?>');"><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/<?=$tbl_web_pricee[$x]->frame_code.'.jpg'?>" alt="first" class="img-responsive"style="margin:10px;">
       	<div class="text-center">
 		<?=$tbl_web_pricee[$x]->frame;?>
         </div>
@@ -2956,7 +2954,7 @@ $rows_slider=round($rows);
 	   //$perslide=
 	 for($y=$next_four;$y<=$rows_last;$y++){
 	 ?>
-        <span class="col-md-3" onClick="return myfun('<?=$tbl_web_pricee[$y]->frame_color?>','<?=$tbl_web_pricee[$y]->frame_size_inch;?>','<?=$f_shape?>','<?=$tbl_web_pricee[$y]->frame;?>','<?=$tbl_web_pricee[$y]->frame_rate;?>','<?=$tbl_web_pricee[$y]->frame_size;?>');"><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/<?=$tbl_web_pricee[$y]->frame_code.'.jpg'?>" alt="second" class="img-responsive" style="margin:10px;" / >
+        <span class="col-md-3 col-sm-3 col-xs-6" onClick="return myfun('<?=$tbl_web_pricee[$y]->frame_color?>','<?=$tbl_web_pricee[$y]->frame_size_inch;?>','<?=$f_shape?>','<?=$tbl_web_pricee[$y]->frame;?>','<?=$tbl_web_pricee[$y]->frame_rate;?>','<?=$tbl_web_pricee[$y]->frame_size;?>');"><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/<?=$tbl_web_pricee[$y]->frame_code.'.jpg'?>" alt="second" class="img-responsive" style="margin:10px;" / >
             <div class="text-center">
 			<?=$tbl_web_pricee[$y]->frame;?>
             </div>
@@ -2983,12 +2981,12 @@ $rows_slider=round($rows);
     </div>
 
     <!-- Left and right controls -->
-    <a class="left carousel-control" style="width:50px" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="margin-top:75px"></span>
+    <a class="left carousel-control" style="background-image: none" href="#myCarousel" role="button" data-slide="prev">
+      <i class="glyphicon glyphicon-chevron-left"></i>
       <span class="sr-only">Previous</span>
     </a>
-    <a class="right carousel-control" style="width:50px" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="margin-top:75px"></span>
+    <a class="right carousel-control" style="background-image: none" href="#myCarousel" role="button" data-slide="next">
+      <i class="glyphicon glyphicon-chevron-right"></i>
       <span class="sr-only">Next</span>
     </a>
   </div>

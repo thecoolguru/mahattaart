@@ -888,23 +888,18 @@
 <ul class="menu2">
 <?php
                        $subjects=$this->search_model->get_subcategory(1);
-                        for($i=0;$i<=7;$i++){
+                        for($i=6;$i<=13;$i++){
                             ?>
-<li>
-<a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name); ?></a>
-</li>
+<li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
 <?php } ?>
 </ul>
 </div>
 <div class="col-md-3 col-sm-3">
 <ul class="menu2">
 <?php
-                        for($i=8;$i<=15;$i++){
-						
+                        for($i=14;$i<=21;$i++){
                             ?>
-<li>
-<a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name); ?></a>
-</li>
+<li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
 <?php } ?>
 </ul>
 </div>
@@ -912,33 +907,27 @@
 
 <ul class="menu2">
 <?php
-                        for($i=16;$i<=23;$i++){
+                        for($i=22;$i<=29;$i++){
                             ?>
-<li>
-<a href="javascript:category_filter('<?php echo $subjects[$i]->keywords?>')"><?php print ucwords($subjects[$i]->name);?></a>
-</li>
+<li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
 <?php } ?>
 </ul>
 </div>
 <div class="col-md-3 col-sm-3">
 <ul class="menu2">
 <?php
-                        for($i=24;$i<=30;$i++){
+                        for($i=30;$i<=37;$i++){
                             ?>
-<li>
-<a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name); ?></a>
-</li>
+<li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
 <?php } ?>
 </ul>
 </div>
 <div class="col-md-3 col-sm-3">
 <ul class="menu2">
 <?php
-                        for($i=31;$i<=41;$i++){
+                        for($i=38;$i<=45;$i++){
                             ?>
-<li>
-<a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name); ?></a>
-</li>
+<li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
 <?php } ?>
 </ul>
 </div>

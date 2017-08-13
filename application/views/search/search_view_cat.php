@@ -262,20 +262,18 @@ if($shape!="?#!" &&  $shape!=""){
 //print_r($search_data);
 
 
- 
-
-
 if(!empty($search_data)){
+$result_header_image=$this->search_model->get_header_images($search_text);
+//print_r($result_header_image);
+if($result_header_image[0]->minus_logic==1){
+$minus_keyword=$result_header_image[0]->minus_keyword;
+}else{
+$minus_keyword='sssss';
+}
 
- //print_r($search_data);
- 
-  for($x=0;$x<11;$x++){
+  for($x=0;$x<64;$x++){
 foreach ($search_data as $item){
-//print_r($x);
-  
-  
-  //print_r($item['results'][$x]['image_filename']);
-  
+
 	$bride=split('_',$item['image_filename']);
 
 if($bride[0]=='BRID'){
@@ -300,8 +298,17 @@ if($bride[0]=='BRID'){
 	$image_collection_id=$item['results'][$x]['image_collection_id'];;
 	$link='image_detail';
  }
+ 
 //print_r($item['image_filename']);
- if($item['results'][$x]['image_filename']!=''){
+//$array_minus=array('ARCHITECTURE','GODDESS');
+//$array_m=array("PINE MOUNTAIN","ARCHITECTURE","MEDICINE");
+//print_r($array_m);
+$array_minus=explode(',',$minus_keyword);
+//print_r($array_minus);
+$array=explode(',',$item['results'][$x]['image_keywords']);
+
+//print_r($item['results'][$x]['image_keywords']);
+ if(($item['results'][$x]['image_filename']!='') && (!array_intersect($array_minus,$array))){
       ?>
 <li>
 <a href="<?=base_url()."search/".$link."/".$image_filename."/".$image_id."/".$image_collection_id;  ?>">
@@ -309,7 +316,7 @@ if($bride[0]=='BRID'){
 <div class="wrap">
 <div class="wrap-inner"><img src="<?=$img_src;  ?>" class="img-responsive" /></div>
 <div class="main-title">
-<?= substr($item['image_caption'],0,20).".."; ?>
+<?= substr($item['results'][$x]['image_caption'],0,20).".."; ?>
 </div>
 <!--<div class="products" style="padding:0 0 3px 0"> <a href="#"> <?=$item['image_photographer'];?> </a> </div>-->
 <div class="producttype"> 

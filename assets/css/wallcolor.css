@@ -1,12 +1,12 @@
-table.bor {
+/*table.bor {
   display: inline-block;
   margin-right: 5px;
   width: 160px;
-}
+}*/
 .bor tr td a {
   float: left;
-  height: 40px;
-  width: 40px;
+  height: 35px;
+  width: 29.2px;
 }
 
 .color1{ background-color:#FFFBF8;}

@@ -537,17 +537,17 @@
          
           
             ?>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$sub_val[0]->keyword?>/all"><img src="<?php print base_url();?><?=$sub_val[0]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[0]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/20/<?=$sub_val[0]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[0]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[0]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$sub_val[1]->keyword?>/all"><img src="<?php print base_url();?><?=$sub_val[1]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[1]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/20/<?=$sub_val[1]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[1]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[1]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$sub_val[2]->keyword?>/all"><img src="<?php print base_url();?><?=$sub_val[2]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[2]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/20/<?=$sub_val[2]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[2]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[2]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$sub_val[3]->keyword?>/all"><img src="<?php print base_url();?><?=$sub_val[3]->menu_image?>" border="0" class="img-responsive" /> <span class="dblock1"> <?php echo ucwords($sub_val[3]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/20/<?=$sub_val[3]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[3]->menu_image?>" border="0" class="img-responsive" /> <span class="dblock1"> <?php echo ucwords($sub_val[3]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$sub_val[4]->keyword?>/all"><img src="<?php print base_url();?><?=$sub_val[4]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"><?php echo ucwords($sub_val[4]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/20/<?=$sub_val[4]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[4]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"><?php echo ucwords($sub_val[4]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$sub_val[5]->keyword?>/all"><img src="<?php print base_url();?><?=$sub_val[5]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[5]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/20/<?=$sub_val[5]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[5]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[5]->title)?>
 </span></a></div>
 <div style="clear:both"></div>
 <div class="sub-hor fist-sub-bar">
@@ -557,43 +557,46 @@
 <?php
                        //$subjects=$this->search_model->get_subcategory(1);
 					   
-                        for($i=0;$i<=7;$i++){
+                        for($i=6;$i<=13;$i++){
                             ?>
-<li> <a href="javascript:category_filter('<?php echo $sub_val[$i]->keyword; ?>')"><?php print ucwords($sub_val[$i]->title); ?></a> </li>
+<li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
 <?php } ?>
 </ul>
 </div>
 <div class="n-layer fistn-layer">
 <ul class="menu2">
 <?php
-                        for($i=8;$i<=15;$i++){
-						
+                        for($i=14;$i<=21;$i++){
                             ?>
-<li> <a href="javascript:category_filter('<?php echo $sub_val[$i]->keyword; ?>')"><?php print ucwords($sub_val[$i]->title); ?></a> </li><?php } ?>
+<li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
+<?php } ?>
 </ul>
 </div>
 <div class="n-layer fistn-layer">
 <ul class="menu2">
 <?php
-                        for($i=16;$i<=23;$i++){
+                        for($i=22;$i<=29;$i++){
                             ?>
-<li> <a href="javascript:category_filter('<?php echo $sub_val[$i]->keyword; ?>')"><?php print ucwords($sub_val[$i]->title); ?></a> </li><?php } ?>
+<li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
+<?php } ?>
 </ul>
 </div>
 <div class="n-layer fistn-layer">
 <ul class="menu2">
 <?php
-                        for($i=24;$i<=30;$i++){
+                        for($i=30;$i<=37;$i++){
                             ?>
-<li> <a href="javascript:category_filter('<?php echo $sub_val[$i]->keyword; ?>')"><?php print ucwords($sub_val[$i]->title); ?></a> </li><?php } ?>
+<li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
+<?php } ?>
 </ul>
 </div>
 <div class="n-layer fistn-layer">
 <ul class="menu2">
 <?php
-                        for($i=31;$i<=41;$i++){
+                        for($i=38;$i<=45;$i++){
                             ?>
-<li> <a href="javascript:category_filter('<?php echo $sub_val[$i]->keyword; ?>')"><?php print ucwords($sub_val[$i]->title); ?></a> </li><?php } ?>
+<li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
+<?php } ?>
 </ul>
 </div>
 </div>

@@ -375,7 +375,7 @@ if(!$key){
     <div class="form-group">
       
         <div class="col-xs-10">
-						   <input type="text" style="width:30px" class="by_keyup_update" name="qty_update" value="<?=$image['qty']?>" id="qty_update<?=$image['cart_id']?>" >
+						   <input type="text" style="width:30px" class="by_keyup_update" maxlength="4" name="qty_update" value="<?=$image['qty']?>" id="qty_update<?=$image['cart_id']?>" >
 		                       
         </div>
     </div>

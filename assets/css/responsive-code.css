@@ -291,6 +291,21 @@ a:hover {
 		/* margin-bottom: 20px; */
 		margin: 0 auto;
 	}
+	ul.choose-colors-type {
+		max-height: 60px !important;
+	}
+	.choose-colors {
+		font-size: 11px !important;
+	}
+	.choose-colors-type a {
+		font-size: 10px !important;
+	}
+	#content {
+		height: 360px !important;
+	}
+	.bor tr td a {
+		width: 11.5px !important;
+	}
 }
 
 
@@ -593,6 +608,9 @@ a:hover {
 		-moz-box-shadow: 0 2px 12px #888;
 		margin-bottom: 20px;
 	}
+	.bor tr td a {
+		width: 18.4px !important;
+	}
 }
 @media(min-width:992px) and (max-width:1199px) {
     h1.ttto::before {
@@ -828,6 +846,10 @@ a:hover {
 		-webkit-box-shadow: 0 2px 12px #888;
 		-moz-box-shadow: 0 2px 12px #888;
 		margin-bottom: 20px;
+	}
+	.bor tr td a {
+		height: 30px !important;
+		width: 24.1px !important;
 	}
 }
 @media(min-width:1200px) {

@@ -104,11 +104,30 @@
               <input type="radio" onClick="return option_action('2');"  name="option" value="2"></td>
           </tr>
           <?php $split= split('?',$edit_id[0]->keyword); echo $split[1];?>
+		  <tr id="search_div">
+            <td>Search <input type="hidden" id="search_logic_val" value="<?=$edit_id[0]->search_logic?>" /></td>
+            <td> <select name="search_logic" onChange="search_logic_fun(this.value)" id="search_logic" style="width: 51%;
+    height: 37px;">
+               
+                <option value="1" >All</option>
+				<option value="2" >Any</option>
+				</select></td>
+          </tr>
+		  
           <tr id="keyword">
             <td>Keyword </td>
-            <td><input type="text" name="keyword" <?php if(isset($_REQUEST['edit_id'])){ ?>value="<?=$edit_id[0]->keyword;?>" <?php }?>  style="    width: 51%;
+			
+            <td id="keyword_td"><input type="text" name="keyword" <?php if(isset($_REQUEST['edit_id'])){ ?>value="<?=$edit_id[0]->keyword;?>" <?php }?>  style="    width: 51%;
     height: 37px;" id="title"></td>
+	<td style="display:none" id="keyword_any_td"><textarea name="keyword_any" cols="28" rows="4"><?php if(isset($_REQUEST['edit_id'])){ echo $edit_id[0]->keyword_any;}?>
+</textarea></td>
           </tr>
+		    <tr id="minus_div">
+            <td>Minus  <input type="checkbox" id="minus" style="margin-left:20px;" value="<?php echo $edit_id[0]->minus_logic;?>" onClick="return show_uploads();"/></td>
+			<td style="display:none" id="keyword_minus_td"><textarea name="keyword_minus" cols="28" rows="4"><?php if(isset($_REQUEST['edit_id'])){ echo $edit_id[0]->minus_keyword;}?>
+</textarea></td>
+<input type="hidden" class="checkbox" value="" name="minus_logic" />
+			</tr>
           <tr id="gallery">
             <td>Gallery </td>
             <td><select id="gallery" name="gallery"  class="selectpicker" data-hide-disabled="true" data-live-search="true">
@@ -235,7 +254,7 @@
     border-radius: 5px;}
     </style>
       <script>
-
+ 
  function option_action(value){
        if(value=='1'){
 	     $('#keyword').show();
@@ -257,8 +276,13 @@
 	   $('#option').hide();
 	    $('#gallery').hide();
 		$('#top_cat').hide();
-	   
-      
+		
+	  if($('#minus').val()==1){
+	//  alert('ll')
+	  $('#minus').trigger('click');
+	  }if($('#search_logic_val').val()==2){
+	  $('#search_logic').val(2).trigger('change');
+	  }
       
      var values= $( "#category option:selected" ).val();
     var type=$('#category_type').val();
@@ -394,9 +418,18 @@
 			 $('#option').show();
         }
     }
-    
+ 
     function show_uploads(values){
-        
+	    
+        if($("input[type='checkbox']").prop("checked")){
+		
+		$('#keyword_minus_td').show();
+		$('.checkbox').val(1);
+		}else{
+		//alert('no')
+		$('#keyword_minus_td').hide();
+		$('.checkbox').val(0);
+		}
         if(values==3){
            $('.file_upload').show();  
              $('.file').hide();
@@ -497,6 +530,20 @@
         <?php }?>
         
     }// end function
+	function search_logic_fun(values){
+ //alert(values)
+ if(values==1){
+		//alert(values)
+		$('#keyword_td').show();
+		$('#keyword_any_td').hide();
+		}else if(values==2){
+		$('#keyword_any_td').show();
+		$('#keyword_td').hide();
+		//alert(values)
+		}
+		
+ //alert('jiii')
+ }
     </script>
       <BR>
     </div>

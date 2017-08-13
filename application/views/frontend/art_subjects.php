@@ -26,7 +26,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                     	<?php   
   //print_r($subject);
     					foreach($sub_val as $result){ ?>
-						<li><a href="<?php print base_url(); ?>search/dosearch/1/32/<?php echo $result->keyword;?>/all"><?php echo $result->title;?></a></li>
+						<li><a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?php echo $result->title;?>/all"><?php echo $result->title;?></a></li>
 						<?php }?>
                     </ul>
                 </div>
@@ -160,7 +160,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                      ?>
                                     <div class="artist_Photo col-md-2 col-sm-3 col-xs-6">
                                         <div class="thumbnail">
-                                            <a href="<?php print base_url(); ?>search/dosearch/1/32/<?php echo $values->keyword;?>/all">
+                                            <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?php echo $values->title;?>/all">
                                             <img src="<?php print base_url();?><?=$values->image?>" title="<?php echo $values->title;?>" class="img-responsive" /></a>
                                             <div class="artist_tag"><?php echo strtoupper($values->title);?></div>
                                         </div>

@@ -8540,7 +8540,11 @@ public function home_crop_images($filename,$file_tmp,$valid_exts,$ext,$nw,$nh) {
 
 public function save_upload_header_images()
 {
-    
+    $search_logic=$this->input->post('search_logic');
+	$keyword_any=$this->input->post('keyword_any');
+	$keyword_minus=$this->input->post('keyword_minus');
+	//$gallery=$this->input->post('gallery');
+	
 $gallery=$this->input->post('gallery');     
 $title=$this->input->post('title');
 $image_type=$this->input->post('image_type');
@@ -8666,7 +8670,7 @@ $targetFile='header_images/';
 //$header_file=$this->home_crop_images($filename,$file_tmp,$valid_exts,$ext,$nw,$nh);
 
 if(isset($_FILES['file']['name']) && $_FILES['file']['name']<>'' ){
-$header_file=$this->resize($nh,$nw, $targetFile, $file_tmp);
+ $header_file=$this->resize($nh,$nw, $targetFile, $file_tmp);
 }
 
  if($category==6 ){
@@ -8759,18 +8763,16 @@ if($_FILES['menu_image']['name']){
     
    $menu_image=$edit_menu_image; 
 }
-
-
-
+$minus_logic=$this->input->post('minus_logic');
              if(isset($edit_id) && $edit_id<>'')
              {
              $action='edit';
-               $insert="update header_images set menu_image='".$menu_image."', 
+               $insert="update header_images set menu_image='".$menu_image."',keyword_any='".$keyword_any."',search_logic='".$search_logic."',minus_keyword='".$keyword_minus."',minus_logic='".$minus_logic."',
 image='".$header_file."',image2='".$header_file2."',image3='".$header_file3."',image4='".$header_file4."',image5='".$header_file5."', radio_val='".$radio_val."', field1='".$field1."', image_no='".$noofimage."', keyword='".$url."', description='".$desc."', cat_id='".$category."', title_name='".$title_name."', title ='".$title."' , create_on='".date('Y-m-d h:t')."' where id='".$edit_id."'";
              $execute=mysql_query($insert);
              }else{
              $action='add';
-             $insert="insert into header_images  set menu_image='".$menu_image."',
+             $insert="insert into header_images  set menu_image='".$menu_image."',keyword_any='".$keyword_any."',search_logic='".$search_logic."',minus_keyword='".$minus_keyword."',
 image='".$header_file."',image2='".$header_file2."',image3='".$header_file3."',image4='".$header_file4."',image5='".$header_file5."', radio_val='".$radio_val."', field1='".$field1."',  image_no='".$noofimage."', keyword='".$url."', description='".addslashes($desc)."',  cat_id='".$category."', title_name='".$title_name."', title ='".$title."' , status='".$status."',create_on='".date('Y-m-d h:t')."'";
         $execute=mysql_query($insert);
              }
