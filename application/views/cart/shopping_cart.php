@@ -61,7 +61,7 @@ box-shadow:2px 2px 1px black inset;
 
 				<?php if($this->session->flashdata('share_message')){print $this->session->flashdata('share_message');}?>
     </div> 
-    <br>
+    
         <!-- shopping cart -->
 		<div class="row">
 		 <div id="no-more-tables">
@@ -159,7 +159,7 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
  ?>
              
                             <div class="" id="topa2">
-                               <a href="<?=base_url()?>index.php/search/image_detail/<?=$file_name?>/<?=$image['image_id']?>/<?=$collection_id?>">  <img src="http://static.mahattaart.com/158/<?= $image['image_name'];?>"  /></a>
+                               <a href="<?=base_url()?>index.php/search/image_detail/<?=$file_name?>/<?=$image['image_id']?>/<?=$collection_id?>">  <img src="http://static.mahattaart.com/158/<?= $image['image_name'];?>" width="100%"/></a>
                                   
                            
                 </div>
@@ -185,6 +185,7 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
 				//echo $image['image_size'];
 				if($image['frame_cost']==0){
 				$tax_prctg=12;
+				$hsn_code='49119100';
 				
 				?>
 				
@@ -197,6 +198,7 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
 				}
 				if($image['frame_cost']!=0){
 				$tax_prctg=18;
+				$hsn_code='39203090';
 				?>
 				Framed Art Print:<?=$image['framed_image_size'].'(Inch)<br>'?>
 				Frame Size:<?=$image['frame_size'].'(Inch)<br>'?>
@@ -240,6 +242,7 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
                                 <td class="pri" >Rs.<?php  echo $wd_tax_price=$image['price']; ?>
                   <input type="hidden" id="hidid<?=$i?>" value="<?= $image['cart_id'];?>" />
                     <input type="hidden" id="hidprice<?=$i?>" value="<?=$image['price'];?>" />
+					<input type="hidden" name="hsn_code" value="<?=$hsn_code?>" />
 								</td>
 								<td><?=$tax_prctg?></td>
 								<td><?php   
@@ -269,7 +272,7 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
 				//echo $total_amt_product_fnl;
 				//echo $i.'sss';
 				if($update_srno=='removed' || $image['tax_goods']=='' || $qty_update_tbl!=''){
-				   $this->cart_model->update_serail_noforcart($this->session->userdata('userid'),$i,$cart_id,$tax_prctg,$tax_amt_fnl,$total_amt_product_fnl);
+				   $this->cart_model->update_serail_noforcart($this->session->userdata('userid'),$i,$cart_id,$tax_prctg,$tax_amt_fnl,$total_amt_product_fnl,$hsn_code);
 				  }
 		$i++; } ?>
 		

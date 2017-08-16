@@ -39,11 +39,11 @@ class Cart_model extends CI_Model
                 
 
 	}
-	function update_serail_noforcart($user_id,$i,$cart_id,$tax_prctg,$tax_amt_fnl,$total_amt_product_fnl){
+	function update_serail_noforcart($user_id,$i,$cart_id,$tax_prctg,$tax_amt_fnl,$total_amt_product_fnl,$hsn_code){
 	//echo $i.$cart_id;
 	
 	// $user_id=$this->session->userdata('user_id');
-	$data=array('sr_no'=>$i,'tax_goods'=>$tax_prctg,'tax_amount'=>$tax_amt_fnl,'grand_price'=>$total_amt_product_fnl);
+	$data=array('sr_no'=>$i,'tax_goods'=>$tax_prctg,'tax_amount'=>$tax_amt_fnl,'grand_price'=>$total_amt_product_fnl,'hsn_code'=>$hsn_code);
 	//print_r('sss'.$user_id);
 	$this->db->where('user_id',$user_id);
 	$this->db->where_in('cart_id',$cart_id);

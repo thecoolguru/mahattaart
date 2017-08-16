@@ -465,8 +465,10 @@ public function invoice_view($invoice_id)
 			{
 				$this->session->set_userdata('userid',$admin->channel_partner_id);
 				$this->session->set_userdata('userid',$admin->email_id);
-                                $this->session->set_userdata('first_name',$admin->first_name);
+                          $this->session->set_userdata('first_name',$admin->first_name);
 				//Backend_Redirect('backend/dashboard');
+				$username=$admin->first_name.'&nbsp;'.$admin->last_name;
+					$this->session->set_userdata('userName',$username);
                                 $baseUrl=base_url().'index.php/backend/dashboard';
                                  header('location:'.$baseUrl);
 

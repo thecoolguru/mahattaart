@@ -644,8 +644,9 @@ public function response(){
 		$data=array('order_id'=>$order_id,'order_date'=>$date,'invoice_no'=>$merchant_param2);
 	$this->cart_model->order_id_update_for_cart($data,$user_id);
 	 $copytoinvoice_details="insert into tbl_invoice_details (
-invoice_id,surface,qty,customer_id,frame_size_height,frame_size_width,frame_color,frame_cost,mount_size_height,mount_size_width,mount_color,mount_cost,glass_name ,glass_cost,price,image_size,image_id,sku_id,customer_type,created_date,sr_id,paid_status,region,updated_status)	
-		SELECT order_id, image_print_type,qty,user_id,frame_size,frame_size,frame_color,frame_cost,mount_size,mount_size,mount_color,mount_cost,glass_type,glass_cost,price,image_size,image_name,image_name,'B2C',order_date,sr_no,'1','Online','Processing'
+invoice_id,surface,qty,customer_id,frame_size_height,frame_size_width,frame_color,frame_cost,mount_size_height,mount_size_width,mount_color,mount_cost,glass_name ,glass_cost,price,image_size,image_id,sku_id,customer_type,created_date,sr_id,paid_status,region,updated_status,tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price)	
+		SELECT order_id, image_print_type,qty,user_id,frame_size,frame_size,frame_color,frame_cost,mount_size,mount_size,mount_color,mount_cost,glass_type,glass_cost,price,image_size,image_name,image_name,'B2C',order_date,sr_no,'1','Online','Processing',
+tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price
 				from tbl_cart where user_id='".$user_id."'";
 				  $insert1=  mysql_query($copytoinvoice_details);
 				  
@@ -660,8 +661,8 @@ invoice_id,customer_type,price,total_paid_with_tax )
 // starts for order details
 																 
        $copytoorder_details="insert into tbl_orders_details (
-order_id,surface,quantity,customer_id,frame_size_height,frame_size_width,frame_color,frame_cost,mount_size_height,mount_size_width,mount_color,mount_cost,glass_name ,glass_cost,price,image_size,image_id,sku_id,customer_type,created_date,sr_id,region,paid_status,sales_person,client_servicing,convert_to_order)	
-		SELECT order_id,image_print_type,qty,user_id,frame_size,frame_size,frame_color,frame_cost,mount_size,mount_size,mount_color,mount_cost,glass_type,glass_cost,price,image_size,image_name,image_name,'B2C',order_date,sr_no,'Online','1','Online','Online','6'
+order_id,surface,quantity,customer_id,frame_size_height,frame_size_width,frame_color,frame_cost,mount_size_height,mount_size_width,mount_color,mount_cost,glass_name ,glass_cost,price,image_size,image_id,sku_id,customer_type,created_date,sr_id,region,paid_status,sales_person,client_servicing,convert_to_order,tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price)	
+		SELECT order_id,image_print_type,qty,user_id,frame_size,frame_size,frame_color,frame_cost,mount_size,mount_size,mount_color,mount_cost,glass_type,glass_cost,price,image_size,image_name,image_name,'B2C',order_date,sr_no,'Online','1','Online','Online','6',tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price
 				from tbl_cart where order_id='".$order_id."'";
 				  $insert3=  mysql_query($copytoorder_details);
 				  
