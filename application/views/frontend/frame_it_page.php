@@ -1972,7 +1972,77 @@ $bordered_ac_srface='Giclee Print ';
     //echo $mount_list9->framenmount_colour;
     if ($canvas=='canvas'){ ?>
 	<div  class="showforprintonly" style="display:none;">
-		  <img  src="http://static.mahattaart.com/398/<?=$image_name;?>" class="img-responsive">
+	<style>
+    .container3D {
+    min-height: 440px;
+    position: relative;
+    }
+    
+    #cube {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform: translateZ( -100px );
+    -moz-transform: translateZ( -100px );
+    -o-transform: translateZ( -100px );
+    transform: translateZ( -100px );
+    }
+    #cube .front {
+    -webkit-transform: translateZ( 100px );
+    -moz-transform: translateZ( 100px );
+    -o-transform: translateZ( 100px );
+    transform: translateZ( 100px );
+    }
+    #cube figure {
+    display: block;
+    position: absolute;
+    }
+    
+    figure {
+    margin: 0;
+    }
+    
+    #cube .right {
+    -webkit-transform: rotateY( 90deg ) translateZ( 100px );
+    -moz-transform: rotateY( 90deg ) translateZ( 100px );
+    -o-transform: rotateY( 90deg ) translateZ( 100px );
+    transform: skewY(45deg) translate(20px,-10px);
+    width: 20px;
+    height: 100%;
+    right: 0px;
+    top: 0;
+    }
+    
+    #cube .right {
+    background: #000;
+    }
+    #cube .bottom {
+    -webkit-transform: rotateX( -90deg ) translateZ( 100px );
+    -moz-transform: rotateX( -90deg ) translateZ( 100px );
+    -o-transform: rotateX( -90deg ) translateZ( 100px );
+    transform: skewX(45deg) translate(-11px,21px);
+    height: 20px;
+    width: 100%;
+    bottom: 1px;
+    }
+    #cube .bottom {
+    background: #ddd;
+    }
+    </style>
+        <section class="container3D">
+            <div id="cube" class=" ">
+                <figure class="front">
+                	<img  src="http://static.mahattaart.com/398/<?=$image_name;?>" class="img-responsive">
+                    <figure class="right"></figure>
+                    <figure class="bottom"></figure>
+                </figure>
+            </div>
+        </section>
+		  
 		  </div>
         <div class="divimg mainhor" id="frame-it" style="margin-top:20px">
           <? } else {?>
@@ -2021,7 +2091,7 @@ $bordered_ac_srface='Giclee Print ';
           </div>
        
         
-          <div class="otherlinks"> <a id="large" alt="Single Image" href="javascript:;"  onclick="large_images('','','');"> Larger Image</a>| <a href="javascript:;" target="_black" onClick="room_view('','','');">Room View</a>  
+          <div class="otherlinks" style="text-align:left"> <a id="large" alt="Single Image" href="javascript:;"  onclick="large_images('','','');"> Larger Image</a>| <a href="javascript:;" target="_black" onClick="room_view('','','');">Room View</a>  
 		 </div>
         </div>
         

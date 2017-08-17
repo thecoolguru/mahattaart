@@ -537,9 +537,9 @@ public function response(){
 	$order_status="";
 	$decryptValues=explode('&', $rcvdString);
 	$dataSize=sizeof($decryptValues);
-    // print_r($decryptValues);
+     print_r($decryptValues);
         
-       //die;
+       die;
 
        date_default_timezone_set('Asia/Kolkata');
        // $date=date('d-m-Y H:i');
