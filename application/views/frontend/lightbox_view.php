@@ -179,6 +179,14 @@ function call_remove_lightBox(imageid,lightbox_id,page_no)
 		window.location=url;
 }
 </script>
+<?php
+$resultsPerPage = $limit;
+$numberOfRows = $search_data[0]->total;
+$totalPages = ceil($numberOfRows / $resultsPerPage);
+$prev=$page-1;
+$next=$page+1;
+$jump=$next+2;
+?>
 <div class="container" style="margin-top:5px">
 <div class="row"><div class="art-style col-md-12">
 <div class="row">
@@ -189,6 +197,7 @@ function call_remove_lightBox(imageid,lightbox_id,page_no)
 </aside>
 <div class="right-panel-page col-md-10 col-xs-9">
 <div class="">
+<?php   echo $this->pagination->create_links(); ?>
 <div class="row">
 <div class="col-md-4">
 <div class="sortours">
@@ -244,6 +253,9 @@ foreach($image as $images){
 </div>
 <script>function call_gallery(){$("#tgl-bx").show(400);$("#overlay-bx").show();$("#tgl-bx select option:eq(0)").prop("selected",true);document.getElementById("tgl-bx").style.display="block";document.getElementById("fade").style.display="block"}$("#overlay-bx").click(function(){$("#tgl-bx").hide(400);$("#size_print_type").hide(400);$("#overlay-bx").hide(400)});$("#toggle-btn").click(function(){$("#toggle-data").toggle(400)});</script>
 <div class="row pagination_2" style="background-color:#f7f7f7; min-height:30px;margin-bottom: 10px;">
+<span class="pagination" style="padding:0;margin:0">
+<?php   echo $this->pagination->create_links(); ?>
+</span>
 <div class="col-md-4 col-sm-4">
 <p>Back To Top</p>
 </div>
