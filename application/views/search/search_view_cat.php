@@ -478,7 +478,7 @@ $array=explode(',',$item['results'][$x]['image_keywords']);
       ?>
 <li class="col-md-2 col-sm-3 col-xs-6">
 <a href="<?=base_url()."search/".$link."/".$image_filename."/".$image_id."/".$image_collection_id;  ?>">
-<input type="hidden" name="img_id" id="img_id<?php print $images_id; ?>" value="<?php print $images_id ?>" /> </a>
+<input type="hidden" name="img_id" id="img_id<?php print $images_id; ?>" value="<?php print $images_id ?>" />
 <div class="wrap">
 <div class="wrap-inner"><img src="<?=$img_src;  ?>" class="img-responsive" /></div>
 <div class="main-title">
@@ -501,6 +501,7 @@ $array=explode(',',$item['results'][$x]['image_keywords']);
 </div>
 
 </div>
+</a>
 </li>
 <?php }}} }else {?>
 <span style="margin-top:150px;margin-left:300px;color:red"> No result found.</span>

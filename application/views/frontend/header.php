@@ -1401,8 +1401,8 @@
 <div class="rowour">
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php
-                        $subjects=$this->search_model->get_subcategory(857);
+<?php //857
+                        $subjects=$this->search_model->get_subcategory();
                         for($i=0;$i<=4;$i++){
                             ?>
 <li>

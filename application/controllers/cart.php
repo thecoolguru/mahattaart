@@ -210,9 +210,12 @@ public function update_customer(){
 	 $city=$this->input->post('city');
 	 $state=$this->input->post('state');
 	 $phone=$this->input->post('phone');
+	 $c_gst_no=$this->input->post('c_gst_no');
+	 $c_pan_no=$this->input->post('c_pan_no');
+	 
 	 $email_reciept=$this->input->post('email_reciept');
 	 $data=array('first_name'=>$name,
-	 'zip_code'=>$pincode,'address'=>$address,'city'=>$city,'state'=>$state,'contact'=>$phone,'last_name'=>$lastname,'email_reciept'=>$email_reciept,'purpose'=>$getpurpose
+	 'zip_code'=>$pincode,'address'=>$address,'city'=>$city,'state'=>$state,'contact'=>$phone,'last_name'=>$lastname,'email_reciept'=>$email_reciept,'purpose'=>$getpurpose,'gst_no'=>$c_gst_no,'pan_no'=>$c_pan_no
 	 );
 	//print_r($data);
 	 $this->frontend_model->update_customer($data,$state);
@@ -537,9 +540,9 @@ public function response(){
 	$order_status="";
 	$decryptValues=explode('&', $rcvdString);
 	$dataSize=sizeof($decryptValues);
-     print_r($decryptValues);
+     //print_r($decryptValues);
         
-       die;
+       
 
        date_default_timezone_set('Asia/Kolkata');
        // $date=date('d-m-Y H:i');
@@ -619,6 +622,12 @@ public function response(){
 				if($i==28){
                  $merchant_param3=$information[1];
 				 }
+				 if($i==29){
+                 $merchant_param4=$information[1];
+				 }
+				 if($i==30){
+                 $merchant_param5=$information[1];
+				 }
                 if($i==40){
                  $order_date=$information[1];
                 }
@@ -638,7 +647,7 @@ public function response(){
 	if($order_status==="Success")
 	{
 	//$order_date=date('Y-m-d h:t');
- $sql="insert into order_details set  inv_order_id='".$order_id."',customer_id='".$user_id."', customer_name='".$billing_name."', customer_address='".$billing_address."', customer_city='".$billing_city."', customer_state='".$billing_state."', customer_country='".$billing_country."', customer_pincode='".$billing_zip."', customer_contact='".$billing_tel."', customer_email='".$billing_email."',delivery_name='".$delivery_name."',delivery_address='".$delivery_address."',delivery_city='".$delivery_city."',delivery_state='".$delivery_state."',delivery_zip='".$delivery_zip."',delivery_country='".$delivery_country."',delivery_tel='".$delivery_tel."', order_amount='".$amount."', bank_ref_no='".$bank_ref_no."', bank_name='".$card_name."', payment_mode='".$payment_mode."', order_date='".$date."',order_status='".$order_status."', order_comments='".$order_status."',company_name='".$merchant_param3."',invoice_no='".$merchant_param2."'";      
+ $sql="insert into order_details set  inv_order_id='".$order_id."',customer_id='".$user_id."', customer_name='".$billing_name."', customer_address='".$billing_address."', customer_city='".$billing_city."', customer_state='".$billing_state."', customer_country='".$billing_country."', customer_pincode='".$billing_zip."', customer_contact='".$billing_tel."', customer_email='".$billing_email."',delivery_name='".$delivery_name."',delivery_address='".$delivery_address."',delivery_city='".$delivery_city."',delivery_state='".$delivery_state."',delivery_zip='".$delivery_zip."',delivery_country='".$delivery_country."',delivery_tel='".$delivery_tel."', order_amount='".$amount."', bank_ref_no='".$bank_ref_no."', bank_name='".$card_name."', payment_mode='".$payment_mode."', order_date='".$date."',order_status='".$order_status."', order_comments='".$order_status."',company_name='".$merchant_param3."',invoice_no='".$merchant_param2."',gst_no='".$merchant_param4."',pan_no='".$merchant_param5."'";      
          $insert=  mysql_query($sql);
 		$data['msg']= "<br>Thank you for shopping with us. Your credit card has been charged and your transaction is successful. We will be shipping your order to you soon.";
 		$data=array('order_id'=>$order_id,'order_date'=>$date,'invoice_no'=>$merchant_param2);

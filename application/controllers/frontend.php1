@@ -1,6 +1,5 @@
 <?php 
 ob_start();
-define('IMAGE_PATH', APPPATH.'views/frontend/upload_images/');
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Frontend extends CI_Controller
 {
@@ -32,46 +31,11 @@ $this->load->library('facebook', array('appId' => '819395858121513', 'secret' =>
 // Get user's login information
 parse_str( $_SERVER['QUERY_STRING'], $_REQUEST );
 $this->user = $this->facebook->getUser();
+	
+ 
 	}
 	
-	// Method By Tarun Shrivastva  
-	   public function photostoart()
-	{
-		$this->load->view('frontend/header');
-		$this->load->view('frontend/photostoart');
-		$this->load->view('frontend/footer');
-        if(!(isset($_SESSION['type'])) ){
-		$_SESSION['type'] = $_POST['category'];
-		}else{
-		  unset($_SESSION['type']);
-		}
-		unset($_SESSION['refresh']);
-	}
 
-	public function photostoart_inner()
-	{
- 		 $_SESSION['path'] = IMAGE_PATH;
- 		 if(!(isset($_SESSION['refresh'])) ){
-     	 $_SESSION['refresh'] = 'refresh';
-         }else{
-     	 unset($_SESSION['refresh']);
-     	 //echo "<script> window.location.href = 'photostoart'; </script>";
-          }
-        $id = $_COOKIE['user_info'];
-		$result = $this->frontend_model->get_images($id);
-		if(count($result)){ 
-		$data['mount_name']=$this->frontend_model->get_mount_name_web_price();
-		$data['frame_cat']=$this->frontend_model->get_frame_cat_tbl_web_price();
-		$data['frame_sizze']=$this->frontend_model->get_frame_size();
-		$data['frame_color']=$this->frontend_model->get_frame_color_web_price();
-		$data['type'] = $_SESSION['type'];
-		$this->load->view('frontend/header');
-		$this->load->view('frontend/photostoart_inner',$data);
-		$this->load->view('frontend/footer');
-  		}else{
-  		echo "<script>window.location.href='photostoart';</script>"; 
-  		}
-	}
 
 
  public function get_web_frame_rate()
@@ -105,182 +69,9 @@ $this->user = $this->facebook->getUser();
           echo $result['glass_rate'];
 	  }
           
-	public function image_delete(){
-	$name = $_POST['name'];
-	$result = $this->frontend_model->delete_image($name);  
-	if($result){
-	  $state1 = unlink(IMAGE_PATH.$name);
-      $state2 = unlink(IMAGE_PATH.'original/'.$name);    
-     if( ($state1 && $state2) == 'true')
-      $status = 'Image deleted successfully';
-     else
-	  $status = 'Some Error Occur';	
-	 }
-	else
-	  $status = 'Some Error Occur';	
-	
-	echo json_encode($status);
-	}
-	
-	public function image_size(){
-	 if($_POST['url']){
-		$id = $_POST['session_id'];
-		$result = $this->frontend_model->get_images($id); 
-		$url = base_url();
-		for($i=0; $i<count($result); $i++){
-			$k = $_POST['url'].$result[$i]->image_name;
-			$image_dimention = getimagesize($k);	
-			$image_width = $image_dimention[0]; 
-			$image_height = $image_dimention[1];
-			$data[] = $result[$i]->image_name.'*'.$image_width.'x'.$image_height;
-		}
-	}else{
-		$image_dimention = getimagesize($_POST['src']);	
-				$image_width = $image_dimention[0]; 
-				$image_height = $image_dimention[1]; 
-				$data[] = $image_width.'x'.$image_height;
-	} 
-		echo json_encode($data);
-	}
-	
-	public function upload() {
-    if (!empty($_FILES)) {
-        if(!isset($_COOKIE['user_info'])){
-                $info = session_id();
-                setcookie('user_info', $info, time() + (86400 * 30), "/"); 
-                $_SESSION['id'] = $info;
-       } else {
-            $_SESSION['id'] = $_COOKIE['user_info'];
-        }
-    }
-    
-    if(isset($_FILES['file'])) {
-		for($i=0;$i<=count($_FILES['file']['name'])-1;$i++){
-		$file_extn = explode(".", strtolower($_FILES['file']['name'][$i]));	
-		$change_name[$i] = 'image'.uniqid(rand()).'.'.$file_extn[1];
 
-	    $tmp_array = $_FILES['file']['tmp_name'][$i];
-		$image_name = $change_name[$i];
-		$image_type = $_FILES['file']['type'][$i];
-		$tmp_name = $_FILES['file']['tmp_name'][$i];
-		$image_size = $_FILES['file']['size'][$i];
-          move_uploaded_file($tmp_array, "upload_images/original/".$image_name);    
-          $status = makeThumbnail($tmp_array,$max_width=400, $max_height=300, 'upload_images/'.$image_name, $image_type);
-		  if($status) {  
-            $query = mysql_query("INSERT INTO add_images_table(image_name,image_type,image_path,image_size,session_id) VALUES('$image_name','$image_type','$tmp_name','$image_size','$id')");
-		    }	
-	
-		}
-	}
- }	  
 
-	public function get_web_price_detail()
-	  {
-		$print_paper = $this->input->post('paper_type');
-		$result = $this->frontend_model->get_print_only($print_paper);
-		echo $result[0]->rate;
-	  } 
-	 
-	public function result(){
-	$image_dimention = getimagesize($_POST['newpath']);	
-	$imagewidth  = $image_dimention[0]; 
-	$imageheight = $image_dimention[1];
-	$image_dimention = getimagesize($_POST['src']);	
-	$image_width  = $image_dimention[0]; 
-	$image_height = $image_dimention[1];
-	$image_status = '';  
-	$max_width = $image_width/150;
-	$max_height= $image_height/150;
-	$size_array = array();
-	$surface = 1;
-	if($image_width >= $image_height){
-		$image_ratio = $image_height/$image_width; 
-		$image_alignment="horizontal";
-		if($surface==1){// canvas
-		$size_array[0]['height']=8*$image_ratio;
-        $size_array[0]['width']=8;
-        $size_array[1]['height']=10*$image_ratio;
-        $size_array[1]['width']=10;
-        $size_array[2]['height']=12*$image_ratio;
-        $size_array[2]['width']=12;
-        $size_array[3]['height']=16*$image_ratio;
-        $size_array[3]['width']=16;
-        $size_array[4]['height']=18*$image_ratio;
-        $size_array[4]['width']=18;
-        $size_array[5]['height']=20*$image_ratio;
-        $size_array[5]['width']=20;
-        $size_array[6]['height']=24*$image_ratio;
-        $size_array[6]['width']=24;
-        $size_array[7]['height']=28*$image_ratio;
-        $size_array[7]['width']=28;
-        $size_array[8]['height']=32*$image_ratio;
-        $size_array[8]['width']=32;
-        $size_array[9]['height']=36*$image_ratio;
-        $size_array[9]['width']=36;
-        $size_array[10]['height']=40*$image_ratio;
-        $size_array[10]['width']=40;
-        $size_array[11]['height']=44*$image_ratio;
-        $size_array[11]['width']=44;
-        $size_array[12]['height']=48*$image_ratio;
-        $size_array[12]['width']=48;
-        $size_array[13]['height']=50*$image_ratio;
-        $size_array[13]['width']=50;
-        $size_array[14]['height']=56*$image_ratio;
-        $size_array[14]['width']=56;
-        $size_array[15]['height']=60*$image_ratio;
-        $size_array[15]['width']=60;
-		}
-	 for($i=0;$i<=11;$i++){
-			if($size_array[$i]['width']<= $max_width && $size_array[$i]['height']<=$max_height ){
-			$data_rec[]=round($size_array[$i]['width']).'X'.round($size_array[$i]['height']);
-			}
-	 }
-	 $data_rec[]=$imagewidth.'X'.$imageheight;
-	 $data_rec[]=$max_width.'X'.$max_height;
-	 echo json_encode($data_rec);
-	 }
-	 else if($image_width<$image_height)
-	{ $image_ratio = $image_width/$image_height; 
-	    $size_array[0]['width']=8*$image_ratio;
-        $size_array[0]['height']=8;
-	    $size_array[1]['width']=10*$image_ratio;
-        $size_array[1]['height']=10;
-	    $size_array[2]['width']=12*$image_ratio;
-        $size_array[2]['height']=12;
-        $size_array[3]['width']=16*$image_ratio;
-        $size_array[3]['height']=16;
-        $size_array[4]['width']=18*$image_ratio;
-        $size_array[4]['height']=18;
-        $size_array[5]['width']=24*$image_ratio;
-        $size_array[5]['height']=24;
-        $size_array[6]['width']=30*$image_ratio;
-        $size_array[6]['height']=30;
-        $size_array[7]['width']=36*$image_ratio;
-        $size_array[7]['height']=36;
-        $size_array[8]['width']=44*$image_ratio;
-        $size_array[8]['height']=44;
-        $size_array[9]['width']=48*$image_ratio;
-        $size_array[9]['height']=48;
-        $size_array[10]['width']=50*$image_ratio;
-        $size_array[10]['height']=50;
-        $size_array[11]['width']=56*$image_ratio;
-        $size_array[11]['height']=56;
-        $size_array[12]['width']=60*$image_ratio;
-        $size_array[12]['height']=60;
-
-		 for($i=0;$i<=11;$i++){
-			if($size_array[$i]['width']<= $max_width && $size_array[$i]['height']<=$max_height ){
-			$data_rec[]=round($size_array[$i]['width']).'X'.round($size_array[$i]['height']);
-			}
-		}
-		$data_rec[]=$imagewidth.'X'.$imageheight;
-		$data_rec[]=$max_width.'X'.$max_height;
-		echo json_encode($data_rec);
-		}
-  
-	}
- // End
-	public function get_web_price_detials()
+public function get_web_price_detials()
 	  {
             $print_paper=$this->input->post('print_paper');
 
@@ -291,9 +82,6 @@ $this->user = $this->facebook->getUser();
           $result=  mysql_fetch_assoc($rows);
           echo $result['rate'];
 	  }
-	  
-	
-	  
 	public function index() {
 
          $search_api = "http://api.indiapicture.in/wallsnart/get_collection.php";
@@ -1575,7 +1363,10 @@ $check="";
 		$this->load->view("frontend/lightbox",$data);
 		$this->load->view("frontend/footer");
 
-		}	
+		
+		
+
+	}	
 
 
 
@@ -1645,7 +1436,9 @@ $check="";
 	
 public function lightbox_view($lightbox_id,$page_no=0,$offset=0)
 	{
-		$per_page = 20;  
+				
+	
+	   $per_page = 20;  
 		$offset = ($this->uri->segment(4) != '' ? $this->uri->segment(4):0);
 		$config["total_rows"] = $this->frontend_model->count_images_lightbox($lightbox_id);
 		$config['per_page']= $per_page;
@@ -2050,8 +1843,6 @@ echo json_encode($array);
 		$this->load->view('frontend/artist_alphabetic_search',$data);
 		$this->load->view('frontend/footer');
 	}
-	
-	
 
 	public function delete_lightbox($lightbox_id,$page_no)
 	{

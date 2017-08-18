@@ -260,12 +260,14 @@ public function get_paper_type_name(){
 	}else{
 	$keyword_search=$result_header_images[0]->keyword_any;
 	}
+	$minus_keyword=explode(',',$result_header_images[0]->minus_keyword);
+	$per_page=count($minus_keyword)*2+$no_of_res;
 	$array_cat=explode(",",trim($keyword_search));
 	//print_r($keyword_search);
 	//$array_cat=array($search_keys);
 //echo 'ss'.count($array_cat).'ss';
 for($x=0;$x<count($array_cat);$x++){
-  $search_api = "http://api.indiapicture.in/wallsnart/search.php?q=$array_cat[$x]&page=$page_no&per_page=$no_of_res";
+  $search_api = "http://api.indiapicture.in/wallsnart/search.php?q=$array_cat[$x]&page=$page_no&per_page=$per_page";
 $opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
 $context = stream_context_create($opts);
 //echo $search_api;

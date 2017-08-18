@@ -1092,56 +1092,38 @@
 <ul class="menu2">
 <?php
                         //$subjects=$this->search_model->get_subcategory(857);
-                        for($i=0;$i<=4;$i++){
-                            ?>
-<li> <a href="javascript:category_filter('<?php echo $drop7[$i]->keyword ?>')" onClick="return show_subjects('subjects','<?php print ucwords($drop7[$i]->title)?>')"><?php print ucwords($drop7[$i]->title); ?></a> </li>
-<?php } ?>
+                        //for($i=0;$i<=4;$i++){} ?>
 </ul>
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
 <?php
-                        for($i=5;$i<=10;$i++){
-                            ?>
-<li> <a href="javascript:category_filter('<?php echo $drop7[$i]->keyword ?>')"><?php print ucwords($drop7[$i]->title); ?></a> </li>
-<?php } ?>
+                       // for($i=5;$i<=10;$i++){} ?>
 </ul>
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
 <?php
-                        for($i=11;$i<=15;$i++){
-                            ?>
-<li> <a href="javascript:category_filter('<?php echo $drop7[$i]->keyword ?>')"><?php print ucwords($drop7[$i]->title); ?></a> </li>
-<?php } ?>
+                       // for($i=11;$i<=15;$i++){} ?>
 </ul>
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
 <?php
-                        for($i=15;$i<=20;$i++){
-                            ?>
-<li> <a href="javascript:category_filter('<?php echo $drop7[$i]->keyword ?>')"><?php print ucwords($drop7[$i]->title); ?></a> </li>
-<?php } ?>
+                       // for($i=15;$i<=20;$i++){} ?>
 </ul>
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
 <?php
-                        for($i=21;$i<=25;$i++){
-                            ?>
-<li> <a href="javascript:category_filter('<?php echo $drop7[$i]->keyword ?>')"><?php print ucwords($drop7[$i]->title); ?></a> </li>
-<?php } ?>
+                      //  for($i=21;$i<=25;$i++){} ?>
 
 </ul>
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
 <?php
-                        for($i=26;$i<=26;$i++){
-                            ?>
-<li> <a href="javascript:category_filter('<?php echo $drop7[$i]->keyword ?>')"><?php print ucwords($drop7[$i]->title); ?></a> </li>
-<?php } ?>
+                       // for($i=26;$i<=26;$i++){} ?>
 </ul>
 </div>
 </div>

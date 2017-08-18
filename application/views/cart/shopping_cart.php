@@ -25,12 +25,15 @@ if(!$key){
               $userName=$this->cart_model->get_userDetails($this->session->userdata('userid'));
              ?>
 			 <style>
-			 
+			 .item.showforprintonly {
+	width: 190px;
+	float: left;
+}
 #fir{padding:2px; background-color:white;
 box-shadow:2px 2px 1px black inset;
 }
 .cart-removepopupshow span {
-  margin-right: 10px;
+  font-size:16px;
 }
 .mainhor {
   -moz-border-bottom-colors: none;
@@ -64,7 +67,7 @@ box-shadow:2px 2px 1px black inset;
     
         <!-- shopping cart -->
 		<div class="row">
-		 <div id="no-more-tables">
+		 <div id="no-more-tables" style="overflow-x:scroll">
         <table class="col-md-12 table-bordered table-striped table-condensed cf">
                 	<thead class="cf">
                                                 <tr>
@@ -126,13 +129,81 @@ box-shadow:2px 2px 1px black inset;
                 	 
                                                 <tr>
                             <td> <div><?=$i;?></div></td>
-                            <td class="item">
+                            <td class="item showforprintonly">
                              <?php   
 							 if($image['frame_color']=='Streched Canvas Gallary Wrap'){?>
 							 
-							 <div class="showforprintonly" id="topa2">
-                                <img src="http://static.mahattaart.com/158/<?= $image['image_name'];?>"  />
-                             </div>
+								<style>
+.container3D {
+	min-height: 180px;
+	position: relative;
+	min-width: 100%;
+}
+    
+    #cube {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform: translateZ( -100px );
+    -moz-transform: translateZ( -100px );
+    -o-transform: translateZ( -100px );
+    transform: translateZ( -100px );
+    }
+    #cube .front {
+    -webkit-transform: translateZ( 100px );
+    -moz-transform: translateZ( 100px );
+    -o-transform: translateZ( 100px );
+    transform: translateZ( 100px );
+    }
+    #cube figure {
+    display: block;
+    position: absolute;
+    }
+    
+    figure {
+    margin: 0;
+    }
+    
+    #cube .right {
+    -webkit-transform: rotateY( 90deg ) translateZ( 100px );
+    -moz-transform: rotateY( 90deg ) translateZ( 100px );
+    -o-transform: rotateY( 90deg ) translateZ( 100px );
+    transform: skewY(45deg) translate(20px,-10px);
+    width: 20px;
+    height: 100%;
+    right: 0px;
+    top: 0;
+    }
+    
+    #cube .right {
+    background: #000;
+    }
+    #cube .bottom {
+    -webkit-transform: rotateX( -90deg ) translateZ( 100px );
+    -moz-transform: rotateX( -90deg ) translateZ( 100px );
+    -o-transform: rotateX( -90deg ) translateZ( 100px );
+    transform: skewX(45deg) translate(-11px,21px);
+    height: 20px;
+    width: 100%;
+    bottom: 1px;
+    }
+    #cube .bottom {
+    background: #ddd;
+    }
+    </style>
+                                <section class="container3D">
+                                    <div id="cube" class=" ">
+                                        <figure class="front">
+                                            <img src="http://static.mahattaart.com/158/<?= $image['image_name'];?>" class="img-responsive" />
+                                            <figure class="right"></figure>
+                                            <figure class="bottom"></figure>
+                                        </figure>
+                                    </div>
+                                </section>
 							 <?php
 							 }else{
 							 if($image['frame_cost']!=0 && $image['mount_size']!=0){
@@ -142,8 +213,6 @@ box-shadow:2px 2px 1px black inset;
 							 }
 							  $file_name=$image['image_name'];
 							 ?>  
-   <div class="mainhor" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/<?=$image['frame_color']?>.jpg') 30 30 30 30 round round;">
- <div style=" background:url('<?=base_url()?>images/uploaded_pdf/mount/<?=$image['mount_color']?>.jpg') no-repeat scroll 0 0 / cover; padding:<?=$padding?>px">
  <?php
  $search_file = "http://api.indiapicture.in/wallsnart/search.php?q=$file_name&page=1&per_page=1";
 $opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
@@ -158,14 +227,13 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
  
  ?>
              
-                            <div class="" id="topa2">
-                               <a href="<?=base_url()?>index.php/search/image_detail/<?=$file_name?>/<?=$image['image_id']?>/<?=$collection_id?>">  <img src="http://static.mahattaart.com/158/<?= $image['image_name'];?>" width="100%"/></a>
+                            <div  id="topa2">
+                               <a href="<?=base_url()?>index.php/search/image_detail/<?=$file_name?>/<?=$image['image_id']?>/<?=$collection_id?>"> 
+                                <img src="http://static.mahattaart.com/158/<?= $image['image_name'];?>" class="img-responsive mainhor" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/<?=$image['frame_color']?>.jpg') 30 30 30 30 round round;background:url('<?=base_url()?>images/uploaded_pdf/mount/<?=$image['mount_color']?>.jpg') no-repeat scroll 0 0 / cover; padding:<?=$padding?>px" /></a>
                                   
                            
                 </div>
-            </div>
                                   								 
-          </div>
 		  <?php } ?>
                                 
                    
@@ -210,33 +278,32 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
 				
                         </td>
                         <td class="qua">
-                                <input name="f" type="text" readonly id="p_qty<?=$i?>" class="qua-inp" 
-                                       value="<?= $image['qty'];?>"  style="margin-left:30px;border:none;"/>
-                                
-								
-								<button id="edit_button<?=$i?>" onclick="edit_qty(<?=$i?>);"><span class="glyphicon glyphicon-pencil"></span>Edit</button>
+                                    <form class="form-horizontal">
+                                        <div class="form-group" style="margin-bottom: 2px;">
+                                        	<div class="col-md-12">
+	                                            <input name="f" type="text" readonly id="p_qty<?=$i?>" class="qua-inp text-center" value="<?= $image['qty'];?>"  style=" width:60px;"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                        	<div class="col-md-12">
+                                            	<button type="button" id="edit_button<?=$i?>" onclick="edit_qty(<?=$i?>);" style="min-width: 60px;"><span class="glyphicon glyphicon-pencil"></span>Edit</button>
+                                            </div>
+                                        </div>
+                                    </form>
 								<div id="divfor_update<?=$i?>" style="display:none;">
-								<form class="form-horizontal">
-								
-								
-    <div class="form-group">
-      
-        <div class="col-xs-10">
-                               <input type="text" style="width:40px" maxlength="4" name="qty_update" class="by_keyup_update" id="qty_update<?=$i?>" value="<?=$image['qty']?>" >
-		                        
-        </div>
-    </div>
-     
-    
-    <div class="form-group row">
-        <button onclick="choose_qty('<?=$i?>','<?=$image['image_name']?>','<?=$image['image_size']?>','<?=$image['image_print_type']?>','<?=$image['price']?>','<?=$image['qty']?>','<?=$image['frame_size']?>','<?=$image['frame_color']?>','<?=$image['mount_color']?>','<?=$image['glass_type']?>');" type="submit" class=""><span class="glyphicon glyphicon-refresh"></span>Update</button>
-		
-           <button type="submit" class=""><span class="	glyphicon glyphicon-remove"></span>Cancel</button>
-			 
-       
-		
-    </div>
-</form>
+                                    <form class="form-horizontal">
+                                        <div class="form-group" style="margin-bottom: 2px;">
+                                        	<div class="col-md-12">
+	                                            <input type="text" maxlength="4" name="qty_update" class="by_keyup_update text-center" id="qty_update<?=$i?>" value="<?=$image['qty']?>" style="width:73px;">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                        	<div class="col-md-12">
+                                                <button onclick="choose_qty('<?=$i?>','<?=$image['image_name']?>','<?=$image['image_size']?>','<?=$image['image_print_type']?>','<?=$image['price']?>','<?=$image['qty']?>','<?=$image['frame_size']?>','<?=$image['frame_color']?>','<?=$image['mount_color']?>','<?=$image['glass_type']?>');" type="submit" class="" style="min-width:73px;"><span class="glyphicon glyphicon-refresh"></span>Update</button>
+                                                <button type="submit" class="" style="min-width: 73px;"><span class="glyphicon glyphicon-remove"></span>Cancel</button>
+                                            </div>
+                                        </div>
+                                    </form>
 								</div>
 								</td>
                                 <td class="pri" >Rs.<?php  echo $wd_tax_price=$image['price']; ?>
@@ -256,8 +323,8 @@ $collection_id=$search_data_r['results'][0]['image_collection_id'];
 								
 								?></td>
                        
-						<td>
-						<a href="<?=base_url()?>index.php/cart/Cart_remove/<?=$image['user_id'];?>/<?=$image['cart_id']?>"><div><span class="fnl-cart-wishopt cart-removepopupshow"><span class="glyphicon glyphicon-trash"></span>Remove</span></div></a>
+						<td class="text-center">
+						<a href="<?=base_url()?>index.php/cart/Cart_remove/<?=$image['user_id'];?>/<?=$image['cart_id']?>"><div><span class="fnl-cart-wishopt cart-removepopupshow"><span class="glyphicon glyphicon-trash"></span></span></div></a>
 						</td>
 						</tr>
         

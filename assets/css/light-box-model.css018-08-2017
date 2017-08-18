@@ -1,0 +1,86 @@
+@charset "utf-8";
+/* CSS Document */
+
+.lightbox-target {
+  background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
+  opacity: 0;
+  overflow: hidden;
+  position: fixed;
+  top: -100%;
+  transition: opacity 0.5s ease-in-out 0s;
+  width: 100%;
+  z-index:99999
+}
+/*.lightbox-target img {
+  border: 3px solid white;
+  bottom: 0;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  left: 0;
+  margin: auto;
+  max-height: 0;
+  max-width: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: all 0.5s ease-in-out 0s;
+}*/
+a.lightbox-close::before {
+  background: black none repeat scroll 0 0;
+  content: "";
+  display: block;
+  height: 50px;
+  left: 26px;
+  position: absolute;
+  top: 0;
+  transform: rotate(45deg);
+  width: 1px;
+}
+a.lightbox-close::after {
+  background: black none repeat scroll 0 0;
+  content: "";
+  display: block;
+  height: 50px;
+  left: 26px;
+  position: absolute;
+  top: 0;
+  transform: rotate(-45deg);
+  width: 1px;
+}
+a.lightbox-close {
+  background: white none repeat scroll 0 0;
+  box-sizing: border-box;
+  color: black;
+  display: block;
+  height: 50px;
+  position: absolute;
+  right: 0;
+  text-decoration: none;
+  top: -80px;
+  width: 50px;
+}
+.lightbox-target:target {
+  bottom: 0;
+  opacity: 1;
+  top: 0;
+}
+
+/*.lightbox-target:target img {
+  max-height: 100%;
+  max-width: 100%;
+}*/
+.lightbox-target:target a.lightbox-close {
+  top: 0;
+}
+
+#goofy > video {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  max-height: 100%;
+  max-width: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+

@@ -71,36 +71,10 @@ public function reverse_number($number)
     $reverse = (int) $revstr;
      return $reverse;
 }
-	//Methods by Tarun Shrivastva 
-	public function delete_image($image_name){
-		$this->db->where('image_name',$image_name);
-		$query=$this->db->delete('add_images_table');
-		if($query)
-		return true;
-		else
-		return false;	
-	} 
-	
-	public function images($id){
-	$this->db->select('image_name');
-	$this->db->where('session_id',$id);
-	$query=$this->db->get('add_images_table');
-	return $query->result();	
-	}
-	
-	public function get_images($id){
-	$this->db->select('*');
-	$this->db->where('session_id',$id);
-	$query=$this->db->get('add_images_table');
-	return $query->result();
-	}
-	
-	public function get_print_only($paper_type){
-		$this->db->select('rate')->where('paper',$paper_type)->where('quality','Star');
-		$query = $this->db->get('tbl_web_price');
-		return $query->result();
-	} 
- // End
+
+
+
+
 
 
 public function get_all_lightboxes_gallery($user_id)

@@ -67,7 +67,18 @@ if(!$key){
                                 <input type="text" name="c_name" value="<?=$userName->company_name;?>" id="company_name"  class="form-control" />
                             </div>
                         </div>
-                        
+                        <div class="form-group row">
+                            <label for="firstName" class="col-sm-3 col-form-label">GST NO.</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="c_gst_no" value="<?=$userName->gst_no;?>" id="c_gst_no"  class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="firstName" class="col-sm-3 col-form-label">PAN NO.</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="c_pan_no" value="<?=$userName->pan_no;?>" id="c_pan_no"  class="form-control" />
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="firstName" class="col-sm-3 col-form-label">Address</label>
                             <div class="col-sm-9">
@@ -221,7 +232,18 @@ if(!$key){
                                 <input type="text" name="s_c_name" id="s_c_name"  class="form-control" />
                             </div>
                         </div>
-                        
+                         <div class="form-group row">
+                            <label for="firstName" class="col-sm-3 col-form-label">GST NO.</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="s_c_gst_no" value="" id="s_c_gst_no"  class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="firstName" class="col-sm-3 col-form-label">PAN NO.</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="s_c_pan_no" value="" id="s_c_pan_no"  class="form-control" />
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="firstName" class="col-sm-3 col-form-label">Address</label>
                             <div class="col-sm-9">
@@ -425,6 +447,7 @@ if(!$key){
 							
                             <script>
 							
+							
 	function sameaddress(val){ 
 	$('#setaddress').val(val);
      	
@@ -532,6 +555,8 @@ if(!$key){
 <input type="hidden" name="merchant_param1" value="<?=$this->session->userdata('userid')?>" />
 <input type="hidden" name="merchant_param2" value="<?=$invoice_id_auto;?>" />
 <input type="hidden" id="merchant_param3" name="merchant_param3" value="" />
+<input type="hidden" id="merchant_param4" name="merchant_param4" value="" />
+<input type="hidden" id="merchant_param5" name="merchant_param5" value="" />
 
 <input type="hidden" name="promo_code" value="" />
 <input type="hidden" name="tid" value="123" />
@@ -783,6 +808,11 @@ function checkValidateSelect1()
      validation_for_forminfo('name');
       return false;
      }
+	 if(document.getElementById('c_gst_no').value!='' && document.getElementById('c_pan_no').value=='' ){
+	  validation_for_forminfo('c_pan_no');
+      return false;
+	 
+	 }
      if(document.getElementById('pincode').value=='')
      {
          
@@ -863,11 +893,13 @@ function checkValidateSelect1()
 	  	///  alert(b_purpose)
 	  var sameaddress_no=$('#sameaddress_no').val();
 	  var setaddress=$('#setaddress').val();
+	  var c_gst_no=$('#c_gst_no').val();
+	  var c_pan_no=$('#c_pan_no').val();
 	 //alert(setaddress)
 	  $.ajax({
 	      type:'post',
 		  url:'<?=base_url()?>index.php/cart/update_customer',
-		  data:'name='+firstname+'&company_name='+company_name+'&pincode='+pincode+'&address='+address+'&city='+city+'&state='+state+'&phone='+phone+'&lastname='+lastname+'&email_reciept='+email_reciept+'&getpurpose='+purpose,
+		  data:'name='+firstname+'&company_name='+company_name+'&pincode='+pincode+'&address='+address+'&city='+city+'&state='+state+'&phone='+phone+'&lastname='+lastname+'&email_reciept='+email_reciept+'&getpurpose='+purpose+'&c_gst_no='+c_gst_no+'&c_pan_no='+c_pan_no,
 		  success: function(response){
 		//alert(response);
 	
@@ -888,6 +920,9 @@ function checkValidateSelect1()
      $('#delivery_city').val(city);
      $('#delivery_state').val(state);
 	  $('#delivery_tel').val(phone);
+	  $('#merchant_param4').val(c_gst_no);
+	  $('#merchant_param5').val(c_pan_no);
+	  
 	 }
   if(setaddress=='no'){
 // alert('no')
@@ -895,28 +930,34 @@ function checkValidateSelect1()
      {
       validation_for_forminfo('s_name');
       return false;
-     }else
+     }
      if(document.getElementById('s_pincode').value=='')
      {
          
       validation_for_forminfo('s_pincode');
       return false;
-     }else
+     }
      if(document.getElementById('s_address').value=='')
      {
       validation_for_forminfo('s_address');
       return false;
-     }else
+     }
+	  if(document.getElementById('s_c_gst_no').value!='' && document.getElementById('s_c_pan_no').value=='' ){
+	  validation_for_forminfo('s_c_pan_no');
+      return false;
+	 
+	 }
+	 
          if(document.getElementById('s_city').value=='')
      {
      validation_for_forminfo('s_city');
       return false;
-     }else
+     }
          if(document.getElementById('s_state').value=='')
      {
       validation_for_forminfo('s_state');
       return false;
-     }else
+     }
          if(document.getElementById('s_phone').value=='')
      {
      validation_for_forminfo('s_phone');
@@ -939,6 +980,11 @@ function checkValidateSelect1()
 	 $('#delivery_state').val(state);
 	  var phone=$('#s_phone').val();
 	  $('#delivery_tel').val(phone);
+	  var gst_number=$('#s_c_gst_no').val();
+	  $('#merchant_param4').val(gst_number);
+	   var pan_number=$('#s_c_pan_no').val();
+	  $('#merchant_param5').val(pan_number);
+	  
 	 
   
   }

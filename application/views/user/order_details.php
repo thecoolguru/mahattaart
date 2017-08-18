@@ -185,7 +185,11 @@ $image_id=$search_data_r['results'][0]['image_id'];
             <td><?=$order_id->sr_id;?></td>
             <td><?=$order_id->invoice_id;?></td>
             <td><?=$order_id->sku_id;?></td>
-            <td style="background:rgba(0, 0, 0, 0) url('<?=base_url()?>images/uploaded_pdf/mount/<?=$order_id->mount_color;?>.jpg') no-repeat scroll 0 0 / cover ; border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/<?=$order_id->frame_color;?>.jpg') 10 10 10 10 round round; width:110px" class="mainhor"><a href="<?=base_url()?>search/image_detail/<?=$file_name?>/<?=$image_id?>/<?=$collection_id?>"><img src="http://static.mahattaart.com/398/<?=$order_id->sku_id;?>"width="100%" /></a></td>
+            <td>
+                <a href="<?=base_url()?>search/image_detail/<?=$file_name?>/<?=$image_id?>/<?=$collection_id?>">
+                    <img style="background:rgba(0, 0, 0, 0) url('<?=base_url()?>images/uploaded_pdf/mount/<?=$order_id->mount_color;?>.jpg') no-repeat scroll 0 0 / cover ; border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/<?=$order_id->frame_color;?>.jpg') 10 10 10 10 round round; width:110px" class="mainhor img-responsive" src="http://static.mahattaart.com/398/<?=$order_id->sku_id;?>" />
+                </a>
+            </td>
             <td class="odd"><?=$order_id->updated_status;?></td>
             <td>
 				<?php 
