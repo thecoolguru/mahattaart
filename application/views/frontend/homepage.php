@@ -271,9 +271,6 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
   margin-right: 10px;
 }
 
-#myCarousel .left.carousel-control, #myCarousel .right.carousel-control {
-  margin-top: 10%;
-}
 #myCarousel2 .left.carousel-control, #myCarousel2 .right.carousel-control {
 	width:5%
 }
@@ -322,11 +319,6 @@ $(document).ready(function () {
 .carousel.fdi-Carousel.slide {
   background-color: #f5f5f5;
 }
-
-.carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right, .carousel-control .icon-next, .carousel-control .icon-prev {
-  margin-top: 65px;
-}
-
 .shopTopCategories {
 	box-sizing: border-box;
 	column-gap: 30px;

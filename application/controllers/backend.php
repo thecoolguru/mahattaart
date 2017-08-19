@@ -424,6 +424,7 @@ public function invoice_view($invoice_id)
     $data['invoice_data']= $this->backend_model->get_view_invoice_details($invoice_id);
     $data['invoice_details']= $this->backend_model->get_all_invoice_details($invoice_id);
      $data['invoice']= $this->backend_model->get_all_invoice($invoice_id);
+	  $data['order_details']=$this->backend_model->get_order_details_after_payment($invoice_id);
 
 
         $this->load->view('backend/invoice_details',$data);

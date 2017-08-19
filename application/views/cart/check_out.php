@@ -28,12 +28,11 @@ if(!$key){
   
   border-style: solid;
   border-width: 15px;
-  padding: 0;
+  padding: 10px;
   width:120px
 }
-.showforprintonly {
-    box-shadow: -20px 5px 5px #000000;
-    transform: perspective(600px) rotateY(12deg);
+.detail table tr:first-child {
+	background: #f9f9f9 !important;
 }   
 	</style>		
 <div class="container">
@@ -365,9 +364,7 @@ if(!$key){
 		foreach($data as $image){?>
                               <tr>
 							  <td><?=$sr?></td>
-                                  <td>
-								  <div class="mainhor" style="border-image: url('<?php echo base_url();?>images/uploaded_pdf/frames/horizontal/<?= $image['frame_color'];?>.jpg') 15 15 15 15 round round;">
-                                      <div style=" background:url('<?=base_url()?>images/uploaded_pdf/mount/<?=$image['mount_color']?>.jpg') no-repeat scroll 0% 0% / cover; padding:10px">
+                                  <td class="showforprintonly">
                                       <?php if($image['frame_or_print']==1){ ?>
                 <img
 				src="<?php echo base_url()?>600/<?= $image['frame_name'];?>" width="70" height="70" />
@@ -375,18 +372,85 @@ if(!$key){
 									  
 									  }
 									 if($image['frame_color']=='Streched Canvas Gallary Wrap'){?>
-									 <img class="showforprintonly" src="http://static.mahattaart.com/158/<?= $image['image_name'];?>" class="img-responsive"/>
-									 
+                                <style>
+.container3D {
+	min-height: 180px;
+	position: relative;
+	min-width: 100%;
+}
+    
+    #cube {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform: translateZ( -100px );
+    -moz-transform: translateZ( -100px );
+    -o-transform: translateZ( -100px );
+    transform: translateZ( -100px );
+    }
+    #cube .front {
+    -webkit-transform: translateZ( 100px );
+    -moz-transform: translateZ( 100px );
+    -o-transform: translateZ( 100px );
+    transform: translateZ( 100px );
+    }
+    #cube figure {
+    display: block;
+    position: absolute;
+    }
+    
+    figure {
+    margin: 0;
+    }
+    
+    #cube .right {
+    -webkit-transform: rotateY( 90deg ) translateZ( 100px );
+    -moz-transform: rotateY( 90deg ) translateZ( 100px );
+    -o-transform: rotateY( 90deg ) translateZ( 100px );
+    transform: skewY(45deg) translate(20px,-10px);
+    width: 20px;
+    height: 100%;
+    right: 0px;
+    top: 0;
+    }
+    
+    #cube .right {
+    background: #000;
+    }
+    #cube .bottom {
+    -webkit-transform: rotateX( -90deg ) translateZ( 100px );
+    -moz-transform: rotateX( -90deg ) translateZ( 100px );
+    -o-transform: rotateX( -90deg ) translateZ( 100px );
+    transform: skewX(45deg) translate(-11px,21px);
+    height: 20px;
+    width: 100%;
+    bottom: 1px;
+    }
+    #cube .bottom {
+    background: #ddd;
+    }
+    </style>
+                                <section class="container3D">
+                                    <div id="cube" class=" ">
+                                        <figure class="front">
+                                            <img src="http://static.mahattaart.com/158/<?= $image['image_name'];?>" class="img-responsive" />
+                                            <figure class="right"></figure>
+                                            <figure class="bottom"></figure>
+                                        </figure>
+                                    </div>
+                                </section>
 									 <?php
 									 } 
 									  
 									  else {
 									
 									  ?>
-                 <img src="http://static.mahattaart.com/158/<?= $image['image_name'];?>" class="img-responsive"/>
+                 <img src="http://static.mahattaart.com/158/<?= $image['image_name'];?>" class="img-responsive mainhor" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/<?=$image['frame_color']?>.jpg') 30 30 30 30 round round;background:url('<?=base_url()?>images/uploaded_pdf/mount/<?=$image['mount_color']?>.jpg') no-repeat scroll 0 0 / cover;" />
             <?php }?>
-                                    </div> 
-									</div> 
                                   </td>
                                 
                                 <td><span id="qty_btn<?=$image['cart_id']?>"><?= $image['qty'];?></span><button style="margin-left:10px;" id="edit_button<?=$image['cart_id']?>" onclick="edit_qty(<?=$image['cart_id']?>);"><span class="glyphicon glyphicon-pencil"></span>Edit</button>

@@ -221,7 +221,7 @@ $context = stream_context_create($opts);
 $search_data_file = file_get_contents($search_file, false, $context);
 $search_data_r=json_decode($search_data_file,TRUE);
 //print_r($search_data_r);
-$collection_id=$search_data_r['results'][0]['image_collection_id'];
+echo $collection_id=$search_data_r['results'][0]['image_collection_id'];
 
 
  

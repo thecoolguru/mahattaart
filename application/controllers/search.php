@@ -665,7 +665,7 @@ $search_api = "http://api.indiapicture.in/wallsnart/collection.php?collection_id
 	$search_api = "http://api.indiapicture.in/wallsnart/search.php?q=$search_keys&page=$page&per_page=$limit";
 	}
 		}
-echo $search_api;
+//echo $search_api;
 
 
 

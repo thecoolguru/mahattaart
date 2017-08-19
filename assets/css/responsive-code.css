@@ -306,6 +306,9 @@ a:hover {
 	.bor tr td a {
 		width: 11.5px !important;
 	}
+	#socialleft {
+		display: none;
+	}
 }
 
 
