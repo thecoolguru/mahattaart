@@ -3,7 +3,7 @@ ob_start();
 define('IMAGE_PATH', APPPATH.'views/frontend/upload_images/');
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Frontend extends CI_Controller
-{
+{                                                   //8979883081
 	function __construct()
 	{
 		parent::__construct();
@@ -45,21 +45,16 @@ $this->user = $this->facebook->getUser();
 		}else{
 		  unset($_SESSION['type']);
 		}
-		unset($_SESSION['refresh']);
+		
 	}
 
 	public function photostoart_inner()
 	{
- 		 $_SESSION['path'] = IMAGE_PATH;
- 		 if(!(isset($_SESSION['refresh'])) ){
-     	 $_SESSION['refresh'] = 'refresh';
-         }else{
-     	 unset($_SESSION['refresh']);
-     	 //echo "<script> window.location.href = 'photostoart'; </script>";
-          }
+ 		$_SESSION['path'] = IMAGE_PATH;
+ 		 
         $id = $_COOKIE['user_info'];
 		$result = $this->frontend_model->get_images($id);
-		if(count($result)){ 
+		if(isset($_SESSION['user_info'])){ 
 		$data['mount_name']=$this->frontend_model->get_mount_name_web_price();
 		$data['frame_cat']=$this->frontend_model->get_frame_cat_tbl_web_price();
 		$data['frame_sizze']=$this->frontend_model->get_frame_size();
@@ -143,42 +138,13 @@ $this->user = $this->facebook->getUser();
 		echo json_encode($data);
 	}
 	
-	public function upload() {
-    if (!empty($_FILES)) {
-        if(!isset($_COOKIE['user_info'])){
-                $info = session_id();
-                setcookie('user_info', $info, time() + (86400 * 30), "/"); 
-                $_SESSION['id'] = $info;
-       } else {
-            $_SESSION['id'] = $_COOKIE['user_info'];
-        }
-    }
-    
-    if(isset($_FILES['file'])) {
-		for($i=0;$i<=count($_FILES['file']['name'])-1;$i++){
-		$file_extn = explode(".", strtolower($_FILES['file']['name'][$i]));	
-		$change_name[$i] = 'image'.uniqid(rand()).'.'.$file_extn[1];
-
-	    $tmp_array = $_FILES['file']['tmp_name'][$i];
-		$image_name = $change_name[$i];
-		$image_type = $_FILES['file']['type'][$i];
-		$tmp_name = $_FILES['file']['tmp_name'][$i];
-		$image_size = $_FILES['file']['size'][$i];
-          move_uploaded_file($tmp_array, "upload_images/original/".$image_name);    
-          $status = makeThumbnail($tmp_array,$max_width=400, $max_height=300, 'upload_images/'.$image_name, $image_type);
-		  if($status) {  
-            $query = mysql_query("INSERT INTO add_images_table(image_name,image_type,image_path,image_size,session_id) VALUES('$image_name','$image_type','$tmp_name','$image_size','$id')");
-		    }	
-	
-		}
-	}
- }	  
 
 	public function get_web_price_detail()
 	  {
 		$print_paper = $this->input->post('paper_type');
-		$result = $this->frontend_model->get_print_only($print_paper);
-		echo $result[0]->rate;
+		$glass_rate  = $this->input->post('type');
+		$result = $this->frontend_model->get_print_only($print_paper,$glass_rate);
+		echo $result[1][0]->glass_rate;
 	  } 
 	 
 	public function result(){
@@ -279,7 +245,117 @@ $this->user = $this->facebook->getUser();
 		}
   
 	}
- // End
+	
+ 	public function get_default(){
+ 	    $frame = $this->input->post('frame');
+ 	    $mount = $this->input->post('mount');
+ 		$result = $this->frontend_model->get_default($frame,$mount);
+ 	    $data[0] = $result[0][0]->frame.','.$result[0][0]->frame_rate.','.$result[0][0]->frame_size;
+ 		$data[1] = $result[1][0]->mount.','.$result[1][0]->mount_rate;
+ 		echo json_encode($data);
+ 	} 
+	
+	public function dropzone(){
+         if(!isset($_COOKIE['user_info'])){
+		$user_info = "user_info";
+		$info = $_SESSION['user_info'];
+		setcookie($user_info, $info, time() + (86400 * 30), "/"); // 86400 = 1 day
+		$session_id  = $_SESSION['user_info'];
+		}
+		else{
+			$session_id  = $_SESSION['user_info'];;
+		}
+		if (!empty($_FILES['file'])) {
+		for($i=0;$i<=count($_FILES['file']['name'])-1;$i++){
+		$file_extn = explode(".", strtolower($_FILES['file']['name'][$i]));	
+		$change_name[$i] = 'image'.uniqid(rand()).'.'.$file_extn[1];
+		$temp = $_FILES['file']['tmp_name'][$i];
+		$tmp_name = $_FILES['file']['tmp_name'][$i];
+		$image_name = $change_name[$i];
+		$image_type = $_FILES['file']['type'][$i];
+		$image_size = $_FILES['file']['size'][$i];
+	    $max_width=417;
+		$max_height=550;
+		$sourcefile = $temp;
+		$endfile = IMAGE_PATH.$image_name;
+		$type = $image_type;
+		switch($type){
+            	    case'image/png':
+            		$img = imagecreatefrompng($sourcefile);
+            		break;
+            		case'image/jpeg':
+            		$img = imagecreatefromjpeg($sourcefile);
+            		break;
+            		case'image/gif':
+            		$img = imagecreatefromgif($sourcefile);
+            		break;
+            		case'image/jpg':
+            		$img = imagecreatefromjpeg($sourcefile);
+            		break;
+            		default : 
+            		return 'Un supported format';
+            }
+            
+            $width = imagesx( $img );
+            $height = imagesy( $img );
+            
+            if ($width > $height) {
+                if($width < $max_width)
+            		$newwidth = $width;
+            	else
+                $newwidth = $max_width;	
+                $divisor = $width / $newwidth;
+                $newheight = floor( $height / $divisor);
+            }
+            else {
+            	 if($height < $max_height)
+                     $newheight = $height;
+                 else
+            		 $newheight =  $max_height;
+                $divisor = $height / $newheight;
+                $newwidth = floor( $width / $divisor );
+            }
+            // Create a new temporary image.
+            $tmpimg = imagecreatetruecolor( $newwidth, $newheight );
+            
+                imagealphablending($tmpimg, false);
+                imagesavealpha($tmpimg, true);
+            	
+            // Copy and resize old image into new image.
+            imagecopyresampled( $tmpimg, $img, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+            // Save thumbnail into a file.
+            //compressing the file
+            switch($type){
+            	case'image/png':
+            		imagepng($tmpimg, $endfile, 0);
+            		break;
+            	case'image/jpeg':
+            		imagejpeg($tmpimg, $endfile, 100);
+            		break;
+            	case'image/gif':
+            		imagegif($tmpimg, $endfile, 0);
+            		break;	
+            }
+            // release the memory
+               imagedestroy($tmpimg);
+               imagedestroy($img);
+               
+			   $data = array(
+        'image_name'=>$image_name,
+        'image_type'=>$image_type,
+        'image_path'=>$tmp_name,
+        'image_size'=> $image_size,
+        'session_id'=>$session_id
+        );
+			   
+    		if(move_uploaded_file($tmp_name, IMAGE_PATH.'original/'.$change_name[$i])){
+              $result =  $this->frontend_model->insert_image($data);
+              //$query = mysql_query("INSERT INTO add_images_table(image_name,image_type,image_path,image_size,session_id) VALUES('$image_name','$image_type','$tmp_name','$image_size','$session_id')");
+     		}
+    	}
+	}
+}
+// End
 	public function get_web_price_detials()
 	  {
             $print_paper=$this->input->post('print_paper');
@@ -1670,7 +1746,42 @@ public function lightbox_view($lightbox_id,$page_no=0,$offset=0)
 		$this->load->view('frontend/lightbox_view',$data);
 		$this->load->view('frontend/footer');
 	}
-
+public function themes_view($lightbox_id,$page_no=0,$offset=0)
+	{
+		//$search_file = "http://localhost/indiapicture_api/wallsnart/search_catagory.php?q=3&page=1&per_page=10";
+		$search_file="http://api.indiapicture.in/wallsnart/search_catagory.php?q=3&page=1&per_page=30";
+		//print_r($search_file);
+	$opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
+$context = stream_context_create($opts);
+$search_data_file = file_get_contents($search_file, false, $context);
+$search_data_r = json_decode($search_data_file,TRUE);
+//print_r($search_data_r);die;
+$data['search_cat']=$search_data_r;
+	   $per_page = 20;  
+		$offset = ($this->uri->segment(4) != '' ? $this->uri->segment(4):0);
+		$config["total_rows"] = $this->frontend_model->count_images_lightbox($lightbox_id);
+		$config['per_page']= $per_page;
+		$config['first_link'] = 'First';
+		$config['last_link'] = 'Last';
+		$config['uri_segment'] =4;
+		$data['page_no']=$page_no;
+		$config['base_url']= base_url()."/index.php/frontend/lightbox_view/$lightbox_id/"; 
+		$config['suffix'] = ''.http_build_query($_GET, '', "&"); 
+		$this->pagination->initialize($config);
+		$this->data['paginglinks'] = $this->pagination->create_links();    
+		$this->data['per_page'] = $this->uri->segment(4);      
+		$this->data['offset'] = $offset ;
+		if($this->data['paginglinks']!= '') {
+		$this->data['pagermessage'] = 'Showing '.((($this->pagination->cur_page-1)*$this->pagination->per_page)+1).' to '.($this->pagination->cur_page*$this->pagination->per_page).' of '.$this->pagination->total_rows;
+		}   
+		$qry .= " limit {$per_page} offset {$offset} ";
+		$data["image"] = $this->frontend_model->get_images_lightbox_gallery($lightbox_id,$config["per_page"], $offset); 
+	    $data['lightbox_id']=$lightbox_id;				
+		$user_id=$this->session->userdata('userid');
+		$this->load->view('frontend/header');
+		$this->load->view('frontend/themes_view',$data);
+		$this->load->view('frontend/footer');
+	}
 
 
      public function create_image_intrested()

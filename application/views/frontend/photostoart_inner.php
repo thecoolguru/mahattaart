@@ -8,6 +8,28 @@
 <script src="<?php echo base_url();?>assets/js/croppie.js" type="text/javascript" ></script>
 
 <script>
+    $(window).load(function() {
+        var options =
+        {
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            imgSrc: 'avatar.png'
+        }
+        var cropper;
+        $('#file1').on('click', function(){
+         options.imgSrc = $('#get_img').val();
+		 cropper = $('.imageBox').cropbox(options);  
+		})
+        $('#btnCrop').on('click', function(){
+            var img = cropper.getDataURL()
+            $('#large_img2').attr('src',img);
+            $('#crop_image').hide();
+            
+        })
+	});
+</script>
+
+<script>
 Dropzone.options.myDropzone = {
   // Prevents Dropzone from uploading dropped files immediately
  autoProcessQueue: false,
@@ -17,9 +39,6 @@ Dropzone.options.myDropzone = {
     submitButton.addEventListener("click", function() {
       myDropzone.processQueue(); // Tell Dropzone to process all queued files.
     });
-    
-    //var totalFileCount = this.getAcceptedFiles().length;
-	//alert(totalFileCount);
     
     this.on("queuecomplete", function (file) {
          $('#load_buffer').show();
@@ -33,13 +52,17 @@ Dropzone.options.myDropzone = {
  		}, 3000);
     });
     this.on("addedfile", function(file) {
-	  $('#msg').hide();
+	 if( (myDropzone.files.length+1) > 0){
+		$('#msg').hide(); 
+	 }else{
+		$('#msg').hide(); 
+	 }
 	 if(file.size<500000){
 	   this.removeFile(file);
 	 alert('please upload image size greater than 500KB');
 	 }
-	 
-    });
+	});
+
    }
 };
 </script>
@@ -113,7 +136,8 @@ Dropzone.options.myDropzone = {
 			}else{
 				select = 'gallery';
 			}
-		   var paper = $('#paper_surface').val();
+		    var paper = $('#paper_surface').val();
+			$('#print_paper').html(paper);
 			var role_size;
 			var rates;
 			if(paper == 'Enhanced Matt'){
@@ -145,13 +169,14 @@ Dropzone.options.myDropzone = {
 			}else{
 				glass_type = 'Regular';
 			}
+			$('#glass_type').html(glass_type);
 			var mount = $('#mount_width').val();
 			$.ajax({
 			  type:'post',
               url:'<?=base_url()?>index.php/frontend/get_web_price_detail',
 			  data: {paper_type: paper,type: glass_type},
 			  success:function(data){
-			  var glass_rate = parseInt(data);
+			  $('#glass_rate').val(data);
 			  c_width = parseInt(dimen[2]);
 			  c_height = parseInt(dimen[3]);
 			
@@ -214,60 +239,88 @@ Dropzone.options.myDropzone = {
 	if(c_height==c_width){
 	  cost = (c_height*parseInt(role_size)*rates);
     }
-		$('#print_price').html(cost);
+		$('#print_price').html(Math.round(cost,2));
 		$('#print_sizes').html(dimen[0]+'"X'+dimen[1]+'"');
 		$('#frame_type').html('Streched Canvas Gallary Wrap');
 		var newwidth1 		= parseInt(c_width)+(1*2);
 		var	newlenght1		= parseInt(c_height)+(1*2);
 		var CanvasFrameCost = parseInt((parseInt(parseInt(newwidth1)*parseInt(2)) + parseInt(parseInt(newlenght1)*parseInt(2)))*75)/12;
-		$('#FrameCost').html(CanvasFrameCost);	
-			
-			var frame_size = Math.round(parseInt($('#frame_size').html()/25));
-			var frame_rate  = $('#frame_rate').html();
-			if(mount != ''){
-			var framewidth = parseInt(dimen[0])+parseInt(mount)+parseInt($('#frame_inches').html());
-			var frameheight = parseInt(dimen[1])+parseInt(mount)+parseInt($('#frame_inches').html());
-			var frame_perimeter =  2*(framewidth) + 2*(frameheight); 
-			var framing_cost = (frame_perimeter * parseInt($('#frame_rate').html()))/12; 
-			$('#FrameCost').html(framing_cost);
-			var mountwidth = mount + parseInt(dimen[0]);  
-			var mountheight = mount + parseInt(dimen[1]);
-			var mount_cost = parseInt(mountwidth) * parseInt(mountheight)* parseInt($('#mount_rate').html()); 
-			$('#MountCost').html(mount_cost);
-			var glass_cost = parseInt(framewidth) * parseInt(frameheight)* data;
-			glass_cost = Math.round(glass_cost,2);
-			$('#glass_type').html(glass_type);
-			$('#glass_price').html(glass_cost);	
-			}else{
-			var framewidth = parseInt(dimen[0])+ parseInt($('#frame_inches').html());
-			var frameheight = parseInt(dimen[1])+ parseInt($('#frame_inches').html());
-			var frame_perimeter =  2*(framewidth) + 2*(frameheight); 
-			var framing_cost = (frame_perimeter * parseInt($('#frame_rate').html()))/12; 
-			$('#FrameCost').html(framing_cost);
-			$('#MountCost').hide();
-			var glass_cost = parseInt(framewidth) * parseInt(frameheight)* data;
-			glass_cost = Math.round(glass_cost,2);
-			$('#glass_type').html(glass_type);
-			$('#glass_price').html(glass_cost);	
-			}  
-			
+		CanvasFrameCost = Math.round(parseInt(CanvasFrameCost),2);
+		$('#CanvasCost').html("Rs."+CanvasFrameCost);	
+		var actual_price = cost + CanvasFrameCost;
+		$('.actual_price').html("Rs."+actual_price);
 		//var framed_print_art_size= (parseInt(newlenght1)+parseInt(1*2))+ '"X' +(parseInt(newwidth1)+parseInt(1*2))+'"';
 		//print_sizes,frame_size,frame_type,f_name,FrameCost,mount_size,mount_color,MountCost,glass_type
 		}
 	});
 }
 
+	function frame_pricing(){
+	    var size = ''+$('#sizes').val();
+			var width = $('#width').val();
+			var height = $('#height').val();
+			var select = '';
+			var dimen = size.split('X');
+			dimen[0] = parseInt(dimen[0]);
+			dimen[1] = parseInt(dimen[1]);
+	        var frame_size = Math.round(parseInt($('#frame_size').html())/25);
+			var frame_rate  = $('#frame_rate').val();
+			var mount = $('#mount_width').val();
+			$('#mount_size').html($('#mount_width').val() + '"');
+			var glass_rate = $('#glass_rate').val();
+			var mount_rate = $('#mount_rate').val();
+			if(frame_size>=1){
+			var framewidth = parseInt(dimen[0])+ parseInt(2) * (parseInt(mount) + frame_size);
+			var frameheight = parseInt(dimen[1])+ parseInt(2)* (parseInt(mount) + frame_size);
+			var frame_perimeter =  parseInt(2)*(framewidth) + parseInt(2)*(frameheight); 
+			var framing_cost = parseInt(parseInt(frame_perimeter) * $('#frame_rate').val()/parseInt(12)); 
+			$('#FrameCost').html("Rs."+framing_cost);
+			var glass_cost = parseInt(framewidth) * parseInt(frameheight) * glass_rate;
+			glass_cost = Math.round(parseInt(glass_cost),2);
+			$('#glass_price').html("Rs."+glass_cost);
+			var mountwidth = parseInt(mount) + parseInt(dimen[0]);  
+			var mountheight = parseInt(mount) + parseInt(dimen[1]);
+			var mount_cost = parseInt(mountwidth) * parseInt(mountheight) * mount_rate; 
+			$('#MountCost').html("Rs."+mount_cost);
+			$('#finished_size').html( framewidth+'"X'+ frameheight+'" Framed Print');	
+			var print_price = $('#print_price').html();
+			if($('#remove-mount').prop('checked') == 'true'){
+			var actual_price = print_price + framing_cost + glass_cost + mount_cost;
+			$('.actual_price').html("Rs."+actual_price);
+			}else{
+			var actual_price = print_price + framing_cost + glass_cost;
+			$('.actual_price').html("Rs."+actual_price);    
+			}
+    		}else{
+			var framewidth = parseInt(dimen[0])+  parseInt(2) * $('#frame_inches').val();
+			var frameheight = parseInt(dimen[1])+ parseInt(2) * $('#frame_inches').val();
+			var frame_perimeter =  2*(framewidth) + 2*(frameheight); 
+			var framing_cost = (frame_perimeter * parseInt($('#frame_rate').html()))/12; 
+			$('#MountCost').hide();
+			var glass_cost = parseInt(framewidth) * parseInt(frameheight)* parseInt(glass_rate);
+			glass_cost = Math.round(parseInt(glass_cost),2);
+			$('#glass_price').html(glass_cost);
+			$('#finished_size').html(framewidth+'"X'+frameheight+'" Framed Print');
+            var actual_price = framing_cost + glass_cost;
+			$('.actual_price').html(actual_price);			
+			}
+	}
+	
+	
 	function frame_details(rate,size,frame_name){
 		$('#frame_size').html(size);
 		$('#f_name').html(frame_name);
-		$('#frame_rate').html(rate);
-		$('#frame_inches').html( Math.round(parseInt(size)/25));
+		$('#frame_rate').val(rate);
+		$('#frame_inches').val( Math.round(parseInt(size)/25));
 		calculate_cost('');
+	    frame_pricing();
 	}
 	
 	function mount_details(rate,mount_name,code){
 		$('#mount_color').html(mount_name);
-		$('#mount_rate').html(rate);
+		$('#mount_rate').val(rate);
+		calculate_cost('');
+	    frame_pricing();
 	}
 // 	function by_keyup_update(id_val){
 // 	$(".by_keyup_update").keyup(function(){ 
@@ -279,8 +332,6 @@ Dropzone.options.myDropzone = {
 // 	});
 //  }
 
-	
-	
 // 	var body = document.getElementsByTagName('body')[0];
 // 				var removeLoading = function() {
 // 					setTimeout(function() {
@@ -289,6 +340,7 @@ Dropzone.options.myDropzone = {
 // 				};
 // 	removeLoading();
 	function change_image(src){
+		$('#get_img').val(src);
 		var k  =  src.split('/');       
 		var path = '';
 		for(var p=0; p<=6; p++){
@@ -400,10 +452,65 @@ Dropzone.options.myDropzone = {
 		});
 	}
 	
+	function crop_wrap(){
+	   var width; 
+	   var height;
+	    if($('#type').html == 'vertical'){
+	    width = 308;
+	    height = 400;
+	    }else{
+	    width  = 300;
+	    height = 260;   
+	    }
+	    
+	    if(width >= dimentions[1]){
+				var front_width = Math.round(width*0.825);
+				var front_height = Math.round(height*0.83388); 	
+				front(front_width,front_height); 
+				var right_sourceX = Math.round(width*0.825);
+				var right_height = Math.round(height*0.83388);
+				var right_width = width;
+				right(right_width,right_height,right_sourceX);
+				$('#myCanvas').attr('height',right_height+'px');
+				$('#myCanvas').attr('width',right_width+'px');
+				$('#myCanvas').css('width','111px');
+				$('#myCanvas').css('height','100%');
+				var bottom_width = Math.round(width*0.825);
+				var bottom_height = height;
+				var sourceY = Math.round(height*0.83388);
+				bottom(bottom_width,bottom_height,sourceY); 
+				$('#myCanvas3').attr('width',bottom_width+'px');
+				$('#myCanvas3').attr('height',bottom_height+'px');
+				$('#myCanvas3').css('height','111px');
+				$('#type').html('horizontal');
+				} else {
+				var front_width = Math.round(width*0.79381);
+				var front_height = Math.round(height*0.77220); 	
+				front(front_width,front_height);  
+				
+				var right_sourceX = Math.round(width*0.79381);
+				var right_height = Math.round(height*0.77220);
+				var right_width = width*0.20618;
+				right(right_width,right_height,right_sourceX);
+				$('#myCanvas').attr('height',right_height+'px');
+				$('#myCanvas').attr('width',right_width+'px');
+				$('#myCanvas').css('width','20px');
+				var bottom_width = Math.round(width*0.79381);
+				var bottom_height = height*0.22779;
+				var sourceY = Math.round(height*0.77220);
+				bottom(bottom_width,bottom_height,sourceY); 
+				$('#myCanvas3').attr('width',bottom_width+'px');
+				$('#myCanvas3').attr('height',bottom_height+'px'); 
+				$('#myCanvas3').css('height','20px');
+				$('#type').html('vertical');
+				}
+	    
+	}
+	
 	function get_session_image(){
 		$(document).ready(function(){
 	 var img = 0;
-	 var session_id = '<?php echo $_COOKIE['user_info'];?>';
+	 var session_id = '<?php echo $_SESSION['user_info'];?>';
 	 var status = '';
 	 var url = "<?php echo base_url().'application/views/frontend/upload_images/';?>";		
 			$.ajax({
@@ -416,9 +523,9 @@ Dropzone.options.myDropzone = {
 			success: function(data){
 				var imagedata = JSON.parse(data);
 				imagedata = ''+imagedata; 
-				  if(imagedata == 'null' ){
-				      window.location.href = 'photostoart';
-				  }
+				   if(imagedata == 'null' ){
+				       window.location.href = 'photostoart';
+				   }
 				var image = imagedata.split(',');		
 				var total_image = image.length; 
 					var total_slide = total_image/4; 	
@@ -507,10 +614,11 @@ Dropzone.options.myDropzone = {
 		$('#dropzone_images').hide();
 	    $('#crop_image').hide();
         $('#session_images').load('#session_images');
-        setTimeout(
-        function(){
-         $('#load_buffer').hide();
-		 }, 1000); 
+        $('#load_buffer').hide();
+//         setTimeout(
+//         function(){
+        
+// 		 }, 1000); 
         
     }
 	
@@ -520,17 +628,18 @@ Dropzone.options.myDropzone = {
 		var dert= "<?php echo base_url()?>images/uploaded_pdf/mount/";
             +$('div#abc').css('background','url("'+dert+mount_code+'.jpg")');
 		}
+	    frame_pricing();
 	}
 
  function change_mount(mount)
    {
    var change_mount = mount*10;
 	$("#abc").css('padding',change_mount);
-  
+    frame_pricing();
    }// end function
  
   
- function myfun(color,size,shape,f_code,f_rate,f_size_mm){
+    function myfun(color,size,shape,f_code,f_rate,f_size_mm){
 	frame_details(f_rate,f_size_mm,f_code);
 	if(f_code){
        var dert= "<?php echo base_url()?>images/uploaded_pdf/frames/horizontal/";
@@ -548,7 +657,7 @@ Dropzone.options.myDropzone = {
 	   +$('div.mainhor').css({'border-image':'url("'+dert+f_code+'.jpg") 58 58 58 58 round round','border-style':'solid','border-width':''+ border_width+'px'});
 	   +$('#frame_name').val(f_code);
 	   }
-} 
+    } 
  
  function selectOnlyThis(id) {
     for (var i = 0;i <=1 ; i++)
@@ -560,6 +669,26 @@ Dropzone.options.myDropzone = {
       calculate_cost('');  
  }
  
+	function id_store(id){
+	   $('#frame_data').val(id); 
+    }
+    
+    function mount_store(id){
+        $('#mount_data').val(id);
+    }
+    
+    function frame_change(){
+//         if( $('#frame_data').val() == ''){
+// 		console.log('nothing');
+//         }else{
+// 		var k = $('#frame_data').val();    
+//     		alert(k);
+//     		setTimeout(function(){
+//           	$("#"+ $('#frame_data').val() + "").click();    
+//     		},500);
+// 		}
+    }
+	
 	function get_frame_color(frame_color){
 			var total_slide,total_s="";
 			   $.ajax({
@@ -617,7 +746,7 @@ Dropzone.options.myDropzone = {
 					}
 					var f_shape=$('#frame_shape').val();
 					var frame_shape="'"+f_shape+"'";	
-			td_inner += '<div class="col-xs-12 col-sm-6 col-md-3" onClick="myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
+			td_inner += '<div class="col-xs-12 col-sm-6 col-md-3 frame" id="frame'+image+'" onClick="id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
 					}
 					image++;
 				}td_inner +='</div>';
@@ -696,7 +825,7 @@ Dropzone.options.myDropzone = {
 					}
 					var f_shape=$('#frame_shape').val();
 					var frame_shape="'"+f_shape+"'";	
-			td_inner += '<div class="col-xs-12 col-sm-6 col-md-3" onClick="myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
+			td_inner += '<div class="col-xs-12 col-sm-6 col-md-3 frame" id="frame'+image+'" onClick=" id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
 					}
 					image++;
 				}td_inner +='</div>';
@@ -761,7 +890,7 @@ Dropzone.options.myDropzone = {
 		}else{
 		mount_avail='';
 		}
-		td_inner +='<div class="col-xs-12 col-sm-6 col-md-3" onclick="return mount_select('+mount_rate+','+mount_code+','+mount_name+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
+		td_inner +='<div class="col-xs-12 col-sm-6 col-md-3 mount_data" id="mount'+image+'" onclick="mount_store(this.id);return mount_select('+mount_rate+','+mount_code+','+mount_name+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
 		image++;
 			}
 				}td_inner +='</div>';
@@ -855,9 +984,8 @@ Dropzone.options.myDropzone = {
 		}
 			var f_shape=$('#frame_shape').val();
 			var frame_shape="'"+f_shape+"'";
-			td_inner += '<div class="col-xs-12 col-sm-6 col-md-3" id="frame'+image+'" onclick="myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block img3"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
+			td_inner += '<div class="col-xs-12 col-sm-6 col-md-3 frame" id="frame'+image+'" onclick="id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block img3"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
 			image++;
-			//alert(td_inner);
 		}
 		 } td_inner +='</div>';
 	    }
@@ -887,9 +1015,6 @@ Dropzone.options.myDropzone = {
 		$('#large_img2').attr("src", large_img2);
  	}, 500);
 	$('#framingdiv1,#framingdiv2').hide();
-	/*var get_src = "<?php echo base_url().'application/views/frontend/upload_images/'.$_SESSION['images']['name'][0];?>";
-	$('#large_img').attr("src", get_src);
-	$('#large_img2').attr("src", get_src);*/
 	var large_src = $("#large_img").attr("src"); 	
 	var style1 = $('#abc').attr('style');   	
 	var style2 = $('#frame-it').attr('style');
@@ -965,6 +1090,31 @@ Dropzone.options.myDropzone = {
 				$('#sizes').html(td);
 			}
 		});
+	var default_frame = 'ML-215-BK';
+	var default_mount = 'DR 2091';
+	$.ajax({
+			 type:'post',
+             url:'<?=base_url()?>index.php/frontend/get_default',
+			 data: {frame : default_frame, mount : default_mount},
+			 success:function(data){	
+		     var values = ''+JSON.parse(data);
+			 var  datas = values.split(',');
+			      var frame = datas[0];
+			 var frame_rate = datas[1];
+			 var frame_size = datas[2];
+			 var mount_name = datas[3];
+			 var mount_rate = datas[4];
+		     $('#f_name').html(frame);
+			 $('#frame_size').html(frame_size);
+			 $('#frame_rate').val(frame_rate);    
+			 var mount_size = $('#mount_width').val();
+			 $('#mount_size').html(mount_size+'"');    
+			 $('#mount_color').html(mount_name);
+			 $('#mount_rate').val(mount_rate);    
+			 }
+	    });  
+	$('.framing').hide();    
+	$('.canvas').show();
 	var src1 = $('#source').attr('src');
 	var src2 = $('#source2').attr('src');
 	$('#museum').click(function(){
@@ -984,7 +1134,7 @@ Dropzone.options.myDropzone = {
 	var result = id.split("_");
 	$('#div_img'+result[1]).hide();
 	$('#large_img').attr('src', src);     
-	 $.ajax({
+	$.ajax({
 			  type:'post',
               url:'<?=base_url()?>index.php/frontend/result',
 			  data: {src : src},
@@ -1003,7 +1153,7 @@ Dropzone.options.myDropzone = {
 					
 			}
         });  
-	});  
+	});
 	
 	$('input').keyup(function(){
 				var real_width = $('#w_value').val();
@@ -1023,6 +1173,16 @@ Dropzone.options.myDropzone = {
 			});
 	});
 	
+	$('#btnCrop').click(function(){
+        setTimeout(function(){
+        var	crop_src = $('#large_img2').attr('src');    
+	    $('#crop_src').val(crop_src);
+	    },100);
+	    setTimeout(function(){
+        crop_wrap();
+	    },100);
+    });
+	
 	$('.img2').click(function(){
    var id = $(this).attr("id");  
 		if(id == 'framing'){
@@ -1038,10 +1198,28 @@ Dropzone.options.myDropzone = {
 		    $('#options').hide();
 		    $('#price_show').show();
 			paper_surface('framing');
-			calculate_cost('');
-			$('.canvas').hide();
-			$('.framing').show();
-			}else if(id == 'canvas'){
+			if( $('#frame_data').val() == ''){
+		    console.log('nothing');
+            }else{
+		    var k = $('#frame_data').val();    
+    		setTimeout(function(){
+          	$("#"+ $('#frame_data').val() + "").click();    
+    		},100);
+		    }
+		    if( $('#mount_data').val() == ''){
+		    console.log('nothing');
+            }else{
+		    var k = $('#mount_data').val();    
+    		setTimeout(function(){
+          	$("#"+ $('#mount_data').val() + "").click();    
+    		},100);
+		    }
+ 			//frame_change();mount_data
+ 			calculate_cost('');
+ 			frame_pricing();
+ 			$('.canvas').hide();
+ 			$('.framing').show();
+        }else if(id == 'canvas'){
 			$('#canvas_details').show();
 			$('#framingdiv1,#framingdiv2').hide();	 
 			$('#abc').attr('style','');
@@ -1051,9 +1229,9 @@ Dropzone.options.myDropzone = {
 			$('#large_img2').show();
 			$('#large_img').hide();
 	    	$('#museum').prop("checked", true);
-		    $('.framing').hide();
-			$('.canvas').show();
-			$('#frame_rate').html(75);
+ 		    $('.framing').hide();
+ 			$('.canvas').show();
+			//$('#frame_rate').html(75);
 			$('#myCanvas').hide();
 		    $('#myCanvas2').hide();
 		    $('#myCanvas3').hide(); 
@@ -1061,7 +1239,7 @@ Dropzone.options.myDropzone = {
 	   	    $('#options').show();
 	   	    $('#price_show').hide();
 	   	    paper_surface('canvas');
-			calculate_cost('');
+ 			calculate_cost('');
 			}else if(id == 'print_only'){
 			$('#canvas_details').hide();
 			$('#framingdiv1,#framingdiv2').hide();
@@ -1074,6 +1252,11 @@ Dropzone.options.myDropzone = {
 		    $('#price_show').hide();
 		    paper_surface('print_only');
 			calculate_cost('');
+			var size = ''+$('#sizes').val();
+		    var dimen = size.split('X');
+			dimen[0] = parseInt(dimen[0]);
+			dimen[1] = parseInt(dimen[1]);
+		    $('#finished_size').html(dimen[0]+'"X'+dimen[1]+'" Print Only');
 			$('.canvas').hide();
 			$('.framing').hide();
 			$('.print').show();
@@ -1085,14 +1268,29 @@ Dropzone.options.myDropzone = {
 	$('#RemoveAll').click(function(){
         Dropzone.forElement("#my-dropzone").removeAllFiles(true);
     });
+	$('#mount_width').click(function(){
+    	  if(this.val() >=1){
+    	      $('#remove-mount').prop('checked','true');
+    	  }  
+	});
+	var p;
 	$('#remove-mount').click(function(){
-        	if($(this).prop("checked") == true){
+	        if($(this).prop("checked") == true){
      			k = $('#abc').attr('style');
+				p = $('#mount_width').val();
 				$('#abc').attr('style','');
-			}
+			    $('#mount_width').val(0);
+        	    calculate_cost('');
+        	    frame_pricing();
+        	    $('.mount').hide();
+        	}
             else if($(this).prop("checked") == false){
                 $('#abc').attr('style', k);
-		    }
+		        $('#mount_width').val(p);
+		        calculate_cost('');
+        	    frame_pricing();
+        	    $('.mount').show();
+            }
         });	
 
 		if($("#check0").prop('checked')== true)
@@ -1101,38 +1299,21 @@ Dropzone.options.myDropzone = {
 		}
 		if($("#check1").prop('checked')== true){
 			var selected = 'acrylic_selected'; ;
-			alert(selected);
 		}	
 });  
-	$(window).load(function() {
-        var options =
-        {
-            thumbBox: '.thumbBox',
-            spinner: '.spinner',
-            imgSrc: 'avatar.png'
-        }
-        var cropper;
-        $('#file1').on('click', function(){
-         options.imgSrc = $('#large_img2').attr('src');
-		 cropper = $('.imageBox').cropbox(options);  
-		})
-        $('#btnCrop').on('click', function(){
-            var img = cropper.getDataURL()
-            $('#large_img2').attr('src',img);
-            $('#crop_image').hide();
-            
-        })
-    });
-
+	    
 </script>
 <!-- div for dynamic variable storage style='display:none'-->
-	<div id='type' style="display:none;"></div>
-	<div id='frame_rate' style="display:none;"></div>
-	<div id='mount_rate' style="display:none;"></div>
-    <div id='frame_inches' style="display:none;"></div>
-
+	<input id='frame_rate' style="display:none;">
+	<input id='mount_rate' value='' style="display:none;">
+    <input id='frame_inches' value ='' style="display:none;">
+    <input id='glass_rate' value=''style="display:none;">
+    <input id='frame_data' value=''style="display:none;">
+    <input id='mount_data' value=''style="display:none;">
+    <input id='get_img' value='' style="display:none;">
+    <div id='type' style="display:none"></div>
+    <input id='crop_src' style='display:none'>
 <!-- end -->
-
 <!-- pricing Details -->
  <div class="lightbox-target" id="price_detail">
     <div id="uploader_popup_goofy_a" style="width:500px;height:400px;margin-left:-250px;margin-top:-200px;left:50%;top:50%"  >
@@ -1158,6 +1339,16 @@ Dropzone.options.myDropzone = {
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
                     	<strong> <span id="print_sizes" class='canvas framing print'></span></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="row canvas framing print">
+            	<div class="frame-it-content">
+                	<div class="col-md-6 col-sm-6 text-left">
+                    	<strong> Paper Print: </strong>
+                    </div>
+                	<div class="col-md-6 col-sm-6 text-right">
+                    	<strong> <span id="print_paper" class='canvas framing print'></span></strong>
                     </div>
                 </div>
             </div>
@@ -1191,43 +1382,53 @@ Dropzone.options.myDropzone = {
                     </div>
                 </div>
             </div>
-            <div class="row canvas framing">
+            <div class="row canvas ">
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Frame Cost: </strong>
                     </div>
-                	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong><img src="" align="absmiddle" /><span id="FrameCost" class='canvas framing'></span></strong>
+                	<div class="col-md-6 col-sm-6 text-right canvas ">
+                    	<strong><img src="" align="absmiddle" /><span id="CanvasCost"></span></strong>
                     </div>
                 </div>
             </div>
             <div class="row framing">
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
+                    	<strong> Frame Cost: </strong>
+                    </div>
+                	<div class="col-md-6 col-sm-6 text-right framing">
+                    	<strong><img src="" align="absmiddle" /><span id="FrameCost"></span></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="row framing mount">
+            	<div class="frame-it-content">
+                	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Mount Size: </strong>
                     </div>
-                	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> <span class='framing' id="mount_size">1"</span></strong>
+                	<div class="col-md-6 col-sm-6 text-right mount">
+                    	<strong> <span class='framing' id="mount_size"></span></strong>
                     </div>
                 </div>
             </div>
             <div class="row">
-            	<div class="frame-it-content framing">
+            	<div class="frame-it-content framing mount">
                 	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Mount Color: </strong>
                     </div>
-                	<div class="col-md-6 col-sm-6 text-right">
+                	<div class="col-md-6 col-sm-6 text-right mount">
                     	<strong><span class='framing' id="mount_color"></span></strong>
                     </div>
                 </div>
             </div>
             <div class="row framing">
-            	<div class="frame-it-content">
+            	<div class="frame-it-content mount">
                 	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Mount Cost: </strong>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong><img src="" align="absmiddle"/><span id="MountCost" class='framing'></span></strong>
+                    	<strong><img src="" align="absmiddle"/><span id="MountCost" class='framing mount'></span></strong>
                     </div>
                 </div>
             </div>
@@ -1236,9 +1437,6 @@ Dropzone.options.myDropzone = {
                 	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Glass Type: </strong>
                     </div>
-                	<!--<div class="col-md-6 col-sm-6 text-right">-->
-                 <!--   	<strong> <span>Glass Type:</span></strong>-->
-                 <!--   </div>-->
                 </div>
             </div>  
             <div class="row framing" >
@@ -1259,7 +1457,7 @@ Dropzone.options.myDropzone = {
                             <strong> Total Price </strong>
                         </div>
                         <div class="col-md-6 col-sm-6 text-right">
-                            <strong> <span>3000</span></strong>
+                            <strong> <span class='actual_price'>3000</span></strong>
                         </div>
                     </div>
                 </div>
@@ -1277,7 +1475,6 @@ Dropzone.options.myDropzone = {
 </div>	
 <!-- end -->
 <!-- Crop Image-->
-<div id='type' style="display:none"></div>
 <div class="lightbox-target" id="crop_image">
         <div id="uploader_popup_goofy_a" class="uploader_popup_goofy_a" style=""> 
         <!--style="width:330px;height:580px;margin-left:-165px;margin-top:-290px;left:50%;top:50%"-->
@@ -1324,21 +1521,20 @@ Dropzone.options.myDropzone = {
      </div>       
 </div>
 
-
 <!-- dropzone_images-->
 <div class="lightbox-target" id="dropzone_images">
 <div id="uploader_popup_goofy_a">
     <div class="uploader_popup_header">
         <h2 class="text-left">  Upload Photos </h2>
-        <a class="lightbox-close" href="" onclick="remove_box(); return false;"></a>
+        <a class="lightbox-close" href="" onclick="$('#dropzone_images').hide(); return false;"></a>
     </div>
     <div class="uploader_popup_upload-icon">
-        <!--<div class="col-md-12 dz-upload-icon">
-            <img src="http://beta.mahattaart.mt/assets/img/photostoart/upload_icon_hover.svg" width="100px">
-            <input id="imgInp" type="file">
-        </div> --> 
-<form action="<?php echo base_url().'application/views/frontend/upload.php';?>" class="dropzone" id="my-dropzone"></form>
-        <div class="popup-default-message" id="msg">
+    <form action="<?=base_url()?>index.php/frontend/dropzone" class="dropzone" id="my-dropzone">
+         <div class="dz-default dz-message">
+         <img src='<?=base_url()?>/images/upload_icon.svg'width='100px' height='100px'>
+         </div>
+    </form>
+        <div class="popup-default-message text-center dz-default dz-message" id='msg'>
             <h2>Drag and drop images here or click to browse</h2>
             <p>Each image must be a minimum of 500 KB to ensure a high quality print. Up to 10 images are allowed.</p>
         </div>
@@ -1347,7 +1543,7 @@ Dropzone.options.myDropzone = {
     <div class="popup-default-footer col-md-12">
         <p class="text-left pull-left">By uploading, I agree to the <span> <a href="#" id="termsofuselink" style="cursor: default; color: #ef9223">Terms of use</a> </span> </p>
         <div class="popup-default-button pull-right">
-            <input id="submit-all" value="Submit all files" type="button" class="popup-button">
+            <input id="submit-all" value="Upload" type="button" class="popup-button">
 
             <!-- <a id="submit-all" class="popup-button" href="#" style="color:#337ab7"> UPLOAD</a> -->
         </div>
@@ -1365,7 +1561,7 @@ Dropzone.options.myDropzone = {
           <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
           </div>
 
-          <div class="panel-body" style="display: block;" id="session_images"></div>
+          <div class="panel-body" style="display: block; padding:0" id="session_images"></div>
     </div>
 		<div class="panel panel-primary h2a_ms_selector" style="margin-bottom:10px">
               <div class="panel-heading h2a_ms_photos">
@@ -1417,7 +1613,7 @@ Dropzone.options.myDropzone = {
 <section class="container3D"  style="perspective: 1000px; perspective-origin: 0% 0%;">
         <div id="cube">
             <figure class="front">
-		    <img id="large_img2"  style="max-height:500px" src="" class="img-responsive">
+		    <img id="large_img2"  style="max-height:500px;" src="" class="img-responsive">
    <canvas id="myCanvas2" height="251px" width="330px" style="width:100%;height:100%;max-height:500px;"></canvas> 
   <script>
       function front(source_width,source_height){ 
@@ -1440,13 +1636,6 @@ Dropzone.options.myDropzone = {
         var destY = canvas2.height / 2 - destHeight / 2;
         context2.drawImage(imageObj2, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
       };
-      var src = $('#large_img2').attr('src');
-//       var k  =  src.split('/');       
-// 		var path = '';
-// 		for(var p=0; p<=6; p++){
-// 		   path += k[p]+'/';
-// 		}
-// 		path +='original/'+k[7];
       imageObj2.src =  $('#large_img2').attr('src');
         
           
@@ -1474,13 +1663,6 @@ function right(width,height,x){
 
         context.drawImage(imageObj, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
       };
-//       var src = $('#large_img2').attr('src');
-//       var k  =  src.split('/');       
-// 		var path = '';
-// 		for(var p=0; p<=6; p++){
-// 		   path += k[p]+'/';
-// 		}
-// 		path +='original/'+k[7];
       imageObj.src = $('#large_img2').attr('src');
     }
 	</script>
@@ -1507,15 +1689,8 @@ function right(width,height,x){
 
         context1.drawImage(imageObj1, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
       };
-//       var src = $('#large_img2').attr('src');
-//       var k  =  src.split('/');       
-// 		var path = '';
-// 		for(var p=0; p<=6; p++){
-// 		   path += k[p]+'/';
-// 		}
-// 		path +='original/'+k[7];
       imageObj1.src = $('#large_img2').attr('src');
-    }
+     }
     </script>
 			</figure>
             </figure>
@@ -1592,7 +1767,7 @@ function right(width,height,x){
               <label class="control-label col-sm-7">Options:</label>
               <div class="col-sm-5">
                   <!-- <label class="radio-inline"></label> -->
-                  <button id="file1" onclick="cropImage();" type="button" class="btn social_icon" style="background-color:#555; color:#fff;text-transform: uppercase;font-size: 12px;"> Crop Image</button>
+                  <button id="file1" onclick="cropImage();" type="button" class="btn social_icon crop"> Crop Image</button>
                   <!-- <button href="#upload">Change Print Area</button> -->
               </div>
 	      </div>
@@ -1602,17 +1777,17 @@ function right(width,height,x){
 	  <div id="imageDiv">
 	  </div>
 	  <!--Image End Div -->
-	  <div class="addtocartcontainer_page text-center" style="float:right; width:340px;">
+	  <div class="addtocartcontainer_page text-center" style="float:right; width:340px;height: 170px;">
       <div class="page_price_label">
-      <p>Your Price: <span> $49.99 </span></p>
+      <p>Your Price: <span class='actual_price'> $49.99 </span></p>
       </div>
-	  <div class="page_price_label" style="margin-top:10px;">
-      <p><a href='' onclick='price_details();return false;'>Price Details</a></p>
+	  <div class="page_price_label addtocartcontainer_popup_details" style="margin:10px auto;">
+      <a href='' onclick='price_details();return false;'>Price Details</a>
       </div>
-      <div class="text-center addtocartcontainer_popup-button">
+      <div class="text-center addtocartcontainer_popup-button" style="margin-top: 20px;">
       <a target="_self" class="popup-button2" href="#"> Add To Cart </a>
       </div>
-      <div class="addtocartcontainer_popup_details">
+      <div class="addtocartcontainer_popup_details" style="margin-top: 40px;">
       <a href="#">Usually ships in 2-3 days</a>
       </div>
       </div>
@@ -1628,11 +1803,8 @@ function right(width,height,x){
       </div>
       <ul>
       <li> Giclee printed on artist-grade cotton canvas</li>
-      <li> Giclee printed on artist-grade cotton canvas</li>
-      <li> Giclee printed on artist-grade cotton canvas</li>
       </ul>
       <div class="addtocartcontainer_footer">
-      <p>Create an artistic look with depth and texture by printing your photos on canvas</p>
       </div>
       </div>
       </div>
@@ -1709,7 +1881,7 @@ function right(width,height,x){
 							<?php }?>
                         </ul>
                         <h4 class="choose-colors"> Select Width: </h4>
-                        <select id="mount_width" onchange="calculate_cost(''); return change_mount(this.value);" style="padding:5px; width:100%;">
+                        <select id="mount_width" onchange="calculate_cost('');frame_pricing(); return change_mount(this.value);" style="padding:5px; width:100%;">
                            <option value="0">--Select--</option>
 							<? for($i=0.50;$i<=6.00;$i=$i+0.50){ ?>
 								<option value="<?=$i?>"><b><?=$i.'"'?></b>
@@ -1730,14 +1902,14 @@ function right(width,height,x){
             <h4 class="choose-colors regul-glass">  REGULAR Glass </h4>
             <ul class="choose-colors-type">
             	<li>Protect prints from protects dust and scratches
-                	<span class="pull-right"><input id="check0" name="re-mount" type="checkbox" onclick="selectOnlyThis(this.id);"> </span>
+                	<span class="pull-right"><input id="check0" name="re-mount" type="checkbox" onclick="selectOnlyThis(this.id);frame_pricing();"> </span>
                 </li>
                 <li>Regular Glass </li>
             </ul>
             <h4 class="choose-colors regul-glass"> Acrylic Glass   </h4>
             <ul class="choose-colors-type">
             	<li> Lightweight, Transparent, Shatter- resistance
-                  <span class="pull-right"><input id="check1" name="re-mount" type="checkbox" onclick="selectOnlyThis(this.id);"> </span>
+                  <span class="pull-right"><input id="check1" name="re-mount" type="checkbox" onclick="selectOnlyThis(this.id);frame_pricing();"> </span>
                 </li>
                 <li>Acrylic Glass  </li>
             </ul>
@@ -2262,9 +2434,21 @@ function right(width,height,x){
             <div class="addtocartcontainer_header">
               <a target="_self" class="popup-button3" href="#" onclick="return login('')"> Create New Account </a>
             </div>
-            <ul>
-            	<li> Access your photos from anywhere </li>
-            	<li> Receive discounts </li>
+            <!--<style>
+			ul.checklist li::before {
+				font-family: FontAwesome;
+				font-style: normal;
+				font-weight: normal;
+				text-transform: none !important;
+			}
+			ul.checklist li::before {
+				content: "";
+				margin-right: 0.75em;
+			}
+			</style>-->
+            <ul class="checklist">
+            	<li style="background:url(http://cache1.artprintimages.com/images/photostoart/ART/checkmark.gif) no-repeat left center"> Access your photos from anywhere </li>
+            	<li style="background:url(http://cache1.artprintimages.com/images/photostoart/ART/checkmark.gif) no-repeat left center"> Receive discounts </li>
             </ul>
             <div class="addtocartcontainer_footer">
 	            <p>Already have an account?</p>
@@ -2412,7 +2596,6 @@ cursor: pointer;
 
 .panel-heading span {
 margin-top: -20px;
-font-size: 15px;
 }
 
 .panel-heading.h2a_ms_photos {
@@ -2485,27 +2668,61 @@ color: #000;
 font-weight: bold;
 padding-left: 10px;
 }
-.popup-button2 {
-background: rgba(0, 0, 0, 0) -moz-linear-gradient(center top , #ef9223 0px, #f26522 100%) repeat scroll 0 0;
-border: 1px solid #f26522;
-color: white;
-cursor: pointer;
-display: inline-block;
-font-size: 16px;
-font-weight: bold;
-line-height: 1;
-margin: 15px 0;
-padding: 10px 30px;
-text-transform: uppercase;
+.popup-button,.popup-button2 {
+    background: linear-gradient(#ef9223, #f26522);
+    background: -webkit-linear-gradient(#ef9223, #f26522);
+    background: -o-linear-gradient(#ef9223, #f26522);
+    background: -moz-linear-gradient(#ef9223, #f26522);
+    background: linear-gradient(#ef9223, #f26522);
 }
-.popup-button2:hover{ background: rgba(0, 0, 0, 0) -moz-linear-gradient(center top , #fff 0px, #fff 100%) repeat scroll 0 0; color:#000; border:1px solid #d6d6d6}
+
+.popup-button,.popup-button2,#file1 {
+  border: 1px solid #f26522;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1;
+  padding: 7px 14px;
+  text-transform: uppercase;
+}
+.popup-button:hover,.popup-button2:hover {
+    background: linear-gradient(#fff, #fff);
+    background: -webkit-linear-gradient(#fff, #fff);
+    background: -o-linear-gradient(#fff, #fff));
+    background: -moz-linear-gradient(#fff, #fff);
+    background: linear-gradient(#fff, #fff);
+	color:#000;
+	border:1px solid #d6d6d6;
+}
+#file1:hover {
+    background: linear-gradient(#000, #000);
+    background: -webkit-linear-gradient(#000, #000);
+    background: -o-linear-gradient(#000, #000);
+    background: -moz-linear-gradient(#000, #000);
+    background: linear-gradient(#000, #000);
+	color:#fff;
+	border:1px solid #d6d6d6;
+}
+#file1 {
+    background: linear-gradient(#fff, #fff);
+    background: -webkit-linear-gradient(#fff, #fff);
+    background: -o-linear-gradient(#fff, #fff);
+    background: -moz-linear-gradient(#fff, #fff);
+    background: linear-gradient(#fff, #fff);
+	color:#000;
+	border:1px solid #d6d6d6;
+}
+
 .addtocartcontainer_popup_details > a {
 color: #888;
 font-size: 12px;
 text-decoration: underline;
 }
-.addtocartcontainer_popup_details > a:hover {
+.addtocartcontainer_popup_details > a:hover{
 color: #ef9223;
+text-decoration:underline !important;
 }
 .addtocartcontainer_popup_details {
 margin: 20px 0 0;
@@ -2538,10 +2755,12 @@ margin-bottom: 20px;
 	padding: 10px 15px;
 }
 .addtocartcontainer_page2 > ul li {
-color: #888;
-font-size: 13px;
-line-height: 12px;
-padding-bottom: 5px;
+	color: #888;
+	font-size: 13px;
+	line-height: 1;
+	padding-bottom: 5px;
+	padding-left: 20px;
+	padding-top: 10px;
 }
 .popup-button3 {
 background: rgba(0, 0, 0, 0) -moz-linear-gradient(center top , #fff 0px, #fff 100%) repeat scroll 0 0;
@@ -2674,20 +2893,6 @@ top: 0;
 
 </style>
 <style>
-.popup-button {
-background: rgba(0, 0, 0, 0) -moz-linear-gradient(center top , #ef9223 0px, #f26522 100%) repeat scroll 0 0;
-border: 1px solid #f26522;
-color: white;
-cursor: pointer;
-display: inline-block;
-font-size: 14px;
-font-weight: bold;
-line-height: 1;
-opacity: 0.5;
-padding: 7px 14px;
-text-transform: uppercase;
-}
-
 .uploader_popup_header{
 	background-color: #f1f1f1;
 	height: 30px;
@@ -2701,7 +2906,6 @@ text-transform: uppercase;
 	font-family: Arial;
 	left: 314.5px;
 	position: absolute;
-	text-align: center;
 	top: 134px;
 	width: 720px;
 	z-index: 10000012;
@@ -2746,10 +2950,11 @@ cursor:pointer
 padding: 10px;
 }
 .uploader_popup_upload-icon {
-height: 260px;
-overflow: auto;
-padding: 10px;
-position: relative;
+	height: 260px;
+	margin-top: 10px;
+	overflow: auto;
+	position: relative;
+	margin-bottom: 10px;
 }
 #imgInp {
 background: white none repeat scroll 0 0;

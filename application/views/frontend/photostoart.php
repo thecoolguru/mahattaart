@@ -5,6 +5,17 @@
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/light-box-model.css" type="text/css"/>
 <script src="<?php echo base_url();?>assets/js/dropzone.js" type="text/javascript"></script>    
 <script src="<?php echo base_url();?>assets/js/croppie.js" type="text/javascript" ></script>
+
+<?php 
+    if(!isset($_COOKIE['user_info'])){
+    $cookie_value = uniqid(rand());
+    setcookie('user_info', $cookie_value, time() + (86400 * 30), "/");
+    $_SESSION['user_info'] = $cookie_value; 
+    }else{
+    $_SESSION['user_info'] = $_COOKIE['user_info'];    
+    }
+?>
+
 <script>
 	$(document).ready(function(){
 		var session_id = '<?php echo $_COOKIE['user_info'];?>';
@@ -95,17 +106,11 @@
     function remove_box(){
 		$(document).ready(function(){
 		    $('#upload').hide();
-		});
+		Dropzone.forElement("#my-dropzone").removeAllFiles(true);
+    	});
 	}
 
 </script>
-<?php 
-    if(!isset($_COOKIE['user_info'])){
-    $_SESSION['user_info'] = session_id();
-    }else{
-    $_SESSION['user_info'] = $_COOKIE['user_info'];    
-    }
-?>
 
 <div class="lightbox-target" id="upload">
     	<div id="uploader_popup_goofy_a">
@@ -114,8 +119,12 @@
                 <a class="lightbox-close" href="" onclick="remove_box(); return false;"></a>
             </div>
             <div class="uploader_popup_upload-icon">
-			<form action="<?php echo base_url().'application/views/frontend/upload.php';?>"  class="dropzone" id="my-dropzone"></form>
-                <div class="popup-default-message" id="msg">
+			<form action="<?=base_url()?>index.php/frontend/dropzone"  class="dropzone" id="my-dropzone">
+			     <div class="dz-default dz-message">
+                    <img src='<?=base_url()?>/images/upload_icon.svg'width='100px' height='100px'>
+                 </div>
+			</form>
+                <div class="popup-default-message text-center dz-default dz-message" id='msg'>
                     <h2>Drag and drop images here or click to browse</h2>
                     <p>Each image must be a minimum of 500 KB to ensure a high quality print. Up to 10 images are allowed.</p>
                 </div>
@@ -124,7 +133,7 @@
             <div class="popup-default-footer col-md-12">
             	<p class="text-left pull-left">By uploading, I agree to the <span> <a style="cursor: default; color: #ef9223">Terms of use</a> </span> </p>
                 <div class="popup-default-button pull-right">
-                	<input id="submit-all" value="Submit all files" type="button" class="popup-button">
+                	<input id="submit-all" value="Upload" type="button" class="popup-button">
                 </div>
             </div>
         </div>       
@@ -343,7 +352,14 @@
   cursor: pointer;
 }
 .popup-button {
-  background: rgba(0, 0, 0, 0) -moz-linear-gradient(center top , #ef9223 0px, #f26522 100%) repeat scroll 0 0;
+    background: linear-gradient(#ef9223, #f26522);
+    background: -webkit-linear-gradient(#ef9223, #f26522);
+    background: -o-linear-gradient(#ef9223, #f26522);
+    background: -moz-linear-gradient(#ef9223, #f26522);
+    background: linear-gradient(#ef9223, #f26522);
+}
+
+.popup-button {
   border: 1px solid #f26522;
   color: white;
   cursor: pointer;
@@ -351,12 +367,19 @@
   font-size: 14px;
   font-weight: bold;
   line-height: 1;
-  opacity: 0.5;
   padding: 7px 14px;
   text-transform: uppercase;
 }
 
-
+.popup-button:hover,.popup-button2:hover {
+    background: linear-gradient(#fff, #fff);
+    background: -webkit-linear-gradient(#fff, #fff);
+    background: -o-linear-gradient(#fff, #fff));
+    background: -moz-linear-gradient(#fff, #fff);
+    background: linear-gradient(#fff, #fff);
+	color:#000;
+	border:1px solid #d6d6d6;
+}
 #slider_explore {
   margin: 40px 0;
   position: relative;
@@ -386,41 +409,65 @@
 }
 </style>
 <style>
-.popup-button {
-background: rgba(0, 0, 0, 0) -moz-linear-gradient(center top , #ef9223 0px, #f26522 100%) repeat scroll 0 0;
-border: 1px solid #f26522;
-color: white;
-cursor: pointer;
-display: inline-block;
-font-size: 14px;
-font-weight: bold;
-line-height: 1;
-opacity: 0.5;
-padding: 7px 14px;
-text-transform: uppercase;
+a.lightbox-close {
+	background: transparent;
+	box-sizing: border-box;
+	color: black;
+	display: block;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	text-decoration: none;
+	top: 2px;
+	width: 30px;
+}
+a.lightbox-close::before {
+	background: black none repeat scroll 0 0;
+	content: "";
+	display: block;
+	height: 25px;
+	left: 15px;
+	position: absolute;
+	top: 0;
+	transform: rotate(45deg);
+	width: 1px;
+}
+a.lightbox-close::after {
+	background: black none repeat scroll 0 0;
+	content: "";
+	display: block;
+	height: 25px;
+	left: 15px;
+	position: absolute;
+	top: 0;
+	transform: rotate(-45deg);
+	width: 1px;
+}
+.uploader_popup_header{
+	background-color: #f1f1f1;
+	height: 30px;
+	position: relative;
+	padding: 0 10px;
 }
 
 #uploader_popup_goofy_a {
 	background: white none repeat scroll 0 0;
-	border: 1px solid #d6d6d6;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 	display: block;
 	font-family: Arial;
 	left: 314.5px;
 	position: absolute;
-	text-align: center;
 	top: 134px;
 	width: 720px;
 	z-index: 10000012;
-	padding: 10px;
 }
 
 .uploader_popup_header > h2 {
-	font-size: 30px;
+	font-size: 22px;
 	font-weight: bold;
 	text-transform: uppercase;
 	margin: 0;
 	font-family: 'BebasNeueRegular' !important;
+	padding-top: 2px;
 }
 
 .uploader_popup_upload-icon > img {
@@ -453,11 +500,11 @@ cursor:pointer
 padding: 10px;
 }
 .uploader_popup_upload-icon {
-height: 260px;
-margin-top: 20px;
-overflow: auto;
-padding: 20px;
-position: relative;
+	height: 260px;
+	margin-top: 10px;
+	overflow: auto;
+	position: relative;
+	margin-bottom: 10px;
 }
 #imgInp {
 background: white none repeat scroll 0 0;
@@ -476,6 +523,12 @@ width: 100px;
 .dz-upload-image {
 display: none;
 }
+.popup-default-footer {
+	display: block;
+	height: 40px;
+	clear: both;
+	margin: 10px;
+}
 </style>
 <script>
     Dropzone.options.myDropzone = {
@@ -493,8 +546,12 @@ display: none;
          window.location.href = '<?=base_url()?>index.php/frontend/photostoart_inner';
         });
         this.on("addedfile", function(file) {
-    	 $('#msg').hide();
-    	 if(file.size<500000){
+    	 if( (myDropzone.files.length+1) > 0){
+			$('#msg').hide(); 
+		}else{
+			$('#msg').hide(); 
+		}
+		 if(file.size<500000){
     	   this.removeFile(file);
     	 alert('please upload image size greater than 500KB');
     	 }

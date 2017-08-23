@@ -69,10 +69,9 @@
             {
                 var w =  parseInt(obj.image.width)*obj.ratio;
                 var h =  parseInt(obj.image.height)*obj.ratio;
-
                 var pw = (el.width() - w) / 2;
                 var ph = (el.height() - h) / 2;
-
+                
                 el.css({
                     'background-image': 'url(' + obj.image.src + ')',
                     'background-size': w +'px ' + h + 'px',
@@ -94,8 +93,8 @@
                 if (obj.state.dragable)
                 {
                     if( ($('#type').html()=='horizontal') ){
-                        var x = e.clientX - obj.state.mouseX;
-                        var y = -9;
+                    var x = e.clientX - obj.state.mouseX;
+                    var y = 0;
                     }else if( ($('#type').html()=='vertical') ){
                     var x = 0;
                     var y = e.clientY - obj.state.mouseY;
@@ -117,8 +116,7 @@
 					}
                     obj.state.mouseX = e.clientX;
                     obj.state.mouseY = e.clientY;
-                
-				}
+                }
             },
             imgMouseUp = function(e)
             {
@@ -141,7 +139,7 @@
             $(window).bind('mouseup', imgMouseUp);
            // el.bind('mousewheel DOMMouseScroll', zoomImage);
         };
-        obj.image.src =  $('#large_img2').attr('src');  //options.imgSrc;
+        obj.image.src =  $('#get_img').val();  //options.imgSrc;
         el.on('remove', function(){$(window).unbind('mouseup', imgMouseUp)});
         return obj;
     };

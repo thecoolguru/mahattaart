@@ -95,11 +95,31 @@ public function reverse_number($number)
 	return $query->result();
 	}
 	
-	public function get_print_only($paper_type){
+	public function get_print_only($paper_type,$glass){
 		$this->db->select('rate')->where('paper',$paper_type)->where('quality','Star');
 		$query = $this->db->get('tbl_web_price');
-		return $query->result();
-	} 
+		$data[0] = $query->result(); 
+		$this->db->select('glass_rate')->where('glass',$glass);
+		$query = $this->db->get('tbl_web_price');
+		$data[1] = $query->result();
+		return $data;
+	}
+	
+	public function get_default($frame,$mount){
+	    $this->db->select('*')->where('frame_code',$frame);
+	    $query = $this->db->get('tbl_web_price');
+	    $data[0] = $query->result(); 
+	    $this->db->select('*')->where('mount_code',$mount);
+	    $query = $this->db->get('tbl_web_price');
+	    $data[1] =$query->result();
+	    return $data; 
+	}
+	
+	public function insert_image($data){
+	    
+        $this->db->insert('add_images_table', $data);
+	}
+	
  // End
 
 
