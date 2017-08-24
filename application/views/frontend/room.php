@@ -37,7 +37,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                                           if($spit[1]=='frontend'){
                                               $url=$values->keyword;
                                           }else{
-                                              $url="search/dosearch/1/32/".$values->keyword."/all";
+                                              $url="frontend/themes_view/".$values->keyword."/all";
                                           }
 						    
                             ?>
@@ -151,7 +151,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                 if($spit[1]=='frontend'){
                 $url=$values->keyword;
                 }else{
-                $url="search/dosearch/1/64/".$values->keyword."/all";
+                $url="frontend/themes_view/".$values->keyword;
                 }
                 ?>
                 

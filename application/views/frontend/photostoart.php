@@ -133,7 +133,7 @@
             <div class="popup-default-footer col-md-12">
             	<p class="text-left pull-left">By uploading, I agree to the <span> <a style="cursor: default; color: #ef9223">Terms of use</a> </span> </p>
                 <div class="popup-default-button pull-right">
-                	<input id="submit-all" value="Upload" type="button" class="popup-button">
+                	<input id="submit-all" value="Submit all files" type="button" class="popup-button">
                 </div>
             </div>
         </div>       
@@ -157,26 +157,26 @@
       <div class="carousel carousel-showmanymoveone slide" id="itemslider">
         <div class="carousel-inner">
           <div class="item active">
-            <div class="col-xs-12 col-sm-6 col-md-3 text-center">
-              <a href="#"><img src="http://cache1.artprintimages.com/images/jump_pages/rebrand2/P2A_resp/stream_2.jpg" class="img-responsive center-block"></a>
+            <div class="col-xs-12 col-sm-6 col-md-4 text-center">
+              <a href="#"><img src="http://mirror.mahattaart.com/assets/img/slider/canvas mockup.jpg" class="img-responsive center-block"></a>
               <a target="_self" class="button-slider-upload category" onclick="dropzone_box()" id='canvas'>Canvas</a>
-              <h5 class="text-center">Starting at $39.99</h5>
+              <h5 class="text-center">Starting at Rs.250</h5>
             </div>
-			<div class="col-xs-12 col-sm-6 col-md-3 text-center">
-              <a href="#"><img src="http://cache1.artprintimages.com/images/jump_pages/rebrand2/P2A_resp/stream_1.jpg" class="img-responsive center-block"></a>
+			<div class="col-xs-12 col-sm-6 col-md-4 text-center">
+              <a href="#"><img src="http://mirror.mahattaart.com/assets/img/slider/Frame Mockup.jpg" class="img-responsive center-block" style="height:262px;"></a>
               <a target="_self" class="button-slider-upload category" onclick="dropzone_box()" id='framing'>Framing</a>
-              <h5 class="text-center">Starting at $39.99</h5>
+              <h5 class="text-center">Starting at Rs.150</h5>
             </div>
-			<div class="col-xs-12 col-sm-6 col-md-3 text-center">
-              <a href="#"><img src="http://cache1.artprintimages.com/images/jump_pages/rebrand2/P2A_resp/stream_3.jpg" class="img-responsive center-block"></a>
+			<div class="col-xs-12 col-sm-6 col-md-4 text-center">
+              <a href="#"><img src="http://mirror.mahattaart.com/assets/img/slider/print mockup.jpg" class="img-responsive center-block" style="height:262px;"></a>
               <a target="_self" class="button-slider-upload category" onclick="dropzone_box()" id='print_only'>Print Only</a>
-              <h5 class="text-center">Starting at $39.99</h5>
+              <h5 class="text-center">Starting at Rs.100</h5>
             </div>
-			<div class="col-xs-12 col-sm-6 col-md-3 text-center">
+			<!-- <div class="col-xs-12 col-sm-6 col-md-3 text-center">
               <a href="#"><img src="http://cache1.artprintimages.com/images/jump_pages/rebrand2/P2A_resp/stream_4.jpg" class="img-responsive center-block"></a>
               <a target="_self" class="button-slider-upload category" onclick="dropzone_box()" id='others'>Other</a>
               <h5 class="text-center">Starting at $39.99</h5>
-            </div>
+            </div> -->
           </div>
         </div> 
       </div>
@@ -311,6 +311,7 @@
 }
 .top_slider_img {
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .top_slider_content h1 {
@@ -352,14 +353,7 @@
   cursor: pointer;
 }
 .popup-button {
-    background: linear-gradient(#ef9223, #f26522);
-    background: -webkit-linear-gradient(#ef9223, #f26522);
-    background: -o-linear-gradient(#ef9223, #f26522);
-    background: -moz-linear-gradient(#ef9223, #f26522);
-    background: linear-gradient(#ef9223, #f26522);
-}
-
-.popup-button {
+  background: rgba(0, 0, 0, 0) -moz-linear-gradient(center top , #ef9223 0px, #f26522 100%) repeat scroll 0 0;
   border: 1px solid #f26522;
   color: white;
   cursor: pointer;
@@ -367,19 +361,12 @@
   font-size: 14px;
   font-weight: bold;
   line-height: 1;
+  opacity: 0.5;
   padding: 7px 14px;
   text-transform: uppercase;
 }
 
-.popup-button:hover,.popup-button2:hover {
-    background: linear-gradient(#fff, #fff);
-    background: -webkit-linear-gradient(#fff, #fff);
-    background: -o-linear-gradient(#fff, #fff));
-    background: -moz-linear-gradient(#fff, #fff);
-    background: linear-gradient(#fff, #fff);
-	color:#000;
-	border:1px solid #d6d6d6;
-}
+
 #slider_explore {
   margin: 40px 0;
   position: relative;
@@ -409,49 +396,24 @@
 }
 </style>
 <style>
-a.lightbox-close {
-	background: transparent;
-	box-sizing: border-box;
-	color: black;
-	display: block;
-	height: 100%;
-	position: absolute;
-	right: 0;
-	text-decoration: none;
-	top: 2px;
-	width: 30px;
-}
-a.lightbox-close::before {
-	background: black none repeat scroll 0 0;
-	content: "";
-	display: block;
-	height: 25px;
-	left: 15px;
-	position: absolute;
-	top: 0;
-	transform: rotate(45deg);
-	width: 1px;
-}
-a.lightbox-close::after {
-	background: black none repeat scroll 0 0;
-	content: "";
-	display: block;
-	height: 25px;
-	left: 15px;
-	position: absolute;
-	top: 0;
-	transform: rotate(-45deg);
-	width: 1px;
-}
-.uploader_popup_header{
-	background-color: #f1f1f1;
-	height: 30px;
-	position: relative;
-	padding: 0 10px;
+.popup-button {
+background: rgba(0, 0, 0, 0) -moz-linear-gradient(center top , #ef9223 0px, #f26522 100%) repeat scroll 0 0;
+border: 1px solid #f26522;
+color: white;
+cursor: pointer;
+display: inline-block;
+font-size: 14px;
+font-weight: bold;
+line-height: 1;
+opacity: 0.5;
+padding: 7px 14px;
+text-transform: uppercase;
 }
 
 #uploader_popup_goofy_a {
 	background: white none repeat scroll 0 0;
+	border: 1px solid #d6d6d6;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 	display: block;
 	font-family: Arial;
 	left: 314.5px;
@@ -459,15 +421,15 @@ a.lightbox-close::after {
 	top: 134px;
 	width: 720px;
 	z-index: 10000012;
+	padding: 10px;
 }
 
 .uploader_popup_header > h2 {
-	font-size: 22px;
+	font-size: 30px;
 	font-weight: bold;
 	text-transform: uppercase;
 	margin: 0;
 	font-family: 'BebasNeueRegular' !important;
-	padding-top: 2px;
 }
 
 .uploader_popup_upload-icon > img {
@@ -506,6 +468,7 @@ padding: 10px;
 	position: relative;
 	margin-bottom: 10px;
 }
+
 #imgInp {
 background: white none repeat scroll 0 0;
 cursor: inherit;
@@ -522,12 +485,6 @@ width: 100px;
 }
 .dz-upload-image {
 display: none;
-}
-.popup-default-footer {
-	display: block;
-	height: 40px;
-	clear: both;
-	margin: 10px;
 }
 </style>
 <script>

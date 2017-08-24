@@ -36,7 +36,6 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 </div>
 </div>
 </div>
-
 <div class="item"> <img src="<?php echo base_url();?>assets/img/slider/flo.jpg" alt="Flower">
     <div class="carousel-caption caption2 caption-flower">
         <div class="welcomee welcomee2">
@@ -58,8 +57,43 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
         </div>
     </div>
 </div>
+<div class="item">
+    <img src="<?php echo base_url();?>assets/img/slider/homepage style n space-01.jpg" border="0" />
+    	<div class="Map_area">
+        	<a href="http://mahattaart.com/" id="map_area_01"></a>
+        	<a href="http://mahattaart.com/" id="map_area_02"></a>
+        </div>
+        <style>
+			#map_area_01 {
+				position: absolute;
+				left: 0;
+			}
+			#map_area_02 {
+				position: absolute;
+				right: 0;
+			}
+		</style>
 </div>
-<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev" > <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
+
+<div class="item">
+    <img src="<?php echo base_url();?>assets/img/slider/homepage style n space-02.jpg" border="0" />
+    <div class="Map_area">
+        	<a href="http://mahattaart.com/" id="map_area_03"></a>
+            <a href="http://mahattaart.com/" id="map_area_04"></a>
+            <a href="http://mahattaart.com/" id="map_area_05"></a>
+            <a href="http://mahattaart.com/" id="map_area_06"></a>
+    </div>
+    <style>
+			#map_area_03, #map_area_04, #map_area_05, #map_area_06 {
+				position: absolute;
+				bottom:0;
+			}
+		</style>
+</div>
+
+</div>
+<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev" style="width:20px"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> 
+<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next" style="width:20px"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
 <div class="top-cate col-md-12">
 <h1 class="ttto">TOP CATEGORIES </h1>
 </div>

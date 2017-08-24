@@ -100,7 +100,7 @@ We empower artists to make use of our platform and processes to sell their artwo
            
         </div>
         <div class="para02 col-md-12">
-        	<h1 class="blue"></h1>
+        	<h1 class="blue">Contact Us</h1>
         	<article>
             	<img src="<?php print base_url();?>assets/img/gra-1.jpg" width="302" height="165" border="0" class="width01 img-responsive">
             	<p class="head-off">

@@ -185,7 +185,7 @@
     .dropzone.dz-clickable .dz-message, .dropzone.dz-clickable .dz-message * {
       cursor: pointer; }
   .dropzone.dz-started .dz-message {
-    display: none; }
+    float: left; }
   .dropzone.dz-drag-hover {
     border-style: solid; }
     .dropzone.dz-drag-hover .dz-message {

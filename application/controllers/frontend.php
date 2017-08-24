@@ -1746,10 +1746,15 @@ public function lightbox_view($lightbox_id,$page_no=0,$offset=0)
 		$this->load->view('frontend/lightbox_view',$data);
 		$this->load->view('frontend/footer');
 	}
-public function themes_view($lightbox_id,$page_no=0,$offset=0)
+public function themes_view($lightbox_id,$page_no,$offset=0)
 	{
-		//$search_file = "http://localhost/indiapicture_api/wallsnart/search_catagory.php?q=3&page=1&per_page=10";
-		$search_file="http://api.indiapicture.in/wallsnart/search_catagory.php?q=3&page=1&per_page=30";
+	
+	if($page_no==''){
+	 $page_no=1;
+	}
+	$per_page=10;
+
+		$search_file="http://api.indiapicture.in/wallsnart/search_catagory.php?q=$lightbox_id&page=$page_no&per_page=$per_page";
 		//print_r($search_file);
 	$opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
 $context = stream_context_create($opts);
@@ -1757,15 +1762,18 @@ $search_data_file = file_get_contents($search_file, false, $context);
 $search_data_r = json_decode($search_data_file,TRUE);
 //print_r($search_data_r);die;
 $data['search_cat']=$search_data_r;
-	   $per_page = 20;  
+	   //$per_page = 5;  
+		//$per_page = 10;  
 		$offset = ($this->uri->segment(4) != '' ? $this->uri->segment(4):0);
-		$config["total_rows"] = $this->frontend_model->count_images_lightbox($lightbox_id);
+		$config["total_rows"] = 50;
 		$config['per_page']= $per_page;
+		$config['use_page_numbers'] = TRUE;
 		$config['first_link'] = 'First';
 		$config['last_link'] = 'Last';
-		$config['uri_segment'] =4;
+		$config['uri_segment'] = 4;
 		$data['page_no']=$page_no;
-		$config['base_url']= base_url()."/index.php/frontend/lightbox_view/$lightbox_id/"; 
+		
+		$config['base_url']= base_url()."/index.php/frontend/themes_view/$lightbox_id"; 
 		$config['suffix'] = ''.http_build_query($_GET, '', "&"); 
 		$this->pagination->initialize($config);
 		$this->data['paginglinks'] = $this->pagination->create_links();    
@@ -1775,7 +1783,7 @@ $data['search_cat']=$search_data_r;
 		$this->data['pagermessage'] = 'Showing '.((($this->pagination->cur_page-1)*$this->pagination->per_page)+1).' to '.($this->pagination->cur_page*$this->pagination->per_page).' of '.$this->pagination->total_rows;
 		}   
 		$qry .= " limit {$per_page} offset {$offset} ";
-		$data["image"] = $this->frontend_model->get_images_lightbox_gallery($lightbox_id,$config["per_page"], $offset); 
+		//$data["image"] = $this->frontend_model->get_images_lightbox_gallery($lightbox_id,$config["per_page"], $offset); 
 	    $data['lightbox_id']=$lightbox_id;				
 		$user_id=$this->session->userdata('userid');
 		$this->load->view('frontend/header');

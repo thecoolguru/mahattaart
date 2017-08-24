@@ -954,9 +954,6 @@ h1.h1 {
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-.header-content {
-width:100%;
-}
 #navbg ul {
 width:auto !important;
 }

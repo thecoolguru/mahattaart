@@ -56,6 +56,36 @@ a:hover {
 	font-weight: normal;
 	}	
 
+	#map_area_01, #map_area_02 {
+		width: 40px ;
+		top: 54px ;
+		height: 14px;
+	}
+	#map_area_01, #map_area_02 {
+		width: 40px !important;
+		top: 54px !important;
+		height: 14px !important;
+	}
+#map_area_03 {
+	width: 33px !important;
+	left: 20px !important;
+	height: 11px !important;
+}
+#map_area_04 {
+	width: 36px !important;
+	left: 91px !important;
+	height: 11px!important;
+}
+#map_area_05 {
+	width: 34px!important;
+	left: 164px!important;
+	height: 11px!important;
+}
+#map_area_06 {
+	width: 32px!important;
+	left: 238px!important;
+	height: 11px!important;
+}
 }
 
 @media(max-width:767px) {
@@ -303,11 +333,34 @@ a:hover {
 	#content {
 		height: 360px !important;
 	}
-	.bor tr td a {
-		width: 11.5px !important;
-	}
+	
 	#socialleft {
 		display: none;
+	}
+	#map_area_01, #map_area_02 {
+		width: 62px;
+		top: 85px;
+		height: 20px;
+	}
+	#map_area_03 {
+		width: 51px;
+		left: 32px;
+		height: 18px;
+	}
+	#map_area_04 {
+		width: 56px;
+		left: 142px;
+		height: 18px;
+	}
+	#map_area_05 {
+		width: 50px;
+		left: 256px;
+		height: 18px;
+	}
+	#map_area_06 {
+		width: 50px;
+		left: 369px;
+		height: 18px;
 	}
 }
 
@@ -611,10 +664,14 @@ a:hover {
 		-moz-box-shadow: 0 2px 12px #888;
 		margin-bottom: 20px;
 	}
-	.bor tr td a {
-		width: 18.4px !important;
+	#map_area_01, #map_area_02 {
+		width: 100px ;
+		top: 135px;
+		height: 33px;
 	}
 }
+
+
 @media(min-width:992px) and (max-width:1199px) {
     h1.ttto::before {
         background: #000 none repeat scroll 0 0;
@@ -850,9 +907,31 @@ a:hover {
 		-moz-box-shadow: 0 2px 12px #888;
 		margin-bottom: 20px;
 	}
-	.bor tr td a {
-		height: 30px !important;
-		width: 24.1px !important;
+	
+	#map_area_01, #map_area_02 {
+		width: 130px;
+		top: 176px;
+		height: 43px;
+	}
+	#map_area_03 {
+		width: 103px;
+		left: 67px;
+		height:35px;
+	}
+	#map_area_04 {
+		width: 116px;
+		left: 296px;
+		height:35px;
+	}
+	#map_area_05 {
+		width: 103px;
+		left: 534px;
+		height:35px;
+	}
+	#map_area_06 {
+		width: 103px;
+		left: 771px;
+		height:35px;
 	}
 }
 @media(min-width:1200px) {
@@ -1041,6 +1120,33 @@ a:hover {
 		-webkit-box-shadow: 0 2px 12px #888;
 		-moz-box-shadow: 0 2px 12px #888;
 		margin-bottom: 20px;
+	}
+	#map_area_01, #map_area_02 {
+		position: absolute;
+		width: 160px;
+		top: 215px;
+		height: 52px;
+		left: 0;
+	}
+	#map_area_03 {
+		width: 126px;
+		left: 81px;
+		height:44px;
+	}
+	#map_area_04 {
+		width: 141px;
+		left: 359px;
+		height:44px;
+	}
+	#map_area_05 {
+		width: 126px;
+		left: 648px;
+		height:44px;
+	}
+	#map_area_06 {
+		width: 126px;
+		left: 935px;
+		height:44px;
 	}
 }
 @media(min-width:1600px) {

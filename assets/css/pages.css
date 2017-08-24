@@ -16,7 +16,7 @@
 
 .para02 h1{margin:0 0 10px 0; padding:4px; /*background:#d31d25;*/ /*background-color:#F00;*/ background-color:#666; color:#FFF; font-size:24px; color:#fff; font-family:Arial, Helvetica, sans-serif;}
 .para02 article{margin:0 0 20px 0; padding:0; overflow:hidden; content:'';}
-.para02 article p{margin:0; padding:0; float:right; font-size:13px; line-height:20px; text-align:justify; color:#868686;}
+.para02 article p{margin:0; padding:0; float:right; font-size:13px; line-height:20px;color:#868686;}
 .para02 article img{margin:0; padding:0; float:left;}
 
 .para03 h1{margin:0 0 10px 0; padding:4px; /*background:#09F;*/ background-color:#000; font-size:24px; color:#fff; font-family:Arial, Helvetica, sans-serif;}
@@ -25,10 +25,9 @@
 .para03 article img{margin:0; padding:0; float:right;}
 
 .block{display:block; padding:4px 0;}
-.blue{background:#06F !important; height:30px;}
+.blue{background:#06F !important;}
 .red{background:#0e3e92 !important;}
 .orn{background:#0e3e92 !important;}
-.head-off{width:400px !important;}
 .margin-top{margin:20px 0 0 0 !important;}
 .margin-bottom{margin:10px 0px !important;}
 

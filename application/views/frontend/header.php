@@ -1286,27 +1286,27 @@
                                      if($spit0[1]=='frontend'){
                                               $url0=$drop6[0]->keyword;
                                           }else{
-                                              $url0="search/dosearch/1/32/".$drop6[0]->keyword."";
+                                              $url0="frontend/themes_view/".$drop6[0]->keyword."";
                                           }if($spit1[1]=='frontend'){
                                               $url1=$drop6[1]->keyword;
                                           }else{
-                                              $url1="search/dosearch/1/32/".$drop6[1]->keyword."";
+                                              $url1="frontend/themes_view/".$drop6[1]->keyword."";
                                           }if($spit2[1]=='frontend'){
                                               $url2=$drop6[2]->keyword;
                                           }else{
-                                              $url2="search/dosearch/1/32/".$drop6[2]->keyword."";
+                                              $url2="frontend/themes_view/".$drop6[2]->keyword."";
                                           }if($spit3[1]=='frontend'){
                                               $url3=$drop6[3]->keyword;
                                           }else{
-                                              $url3="search/dosearch/1/32/".$drop6[3]->keyword."";
+                                              $url3="frontend/themes_view/".$drop6[3]->keyword."";
                                           }if($spit4[1]=='frontend'){
                                               $url4=$drop6[4]->keyword;
                                           }else{
-                                              $url4="search/dosearch/1/32/".$drop6[4]->keyword."";
+                                              $url4="frontend/themes_view/".$drop6[4]->keyword."";
                                           }if($spit5[1]=='frontend'){
                                               $url5=$drop6[5]->keyword;
                                           }else{
-                                              $url5="search/dosearch/1/32/".$drop6[5]->keyword."";
+                                              $url5="frontend/themes_view/".$drop6[5]->keyword."";
                                           }
 										 
 		  //echo $url2.'_'.$url;

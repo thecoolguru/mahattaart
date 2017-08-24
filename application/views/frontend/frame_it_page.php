@@ -2869,7 +2869,7 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
                 
       </div></div>
       <div id="tab5" style="display:none;" class="col-md-12 col-sm-12 col-xs-12">
-                  <table class="bor">
+                  <table class="bor table">
                     <tr>
                       <td><a href="javascript:;" class="color1" onClick="javascript:change_wallcolor('#FFFBF8');"></a></td>
                       <td><a href="javascript:;" class="color2" onClick="javascript:change_wallcolor('#FFFCF7');"></a></td>
@@ -2910,8 +2910,6 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
                       <td><a href="javascript:;" class="color37" onClick="javascript:change_wallcolor('#FAFAD2');"></a></td>
                       <td><a href="javascript:;" class="color38" onClick="javascript:change_wallcolor('#D3D3D3');"></a></td>
                       <td><a href="javascript:;" class="color39" onClick="javascript:change_wallcolor('#90EE90');"></a></td>
-                      </tr>
-                      <tr>
                       <td><a href="javascript:;" class="color40" onClick="javascript:change_wallcolor('#FFB6C1');"></a></td>
                       <td><a href="javascript:;" class="color41" onClick="javascript:change_wallcolor('#FFA07A');"></a></td>
                       <td><a href="javascript:;" class="color42" onClick="javascript:change_wallcolor('#20B2AA');"></a></td>
