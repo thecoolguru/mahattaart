@@ -1,5 +1,5 @@
 <?php 
-
+//phpinfo();
 if($this->session->userdata('userid'))
 {
 $Obj=new Cart();
@@ -34,8 +34,7 @@ if(!$key){
 }
 .detail table tr:first-child {
 	background: #f9f9f9 !important;
-}  
- .mdatory_icon{font-size:12px; color:#F00}
+}   
 	</style>		
 <div class="container">
 <div class="row">
@@ -57,7 +56,7 @@ if(!$key){
                         <span id="field_blank" style=" margin-left: 177px;  color: red"></span>
                 	<form method="post">
                     	<div class="form-group row">
-                            <label for="firstName" class="col-sm-3 col-form-label">Name <sup class="mdatory_icon">*</sup></label>
+                            <label for="firstName" class="col-sm-3 col-form-label">Name</label>
                             <div class="col-sm-9">
                                 <input type="text" name="name" id="name" value="<?php echo ucwords($userName->first_name.' '.$userName->last_name);?>" class="form-control" />
                             </div>
@@ -81,14 +80,14 @@ if(!$key){
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="firstName" class="col-sm-3 col-form-label">Address <sup class="mdatory_icon">*</sup></label>
+                            <label for="firstName" class="col-sm-3 col-form-label">Address</label>
                             <div class="col-sm-9">
                                 <textarea name="address" id="address" class="form-control"><?=$userName->address;?></textarea>
                             </div>
                         </div>
                         
                         <div class="form-group row">
-                            <label for="firstName" class="col-sm-3 col-form-label">State<sup class="mdatory_icon">*</sup></label>
+                            <label for="firstName" class="col-sm-3 col-form-label">State</label>
                             <div class="col-sm-9">
                             <select name="state" id="state" class="form-control">
                                 <option value="">------------Select State------------</option>
@@ -132,25 +131,25 @@ if(!$key){
                             </div>
                         </div>
 						<div class="form-group row">
-                            <label for="firstName" class="col-sm-3 col-form-label">City<sup class="mdatory_icon">*</sup></label>
+                            <label for="firstName" class="col-sm-3 col-form-label">City</label>
                             <div class="col-sm-9">
                                 <input type="text" name="city" id="city" value="<?=$userName->city;?>" class="form-control" />
                             </div>
                         </div>
 						<div class="form-group row">
-                            <label for="firstName" class="col-sm-3 col-form-label">Pincode<sup class="mdatory_icon">*</sup></label>
+                            <label for="firstName" class="col-sm-3 col-form-label">Pincode</label>
                             <div class="col-sm-9">
                                 <input type="text" name="pincode" id="pincode" maxlength="6" onkeypress="return numbersonly(event)" value="<?=$userName->zip_code;?>" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="firstName" class="col-sm-3 col-form-label">Phone<sup class="mdatory_icon">*</sup></label>
+                            <label for="firstName" class="col-sm-3 col-form-label">Phone</label>
                             <div class="col-sm-9">
                                 <input type="text" id="phone" name="phone" maxlength="10" onkeypress="return numbersonly(event)" value="<?=$userName->contact;?>" class="form-control" />
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="firstName" class="col-sm-3 col-form-label">Email Receipt to<sup class="mdatory_icon">*</sup></label>
+                            <label for="firstName" class="col-sm-3 col-form-label">Email Receipt to</label>
                             <div class="col-sm-9">
                               <input id="email_reciept" name="email_reciept" value="<?=$userName->email_reciept;?>" class="form-control"   type="text" />
                             </div>
@@ -222,7 +221,7 @@ if(!$key){
                         <span id="field_blank" style=" margin-left: 177px;  color: red"></span>
                 	<form method="post">
                     	<div class="form-group row">
-                            <label for="firstName" class="col-sm-3 col-form-label">Name<sup class="mdatory_icon">*</sup></label>
+                            <label for="firstName" class="col-sm-3 col-form-label">Name</label>
                             <div class="col-sm-9">
                                 <input type="text" name="name" id="s_name" value="" class="form-control" />
                             </div>
@@ -246,14 +245,14 @@ if(!$key){
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="firstName" class="col-sm-3 col-form-label">Address<sup class="mdatory_icon">*</sup></label>
+                            <label for="firstName" class="col-sm-3 col-form-label">Address</label>
                             <div class="col-sm-9">
                             <textarea id="s_address" class="form-control"></textarea>
                             </div>
                         </div>
                         
                         <div class="form-group row">
-                            <label for="firstName" class="col-sm-3 col-form-label">State<sup class="mdatory_icon">*</sup></label>
+                            <label for="firstName" class="col-sm-3 col-form-label">State</label>
                             <div class="col-sm-9">
                             <select name="state" id="s_state" class="form-control">
                                           <option value="">------------Select State------------</option>
@@ -298,19 +297,19 @@ if(!$key){
                             </div>
                         </div>
 						<div class="form-group row">
-                            <label for="firstName" class="col-sm-3 col-form-label">City<sup class="mdatory_icon">*</sup></label>
+                            <label for="firstName" class="col-sm-3 col-form-label">City</label>
                             <div class="col-sm-9">
                                 <input type="text" name="city" id="s_city" value="" class="form-control" />
                             </div>
                         </div>
 						<div class="form-group row">
-                            <label for="firstName" class="col-sm-3 col-form-label">Pincode<sup class="mdatory_icon">*</sup></label>
+                            <label for="firstName" class="col-sm-3 col-form-label">Pincode</label>
                             <div class="col-sm-9">
                                 <input type="text" name="pincode" id="s_pincode" maxlength="6" onkeypress="return numbersonly(event)" value="" class="form-control" />
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="firstName" class="col-sm-3 col-form-label">Phone<sup class="mdatory_icon">*</sup></label>
+                            <label for="firstName" class="col-sm-3 col-form-label">Phone</label>
                             <div class="col-sm-9">
                                 <input type="text" id="s_phone" name="phone" maxlength="10" onkeypress="return numbersonly(event)" value="" class="form-control" />
                             </div>
@@ -576,9 +575,10 @@ if(!$key){
 							 
                             </table>
 							
-				        <form  method="post" action="http://mahattaart.com/index.php/cart/CCAvenue_check_out" name="payment_ccavenue">
+				        <form  id="payment_action" method="post" action="#" name="payment_ccavenue">
                          
 						 <?php
+						 //http://mahattaart.com/index.php/cart/CCAvenue_check_out
 						 $seven_d_r_no=mt_rand(1000000,9999999);
 						 $invoice_id_auto='MAI'.$seven_d_r_no;
 						 $six_digit_random_number = mt_rand(100000, 999999);
@@ -627,7 +627,18 @@ if(!$key){
 <input type="hidden" name="promo_code" value="" />
 <input type="hidden" name="tid" value="123" />
 
-    <input type="submit"  value="Proceed For Payment" onclick="return save_order_id_to_cart('');" class="checout_btn btn btn-info center-block" style="border: none; height:40px; width:auto;margin-top:10px;" />
+  <!--  <input type="submit"  value="Proceed For Payment" onclick="return save_order_id_to_cart('');" class="checout_btn btn btn-info center-block" style="border: none; height:40px; width:auto;margin-top:10px;" />-->
+    <div class="col-md-12">
+    	<div class="row">
+        	<div class="col-md-4">
+            	<span style="margin-top: 20px;display: block;">Payment Mode</span>
+            </div>
+        	<div class="col-md-8" style="margin-top:10px">
+    			<input type="submit" class="btn" onclick="return save_order_id_to_cart('cod');" value="COD" style="display: inline-block;/* margin: 20px 0 0 0; *//* padding: 6px 12px; */color: #fff;background: #14479a;text-decoration: none;border: 1px solid #14479a;border-radius: 0;"> 
+        		<input type="submit" class="btn" onclick="return save_order_id_to_cart('online');" value="ONLINE" style="display: inline-block;/* margin: 20px 0 0 0; *//* padding: 6px 12px; */color: #fff;background: #14479a;text-decoration: none;border: 1px solid #14479a;margin-left: 28px;border-radius: 0;"> 
+    </div>
+        </div>
+    </div>
     
     
     </form>
@@ -789,10 +800,15 @@ if(!$key){
         
 		</div>
 <script>
-function save_order_id_to_cart(){
+function save_order_id_to_cart(values){
+//alert(values)
 
-
-}
+if(values=='cod'){
+//alert(values)
+$('#payment_action').attr('action','<?=base_url()?>cart/payment_by_cod');
+}else if(values=='online'){
+$('#payment_action').attr('action','http://mahattaart.com/index.php/cart/CCAvenue_check_out');
+}}
 </script>
 
 <script type="text/javascript">

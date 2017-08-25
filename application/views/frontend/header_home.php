@@ -1219,6 +1219,7 @@
 </div>
 </ul>
 </li>
+<li> <a href="<?php print base_url(); ?>frontend/photostoart">Photos To Art</a></li>
 <!--<li> <a href="#">Clearance</a>
 <li> <a href="#">Frame your art </a>
 <li> <a href="#">Product Page</a>-->

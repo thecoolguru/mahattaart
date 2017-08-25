@@ -1,3 +1,4 @@
+<script src="http://beta.mahattaart.com/assets/js/jQuery-3.2.1.min.js"></script>
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/light-box-model.css" type="text/css"/>
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/wallcolor.css" type="text/css"/>
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/loader.css" type="text/css"/>
@@ -242,15 +243,16 @@ Dropzone.options.myDropzone = {
 		$('#print_price').html(Math.round(cost,2));
 		$('#print_sizes').html(dimen[0]+'"X'+dimen[1]+'"');
 		$('#frame_type').html('Streched Canvas Gallary Wrap');
-		var newwidth1 		= parseInt(c_width)+(1*2);
-		var	newlenght1		= parseInt(c_height)+(1*2);
+		var newwidth1 = parseInt(c_width)+(1*2);
+		var	newlenght1 = parseInt(c_height)+(1*2);
 		var CanvasFrameCost = parseInt((parseInt(parseInt(newwidth1)*parseInt(2)) + parseInt(parseInt(newlenght1)*parseInt(2)))*75)/12;
 		CanvasFrameCost = Math.round(parseInt(CanvasFrameCost),2);
-		$('#CanvasCost').html("Rs."+CanvasFrameCost);	
+		$('#CanvasCost').html("Rs."+ CanvasFrameCost);	
 		var actual_price = cost + CanvasFrameCost;
-		$('.actual_price').html("Rs."+actual_price);
-		//var framed_print_art_size= (parseInt(newlenght1)+parseInt(1*2))+ '"X' +(parseInt(newwidth1)+parseInt(1*2))+'"';
-		//print_sizes,frame_size,frame_type,f_name,FrameCost,mount_size,mount_color,MountCost,glass_type
+		$('.actual_price').html("Rs."+ Math.round(actual_price,2));
+    	if($('#click').html() == 'frame_click'){
+    	frame_pricing();
+		  }
 		}
 	});
 }
@@ -280,16 +282,18 @@ Dropzone.options.myDropzone = {
 			$('#glass_price').html("Rs."+glass_cost);
 			var mountwidth = parseInt(mount) + parseInt(dimen[0]);  
 			var mountheight = parseInt(mount) + parseInt(dimen[1]);
-			var mount_cost = parseInt(mountwidth) * parseInt(mountheight) * mount_rate; 
+			var mount_cost = mountwidth * mountheight * mount_rate; 
 			$('#MountCost').html("Rs."+mount_cost);
 			$('#finished_size').html( framewidth+'"X'+ frameheight+'" Framed Print');	
 			var print_price = $('#print_price').html();
 			if($('#remove-mount').prop('checked') == 'true'){
-			var actual_price = print_price + framing_cost + glass_cost + mount_cost;
+			var actual_price = parseInt(print_price) + parseInt(framing_cost) + parseInt(glass_cost);
 			$('.actual_price').html("Rs."+actual_price);
 			}else{
-			var actual_price = print_price + framing_cost + glass_cost;
-			$('.actual_price').html("Rs."+actual_price);    
+			var actual_price = parseInt(print_price) + parseInt(framing_cost) + parseInt(glass_cost) + parseInt(mount_cost);
+			setTimeout(function(){
+			    $('.actual_price').html("Rs."+ actual_price)
+			    },100);    
 			}
     		}else{
 			var framewidth = parseInt(dimen[0])+  parseInt(2) * $('#frame_inches').val();
@@ -301,7 +305,7 @@ Dropzone.options.myDropzone = {
 			glass_cost = Math.round(parseInt(glass_cost),2);
 			$('#glass_price').html(glass_cost);
 			$('#finished_size').html(framewidth+'"X'+frameheight+'" Framed Print');
-            var actual_price = framing_cost + glass_cost;
+            var actual_price = parseInt(framing_cost) + parseInt(glass_cost);
 			$('.actual_price').html(actual_price);			
 			}
 	}
@@ -376,6 +380,7 @@ Dropzone.options.myDropzone = {
 				console.log(obj);
 				var dimentions = dimention.split('X');
 				if(dimentions[0] >= dimentions[1]){
+				$('#horizonal_height').html(dimentions[1]);
 				var front_width = Math.round(dimentions[0]*0.825);
 				var front_height = Math.round(dimentions[1]*0.83388); 	
 				front(front_width,front_height); 
@@ -396,10 +401,10 @@ Dropzone.options.myDropzone = {
 				$('#myCanvas3').css('height','111px');
 				$('#type').html('horizontal');
 				} else {
+				$('#vertical_width').html(dimentions[0]);
 				var front_width = Math.round(dimentions[0]*0.79381);
 				var front_height = Math.round(dimentions[1]*0.77220); 	
 				front(front_width,front_height);  
-				
 				var right_sourceX = Math.round(dimentions[0]*0.79381);
 				var right_height = Math.round(dimentions[1]*0.77220);
 				var right_width = dimentions[0]*0.20618;
@@ -910,11 +915,17 @@ Dropzone.options.myDropzone = {
 	function cropImage(){
 	$(document).ready(function(){
  		if($('#type').html() == 'vertical'){
-		$('.uploader_popup_goofy_a').css({'width':'308px','height':'634px','margin-left':'-154px','margin-top':'-317px','left':'50%','top':'50%'})//a
+		var vert_width = $('#vertical_width').html();	
+		vert_width = parseInt(vert_width);
+		var margin_left = parseInt(-(vert_width/2)); 
+		$('.uploader_popup_goofy_a').css({'width': vert_width,'height':'634px','margin-left': margin_left,'margin-top':'-317px','left':'50%','top':'50%'})//a
 		$('.imageBox').css({'width':'100%','height':'550px','border':'none'});    
 		$('.thumbBox').css({'width':'100%', 'height':'400px', 'margin-top':'-200px', 'margin-left':'-50%', 'border':'none'});
 	    $('#crop_image').show(); 
 		}else{
+		/* var vert_width = $('#horizontal_height').html();	
+		vert_width = parseInt(vert_width);
+		var margin_left = parseInt(-(vert_width/2)); */	
 		$('.uploader_popup_goofy_a').css({'top':'50%','width':'417px','margin-left':'-208px','height':'350px','margin-top':'-175px','left':'50%'})//a
 		$('.imageBox').css({'height':'260px','width':'417px','border':'none'});    
 		$('.thumbBox').css({'border': 'none','top':'50%','left':'50%','width':'300px','height':'260px','margin-top':'-130px','margin-left':'-150px'});
@@ -1183,8 +1194,8 @@ Dropzone.options.myDropzone = {
 	    },100);
     });
 	
-	$('.img2').click(function(){
-   var id = $(this).attr("id");  
+   $('.img2').click(function(){
+    var id = $(this).attr("id");  
 		if(id == 'framing'){
 			$('#framingdiv1,#framingdiv2').show();	
 			showTable('Basic');
@@ -1217,6 +1228,7 @@ Dropzone.options.myDropzone = {
  			//frame_change();mount_data
  			calculate_cost('');
  			frame_pricing();
+ 			$('#click').html('frame_click');
  			$('.canvas').hide();
  			$('.framing').show();
         }else if(id == 'canvas'){
@@ -1239,8 +1251,9 @@ Dropzone.options.myDropzone = {
 	   	    $('#options').show();
 	   	    $('#price_show').hide();
 	   	    paper_surface('canvas');
- 			calculate_cost('');
-			}else if(id == 'print_only'){
+ 			$('#frame_click').html('canvas_click');
+			calculate_cost('');
+ 			}else if(id == 'print_only'){
 			$('#canvas_details').hide();
 			$('#framingdiv1,#framingdiv2').hide();
 			$('#abc').attr('style','');
@@ -1260,7 +1273,11 @@ Dropzone.options.myDropzone = {
 			$('.canvas').hide();
 			$('.framing').hide();
 			$('.print').show();
-		}else{
+		    setTimeout(function(){
+		      $('.actual_price').html($('#print_price').html());
+		    },200);
+		    $('#click').html('print_only');
+		  }else{
 			console.log('nothing');
 		}
 	});
@@ -1313,6 +1330,10 @@ Dropzone.options.myDropzone = {
     <input id='get_img' value='' style="display:none;">
     <div id='type' style="display:none"></div>
     <input id='crop_src' style='display:none'>
+    <input id='data' style='display:none'>
+    <div id='click' style='display:none'></div>
+	<div id='vertical_width' style='display:none'></div>
+	<div id='horizonal_height' style='display:none'></div>
 <!-- end -->
 <!-- pricing Details -->
  <div class="lightbox-target" id="price_detail">
