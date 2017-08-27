@@ -1141,17 +1141,17 @@
           //print_r($drop8);
           
             ?>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$drop8[0]->keyword?>/all"><img src="<?php print base_url();?><?=$drop8[0]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"><?php echo ucwords($drop8[0]->keyword)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>frontend/themes_view/<?=$drop8[0]->keyword?>"><img src="<?php print base_url();?><?=$drop8[0]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"><?php echo ucwords($drop8[0]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$drop8[1]->keyword?>/all"><img src="<?php print base_url();?><?=$drop8[1]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($drop8[1]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>frontend/themes_view/<?=$drop8[1]->keyword?>"><img src="<?php print base_url();?><?=$drop8[1]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($drop8[1]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$drop8[2]->keyword?>/all"><img src="<?php print base_url();?><?=$drop8[2]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($drop8[2]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>frontend/themes_view/<?=$drop8[2]->keyword?>"><img src="<?php print base_url();?><?=$drop8[2]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($drop8[2]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$drop8[3]->keyword?>/all"><img src="<?php print base_url();?><?=$drop8[3]->menu_image?>" border="0" class="img-responsive" /> <span class="dblock1"> <?php echo ucwords($drop8[3]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>frontend/themes_view/<?=$drop8[3]->keyword?>"><img src="<?php print base_url();?><?=$drop8[3]->menu_image?>" border="0" class="img-responsive" /> <span class="dblock1"> <?php echo ucwords($drop8[3]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$drop8[4]->keyword?>/all"><img src="<?php print base_url();?><?=$drop8[4]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"><?php echo ucwords($drop8[4]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>frontend/themes_view/<?=$drop8[4]->keyword?>"><img src="<?php print base_url();?><?=$drop8[4]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"><?php echo ucwords($drop8[4]->title)?>
 </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$drop8[5]->keyword?>/all"><img src="<?php print base_url();?><?=$drop8[5]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($drop8[5]->title)?>
+<div id="sub-pic"><a href="<?php print base_url(); ?>frontend/themes_view/<?=$drop8[5]->keyword?>"><img src="<?php print base_url();?><?=$drop8[5]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($drop8[5]->title)?>
 </span></a></div>
 <div style="clear:both"></div>
 <div class="sub-hor fist-sub-bar">
@@ -1159,20 +1159,19 @@
 <div class="n-layer artstyle2">
 <ul class="menu2">
 <?php
-                        $subjects=$this->search_model->get_subcategory(880);
-                        for($i=0;$i<=4;$i++){
-                            ?>
-<li> <a href="javascript:category_filter('<?php echo $drop8[$i]->keyword ?>')" onClick="return show_subjects('subjects','<?php print ucwords($drop8[$i]->title)?>')"><?php print ucwords($drop8[$i]->title); ?></a> </li>
-<?php } ?>
+                        //$subjects=$this->search_model->get_subcategory(880);
+                         ?>
 </ul>
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
 <?php
-                        for($i=5;$i<=10;$i++){
+                        for($i=6;$i<=10;$i++){
+						//echo $drop8[$i]->keyword;
                             ?>
-
-<li> <a href="javascript:category_filter('<?php echo $drop8[$i]->keyword ?>')"><?php print ucwords($drop8[$i]->title); ?></a> </li>
+<li>
+<a href="<?=base_url()?>frontend/themes_view/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
+</li>
 <?php } ?>
 </ul>
 </div>
@@ -1180,8 +1179,11 @@
 <ul class="menu2">
 <?php
                         for($i=11;$i<=15;$i++){
+						//echo $drop8[$i]->keyword;
                             ?>
-<li> <a href="javascript:category_filter('<?php echo $drop8[$i]->keyword ?>')"><?php print ucwords($drop8[$i]->title); ?></a> </li>
+<li>
+<a href="<?=base_url()?>frontend/themes_view/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
+</li>
 <?php } ?>
 </ul>
 </div>
@@ -1189,8 +1191,11 @@
 <ul class="menu2">
 <?php
                         for($i=16;$i<=20;$i++){
+						
                             ?>
-<li> <a href="javascript:category_filter('<?php echo $drop8[$i]->keyword ?>')"><?php print ucwords($drop8[$i]->title); ?></a> </li>
+<li>
+<a href="<?=base_url()?>frontend/themes_view/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
+</li>
 <?php } ?>
 </ul>
 </div>
@@ -1198,8 +1203,11 @@
 <ul class="menu2">
 <?php
                         for($i=21;$i<=25;$i++){
+					
                             ?>
-<li> <a href="javascript:category_filter('<?php echo $drop8[$i]->keyword ?>')"><?php print ucwords($drop8[$i]->title); ?></a> </li>
+<li>
+<a href="<?=base_url()?>frontend/themes_view/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
+</li>
 <?php } ?>
 </ul>
 </div>
@@ -1207,8 +1215,11 @@
 <ul class="menu2">
 <?php
                         for($i=26;$i<=26;$i++){
+						
                             ?>
-<li> <a href="javascript:category_filter('<?php echo $drop8[$i]->keyword ?>')"><?php print ucwords($drop8[$i]->title); ?></a> </li>
+<li>
+<a href="<?=base_url()?>frontend/themes_view/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
+</li>
 <?php } ?>
 </ul>
 </div>

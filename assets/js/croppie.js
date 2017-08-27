@@ -89,7 +89,7 @@
             imgMouseMove = function(e)
             {
                 e.stopImmediatePropagation();
-				
+                
                 if (obj.state.dragable)
                 {
                     if( ($('#type').html()=='horizontal') ){
@@ -99,21 +99,21 @@
                     var x = 0;
                     var y = e.clientY - obj.state.mouseY;
                     }
-					var bg = el.css('background-position').split(' ');
+                    var bg = el.css('background-position').split(' ');
                     
                     
                     var bgX = x + parseInt(bg[0]);
                     var bgY = y + parseInt(bg[1]);
-					
-					if( ($('#type').html()=='horizontal') ){
-					bgY = 0;
-					if( (bgX <=58) && (bgX >=-58) )
-					el.css('background-position', bgX +'px ' + bgY + 'px');
-					}else{
-					bgX = 0;
-					if( (bgY <=72) && (bgY >=-72) )
-					el.css('background-position', bgX +'px ' + bgY + 'px');    
-					}
+                    
+                    if( ($('#type').html()=='horizontal') ){
+                    bgY = 0;
+                    if( (bgX <=58) && (bgX >=-58) )
+                    el.css('background-position', bgX +'px ' + bgY + 'px');
+                    }else{
+                    bgX = 0;
+                    if( (bgY <=72) && (bgY >=-72) )
+                    el.css('background-position', bgX +'px ' + bgY + 'px');    
+                    }
                     obj.state.mouseX = e.clientX;
                     obj.state.mouseY = e.clientY;
                 }

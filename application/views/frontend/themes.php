@@ -13,7 +13,7 @@
           <?php  
   
 		    foreach($sub_val as $values){?>
-          <li><a href="<?php print base_url(); ?>search/dosearch/1/32/<?php echo  $values->keyword ;?>/all"><?php echo $values->title;?></a></li>
+          <li><a href="<?php print base_url(); ?>frontend/themes_view/<?php echo  $values->keyword ;?>"><?php echo $values->title;?></a></li>
           <?php }?>
         </ul>
       </div>
@@ -115,7 +115,7 @@
 		    foreach($sub_val as $values){
          ?>
             <div class="artist_Photo col-md-2 col-sm-3 col-xs-6">
-              <div class="thumbnail"> <a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"> <img src="<?php print base_url();?><?=$values->image?>" class="img-responsive" /> </a>
+              <div class="thumbnail"> <a href="<?php print base_url(); ?>frontend/themes_view/<?=$values->keyword?>"> <img src="<?php print base_url();?><?=$values->image?>" class="img-responsive" /> </a>
                 <div class="artist_tag">
                   <?=$values->title?>
                 </div>

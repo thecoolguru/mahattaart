@@ -1,4 +1,3 @@
-<script src="http://beta.mahattaart.com/assets/js/jQuery-3.2.1.min.js"></script>
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/light-box-model.css" type="text/css"/>
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/wallcolor.css" type="text/css"/>
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/loader.css" type="text/css"/>
@@ -9,7 +8,7 @@
 <script src="<?php echo base_url();?>assets/js/croppie.js" type="text/javascript" ></script>
 
 <script>
-    $(window).load(function() {
+    $(window).on('load',function() {
         var options =
         {
             thumbBox: '.thumbBox',
@@ -56,7 +55,7 @@ Dropzone.options.myDropzone = {
 	 if( (myDropzone.files.length+1) > 0){
 		$('#msg').hide(); 
 	 }else{
-		$('#msg').hide(); 
+		$('#msg').show(); 
 	 }
 	 if(file.size<500000){
 	   this.removeFile(file);
@@ -1251,7 +1250,7 @@ Dropzone.options.myDropzone = {
 	   	    $('#options').show();
 	   	    $('#price_show').hide();
 	   	    paper_surface('canvas');
- 			$('#frame_click').html('canvas_click');
+ 			$('#click').html('canvas_click');
 			calculate_cost('');
  			}else if(id == 'print_only'){
 			$('#canvas_details').hide();
@@ -1543,34 +1542,35 @@ Dropzone.options.myDropzone = {
 </div>
 
 <!-- dropzone_images-->
-<div class="lightbox-target" id="dropzone_images">
-<div id="uploader_popup_goofy_a">
-    <div class="uploader_popup_header">
-        <h2 class="text-left">  Upload Photos </h2>
-        <a class="lightbox-close" href="" onclick="$('#dropzone_images').hide(); return false;"></a>
+    <div class="lightbox-target" id="dropzone_images">
+        <div id="uploader_popup_goofy_a">
+            <div class="uploader_popup_header">
+                <h2 class="text-left">  Upload Photos </h2>
+                <a class="lightbox-close" href="" onclick="$('#dropzone_images').hide(); return false;"></a>
+            </div>
+            <div class="uploader_popup_upload-icon">
+            <form action="<?=base_url()?>index.php/frontend/dropzone" class="dropzone" id="my-dropzone">
+                 <div class="dz-default dz-message">
+                 <img src='<?=base_url()?>/images/upload_icon.svg'width='100px' height='100px'>
+                 </div>
+            </form>
+                <div class="popup-default-message text-center dz-default dz-message" id='msg'>
+                    <h2>Drag and drop images here or click to browse</h2>
+                    <p>Each image must be a minimum of 500 KB to ensure a high quality print. Up to 10 images are allowed.</p>
+                </div>
+                 
+            </div> 
+            <div class="popup-default-footer col-md-12">
+                <p class="text-left pull-left">By uploading, I agree to the <span> <a href="#" id="termsofuselink" style="cursor: default; color: #ef9223">Terms of use</a> </span> </p>
+                <div class="popup-default-button pull-right">
+                    <input id="submit-all" value="Upload" type="button" class="popup-button">
+        
+                    <!-- <a id="submit-all" class="popup-button" href="#" style="color:#337ab7"> UPLOAD</a> -->
+                </div>
+            </div>
+        </div>       
     </div>
-    <div class="uploader_popup_upload-icon">
-    <form action="<?=base_url()?>index.php/frontend/dropzone" class="dropzone" id="my-dropzone">
-         <div class="dz-default dz-message">
-         <img src='<?=base_url()?>/images/upload_icon.svg'width='100px' height='100px'>
-         </div>
-    </form>
-        <div class="popup-default-message text-center dz-default dz-message" id='msg'>
-            <h2>Drag and drop images here or click to browse</h2>
-            <p>Each image must be a minimum of 500 KB to ensure a high quality print. Up to 10 images are allowed.</p>
-        </div>
-         
-    </div> 
-    <div class="popup-default-footer col-md-12">
-        <p class="text-left pull-left">By uploading, I agree to the <span> <a href="#" id="termsofuselink" style="cursor: default; color: #ef9223">Terms of use</a> </span> </p>
-        <div class="popup-default-button pull-right">
-            <input id="submit-all" value="Upload" type="button" class="popup-button">
-
-            <!-- <a id="submit-all" class="popup-button" href="#" style="color:#337ab7"> UPLOAD</a> -->
-        </div>
-    </div>
-</div>       
-</div>
+<!-- End -->
 
 <div class="container">
 	<div class="row">
@@ -2495,18 +2495,20 @@ function right(width,height,x){
 </div>
       </div>
 <script>
+$(window).on('load',function(){
 $(document).on('click', '.panel-heading span.clickable', function(e){
     var $this = $(this);
-	if(!$this.hasClass('panel-collapsed')) {
-		$this.parents('.panel').find('.panel-body').slideUp();
-		$this.addClass('panel-collapsed');
-		$this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
-	} else {
-		$this.parents('.panel').find('.panel-body').slideDown();
-		$this.removeClass('panel-collapsed');
-		$this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
-	}
-})
+		if(!$this.hasClass('panel-collapsed')) {
+			$this.parents('.panel').find('.panel-body').slideUp();
+			$this.addClass('panel-collapsed');
+			$this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+		} else {
+			$this.parents('.panel').find('.panel-body').slideDown();
+			$this.removeClass('panel-collapsed');
+			$this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+		}
+	})
+});
 </script>
 <script>
 $(".dz-upload-icon").click(function() {

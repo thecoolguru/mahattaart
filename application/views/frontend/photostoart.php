@@ -186,7 +186,8 @@
 </section>
 <div class="container">
     <section>
-    	<div class="p2_sclection row">
+	<!-- commented by sajid to add aimage-->
+    	<!--<div class="p2_sclection row">
         	<div class="col-md-4 p2a_content" style="background-color:#e45c45; height:100%">
             	<h2>Decorate with photos you love</h2>
                 <p>Photos[to]Art&trade; lets you turn your favorite photos into personalized wall decor. Simply upload your photos and choose from the options like gallery-quality canvas, custom framing, SwitchArt&reg;, wood mounting and more.</p>
@@ -195,21 +196,9 @@
             <div class="col-md-8 p2a_img">
             	<img src="<?php echo base_url();?>assets/img/photostoart/us-uk.jpg" class="img-responsive" />
             </div>
-        </div>
+        </div>-->
         
-        <div class="p3_sclection row">
-        	<div class="col-md-6 p3a_content" style="background-color: rgb(108, 187, 154); margin-right:15px">
-            	<h2>100% Satisfaction guaranteed</h2>
-                <p>If for any reason you are not completely satisfied with your purchase, you may return it within 30 days of receipt and receive a free replacement or a full refund for the price of the product.</p>
-                <p> <a href="" class="p2a-textlink"> Learn More </a> </p>
-            </div>
-
-            <div class="col-md-6 p3a_content" style="background-color:#43afc7; margin-left:15px">
-            	<h2>Still have questions?</h2>
-                <p>If you have a question about Photos[to]Art™ visit our FAQ page.</p>
-                <p><a target="_self" class="call-to-action-3-button btn btn-default" href="http://beta.mahattaart.com/index.php/frontend/faq" style="font-size:18px">FAQ</a></p>
-            </div>
-        </div>
+      
         
     </section>
 </div>
