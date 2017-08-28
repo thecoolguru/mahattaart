@@ -397,7 +397,7 @@
 
 <header class="navbar navbar-default" role="banner" style="min-height:auto">
 <div class="news pull-right">
-<p style="float:right"> <a href="#" class="header_link"> <i class="glyphicon glyphicon-earphone"></i> +91-8800639075</a> &nbsp; &nbsp; <a href="mailto:info@mahattaart.com" class="header_link"> <i class="glyphicon glyphicon-envelope"></i> info@mahattaart.com</a> </p>
+<p> <a href="#" class="header_link"> <i class="glyphicon glyphicon-earphone"></i> +91-8800639075</a> &nbsp; &nbsp; <a href="mailto:info@mahattaart.com" class="header_link"> <i class="glyphicon glyphicon-envelope"></i> info@mahattaart.com</a> </p>
 </div>
 </header>
 <script>$(document).ready(function(){var e=$("[data-toggle=collapse-side]");var d=e.attr("data-target");var f=e.attr("data-target-2");e.click(function(a){$(d).toggleClass("in");$(f).toggleClass("out")})});</script>
@@ -405,7 +405,7 @@
 <div class="row">
 <div class="col-md-3 col-sm-12 col-xs-12"> 
     <a href="<?php print base_url(); ?>">
-	    <img src="<?php print base_url(); ?>assets/img/one.png" class="fll img-responsive" style="margin: 0 auto;" />
+	    <img src="<?php print base_url(); ?>assets/img/one.png" class="fll img-responsive logo_mg" style="margin: 0 auto;" />
     </a> 
 </div>
 <div class="col-md-4 col-sm-5 col-xs-12">

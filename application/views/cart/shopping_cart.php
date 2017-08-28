@@ -100,7 +100,7 @@ box-shadow:2px 2px 1px black inset;
                     //$row=$this->search_model->get_image_data($image['image_id']); 
                     $size_data = getimagesize("http://static.mahattaart.com/158/".$image['image_name']);
                    $cart_id=$image['cart_id'];
-				  
+				  $file_name=$image['image_name'];
             $image_alignment="";
               $image_width=$size_data[0];
             $image_height=$size_data[1];
@@ -125,7 +125,18 @@ box-shadow:2px 2px 1px black inset;
                     //echo $image['image_id'];
                     ?>
         
-               
+               <?php
+ $search_file = "http://api.indiapicture.in/wallsnart/search.php?q=$file_name&page=1&per_page=1";
+$opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
+$context = stream_context_create($opts);
+
+$search_data_file = file_get_contents($search_file, false, $context);
+$search_data_r=json_decode($search_data_file,TRUE);
+//print_r($search_data_r);
+ $collection_id=$search_data_r['results'][0]['image_collection_id'];
+ $search_data_r['results'][0]['image_description'];
+ 
+ ?>
                 	 
                                                 <tr>
                             <td> <div><?=$i;?></div></td>
@@ -198,7 +209,7 @@ box-shadow:2px 2px 1px black inset;
                                 <section class="container3D">
                                     <div id="cube" class=" ">
                                         <figure class="front">
-                                            <img src="http://static.mahattaart.com/158/<?= $image['image_name'];?>" class="img-responsive" />
+                                           <a href="<?=base_url()?>index.php/search/image_detail/<?=$file_name?>/<?=$image['image_id']?>/<?=$collection_id?>">  <img src="http://static.mahattaart.com/158/<?= $image['image_name'];?>" class="img-responsive" /></a>
                                             <figure class="right"></figure>
                                             <figure class="bottom"></figure>
                                         </figure>
@@ -211,21 +222,9 @@ box-shadow:2px 2px 1px black inset;
 							 }else{
 							 $padding=0;
 							 }
-							  $file_name=$image['image_name'];
+							  
 							 ?>  
- <?php
- $search_file = "http://api.indiapicture.in/wallsnart/search.php?q=$file_name&page=1&per_page=1";
-$opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
-$context = stream_context_create($opts);
-
-$search_data_file = file_get_contents($search_file, false, $context);
-$search_data_r=json_decode($search_data_file,TRUE);
-//print_r($search_data_r);
-echo $collection_id=$search_data_r['results'][0]['image_collection_id'];
-
-
  
- ?>
              
                             <div  id="topa2">
                                <a href="<?=base_url()?>index.php/search/image_detail/<?=$file_name?>/<?=$image['image_id']?>/<?=$collection_id?>"> 

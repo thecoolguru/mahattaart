@@ -247,8 +247,11 @@ Dropzone.options.myDropzone = {
 		var CanvasFrameCost = parseInt((parseInt(parseInt(newwidth1)*parseInt(2)) + parseInt(parseInt(newlenght1)*parseInt(2)))*75)/12;
 		CanvasFrameCost = Math.round(parseInt(CanvasFrameCost),2);
 		$('#CanvasCost').html("Rs."+ CanvasFrameCost);	
+		
+		if($('#click').html() == 'canvas_click' ){
 		var actual_price = cost + CanvasFrameCost;
 		$('.actual_price').html("Rs."+ Math.round(actual_price,2));
+    	}
     	if($('#click').html() == 'frame_click'){
     	frame_pricing();
 		  }
@@ -1334,6 +1337,8 @@ Dropzone.options.myDropzone = {
 	<div id='vertical_width' style='display:none'></div>
 	<div id='horizonal_height' style='display:none'></div>
 <!-- end -->
+
+
 <!-- pricing Details -->
  <div class="lightbox-target" id="price_detail">
     <div id="uploader_popup_goofy_a" style="width:500px;height:400px;margin-left:-250px;margin-top:-200px;left:50%;top:50%"  >
@@ -1800,7 +1805,7 @@ function right(width,height,x){
 	  <!--Image End Div -->
 	  <div class="addtocartcontainer_page text-center" style="float:right; width:340px;height: 170px;">
       <div class="page_price_label">
-      <p>Your Price: <span class='actual_price'> $49.99 </span></p>
+      <p>Your Price: <span class='actual_price'>  </span></p>
       </div>
 	  <div class="page_price_label addtocartcontainer_popup_details" style="margin:10px auto;">
       <a href='' onclick='price_details();return false;'>Price Details</a>
@@ -2489,7 +2494,7 @@ function right(width,height,x){
         </div>
         <div class="addtocartcontainer_page2" style="border:none">
             <p class="text-center" style="font-size:13px; color:#888; margin-top:6px">Other ways to order:</p>
-            <p class="text-center" style="font-size:11px; color:#888; margin-top:6px"> 1-800-952-5592 </p>
+            <p class="text-center" style="font-size:11px; color:#888; margin-top:6px"> +91-8800639075 </p>
         </div>
       </div>
 </div>

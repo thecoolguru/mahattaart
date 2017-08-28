@@ -1,3 +1,12 @@
+.news {
+	background: #000;
+	padding: 0 5px;
+	color: #FFF;
+	width: 100%;
+	line-height: 2;
+	text-align: right;
+}
+
 .thumbnail {
     border: 0 none;
     box-shadow: none;
@@ -66,26 +75,42 @@ a:hover {
 		top: 54px !important;
 		height: 14px !important;
 	}
-#map_area_03 {
-	width: 33px !important;
-	left: 20px !important;
-	height: 11px !important;
+	#map_area_03 {
+		width: 33px !important;
+		left: 20px !important;
+		height: 11px !important;
+	}
+	#map_area_04 {
+		width: 36px !important;
+		left: 91px !important;
+		height: 11px!important;
+	}
+	#map_area_05 {
+		width: 34px!important;
+		left: 164px!important;
+		height: 11px!important;
+	}
+	#map_area_06 {
+		width: 32px!important;
+		left: 238px!important;
+		height: 11px!important;
+	}
+	img.logo_mg {
+		width: 240px;
+		float: right;
+	}
+	.news {
+		text-align: center !important;
+	}
 }
-#map_area_04 {
-	width: 36px !important;
-	left: 91px !important;
-	height: 11px!important;
-}
-#map_area_05 {
-	width: 34px!important;
-	left: 164px!important;
-	height: 11px!important;
-}
-#map_area_06 {
-	width: 32px!important;
-	left: 238px!important;
-	height: 11px!important;
-}
+
+
+@media only screen and (min-width: 479px)
+{
+	  img.logo_mg {
+	  width: auto;
+	  float: none;
+	}
 }
 
 @media(max-width:767px) {
@@ -362,6 +387,9 @@ a:hover {
 		left: 369px;
 		height: 18px;
 	}
+	.news {
+		text-align: center !important;
+	}	
 }
 
 
