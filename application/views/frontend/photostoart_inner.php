@@ -7,27 +7,6 @@
 <script src="<?php echo base_url();?>assets/js/dropzone.js" type="text/javascript"></script>    
 <script src="<?php echo base_url();?>assets/js/croppie.js" type="text/javascript" ></script>
 
-<script>
-    $(window).on('load',function() {
-        var options =
-        {
-            thumbBox: '.thumbBox',
-            spinner: '.spinner',
-            imgSrc: 'avatar.png'
-        }
-        var cropper;
-        $('#file1').on('click', function(){
-         options.imgSrc = $('#get_img').val();
-		 cropper = $('.imageBox').cropbox(options);  
-		})
-        $('#btnCrop').on('click', function(){
-            var img = cropper.getDataURL()
-            $('#large_img2').attr('src',img);
-            $('#crop_image').hide();
-            
-        })
-	});
-</script>
 
 <script>
 Dropzone.options.myDropzone = {
@@ -89,6 +68,7 @@ Dropzone.options.myDropzone = {
 		if(id=='framing'){
 			td = '<option value="Enhanced Matt">Enhanced Matt</option>';
 			td += '<option value="Photography Paper Glossy">Photography Paper Glossy</option>';
+			td += '<option value="Photographic Luster">Photographic Luster</option>';
 			td += '<option value="Fine Art Luster">Fine Art Luster</option>';
 			td += '<option value="Matt Fine Art">Matt Fine Art</option>';
 			td += '<option value="Glossy Fine Art">Glossy Fine Art</option>';
@@ -98,6 +78,7 @@ Dropzone.options.myDropzone = {
 		}else if(id=='print_only'){
 			td = '<option value="Enhanced Matt">Enhanced Matt</option>';
 			td += '<option value="Photography Paper Glossy">Photography Paper Glossy</option>';
+			td += '<option value="Photographic Luster">Photographic Luster</option>';
 			td += '<option value="Fine Art Luster">Fine Art Luster</option>';
 			td += '<option value="Matt Fine Art">Matt Fine Art</option>';
 			td += '<option value="Glossy Fine Art">Glossy Fine Art</option>';
@@ -116,12 +97,14 @@ Dropzone.options.myDropzone = {
 	}
 	
 	function calculate_cost(value){
+		$(document).ready(function(){
 		if(value == 'Customize Size'){
 			$('.dimention').show();
 		}else{
 			$('.dimention').hide();
 		}			
-		var size = ''+$('#sizes').val();
+			$('#message').hide();
+			var size = ''+$('#sizes').val();
 			var width = $('#width').val();
 			var height = $('#height').val();
 			var select = '';
@@ -138,12 +121,15 @@ Dropzone.options.myDropzone = {
 			}
 		    var paper = $('#paper_surface').val();
 			$('#print_paper').html(paper);
-			var role_size;
-			var rates;
+			var role_size = '';
+			var rates = '';
+			
 			if(paper == 'Enhanced Matt'){
 				rates = 1.2;
 			}else if(paper == 'Photography Paper Glossy'){
 				rates = 1;
+			}else if(paper == 'Photographic Luster'){
+				rates = 0.7;
 			}else if(paper == 'Fine Art Luster'){
 				rates = 1.6;
 			}else if(paper == 'Matt Fine Art'){
@@ -177,10 +163,21 @@ Dropzone.options.myDropzone = {
 			  data: {paper_type: paper,type: glass_type},
 			  success:function(data){
 			  $('#glass_rate').val(data);
-			  c_width = parseInt(dimen[2]);
-			  c_height = parseInt(dimen[3]);
+			 c_width = parseInt(dimen[2]);
+			c_height = parseInt(dimen[3]);
 			
-			 var role_size='';	
+			if($('#click').html() == 'canvas_click' ){
+			c_width = parseInt(dimen[0]) + parseInt(4);
+			c_height = parseInt(dimen[1]) + parseInt(4);
+			}else if($('#click').html() == 'frame_click'){
+			c_width = parseInt(dimen[0]) + parseInt(1);
+			c_height = parseInt(dimen[1]) + parseInt(1);	
+			}else{
+			c_width = parseInt(dimen[0]);
+			c_height = parseInt(dimen[1]);
+			}
+			 
+	         var cost = '';
 			 if(Number(c_width)<=17 && Number(c_height)<=17){
 				   role_size = 17;
 			 }else if(c_width==c_height){
@@ -221,10 +218,9 @@ Dropzone.options.myDropzone = {
 		}else if( (Number(c_width)>= 60 && Number(c_height) == 60) ){
 			role_size = 60;
 		}
-		var cost = '';
 		if((Number(c_width) && Number(c_height))<=(role_size)){
 		  if(c_width < c_height){
-		    cost = c_width*role_size*rates;
+		   cost = c_width*role_size*rates;
 		  }else if(c_width > c_height){
 		   cost = c_height*role_size*rates;
 		  }
@@ -248,6 +244,35 @@ Dropzone.options.myDropzone = {
 		CanvasFrameCost = Math.round(parseInt(CanvasFrameCost),2);
 		$('#CanvasCost').html("Rs."+ CanvasFrameCost);	
 		
+		if(paper == 'Photographic Luster'){
+				c_width = parseInt(dimen[0]) + 0.5;
+				c_height = parseInt(dimen[1]) + 0.5;
+				 roll_size = 8;
+				 if(c_width >= c_height){
+				 	if(c_height <=8){
+						if(c_width<=39){
+							cost = roll_size * c_width * rates; 
+							$('#print_price').html(Math.round(cost,2));
+						}else{
+							alert('Not Possible');
+						}	
+					}else{
+						alert('Not Possible');
+					}
+				 }else{
+					 if(c_width <= 8){
+						 if(c_height <=39){
+							cost = roll_size * c_height * rates;
+							$('#print_price').html(Math.round(cost,2));
+						 }else{
+							alert('Not Possible');
+						}
+					}else{
+					alert('Not Possible');
+				}
+			}
+		}
+		
 		if($('#click').html() == 'canvas_click' ){
 		var actual_price = cost + CanvasFrameCost;
 		$('.actual_price').html("Rs."+ Math.round(actual_price,2));
@@ -257,6 +282,7 @@ Dropzone.options.myDropzone = {
 		  }
 		}
 	});
+  });
 }
 
 	function frame_pricing(){
@@ -1035,7 +1061,6 @@ Dropzone.options.myDropzone = {
 	$('#canvas_details').show();
 	$('#frame-it').attr('style','');
 	$("#check0").prop("checked", true);
-	$('.imglink').removeClass('img_shadow');
 	$('#large_img').hide();
 	$('#museum').prop("checked", true);
 	$('#myCanvas').hide();
@@ -1201,6 +1226,7 @@ Dropzone.options.myDropzone = {
 		if(id == 'framing'){
 			$('#framingdiv1,#framingdiv2').show();	
 			showTable('Basic');
+			$('.imglink').addClass('img_shadow');
 			$('#canvas_details').hide();
 		    $('#abc').attr('style',style1);
 			$('#frame-it').attr('style',style2);
@@ -1260,6 +1286,7 @@ Dropzone.options.myDropzone = {
 			$('#framingdiv1,#framingdiv2').hide();
 			$('#abc').attr('style','');
 			$('#frame-it').attr('style','');
+			$('.imglink').removeClass('img_shadow');
 			$('#large_img').show();
 			$('.container3D').hide();	
 	        $('#canvas_opt').hide();
@@ -1292,6 +1319,27 @@ Dropzone.options.myDropzone = {
     	      $('#remove-mount').prop('checked','true');
     	  }  
 	});
+
+	$(window).on('load',function() {
+        var options =
+        {
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            imgSrc: 'avatar.png'
+        }
+        var cropper;
+        $('#file1').on('click', function(){
+         options.imgSrc = $('#get_img').val();
+		 cropper = $('.imageBox').cropbox(options);  
+		})
+        $('#btnCrop').on('click', function(){
+            var img = cropper.getDataURL()
+            $('#large_img2').attr('src',img);
+            $('#crop_image').hide();
+            
+        })
+	});
+
 	var p;
 	$('#remove-mount').click(function(){
 	        if($(this).prop("checked") == true){
@@ -1337,8 +1385,6 @@ Dropzone.options.myDropzone = {
 	<div id='vertical_width' style='display:none'></div>
 	<div id='horizonal_height' style='display:none'></div>
 <!-- end -->
-
-
 <!-- pricing Details -->
  <div class="lightbox-target" id="price_detail">
     <div id="uploader_popup_goofy_a" style="width:500px;height:400px;margin-left:-250px;margin-top:-200px;left:50%;top:50%"  >
@@ -1753,7 +1799,7 @@ function right(width,height,x){
           </select>
             </div>
            </div>
-          <div class="form-group dimention">
+		  <div class="form-group dimention">
           <label for="country" class="col-sm-7 control-label dimention"> Width (Inch.):</label>
           <div class="col-sm-5">
           <input id="width" class="form-control by_keyup_update dimention input_control" type="text">
@@ -1805,7 +1851,7 @@ function right(width,height,x){
 	  <!--Image End Div -->
 	  <div class="addtocartcontainer_page text-center" style="float:right; width:340px;height: 170px;">
       <div class="page_price_label">
-      <p>Your Price: <span class='actual_price'>  </span></p>
+      <p>Your Price: <span class='actual_price'>Rs. </span></p>
       </div>
 	  <div class="page_price_label addtocartcontainer_popup_details" style="margin:10px auto;">
       <a href='' onclick='price_details();return false;'>Price Details</a>
@@ -2494,7 +2540,7 @@ function right(width,height,x){
         </div>
         <div class="addtocartcontainer_page2" style="border:none">
             <p class="text-center" style="font-size:13px; color:#888; margin-top:6px">Other ways to order:</p>
-            <p class="text-center" style="font-size:11px; color:#888; margin-top:6px"> +91-8800639075 </p>
+            <p class="text-center" style="font-size:11px; color:#888; margin-top:6px"> 1-800-952-5592 </p>
         </div>
       </div>
 </div>

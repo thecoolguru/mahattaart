@@ -60,8 +60,8 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div class="item">
     <img src="<?php echo base_url();?>assets/img/slider/homepage style n space-01.jpg" border="0" />
     	<div class="Map_area">
-        	<a href="http://mahattaart.com/" id="map_area_01"></a>
-        	<a href="http://mahattaart.com/" id="map_area_02"></a>
+        	<a href="<?=base_url()?>frontend/themes_view/22" id="map_area_01"></a>
+        	<a href="<?=base_url()?>frontend/themes_view/21" id="map_area_02"></a>
         </div>
         <style>
 			#map_area_01 {

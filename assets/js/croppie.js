@@ -139,7 +139,7 @@
             $(window).bind('mouseup', imgMouseUp);
            // el.bind('mousewheel DOMMouseScroll', zoomImage);
         };
-        obj.image.src =  $('#get_img').val();  //options.imgSrc;
+        obj.image.src =  options.imgSrc;
         el.on('remove', function(){$(window).unbind('mouseup', imgMouseUp)});
         return obj;
     };

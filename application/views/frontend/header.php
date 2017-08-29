@@ -25,7 +25,7 @@
 <link href="<?php print base_url();?>assets/css/responsive-code.css" rel="stylesheet" type="text/css" />
 
  <!-- jquery -->    
-<!-- <script src="<?php print base_url();?>assets/js/jquery-1.8.0.min.js"></script> -->
+<!-- <script src="<?php //print base_url();?>assets/js/jquery-1.8.0.min.js"></script> -->
 
 <script src="<?php print base_url();?>assets/js/jquery.js"></script>
 <script src="<?php print base_url();?>assets/js/jQuery-3.2.1.min.js"></script>
