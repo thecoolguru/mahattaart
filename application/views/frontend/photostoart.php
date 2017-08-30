@@ -2,7 +2,6 @@
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/wallcolor.css" type="text/css"/>
 <link href="<?php print base_url();?>assets/css/dropzone.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="<?php echo base_url();?>assets/css/croppie.css" type="text/css" />
-<link rel="stylesheet" href="<?php print base_url();?>assets/css/light-box-model.css" type="text/css"/>
 <script src="<?php echo base_url();?>assets/js/dropzone.js" type="text/javascript"></script>    
 <script src="<?php echo base_url();?>assets/js/croppie.js" type="text/javascript" ></script>
 
@@ -341,8 +340,15 @@
   color: #333;
   cursor: pointer;
 }
-.popup-button {
-  background: rgba(0, 0, 0, 0) -moz-linear-gradient(center top , #ef9223 0px, #f26522 100%) repeat scroll 0 0;
+.popup-button{
+    background: linear-gradient(#ef9223, #f26522);
+    background: -webkit-linear-gradient(#ef9223, #f26522);
+    background: -o-linear-gradient(#ef9223, #f26522);
+    background: -moz-linear-gradient(#ef9223, #f26522);
+    background: linear-gradient(#ef9223, #f26522);
+}
+
+.popup-button{
   border: 1px solid #f26522;
   color: white;
   cursor: pointer;
@@ -350,11 +356,18 @@
   font-size: 14px;
   font-weight: bold;
   line-height: 1;
-  opacity: 0.5;
   padding: 7px 14px;
   text-transform: uppercase;
 }
-
+.popup-button:hover{
+    background: linear-gradient(#fff, #fff);
+    background: -webkit-linear-gradient(#fff, #fff);
+    background: -o-linear-gradient(#fff, #fff));
+    background: -moz-linear-gradient(#fff, #fff);
+    background: linear-gradient(#fff, #fff);
+	color:#000;
+	border:1px solid #d6d6d6;
+}
 
 #slider_explore {
   margin: 40px 0;
@@ -385,24 +398,49 @@
 }
 </style>
 <style>
-.popup-button {
-background: rgba(0, 0, 0, 0) -moz-linear-gradient(center top , #ef9223 0px, #f26522 100%) repeat scroll 0 0;
-border: 1px solid #f26522;
-color: white;
-cursor: pointer;
-display: inline-block;
-font-size: 14px;
-font-weight: bold;
-line-height: 1;
-opacity: 0.5;
-padding: 7px 14px;
-text-transform: uppercase;
+a.lightbox-close {
+	background: transparent;
+	box-sizing: border-box;
+	color: black;
+	display: block;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	text-decoration: none;
+	top: 2px;
+	width: 30px;
+}
+a.lightbox-close::before {
+	background: black none repeat scroll 0 0;
+	content: "";
+	display: block;
+	height: 25px;
+	left: 15px;
+	position: absolute;
+	top: 0;
+	transform: rotate(45deg);
+	width: 1px;
+}
+a.lightbox-close::after {
+	background: black none repeat scroll 0 0;
+	content: "";
+	display: block;
+	height: 25px;
+	left: 15px;
+	position: absolute;
+	top: 0;
+	transform: rotate(-45deg);
+	width: 1px;
+}
+.uploader_popup_header{
+	background-color: #f1f1f1;
+	height: 30px;
+	position: relative;
+	padding: 0 10px;
 }
 
 #uploader_popup_goofy_a {
 	background: white none repeat scroll 0 0;
-	border: 1px solid #d6d6d6;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 	display: block;
 	font-family: Arial;
 	left: 314.5px;
@@ -410,15 +448,15 @@ text-transform: uppercase;
 	top: 134px;
 	width: 720px;
 	z-index: 10000012;
-	padding: 10px;
 }
 
 .uploader_popup_header > h2 {
-	font-size: 30px;
+	font-size: 22px;
 	font-weight: bold;
 	text-transform: uppercase;
 	margin: 0;
 	font-family: 'BebasNeueRegular' !important;
+	padding-top: 2px;
 }
 
 .uploader_popup_upload-icon > img {
@@ -457,7 +495,6 @@ padding: 10px;
 	position: relative;
 	margin-bottom: 10px;
 }
-
 #imgInp {
 background: white none repeat scroll 0 0;
 cursor: inherit;
@@ -474,6 +511,12 @@ width: 100px;
 }
 .dz-upload-image {
 display: none;
+}
+.popup-default-footer {
+	display: block;
+	height: 40px;
+	clear: both;
+	margin: 10px;
 }
 </style>
 <script>

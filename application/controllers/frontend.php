@@ -355,6 +355,15 @@ $this->user = $this->facebook->getUser();
     	}
 	}
 }
+
+	public function get_input_dimention(){
+		$image_dimention = getimagesize($_POST['newpath']);	
+		$imagewidth  = $image_dimention[0]; 
+		$imageheight = $image_dimention[1];
+		$data = ''.$imagewidth.'X'.$imageheight;
+		echo json_encode($data);
+	}
+
 // End
 	public function get_web_price_detials()
 	  {

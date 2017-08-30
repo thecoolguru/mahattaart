@@ -7,7 +7,59 @@
 <script src="<?php echo base_url();?>assets/js/dropzone.js" type="text/javascript"></script>    
 <script src="<?php echo base_url();?>assets/js/croppie.js" type="text/javascript" ></script>
 
+<script>
+    $(window).on('load',function() {
+        var options =
+        {
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            imgSrc: 'avatar.png'
+        }
+        var cropper;
+        $('#file1').on('click', function(){
+         options.imgSrc = $('#get_img').val();
+		 cropper = $('.imageBox').cropbox(options);  
+		})
+        $('#btnCrop').on('click', function(){
+            var img = cropper.getDataURL()
+            $('#large_img2').attr('src',img);
+            $('#crop_image').hide();
+            
+        })
 
+        $(document).on('click', '.panel-heading span.clickable', function(e){
+    var $this = $(this);
+		if(!$this.hasClass('panel-collapsed')) {
+			$this.parents('.panel').find('.panel-body').slideUp();
+			$this.addClass('panel-collapsed');
+			$this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+		} else {
+			$this.parents('.panel').find('.panel-body').slideDown();
+			$this.removeClass('panel-collapsed');
+			$this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+		}
+	})
+});
+
+
+
+</script>
+<script>
+    function price_details(){
+	$('#price_detail').show();	
+	}
+	
+	function remove_pricing(){
+	$('#price_detail').hide();	
+	}
+	
+    function buffer_show(){
+    $('#load_buffer').show();    
+    }
+    function buffer_hide(){
+    $('#load_buffer').hide();    
+    }
+</script>
 <script>
 Dropzone.options.myDropzone = {
   // Prevents Dropzone from uploading dropped files immediately
@@ -34,7 +86,7 @@ Dropzone.options.myDropzone = {
 	 if( (myDropzone.files.length+1) > 0){
 		$('#msg').hide(); 
 	 }else{
-		$('#msg').show(); 
+		$('#msg').hide(); 
 	 }
 	 if(file.size<500000){
 	   this.removeFile(file);
@@ -44,22 +96,6 @@ Dropzone.options.myDropzone = {
 
    }
 };
-</script>
-<script>
-    function price_details(){
-	$('#price_detail').show();	
-	}
-	
-	function remove_pricing(){
-	$('#price_detail').hide();	
-	}
-	
-    function buffer_show(){
-    $('#load_buffer').show();    
-    }
-    function buffer_hide(){
-    $('#load_buffer').hide();    
-    }
 </script>
 <script type="text/javascript">
 	function paper_surface(id){
@@ -103,7 +139,6 @@ Dropzone.options.myDropzone = {
 		}else{
 			$('.dimention').hide();
 		}			
-			$('#message').hide();
 			var size = ''+$('#sizes').val();
 			var width = $('#width').val();
 			var height = $('#height').val();
@@ -113,7 +148,7 @@ Dropzone.options.myDropzone = {
 			 dimen[1] = parseInt(dimen[1]);
 			 dimen[2] = parseInt(dimen[0]) + parseInt(4);
 			 dimen[3] = parseInt(dimen[1]) + parseInt(4);
-			$('#finished_size').html(dimen[2]+'"X'+dimen[3]+'" Canvas Print | '+dimen[0]+'"X'+dimen[1]+'" Canvas Print without border');
+			//$('#finished_size').html(dimen[2]+'"X'+dimen[3]+'" Canvas Print | '+dimen[0]+'"X'+dimen[1]+'" Canvas Print without border');
 			if( $("#museum").prop("checked")== true){
 				select = 'museum';	
 			}else{
@@ -244,6 +279,7 @@ Dropzone.options.myDropzone = {
 		CanvasFrameCost = Math.round(parseInt(CanvasFrameCost),2);
 		$('#CanvasCost').html("Rs."+ CanvasFrameCost);	
 		
+		
 		if(paper == 'Photographic Luster'){
 				c_width = parseInt(dimen[0]) + 0.5;
 				c_height = parseInt(dimen[1]) + 0.5;
@@ -273,8 +309,14 @@ Dropzone.options.myDropzone = {
 			}
 		}
 		
+		if($('#click').html() == 'print_only' ){
+			$('#finished_size').html(dimen[0]+'"X'+dimen[1]+'" Print Only ');
+			$('.actual_price').html(Math.round(cost,2));
+		}
+		
 		if($('#click').html() == 'canvas_click' ){
-		var actual_price = cost + CanvasFrameCost;
+		$('#finished_size').html(dimen[2]+'"X'+dimen[3]+'" Canvas Print | '+dimen[0]+'"X'+dimen[1]+'" Canvas Print without border');
+    	var actual_price = cost + CanvasFrameCost;
 		$('.actual_price').html("Rs."+ Math.round(actual_price,2));
     	}
     	if($('#click').html() == 'frame_click'){
@@ -1084,11 +1126,13 @@ Dropzone.options.myDropzone = {
       	$('#print_only').click();
 		}, 500);
 	}else{
-		$('#canvas').click();
+		setTimeout(
+        function(){
+      	$('#canvas').click();
+		}, 500);
 	}
 	paper_surface('canvas');
-	$('#canvas_opt').show();
-		
+	$('#cropbox').show();
 	$('#museum').click(function(){
 		$('#myCanvas').hide();
 		$('#myCanvas2').hide();
@@ -1180,7 +1224,6 @@ Dropzone.options.myDropzone = {
                 var obj = JSON.parse(data);
 				var str = "'"+ obj +"'";
 				var res = str.split(",");
-				//alert(obj.length);
 				for(var i=0; i<=obj.length-1; i++){
 					console.log(res[i]);
 				}
@@ -1197,7 +1240,6 @@ Dropzone.options.myDropzone = {
 				var real_width = $('#w_value').val();
 				var real_height = $('#h_value').val();
 				var ratio = real_width/real_height;
-				//alert(input_height + " " + input_width);
 				$('#width,#height').keyup(function(){
 				var id = $(this).attr('id');
 				var value = $(this).val();	
@@ -1210,7 +1252,78 @@ Dropzone.options.myDropzone = {
 				}
 			});
 	});
+	// $('.input').click(function(){
+ //     var src = $('#get_img').val();
+	// 	var k  =  src.split('/');       
+	// 	var path = '';
+	// 	for(var p=0; p<=6; p++){
+	// 	   path += k[p]+'/';
+	// 	}
+	// 	path +='original/'+k[7];
+	// 	var source = path;
+	// $.ajax({
+	// 		  type:'post',
+ //              url:'<?=base_url()?>index.php/frontend/get_input_dimention',
+	// 		 data: {newpath : source},
+	// 		  success:function(data) {
+	// 			var obj = JSON.parse(data);
+	// 			var dimention = ''+obj;  
+	// 			var dimentions = dimention.split('X');
+	// 			var width = dimentions[0];
+	// 			var height= dimentions[1]; 
+	// 		    $('#w_value').val(width);
+	// 			$('#h_value').val(height);
+	// 		}
+ //        });  
+		
+	// });
 	
+	// $('input').keyup(function(){
+	// 			var real_width = $('#w_value').val();
+	// 			var real_height = $('#h_value').val();
+	// 			if($('#type').html() == 'horizontal')
+	// 			var ratio = real_height/real_width;
+	// 			if($('#type').html() == 'vertical')
+	// 			var ratio = real_width/real_height;
+	// 			$('#width,#height').keyup(function(){
+	// 			var max_width = real_width/150;
+	// 		    var max_height = real_height/150;
+	// 			var id = $(this).attr('id');
+	// 			var value = $(this).val();	
+	// 			 if(id == 'height'){
+	// 				if(value == ''){
+	// 				$('#width').val('');	
+	// 				}
+	// 			 }
+	// 			if(id == 'width'){
+	// 				if(value == ''){
+	// 				$('#height').val('');	
+	// 				}
+	// 			 }	
+	// 			if(id == 'height'){
+	// 			    if( (value <= max_height) && (value != 0) && (value != '') ){
+	// 				var input_width = ratio*value; 	
+	// 				$('#width').val(input_width);
+	// 				calculate_cost('Customize Size');
+	// 				console.log("id= "+ value +" width= "+input_width);
+	// 				}else{
+	// 				 $('#height').val('');		
+	// 				}
+	// 			}else{
+	// 				if( (value <= max_width) && (value != 0) && (value != '') ){
+	// 				var input_height = ratio*value;
+	// 				$('#height').val(input_height);
+	// 				calculate_cost('Customize Size');
+	// 				console.log("id= "+ value +" height= "+input_height);
+	// 			}else{
+	// 					$('#width').val('');		
+	// 				}
+	// 			}
+	// 		});
+	// });
+
+
+
 	$('#btnCrop').click(function(){
         setTimeout(function(){
         var	crop_src = $('#large_img2').attr('src');    
@@ -1226,10 +1339,10 @@ Dropzone.options.myDropzone = {
 		if(id == 'framing'){
 			$('#framingdiv1,#framingdiv2').show();	
 			showTable('Basic');
-			$('.imglink').addClass('img_shadow');
 			$('#canvas_details').hide();
 		    $('#abc').attr('style',style1);
 			$('#frame-it').attr('style',style2);
+			$('.imglink').addClass('img_shadow');
 			$('#remove-mount').prop('checked', false);
 			$('#large_img').show();
 			$('.container3D').hide();
@@ -1237,7 +1350,7 @@ Dropzone.options.myDropzone = {
 		    $('#options').hide();
 		    $('#price_show').show();
 			paper_surface('framing');
-			if( $('#frame_data').val() == ''){
+			if( $('#frame_ data').val() == ''){
 		    console.log('nothing');
             }else{
 		    var k = $('#frame_data').val();    
@@ -1279,8 +1392,9 @@ Dropzone.options.myDropzone = {
 	   	    $('#options').show();
 	   	    $('#price_show').hide();
 	   	    paper_surface('canvas');
- 			$('#click').html('canvas_click');
+ 			$('#frame_click').html('canvas_click');
 			calculate_cost('');
+ 			$('#click').html('canvas_click');
  			}else if(id == 'print_only'){
 			$('#canvas_details').hide();
 			$('#framingdiv1,#framingdiv2').hide();
@@ -1319,27 +1433,6 @@ Dropzone.options.myDropzone = {
     	      $('#remove-mount').prop('checked','true');
     	  }  
 	});
-
-	$(window).on('load',function() {
-        var options =
-        {
-            thumbBox: '.thumbBox',
-            spinner: '.spinner',
-            imgSrc: 'avatar.png'
-        }
-        var cropper;
-        $('#file1').on('click', function(){
-         options.imgSrc = $('#get_img').val();
-		 cropper = $('.imageBox').cropbox(options);  
-		})
-        $('#btnCrop').on('click', function(){
-            var img = cropper.getDataURL()
-            $('#large_img2').attr('src',img);
-            $('#crop_image').hide();
-            
-        })
-	});
-
 	var p;
 	$('#remove-mount').click(function(){
 	        if($(this).prop("checked") == true){
@@ -1373,17 +1466,20 @@ Dropzone.options.myDropzone = {
 <!-- div for dynamic variable storage style='display:none'-->
 	<input id='frame_rate' style="display:none;">
 	<input id='mount_rate' value='' style="display:none;">
-    <input id='frame_inches' value ='' style="display:none;">
-    <input id='glass_rate' value=''style="display:none;">
-    <input id='frame_data' value=''style="display:none;">
-    <input id='mount_data' value=''style="display:none;">
+    <input id='frame_inches' value='' style="display:none;">
+    <input id='glass_rate' value='' style="display:none;">
+    <input id='frame_data' value='' style="display:none;">
+    <input id='mount_data' value='' style="display:none;">
     <input id='get_img' value='' style="display:none;">
     <div id='type' style="display:none"></div>
     <input id='crop_src' style='display:none'>
     <input id='data' style='display:none'>
+    <input id='w_value' style='display:none'>
+    <input id='h_value' style='display:none'>
     <div id='click' style='display:none'></div>
 	<div id='vertical_width' style='display:none'></div>
 	<div id='horizonal_height' style='display:none'></div>
+
 <!-- end -->
 <!-- pricing Details -->
  <div class="lightbox-target" id="price_detail">
@@ -1528,7 +1624,7 @@ Dropzone.options.myDropzone = {
                             <strong> Total Price </strong>
                         </div>
                         <div class="col-md-6 col-sm-6 text-right">
-                            <strong> <span class='actual_price'>3000</span></strong>
+                            <strong> <span class='actual_price'></span></strong>
                         </div>
                     </div>
                 </div>
@@ -1593,35 +1689,34 @@ Dropzone.options.myDropzone = {
 </div>
 
 <!-- dropzone_images-->
-    <div class="lightbox-target" id="dropzone_images">
-        <div id="uploader_popup_goofy_a">
-            <div class="uploader_popup_header">
-                <h2 class="text-left">  Upload Photos </h2>
-                <a class="lightbox-close" href="" onclick="$('#dropzone_images').hide(); return false;"></a>
-            </div>
-            <div class="uploader_popup_upload-icon">
-            <form action="<?=base_url()?>index.php/frontend/dropzone" class="dropzone" id="my-dropzone">
-                 <div class="dz-default dz-message">
-                 <img src='<?=base_url()?>/images/upload_icon.svg'width='100px' height='100px'>
-                 </div>
-            </form>
-                <div class="popup-default-message text-center dz-default dz-message" id='msg'>
-                    <h2>Drag and drop images here or click to browse</h2>
-                    <p>Each image must be a minimum of 500 KB to ensure a high quality print. Up to 10 images are allowed.</p>
-                </div>
-                 
-            </div> 
-            <div class="popup-default-footer col-md-12">
-                <p class="text-left pull-left">By uploading, I agree to the <span> <a href="#" id="termsofuselink" style="cursor: default; color: #ef9223">Terms of use</a> </span> </p>
-                <div class="popup-default-button pull-right">
-                    <input id="submit-all" value="Upload" type="button" class="popup-button">
-        
-                    <!-- <a id="submit-all" class="popup-button" href="#" style="color:#337ab7"> UPLOAD</a> -->
-                </div>
-            </div>
-        </div>       
+<div class="lightbox-target" id="dropzone_images">
+<div id="uploader_popup_goofy_a">
+    <div class="uploader_popup_header">
+        <h2 class="text-left">  Upload Photos </h2>
+        <a class="lightbox-close" href="" onclick="$('#dropzone_images').hide(); return false;"></a>
     </div>
-<!-- End -->
+    <div class="uploader_popup_upload-icon">
+    <form action="<?=base_url()?>index.php/frontend/dropzone" class="dropzone" id="my-dropzone">
+         <div class="dz-default dz-message">
+         <img src='<?=base_url()?>/images/upload_icon.svg'width='100px' height='100px'>
+         </div>
+    </form>
+        <div class="popup-default-message text-center dz-default dz-message" id='msg'>
+            <h2>Drag and drop images here or click to browse</h2>
+            <p>Each image must be a minimum of 500 KB to ensure a high quality print. Up to 10 images are allowed.</p>
+        </div>
+         
+    </div> 
+    <div class="popup-default-footer col-md-12">
+        <p class="text-left pull-left">By uploading, I agree to the <span> <a href="#" id="termsofuselink" style="cursor: default; color: #ef9223">Terms of use</a> </span> </p>
+        <div class="popup-default-button pull-right">
+            <input id="submit-all" value="Upload" type="button" class="popup-button">
+
+            <!-- <a id="submit-all" class="popup-button" href="#" style="color:#337ab7"> UPLOAD</a> -->
+        </div>
+    </div>
+</div>       
+</div>
 
 <div class="container">
 	<div class="row">
@@ -1647,21 +1742,21 @@ Dropzone.options.myDropzone = {
                                   <div class="col-xs-12 col-sm-6 col-md-2">
                                   	<div class="thumb_bg_hover">
                                       <a href="JavaScript:void(0);">
-                                      <img id="canvas" src="<?php echo $path2 = base_url()."images/uploaded_pdf/services_icons_canvas.png";?>" class="img2 img-responsive center-block"></a>
+                                      <img id="canvas" src="<?php echo $path2 = base_url()."images/uploaded_pdf/image1.jpg";?>" class="img2 img-responsive center-block"></a>
                                       <h5 class="text-center">Canvas</h5>
                                     </div>
                                   </div>
                                   <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-1">
                                   	<div class="thumb_bg_hover">
                                       <a href="JavaScript:void(0);">
-                                      <img id="framing" src="<?php echo $path1 = base_url()."images/uploaded_pdf/services_icons_framing.png";?>" class="img2 img-responsive center-block"></a>
+                                      <img id="framing" src="<?php echo $path1 = base_url()."images/uploaded_pdf/image1.jpg";?>" class="img2 img-responsive center-block"></a>
                                       <h5 class="text-center">Framing</h5>
                                     </div>
                                   </div>
                                   <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-4">
                                   	<div class="thumb_bg_hover">
                                       <a href="JavaScript:void(0);">
-                                      <img id="print_only" src="<?php echo $path3 = base_url()."images/uploaded_pdf/metal_icon.png";?>" class="img2 img-responsive center-block"></a>
+                                      <img id="print_only" src="<?php echo $path3 = base_url()."images/uploaded_pdf/image1.jpg";?>" class="img2 img-responsive center-block"></a>
                                       <h5 class="text-center">Print Only</h5>
                                     </div>
                                   </div>
@@ -1799,7 +1894,7 @@ function right(width,height,x){
           </select>
             </div>
            </div>
-		  <div class="form-group dimention">
+          <div class="form-group dimention">
           <label for="country" class="col-sm-7 control-label dimention"> Width (Inch.):</label>
           <div class="col-sm-5">
           <input id="width" class="form-control by_keyup_update dimention input_control" type="text">
@@ -1851,7 +1946,7 @@ function right(width,height,x){
 	  <!--Image End Div -->
 	  <div class="addtocartcontainer_page text-center" style="float:right; width:340px;height: 170px;">
       <div class="page_price_label">
-      <p>Your Price: <span class='actual_price'>Rs. </span></p>
+      <p>Your Price: <span class='actual_price'> </span></p>
       </div>
 	  <div class="page_price_label addtocartcontainer_popup_details" style="margin:10px auto;">
       <a href='' onclick='price_details();return false;'>Price Details</a>
@@ -2524,7 +2619,7 @@ function right(width,height,x){
             </ul>
             <div class="addtocartcontainer_footer">
 	            <p>Already have an account?</p>
-                <p><a href="#">Login here</a></p>
+                <p><a href="" onclick=" login('');return false;">Login here</a></p>
                 <p class="text-center">or</p>
             </div>
             <p class="text-center"><a href="#"><img src="../../../assets/img/photostoart_inner/facbook.jpg" style="margin-bottom:10px"></a></p>
@@ -2540,26 +2635,26 @@ function right(width,height,x){
         </div>
         <div class="addtocartcontainer_page2" style="border:none">
             <p class="text-center" style="font-size:13px; color:#888; margin-top:6px">Other ways to order:</p>
-            <p class="text-center" style="font-size:11px; color:#888; margin-top:6px"> 1-800-952-5592 </p>
+            <p class="text-center" style="font-size:11px; color:#888; margin-top:6px">  +91-8800639075 </p>
         </div>
       </div>
 </div>
       </div>
 <script>
-$(window).on('load',function(){
-$(document).on('click', '.panel-heading span.clickable', function(e){
-    var $this = $(this);
-		if(!$this.hasClass('panel-collapsed')) {
-			$this.parents('.panel').find('.panel-body').slideUp();
-			$this.addClass('panel-collapsed');
-			$this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
-		} else {
-			$this.parents('.panel').find('.panel-body').slideDown();
-			$this.removeClass('panel-collapsed');
-			$this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
-		}
-	})
-});
+// $(window).on('load',function(){
+// $(document).on('click', '.panel-heading span.clickable', function(e){
+//     var $this = $(this);
+// 		if(!$this.hasClass('panel-collapsed')) {
+// 			$this.parents('.panel').find('.panel-body').slideUp();
+// 			$this.addClass('panel-collapsed');
+// 			$this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+// 		} else {
+// 			$this.parents('.panel').find('.panel-body').slideDown();
+// 			$this.removeClass('panel-collapsed');
+// 			$this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+// 		}
+// 	})
+// });
 </script>
 <script>
 $(".dz-upload-icon").click(function() {
