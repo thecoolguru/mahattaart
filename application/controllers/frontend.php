@@ -377,8 +377,24 @@ $this->user = $this->facebook->getUser();
           echo $result['rate'];
 	  }
 	  
+	public function clearence(){
 	
-	  
+	$data['search_data']=$this->frontend_model->get_tbl_clearence();
+	
+	$this->load->view('frontend/header');
+		$this->load->view('frontend/clearence',$data);
+		$this->load->view('frontend/footer');
+	}
+	  public function product_detail($filename,$size){
+	//echo $filename;
+	
+	//$data['avl_glass']=$avl_glass;
+	$data['prod_details']=$this->frontend_model->get_prod_details($filename,$size);
+	$this->load->view('frontend/header');
+		$this->load->view('frontend/clearnce_detail',$data);
+		$this->load->view('frontend/footer');
+	
+	}
 	public function index() {
 
          $search_api = "http://api.indiapicture.in/wallsnart/get_collection.php";

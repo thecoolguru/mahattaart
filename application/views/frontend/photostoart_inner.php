@@ -26,24 +26,98 @@
             $('#crop_image').hide();
             
         })
+});
 
-        $(document).on('click', '.panel-heading span.clickable', function(e){
-    var $this = $(this);
-		if(!$this.hasClass('panel-collapsed')) {
-			$this.parents('.panel').find('.panel-body').slideUp();
-			$this.addClass('panel-collapsed');
-			$this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
-		} else {
-			$this.parents('.panel').find('.panel-body').slideDown();
-			$this.removeClass('panel-collapsed');
-			$this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
-		}
+$(window).on('load',function(){
+	$(document).on('click', '.panel-heading span.clickable', function(e){
+		var $this = $(this);
+			if(!$this.hasClass('panel-collapsed')) {
+				$this.parents('.panel').find('.panel-body').slideUp();
+				$this.addClass('panel-collapsed');
+				$this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+			} else {
+				$this.parents('.panel').find('.panel-body').slideDown();
+				$this.removeClass('panel-collapsed');
+				$this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+			}
 	})
 });
 
-
-
 </script>
+	<script>
+		function feedback_of_addtocart(a){
+		$('.frame-step-header-text').html('<span class="glyphicon glyphicon-ok" style="margin-right:10px;"></span>Item Added To Cart.');
+		}
+	</script>
+	<?php $continue_shopping_redirect = $_SESSION['user_info'];?>
+<div class="frame-step-header-container" style="display:none">
+    <div class="container frame-step-header-wrapper">
+        <div class="frame-step-header-text">
+	       
+        </div>
+        <div class="frame-step-button-wrapper">
+            <div class="frame-step-continue-shopping-button">
+                <a style="color:white" href="<?=base_url().''.$continue_shopping_redirect?>">CONTINUE SHOPPING</a>
+            </div>
+            <div class="frame-step-proceed-to-cart-button">
+              <a style="color:white" href="<?=base_url().'index.php/cart/cart_view'?>">  PROCEED TO CART</a>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+.frame-step-header-container {
+  background-color: #ececec;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.frame-step-header-text {
+  color: #6abb4c;
+  float: left;
+  font-family: "BebasNeueRegular",Helvetica,Arial,sans-serif;
+  font-size: 42px;
+  letter-spacing: -0.5px;
+  position: relative;
+}
+.frame-step-button-wrapper {
+  float: right;
+  padding: 6px 0;
+  position: relative;
+}
+
+.frame-step-continue-shopping-button {
+  background-color: #888;
+  color: #fff;
+  cursor: pointer;
+  float: left;
+  font-size: 15px;
+  font-weight: bold;
+  margin-right: 14px;
+  min-width: 100px;
+  padding: 13px 16px;
+  position: relative;
+  text-align: center;
+}
+.frame-step-proceed-to-cart-button {
+  background-color: #ed9134;
+  color: #fff;
+  cursor: pointer;
+  float: right;
+
+  font-size: 15px;
+  font-weight: bold;
+  min-width: 180px;
+  padding: 12px;
+  position: relative;
+  text-align: center;
+}
+.container.frame-step-header-wrapper {
+  border: medium none;
+  margin: 0 auto;
+}
+</style>
+
 <script>
     function price_details(){
 	$('#price_detail').show();	
@@ -82,22 +156,99 @@ Dropzone.options.myDropzone = {
          $('#load_buffer').hide();
  		}, 3000);
     });
-    this.on("addedfile", function(file) {
+     	
+	this.on("addedfile", function(file) {
 	 if( (myDropzone.files.length+1) > 0){
 		$('#msg').hide(); 
 	 }else{
 		$('#msg').hide(); 
 	 }
 	 if(file.size<500000){
-	   this.removeFile(file);
-	 alert('please upload image size greater than 500KB');
+		 this.removeFile(file);
+		 alert('please upload image size greater than 500KB');
 	 }
 	});
-
    }
 };
 </script>
 <script type="text/javascript">
+    function addToCart(){
+	var paper_surface = $('#paper_surface').val();
+	var final_frame_size  = '';
+	if($('#click').html() == 'canvas_click'){
+		var framed = $('#finished_size').html();
+		framed = framed.split('"');
+		frameheight = framed[1].split('X');
+		final_frame_size  = ''+framed[0]+'X'+frameheight[1]; 
+	}else{
+		var framed = $('#finished_size').html();
+		framed = framed.split('"');
+		frameheight = framed[1].split('X');
+		final_frame_size = ''+framed[0]+'X'+frameheight[1];
+	}
+	  var mount_color = $('#mount_color').html();
+	  var data = '';
+	  if($('#click').html() == 'print_only'){
+		data = 'only_print';   
+	  }else if($('#click').html() == 'canvas_click'){
+		  data = 'canvas_only';
+	  }else{
+		  data = '';
+	  }
+	  var only_print = data;
+	  var glasses = $('#glass_type').html();
+	  var glasses_coste = $('#glass_price').html();	  
+	  var total_price = $('.actual_price').html();
+	  var MountCost = $('#MountCost').html();
+	  var FrameCost = '';
+	  if($('#click').html() == 'canvas_click'){
+	  FrameCost = $('#CanvasCost').html();
+	  }else if($('#click').html() == 'frame_click'){
+	  FrameCost = $('#FrameCost').html();
+	  }
+	 var print_size = '';
+	 var size = $('#sizes').val();
+	 if( size == 'Customize Size'){
+		if( ($('#width').val() == 0) && ($('#height').val() == 0) ){
+			print_size = '0X0';	
+		}else { 
+		print_size = $('#width').val()+'X'+ $('#height').val();
+		}	
+	 }else{
+		 print_size = $('#sizes').val();
+	 }
+	        var price = $('#print_price').html();
+			var id = $('#get_img').val();
+		    id = id.split('image');
+			var new_id = id[2].split('.');
+			var image_id = new_id[0];
+			var image_type = new_id[1];
+			var user_id = '<?= $_COOKIE['user_info'] ?>';
+			var mat1_size = $('#mount_size').html();
+			var mat1_color = $('#mount_color').html();
+		    var frame_color = $('#frame_color').val();
+		    var frame_name = $('#f_name').html(); 
+			var mount_name = 'DR 2029'; //$('#mount_code').val();
+			var frameSize = $('#frame_size').html();
+			var img_name = $('#get_img').val();
+			img_name = img_name.split('/');
+			var image_namee = img_name[7].split('.');
+			image_namee = image_namee[0];
+			//alert(paper_surface+','+final_frame_size+','+mount_color+','+only_print+','+glasses+','+glasses_coste+','+total_price+','+MountCost+','+FrameCost+','+print_size+','+image_id+','+image_type+','+user_id+','+mat1_size+','+mat1_color+','+frame_color+','+frame_name+','+mount_name+','+frameSize+','+image_namee);
+			$.ajax({
+				 type: "POST",
+				 url: "<?=base_url()?>index.php/frontend/frameit_addtocart",
+				 data: "glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print,
+				 success:function(data)  
+				 {    
+				 	 //alert(data);
+					 $('.frame-step-header-container').show();
+					 feedback_of_addtocart(data);
+					 $('html, body').animate({ scrollTop: 0 }, 'fast');
+				 }
+			}); 
+		}  // end function 
+	  		
 	function paper_surface(id){
 		var td = '';
 		$('#paper_surface').html(td);
@@ -138,17 +289,27 @@ Dropzone.options.myDropzone = {
 			$('.dimention').show();
 		}else{
 			$('.dimention').hide();
-		}			
+		}
+		if($('#sizes').val() == 'Customize Size'){
+			$('.dimention').show();
+		}	
+			
 			var size = ''+$('#sizes').val();
 			var width = $('#width').val();
 			var height = $('#height').val();
 			var select = '';
 			var dimen = size.split('X');
+			 if($('#sizes').val() != 'Customize Size'){
 			 dimen[0] = parseInt(dimen[0]);
 			 dimen[1] = parseInt(dimen[1]);
+			 }else if($('#sizes').val() == 'Customize Size'){
+			 dimen[0] = width;
+			 dimen[1] = height;
+			 }
+			 
 			 dimen[2] = parseInt(dimen[0]) + parseInt(4);
 			 dimen[3] = parseInt(dimen[1]) + parseInt(4);
-			//$('#finished_size').html(dimen[2]+'"X'+dimen[3]+'" Canvas Print | '+dimen[0]+'"X'+dimen[1]+'" Canvas Print without border');
+ 			//$('#finished_size').html(dimen[2]+'"X'+dimen[3]+'" Canvas Print | '+dimen[0]+'"X'+dimen[1]+'" Canvas Print without border');
 			if( $("#museum").prop("checked")== true){
 				select = 'museum';	
 			}else{
@@ -278,8 +439,7 @@ Dropzone.options.myDropzone = {
 		var CanvasFrameCost = parseInt((parseInt(parseInt(newwidth1)*parseInt(2)) + parseInt(parseInt(newlenght1)*parseInt(2)))*75)/12;
 		CanvasFrameCost = Math.round(parseInt(CanvasFrameCost),2);
 		$('#CanvasCost').html("Rs."+ CanvasFrameCost);	
-		
-		
+			
 		if(paper == 'Photographic Luster'){
 				c_width = parseInt(dimen[0]) + 0.5;
 				c_height = parseInt(dimen[1]) + 0.5;
@@ -289,10 +449,13 @@ Dropzone.options.myDropzone = {
 						if(c_width<=39){
 							cost = roll_size * c_width * rates; 
 							$('#print_price').html(Math.round(cost,2));
+						
 						}else{
-							alert('Not Possible');
+							cost = 0;
+							$('#finished_size').html('Please Select Some Other Sizes');
 						}	
 					}else{
+						cost = 0;
 						alert('Not Possible');
 					}
 				 }else{
@@ -301,28 +464,55 @@ Dropzone.options.myDropzone = {
 							cost = roll_size * c_height * rates;
 							$('#print_price').html(Math.round(cost,2));
 						 }else{
-							alert('Not Possible');
+						cost = 0;
+						$('#finished_size').html('Please Select Some Other Sizes');
+						$('.actual_price').html('Rs.0');
 						}
 					}else{
-					alert('Not Possible');
+					cost = 0;	
+					$('#finished_size').html('Please Select Some Other Sizes');
+					$('.actual_price').html('Rs.0');	
 				}
 			}
 		}
 		
 		if($('#click').html() == 'print_only' ){
-			$('#finished_size').html(dimen[0]+'"X'+dimen[1]+'" Print Only ');
+			if($('#sizes').val() == 'Customize Size'){
+				if( ($('#width').val() == 0) && ($('#height').val()== 0) ){
+					var val = 0;
+					$('.actual_price').html(val);
+					$('#finished_size').html('Choose Other Size');
+				}else{
+					$('#finished_size').html(Math.round(dimen[0],2)+'"X'+Math.round(dimen[1],2)+'" Print Only ');
+				}
+			}else{ 
+			$('#finished_size').html(Math.round(dimen[0],2)+'"X'+Math.round(dimen[1],2)+'" Print Only ');
+			}
 			$('.actual_price').html(Math.round(cost,2));
+		}else if($('#click').html() == 'canvas_click' ){
+			if($('#sizes').val() == 'Customize Size'){
+				if( ($('#width').val() == 0) && ($('#height').val()== 0) ){
+					$('.actual_price').html('0');
+					$('#finished_size').html('Choose Other Size');
+				}else{
+					$('#finished_size').html(Math.round(dimen[2],2)+'"X'+Math.round(dimen[3],2)+'" Canvas Print | '+Math.round(dimen[0],2)+'"X'+Math.round(dimen[1],2)+'" Canvas Print without border');
+					var actual_price = cost + CanvasFrameCost;
+					$('.actual_price').html("Rs."+ Math.round(actual_price,2));
+				}
+			}else{ 
+				$('#finished_size').html(Math.round(dimen[2],2)+'"X'+Math.round(dimen[3],2)+'" Canvas Print | '+Math.round(dimen[0],2)+'"X'+Math.round(dimen[1],2)+'" Canvas Print without border');
+				var actual_price = cost + CanvasFrameCost;
+			$('.actual_price').html("Rs."+ Math.round(actual_price,2));
+			}
+			
+    	}else if($('#click').html() == 'frame_click'){
+			frame_pricing('');
+		}else{
+			setTimeout(function(){
+			$('#finished_size').html('Choose Your Size');
+			},500);
 		}
-		
-		if($('#click').html() == 'canvas_click' ){
-		$('#finished_size').html(dimen[2]+'"X'+dimen[3]+'" Canvas Print | '+dimen[0]+'"X'+dimen[1]+'" Canvas Print without border');
-    	var actual_price = cost + CanvasFrameCost;
-		$('.actual_price').html("Rs."+ Math.round(actual_price,2));
-    	}
-    	if($('#click').html() == 'frame_click'){
-    	frame_pricing();
-		  }
-		}
+	  }
 	});
   });
 }
@@ -335,7 +525,11 @@ Dropzone.options.myDropzone = {
 			var dimen = size.split('X');
 			dimen[0] = parseInt(dimen[0]);
 			dimen[1] = parseInt(dimen[1]);
-	        var frame_size = Math.round(parseInt($('#frame_size').html())/25);
+	        if($('#sizes').val() == 'Customize Size'){
+			 dimen[0] = $('#width').val();
+			 dimen[1] = $('#height').val();
+			}		
+			var frame_size = Math.round(parseInt($('#frame_size').html())/25);
 			var frame_rate  = $('#frame_rate').val();
 			var mount = $('#mount_width').val();
 			$('#mount_size').html($('#mount_width').val() + '"');
@@ -354,7 +548,17 @@ Dropzone.options.myDropzone = {
 			var mountheight = parseInt(mount) + parseInt(dimen[1]);
 			var mount_cost = mountwidth * mountheight * mount_rate; 
 			$('#MountCost').html("Rs."+mount_cost);
-			$('#finished_size').html( framewidth+'"X'+ frameheight+'" Framed Print');	
+			if($('#sizes').val() == 'Customize Size'){
+				if( ($('#width').val() == 0) && ($('#height').val()== 0) ){
+					var val = 0;
+					$('.actual_price').html(val);
+					$('#finished_size').html('Choose Other Size');
+				}else{
+					$('#finished_size').html(Math.round(framewidth,2)+'"X'+Math.round(frameheight,2)+'" Framed Print');
+				}
+			}else{ 
+			$('#finished_size').html(Math.round(framewidth,2)+'"X'+Math.round(frameheight,2)+'" Framed Print');
+			}
 			var print_price = $('#print_price').html();
 			if($('#remove-mount').prop('checked') == 'true'){
 			var actual_price = parseInt(print_price) + parseInt(framing_cost) + parseInt(glass_cost);
@@ -381,18 +585,20 @@ Dropzone.options.myDropzone = {
 	}
 	
 	
-	function frame_details(rate,size,frame_name){
+	function frame_details(rate,size,frame_name,color){
 		$('#frame_size').html(size);
 		$('#f_name').html(frame_name);
 		$('#frame_rate').val(rate);
 		$('#frame_inches').val( Math.round(parseInt(size)/25));
+		$('#frame_color').val(color);
 		calculate_cost('');
 	    frame_pricing();
 	}
 	
-	function mount_details(rate,mount_name,code){
-		$('#mount_color').html(mount_name);
+	function mount_details(rate,mount_color,code){
+		$('#mount_color').html(mount_color);
 		$('#mount_rate').val(rate);
+		$('#mount_code').val(code);
 		calculate_cost('');
 	    frame_pricing();
 	}
@@ -421,7 +627,6 @@ Dropzone.options.myDropzone = {
 		   path += k[p]+'/';
 		}
 		path +='original/'+k[7];
-		//alert(path);
 		var source = src;
 		$(document).ready(function(){
 		$('#large_img').attr("src", src);
@@ -510,8 +715,6 @@ Dropzone.options.myDropzone = {
 			var data = JSON.parse(data);
 			alert(data);
 			var length = data.length-1;
-			// $('#session_images').load('#session_images');
-			 //alert(data[length]);
 			},
 			complete: function(){
 				var status = get_session_image();
@@ -690,20 +893,16 @@ Dropzone.options.myDropzone = {
 	    $('#crop_image').hide();
         $('#session_images').load('#session_images');
         $('#load_buffer').hide();
-//         setTimeout(
-//         function(){
-        
-// 		 }, 1000); 
-        
     }
 	
   function mount_select(mount_rate,mount_code,mount_name){
-		mount_details(mount_rate,mount_name);
+		mount_details(mount_rate,mount_name,mount_code);
 		if(mount_code){
 		var dert= "<?php echo base_url()?>images/uploaded_pdf/mount/";
             +$('div#abc').css('background','url("'+dert+mount_code+'.jpg")');
 		}
-	    frame_pricing();
+	    $('#mount_code').val(code);
+		frame_pricing();
 	}
 
  function change_mount(mount)
@@ -715,7 +914,7 @@ Dropzone.options.myDropzone = {
  
   
     function myfun(color,size,shape,f_code,f_rate,f_size_mm){
-	frame_details(f_rate,f_size_mm,f_code);
+	frame_details(f_rate,f_size_mm,f_code,color);
 	if(f_code){
        var dert= "<?php echo base_url()?>images/uploaded_pdf/frames/horizontal/";
 	   //alert(f_code)
@@ -752,21 +951,10 @@ Dropzone.options.myDropzone = {
         $('#mount_data').val(id);
     }
     
-    function frame_change(){
-//         if( $('#frame_data').val() == ''){
-// 		console.log('nothing');
-//         }else{
-// 		var k = $('#frame_data').val();    
-//     		alert(k);
-//     		setTimeout(function(){
-//           	$("#"+ $('#frame_data').val() + "").click();    
-//     		},500);
-// 		}
-    }
 	
 	function get_frame_color(frame_color){
 			var total_slide,total_s="";
-			   $.ajax({
+			$.ajax({
             type:"post",
 			url:"<?=base_url()?>index.php/frontend/get_frame_by_frame_color",
 			data:'frame_color='+frame_color,
@@ -922,7 +1110,6 @@ Dropzone.options.myDropzone = {
         	  }
 		});
 	}
-
 	
 	function show_mat(obj){
 	$.ajax({
@@ -993,9 +1180,6 @@ Dropzone.options.myDropzone = {
 		$('.thumbBox').css({'width':'100%', 'height':'400px', 'margin-top':'-200px', 'margin-left':'-50%', 'border':'none'});
 	    $('#crop_image').show(); 
 		}else{
-		/* var vert_width = $('#horizontal_height').html();	
-		vert_width = parseInt(vert_width);
-		var margin_left = parseInt(-(vert_width/2)); */	
 		$('.uploader_popup_goofy_a').css({'top':'50%','width':'417px','margin-left':'-208px','height':'350px','margin-top':'-175px','left':'50%'})//a
 		$('.imageBox').css({'height':'260px','width':'417px','border':'none'});    
 		$('.thumbBox').css({'border': 'none','top':'50%','left':'50%','width':'300px','height':'260px','margin-top':'-130px','margin-left':'-150px'});
@@ -1109,6 +1293,7 @@ Dropzone.options.myDropzone = {
 	$('#myCanvas2').hide();
 	$('#myCanvas3').hide();
 	$('.dimention').hide();
+	$('#glass_price').html("Rs.41");
 	var category = '<?php echo $type;?>'; 
 	if( category == 'canvas'){
 		setTimeout(
@@ -1236,94 +1421,86 @@ Dropzone.options.myDropzone = {
         });  
 	});
 	
-	$('input').keyup(function(){
+	$('.inputs').click(function(){
+		if( $('#width').val() == ''){
+			$('#finished_size').html('Choose Other Sizes');
+		}
+		if( $('#height').val() == ''){
+			$('#finished_size').html('Choose Other Sizes');
+		}
+		var src = $('#get_img').val();
+		var k  =  src.split('/');       
+		var path = '';
+		for(var p=0; p<=6; p++){
+		   path += k[p]+'/';
+		}
+		path +='original/'+k[7];
+		var source = path;
+	$.ajax({
+			  type:'post',
+              url:'<?=base_url()?>index.php/frontend/get_input_dimention',
+			  data: {newpath : source},
+			  success:function(data) {
+				var obj = JSON.parse(data);
+				var dimention = ''+obj;  
+				var dimentions = dimention.split('X');
+				$('#w_value').val(dimentions[0]);
+				$('#h_value').val(dimentions[1]);
+			}
+        });  
+		
+	});
+	
+	$('#width,#height').keyup(function(){
 				var real_width = $('#w_value').val();
 				var real_height = $('#h_value').val();
+				if($('#type').html() == 'horizontal')
+				var ratio = real_height/real_width;
+				if($('#type').html() == 'vertical')
 				var ratio = real_width/real_height;
-				$('#width,#height').keyup(function(){
+				var max_width = real_width/150;
+			    var max_height = real_height/150;
 				var id = $(this).attr('id');
 				var value = $(this).val();	
+				 if(id == 'height'){
+					if(value == ''){
+					$('#width').val('');	
+					}
+				 }
+				if(id == 'width'){
+					if(value == ''){
+					$('#height').val('');	
+					}
+				 }	
 				if(id == 'height'){
-				var input_width = ratio*value; 	
-				console.log("id= "+ value +" width= "+input_height);
+				    if( (value <= max_height) && (value != 0) && (value != '') ){
+					var input_width = ratio*value; 	
+					$('#width').val(input_width);
+					setTimeout(function(){
+					calculate_cost('Customize Size');
+					},100);
+					$('#width').html(input_width);
+					console.log("id= "+ value +" width= "+input_width);
+					}else{
+					 $('#width').val('');
+					 $('#finished_size').html('Choose Other Sizes');		
+					}
 				}else{
-				var input_height = ratio*value; 	
-				console.log("id= "+ value +" height= "+input_height);
+					if( (value <= max_width) && (value != 0) && (value != '') ){
+					var input_height = ratio*value;
+					$('#height').val(input_height);
+					setTimeout(function(){
+					calculate_cost('Customize Size');
+					},100);
+					$('#height').val(input_height);
+					console.log("id= "+ value +" height= "+input_height);
+				}else{
+				 $('#height').val('');
+				 $('#finished_size').html('Choose Other Sizes');		
 				}
-			});
+			}
 	});
-	// $('.input').click(function(){
- //     var src = $('#get_img').val();
-	// 	var k  =  src.split('/');       
-	// 	var path = '';
-	// 	for(var p=0; p<=6; p++){
-	// 	   path += k[p]+'/';
-	// 	}
-	// 	path +='original/'+k[7];
-	// 	var source = path;
-	// $.ajax({
-	// 		  type:'post',
- //              url:'<?=base_url()?>index.php/frontend/get_input_dimention',
-	// 		 data: {newpath : source},
-	// 		  success:function(data) {
-	// 			var obj = JSON.parse(data);
-	// 			var dimention = ''+obj;  
-	// 			var dimentions = dimention.split('X');
-	// 			var width = dimentions[0];
-	// 			var height= dimentions[1]; 
-	// 		    $('#w_value').val(width);
-	// 			$('#h_value').val(height);
-	// 		}
- //        });  
-		
-	// });
 	
-	// $('input').keyup(function(){
-	// 			var real_width = $('#w_value').val();
-	// 			var real_height = $('#h_value').val();
-	// 			if($('#type').html() == 'horizontal')
-	// 			var ratio = real_height/real_width;
-	// 			if($('#type').html() == 'vertical')
-	// 			var ratio = real_width/real_height;
-	// 			$('#width,#height').keyup(function(){
-	// 			var max_width = real_width/150;
-	// 		    var max_height = real_height/150;
-	// 			var id = $(this).attr('id');
-	// 			var value = $(this).val();	
-	// 			 if(id == 'height'){
-	// 				if(value == ''){
-	// 				$('#width').val('');	
-	// 				}
-	// 			 }
-	// 			if(id == 'width'){
-	// 				if(value == ''){
-	// 				$('#height').val('');	
-	// 				}
-	// 			 }	
-	// 			if(id == 'height'){
-	// 			    if( (value <= max_height) && (value != 0) && (value != '') ){
-	// 				var input_width = ratio*value; 	
-	// 				$('#width').val(input_width);
-	// 				calculate_cost('Customize Size');
-	// 				console.log("id= "+ value +" width= "+input_width);
-	// 				}else{
-	// 				 $('#height').val('');		
-	// 				}
-	// 			}else{
-	// 				if( (value <= max_width) && (value != 0) && (value != '') ){
-	// 				var input_height = ratio*value;
-	// 				$('#height').val(input_height);
-	// 				calculate_cost('Customize Size');
-	// 				console.log("id= "+ value +" height= "+input_height);
-	// 			}else{
-	// 					$('#width').val('');		
-	// 				}
-	// 			}
-	// 		});
-	// });
-
-
-
 	$('#btnCrop').click(function(){
         setTimeout(function(){
         var	crop_src = $('#large_img2').attr('src');    
@@ -1349,6 +1526,8 @@ Dropzone.options.myDropzone = {
 		    $('#canvas_opt').hide();
 		    $('#options').hide();
 		    $('#price_show').show();
+			$('#width').val('');
+			$('#height').val('');
 			paper_surface('framing');
 			if( $('#frame_ data').val() == ''){
 		    console.log('nothing');
@@ -1391,7 +1570,9 @@ Dropzone.options.myDropzone = {
 		    $('#canvas_opt').show();
 	   	    $('#options').show();
 	   	    $('#price_show').hide();
-	   	    paper_surface('canvas');
+	   	    $('#width').val('');
+			$('#height').val('');
+			paper_surface('canvas');
  			$('#frame_click').html('canvas_click');
 			calculate_cost('');
  			$('#click').html('canvas_click');
@@ -1406,7 +1587,9 @@ Dropzone.options.myDropzone = {
 	        $('#canvas_opt').hide();
 		    $('#options').hide();
 		    $('#price_show').hide();
-		    paper_surface('print_only');
+		    $('#width').val('');
+			$('#height').val('');
+			paper_surface('print_only');
 			calculate_cost('');
 			var size = ''+$('#sizes').val();
 		    var dimen = size.split('X');
@@ -1467,6 +1650,7 @@ Dropzone.options.myDropzone = {
 	<input id='frame_rate' style="display:none;">
 	<input id='mount_rate' value='' style="display:none;">
     <input id='frame_inches' value='' style="display:none;">
+	<input id='frame_color' value='Black' style="display:none;">
     <input id='glass_rate' value='' style="display:none;">
     <input id='frame_data' value='' style="display:none;">
     <input id='mount_data' value='' style="display:none;">
@@ -1474,12 +1658,16 @@ Dropzone.options.myDropzone = {
     <div id='type' style="display:none"></div>
     <input id='crop_src' style='display:none'>
     <input id='data' style='display:none'>
-    <input id='w_value' style='display:none'>
+	<input id='w_value' style='display:none'>
     <input id='h_value' style='display:none'>
     <div id='click' style='display:none'></div>
 	<div id='vertical_width' style='display:none'></div>
 	<div id='horizonal_height' style='display:none'></div>
-
+	<input id='w_value' style='display:none'>
+	<input id='h_value' style='display:none'>
+	<input id='mount_code' value='' style='display:none'>
+	<!--<input id='mount_name' style='display:none'> -->
+	
 <!-- end -->
 <!-- pricing Details -->
  <div class="lightbox-target" id="price_detail">
@@ -1742,21 +1930,21 @@ Dropzone.options.myDropzone = {
                                   <div class="col-xs-12 col-sm-6 col-md-2">
                                   	<div class="thumb_bg_hover">
                                       <a href="JavaScript:void(0);">
-                                      <img id="canvas" src="<?php echo $path2 = base_url()."images/uploaded_pdf/image1.jpg";?>" class="img2 img-responsive center-block"></a>
+                                      <img id="canvas" src="<?php echo $path2 = base_url()."images/uploaded_pdf/frame3.jpg";?>" class="img2 img-responsive center-block"></a>
                                       <h5 class="text-center">Canvas</h5>
                                     </div>
                                   </div>
                                   <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-1">
                                   	<div class="thumb_bg_hover">
                                       <a href="JavaScript:void(0);">
-                                      <img id="framing" src="<?php echo $path1 = base_url()."images/uploaded_pdf/image1.jpg";?>" class="img2 img-responsive center-block"></a>
+                                      <img id="framing" src="<?php echo $path1 = base_url()."images/uploaded_pdf/frame2.jpg";?>" class="img2 img-responsive center-block" style="width:70px"></a>
                                       <h5 class="text-center">Framing</h5>
                                     </div>
                                   </div>
                                   <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-4">
                                   	<div class="thumb_bg_hover">
                                       <a href="JavaScript:void(0);">
-                                      <img id="print_only" src="<?php echo $path3 = base_url()."images/uploaded_pdf/image1.jpg";?>" class="img2 img-responsive center-block"></a>
+                                      <img id="print_only" src="<?php echo $path3 = base_url()."images/uploaded_pdf/frame1.jpg";?>" class="img2 img-responsive center-block"></a>
                                       <h5 class="text-center">Print Only</h5>
                                     </div>
                                   </div>
@@ -1897,19 +2085,19 @@ function right(width,height,x){
           <div class="form-group dimention">
           <label for="country" class="col-sm-7 control-label dimention"> Width (Inch.):</label>
           <div class="col-sm-5">
-          <input id="width" class="form-control by_keyup_update dimention input_control" type="text">
+          <input id="width" class="form-control by_keyup_update dimention input_control inputs" type="text">
           </div>
           </div>
           <div class="form-group dimention">
-          <label for="country" class="col-sm-7 control-label dimention" id="height"> Height (Inch.):</label>
+          <label for="country" class="col-sm-7 control-label dimention" > Height (Inch.):</label>
           <div class="col-sm-5">
-          <input id="height" class="form-control by_keyup_update dimention input_control" type="text">
+          <input id="height" class="form-control by_keyup_update dimention input_control inputs" type="text">
           </div>
           </div> <!-- /.form-group -->
           <div class="form-group">
           <label for="country" class="col-sm-7 control-label">Paper Printing Surface:</label>
           <div class="col-sm-5">
-          <select id='paper_surface' class="form-control input_control" onchange="calculate_cost(this.value)"> 
+          <select id='paper_surface' class="form-control input_control input" onclick="calculate_cost('')"> 
     	  </select>
     	  </div>
     	  </div>
@@ -1933,9 +2121,7 @@ function right(width,height,x){
           <div class="form-group" id="options" >
               <label class="control-label col-sm-7">Options:</label>
               <div class="col-sm-5">
-                  <!-- <label class="radio-inline"></label> -->
                   <button id="file1" onclick="cropImage();" type="button" class="btn social_icon crop"> Crop Image</button>
-                  <!-- <button href="#upload">Change Print Area</button> -->
               </div>
 	      </div>
           
@@ -1952,8 +2138,8 @@ function right(width,height,x){
       <a href='' onclick='price_details();return false;'>Price Details</a>
       </div>
       <div class="text-center addtocartcontainer_popup-button" style="margin-top: 20px;">
-      <a target="_self" class="popup-button2" href="#"> Add To Cart </a>
-      </div>
+      <button onclick="addToCart();" type="button" class="popup-button2"> Add To Cart</button>
+	  </div>
       <div class="addtocartcontainer_popup_details" style="margin-top: 40px;">
       <a href="#">Usually ships in 2-3 days</a>
       </div>
@@ -2083,343 +2269,7 @@ function right(width,height,x){
             </div>
             
                             </div>
-            <div class="tab-pane fade row" id="tab-4" style="margin-top:5px">
-            	<div class="col-md-12">
-				<table class="bor" style="width:100%">
-                <tbody><tr>
-                  <td><a href="javascript:;" class="color1" onclick="javascript:change_wallcolor('#FFFBF8');"></a></td>
-                  <td><a href="javascript:;" class="color2" onclick="javascript:change_wallcolor('#FFFCF7');"></a></td>
-                  <td><a href="javascript:;" class="color3" onclick="javascript:change_wallcolor('#FFFFFF');"></a></td>
-                  <td><a href="javascript:;" class="color4" onclick="javascript:change_wallcolor('#F7FFFF');"></a></td>
-                  <td><a href="javascript:;" class="color5" onclick="javascript:change_wallcolor('#F7F4FF');"></a></td>
-                  <td><a href="javascript:;" class="color6" onclick="javascript:change_wallcolor('#FEF7FF');"></a></td>
-                  <td><a href="javascript:;" class="color7" onclick="javascript:change_wallcolor('#FFF7F6');"></a></td>
-                  <td><a href="javascript:;" class="color8" onclick="javascript:change_wallcolor('#FFFBFF');"></a></td>
-                  <td><a href="javascript:;" class="color9" onclick="javascript:change_wallcolor('#EDDFF0');"></a></td>
-                  <td><a href="javascript:;" class="color10" onclick="javascript:change_wallcolor('#F0DFEF');"></a></td>
-                  <td><a href="javascript:;" class="color11" onclick="javascript:change_wallcolor('#FFDAEF');"></a></td>
-                  <td><a href="javascript:;" class="color12" onclick="javascript:change_wallcolor('#FFDBE7');"></a></td>
-                  <td><a href="javascript:;" class="color13" onclick="javascript:change_wallcolor('#F0DFEF');"></a></td>
-                  <td><a href="javascript:;" class="color14" onclick="javascript:change_wallcolor('#FFDAE7');"></a></td>
-                  <td><a href="javascript:;" class="color15" onclick="javascript:change_wallcolor('#DCE8F4');"></a></td>
-                  <td><a href="javascript:;" class="color16" onclick="javascript:change_wallcolor('#DFE6F8');"></a></td>
-                  <td><a href="javascript:;" class="color17" onclick="javascript:change_wallcolor('#BDB76B');"></a></td>
-                  <td><a href="javascript:;" class="color18" onclick="javascript:change_wallcolor('#FF8C00');"></a></td>
-                  <td><a href="javascript:;" class="color19" onclick="javascript:change_wallcolor('#9932CC');"></a></td>
-                  <td><a href="javascript:;" class="color20" onclick="javascript:change_wallcolor('#E9967A');"></a></td>
-                  <td><a href="javascript:;" class="color21" onclick="javascript:change_wallcolor('#8FBC8F');"></a></td>
-                  <td><a href="javascript:;" class="color22" onclick="javascript:change_wallcolor('#FFD700');"></a></td>
-                  <td><a href="javascript:;" class="color23" onclick="javascript:change_wallcolor('#DAA520');"></a></td>
-                  <td><a href="javascript:;" class="color24" onclick="javascript:change_wallcolor('#008000');"></a></td>
-                  <td><a href="javascript:;" class="color25" onclick="javascript:change_wallcolor('#ADFF2F');"></a></td>
-                  <td><a href="javascript:;" class="color26" onclick="javascript:change_wallcolor('#FF69B4');"></a></td>
-                  <td><a href="javascript:;" class="color27" onclick="javascript:change_wallcolor('#CD5C5C');"></a></td>
-                  <td><a href="javascript:;" class="color28" onclick="javascript:change_wallcolor('#FFFFF0');"></a></td>
-                  <td><a href="javascript:;" class="color29" onclick="javascript:change_wallcolor('#F0E68C');"></a></td>
-                  <td><a href="javascript:;" class="color30" onclick="javascript:change_wallcolor('#E6E6FA');"></a></td>
-                  <td><a href="javascript:;" class="color31" onclick="javascript:change_wallcolor('#FFF0F5');"></a></td>
-                  <td><a href="javascript:;" class="color32" onclick="javascript:change_wallcolor('#7CFC00');"></a></td>
-                  <td><a href="javascript:;" class="color33" onclick="javascript:change_wallcolor('#FFFACD');"></a></td>
-                  <td><a href="javascript:;" class="color34" onclick="javascript:change_wallcolor('#ADD8E6');"></a></td>
-                  <td><a href="javascript:;" class="color35" onclick="javascript:change_wallcolor('#F08080');"></a></td>
-                  <td><a href="javascript:;" class="color36" onclick="javascript:change_wallcolor('#E0FFFF');"></a></td>
-                  <td><a href="javascript:;" class="color37" onclick="javascript:change_wallcolor('#FAFAD2');"></a></td>
-                  <td><a href="javascript:;" class="color38" onclick="javascript:change_wallcolor('#D3D3D3');"></a></td>
-                  <td><a href="javascript:;" class="color39" onclick="javascript:change_wallcolor('#90EE90');"></a></td>
-                  <td><a href="javascript:;" class="color40" onclick="javascript:change_wallcolor('#FFB6C1');"></a></td>
-                  <td><a href="javascript:;" class="color41" onclick="javascript:change_wallcolor('#FFA07A');"></a></td>
-                  <td><a href="javascript:;" class="color42" onclick="javascript:change_wallcolor('#20B2AA');"></a></td>
-                  <td><a href="javascript:;" class="color43" onclick="javascript:change_wallcolor('#87CEFA');"></a></td>
-                  <td><a href="javascript:;" class="color44" onclick="javascript:change_wallcolor('#778899');"></a></td>
-                  <td><a href="javascript:;" class="color45" onclick="javascript:change_wallcolor('#B0C4DE');"></a></td>
-                  <td><a href="javascript:;" class="color46" onclick="javascript:change_wallcolor('#FFFFE0');"></a></td>
-                  <td><a href="javascript:;" class="color47" onclick="javascript:change_wallcolor('#00FF00');"></a></td>
-                  <td><a href="javascript:;" class="color48" onclick="javascript:change_wallcolor('#32CD32');"></a></td>
-                  <td><a href="javascript:;" class="color49" onclick="javascript:change_wallcolor('#FAF0E6');"></a></td>
-                  <td><a href="javascript:;" class="color50" onclick="javascript:change_wallcolor('#FF00FF');"></a></td>
-                  <td><a href="javascript:;" class="color51" onclick="javascript:change_wallcolor('#66CDAA');"></a></td>
-                  <td><a href="javascript:;" class="color52" onclick="javascript:change_wallcolor('#BA55D3');"></a></td>
-                  <td><a href="javascript:;" class="color53" onclick="javascript:change_wallcolor('#9370DB');"></a></td>
-                </tr>
-                <tr>
-                  <td><a href="javascript:;" class="color54" onclick="javascript:change_wallcolor('#3CB371');"></a></td>
-                  <td><a href="javascript:;" class="color55" onclick="javascript:change_wallcolor('#7B68EE');"></a></td>
-                  <td><a href="javascript:;" class="color56" onclick="javascript:change_wallcolor('#00FA9A');"></a></td>
-                  <td><a href="javascript:;" class="color57" onclick="javascript:change_wallcolor('#48D1CC');"></a></td>
-                  <td><a href="javascript:;" class="color58" onclick="javascript:change_wallcolor('#C71585');"></a></td>
-                  <td><a href="javascript:;" class="color59" onclick="javascript:change_wallcolor('#191970');"></a></td>
-                  <td><a href="javascript:;" class="color60" onclick="javascript:change_wallcolor('#F5FFFA');"></a></td>
-                  <td><a href="javascript:;" class="color61" onclick="javascript:change_wallcolor('#FFE4E1');"></a></td>
-                  <td><a href="javascript:;" class="color62" onclick="javascript:change_wallcolor('#FFE4B5');"></a></td>
-                  <td><a href="javascript:;" class="color63" onclick="javascript:change_wallcolor('#FFDEAD');"></a></td>
-                  <td><a href="javascript:;" class="color64" onclick="javascript:change_wallcolor('#FDF5E6');"></a></td>
-                  <td><a href="javascript:;" class="color65" onclick="javascript:change_wallcolor('#808000');"></a></td>
-                  <td><a href="javascript:;" class="color66" onclick="javascript:change_wallcolor('#6B8E23');"></a></td>
-                  <td><a href="javascript:;" class="color67" onclick="javascript:change_wallcolor('#FFA500');"></a></td>
-                  <td><a href="javascript:;" class="color68" onclick="javascript:change_wallcolor('#FF4500');"></a></td>
-                  <td><a href="javascript:;" class="color69" onclick="javascript:change_wallcolor('#DA70D6');"></a></td>
-                  <td><a href="javascript:;" class="color70" onclick="javascript:change_wallcolor('#EEE8AA');"></a></td>
-                  <td><a href="javascript:;" class="color71" onclick="javascript:change_wallcolor('#98FB98');"></a></td>
-                  <td><a href="javascript:;" class="color72" onclick="javascript:change_wallcolor('#AFEEEE');"></a></td>
-                  <td><a href="javascript:;" class="color73" onclick="javascript:change_wallcolor('#DB7093');"></a></td>
-                  <td><a href="javascript:;" class="color74" onclick="javascript:change_wallcolor('#FFEFD5');"></a></td>
-                  <td><a href="javascript:;" class="color75" onclick="javascript:change_wallcolor('#FFDAB9');"></a></td>
-                  <td><a href="javascript:;" class="color76" onclick="javascript:change_wallcolor('#CD853F');"></a></td>
-                  <td><a href="javascript:;" class="color77" onclick="javascript:change_wallcolor('#FFC0CB');"></a></td>
-                  <td><a href="javascript:;" class="color78" onclick="javascript:change_wallcolor('#DDA0DD');"></a></td>
-                  <td><a href="javascript:;" class="color79" onclick="javascript:change_wallcolor('#B0E0E6');"></a></td>
-                  <td><a href="javascript:;" class="color80" onclick="javascript:change_wallcolor('#FF0000');"></a></td>
-                  <td><a href="javascript:;" class="color81" onclick="javascript:change_wallcolor('#FFC0CB');"></a></td>
-                  <td><a href="javascript:;" class="color82" onclick="javascript:change_wallcolor('#BC8F8F');"></a></td>
-                  <td><a href="javascript:;" class="color83" onclick="javascript:change_wallcolor('#4169E1');"></a></td>
-                  <td><a href="javascript:;" class="color84" onclick="javascript:change_wallcolor('#8B4513');"></a></td>
-                  <td><a href="javascript:;" class="color85" onclick="javascript:change_wallcolor('#FA8072');"></a></td>
-                  <td><a href="javascript:;" class="color86" onclick="javascript:change_wallcolor('#F4A460');"></a></td>
-                  <td><a href="javascript:;" class="color87" onclick="javascript:change_wallcolor('#2E8B57');"></a></td>
-                  <td><a href="javascript:;" class="color88" onclick="javascript:change_wallcolor('#FFF5EE');"></a></td>
-                  <td><a href="javascript:;" class="color89" onclick="javascript:change_wallcolor('#A0522D');"></a></td>
-                  <td><a href="javascript:;" class="color90" onclick="javascript:change_wallcolor('#C0C0C0');"></a></td>
-                  <td><a href="javascript:;" class="color91" onclick="javascript:change_wallcolor('#87CEEB');"></a></td>
-                  <td><a href="javascript:;" class="color92" onclick="javascript:change_wallcolor('#6A5ACD');"></a></td>
-                  <td><a href="javascript:;" class="color93" onclick="javascript:change_wallcolor('#708090');"></a></td>
-                  <td><a href="javascript:;" class="color94" onclick="javascript:change_wallcolor('#00FF7F');"></a></td>
-                  <td><a href="javascript:;" class="color95" onclick="javascript:change_wallcolor('#D2B48C');"></a></td>
-                  <td><a href="javascript:;" class="color96" onclick="javascript:change_wallcolor('#008080');"></a></td>
-                  <td><a href="javascript:;" class="color97" onclick="javascript:change_wallcolor('#D8BFD8');"></a></td>
-                  <td><a href="javascript:;" class="color98" onclick="javascript:change_wallcolor('#FF6347');"></a></td>
-                  <td><a href="javascript:;" class="color99" onclick="javascript:change_wallcolor('#40E0D0');"></a></td>
-                  <td><a href="javascript:;" class="color100" onclick="javascript:change_wallcolor('#EE82EE');"></a></td>
-                  <td><a href="javascript:;" class="color101" onclick="javascript:change_wallcolor('#F5DEB3');"></a></td>
-                  <td><a href="javascript:;" class="color102" onclick="javascript:change_wallcolor('#FFFFFF');"></a></td>
-                  <td><a href="javascript:;" class="color103" onclick="javascript:change_wallcolor('#F5F5F5');"></a></td>
-                  <td><a href="javascript:;" class="color104" onclick="javascript:change_wallcolor('#FFFF00');"></a></td>
-                  <td><a href="javascript:;" class="color105" onclick="javascript:change_wallcolor('#9ACD32');"></a></td>
-                  <td><a href="javascript:;" class="color106" onclick="javascript:change_wallcolor('#B0171F');"></a></td>
-                </tr>
-                <tr>
-                  <td><a href="javascript:;" class="color107" onclick="javascript:change_wallcolor('#DC143C');"></a></td>
-                  <td><a href="javascript:;" class="color108" onclick="javascript:change_wallcolor('#FFAEB9');"></a></td>
-                  <td><a href="javascript:;" class="color109" onclick="javascript:change_wallcolor('#EEA2AD');"></a></td>
-                  <td><a href="javascript:;" class="color110" onclick="javascript:change_wallcolor('#CD8C95');"></a></td>
-                  <td><a href="javascript:;" class="color111" onclick="javascript:change_wallcolor('#8B5F65');"></a></td>
-                  <td><a href="javascript:;" class="color112" onclick="javascript:change_wallcolor('#FFB5C5');"></a></td>
-                  <td><a href="javascript:;" class="color113" onclick="javascript:change_wallcolor('#EEA9B8');"></a></td>
-                  <td><a href="javascript:;" class="color114" onclick="javascript:change_wallcolor('#CD919E');"></a></td>
-                  <td><a href="javascript:;" class="color115" onclick="javascript:change_wallcolor('#8B636C');"></a></td>
-                  <td><a href="javascript:;" class="color116" onclick="javascript:change_wallcolor('#FF82AB');"></a></td>
-                  <td><a href="javascript:;" class="color117" onclick="javascript:change_wallcolor('#EE799F');"></a></td>
-                  <td><a href="javascript:;" class="color118" onclick="javascript:change_wallcolor('#CD6889');"></a></td>
-                  <td><a href="javascript:;" class="color119" onclick="javascript:change_wallcolor('#8B475D');"></a></td>
-                  <td><a href="javascript:;" class="color120" onclick="javascript:change_wallcolor('#EEE0E5');"></a></td>
-                  <td><a href="javascript:;" class="color121" onclick="javascript:change_wallcolor('#CDC1C5');"></a></td>
-                  <td><a href="javascript:;" class="color122" onclick="javascript:change_wallcolor('#8B8386');"></a></td>
-                  <td><a href="javascript:;" class="color123" onclick="javascript:change_wallcolor('#FF3E96');"></a></td>
-                  <td><a href="javascript:;" class="color124" onclick="javascript:change_wallcolor('#EE3A8C');"></a></td>
-                  <td><a href="javascript:;" class="color125" onclick="javascript:change_wallcolor('#CD3278');"></a></td>
-                  <td><a href="javascript:;" class="color126" onclick="javascript:change_wallcolor('#8B2252');"></a></td>
-                  <td><a href="javascript:;" class="color127" onclick="javascript:change_wallcolor('#FF6EB4');"></a></td>
-                  <td><a href="javascript:;" class="color128" onclick="javascript:change_wallcolor('#EE6AA7');"></a></td>
-                  <td><a href="javascript:;" class="color129" onclick="javascript:change_wallcolor('#CD6090');"></a></td>
-                  <td><a href="javascript:;" class="color130" onclick="javascript:change_wallcolor('#8B3A62');"></a></td>
-                  <td><a href="javascript:;" class="color131" onclick="javascript:change_wallcolor('#872657');"></a></td>
-                  <td><a href="javascript:;" class="color132" onclick="javascript:change_wallcolor('#FF1493');"></a></td>
-                  <td><a href="javascript:;" class="color133" onclick="javascript:change_wallcolor('#EE1289');"></a></td>
-                  <td><a href="javascript:;" class="color134" onclick="javascript:change_wallcolor('#CD1076');"></a></td>
-                  <td><a href="javascript:;" class="color135" onclick="javascript:change_wallcolor('#8B0A50');"></a></td>
-                  <td><a href="javascript:;" class="color136" onclick="javascript:change_wallcolor('#FF34B3');"></a></td>
-                  <td><a href="javascript:;" class="color137" onclick="javascript:change_wallcolor('#EE30A7');"></a></td>
-                  <td><a href="javascript:;" class="color138" onclick="javascript:change_wallcolor('#CD2990');"></a></td>
-                  <td><a href="javascript:;" class="color139" onclick="javascript:change_wallcolor('#8B1C62');"></a></td>
-                  <td><a href="javascript:;" class="color140" onclick="javascript:change_wallcolor('#C71585');"></a></td>
-                  <td><a href="javascript:;" class="color141" onclick="javascript:change_wallcolor('#D02090');"></a></td>
-                  <td><a href="javascript:;" class="color142" onclick="javascript:change_wallcolor('#FF83FA');"></a></td>
-                  <td><a href="javascript:;" class="color143" onclick="javascript:change_wallcolor('#EE7AE9');"></a></td>
-                  <td><a href="javascript:;" class="color144" onclick="javascript:change_wallcolor('#CD69C9');"></a></td>
-                  <td><a href="javascript:;" class="color145" onclick="javascript:change_wallcolor('#8B4789');"></a></td>
-                  <td><a href="javascript:;" class="color146" onclick="javascript:change_wallcolor('#FFE1FF');"></a></td>
-                  <td><a href="javascript:;" class="color147" onclick="javascript:change_wallcolor('#EED2EE');"></a></td>
-                  <td><a href="javascript:;" class="color148" onclick="javascript:change_wallcolor('#CDB5CD');"></a></td>
-                  <td><a href="javascript:;" class="color149" onclick="javascript:change_wallcolor('#8B7B8B');"></a></td>
-                  <td><a href="javascript:;" class="color150" onclick="javascript:change_wallcolor('#FFBBFF');"></a></td>
-                  <td><a href="javascript:;" class="color151" onclick="javascript:change_wallcolor('#EEAEEE');"></a></td>
-                  <td><a href="javascript:;" class="color152" onclick="javascript:change_wallcolor('#CD96CD');"></a></td>
-                  <td><a href="javascript:;" class="color153" onclick="javascript:change_wallcolor('#8B668B');"></a></td>
-                  <td><a href="javascript:;" class="color154" onclick="javascript:change_wallcolor('#EE00EE');"></a></td>
-                  <td><a href="javascript:;" class="color155" onclick="javascript:change_wallcolor('#CD00CD');"></a></td>
-                  <td><a href="javascript:;" class="color156" onclick="javascript:change_wallcolor('#8B008B');"></a></td>
-                  <td><a href="javascript:;" class="color157" onclick="javascript:change_wallcolor('#800080');"></a></td>
-                  <td><a href="javascript:;" class="color158" onclick="javascript:change_wallcolor('#E066FF');"></a></td>
-                  <td><a href="javascript:;" class="color159" onclick="javascript:change_wallcolor('#D15FEE');"></a></td>
-                </tr>
-                <tr>
-                  <td><a href="javascript:;" class="color160" onclick="javascript:change_wallcolor('#B452CD');"></a></td>
-                  <td><a href="javascript:;" class="color161" onclick="javascript:change_wallcolor('#7A378B');"></a></td>
-                  <td><a href="javascript:;" class="color162" onclick="javascript:change_wallcolor('#9400D3');"></a></td>
-                  <td><a href="javascript:;" class="color163" onclick="javascript:change_wallcolor('#BF3EFF');"></a></td>
-                  <td><a href="javascript:;" class="color164" onclick="javascript:change_wallcolor('#B23AEE');"></a></td>
-                  <td><a href="javascript:;" class="color165" onclick="javascript:change_wallcolor('#9A32CD');"></a></td>
-                  <td><a href="javascript:;" class="color166" onclick="javascript:change_wallcolor('#68228B');"></a></td>
-                  <td><a href="javascript:;" class="color167" onclick="javascript:change_wallcolor('#4B0082');"></a></td>
-                  <td><a href="javascript:;" class="color168" onclick="javascript:change_wallcolor('#8A2BE2');"></a></td>
-                  <td><a href="javascript:;" class="color169" onclick="javascript:change_wallcolor('#9B30FF');"></a></td>
-                  <td><a href="javascript:;" class="color170" onclick="javascript:change_wallcolor('#912CEE');"></a></td>
-                  <td><a href="javascript:;" class="color171" onclick="javascript:change_wallcolor('#7D26CD');"></a></td>
-                  <td><a href="javascript:;" class="color172" onclick="javascript:change_wallcolor('#551A8B');"></a></td>
-                  <td><a href="javascript:;" class="color173" onclick="javascript:change_wallcolor('#AB82FF');"></a></td>
-                  <td><a href="javascript:;" class="color174" onclick="javascript:change_wallcolor('#9F79EE');"></a></td>
-                  <td><a href="javascript:;" class="color175" onclick="javascript:change_wallcolor('#8968CD');"></a></td>
-                  <td><a href="javascript:;" class="color176" onclick="javascript:change_wallcolor('#5D478B');"></a></td>
-                  <td><a href="javascript:;" class="color177" onclick="javascript:change_wallcolor('#483D8B');"></a></td>
-                  <td><a href="javascript:;" class="color178" onclick="javascript:change_wallcolor('#8470FF');"></a></td>
-                  <td><a href="javascript:;" class="color179" onclick="javascript:change_wallcolor('#836FFF');"></a></td>
-                  <td><a href="javascript:;" class="color180" onclick="javascript:change_wallcolor('#7A67EE');"></a></td>
-                  <td><a href="javascript:;" class="color181" onclick="javascript:change_wallcolor('#6959CD');"></a></td>
-                  <td><a href="javascript:;" class="color182" onclick="javascript:change_wallcolor('#473C8B');"></a></td>
-                  <td><a href="javascript:;" class="color183" onclick="javascript:change_wallcolor('#F8F8FF');"></a></td>
-                  <td><a href="javascript:;" class="color184" onclick="javascript:change_wallcolor('#0000FF');"></a></td>
-                  <td><a href="javascript:;" class="color185" onclick="javascript:change_wallcolor('#0000EE');"></a></td>
-                  <td><a href="javascript:;" class="color186" onclick="javascript:change_wallcolor('#0000CD');"></a></td>
-                  <td><a href="javascript:;" class="color187" onclick="javascript:change_wallcolor('#00008B');"></a></td>
-                  <td><a href="javascript:;" class="color188" onclick="javascript:change_wallcolor('#000080');"></a></td>
-                  <td><a href="javascript:;" class="color189" onclick="javascript:change_wallcolor('#3D59AB');"></a></td>
-                  <td><a href="javascript:;" class="color190" onclick="javascript:change_wallcolor('#4876FF');"></a></td>
-                  <td><a href="javascript:;" class="color191" onclick="javascript:change_wallcolor('#436EEE');"></a></td>
-                  <td><a href="javascript:;" class="color192" onclick="javascript:change_wallcolor('#3A5FCD');"></a></td>
-                  <td><a href="javascript:;" class="color193" onclick="javascript:change_wallcolor('#27408B');"></a></td>
-                  <td><a href="javascript:;" class="color194" onclick="javascript:change_wallcolor('#6495ED');"></a></td>
-                  <td><a href="javascript:;" class="color195" onclick="javascript:change_wallcolor('#CAE1FF');"></a></td>
-                  <td><a href="javascript:;" class="color196" onclick="javascript:change_wallcolor('#BCD2EE');"></a></td>
-                  <td><a href="javascript:;" class="color197" onclick="javascript:change_wallcolor('#A2B5CD');"></a></td>
-                  <td><a href="javascript:;" class="color198" onclick="javascript:change_wallcolor('#6E7B8B');"></a></td>
-                  <td><a href="javascript:;" class="color199" onclick="javascript:change_wallcolor('#C6E2FF');"></a></td>
-                  <td><a href="javascript:;" class="color200" onclick="javascript:change_wallcolor('#B9D3EE');"></a></td>
-                  <td><a href="javascript:;" class="color201" onclick="javascript:change_wallcolor('#9FB6CD');"></a></td>
-                  <td><a href="javascript:;" class="color202" onclick="javascript:change_wallcolor('#6C7B8B');"></a></td>
-                  <td><a href="javascript:;" class="color203" onclick="javascript:change_wallcolor('#1E90FF');"></a></td>
-                  <td><a href="javascript:;" class="color204" onclick="javascript:change_wallcolor('#1C86EE');"></a></td>
-                  <td><a href="javascript:;" class="color205" onclick="javascript:change_wallcolor('#1874CD');"></a></td>
-                  <td><a href="javascript:;" class="color206" onclick="javascript:change_wallcolor('#104E8B');"></a></td>
-                  <td><a href="javascript:;" class="color207" onclick="javascript:change_wallcolor('#F0F8FF');"></a></td>
-                  <td><a href="javascript:;" class="color208" onclick="javascript:change_wallcolor('#4682B4');"></a></td>
-                  <td><a href="javascript:;" class="color209" onclick="javascript:change_wallcolor('#63B8FF');"></a></td>
-                  <td><a href="javascript:;" class="color210" onclick="javascript:change_wallcolor('#5CACEE');"></a></td>
-                  <td><a href="javascript:;" class="color211" onclick="javascript:change_wallcolor('#4F94CD');"></a></td>
-                  <td><a href="javascript:;" class="color212" onclick="javascript:change_wallcolor('#36648B');"></a></td>
-                </tr>
-                <tr>
-                  <td><a href="javascript:;" class="color213" onclick="javascript:change_wallcolor('#B0E2FF');"></a></td>
-                  <td><a href="javascript:;" class="color214" onclick="javascript:change_wallcolor('#A4D3EE');"></a></td>
-                  <td><a href="javascript:;" class="color215" onclick="javascript:change_wallcolor(#8DB6CD'');"></a></td>
-                  <td><a href="javascript:;" class="color216" onclick="javascript:change_wallcolor('#607B8B');"></a></td>
-                  <td><a href="javascript:;" class="color217" onclick="javascript:change_wallcolor('#87CEFF');"></a></td>
-                  <td><a href="javascript:;" class="color218" onclick="javascript:change_wallcolor('#7EC0EE');"></a></td>
-                  <td><a href="javascript:;" class="color219" onclick="javascript:change_wallcolor('#6CA6CD');"></a></td>
-                  <td><a href="javascript:;" class="color220" onclick="javascript:change_wallcolor('#4A708B');"></a></td>
-                  <td><a href="javascript:;" class="color221" onclick="javascript:change_wallcolor('#00BFFF');"></a></td>
-                  <td><a href="javascript:;" class="color222" onclick="javascript:change_wallcolor('#00B2EE');"></a></td>
-                  <td><a href="javascript:;" class="color223" onclick="javascript:change_wallcolor('#009ACD');"></a></td>
-                  <td><a href="javascript:;" class="color224" onclick="javascript:change_wallcolor('#33A1C9');"></a></td>
-                  <td><a href="javascript:;" class="color225" onclick="javascript:change_wallcolor('#BFEFFF');"></a></td>
-                  <td><a href="javascript:;" class="color226" onclick="javascript:change_wallcolor('#B2DFEE');"></a></td>
-                  <td><a href="javascript:;" class="color227" onclick="javascript:change_wallcolor('#9AC0CD');"></a></td>
-                  <td><a href="javascript:;" class="color228" onclick="javascript:change_wallcolor('#68838B');"></a></td>
-                  <td><a href="javascript:;" class="color229" onclick="javascript:change_wallcolor('#98F5FF');"></a></td>
-                  <td><a href="javascript:;" class="color230" onclick="javascript:change_wallcolor('#8EE5EE');"></a></td>
-                  <td><a href="javascript:;" class="color231" onclick="javascript:change_wallcolor('#7AC5CD');"></a></td>
-                  <td><a href="javascript:;" class="color232" onclick="javascript:change_wallcolor('#53868B');"></a></td>
-                  <td><a href="javascript:;" class="color233" onclick="javascript:change_wallcolor('#00F5FF');"></a></td>
-                  <td><a href="javascript:;" class="color234" onclick="javascript:change_wallcolor('#00E5EE');"></a></td>
-                  <td><a href="javascript:;" class="color235" onclick="javascript:change_wallcolor('#00C5CD');"></a></td>
-                  <td><a href="javascript:;" class="color236" onclick="javascript:change_wallcolor('#00868B');"></a></td>
-                  <td><a href="javascript:;" class="color237" onclick="javascript:change_wallcolor('#5F9EA0');"></a></td>
-                  <td><a href="javascript:;" class="color238" onclick="javascript:change_wallcolor('#00CED1');"></a></td>
-                  <td><a href="javascript:;" class="color239" onclick="javascript:change_wallcolor('#F0FFFF');"></a></td>
-                  <td><a href="javascript:;" class="color240" onclick="javascript:change_wallcolor('#E0EEEE');"></a></td>
-                  <td><a href="javascript:;" class="color241" onclick="javascript:change_wallcolor('#C1CDCD');"></a></td>
-                  <td><a href="javascript:;" class="color242" onclick="javascript:change_wallcolor('#838B8B');"></a></td>
-                  <td><a href="javascript:;" class="color243" onclick="javascript:change_wallcolor('#00688B');"></a></td>
-                  <td><a href="javascript:;" class="color244" onclick="javascript:change_wallcolor('#000000');"></a></td>
-                  <td><a href="javascript:;" class="color245" onclick="javascript:change_wallcolor('#B4CDCD');"></a></td>
-                  <td><a href="javascript:;" class="color246" onclick="javascript:change_wallcolor('#7A8B8B');"></a></td>
-                  <td><a href="javascript:;" class="color247" onclick="javascript:change_wallcolor('#BBFFFF');"></a></td>
-                  <td><a href="javascript:;" class="color248" onclick="javascript:change_wallcolor('#AEEEEE');"></a></td>
-                  <td><a href="javascript:;" class="color249" onclick="javascript:change_wallcolor('#96CDCD');"></a></td>
-                  <td><a href="javascript:;" class="color250" onclick="javascript:change_wallcolor('#668B8B');"></a></td>
-                  <td><a href="javascript:;" class="color251" onclick="javascript:change_wallcolor('#2F4F4F');"></a></td>
-                  <td><a href="javascript:;" class="color252" onclick="javascript:change_wallcolor('#97FFFF');"></a></td>
-                  <td><a href="javascript:;" class="color253" onclick="javascript:change_wallcolor('#8DEEEE');"></a></td>
-                  <td><a href="javascript:;" class="color254" onclick="javascript:change_wallcolor('#79CDCD');"></a></td>
-                  <td><a href="javascript:;" class="color255" onclick="javascript:change_wallcolor('#528B8B');"></a></td>
-                  <td><a href="javascript:;" class="color256" onclick="javascript:change_wallcolor('#00FFFF');"></a></td>
-                  <td><a href="javascript:;" class="color257" onclick="javascript:change_wallcolor('#00EEEE');"></a></td>
-                  <td><a href="javascript:;" class="color258" onclick="javascript:change_wallcolor('#00CDCD');"></a></td>
-                  <td><a href="javascript:;" class="color259" onclick="javascript:change_wallcolor('#008B8B');"></a></td>
-                  <td><a href="javascript:;" class="color260" onclick="javascript:change_wallcolor('#03A89E');"></a></td>
-                  <td><a href="javascript:;" class="color261" onclick="javascript:change_wallcolor('#808A87');"></a></td>
-                  <td><a href="javascript:;" class="color262" onclick="javascript:change_wallcolor('#00C78C');"></a></td>
-                  <td><a href="javascript:;" class="color263" onclick="javascript:change_wallcolor('#7FFFD4');"></a></td>
-                  <td><a href="javascript:;" class="color264" onclick="javascript:change_wallcolor('#76EEC6');"></a></td>
-                  <td><a href="javascript:;" class="color265" onclick="javascript:change_wallcolor('#00EE76');"></a></td>
-                </tr>
-                <tr>
-                  <td><a href="javascript:;" class="color266" onclick="javascript:change_wallcolor('#00CD66');"></a></td>
-                  <td><a href="javascript:;" class="color267" onclick="javascript:change_wallcolor('#008B45');"></a></td>
-                  <td><a href="javascript:;" class="color268" onclick="javascript:change_wallcolor('#54FF9F');"></a></td>
-                  <td><a href="javascript:;" class="color269" onclick="javascript:change_wallcolor('#4EEE94');"></a></td>
-                  <td><a href="javascript:;" class="color270" onclick="javascript:change_wallcolor('#43CD80');"></a></td>
-                  <td><a href="javascript:;" class="color271" onclick="javascript:change_wallcolor('#00C957');"></a></td>
-                  <td><a href="javascript:;" class="color272" onclick="javascript:change_wallcolor('#BDFCC9');"></a></td>
-                  <td><a href="javascript:;" class="color273" onclick="javascript:change_wallcolor('#3D9140');"></a></td>
-                  <td><a href="javascript:;" class="color274" onclick="javascript:change_wallcolor('#F0FFF0');"></a></td>
-                  <td><a href="javascript:;" class="color275" onclick="javascript:change_wallcolor('#E0EEE0');"></a></td>
-                  <td><a href="javascript:;" class="color276" onclick="javascript:change_wallcolor('#C1CDC1');"></a></td>
-                  <td><a href="javascript:;" class="color277" onclick="javascript:change_wallcolor('#838B83');"></a></td>
-                  <td><a href="javascript:;" class="color278" onclick="javascript:change_wallcolor('#C1FFC1');"></a></td>
-                  <td><a href="javascript:;" class="color279" onclick="javascript:change_wallcolor('#B4EEB4');"></a></td>
-                  <td><a href="javascript:;" class="color280" onclick="javascript:change_wallcolor('#9BCD9B');"></a></td>
-                  <td><a href="javascript:;" class="color281" onclick="javascript:change_wallcolor('#698B69');"></a></td>
-                  <td><a href="javascript:;" class="color282" onclick="javascript:change_wallcolor('#9AFF9A');"></a></td>
-                  <td><a href="javascript:;" class="color283" onclick="javascript:change_wallcolor('#7CCD7C');"></a></td>
-                  <td><a href="javascript:;" class="color284" onclick="javascript:change_wallcolor('#548B54');"></a></td>
-                  <td><a href="javascript:;" class="color285" onclick="javascript:change_wallcolor('#228B22');"></a></td>
-                  <td><a href="javascript:;" class="color286" onclick="javascript:change_wallcolor('#00EE00');"></a></td>
-                  <td><a href="javascript:;" class="color287" onclick="javascript:change_wallcolor('#00CD00');"></a></td>
-                  <td><a href="javascript:;" class="color288" onclick="javascript:change_wallcolor('#008B00');"></a></td>
-                  <td><a href="javascript:;" class="color289" onclick="javascript:change_wallcolor('#006400');"></a></td>
-                  <td><a href="javascript:;" class="color290" onclick="javascript:change_wallcolor('#308014');"></a></td>
-                  <td><a href="javascript:;" class="color291" onclick="javascript:change_wallcolor('#7FFF00');"></a></td>
-                  <td><a href="javascript:;" class="color292" onclick="javascript:change_wallcolor('#76EE00');"></a></td>
-                  <td><a href="javascript:;" class="color293" onclick="javascript:change_wallcolor('#66CD00');"></a></td>
-                  <td><a href="javascript:;" class="color294" onclick="javascript:change_wallcolor('#458B00');"></a></td>
-                  <td><a href="javascript:;" class="color295" onclick="javascript:change_wallcolor('#CAFF70');"></a></td>
-                  <td><a href="javascript:;" class="color296" onclick="javascript:change_wallcolor('#BCEE68');"></a></td>
-                  <td><a href="javascript:;" class="color297" onclick="javascript:change_wallcolor('#A2CD5A');"></a></td>
-                  <td><a href="javascript:;" class="color298" onclick="javascript:change_wallcolor('#6E8B3D');"></a></td>
-                  <td><a href="javascript:;" class="color299" onclick="javascript:change_wallcolor('#556B2F');"></a></td>
-                  <td><a href="javascript:;" class="color300" onclick="javascript:change_wallcolor('#C0FF3E');"></a></td>
-                  <td><a href="javascript:;" class="color301" onclick="javascript:change_wallcolor('#B3EE3A');"></a></td>
-                  <td><a href="javascript:;" class="color302" onclick="javascript:change_wallcolor('#458B74');"></a></td>
-                  <td><a href="javascript:;" class="color303" onclick="javascript:change_wallcolor('#698B22');"></a></td>
-                  <td><a href="javascript:;" class="color304" onclick="javascript:change_wallcolor('#EEEEE0');"></a></td>
-                  <td><a href="javascript:;" class="color305" onclick="javascript:change_wallcolor('#CDCDC1');"></a></td>
-                  <td><a href="javascript:;" class="color306" onclick="javascript:change_wallcolor('#8B8B83');"></a></td>
-                  <td><a href="javascript:;" class="color307" onclick="javascript:change_wallcolor('#F5F5DC');"></a></td>
-                  <td><a href="javascript:;" class="color308" onclick="javascript:change_wallcolor('#EEEED1');"></a></td>
-                  <td><a href="javascript:;" class="color309" onclick="javascript:change_wallcolor('#CDCDB4');"></a></td>
-                  <td><a href="javascript:;" class="color310" onclick="javascript:change_wallcolor('#8B8B7A');"></a></td>
-                  <td><a href="javascript:;" class="color311" onclick="javascript:change_wallcolor('#EEEE00');"></a></td>
-                  <td><a href="javascript:;" class="color312" onclick="javascript:change_wallcolor('#CDCD00');"></a></td>
-                  <td><a href="javascript:;" class="color313" onclick="javascript:change_wallcolor('#8B8B00');"></a></td>
-                  <td><a href="javascript:;" class="color314" onclick="javascript:change_wallcolor('#808069');"></a></td>
-                  <td><a href="javascript:;" class="color315" onclick="javascript:change_wallcolor('#FFF68F');"></a></td>
-                  <td><a href="javascript:;" class="color316" onclick="javascript:change_wallcolor('#EEE685');"></a></td>
-                  <td><a href="javascript:;" class="color317" onclick="javascript:change_wallcolor('#CDC673');"></a></td>
-                  <td><a href="javascript:;" class="color318" onclick="javascript:change_wallcolor('#000000');"></a></td>
-                </tr>
-              </tbody></table>
-                                
-                </div>
-            </div>
+            
             <div class="tab-pane fade" id="tab-5" style="margin-top:5px">
             <div class="product-detail-content col-md-12">
             <div class="carousel carousel-showmanymoveone slide" id="itemslider4">
@@ -2619,7 +2469,7 @@ function right(width,height,x){
             </ul>
             <div class="addtocartcontainer_footer">
 	            <p>Already have an account?</p>
-                <p><a href="" onclick=" login('');return false;">Login here</a></p>
+                <p><a href="" onclick="login('');return false;">Login here</a></p>
                 <p class="text-center">or</p>
             </div>
             <p class="text-center"><a href="#"><img src="../../../assets/img/photostoart_inner/facbook.jpg" style="margin-bottom:10px"></a></p>

@@ -2050,23 +2050,30 @@ $bordered_ac_srface='Giclee Print ';
 		  <img src="http://static.mahattaart.com/398/<?=$image_name;?>">
 		  </div>
 		  
-          <div class="divimg mainhor" id="frame-it" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/Absolute Black.jpg') 57 57 57 57 round round;  border-style: solid;  border-width: 20px;  margin-top: 20px;  margin-bottom:20px;  padding: 0;  width: auto;">
+          <div class="divimg mainhor" id="frame-it" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/Absolute Black.jpg') 57 57 57 57 round round;
+  border-style: solid;
+  border-width: 20px;
+  margin-top: 20px;
+  padding: 0;
+  width: auto;">
             <?php }?>
+			
+			
             <div id="abc" style="background:url('<?=base_url()?>images/uploaded_pdf/mount/DR 2091.jpg')  0% 0% / cover no-repeat;width:auto;padding:10px; background-attachment:scroll; position: relative; z-index: 1;">
               <div id="fir">
                
                       <div id="topa2"> <a href="javascript:"
                                     id="demo2" class="imglink">
                         <?php if ($f_shape=='Slim'){?>
-                        <img src="http://static.mahattaart.com/398/<?=$image_name;?>" alt="frame" class="img-responsive" />
+                        <img src="http://static.mahattaart.com/398/<?=$image_name;?>" alt="frame" width="140"  height="381" />
                         <?php }elseif ($f_shape=='Horizontal' ){?>
-                        <img src="http://static.mahattaart.com/398/<?=$image_name;?>" alt="frame" class="img-responsive" />
+                        <img src="http://static.mahattaart.com/398/<?=$image_name;?>" alt="frame"  width="376" height="250" />
                         <?php }else if ($f_shape=='Vertical' ){?>
-                        <img src="http://static.mahattaart.com/398/<?=$image_name;?>" alt="frame" class="img-responsive" />
+                        <img src="http://static.mahattaart.com/398/<?=$image_name;?>" alt="frame"  style="width:100%"  height="380" />
                         <?php }else if ($f_shape=='Square'){?>
-                        <img src="http://static.mahattaart.com/398/<?=$image_name;?>" alt="frame" class="img-responsive" />
+                        <img src="http://static.mahattaart.com/398/<?=$image_name;?>" alt="frame"  width="261" height="260" />
                         <?php }else if ($f_shape=='Panoramic' ){?>
-                        <img src="http://static.mahattaart.com/398/<?=$image_name;?>" alt="frame" class="img-responsive" />
+                        <img src="http://static.mahattaart.com/398/<?=$image_name;?>" alt="frame"   width="381"  height="140"  />
                         <?php }?>
                         <input type="hidden" value="<?php print $img_details->images_id;?>" id="imag_id"/>
                         <input type="hidden" id="frame_id"/>
@@ -2084,11 +2091,9 @@ $bordered_ac_srface='Giclee Print ';
           </div>
        
         
-          
-        </div>
-        <div class="otherlinks text-center"> 
-        <a id="large" alt="Single Image" href="javascript:;"  onclick="large_images('','','');"> Larger Image</a>| <a href="javascript:;" onClick="room_view('','','');">Room View</a>  
+          <div class="otherlinks" style="text-align:left"> <a id="large" alt="Single Image" href="javascript:;"  onclick="large_images('','','');"> Larger Image</a>| <a href="javascript:;" target="_black" onClick="room_view('','','');">Room View</a>  
 		 </div>
+        </div>
         
         <!--BOTTOM TABS FOR CONTROL-->
         
@@ -2484,7 +2489,7 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
           <ul id="tabs" class="col-md-8" style="margin-bottom:0">
             <li><a href="javascript:" onClick="hide();showTable('Basic');" name="tab7" id="fr1">FRAMES </a></li>
             <li><a href="javascript:onc" onClick="hide();show_mat('');" name="tab8" id="ma1">Mount</a></li>
-            <li><a href="#tab10" onClick="slide_show_hide();" name="tab3" id="ac1">Glass</a></li>
+            <li><a href="#" onClick="slide_show_hide();" name="tab3" id="ac1">Glass</a></li>
             <!-- <li><a href="#" name="tab4" id="cr1">Cropping</a></li>-->
             <li><a href="#" onClick="slide_show_hide();" name="tab5" id="wa1">Wall Color frames </a></li>
           </ul>
@@ -2525,8 +2530,10 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
               <div class="col-md-2 col-sm-2 col-xs-3"><div id="content">
               
                 <div id="tab7" style="display:block;">
-                    <input type="hidden" value="" class="for_check_printor_frame" />
-                      <h4 class="choose-colors"> Select frame style</h4>
+                  <table border="0" cellspacing="0" cellpadding="0" class="table">
+                    <tr>
+                    <td><input type="hidden" value="" class="for_check_printor_frame" /></td>
+                      <td><h4 class="choose-colors"> Select frame style</h4>
                         <ul class="choose-colors-type">
                         <?php
                         //print_r($frame_cat);
@@ -2569,6 +2576,10 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
                         }
                         ?>
                         </ul>
+                        </td>
+                    </tr>
+                  </table>
+                  
                 </div>
                 
       
@@ -2775,13 +2786,18 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
         <ul>
         <li> 
          Protect prints from protects dust and scratches 
+        
+        
+          <span style="padding-left:300px;">   <input name="normal" type="checkbox" id="unchkforacrylic"  onclick="return change_glass(this.value);" value="Regular" class="example"/>
+            Regular Glass  </span> 
+          
          </li>
         </ul>
          <h4 class="choose-colors"> Acrylic Glass   </h4>
          
         <ul>
         <li> Lightweight, Transparent, Shatter- resistance 
-             
+            <span style="padding-left:300px;">   <input name="arcylic" type="checkbox" id="unchkfornormal"  onclick="return change_glass(this.value);" value="Acrylic" class="example"/>Acrylic Glass  </span> 
          </li>
         </ul>
       
@@ -2852,23 +2868,9 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
                 </div>
                 
       </div></div>
-      <div id="tab10" class="col-md-10 col-sm-10 col-xs-10">
-      	<table>
-        	<tr>
-            	<td style="margin-top: 40px;display: block;">
-	                <input name="normal" type="checkbox" id="unchkforacrylic"  onclick="return change_glass(this.value);" value="Regular" class="example"/> Regular Glass
-                </td>
-            </tr>
-        	<tr>
-            	<td style="margin-top: 45px;display: block;">
-	                <input name="arcylic" type="checkbox" id="unchkfornormal"  onclick="return change_glass(this.value);" value="Acrylic" class="example"/> Acrylic Glass
-                </td>
-            </tr>
-        </table>
-      </div>
       <div id="tab5" style="display:none;" class="col-md-12 col-sm-12 col-xs-12">
                   <table class="bor table">
-                      <tr>
+                    <tr>
                       <td><a href="javascript:;" class="color1" onClick="javascript:change_wallcolor('#FFFBF8');"></a></td>
                       <td><a href="javascript:;" class="color2" onClick="javascript:change_wallcolor('#FFFCF7');"></a></td>
                       <td><a href="javascript:;" class="color3" onClick="javascript:change_wallcolor('#FFFFFF');"></a></td>
@@ -2922,271 +2924,25 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
                       <td><a href="javascript:;" class="color51" onClick="javascript:change_wallcolor('#66CDAA');"></a></td>
                       <td><a href="javascript:;" class="color52" onClick="javascript:change_wallcolor('#BA55D3');"></a></td>
                       <td><a href="javascript:;" class="color53" onClick="javascript:change_wallcolor('#9370DB');"></a></td>
-                        <td><a href="javascript:;" class="color54" onClick="javascript:change_wallcolor('#3CB371');"></a></td>
-                        <td><a href="javascript:;" class="color55" onClick="javascript:change_wallcolor('#7B68EE');"></a></td>
-                        <td><a href="javascript:;"class="color56" onClick="javascript:change_wallcolor('#00FA9A');"></a></td>
-                        <td><a href="javascript:;" class="color57" onClick="javascript:change_wallcolor('#48D1CC');"></a></td>
-                        <td><a href="javascript:;" class="color58" onClick="javascript:change_wallcolor('#C71585');"></a></td>
-                        <td><a href="javascript:;" class="color59" onClick="javascript:change_wallcolor('#191970');"></a></td>
-                        <td><a href="javascript:;" class="color60" onClick="javascript:change_wallcolor('#F5FFFA');"></a></td>
-                        <td><a href="javascript:;" class="color61" onClick="javascript:change_wallcolor('#FFE4E1');"></a></td>
-                        <td><a href="javascript:;" class="color62" onClick="javascript:change_wallcolor('#FFE4B5');"></a></td>
-                        <td><a href="javascript:;" class="color63" onClick="javascript:change_wallcolor('#FFDEAD');"></a></td>
-                        <td><a href="javascript:;" class="color64" onClick="javascript:change_wallcolor('#FDF5E6');"></a></td>
-                        <td><a href="javascript:;" class="color65" onClick="javascript:change_wallcolor('#808000');"></a></td>
-                        <td><a href="javascript:;" class="color66" onClick="javascript:change_wallcolor('#6B8E23');"></a></td>
-                        <td><a href="javascript:;" class="color67" onClick="javascript:change_wallcolor('#FFA500');"></a></td>
-                        <td><a href="javascript:;" class="color68" onClick="javascript:change_wallcolor('#FF4500');"></a></td>
-                        <td><a href="javascript:;" class="color69" onClick="javascript:change_wallcolor('#DA70D6');"></a></td>
-                        <td><a href="javascript:;" class="color70" onClick="javascript:change_wallcolor('#EEE8AA');"></a></td>
-                        <td><a href="javascript:;" class="color71" onClick="javascript:change_wallcolor('#98FB98');"></a></td>
-                        <td><a href="javascript:;" class="color72" onClick="javascript:change_wallcolor('#AFEEEE');"></a></td>
-                        <td><a href="javascript:;" class="color73" onClick="javascript:change_wallcolor('#DB7093');"></a></td>
-                        <td><a href="javascript:;" class="color74" onClick="javascript:change_wallcolor('#FFEFD5');"></a></td>
-                        <td><a href="javascript:;" class="color75" onClick="javascript:change_wallcolor('#FFDAB9');"></a></td>
-                        <td><a href="javascript:;" class="color76" onClick="javascript:change_wallcolor('#CD853F');"></a></td>
-                        <td><a href="javascript:;" class="color77" onClick="javascript:change_wallcolor('#FFC0CB');"></a></td>
-                        <td><a href="javascript:;" class="color78" onClick="javascript:change_wallcolor('#DDA0DD');"></a></td>
-                        <td><a href="javascript:;" class="color79" onClick="javascript:change_wallcolor('#B0E0E6');"></a></td>
-                        <td><a href="javascript:;" class="color80" onClick="javascript:change_wallcolor('#FF0000');"></a></td>
-                        <td><a href="javascript:;" class="color81" onClick="javascript:change_wallcolor('#FFC0CB');"></a></td>
-                        <td><a href="javascript:;" class="color82" onClick="javascript:change_wallcolor('#BC8F8F');"></a></td>
-                        <td><a href="javascript:;" class="color83" onClick="javascript:change_wallcolor('#4169E1');"></a></td>
-                        <td><a href="javascript:;" class="color84" onClick="javascript:change_wallcolor('#8B4513');"></a></td>
-                        <td><a href="javascript:;" class="color85" onClick="javascript:change_wallcolor('#FA8072');"></a></td>
-                        <td><a href="javascript:;" class="color86" onClick="javascript:change_wallcolor('#F4A460');"></a></td>
-                        <td><a href="javascript:;" class="color87" onClick="javascript:change_wallcolor('#2E8B57');"></a></td>
-                        <td><a href="javascript:;" class="color88" onClick="javascript:change_wallcolor('#FFF5EE');"></a></td>
-                        <td><a href="javascript:;" class="color89" onClick="javascript:change_wallcolor('#A0522D');"></a></td>
-                        <td><a href="javascript:;" class="color90" onClick="javascript:change_wallcolor('#C0C0C0');"></a></td>
-                        <td><a href="javascript:;" class="color91" onClick="javascript:change_wallcolor('#87CEEB');"></a></td>
-                        <td><a href="javascript:;" class="color92" onClick="javascript:change_wallcolor('#6A5ACD');"></a></td>
-                        <td><a href="javascript:;" class="color93" onClick="javascript:change_wallcolor('#708090');"></a></td>
-                        <td><a href="javascript:;" class="color94" onClick="javascript:change_wallcolor('#00FF7F');"></a></td>
-                        <td><a href="javascript:;" class="color95" onClick="javascript:change_wallcolor('#D2B48C');"></a></td>
-                        <td><a href="javascript:;" class="color96" onClick="javascript:change_wallcolor('#008080');"></a></td>
-                        <td><a href="javascript:;" class="color97" onClick="javascript:change_wallcolor('#D8BFD8');"></a></td>
-                        <td><a href="javascript:;" class="color98" onClick="javascript:change_wallcolor('#FF6347');"></a></td>
-                        <td><a href="javascript:;" class="color99" onClick="javascript:change_wallcolor('#40E0D0');"></a></td>
-                        <td><a href="javascript:;" class="color100" onClick="javascript:change_wallcolor('#EE82EE');"></a></td>
-                        <td><a href="javascript:;" class="color101" onClick="javascript:change_wallcolor('#F5DEB3');"></a></td>
-                        <td><a href="javascript:;" class="color102" onClick="javascript:change_wallcolor('#FFFFFF');"></a></td>
-                        <td><a href="javascript:;" class="color103" onClick="javascript:change_wallcolor('#F5F5F5');"></a></td>
-                        <td><a href="javascript:;" class="color104" onClick="javascript:change_wallcolor('#FFFF00');"></a></td>
-                        <td><a href="javascript:;" class="color105" onClick="javascript:change_wallcolor('#9ACD32');"></a></td>
-                        <td><a href="javascript:;" class="color106" onClick="javascript:change_wallcolor('#B0171F');"></a></td>
-                        <td><a href="javascript:;" class="color107" onClick="javascript:change_wallcolor('#DC143C');"></a></td>
-                        <td><a href="javascript:;" class="color108" onClick="javascript:change_wallcolor('#FFAEB9');"></a></td>
-                        <td><a href="javascript:;" class="color109" onClick="javascript:change_wallcolor('#EEA2AD');"></a></td>
-                        <td><a href="javascript:;" class="color110" onClick="javascript:change_wallcolor('#CD8C95');"></a></td>
-                        <td><a href="javascript:;" class="color111" onClick="javascript:change_wallcolor('#8B5F65');"></a></td>
-                        <td><a href="javascript:;" class="color112" onClick="javascript:change_wallcolor('#FFB5C5');"></a></td>
-                        <td><a href="javascript:;" class="color113" onClick="javascript:change_wallcolor('#EEA9B8');"></a></td>
-                        <td><a href="javascript:;" class="color114" onClick="javascript:change_wallcolor('#CD919E');"></a></td>
-                        <td><a href="javascript:;" class="color115" onClick="javascript:change_wallcolor('#8B636C');"></a></td>
-                        <td><a href="javascript:;" class="color116" onClick="javascript:change_wallcolor('#FF82AB');"></a></td>
-                        <td><a href="javascript:;" class="color117" onClick="javascript:change_wallcolor('#EE799F');"></a></td>
-                        <td><a href="javascript:;" class="color118" onClick="javascript:change_wallcolor('#CD6889');"></a></td>
-                        <td><a href="javascript:;" class="color119" onClick="javascript:change_wallcolor('#8B475D');"></a></td>
-                        <td><a href="javascript:;" class="color120" onClick="javascript:change_wallcolor('#EEE0E5');"></a></td>
-                        <td><a href="javascript:;" class="color121" onClick="javascript:change_wallcolor('#CDC1C5');"></a></td>
-                        <td><a href="javascript:;" class="color122" onClick="javascript:change_wallcolor('#8B8386');"></a></td>
-                        <td><a href="javascript:;" class="color123" onClick="javascript:change_wallcolor('#FF3E96');"></a></td>
-                        <td><a href="javascript:;" class="color124" onClick="javascript:change_wallcolor('#EE3A8C');"></a></td>
-                        <td><a href="javascript:;" class="color125" onClick="javascript:change_wallcolor('#CD3278');"></a></td>
-                        <td><a href="javascript:;" class="color126" onClick="javascript:change_wallcolor('#8B2252');"></a></td>
-                        <td><a href="javascript:;" class="color127" onClick="javascript:change_wallcolor('#FF6EB4');"></a></td>
-                        <td><a href="javascript:;" class="color128" onClick="javascript:change_wallcolor('#EE6AA7');"></a></td>
-                        <td><a href="javascript:;" class="color129" onClick="javascript:change_wallcolor('#CD6090');"></a></td>
-                        <td><a href="javascript:;" class="color130" onClick="javascript:change_wallcolor('#8B3A62');"></a></td>
-                        <td><a href="javascript:;" class="color131" onClick="javascript:change_wallcolor('#872657');"></a></td>
-                        <td><a href="javascript:;" class="color132" onClick="javascript:change_wallcolor('#FF1493');"></a></td>
-                        <td><a href="javascript:;" class="color133" onClick="javascript:change_wallcolor('#EE1289');"></a></td>
-                        <td><a href="javascript:;" class="color134" onClick="javascript:change_wallcolor('#CD1076');"></a></td>
-                        <td><a href="javascript:;" class="color135" onClick="javascript:change_wallcolor('#8B0A50');"></a></td>
-                        <td><a href="javascript:;" class="color136" onClick="javascript:change_wallcolor('#FF34B3');"></a></td>
-                        <td><a href="javascript:;" class="color137" onClick="javascript:change_wallcolor('#EE30A7');"></a></td>
-                        <td><a href="javascript:;" class="color138" onClick="javascript:change_wallcolor('#CD2990');"></a></td>
-                        <td><a href="javascript:;" class="color139" onClick="javascript:change_wallcolor('#8B1C62');"></a></td>
-                        <td><a href="javascript:;" class="color140" onClick="javascript:change_wallcolor('#C71585');"></a></td>
-                        <td><a href="javascript:;" class="color141" onClick="javascript:change_wallcolor('#D02090');"></a></td>
-                        <td><a href="javascript:;" class="color142" onClick="javascript:change_wallcolor('#FF83FA');"></a></td>
-                        <td><a href="javascript:;" class="color143" onClick="javascript:change_wallcolor('#EE7AE9');"></a></td>
-                        <td><a href="javascript:;" class="color144" onClick="javascript:change_wallcolor('#CD69C9');"></a></td>
-                        <td><a href="javascript:;" class="color145" onClick="javascript:change_wallcolor('#8B4789');"></a></td>
-                        <td><a href="javascript:;" class="color146" onClick="javascript:change_wallcolor('#FFE1FF');"></a></td>
-                        <td><a href="javascript:;" class="color147" onClick="javascript:change_wallcolor('#EED2EE');"></a></td>
-                        <td><a href="javascript:;" class="color148" onClick="javascript:change_wallcolor('#CDB5CD');"></a></td>
-                        <td><a href="javascript:;" class="color149" onClick="javascript:change_wallcolor('#8B7B8B');"></a></td>
-                        <td><a href="javascript:;" class="color150" onClick="javascript:change_wallcolor('#FFBBFF');"></a></td>
-                        <td><a href="javascript:;" class="color151" onClick="javascript:change_wallcolor('#EEAEEE');"></a></td>
-                        <td><a href="javascript:;" class="color152" onClick="javascript:change_wallcolor('#CD96CD');"></a></td>
-                        <td><a href="javascript:;" class="color153" onClick="javascript:change_wallcolor('#8B668B');"></a></td>
-                        <td><a href="javascript:;" class="color154" onClick="javascript:change_wallcolor('#EE00EE');"></a></td>
-                        <td><a href="javascript:;" class="color155" onClick="javascript:change_wallcolor('#CD00CD');"></a></td>
-                        <td><a href="javascript:;" class="color156" onClick="javascript:change_wallcolor('#8B008B');"></a></td>
-                        <td><a href="javascript:;" class="color157" onClick="javascript:change_wallcolor('#800080');"></a></td>
-                        <td><a href="javascript:;" class="color158" onClick="javascript:change_wallcolor('#E066FF');"></a></td>
-                        <td><a href="javascript:;" class="color159" onClick="javascript:change_wallcolor('#D15FEE');"></a></td>
-                        <td><a href="javascript:;" class="color160" onClick="javascript:change_wallcolor('#B452CD');"></a></td>
-                        <td><a href="javascript:;" class="color161" onClick="javascript:change_wallcolor('#7A378B');"></a></td>
-                        <td><a href="javascript:;" class="color162" onClick="javascript:change_wallcolor('#9400D3');"></a></td>
-                        <td><a href="javascript:;" class="color163" onClick="javascript:change_wallcolor('#BF3EFF');"></a></td>
-                        <td><a href="javascript:;" class="color164" onClick="javascript:change_wallcolor('#B23AEE');"></a></td>
-                        <td><a href="javascript:;" class="color165" onClick="javascript:change_wallcolor('#9A32CD');"></a></td>
-                        <td><a href="javascript:;" class="color166" onClick="javascript:change_wallcolor('#68228B');"></a></td>
-                        <td><a href="javascript:;" class="color167" onClick="javascript:change_wallcolor('#4B0082');"></a></td>
-                        <td><a href="javascript:;" class="color168" onClick="javascript:change_wallcolor('#8A2BE2');"></a></td>
-                        <td><a href="javascript:;" class="color169" onClick="javascript:change_wallcolor('#9B30FF');"></a></td>
-                        <td><a href="javascript:;" class="color170" onClick="javascript:change_wallcolor('#912CEE');"></a></td>
-                        <td><a href="javascript:;" class="color171" onClick="javascript:change_wallcolor('#7D26CD');"></a></td>
-                        <td><a href="javascript:;" class="color172" onClick="javascript:change_wallcolor('#551A8B');"></a></td>
-                        <td><a href="javascript:;" class="color173" onClick="javascript:change_wallcolor('#AB82FF');"></a></td>
-                        <td><a href="javascript:;" class="color174" onClick="javascript:change_wallcolor('#9F79EE');"></a></td>
-                        <td><a href="javascript:;" class="color175" onClick="javascript:change_wallcolor('#8968CD');"></a></td>
-                        <td><a href="javascript:;" class="color176" onClick="javascript:change_wallcolor('#5D478B');"></a></td>
-                        <td><a href="javascript:;" class="color177" onClick="javascript:change_wallcolor('#483D8B');"></a></td>
-                        <td><a href="javascript:;" class="color178" onClick="javascript:change_wallcolor('#8470FF');"></a></td>
-                        <td><a href="javascript:;" class="color179" onClick="javascript:change_wallcolor('#836FFF');"></a></td>
-                        <td><a href="javascript:;" class="color180" onClick="javascript:change_wallcolor('#7A67EE');"></a></td>
-                        <td><a href="javascript:;" class="color181" onClick="javascript:change_wallcolor('#6959CD');"></a></td>
-                        <td><a href="javascript:;" class="color182" onClick="javascript:change_wallcolor('#473C8B');"></a></td>
-                        <td><a href="javascript:;" class="color183" onClick="javascript:change_wallcolor('#F8F8FF');"></a></td>
-                        <td><a href="javascript:;" class="color184" onClick="javascript:change_wallcolor('#0000FF');"></a></td>
-                        <td><a href="javascript:;" class="color185" onClick="javascript:change_wallcolor('#0000EE');"></a></td>
-                        <td><a href="javascript:;" class="color186" onClick="javascript:change_wallcolor('#0000CD');"></a></td>
-                        <td><a href="javascript:;" class="color187" onClick="javascript:change_wallcolor('#00008B');"></a></td>
-                        <td><a href="javascript:;" class="color188" onClick="javascript:change_wallcolor('#000080');"></a></td>
-                        <td><a href="javascript:;" class="color189" onClick="javascript:change_wallcolor('#3D59AB');"></a></td>
-                        <td><a href="javascript:;" class="color190" onClick="javascript:change_wallcolor('#4876FF');"></a></td>
-                        <td><a href="javascript:;" class="color191" onClick="javascript:change_wallcolor('#436EEE');"></a></td>
-                        <td><a href="javascript:;" class="color192" onClick="javascript:change_wallcolor('#3A5FCD');"></a></td>
-                        <td><a href="javascript:;" class="color193" onClick="javascript:change_wallcolor('#27408B');"></a></td>
-                        <td><a href="javascript:;" class="color194" onClick="javascript:change_wallcolor('#6495ED');"></a></td>
-                        <td><a href="javascript:;" class="color195" onClick="javascript:change_wallcolor('#CAE1FF');"></a></td>
-                        <td><a href="javascript:;" class="color196" onClick="javascript:change_wallcolor('#BCD2EE');"></a></td>
-                        <td><a href="javascript:;" class="color197" onClick="javascript:change_wallcolor('#A2B5CD');"></a></td>
-                        <td><a href="javascript:;" class="color198" onClick="javascript:change_wallcolor('#6E7B8B');"></a></td>
-                        <td><a href="javascript:;" class="color199" onClick="javascript:change_wallcolor('#C6E2FF');"></a></td>
-                        <td><a href="javascript:;" class="color200" onClick="javascript:change_wallcolor('#B9D3EE');"></a></td>
-                        <td><a href="javascript:;" class="color201" onClick="javascript:change_wallcolor('#9FB6CD');"></a></td>
-                        <td><a href="javascript:;" class="color202" onClick="javascript:change_wallcolor('#6C7B8B');"></a></td>
-                        <td><a href="javascript:;" class="color203" onClick="javascript:change_wallcolor('#1E90FF');"></a></td>
-                        <td><a href="javascript:;" class="color204" onClick="javascript:change_wallcolor('#1C86EE');"></a></td>
-                        <td><a href="javascript:;" class="color205" onClick="javascript:change_wallcolor('#1874CD');"></a></td>
-                        <td><a href="javascript:;" class="color206" onClick="javascript:change_wallcolor('#104E8B');"></a></td>
-                        <td><a href="javascript:;" class="color207" onClick="javascript:change_wallcolor('#F0F8FF');"></a></td>
-                        <td><a href="javascript:;" class="color208" onClick="javascript:change_wallcolor('#4682B4');"></a></td>
-                        <td><a href="javascript:;" class="color209" onClick="javascript:change_wallcolor('#63B8FF');"></a></td>
-                        <td><a href="javascript:;" class="color210" onClick="javascript:change_wallcolor('#5CACEE');"></a></td>
-                        <td><a href="javascript:;" class="color211" onClick="javascript:change_wallcolor('#4F94CD');"></a></td>
-                        <td><a href="javascript:;" class="color212" onClick="javascript:change_wallcolor('#36648B');"></a></td>
-                        <td><a href="javascript:;" class="color213" onClick="javascript:change_wallcolor('#B0E2FF');"></a></td>
-                        <td><a href="javascript:;" class="color214" onClick="javascript:change_wallcolor('#A4D3EE');"></a></td>
-                        <td><a href="javascript:;" class="color215" onClick="javascript:change_wallcolor(#8DB6CD'');"></a></td>
-                        <td><a href="javascript:;" class="color216" onClick="javascript:change_wallcolor('#607B8B');"></a></td>
-                        <td><a href="javascript:;" class="color217" onClick="javascript:change_wallcolor('#87CEFF');"></a></td>
-                        <td><a href="javascript:;" class="color218" onClick="javascript:change_wallcolor('#7EC0EE');"></a></td>
-                        <td><a href="javascript:;" class="color219" onClick="javascript:change_wallcolor('#6CA6CD');"></a></td>
-                        <td><a href="javascript:;" class="color220" onClick="javascript:change_wallcolor('#4A708B');"></a></td>
-                        <td><a href="javascript:;" class="color221" onClick="javascript:change_wallcolor('#00BFFF');"></a></td>
-                        <td><a href="javascript:;" class="color222" onClick="javascript:change_wallcolor('#00B2EE');"></a></td>
-                        <td><a href="javascript:;" class="color223" onClick="javascript:change_wallcolor('#009ACD');"></a></td>
-                        <td><a href="javascript:;" class="color224" onClick="javascript:change_wallcolor('#33A1C9');"></a></td>
-                        <td><a href="javascript:;" class="color225" onClick="javascript:change_wallcolor('#BFEFFF');"></a></td>
-                        <td><a href="javascript:;" class="color226" onClick="javascript:change_wallcolor('#B2DFEE');"></a></td>
-                        <td><a href="javascript:;" class="color227" onClick="javascript:change_wallcolor('#9AC0CD');"></a></td>
-                        <td><a href="javascript:;" class="color228" onClick="javascript:change_wallcolor('#68838B');"></a></td>
-                        <td><a href="javascript:;" class="color229" onClick="javascript:change_wallcolor('#98F5FF');"></a></td>
-                        <td><a href="javascript:;" class="color230" onClick="javascript:change_wallcolor('#8EE5EE');"></a></td>
-                        <td><a href="javascript:;" class="color231" onClick="javascript:change_wallcolor('#7AC5CD');"></a></td>
-                        <td><a href="javascript:;" class="color232" onClick="javascript:change_wallcolor('#53868B');"></a></td>
-                        <td><a href="javascript:;" class="color233" onClick="javascript:change_wallcolor('#00F5FF');"></a></td>
-                        <td><a href="javascript:;" class="color234" onClick="javascript:change_wallcolor('#00E5EE');"></a></td>
-                        <td><a href="javascript:;" class="color235" onClick="javascript:change_wallcolor('#00C5CD');"></a></td>
-                        <td><a href="javascript:;" class="color236" onClick="javascript:change_wallcolor('#00868B');"></a></td>
-                        <td><a href="javascript:;" class="color237" onClick="javascript:change_wallcolor('#5F9EA0');"></a></td>
-                        <td><a href="javascript:;" class="color238" onClick="javascript:change_wallcolor('#00CED1');"></a></td>
-                        <td><a href="javascript:;" class="color239" onClick="javascript:change_wallcolor('#F0FFFF');"></a></td>
-                        <td><a href="javascript:;" class="color240" onClick="javascript:change_wallcolor('#E0EEEE');"></a></td>
-                        <td><a href="javascript:;" class="color241" onClick="javascript:change_wallcolor('#C1CDCD');"></a></td>
-                        <td><a href="javascript:;" class="color242" onClick="javascript:change_wallcolor('#838B8B');"></a></td>
-                        <td><a href="javascript:;" class="color243" onClick="javascript:change_wallcolor('#00688B');"></a></td>
-                        <td><a href="javascript:;" class="color244" onClick="javascript:change_wallcolor('#000000');"></a></td>
-                        <td><a href="javascript:;" class="color245" onClick="javascript:change_wallcolor('#B4CDCD');"></a></td>
-                        <td><a href="javascript:;" class="color246" onClick="javascript:change_wallcolor('#7A8B8B');"></a></td>
-                        <td><a href="javascript:;" class="color247" onClick="javascript:change_wallcolor('#BBFFFF');"></a></td>
-                        <td><a href="javascript:;" class="color248" onClick="javascript:change_wallcolor('#AEEEEE');"></a></td>
-                        <td><a href="javascript:;" class="color249" onClick="javascript:change_wallcolor('#96CDCD');"></a></td>
-                        <td><a href="javascript:;" class="color250" onClick="javascript:change_wallcolor('#668B8B');"></a></td>
-                        <td><a href="javascript:;" class="color251" onClick="javascript:change_wallcolor('#2F4F4F');"></a></td>
-                        <td><a href="javascript:;" class="color252" onClick="javascript:change_wallcolor('#97FFFF');"></a></td>
-                        <td><a href="javascript:;" class="color253" onClick="javascript:change_wallcolor('#8DEEEE');"></a></td>
-                        <td><a href="javascript:;" class="color254" onClick="javascript:change_wallcolor('#79CDCD');"></a></td>
-                        <td><a href="javascript:;" class="color255" onClick="javascript:change_wallcolor('#528B8B');"></a></td>
-                        <td><a href="javascript:;" class="color256" onClick="javascript:change_wallcolor('#00FFFF');"></a></td>
-                        <td><a href="javascript:;" class="color257" onClick="javascript:change_wallcolor('#00EEEE');"></a></td>
-                        <td><a href="javascript:;" class="color258" onClick="javascript:change_wallcolor('#00CDCD');"></a></td>
-                        <td><a href="javascript:;" class="color259" onClick="javascript:change_wallcolor('#008B8B');"></a></td>
-                        <td><a href="javascript:;" class="color260" onClick="javascript:change_wallcolor('#03A89E');"></a></td>
-                        <td><a href="javascript:;" class="color261" onClick="javascript:change_wallcolor('#808A87');"></a></td>
-                        <td><a href="javascript:;" class="color262" onClick="javascript:change_wallcolor('#00C78C');"></a></td>
-                        <td><a href="javascript:;" class="color263" onClick="javascript:change_wallcolor('#7FFFD4');"></a></td>
-                        <td><a href="javascript:;" class="color264" onClick="javascript:change_wallcolor('#76EEC6');"></a></td>
-                        <td><a href="javascript:;" class="color265" onClick="javascript:change_wallcolor('#00EE76');"></a></td>
-                        <td><a href="javascript:;" class="color266" onClick="javascript:change_wallcolor('#00CD66');"></a></td>
-                        <td><a href="javascript:;" class="color267" onClick="javascript:change_wallcolor('#008B45');"></a></td>
-                        <td><a href="javascript:;" class="color268" onClick="javascript:change_wallcolor('#54FF9F');"></a></td>
-                        <td><a href="javascript:;" class="color269" onClick="javascript:change_wallcolor('#4EEE94');"></a></td>
-                        <td><a href="javascript:;" class="color270" onClick="javascript:change_wallcolor('#43CD80');"></a></td>
-                        <td><a href="javascript:;" class="color271" onClick="javascript:change_wallcolor('#00C957');"></a></td>
-                        <td><a href="javascript:;" class="color272" onClick="javascript:change_wallcolor('#BDFCC9');"></a></td>
-                        <td><a href="javascript:;" class="color273" onClick="javascript:change_wallcolor('#3D9140');"></a></td>
-                        <td><a href="javascript:;" class="color274" onClick="javascript:change_wallcolor('#F0FFF0');"></a></td>
-                        <td><a href="javascript:;" class="color275" onClick="javascript:change_wallcolor('#E0EEE0');"></a></td>
-                        <td><a href="javascript:;" class="color276" onClick="javascript:change_wallcolor('#C1CDC1');"></a></td>
-                        <td><a href="javascript:;" class="color277" onClick="javascript:change_wallcolor('#838B83');"></a></td>
-                        <td><a href="javascript:;" class="color278" onClick="javascript:change_wallcolor('#C1FFC1');"></a></td>
-                        <td><a href="javascript:;" class="color279" onClick="javascript:change_wallcolor('#B4EEB4');"></a></td>
-                        <td><a href="javascript:;" class="color280" onClick="javascript:change_wallcolor('#9BCD9B');"></a></td>
-                        <td><a href="javascript:;" class="color281" onClick="javascript:change_wallcolor('#698B69');"></a></td>
-                        <td><a href="javascript:;" class="color282" onClick="javascript:change_wallcolor('#9AFF9A');"></a></td>
-                        <td><a href="javascript:;" class="color283" onClick="javascript:change_wallcolor('#7CCD7C');"></a></td>
-                        <td><a href="javascript:;" class="color284" onClick="javascript:change_wallcolor('#548B54');"></a></td>
-                        <td><a href="javascript:;" class="color285" onClick="javascript:change_wallcolor('#228B22');"></a></td>
-                        <td><a href="javascript:;" class="color286" onClick="javascript:change_wallcolor('#00EE00');"></a></td>
-                        <td><a href="javascript:;" class="color287" onClick="javascript:change_wallcolor('#00CD00');"></a></td>
-                        <td><a href="javascript:;" class="color288" onClick="javascript:change_wallcolor('#008B00');"></a></td>
-                        <td><a href="javascript:;" class="color289" onClick="javascript:change_wallcolor('#006400');"></a></td>
-                        <td><a href="javascript:;" class="color290" onClick="javascript:change_wallcolor('#308014');"></a></td>
-                        <td><a href="javascript:;" class="color291" onClick="javascript:change_wallcolor('#7FFF00');"></a></td>
-                        <td><a href="javascript:;" class="color292" onClick="javascript:change_wallcolor('#76EE00');"></a></td>
-                        <td><a href="javascript:;" class="color293" onClick="javascript:change_wallcolor('#66CD00');"></a></td>
-                        <td><a href="javascript:;" class="color294" onClick="javascript:change_wallcolor('#458B00');"></a></td>
-                        <td><a href="javascript:;" class="color295" onClick="javascript:change_wallcolor('#CAFF70');"></a></td>
-                        <td><a href="javascript:;" class="color296" onClick="javascript:change_wallcolor('#BCEE68');"></a></td>
-                        <td><a href="javascript:;" class="color297" onClick="javascript:change_wallcolor('#A2CD5A');"></a></td>
-                        <td><a href="javascript:;" class="color298" onClick="javascript:change_wallcolor('#6E8B3D');"></a></td>
-                        <td><a href="javascript:;" class="color299" onClick="javascript:change_wallcolor('#556B2F');"></a></td>
-                        <td><a href="javascript:;" class="color300" onClick="javascript:change_wallcolor('#C0FF3E');"></a></td>
-                        <td><a href="javascript:;" class="color301" onClick="javascript:change_wallcolor('#B3EE3A');"></a></td>
-                        <td><a href="javascript:;" class="color302" onClick="javascript:change_wallcolor('#458B74');"></a></td>
-                        <td><a href="javascript:;" class="color303" onClick="javascript:change_wallcolor('#698B22');"></a></td>
-                        <td><a href="javascript:;" class="color304" onClick="javascript:change_wallcolor('#EEEEE0');"></a></td>
-                        <td><a href="javascript:;" class="color305" onClick="javascript:change_wallcolor('#CDCDC1');"></a></td>
-                        <td><a href="javascript:;" class="color306" onClick="javascript:change_wallcolor('#8B8B83');"></a></td>
-                        <td><a href="javascript:;" class="color307" onClick="javascript:change_wallcolor('#F5F5DC');"></a></td>
-                        <td><a href="javascript:;" class="color308" onClick="javascript:change_wallcolor('#EEEED1');"></a></td>
-                        <td><a href="javascript:;" class="color309" onClick="javascript:change_wallcolor('#CDCDB4');"></a></td>
-                        <td><a href="javascript:;" class="color310" onClick="javascript:change_wallcolor('#8B8B7A');"></a></td>
-                        <td><a href="javascript:;" class="color311" onClick="javascript:change_wallcolor('#EEEE00');"></a></td>
-                        <td><a href="javascript:;" class="color312" onClick="javascript:change_wallcolor('#CDCD00');"></a></td>
-                        <td><a href="javascript:;" class="color313" onClick="javascript:change_wallcolor('#8B8B00');"></a></td>
-                        <td><a href="javascript:;" class="color314" onClick="javascript:change_wallcolor('#808069');"></a></td>
-                        <td><a href="javascript:;" class="color315" onClick="javascript:change_wallcolor('#FFF68F');"></a></td>
-                        <td><a href="javascript:;" class="color316" onClick="javascript:change_wallcolor('#EEE685');"></a></td>
-                        <td><a href="javascript:;" class="color317" onClick="javascript:change_wallcolor('#CDC673');"></a></td>
-                        <td><a href="javascript:;" class="color318" onClick="javascript:change_wallcolor('#000000');"></a></td>
+                      <td><a href="javascript:;" class="color54" onClick="javascript:change_wallcolor('#3CB371');"></a></td>
+                      <td><a href="javascript:;" class="color55" onClick="javascript:change_wallcolor('#7B68EE');"></a></td>
+                      <td><a href="javascript:;"class="color56" onClick="javascript:change_wallcolor('#00FA9A');"></a></td>
+                      <td><a href="javascript:;" class="color57" onClick="javascript:change_wallcolor('#48D1CC');"></a></td>
+                      <td><a href="javascript:;" class="color58" onClick="javascript:change_wallcolor('#C71585');"></a></td>
+                      <td><a href="javascript:;" class="color59" onClick="javascript:change_wallcolor('#191970');"></a></td>
+                      <td><a href="javascript:;" class="color60" onClick="javascript:change_wallcolor('#F5FFFA');"></a></td>
+                      <td><a href="javascript:;" class="color61" onClick="javascript:change_wallcolor('#FFE4E1');"></a></td>
+                      <td><a href="javascript:;" class="color62" onClick="javascript:change_wallcolor('#FFE4B5');"></a></td>
+                      <td><a href="javascript:;" class="color63" onClick="javascript:change_wallcolor('#FFDEAD');"></a></td>
+                      <td><a href="javascript:;" class="color64" onClick="javascript:change_wallcolor('#FDF5E6');"></a></td>
+                      <td><a href="javascript:;" class="color65" onClick="javascript:change_wallcolor('#808000');"></a></td>
+                      <td><a href="javascript:;" class="color66" onClick="javascript:change_wallcolor('#6B8E23');"></a></td>
+                      <td><a href="javascript:;" class="color67" onClick="javascript:change_wallcolor('#FFA500');"></a></td>
+                      <td><a href="javascript:;" class="color68" onClick="javascript:change_wallcolor('#FF4500');"></a></td>
+                      <td><a href="javascript:;" class="color69" onClick="javascript:change_wallcolor('#DA70D6');"></a></td>
+                      <td><a href="javascript:;" class="color70" onClick="javascript:change_wallcolor('#EEE8AA');"></a></td>
+                      <td><a href="javascript:;" class="color71" onClick="javascript:change_wallcolor('#98FB98');"></a></td>
+                      <td><a href="javascript:;" class="color72" onClick="javascript:change_wallcolor('#AFEEEE');"></a></td>
                       </tr>
                       </table>
                 </div>

@@ -203,7 +203,25 @@ public function get_add_details(){
 }    
 
 
-
+public function get_tbl_clearence(){
+	 $this->db->select('*');
+	 $this->db->where('available','Yes');
+	 //$thus->db->where('');
+	 $query=$this->db->get('tbl_clearence');
+	 return $query->result();
+	 
+	
+	}
+	public function get_prod_details($image_id,$size){
+	 $filename=rtrim($image_id,'.JPG');
+	
+	$this->db->select('*');
+	$this->db->where('image_id',$filename);
+	$this->db->where('size',trim($size));
+	$query=$this->db->get('tbl_clearence');
+	 return $query->result();
+	
+	}
 	public function insert_registeration($email,$password)
 	{
           

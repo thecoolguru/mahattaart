@@ -27,12 +27,12 @@
  <!-- jquery -->    
 <!-- <script src="<?php //print base_url();?>assets/js/jquery-1.8.0.min.js"></script> -->
 
-<script src="<?php print base_url();?>assets/js/jquery.js"></script>
 <script src="<?php print base_url();?>assets/js/jQuery-3.2.1.min.js"></script>
+<script src="<?php print base_url();?>assets/js/bootstrap.min.js"></script>
 <script src="<?php print base_url();?>assets/js/jquery.bxslider.min.js"></script>
+<script src="<?php print base_url();?>assets/js/jquery.js"></script>
 <script src="<?php print base_url();?>assets/js/thumbnail-slider.js" type="text/javascript"></script>
 <script src="<?php print base_url();?>assets/js/custom.js"></script>
-<script src="<?php print base_url();?>assets/js/bootstrap.min.js"></script>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -85,6 +85,9 @@
                 </li>
                 <li>
                     <a href="<?php print base_url(); ?>frontend/themes">THEMES </a>
+                </li>
+                <li>
+                    <a href="<?php print base_url(); ?>frontend/photostoart">PHOTOS TO ART</a>
                 </li>
                 <!--<li>
                     <a href="#">Clearance </a>
@@ -1562,7 +1565,7 @@
 </div>
 </ul>
 </li>
-<li> <a href="<?php print base_url(); ?>frontend/photostoart">Photos To Art</a></li>
+<li> <a href="<?php print base_url(); ?>frontend/photostoart" style="color:#ff9800">PHOTOS TO ART </a> </li>
 <!--<li> <a href="#">Clearance</a></li>
 <li> <a href="#">Frame your art </a>
 <li> <a href="#">Product Page</a>-->

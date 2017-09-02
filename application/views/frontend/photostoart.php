@@ -138,14 +138,17 @@
         </div>       
 </div>
 <div class="container">
-	<div class="top_slider_img">
+	<div class="row">
+    	<div class="top_slider_img col-md-12">
+        	<img src="http://mahattaart.com/assets/img/slider/hold.jpg" class="img-responsive" />
     	<div class="top_slider_content">
-            <h1>SAVE your JOYFUL MEMORIES AS ART</h1>
+            <h1  class="text-left">SAVE your JOYFUL MEMORIES AS ART</h1>
             <p class="p_top-slider">Turn cherished memories and extra-special occasions into something you'll enjoy each day. Upload photos and choose from a variety of customizable looks. Put the moments that define you on display in the perfect place&mdash;your home.</p>
             <div id="val"></div>
 			<p target="_self" class="button-slider-upload para" href="" onclick="dropzone_box(); return false;">
 			<p class="p_top-slider" style="text-align:center"><a href="#" onclick="return login('')" style="color:#41484c">Login/Register</a></p> 
 		</div>
+    </div>
     </div>
 </div>
 <section id="slider_explore" style="background-color:#fff">
@@ -156,18 +159,18 @@
       <div class="carousel carousel-showmanymoveone slide" id="itemslider">
         <div class="carousel-inner">
           <div class="item active">
-            <div class="col-xs-12 col-sm-6 col-md-4 text-center">
-              <a href="#"><img src="http://mirror.mahattaart.com/assets/img/slider/canvas mockup.jpg" class="img-responsive center-block"></a>
+            <div class="col-xs-12 col-sm-4 col-md-4 text-center">
+              <a href="#"><img src="http://mirror.mahattaart.com/assets/img/slider/canvas mockup.jpg" class="img-responsive"></a>
               <a target="_self" class="button-slider-upload category" onclick="dropzone_box()" id='canvas'>Canvas</a>
               <h5 class="text-center">Starting at Rs.250</h5>
             </div>
-			<div class="col-xs-12 col-sm-6 col-md-4 text-center">
-              <a href="#"><img src="http://mirror.mahattaart.com/assets/img/slider/Frame Mockup.jpg" class="img-responsive center-block" style="height:262px;"></a>
+			<div class="col-xs-12 col-sm-4 col-md-4 text-center">
+              <a href="#"><img src="http://mirror.mahattaart.com/assets/img/slider/canvas mockup.jpg" class="img-responsive"></a>
               <a target="_self" class="button-slider-upload category" onclick="dropzone_box()" id='framing'>Framing</a>
               <h5 class="text-center">Starting at Rs.150</h5>
             </div>
-			<div class="col-xs-12 col-sm-6 col-md-4 text-center">
-              <a href="#"><img src="http://mirror.mahattaart.com/assets/img/slider/print mockup.jpg" class="img-responsive center-block" style="height:262px;"></a>
+			<div class="col-xs-12 col-sm-4 col-md-4 text-center">
+              <a href="#"><img src="http://mirror.mahattaart.com/assets/img/slider/canvas mockup.jpg" class="img-responsive"></a>
               <a target="_self" class="button-slider-upload category" onclick="dropzone_box()" id='print_only'>Print Only</a>
               <h5 class="text-center">Starting at Rs.100</h5>
             </div>
@@ -262,44 +265,17 @@
   text-transform: uppercase;
 }
 .top_slider_content {
-  float: right;
-  margin: 0;
-  min-height: 400px;
-  right: 0;
-  top: 0;
-}
-
-.top_slider_content {
-  max-width: 400px;
-  padding: 15px 38px 0;
-}
-
-.top_slider_content {
-	font-size: 16px;
-	position: relative;
+	position: absolute;
 	text-align: center;
+	width: 340px;
+	right: 20px;
+	top: 0;
 }
 
 .p2a-section {
   font-family: Helvetica,Arial,sans-serif;
   margin: 0 auto;
   max-width: 1008px;
-}
-
-.top_slider_img  {
-  background-image: url("<?php echo base_url();?>assets/img/slider/us-uk.jpg");
-  background-position: center center;
-  background-size: contain;
-  font: 14px/1.4 "Helvetica Neue",HelveticaNeue,Helvetica,Arial,sans-serif;
-  height: 100%;
-  margin: 20px auto 20px;
-  min-height: 460px;
-  position: relative;
-  width: 100%;
-}
-.top_slider_img {
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .top_slider_content h1 {
@@ -316,7 +292,6 @@
 	letter-spacing: 0.015em;
 	line-height: 1.4;
 	margin: 10px 0;
-	padding: 0 20px;
 	text-align: left;
 }
 .button-slider-upload{
@@ -443,11 +418,11 @@ a.lightbox-close::after {
 	background: white none repeat scroll 0 0;
 	display: block;
 	font-family: Arial;
-	left: 314.5px;
+	left: 50%;
 	position: absolute;
 	top: 134px;
 	width: 720px;
-	z-index: 10000012;
+	margin-left: -360px;
 }
 
 .uploader_popup_header > h2 {

@@ -18,46 +18,8 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div class="container"><div class="row">
 <div id="myCarousel" class="carousel slide col-md-12" data-ride="carousel" style="margin-top:2px">
 <div class="carousel-inner" role="listbox">
-<div class="item active"> <img src="<?php echo base_url();?>assets/img/slider/sofa.jpg" alt="Chania">
-<div class="carousel-caption caption2" style="top:2%">
-<div class="welcomee">
-<h1 class="text-font"> Framed Art Prints </h1>
-<span class="slidercantant"> <span class="centers" style="padding:5px 0 0 0;display:block"> Buy Museum Quality Prints from the World's </span> <span class="centers" style="padding:5px 0 0 0;display:block"> renowned Artists and Photographers </span> <span class="centers" style="padding:5px 0 0 0;display:block"> &nbsp;</span> <a class="buttonslide" href="<?php echo base_url();?>search/dosearch/1/64/fine art painting/1"><span> EXPLORE NOW </span></a> </span> <span class="centers" style="padding:5px 0 0 0;display:block">&nbsp;</span> <span class="centers" style="padding:5px 0 0 0;display:block"> Framed Prints, Canvas Gallery Wrap, Posters! </span> </span> </div>
-<div class="carousel-caption caption3" style="left:58%;top:54%"> <span style="font-size:14px;padding:10px;margin-right: 14%;"> Berthe Morisot </span> </div>
-</div>
-</div>
-<div class="item"> <img src="<?php echo base_url();?>assets/img/slider/hold.jpg" alt="Chania">
-<div class="carousel-caption caption2">
-<div class="welcomee">
-<h1 class="text-font"> Free Art Search Assistance </h1>
-<br />
-<span class="slidercantant"> <span class="centers" style="padding:5px 0 0 0;display:block"> Any specific art requirements for your </span> <span class="centers" style="padding:5px 0 0 0;display:block"> projects or home! </span> <span class="centers" style="padding:5px 0 0 0;display:block"> &nbsp;</span> <a class="buttonslide" href="<?php echo base_url();?>frontend/contact"><span> CONTACT US </span></a> </span>
-<div class="carousel-caption caption3" style="top:43%;left:70%"> <span style="font-size:14px;padding:10px; margin-right:73%;"> Claude Monet </span> </div>
-</div>
-</div>
-</div>
-<div class="item"> <img src="<?php echo base_url();?>assets/img/slider/flo.jpg" alt="Flower">
-    <div class="carousel-caption caption2 caption-flower">
-        <div class="welcomee welcomee2">
-	        <h1 class="text-font" style="color:#000; text-shadow:none"> Are you an Artist? <br /> Join us and earn  </h1>
-    	    <br />
-        	<span class="slidercantant on_print">
-                <span class="centers" style="padding:5px 0 0 0;display:block;color:#000">  40% on print paid to artists  </span>
-                <span class="centers" style="padding:5px 0 0 0;display:block;color:#000">  Global exposure with 100+ international art contributors  </span>
-                <span class="centers" style="padding:5px 0 0 0;display:block;color:#000">   Free worldwide marketing promotions  </span>
-                <span class="centers" style="padding:5px 0 0 0;display:block;color:#000">   Updates on latest market trends   </span>
-                <span class="centers" style="padding:5px 0 0 0;display:block;color:#000">   Removes tedious burden of logistics   </span>
-                <span class="centers" style="padding:5px 0 0 0;display:block;color:#000">   Helps to focus only on making art  </span>
-                <span class="centers" style="padding:5px 0 0 0;display:block"> &nbsp;</span>
-        	<a class="buttonslide" href="http://mahatta.com/submission"><span> START SELLING </span></a>
-        	</span>
-            <div class="carousel-caption caption3" style="top:45%;left:70%">
-	            <span style="font-size:14px;padding:10px; margin-right:40%;">  Narahari Bhawandla  </span>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="item">
+
+<div class="item active">
     <img src="<?php echo base_url();?>assets/img/slider/homepage style n space-01.jpg" border="0" />
     	<div class="Map_area">
         	<a href="<?=base_url()?>frontend/themes_view/22" id="map_area_01"></a>

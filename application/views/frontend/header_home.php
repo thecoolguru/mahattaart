@@ -72,6 +72,9 @@
                 <li>
                     <a href="<?php print base_url(); ?>frontend/themes">THEMES </a>
                 </li>
+                <li>
+                    <a href="<?php print base_url(); ?>frontend/photostoart">PHOTOS TO ART </a>
+                </li>
                 <!--<li>
                     <a href="#">Clearance </a>
                 </li>
@@ -1230,7 +1233,7 @@
 </div>
 </ul>
 </li>
-<li> <a href="<?php print base_url(); ?>frontend/photostoart">Photos To Art</a></li>
+<li> <a href="<?php print base_url(); ?>frontend/photostoart" style="color:#ff9800" >PHOTOS TO ART</a></li>
 <!--<li> <a href="#">Clearance</a>
 <li> <a href="#">Frame your art </a>
 <li> <a href="#">Product Page</a>-->

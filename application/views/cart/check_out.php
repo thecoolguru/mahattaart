@@ -26,11 +26,9 @@ if(!$key){
   -moz-border-right-colors: none;
   -moz-border-top-colors: none;
   border-color: transparent;
-  
   border-style: solid;
   border-width: 15px;
   padding: 10px;
-  width:120px
 }
 .detail table tr:first-child {
 	background: #f9f9f9 !important;
