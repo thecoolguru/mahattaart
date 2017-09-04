@@ -2,28 +2,30 @@
 //echo  $this->session->userdata('userid');
  $continue_shopping_redirect=$this->session->userdata('continue_shopping');
 //echo base_url();
-if($this->session->userdata('userid'))
-{
-$Obj=new Cart();
-$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-//echo $url;
-
+ if($this->session->userdata('userid')){
+	$Obj=new Cart();
+	$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	
     $splitUrl=split('/', $_SERVER['REQUEST_URI']);
     $ipaddress = getenv('HTTP_CLIENT_IP');
     $Obj->save_user_login_details($this->session->userdata('userid'),$url,$ipaddress);
  }
- if($this->session->userdata('userid')=='')
-{
+ 
+	 if($_SESSION['user']){
+		$this->session->userdata('userid') = $_SESSION['user'];
+	 }
+ 
+	if($this->session->userdata('userid')==''){
      header('location:'.base_url().'index.php/frontend/logout');
- }
+	}
 ?>
 <?php  //echo $key;
 if(!$key){
 	$key="flower";
 }?>
-<?php
-              $userName=$this->cart_model->get_userDetails($this->session->userdata('userid'));
-             ?>
+		<?php
+		$userName=$this->cart_model->get_userDetails($this->session->userdata('userid'));
+		?>
 			 <style>
 			 .item.showforprintonly {
 	width: 190px;
@@ -87,6 +89,7 @@ box-shadow:2px 2px 1px black inset;
 								<tbody>
        <?php //echo $this->session->userdata('userid');
        
+	   	   
        if($this->session->userdata('userid')){ 
 		$data=$this->cart_model->get_usercart($this->session->userdata('userid')); 
                //print_r($data);

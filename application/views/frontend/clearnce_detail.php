@@ -6,7 +6,74 @@
 </head>
 
 <body>
+<style>
+.frame-step-header-container {
+  background-color: #ececec;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.frame-step-header-text {
+  color: #6abb4c;
+  float: left;
+  font-family: "BebasNeueRegular",Helvetica,Arial,sans-serif;
+  font-size: 42px;
+  letter-spacing: -0.5px;
+  position: relative;
+}
+.frame-step-button-wrapper {
+  float: right;
+  padding: 6px 0;
+  position: relative;
+}
+
+.frame-step-continue-shopping-button {
+  background-color: #888;
+  color: #fff;
+  cursor: pointer;
+  float: left;
+  font-size: 15px;
+  font-weight: bold;
+  margin-right: 14px;
+  min-width: 100px;
+  padding: 13px 16px;
+  position: relative;
+  text-align: center;
+}
+.frame-step-proceed-to-cart-button {
+  background-color: #ed9134;
+  color: #fff;
+  cursor: pointer;
+  float: right;
+
+  font-size: 15px;
+  font-weight: bold;
+  min-width: 180px;
+  padding: 12px;
+  position: relative;
+  text-align: center;
+}
+.container.frame-step-header-wrapper {
+  border: medium none;
+  margin: 0 auto;
+}
+</style>
 <div class="container">
+<div class="frame-step-header-container" style="display:none">
+    <div class="container frame-step-header-wrapper">
+        <div class="frame-step-header-text">
+	       
+        </div>
+        <div class="frame-step-button-wrapper">
+            <div class="frame-step-continue-shopping-button">
+                <a style="color:white" href="<?=base_url().''.$continue_shopping_redirect?>">CONTINUE SHOPPING</a>
+            </div>
+            <div class="frame-step-proceed-to-cart-button">
+              <a style="color:white" href="<?=base_url().'cart/cart_view'?>">  PROCEED TO CART</a>
+            </div>
+        </div>
+    </div>
+</div>
 	<div class="row" style="margin-top:20px; margin-bottom:20px">
     	<div class="col-md-6">
 		<style>
@@ -144,7 +211,7 @@
   
         <div class="col-md-6">
 			
-			<?php  print_r($prod_details); 
+			<?php // print_r($prod_details); 
 			//$paper_surface=str_replace('%20',' ',$avl_glass);
 			$glass=$prod_details[0]->glass;
 			if($glass=='yes'){
@@ -153,6 +220,14 @@
 			}else if($glass=='no'){
 			$glass_name="Normal";
 			}
+			 if($prod_details[0]->frame_color!=Canvas){
+			 $frame_name=$prod_details[0]->frame_color;
+			 
+			 }else{
+			 $frame_name="Canvas Gallary Wrap";
+			 
+			 
+			 }
 			?>
             <div id="uploader_popup_goofy_a">
                 <div class="frame-it-pricing">
@@ -162,17 +237,21 @@
                                 <strong> Paper Surface: </strong>
                             </div>
                             <div class="col-md-6 col-sm-6 text-right">
-                                <strong> <?=$prod_details[0]->surface?></strong>
+                                <strong id="surface"> <?=$prod_details[0]->surface?></strong>
                             </div>
                         </div>
                     </div>
+					
                     <div class="row">
                         <div class="frame-it-content">
                             <div class="col-md-6 col-sm-6">
                                 <strong>Frame</strong>
                             </div>
                             <div class="col-md-6 col-sm-6 text-right">
-                                <strong><?=$prod_details[0]->frame_color?></strong>
+							    
+                                <strong id="frame_name"><?=$frame_name?></strong>
+								
+							
                             </div>
                         </div>
                     </div>
@@ -182,41 +261,52 @@
                                 <strong>Frame Size</strong>
                             </div>
                             <div class="col-md-6 col-sm-6 text-right">
-                                <strong> 1 (Inch) </strong>
+                                <strong id="frame_size"> 1 </strong>"
                             </div>
                         </div>
                     </div>
+					<input type="hidden" id='total_price' value="<?=$prod_details[0]->s_p?>">
+					<input type="hidden" id='userid' value="<?=$this->session->userdata('userid')?>">
+					<input type="hidden" id='image_id' value="<?php print_r($image_id);?>">
+					<input type="hidden" id='filename' value="<?php echo $prod_details[0]->image_id;?>">
+					<input type="hidden" id='final_frame_size' value="<?php echo $prod_details[0]->width.'X'.$prod_details[0]->height ?>">
+					
+					
+					<?php if($prod_details[0]->mount!=''){?>
 					<div class="row">
                         <div class="frame-it-content">
                             <div class="col-md-6 col-sm-6">
                                 <strong>Mount</strong>
                             </div>
                             <div class="col-md-6 col-sm-6 text-right">
-                                <strong> <?=$prod_details[0]->mount?> </strong>
+                                <strong id="mount_name"> <?=$prod_details[0]->mount?> </strong>
                             </div>
                         </div>
                     </div>
-                    
+                   
                     <div class="row">
                         <div class="frame-it-content">
                             <div class="col-md-6 col-sm-6">
                                 <strong>Mount Size</strong>
                             </div>
                             <div class="col-md-6 col-sm-6 text-right">
-                                <strong> <?=$prod_details[0]->mount_size?> </strong>
+                                <strong id="mount_size"> <?=$prod_details[0]->mount_size?> </strong>
                             </div>
                         </div>
                     </div>
+					 <?php } if($prod_details[0]->frame_color!=Canvas){?>
+					 
 					<div class="row">
                         <div class="frame-it-content">
                             <div class="col-md-6 col-sm-6">
                                 <strong>Glass</strong>
                             </div>
                             <div class="col-md-6 col-sm-6 text-right">
-                                <strong><?=$glass_name?> </strong>
+                                <strong id="glass_name"><?=$glass_name?> </strong>
                             </div>
                         </div>
                     </div>
+				<?php } ?>
 					<div class="row">
                         <div class="frame-it-content">
                             <div class="col-md-6 col-sm-6">
@@ -227,9 +317,24 @@
                             </div>
                         </div>
                     </div>
+					
+					<div class="row">
+                    	<div class="col-md-12">
+                        	<style>
+	.old_price {text-decoration:line-through}
+</style>
+							<div class="main-title">
+<div>
+	<h4>Discount (<?php echo $dis=round((((($prod_details[0]->mrp)-($prod_details[0]->s_p))/($prod_details[0]->mrp))*100)); ?>%)</h4>
+    <div class="new_price pull-right" id="selling_price"> <?=$prod_details[0]->s_p?> </div>
+    <div class="old_price" id="old_price"><?=$prod_details[0]->mrp?> </div>
+</div>
+</div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12 frame-it-button">
-                            <button type="button" class="btn social_icon" style="background-color:#d3131b; color:#fff;"> Add to cart </button>
+                            <button type="button" class="btn social_icon"  onclick="addToCart()" style="background-color:#d3131b; color:#fff;"> Add to cart </button>
                             <button type="button" class="btn social_icon" style="background-color:#555; color:#fff;"> Add to gallery </button>
                         </div>
                     </div>            
@@ -240,3 +345,55 @@
 </div>
 </body>
 </html>
+<script>
+function addToCart(){
+
+//alert('sss');
+var glasses_coste=FrameCost=MountCost=image_type='';
+var glasses=$('#glass_name').html();
+var total_price=$('#selling_price').html();
+var user_id=$('#userid').val();
+var image_id=$('#image_id').val();
+var mount_name=$('#mount_name').html();
+var mount_color='DR 2091';
+var mat1_size=$('#mount_size').html();
+var frame_name=$('#frame_name').html();
+var frameSize=$('#frame_size').html();
+var print_size=final_frame_size=$('#final_frame_size').val();
+var price=$('#total_price').val();
+var paper_surface=$('#surface').html();
+var image_namee=$('#filename').val()+'.JPG';
+//alert(frame_name+','+final_frame_size);
+var only_print='';
+//alert(image_namee);
+var url="glasses_coste"+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print;
+//alert(url)
+ $.ajax({
+		//final_frame_size
+             type: "POST",
+	     url: "<?=base_url()?>frontend/frameit_addtocart",
+             data: url,
+			 
+             success:function(data)  
+             {    
+			// alert(data);
+				 $('.frame-step-header-container').show();
+				  feedback_of_addtocart(data);
+				 $('html, body').animate({ scrollTop: 0 }, 'fast');
+				 }
+             
+         });
+}
+
+</script>
+<script>
+	function feedback_of_addtocart(a){
+	//alert(a)
+	//if(a==1){
+	$('.frame-step-header-text').html('<span class="glyphicon glyphicon-ok" style="margin-right:10px;"></span>Item Added To Cart.');
+	//}
+	
+	}
+
+	
+	</script>

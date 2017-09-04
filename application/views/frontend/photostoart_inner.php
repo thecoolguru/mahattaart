@@ -49,7 +49,7 @@ $(window).on('load',function(){
 		$('.frame-step-header-text').html('<span class="glyphicon glyphicon-ok" style="margin-right:10px;"></span>Item Added To Cart.');
 		}
 	</script>
-	<?php $continue_shopping_redirect = $_SESSION['user_info'];?>
+	<?php //$continue_shopping_redirect = $_SESSION['user_info'];?>
 <div class="frame-step-header-container" style="display:none">
     <div class="container frame-step-header-wrapper">
         <div class="frame-step-header-text">
@@ -57,10 +57,10 @@ $(window).on('load',function(){
         </div>
         <div class="frame-step-button-wrapper">
             <div class="frame-step-continue-shopping-button">
-                <a style="color:white" href="<?=base_url().''.$continue_shopping_redirect?>">CONTINUE SHOPPING</a>
+                <a style="color:white" href="<?=base_url()?>">CONTINUE SHOPPING</a>
             </div>
             <div class="frame-step-proceed-to-cart-button">
-              <a style="color:white" href="<?=base_url().'index.php/cart/cart_view'?>">  PROCEED TO CART</a>
+              <a style="color:white" href="<?=base_url().'cart/cart_view'?>">  PROCEED TO CART</a>
             </div>
         </div>
     </div>

@@ -140,7 +140,7 @@
 <div class="container">
 	<div class="row">
     	<div class="top_slider_img col-md-12">
-        	<img src="http://mahattaart.com/assets/img/slider/hold.jpg" class="img-responsive" />
+        	<img src="<?=base_url()?>/assets/img/slider/hold1.jpg" class="img-responsive" />
     	<div class="top_slider_content">
             <h1  class="text-left">SAVE your JOYFUL MEMORIES AS ART</h1>
             <p class="p_top-slider">Turn cherished memories and extra-special occasions into something you'll enjoy each day. Upload photos and choose from a variety of customizable looks. Put the moments that define you on display in the perfect place&mdash;your home.</p>

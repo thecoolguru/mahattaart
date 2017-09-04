@@ -53,6 +53,7 @@ $this->user = $this->facebook->getUser();
  		$_SESSION['path'] = IMAGE_PATH;
  		 
         $id = $_COOKIE['user_info'];
+		$_SESSION['user'] = $id;
 		$result = $this->frontend_model->get_images($id);
 		if(isset($_SESSION['user_info'])){ 
 		$data['mount_name']=$this->frontend_model->get_mount_name_web_price();

@@ -418,7 +418,7 @@ if($shape!="?#!" &&  $shape!=""){
 </div>
 </div></div>
 </div>
-<div class="gallery-img">
+<div class="gallery-img row">
 <ul>
 <style>
 		/*container3D*/
@@ -511,6 +511,7 @@ $search_data_file = file_get_contents($search_file, false, $context);
 	
 	echo $img_src="http://static.mahattaart.com/158/".$image_filename.'<br>';
 	}*/
+	
 
 if(!empty($search_data)){
 
@@ -521,7 +522,7 @@ foreach ($search_data as $item){
 	$mrp=$item->mrp;
 	$s_p=$item->s_p;
 	$size=$item->size;
-	
+	//print_r($item);
 	if($item->glass=='yes'){
 	$avl_glass="With glass";
 	}else if($item->glass=='no' && $item->glass!='Canvas'){
@@ -529,9 +530,8 @@ foreach ($search_data as $item){
 	}else if($item->glass=='no' && $item->glass=='Canvas'){
 	$avl_glass="Canvas with gallary wrap";
 	}
-	
 	$filename=$item->image_id.'.JPG';
-	 $search_file = "http://api.indiapicture.in/wallsnart/search.php?q=$filename&page=1&per_page=1";
+	   $search_file = "http://api.indiapicture.in/wallsnart/search.php?q=$filename&page=1&per_page=1";
 $opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
 $context = stream_context_create($opts);
 
@@ -547,9 +547,11 @@ $search_data_file = file_get_contents($search_file, false, $context);
 	$link='product_detail';
 	if($image_filename!=''){
 	//echo "sajid";
+	
+	//echo "sajid";
       ?>
 	  
-<li class="col-md-2 col-sm-3 col-xs-6">
+<li class="col-md-3 col-sm-3 col-xs-6">
 <a href="<?=base_url()."frontend/".$link."/".$image_filename."/".$size?>">
 <input type="hidden" name="avl_glass" id="" value="<?php print $avl_glass ?>" />
 <div class="wrap">
@@ -568,7 +570,7 @@ $search_data_file = file_get_contents($search_file, false, $context);
                 </figure>
             </div>
         </section>
-<?php }?>
+<?php ?>
 </div>
 <div class="main-title">
 <?= substr($search_data_r['results'][0]['image_caption'],0,20).".."; ?>
@@ -582,6 +584,20 @@ $search_data_file = file_get_contents($search_file, false, $context);
 <div class="main-title">
 Framed Painting <?=$avl_glass?>
 </div>
+<div class="main-title">
+Framed Painting <?=$avl_glass?>
+</div>
+<style>
+	.old_price {text-decoration:line-through}
+</style>
+<div class="main-title">
+<div>
+	<h4>Discount (<?php echo $dis=round((((($item->mrp)-($item->s_p))/($item->mrp))*100)); ?>%)</h4>
+    <div class="new_price pull-right"> <?=$item->s_p?> </div>
+    <div class="old_price"><?=$item->mrp?> </div>
+</div>
+</div>
+
 <div class="product-details">
 		<a href="<?=base_url()."search/".$link."/".$image_filename."/".$image_id."/".$image_collection_id;  ?>" style="float:left"> 
     <div class="icon-cart" style="clear: left; float: left">
@@ -597,7 +613,7 @@ Framed Painting <?=$avl_glass?>
 </div>
 </a>
 </li>
-<?php }}} else {?>
+<?php }}}} else {?>
 <span style="margin-top:150px;margin-left:300px;color:red"> No result found.</span>
 <?php }?>
 </ul>
