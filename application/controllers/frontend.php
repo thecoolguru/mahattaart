@@ -37,6 +37,7 @@ $this->user = $this->facebook->getUser();
 	// Method By Tarun Shrivastva  
 	   public function photostoart()
 	{
+		$_SESSION['page_id'] = '9';
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/photostoart');
 		$this->load->view('frontend/footer');
@@ -45,7 +46,7 @@ $this->user = $this->facebook->getUser();
 		}else{
 		  unset($_SESSION['type']);
 		}
-		
+		unset($_SESSION['page_id']);
 	}
 
 	public function photostoart_inner()
@@ -446,8 +447,8 @@ redirect(base_url());
         
      public function rooms($offset=0)
 	{
-	
-	$per_page = 10;  
+		$_SESSION['page_id'] = '6';
+		$per_page = 10;  
 		//$qry = "SELECT * FROM users ORDER BY `u_id` DESC";
 		$offset = ($this->uri->segment(3) != '' ? $this->uri->segment(3):0);
 		$config["total_rows"] = $this->frontend_model->get_header_images_count(6);
@@ -471,11 +472,13 @@ redirect(base_url());
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/room',$data);
 		$this->load->view('frontend/footer');
+		unset($_SESSION['page_id']);
 	}
         
          public function places($offset=0)
 	{
-	$per_page = 10; 
+		$_SESSION['page_id'] = '7';
+		$per_page = 10; 
 	    $offset = ($this->uri->segment(3) != '' ? $this->uri->segment(3):0);
 		$config["total_rows"] = $this->frontend_model->get_header_images_count(7);
 		$config['per_page']= $per_page;
@@ -499,6 +502,7 @@ redirect(base_url());
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/places',$data);
 		$this->load->view('frontend/footer');
+		unset($_SESSION['page_id']);
 	}
 	
 	     public function searchframe()
@@ -510,9 +514,9 @@ redirect(base_url());
         
          public function themes($offset=0)
 	{
-	
-$per_page = 10; 
-	 $offset = ($this->uri->segment(3) != '' ? $this->uri->segment(3):0);
+		$_SESSION['page_id'] = '8';
+		$per_page = 10; 
+		$offset = ($this->uri->segment(3) != '' ? $this->uri->segment(3):0);
 		$config["total_rows"] = $this->frontend_model->get_header_images_count(8);
 		$config['per_page']= $per_page;
 		$config['first_link'] = 'First';
@@ -533,6 +537,7 @@ $per_page = 10;
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/themes',$data);
 		$this->load->view('frontend/footer');
+		unset($_SESSION['page_id']);
 	}
 
 
@@ -1108,7 +1113,8 @@ $subject = 'Registration confirmation';
 	}
 	public function collection($offset=0)
 	{
-	$per_page = 20;  
+		$_SESSION['page_id'] = '5';
+		$per_page = 20;  
 		//$qry = "SELECT * FROM users ORDER BY `u_id` DESC";
 		$offset = ($this->uri->segment(3) != '' ? $this->uri->segment(3):0);
 		$config["total_rows"] = $this->frontend_model->get_header_images_count(5);
@@ -1132,6 +1138,7 @@ $subject = 'Registration confirmation';
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/collections',$data);
 		$this->load->view('frontend/footer');
+		unset($_SESSION['page_id']);
 	}
 	public function product_type($offset=0)
 	{
@@ -1177,6 +1184,7 @@ $subject = 'Registration confirmation';
 		$this->data['paginglinks'] = $this->pagination->create_links();    
 		$this->data['per_page'] = $this->uri->segment(3);      
 		$this->data['offset'] = $offset ;
+		$_SESSION['page_id'] = '3';
 		if($this->data['paginglinks']!= '') {
 		$this->data['pagermessage'] = 'Showing '.((($this->pagination->cur_page-1)*$this->pagination->per_page)+1).' to '.($this->pagination->cur_page*$this->pagination->per_page).' of '.$this->pagination->total_rows;
 		}   
@@ -1188,17 +1196,17 @@ $subject = 'Registration confirmation';
 
 	
         $this->load->view('frontend/header');
-       $this->load->view('frontend/artists',$data);
-       $this->load->view('frontend/footer');
-    }
+        $this->load->view('frontend/artists',$data);
+        $this->load->view('frontend/footer');
+		unset($_SESSION['page_id']);
+	}
 
 
 
 	public function art_style($offset=0)
 	{
-	
-	
-	$per_page = 20;  
+		$_SESSION['page_id'] = '4';
+		$per_page = 20;  
 		//$qry = "SELECT * FROM users ORDER BY `u_id` DESC";
 		$offset = ($this->uri->segment(3) != '' ? $this->uri->segment(3):0);
 		$config["total_rows"] = $this->frontend_model->get_header_images_count(3);
@@ -1279,10 +1287,12 @@ $subject = 'Registration confirmation';
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/art_styles',$data);
 		$this->load->view('frontend/footer');
+		unset($_SESSION['page_id']);
 	}
 	
 	public function art_styles($offset=0)
 	{
+		$_SESSION['page_id'] = '4';
 		$per_page = 10;  
 		//$qry = "SELECT * FROM users ORDER BY `u_id` DESC";
 		$offset = ($this->uri->segment(3) != '' ? $this->uri->segment(3):0);
@@ -1308,6 +1318,7 @@ $subject = 'Registration confirmation';
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/art_styles',$data);
 		$this->load->view('frontend/footer');
+		unset($_SESSION['page_id']);
 	}
 	
 	public function art_subject($offset=0)
@@ -1327,6 +1338,7 @@ $subject = 'Registration confirmation';
 		$this->data['paginglinks'] = $this->pagination->create_links();    
 		$this->data['per_page'] = $this->uri->segment(3);      
 		$this->data['offset'] = $offset ;
+		$_SESSION['page_id'] = '2';
 		if($this->data['paginglinks']!= '') {
 		$this->data['pagermessage'] = 'Showing '.((($this->pagination->cur_page-1)*$this->pagination->per_page)+1).' to '.($this->pagination->cur_page*$this->pagination->per_page).' of '.$this->pagination->total_rows;
 		}   
@@ -1338,6 +1350,7 @@ $subject = 'Registration confirmation';
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/art_subjects',$data);
 		$this->load->view('frontend/footer');
+		unset($_SESSION['page_id']);
 	}
 	
 

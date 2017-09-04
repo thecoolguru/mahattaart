@@ -1930,21 +1930,21 @@ Dropzone.options.myDropzone = {
                                   <div class="col-xs-12 col-sm-6 col-md-2">
                                   	<div class="thumb_bg_hover">
                                       <a href="JavaScript:void(0);">
-                                      <img id="canvas" src="<?php echo $path2 = base_url()."images/uploaded_pdf/frame3.jpg";?>" class="img2 img-responsive center-block"></a>
+                                      <img id="canvas" src="<?php echo $path2 = base_url()."images/uploaded_pdf/canvas_img.jpg";?>" class="img2 img-responsive center-block"></a>
                                       <h5 class="text-center">Canvas</h5>
                                     </div>
                                   </div>
                                   <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-1">
                                   	<div class="thumb_bg_hover">
                                       <a href="JavaScript:void(0);">
-                                      <img id="framing" src="<?php echo $path1 = base_url()."images/uploaded_pdf/frame2.jpg";?>" class="img2 img-responsive center-block" style="width:70px"></a>
+                                      <img id="framing" src="<?php echo $path1 = base_url()."images/uploaded_pdf/frame_img.jpg";?>" class="img2 img-responsive center-block"></a>
                                       <h5 class="text-center">Framing</h5>
                                     </div>
                                   </div>
                                   <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-4">
                                   	<div class="thumb_bg_hover">
                                       <a href="JavaScript:void(0);">
-                                      <img id="print_only" src="<?php echo $path3 = base_url()."images/uploaded_pdf/frame1.jpg";?>" class="img2 img-responsive center-block"></a>
+                                      <img id="print_only" src="<?php echo $path3 = base_url()."images/uploaded_pdf/print_img.jpg";?>" class="img2 img-responsive center-block"></a>
                                       <h5 class="text-center">Print Only</h5>
                                     </div>
                                   </div>
@@ -3125,8 +3125,7 @@ background: #ddd;
 	margin: 0 4px;
 }
 .thumb_bg_hover {
-	padding: 10px;
-	width: 120px;
+	padding-top: 10px;
 	height: 120px;
 }
 .thumb_bg_hover:hover {

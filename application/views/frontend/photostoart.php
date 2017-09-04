@@ -28,7 +28,7 @@
 			if(!images){
 				var td_inner = '';
 				$('#val').html(td_inner);
-				$('.para').html('shop Now');
+				$('.para').html('Upload Here');
 			}else{
 				var length = images.length;
 				var td_inner = '<p style="text-align:center; font-size:14px">Welcome back!<br>You have '+length +' photo saved. </p>';
@@ -114,7 +114,7 @@
 <div class="lightbox-target" id="upload">
     	<div id="uploader_popup_goofy_a">
         	<div class="uploader_popup_header">
-            	<h2 class="text-left">  Upload Photos </h2>
+            	<h2 class="text-left">  Upload Here </h2>
                 <a class="lightbox-close" href="" onclick="remove_box(); return false;"></a>
             </div>
             <div class="uploader_popup_upload-icon">
@@ -140,7 +140,7 @@
 <div class="container">
 	<div class="row">
     	<div class="top_slider_img col-md-12">
-        	<img src="<?=base_url()?>/assets/img/slider/hold1.jpg" class="img-responsive" />
+        	<img src="<?=base_url()?>/assets/img/slider/us-uk-1.jpg" class="img-responsive" />
     	<div class="top_slider_content">
             <h1  class="text-left">SAVE your JOYFUL MEMORIES AS ART</h1>
             <p class="p_top-slider">Turn cherished memories and extra-special occasions into something you'll enjoy each day. Upload photos and choose from a variety of customizable looks. Put the moments that define you on display in the perfect place&mdash;your home.</p>
@@ -155,33 +155,27 @@
 <!-- Item slider-->
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-      <div class="carousel carousel-showmanymoveone slide" id="itemslider">
-        <div class="carousel-inner">
-          <div class="item active">
-            <div class="col-xs-12 col-sm-4 col-md-4 text-center">
-              <a href="#"><img src="http://mirror.mahattaart.com/assets/img/slider/canvas mockup.jpg" class="img-responsive"></a>
-              <a target="_self" class="button-slider-upload category" onclick="dropzone_box()" id='canvas'>Canvas</a>
-              <h5 class="text-center">Starting at Rs.250</h5>
-            </div>
-			<div class="col-xs-12 col-sm-4 col-md-4 text-center">
-              <a href="#"><img src="http://mirror.mahattaart.com/assets/img/slider/canvas mockup.jpg" class="img-responsive"></a>
-              <a target="_self" class="button-slider-upload category" onclick="dropzone_box()" id='framing'>Framing</a>
-              <h5 class="text-center">Starting at Rs.150</h5>
-            </div>
-			<div class="col-xs-12 col-sm-4 col-md-4 text-center">
-              <a href="#"><img src="http://mirror.mahattaart.com/assets/img/slider/canvas mockup.jpg" class="img-responsive"></a>
-              <a target="_self" class="button-slider-upload category" onclick="dropzone_box()" id='print_only'>Print Only</a>
-              <h5 class="text-center">Starting at Rs.100</h5>
-            </div>
-			<!-- <div class="col-xs-12 col-sm-6 col-md-3 text-center">
-              <a href="#"><img src="http://cache1.artprintimages.com/images/jump_pages/rebrand2/P2A_resp/stream_4.jpg" class="img-responsive center-block"></a>
-              <a target="_self" class="button-slider-upload category" onclick="dropzone_box()" id='others'>Other</a>
-              <h5 class="text-center">Starting at $39.99</h5>
-            </div> -->
-          </div>
-        </div> 
+    <div class="col-xs-12 col-sm-4 col-md-4 text-center">
+    	<div class="img_center">
+      		<a href="#"><img src="http://mirror.mahattaart.com/assets/img/slider/canvas_img.jpg" class="img-responsive"></a>  
+        </div>
+      
+      <a target="_self" class="button-slider-upload category" onclick="dropzone_box()" id='canvas'>Canvas</a>
+      <h5 class="text-center">Starting at Rs.250</h5>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-4 text-center">
+      <div class="img_center">
+	      <a href="#"><img src="http://mirror.mahattaart.com/assets/img/slider/frame_img.jpg" class="img-responsive"></a>
       </div>
+      <a target="_self" class="button-slider-upload category" onclick="dropzone_box()" id='framing'>Framing</a>
+      <h5 class="text-center">Starting at Rs.150</h5>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-4 text-center">
+      <div class="img_center">
+	      <a href="#"><img src="http://mirror.mahattaart.com/assets/img/slider/print_img.jpg" class="img-responsive"></a>
+      </div>
+      <a target="_self" class="button-slider-upload category" onclick="dropzone_box()" id='print_only'>Print Only</a>
+      <h5 class="text-center">Starting at Rs.100</h5>
     </div>
   </div>
 </div>
@@ -207,6 +201,7 @@
 
 
 <style>
+.img_center a > img{margin:0 auto;}
 .p2a_content {
   color: white;
   font-size: 16px;
