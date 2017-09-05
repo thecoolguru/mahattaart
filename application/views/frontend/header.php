@@ -34,24 +34,21 @@
 <script src="<?php print base_url();?>assets/js/thumbnail-slider.js" type="text/javascript"></script>
 <script src="<?php print base_url();?>assets/js/custom.js"></script>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-97527711-<?=$_SESSION['page_id']?>', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
 <?php if($this->session->flashdata('help_message')){//print $this->session->flashdata('help_message'); ?>
 <?php } ?>
-
-
 
 </head>
 
 <body >
+  <script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	  ga('create', 'UA-97527711-<?=$_SESSION['page_id']?>', 'auto');
+	  ga('send', 'pageview');
+  </script>
+
 <input type="hidden" id="mail_filename" value="<?=$image_detail[0]['image_filename'];?>">
  <input type="hidden" id="mail_image_id" value="<?=$image_detail[0]['image_id'];?>">
     <div id="wrapper">
@@ -86,7 +83,7 @@
                     <a href="<?php print base_url(); ?>frontend/themes">THEMES </a>
                 </li>
                 <li>
-                    <a href="<?php print base_url(); ?>frontend/photostoart">PHOTOS TO ART</a>
+                    <a href="<?php print base_url(); ?>frontend/photostoart">PHOTOS TO FRAME</a>
                 </li>
                 <!--<li>
                     <a href="#">Clearance </a>
@@ -1564,7 +1561,7 @@
 </div>
 </ul>
 </li>
-<li> <a href="<?php print base_url(); ?>frontend/photostoart" style="color:#ff9800">PHOTOS TO ART </a> </li>
+<li> <a href="<?php print base_url(); ?>frontend/photostoart" style="color:#ff9800">PHOTOS TO FRAME </a> </li>
 <!--<li> <a href="#">Clearance</a></li>
 <li> <a href="#">Frame your art </a>
 <li> <a href="#">Product Page</a>-->

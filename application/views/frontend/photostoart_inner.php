@@ -3,9 +3,12 @@
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/loader.css" type="text/css"/>
 <link href="<?php print base_url();?>assets/css/dropzone.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="<?php echo base_url();?>assets/css/croppie.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo base_url();?>assets/css/sweetalert.css" type="text/css" />
 
 <script src="<?php echo base_url();?>assets/js/dropzone.js" type="text/javascript"></script>    
 <script src="<?php echo base_url();?>assets/js/croppie.js" type="text/javascript" ></script>
+<script src="<?php echo base_url();?>assets/js/sweetalert.min.js" type="text/javascript" ></script>
+<script src="<?php echo base_url();?>assets/js/sweetalert-dev.js" type="text/javascript" ></script>
 
 <script>
     $(window).on('load',function() {
@@ -157,16 +160,24 @@ Dropzone.options.myDropzone = {
  		}, 3000);
     });
      	
+	this.on("removedfile",function(file){
+		if( (myDropzone.files.length) == 0){
+			$('#msg').show(); 
+		}
+	});	
+		
 	this.on("addedfile", function(file) {
 	 if( (myDropzone.files.length+1) > 0){
-		$('#msg').hide(); 
-	 }else{
 		$('#msg').hide(); 
 	 }
 	 if(file.size<500000){
 		 this.removeFile(file);
-		 alert('please upload image size greater than 500KB');
-	 }
+		 swal(
+  			'',
+  			'Please Upload Images Greater Than 500kB',
+  			'error'
+			)
+		}
 	});
    }
 };
@@ -713,7 +724,11 @@ Dropzone.options.myDropzone = {
 			},
 			success: function(data){
 			var data = JSON.parse(data);
-			alert(data);
+			swal(
+			  	'',
+			  	data,
+			  	'success',
+			)
 			var length = data.length-1;
 			},
 			complete: function(){

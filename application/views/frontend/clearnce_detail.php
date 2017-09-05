@@ -112,18 +112,21 @@
             margin: 0;
             }
             
-            #cube .right {
-            -webkit-transform: rotateY( 90deg ) translateZ( 100px );
-            -moz-transform: rotateY( 90deg ) translateZ( 100px );
-            -o-transform: rotateY( 90deg ) translateZ( 100px );
-            transform: skewY(45deg) translate(20px,-10px);
-            width: 100%;
-            height: 100%;
-            right: 0px;
-            top: 0;
-            }
+        #cube .right {
+        -webkit-transform: rotateY( 90deg ) translateZ( 100px );
+        -moz-transform: rotateY( 90deg ) translateZ( 100px );
+        -o-transform: rotateY( 90deg ) translateZ( 100px );
+        transform: skewY(45deg) translate(20px,-10px);
+        width: 20px;
+        height: 100%;
+        right: 0px;
+        top: 0;
+        }
+        
+        #cube .right {
+        background: #000;
+        }
             
-           
             #cube .bottom {
             -webkit-transform: rotateX( -90deg ) translateZ( 100px );
             -moz-transform: rotateX( -90deg ) translateZ( 100px );
@@ -154,15 +157,17 @@
 					z-index: -1;
 					position: relative;
 				}
-           
-                #uploader_popup_goofy_a {
-                    background: #ddd;
-                    display: block;
-                    font-family: Arial;
-                    position: absolute;
-                    right: 0;
-                    width: 300px;
-                }
+				#uploader_popup_goofy_a {
+					background: #fff;
+					display: block;
+					font-family: Arial;
+					position: relative;
+					right: 0;
+					width: 300px;
+					height: 400px;
+					float: right;
+					box-shadow: 0 2px 12px #888;
+				}    
                 .frame-it-pricing {
                     padding: 10px;
                 }
@@ -180,7 +185,7 @@
                     text-align:center;
                     border:none;
                 }
-                .frame-it-button{ text-align:right}
+                .frame-it-button{ text-align:center; margin:40px 0}
                 .frame-it-button button{color:#FFF;}
 				
             </style>
@@ -322,10 +327,11 @@
                     	<div class="col-md-12">
                         	<style>
 	.old_price {text-decoration:line-through}
+	.new_price {color:#F00}
 </style>
 							<div class="main-title">
 <div>
-	<h4>Discount (<?php echo $dis=round((((($prod_details[0]->mrp)-($prod_details[0]->s_p))/($prod_details[0]->mrp))*100)); ?>%)</h4>
+	<h4 style="font-weight:bold">Discount (<?php echo $dis=round((((($prod_details[0]->mrp)-($prod_details[0]->s_p))/($prod_details[0]->mrp))*100)); ?>%)</h4>
     <div class="new_price pull-right" id="selling_price"> <?=$prod_details[0]->s_p?> </div>
     <div class="old_price" id="old_price"><?=$prod_details[0]->mrp?> </div>
 </div>

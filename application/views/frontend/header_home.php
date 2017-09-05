@@ -28,6 +28,9 @@
 <script src="<?php print base_url();?>assets/js/custom.js"></script>
 <script src="<?php print base_url();?>assets/js/bootstrap.min.js"></script>
 
+
+</head>
+<body>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -37,9 +40,6 @@
   ga('require', 'ecommerce', 'ecommerce.js');
   ga('send', 'pageview');
 </script>
-</head>
-<body>
-
     <div id="wrapper">
         <div class="overlay"></div>
     
@@ -72,7 +72,7 @@
                     <a href="<?php print base_url(); ?>frontend/themes">THEMES </a>
                 </li>
                 <li>
-                    <a href="<?php print base_url(); ?>frontend/photostoart">PHOTOS TO ART </a>
+                    <a href="<?php print base_url(); ?>frontend/photostoart">PHOTOS TO FRAME </a>
                 </li>
                 <!--<li>
                     <a href="#">Clearance </a>
@@ -1232,7 +1232,7 @@
 </div>
 </ul>
 </li>
-<li> <a href="<?php print base_url(); ?>frontend/photostoart" style="color:#ff9800" >PHOTOS TO ART</a></li>
+<li> <a href="<?php print base_url(); ?>frontend/photostoart" style="color:#ff9800" >PHOTOS TO FRAME</a></li>
 <!--<li> <a href="#">Clearance</a>
 <li> <a href="#">Frame your art </a>
 <li> <a href="#">Product Page</a>-->

@@ -589,6 +589,7 @@ Framed Painting <?=$avl_glass?>
 </div>
 <style>
 	.old_price {text-decoration:line-through}
+	.new_price {color:#F00}
 </style>
 <div class="main-title">
 <div>
@@ -607,7 +608,7 @@ Framed Painting <?=$avl_glass?>
     <div class="cart-wheel" style="background-color: #2CC3B5"></div>
   </div>
     </a>
-    <a style="color:#999;font-size:20px; float:right" href="javascript:" <?php   if($this->session->userdata('userid')){?> onclick="addtogallery('<?=$item['image_id']?>','<?=$item['image_filename']?>')" <?php }else{?> onclick="login('')" <?php }?> id="tgl"><i class="fa fa-heart-o" style="color:#d31d25; font-size:20px; padding:10px"> </i> </a>
+    <a style="color:#999;font-size:20px; float:right" href="javascript:" <?php   if($this->session->userdata('userid')){?> onclick="addtogallery('<?=$item['image_id']?>','<?=$item['image_filename']?>')" <?php }else{?> onclick="login('')" <?php }?> id="tgl"><i class="fa fa-heart-o" style="color:#d31d25; font-size:20px; padding:10px; padding-right:0"> </i> </a>
 </div>
 
 </div>

@@ -498,16 +498,22 @@ display: none;
         submitButton.addEventListener("click", function() {
           myDropzone.processQueue(); // Tell Dropzone to process all queued files.
         });
-        this.on("queuecomplete", function (file) {
+        
+		this.on("queuecomplete", function (file) {
              $('#load_buffer').show();
              $('#dropzone_images').hide();
              Dropzone.forElement("#my-dropzone").removeAllFiles(true);
          window.location.href = '<?=base_url()?>index.php/frontend/photostoart_inner';
         });
-        this.on("addedfile", function(file) {
+        
+		this.on("removedfile",function(file){
+			if( (myDropzone.files.length) == 0){
+				$('#msg').show(); 
+			}
+		});	
+			
+		this.on("addedfile", function(file) {
     	 if( (myDropzone.files.length+1) > 0){
-			$('#msg').hide(); 
-		}else{
 			$('#msg').hide(); 
 		}
 		 if(file.size<500000){
