@@ -85,10 +85,10 @@
                 <li>
                     <a href="<?php print base_url(); ?>frontend/photostoart">PHOTOS TO FRAME</a>
                 </li>
-                <!--<li>
-                    <a href="#">Clearance </a>
-                </li>
                 <li>
+                    <a href="<?php print base_url(); ?>frontend/clearence"> CLEARANCE </a>
+                </li>
+                <!--<li>
                     <a href="#">Frame your art  </a>
                 </li>
                 <li>
@@ -1562,8 +1562,8 @@
 </ul>
 </li>
 <li> <a href="<?php print base_url(); ?>frontend/photostoart" style="color:#ff9800">PHOTOS TO FRAME </a> </li>
-<!--<li> <a href="#">Clearance</a></li>
-<li> <a href="#">Frame your art </a>
+<li> <a href="<?php print base_url(); ?>frontend/clearence" style="color:#f1464f">CLEARANCE</a></li>
+<!--<li> <a href="#">Frame your art </a>
 <li> <a href="#">Product Page</a>-->
 
 <!--<li> <a href="#">MAHATTA DESIGNS</a>

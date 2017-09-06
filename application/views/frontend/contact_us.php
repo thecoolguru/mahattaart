@@ -68,8 +68,11 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                             <h2>Corporate Office</h2>
                             <p>8/17, Ground Floor, Sarvapriya Vihar,  New Delhi -110016</p>
                             
+							<h2 class="margin-top">Physical Store:</h2>
+                            <p>Visualize art or just pick up or drop your order by visiting our first experience store at Logix Mall Noida, 2nd Floor, behind Hamleys.</p>
+							
                             <h2 class="margin-top">Call Us</h2>
-                            <p>Tel : 91-11-41828972</p>
+                            <p>Tel : 91-11-41828972 &nbsp +91-8800639075</p> 
                             
                             <h2 class="margin-top">Mail Us</h2>
                             <p>Send a note to <a href="mailto:info@mahattaart.com"> info@mahattaart.com </a>  and we'll get back to you as quickly as possible. To make sure you receive our response, be sure to add us to your contact list.</p>

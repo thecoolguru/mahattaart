@@ -56,7 +56,7 @@ $this->user = $this->facebook->getUser();
         $id = $_COOKIE['user_info'];
 		$_SESSION['user'] = $id;
 		$result = $this->frontend_model->get_images($id);
-		if(isset($_SESSION['user_info'])){ 
+		if(isset($_SESSION['user'])){ 
 		$data['mount_name']=$this->frontend_model->get_mount_name_web_price();
 		$data['frame_cat']=$this->frontend_model->get_frame_cat_tbl_web_price();
 		$data['frame_sizze']=$this->frontend_model->get_frame_size();

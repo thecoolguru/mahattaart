@@ -87,6 +87,7 @@ box-shadow:2px 2px 1px black inset;
 								<tbody>
        <?php //echo $this->session->userdata('userid');
        
+	   	   
        if($this->session->userdata('userid')){ 
 		$data=$this->cart_model->get_usercart($this->session->userdata('userid')); 
                //print_r($data);
