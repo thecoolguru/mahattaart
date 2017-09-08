@@ -514,7 +514,7 @@ $search_data_file = file_get_contents($search_file, false, $context);
 	
 
 if(!empty($search_data)){
-
+//print_r($search_data);
 foreach ($search_data as $item){
 	$frame_color=$item->frame_color;
 	$width=$item->width;
@@ -531,7 +531,7 @@ foreach ($search_data as $item){
 	$avl_glass="Canvas with gallary wrap";
 	}
 	$filename=$item->image_id.'.JPG';
-	   $search_file = "http://api.indiapicture.in/wallsnart/search.php?q=$filename&page=1&per_page=1";
+	    $search_file = "http://api.indiapicture.in/wallsnart/search.php?q=$filename&page=1&per_page=1";
 $opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
 $context = stream_context_create($opts);
 
@@ -547,12 +547,12 @@ $search_data_file = file_get_contents($search_file, false, $context);
 	$link='product_detail';
 	if($image_filename!=''){
 	//echo "sajid";
-	
+	//echo substr($search_data_r['results'][0]['image_caption'],0,20)."..";
 	//echo "sajid";
       ?>
 	  
 <li class="col-md-3 col-sm-3 col-xs-6">
-<a href="<?=base_url()."frontend/".$link."/".$image_filename."/".$size?>">
+<a href="<?=base_url()."frontend/".$link."/".$image_filename."/".$size."/".$image_id?>">
 <input type="hidden" name="avl_glass" id="" value="<?php print $avl_glass ?>" />
 <div class="wrap">
 <div class="wrap-inner">
@@ -570,8 +570,9 @@ $search_data_file = file_get_contents($search_file, false, $context);
                 </figure>
             </div>
         </section>
-<?php ?>
+<?php }?>
 </div>
+</a>
 <div class="main-title">
 <?= substr($search_data_r['results'][0]['image_caption'],0,20).".."; ?>
 </div>
@@ -579,23 +580,18 @@ $search_data_file = file_get_contents($search_file, false, $context);
 <?=$width.' "X '.$height.' "'?>
 </div>
 <div class="main-title">
-<?=$mrp.'  '.$s_p ?>
-</div>
-<div class="main-title">
 Framed Painting <?=$avl_glass?>
 </div>
-<div class="main-title">
-Framed Painting <?=$avl_glass?>
-</div>
+
 <style>
 	.old_price {text-decoration:line-through}
-	.new_price {color:#F00}
+	.old_price,.new_price{font-size:14px}
+	.new_price {margin-left: 20px;}
 </style>
 <div class="main-title">
 <div>
-	<h4>Discount (<?php echo $dis=round((((($item->mrp)-($item->s_p))/($item->mrp))*100)); ?>%)</h4>
-    <div class="new_price pull-right"> <?=$item->s_p?> </div>
-    <div class="old_price"><?=$item->mrp?> </div>
+	<h4>Save <?php echo $dis=round((((($item->mrp)-($item->s_p))/($item->mrp))*100)); ?>%</h4>
+    <div>  <span class="old_price"> <?=$item->mrp?></span> <span class="new_price" style="color:#d31d25"><?=$item->s_p?></span> </div>
 </div>
 </div>
 
@@ -608,13 +604,13 @@ Framed Painting <?=$avl_glass?>
     <div class="cart-wheel" style="background-color: #2CC3B5"></div>
   </div>
     </a>
-    <a style="color:#999;font-size:20px; float:right" href="javascript:" <?php   if($this->session->userdata('userid')){?> onclick="addtogallery('<?=$item['image_id']?>','<?=$item['image_filename']?>')" <?php }else{?> onclick="login('')" <?php }?> id="tgl"><i class="fa fa-heart-o" style="color:#d31d25; font-size:20px; padding:10px; padding-right:0"> </i> </a>
+    <a style="color:#999;font-size:20px; float:right" href="javascript:" <?php   if($this->session->userdata('userid')){?> onclick="addtogallery('<?=$item['image_id']?>','<?=$item['image_filename']?>')" <?php }else{?> onclick="login('')" <?php }?> id="tgl"><i class="fa fa-heart-o" style="color:#d31d25; font-size:20px; padding:10px"> </i> </a>
 </div>
 
 </div>
-</a>
+
 </li>
-<?php }}}} else {?>
+<?php }}} else {?>
 <span style="margin-top:150px;margin-left:300px;color:red"> No result found.</span>
 <?php }?>
 </ul>

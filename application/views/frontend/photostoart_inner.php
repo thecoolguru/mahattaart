@@ -63,7 +63,7 @@ $(window).on('load',function(){
                 <a style="color:white" href="<?=base_url()?>">CONTINUE SHOPPING</a>
             </div>
             <div class="frame-step-proceed-to-cart-button">
-              <a style="color:white" href="<?=base_url().'cart/cart_view'?>">  PROCEED TO CART</a>
+              <a style="color:white" href="<?=base_url().'index.php/cart/cart_view?user='.base64_encode($_SESSION['user'])?>">  PROCEED TO CART</a>
             </div>
         </div>
     </div>
@@ -183,7 +183,7 @@ Dropzone.options.myDropzone = {
 };
 </script>
 <script type="text/javascript">
-    function addToCart(){
+    /*function addToCart(){
 	var paper_surface = $('#paper_surface').val();
 	var final_frame_size  = '';
 	if($('#click').html() == 'canvas_click'){
@@ -258,8 +258,87 @@ Dropzone.options.myDropzone = {
 					 $('html, body').animate({ scrollTop: 0 }, 'fast');
 				 }
 			}); 
-		}  // end function 
-	  		
+		} */ // end function 
+	
+	function addToCart(){
+	var paper_surface = $('#paper_surface').val();
+	var final_frame_size  = '';
+	if($('#click').html() == 'canvas_click'){
+		var framed = $('#finished_size').html();
+		framed = framed.split('"');
+		frameheight = framed[1].split('X');
+		final_frame_size  = ''+framed[0]+'X'+frameheight[1]; 
+	}else{
+		var framed = $('#finished_size').html();
+		framed = framed.split('"');
+		frameheight = framed[1].split('X');
+		final_frame_size = ''+framed[0]+'X'+frameheight[1];
+	}
+	  var mount_color = $('#mount_color').html();
+	  var data = '';
+	  if($('#click').html() == 'print_only'){
+		data = 'print only';   
+	  }else if($('#click').html() == 'canvas_click'){
+		  data = 'canvas print';
+	  }else{
+		  data = 'frame print';
+	  }
+	  var only_print = data;
+	  var glasses = $('#glass_type').html();
+	  var glasses_coste = $('#glass_price').html();	  
+	  var total_price = $('.actual_price').html();
+	  var MountCost = $('#MountCost').html();
+	  var FrameCost = '';
+	  if($('#click').html() == 'canvas_click'){
+	  FrameCost = $('#CanvasCost').html();
+	  }else if($('#click').html() == 'frame_click'){
+	  FrameCost = $('#FrameCost').html();
+	  }
+	 var print_size = '';
+	 var size = $('#sizes').val();
+	 if( size == 'Customize Size'){
+		if( ($('#width').val() == 0) && ($('#height').val() == 0) ){
+			print_size = '0X0';	
+		}else { 
+		print_size = $('#width').val()+'X'+ $('#height').val();
+		}	
+	 }else{
+		 print_size = $('#sizes').val();
+	 }
+			var price = $('#print_price').html();
+			var id = $('#get_img').val();
+		    id = id.split('image');
+			var new_id = id[2].split('.');
+			var image_id = new_id[0];
+			var image_type = new_id[1];
+			var user_id = '<?= $_COOKIE['user_info'] ?>';
+			alert(user_id);
+			var mat1_size = $('#mount_size').html();
+			var mat1_color = $('#mount_color').html();
+		    var frame_color = $('#frame_color').val();
+		    var frame_name = $('#f_name').html(); 
+			var mount_name = $('#mount_code').val();
+			var frameSize = $('#frame_size').html();
+			var img_name = $('#get_img').val();
+			img_name = img_name.split('/');
+			var image_namee = img_name[7].split('.');
+			image_name = image_namee[0];
+			//alert(paper_surface+','+final_frame_size+','+mount_color+','+only_print+','+glasses+','+glasses_coste+','+total_price+','+MountCost+','+FrameCost+','+print_size+','+image_id+','+image_type+','+user_id+','+mat1_size+','+mat1_color+','+frame_color+','+frame_name+','+mount_name+','+frameSize+','+image_namee);
+			$.ajax({
+				 type: "POST",
+				 url: "<?=base_url()?>index.php/frontend/photostocart",
+				 data: "user_id="+user_id+"&image_id="+image_id+"&image_name="+image_name+"&print_type="+only_print+"&paper="+paper_surface+"&FrameCost="+FrameCost+"&price="+total_price+"&print_price="+price+"&size="+print_size+"&type="+image_type,
+				 success:function(data)  
+				 {    
+				 	 alert(data);
+					 //$('.frame-step-header-container').show();
+					 //feedback_of_addtocart(data);
+					 //$('html, body').animate({ scrollTop: 0 }, 'fast');
+				 }
+			}); 
+				
+	}	
+	 
 	function paper_surface(id){
 		var td = '';
 		$('#paper_surface').html(td);
@@ -1970,12 +2049,12 @@ Dropzone.options.myDropzone = {
               </div>
           </div>
           <div class="row" style="margin-bottom:20px">
-        <div class="col-md-5 col-sm-5">
+        <div class="col-md-7 col-sm-7">
          <div class="divimg mainhor" id="frame-it" style="border-image-source: url('http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg'); border-image-slice: 58; border-image-width: initial; border-image-outset: initial; border-image-repeat: round; border-style: solid; border-width: 40px; margin-top: 20px; padding: 0px; width: auto; display:inline-block; position: relative;">
 
            <div id="abc" style="background:url('<?=base_url()?>images/uploaded_pdf/mount/DR 2091.jpg')  0% 0% / cover no-repeat;width:auto;padding:10px; background-attachment:scroll; position: relative; z-index: 1;">
              <a href="javascript:" id="demo2" class="imglink img_shadow" target="_self" >
-               <img id="large_img" src="http://static.mahattaart.com/398/FLPT_RE_0088.JPG" class="img-responsive" style="max-height: 400px;max-width:300px;"/>
+               <img id="large_img" src="http://static.mahattaart.com/398/FLPT_RE_0088.JPG" class="img-responsive" style="max-width:260px;"/>
 				  <input type="hidden" id="frame_shape" value="<?=$f_shape?>"/>
              </a>
 						
@@ -2071,7 +2150,7 @@ function right(width,height,x){
              </div>
 		 <?php echo $f_shape; ?>   
 	</div>
-	  <div class="col-md-7 col-sm-7">
+	  <div class="col-md-5 col-sm-5">
       <style>
 	  	.input_control{
 			height: 25px;

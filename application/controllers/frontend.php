@@ -52,8 +52,7 @@ $this->user = $this->facebook->getUser();
 	public function photostoart_inner()
 	{
  		$_SESSION['path'] = IMAGE_PATH;
- 		 
-        $id = $_COOKIE['user_info'];
+ 		$id = $_COOKIE['user_info'];
 		$_SESSION['user'] = $id;
 		$result = $this->frontend_model->get_images($id);
 		if(isset($_SESSION['user'])){ 
@@ -387,10 +386,11 @@ $this->user = $this->facebook->getUser();
 		$this->load->view('frontend/clearence',$data);
 		$this->load->view('frontend/footer');
 	}
-	  public function product_detail($filename,$size){
+	  public function product_detail($filename,$size,$image_id){
 	//echo $filename;
 	
 	//$data['avl_glass']=$avl_glass;
+	$data['image_id']=$image_id;
 	$data['prod_details']=$this->frontend_model->get_prod_details($filename,$size);
 	$this->load->view('frontend/header');
 		$this->load->view('frontend/clearnce_detail',$data);
@@ -2586,7 +2586,7 @@ $subject = 'Welcome to Mahatta Art';
     { 
 	//echo "entry in methode";
 	    
-		 
+		// echo "sajid";
         $print_size=$this->input->post('images_size');
         $images_price=$this->input->post('images_price');
         $img_id=$this->input->post('img_id');
@@ -2596,7 +2596,7 @@ $subject = 'Welcome to Mahatta Art';
         $frameSize=$this->input->post('frameSize');
 		
         $frame_color=$this->input->post('frame_color');
-		
+				//echo "sajid";																								
         $imagsTypes=$this->input->post('image_type');
         $FrameCost=$this->input->post('FrameCost');
 		$mount_color=$this->input->post('mount_color');
@@ -2611,8 +2611,8 @@ $subject = 'Welcome to Mahatta Art';
 		date_default_timezone_set('Asia/Kolkata');
 		 $date=date('Y-m-d H:i:s');
 		  $print_value=$this->input->post('print_v');
-    
-           if($img_id!='')
+    // echo "sajid".$img_id;
+           if($images_filename!='')
            {
 		   
                if($print_value!=''){
@@ -2637,12 +2637,14 @@ $subject = 'Welcome to Mahatta Art';
 			  } 
 			  
 			  else{
-           $data=array('cart_id'=>'', 'image_print_type'=>$paper_surface, 'image_id'=>$img_id, 'qty'=>1, 'user_id'=>$user_id, 'frame_size'=>$frameSize, 'frame_color'=>$frame_color, 'frame_cost'=>$FrameCost, 'mount_size'=>$mat_size,'mount_code'=>$mount_color, 'mount_color'=>$mat_color, 'mount_cost'=>$MountCost, 'glass_type'=>$glasses, 'glass_cost'=>$glasses_coste, 'price'=>$total_price,'total_price'=>$total_price, 'updated_price'=>'', 'image_size'=>$print_size,'framed_image_size'=>$final_frame_size,'images_price'=>$images_price, 'image_name'=>$images_filename, 'create_date'=>$date);
-		   $check1= $this->frontend_model->check_cart_details($user_id,$img_id,$paper_surface,$print_size,$frame_color,$mat_color,$glasses);
+             $res=array('cart_id'=>'', 'image_print_type'=>$paper_surface, 'image_id'=>$img_id, 'qty'=>1, 'user_id'=>$user_id, 'frame_size'=>$frameSize, 'frame_color'=>$frame_color, 'frame_cost'=>$FrameCost, 'mount_size'=>$mat_size,'mount_code'=>$mount_color, 'mount_color'=>trim($mat_color), 'mount_cost'=>$MountCost, 'glass_type'=>$glasses, 'glass_cost'=>$glasses_coste, 'price'=>$total_price,'total_price'=>$total_price, 'updated_price'=>'', 'image_size'=>$print_size,'framed_image_size'=>$final_frame_size,'images_price'=>$images_price, 'image_name'=>$images_filename, 'create_date'=>$date);
+			 $data=array_map('trim',$res);
+		   $check1= $this->frontend_model->check_cart_details($user_id,trim($img_id),trim($paper_surface),$print_size,$frame_color,trim($mat_color),trim($glasses));
            }
 		   $user_id=$this->session->userdata('userid');
 		//print_r($data);
-		  
+		// echo $check1."sirat";
+		
 		   if($check1==0){
 		   
            $insert=$this->frontend_model->insert_into_cart($data);
@@ -2713,6 +2715,35 @@ $subject = 'Welcome to Mahatta Art';
          }   
            }  
     }
+	
+	public function photostocart(){ 
+	    $print_size=$this->input->post('size');
+        $image_name=$this->input->post('image_name');
+		$image_id=$this->input->post('image_id');
+		$print = $this->input->post('print_type');
+		$paper = $this->input->post('paper');
+		$user = $this->input->post('user_id');
+		$total_price = $this->input->post('price');
+		$type = $this->input->post('type');
+		$images_price = $this->input->post('print_price');
+		date_default_timezone_set('Asia/Kolkata');
+		$date = date('Y-m-d H:i:s'); 		
+        if($print == 'canvas print'){
+			$status = $this->frontend_model->check_cart_details($user_id,$image_id,$paper,$print_size);
+			if($status == 0){
+			  $data = array('cart_id'=>'','image_print_type'=>$paper,'image_id'=>$image_id,'qty'=>1,'user_id'=>$user,'frame_size'=>'0','frame_color'=>'0','frame_cost'=>'0','mount_size'=>'0','mount_color'=>'0','mount_cost'=>'0','glass_type'=>'0','glass_cost'=>'0','price'=>$total_price,'updated_price'=>'','total_price'=>'','image_size'=>$print_size,'images_price'=>$images_price,'image_name'=>$image_name,'create_date'=>$date);
+			  echo $result = $this->frontend_model->insert_into_cart($data);	
+			}else{
+			  echo $result = 'Please Choose Different Combination';
+			}
+		}else if($print == 'frame print'){
+			echo "In Frame";
+		}else{
+			echo "In print only"; 			
+		}
+	}
+	
+	
 	public function update_customer(){
 	  $name=$this->input->post('name');
 	   $getpurpose=$this->input->post('getpurpose');

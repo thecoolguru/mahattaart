@@ -91,9 +91,21 @@ class Cart extends CI_Controller
 
         
 
-	public function cart_view()
-
-	{ error_reporting(0);
+	public function cart_view(){ 
+		error_reporting(0);
+		$user = base64_decode($_GET['user']);
+		echo $user; 
+		if($user){
+			$result = $this->frontend_model->image_specifications($user);	
+			$count = count($result);
+			if($result)
+			 $datam['user'] = $result;
+		    else
+			$datam['user'] = 'Not Found';	
+		}else{
+			$datam['user'] = 'asasas';
+		}
+		
 		$catgories_id=$_GET['cat_id'];
 		$live_id=$_GET['live_id'];
 		$this->search_model->update_category_count($catgories_id);

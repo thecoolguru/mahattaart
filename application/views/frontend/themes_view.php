@@ -1,4 +1,86 @@
 <style>
+   .icon-cart {
+        height: 38px;
+        overflow: hidden;
+        position: relative;
+        width: 38px;
+    }
+    .icon-cart .cart-line-1 {
+        border-bottom-left-radius: 35%;
+        height: 7%;
+        left: 8%;
+        position: absolute;
+        top: 25%;
+        transform: rotate(5deg);
+        width: 15%;
+    }
+    .icon-cart .cart-line-2::before {
+        background-color: inherit;
+        content: "";
+        height: 100%;
+        left: 45%;
+        position: absolute;
+        top: -280%;
+        transform: rotate(-80deg);
+        width: 120%;
+    }
+    .icon-cart .cart-line-2::after {
+        background-color: inherit;
+        border-bottom-left-radius: 25%;
+        border-top-left-radius: 50%;
+        content: "";
+        height: 100%;
+        left: 59%;
+        position: absolute;
+        top: -670%;
+        transform: rotate(40deg);
+        width: 70%;
+    }
+    .icon-cart .cart-line-2 {
+        height: 7%;
+        left: 6%;
+        position: absolute;
+        top: 40%;
+        transform: rotate(80deg);
+        width: 35%;
+    }
+    .icon-cart .cart-line-3::after {
+        background-color: inherit;
+        content: "";
+        height: 100%;
+        left: -5%;
+        position: absolute;
+        top: -150%;
+        width: 124%;
+    }
+    .icon-cart .cart-line-3 {
+        height: 7%;
+        left: 33%;
+        position: absolute;
+        top: 45%;
+        width: 30%;
+    }
+    .icon-cart .cart-wheel::after {
+        background-color: inherit;
+        border-radius: 100%;
+        bottom: 0;
+        content: "";
+        height: 100%;
+        left: 200%;
+        position: absolute;
+        width: 100%;
+    }
+    .icon-cart .cart-wheel {
+        border-radius: 100%;
+        bottom: 20%;
+        height: 12%;
+        left: 28%;
+        position: absolute;
+        width: 12%;
+    }
+    .pagination_2 p {
+        padding: 10px 0;
+    }
 
     #gal-customcombooptions {
         margin: 0;
@@ -180,19 +262,41 @@ function call_remove_lightBox(imageid,lightbox_id,page_no)
 }
 </script>
 <?php
-$resultsPerPage = $limit;
-$numberOfRows = $search_data[0]->total;
-$totalPages = ceil($numberOfRows / $resultsPerPage);
-$prev=$page-1;
-$next=$page+1;
-$jump=$next+2;
+
 ?>
 <div class="container" style="margin-top:5px">
 <div class="row"><div class="art-style col-md-12">
 <div class="row">
 <aside class="left-panel-page col-md-2 col-xs-3">
-<p>Light Box List</p>
+<p>Refine Filter</p>
+
+<p>SHAPE</p>
 <div class="list">
+<ul>
+<li><a <?php if($shape=="Horizontal"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('Horizontal')">Horizontal</a>
+<label></label>
+</li>
+<li><a <?php if($shape=="Vertical"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('Vertical')">Vertical</a><label></label></li>
+<li><a <?php if($shape=="Square"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('Square')">Square</a><label></label></li>
+<li><a <?php if($shape=="Slim"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('Slim')">Slim</a><label></label></li>
+<li><a <?php if($shape=="Panoramic"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('Panoramic')">Panoramic</a><label></label></li>
+</ul>
+</div>
+
+<p>COLOR</p>
+<div class="list">
+<ul>
+<li><a <?php if($color=="red"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('red')">Red</a><label></label></li>
+<li><a <?php if($color=="blue"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('blue')">Blue</a><label></label></li>
+<li><a <?php if($color=="green"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('green')">Green</a><label></label></li>
+<li><a <?php if($color=="yellow"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('yellow')">Yellow</a><label></label></li>
+<li><a <?php if($color=="orange"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('orange')">Orange</a><label></label></li>
+<li><a <?php if($color=="pink"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('pink')">Pink</a><label></label></li>
+<li><a <?php if($color=="black"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('black')">Black</a><label></label></li>
+<li><a <?php if($color=="brown"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('brown')">Brown</a><label></label></li>
+<li><a <?php if($color=="white"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('white')">White</a><label></label></li>
+<li><a <?php if($color=="grey"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('grey')">Grey</a><label></label></li>
+</ul>
 </div>
 </aside>
 <div class="right-panel-page col-md-10 col-xs-9">
@@ -204,8 +308,7 @@ $jump=$next+2;
 <select id="gal-customcombobox">
 <option value="popularity"> SORT BY: POPULARITY </option>
 <option value="Popularity"> Popularity </option>
-<option value="Price-h"> Price - High </option>
-<option value="Price_Low"> Price - Low </option>
+
 <option value="Narrow"> Narrow - Width </option>
 <option value="Wide"> Wide - Width </option>
 <option value="Tall"> Tall - Height </option>
@@ -220,9 +323,13 @@ $jump=$next+2;
 <?php 
  $user_id=$this->session->userdata('userid');
 //print_r($search_cat);
+$link='image_detail';
 if(isset($search_cat)){
 foreach($search_cat as $cat_dets){
 	//$result=  $this->frontend_model->get_imagesFilename_details($images->images_filename);
+	$image_filename=$cat_dets['image_filename'];
+	$image_id=$cat_dets['image_id'];
+	$image_collection_id=$cat_dets['image_collection_id'];
   ?>
 
 <li class="col-md-2 col-sm-2">
@@ -233,13 +340,22 @@ foreach($search_cat as $cat_dets){
 <div class="main-title">
 <?=substr($cat_dets['image_caption'],0,20); ?>
 </div>
-
-
-<div> 
-</div>
-<br>
-</div>
 </a>
+
+<div class="product-details">
+		<a href="<?=base_url()."search/".$link."/".$image_filename."/".$image_id."/".$image_collection_id;  ?>" style="float:left"> 
+    <div class="icon-cart" style="clear: left; float: left">
+    <div class="cart-line-1" style="background-color: rgb(44, 195, 181);"></div>
+    <div class="cart-line-2" style="background-color: #2CC3B5"></div>
+    <div class="cart-line-3" style="background-color: #2CC3B5"></div>
+    <div class="cart-wheel" style="background-color: #2CC3B5"></div>
+  </div>
+    </a>
+    <a style="color:#999;font-size:20px; float:right" href="javascript:" <?php    if($this->session->userdata('userid')){?> onclick="addtogallery('<?=$item['image_id']?>','<?=$item['image_filename']?>')" <?php }else{?> onclick="login('')" <?php }?> id="tgl"><i class="fa fa-heart-o" style="color:#d31d25; font-size:20px; padding:10px"> </i> </a>
+</div>
+
+</div>
+
 </li>
 <?php } }else {?>
 <span style="margin-top:150px;margin-left:300px;color:red"> No result found.</span>

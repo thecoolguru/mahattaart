@@ -184,6 +184,7 @@
                     min-width: 110px;
                     text-align:center;
                     border:none;
+					line-height:2;
                 }
                 .frame-it-button{ text-align:center; margin:40px 0}
                 .frame-it-button button{color:#FFF;}
@@ -242,7 +243,7 @@
                                 <strong> Paper Surface: </strong>
                             </div>
                             <div class="col-md-6 col-sm-6 text-right">
-                                <strong id="surface"> <?=$prod_details[0]->surface?></strong>
+                                <div id="surface"> <?=$prod_details[0]->surface?></div>
                             </div>
                         </div>
                     </div>
@@ -250,11 +251,11 @@
                     <div class="row">
                         <div class="frame-it-content">
                             <div class="col-md-6 col-sm-6">
-                                <strong>Frame</strong>
+                                <strong>Frame Type</strong>
                             </div>
                             <div class="col-md-6 col-sm-6 text-right">
 							    
-                                <strong id="frame_name"><?=$frame_name?></strong>
+                                <div id="frame_name"><?=$frame_name?></div>
 								
 							
                             </div>
@@ -266,7 +267,7 @@
                                 <strong>Frame Size</strong>
                             </div>
                             <div class="col-md-6 col-sm-6 text-right">
-                                <strong id="frame_size"> 1 </strong>"
+                                <div id="frame_size"> 1 </div>"
                             </div>
                         </div>
                     </div>
@@ -284,7 +285,7 @@
                                 <strong>Mount</strong>
                             </div>
                             <div class="col-md-6 col-sm-6 text-right">
-                                <strong id="mount_name"> <?=$prod_details[0]->mount?> </strong>
+                                <div id="mount_name"> <?=$prod_details[0]->mount?> </div>
                             </div>
                         </div>
                     </div>
@@ -295,7 +296,7 @@
                                 <strong>Mount Size</strong>
                             </div>
                             <div class="col-md-6 col-sm-6 text-right">
-                                <strong id="mount_size"> <?=$prod_details[0]->mount_size?> </strong>
+                                <div id="mount_size"> <?=$prod_details[0]->mount_size?> </div>
                             </div>
                         </div>
                     </div>
@@ -307,7 +308,7 @@
                                 <strong>Glass</strong>
                             </div>
                             <div class="col-md-6 col-sm-6 text-right">
-                                <strong id="glass_name"><?=$glass_name?> </strong>
+                                <div id="glass_name"><?=$glass_name?> </div>
                             </div>
                         </div>
                     </div>
@@ -318,7 +319,7 @@
                                 <strong>Final Frame Size</strong>
                             </div>
                             <div class="col-md-6 col-sm-6 text-right">
-                                <strong><?php echo $prod_details[0]->width.'" x '.$prod_details[0]->height.'"'  ?> </strong>
+                                <div><?php echo $prod_details[0]->width.'" x '.$prod_details[0]->height.'"'  ?> </div>
                             </div>
                         </div>
                     </div>
@@ -327,20 +328,23 @@
                     	<div class="col-md-12">
                         	<style>
 	.old_price {text-decoration:line-through}
-	.new_price {color:#F00}
+	.old_price,.new_price{font-size:14px}
+	.new_price {margin-left: 20px;}
 </style>
 							<div class="main-title">
 <div>
-	<h4 style="font-weight:bold">Discount (<?php echo $dis=round((((($prod_details[0]->mrp)-($prod_details[0]->s_p))/($prod_details[0]->mrp))*100)); ?>%)</h4>
-    <div class="new_price pull-right" id="selling_price"> <?=$prod_details[0]->s_p?> </div>
-    <div class="old_price" id="old_price"><?=$prod_details[0]->mrp?> </div>
+	<h4 style="font-weight:700">Save (<?php echo $dis=round((((($prod_details[0]->mrp)-($prod_details[0]->s_p))/($prod_details[0]->mrp))*100)); ?>%)</h4>
+    <div>
+		<span class="old_price" id="old_price"><?=$prod_details[0]->mrp?> </span>
+        <span id="selling_price" class="new_price" style="color:#d31d25"><?=$prod_details[0]->s_p?></span>
+     </div>
 </div>
 </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 frame-it-button">
-                            <button type="button" class="btn social_icon"  onclick="addToCart()" style="background-color:#d3131b; color:#fff;"> Add to cart </button>
+                            <button type="button" class="btn social_icon" <?php  if(!$this->session->userdata('userid')){?> onclick="login('');"<?php }else{?>  onclick="addToCart()" <?php  }?> style="background-color:#d3131b; color:#fff;"> Add to cart </button>
                             <button type="button" class="btn social_icon" style="background-color:#555; color:#fff;"> Add to gallery </button>
                         </div>
                     </div>            
@@ -372,7 +376,7 @@ var image_namee=$('#filename').val()+'.JPG';
 //alert(frame_name+','+final_frame_size);
 var only_print='';
 //alert(image_namee);
-var url="glasses_coste"+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print;
+var url="glasses_coste"+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_color+"&mount_color="+mount_name+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print;
 //alert(url)
  $.ajax({
 		//final_frame_size
