@@ -52,6 +52,15 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 			}
 		</style>
 </div>
+<div class="item">
+    <a href="<?=base_url()?>frontend/photostoart"><img src="<?php echo base_url();?>assets/img/slider/unlock_slider4.jpg" border="0" /></a>
+</div>
+<div class="item">
+    <a href="<?=base_url()?>frontend/contact"><img src="<?php echo base_url();?>assets/img/slider/unlock_slider6.jpg" border="0" /></a>
+</div>
+<div class="item">
+    <a href="<?=base_url()?>frontend/clearence"><img src="<?php echo base_url();?>assets/img/slider/unlock_slider7.jpg" border="0" /></a>
+</div>
 
 </div>
 <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev" style="width:20px"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> 

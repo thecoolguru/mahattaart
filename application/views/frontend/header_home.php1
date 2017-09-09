@@ -363,7 +363,8 @@
     z-index: 1;
 }
 	</style>
-<script>
+    
+    <script>
 	$(document).ready(function () {
   var trigger = $('.hamburger'),
       overlay = $('.overlay'),
@@ -392,22 +393,8 @@
         $('#wrapper').toggleClass('toggled');
   });  
 });
-</script>
-
-	<script>
-	/* $(document).ready(function(){
-		$('#menu ul li').mouseover(function(){
-			 setTimeout(function(){
-				$('#menu ul li ul').css("display","block");
-			},1000); 
-		});
-		$('#menu li > a').mouseout(function(){
-			setTimeout(function(){
-				$('#menu ul li ul').css("display","none");
-			},1000); 
-		});
-	});	 */
 	</script>
+
 <header class="navbar navbar-default" role="banner" style="min-height:auto">
 <div class="news pull-right">
 <p> <a href="#" class="header_link"> <i class="glyphicon glyphicon-earphone"></i> +91-8800639075</a> &nbsp; &nbsp; <a href="mailto:info@mahattaart.com" class="header_link"> <i class="glyphicon glyphicon-envelope"></i> info@mahattaart.com</a> </p>
@@ -536,9 +523,7 @@
 }
 
 </style>
-<script>
-	
-</script>
+
 <div style="background-color:#999;height:35px">
 <div class="offers container">
 <nav id="menu">
@@ -1770,7 +1755,7 @@ function checkSubmit(e)
     }
     #menu li>a:hover {
         color: #ff9800;
-        /* text-decoration: none */
+        text-decoration: none
     }
     #menu .menu2 li:hover>a {
         color: #e19a28!important
@@ -1779,10 +1764,10 @@ function checkSubmit(e)
         transform: rotateZ(90deg);
         text-decoration: none
     }
-     #menu ul li:hover ul {
+    #menu ul li:hover ul {
         display: block
-	} 
-	#mouse-over {
+    }
+    #mouse-over {
         width: 100%;
         background: #fff;
         padding: 12px;
