@@ -59,7 +59,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     <a href="<?=base_url()?>frontend/contact"><img src="<?php echo base_url();?>assets/img/slider/unlock_slider6.jpg" border="0" /></a>
 </div>
 <div class="item">
-    <a href="<?=base_url()?>frontend/clearence"><img src="<?php echo base_url();?>assets/img/slider/unlock_slider7.jpg" border="0" /></a>
+    <a href="<?=base_url()?>frontend/clearence"><img src="<?php echo base_url();?>assets/img/slider/unlock_slider8.jpg" border="0" /></a>
 </div>
 
 </div>
