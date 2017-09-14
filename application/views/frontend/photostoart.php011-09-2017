@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/light-box-model.css" type="text/css"/>
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/wallcolor.css" type="text/css"/>
-<link rel="stylesheet" href="<?php print base_url();?>assets/css/loader.css" type="text/css"/>
 <link href="<?php print base_url();?>assets/css/dropzone.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="<?php echo base_url();?>assets/css/croppie.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo base_url();?>assets/css/sweetalert.css" type="text/css" />
@@ -11,22 +10,13 @@
 <script src="<?php echo base_url();?>assets/js/sweetalert-dev.js" type="text/javascript" ></script>
 
 <?php 
- if($this->session->userdata('userid')){
-		$Obj=new Frontend();
-		$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-		$splitUrl=split('/', $_SERVER['REQUEST_URI']);
-		$ipaddress = getenv('HTTP_CLIENT_IP');
-		$Obj->save_user_login_details($this->session->userdata('userid'),$url,$ipaddress);
- }
-?>
-<?php 
     if(!isset($_COOKIE['user_info'])){
     $cookie_value = uniqid(rand());
     setcookie('user_info', $cookie_value, time() + (86400 * 30), "/");
     $_SESSION['user_info'] = $cookie_value; 
     }else{
     $_SESSION['user_info'] = $_COOKIE['user_info'];    
-   }
+    }
 ?>
 
 <script>
@@ -54,11 +44,11 @@
 	
 	    $('.category').click(function(){
 			var type = $(this).attr('id');
-			 $.ajax({
+			$.ajax({
 				type: 'POST',
 				url: '<?=base_url()?>index.php/frontend/photostoart',
 				data:{category: type }
-    		});  
+    		}); 
 		});
 	    
 	});
@@ -146,7 +136,7 @@
             <div class="popup-default-footer col-md-12">
             	<p class="text-left pull-left">By uploading, I agree to the <span> <a style="cursor: default; color: #ef9223">Terms of use</a> </span> </p>
                 <div class="popup-default-button pull-right">
-                	<input id="submit-all" value="UPLOAD" type="button" class="popup-button">
+                	<input id="submit-all" value="Submit all files" type="button" class="popup-button">
                 </div>
             </div>
         </div>       
@@ -531,19 +521,13 @@ display: none;
 			$('#msg').hide(); 
 		}
 		 if(file.size<500000){
-    	   $('#upload').hide();
-		   this.removeFile(file);
-			 swal({
-				 title: "",
-				 text: "Please Upload Images Greater Than 500kB",
-				 type: "error",
-				 timer: 1000
-				 })
-			  setTimeout(function(){
-				  dropzone_box();
-			  },1000);
-			
-		}
+    	   this.removeFile(file);
+			swal(
+				'',
+				'Please Upload Images Greater Than 500kB',
+				'error'
+				)
+		 }
         });
        }
     };

@@ -120,7 +120,6 @@
 }
 
 #sidebar-wrapper {
-    z-index: 1000;
     left: 220px;
     width: 0;
     height: 100%;

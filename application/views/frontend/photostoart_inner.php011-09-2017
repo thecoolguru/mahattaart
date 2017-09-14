@@ -10,16 +10,6 @@
 <script src="<?php echo base_url();?>assets/js/sweetalert.min.js" type="text/javascript" ></script>
 <script src="<?php echo base_url();?>assets/js/sweetalert-dev.js" type="text/javascript" ></script>
 
-<?php 
- if($this->session->userdata('userid')){
-		$Obj=new Frontend();
-		$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-		$splitUrl=split('/', $_SERVER['REQUEST_URI']);
-		$ipaddress = getenv('HTTP_CLIENT_IP');
-		$Obj->save_user_login_details($this->session->userdata('userid'),$url,$ipaddress);
- }
-?>
-<?php echo $_POST['category'];?>
 <script>
     $(window).on('load',function() {
         var options =
@@ -39,21 +29,23 @@
             $('#crop_image').hide();
             
         })
-	});
-	$(window).on('load',function(){
-		$(document).on('click', '.panel-heading span.clickable', function(e){
-			var $this = $(this);
-				if(!$this.hasClass('panel-collapsed')) {
-					$this.parents('.panel').find('.panel-body').slideUp();
-					$this.addClass('panel-collapsed');
-					$this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
-				} else {
-					$this.parents('.panel').find('.panel-body').slideDown();
-					$this.removeClass('panel-collapsed');
-					$this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
-				}
-		})
-	});
+});
+
+$(window).on('load',function(){
+	$(document).on('click', '.panel-heading span.clickable', function(e){
+		var $this = $(this);
+			if(!$this.hasClass('panel-collapsed')) {
+				$this.parents('.panel').find('.panel-body').slideUp();
+				$this.addClass('panel-collapsed');
+				$this.find('i').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
+			} else {
+				$this.parents('.panel').find('.panel-body').slideDown();
+				$this.removeClass('panel-collapsed');
+				$this.find('i').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+			}
+	})
+});
+
 </script>
 	<script>
 		function feedback_of_addtocart(a){
@@ -63,13 +55,15 @@
 	<?php //$continue_shopping_redirect = $_SESSION['user_info'];?>
 <div class="frame-step-header-container" style="display:none">
     <div class="container frame-step-header-wrapper">
-        <div class="frame-step-header-text"></div>
-			<div class="frame-step-button-wrapper">
-				<div class="frame-step-continue-shopping-button">
-					<a style="color:white" href="<?=base_url()?>">CONTINUE SHOPPING</a>
-				</div>
+        <div class="frame-step-header-text">
+	       
+        </div>
+        <div class="frame-step-button-wrapper">
+            <div class="frame-step-continue-shopping-button">
+                <a style="color:white" href="<?=base_url()?>">CONTINUE SHOPPING</a>
+            </div>
             <div class="frame-step-proceed-to-cart-button">
-              <a style="color:white" href="<?=base_url().'cart/cart_view'?>"> PROCEED TO CART</a>
+              <a style="color:white" href="<?=base_url().'index.php/cart/cart_view?user='.base64_encode($_SESSION['user'])?>">  PROCEED TO CART</a>
             </div>
         </div>
     </div>
@@ -129,7 +123,7 @@
 
 <script>
     function price_details(){
-		$('#price_detail').show();	
+	$('#price_detail').show();	
 	}
 	
 	function remove_pricing(){
@@ -148,13 +142,13 @@ Dropzone.options.myDropzone = {
   // Prevents Dropzone from uploading dropped files immediately
  autoProcessQueue: false,
  init: function() {
-		var submitButton = document.querySelector("#submit-all")
-		myDropzone = this; // closure
-		submitButton.addEventListener("click", function() {
-		myDropzone.processQueue(); // Tell Dropzone to process all queued files.
-		});
+    var submitButton = document.querySelector("#submit-all")
+        myDropzone = this; // closure
+    submitButton.addEventListener("click", function() {
+      myDropzone.processQueue(); // Tell Dropzone to process all queued files.
+    });
     
-    this.on("queuecomplete", function (file){
+    this.on("queuecomplete", function (file) {
          $('#load_buffer').show();
          $('#dropzone_images').hide();
          Dropzone.forElement("#my-dropzone").removeAllFiles(true);
@@ -171,30 +165,25 @@ Dropzone.options.myDropzone = {
 			$('#msg').show(); 
 		}
 	});	
-	
+		
 	this.on("addedfile", function(file) {
-	 if( (myDropzone.files.length+1)>0){
+	 if( (myDropzone.files.length+1) > 0){
 		$('#msg').hide(); 
 	 }
 	 if(file.size<500000){
-		 $('#dropzone_images').hide();
 		 this.removeFile(file);
-		 swal({
-			 title: "",
-			 text: "Please Upload Images Greater Than 500kB",
-			 type: "error",
-			 timer: 1000
-			 })
-		  setTimeout(function(){
-			  dropzone_call();
-		  },1000);
+		 swal(
+  			'',
+  			'Please Upload Images Greater Than 500kB',
+  			'error'
+			)
 		}
 	});
    }
 };
 </script>
 <script type="text/javascript">
-    function addToCart(){
+    /*function addToCart(){
 	var paper_surface = $('#paper_surface').val();
 	var final_frame_size  = '';
 	if($('#click').html() == 'canvas_click'){
@@ -220,76 +209,136 @@ Dropzone.options.myDropzone = {
 	  var only_print = data;
 	  var glasses = $('#glass_type').html();
 	  var glasses_coste = $('#glass_price').html();	  
-	  glasses_coste = glasses_coste.split('.');
-	  glasses_coste = glasses_coste[1];
-	  var gettotal = $('.actual_price').html();
-	  gettotal = gettotal.split('.');
-	  var total_price = gettotal[1];
+	  var total_price = $('.actual_price').html();
 	  var MountCost = $('#MountCost').html();
-	  MountCost = MountCost.split('.');
-	  MountCost = MountCost[1];
 	  var FrameCost = '';
 	  if($('#click').html() == 'canvas_click'){
 	  FrameCost = $('#CanvasCost').html();
 	  }else if($('#click').html() == 'frame_click'){
 	  FrameCost = $('#FrameCost').html();
 	  }
-	  FrameCost = FrameCost.split('.'); 
-	  FrameCost = FrameCost[1];
-	  var print_size = '';
-	  var size = $('#sizes').val();
+	 var print_size = '';
+	 var size = $('#sizes').val();
 	 if( size == 'Customize Size'){
 		if( ($('#width').val() == 0) && ($('#height').val() == 0) ){
 			print_size = '0X0';	
 		}else { 
 		print_size = $('#width').val()+'X'+ $('#height').val();
 		}	
-		}else{
+	 }else{
 		 print_size = $('#sizes').val();
-		}
+	 }
+	        var price = $('#print_price').html();
+			var id = $('#get_img').val();
+		    id = id.split('image');
+			var new_id = id[2].split('.');
+			var image_id = new_id[0];
+			var image_type = new_id[1];
+			var user_id = '<?= $_COOKIE['user_info'] ?>';
+			var mat1_size = $('#mount_size').html();
+			var mat1_color = $('#mount_color').html();
+		    var frame_color = $('#frame_color').val();
+		    var frame_name = $('#f_name').html(); 
+			var mount_name = 'DR 2029'; //$('#mount_code').val();
+			var frameSize = $('#frame_size').html();
+			var img_name = $('#get_img').val();
+			img_name = img_name.split('/');
+			var image_namee = img_name[7].split('.');
+			image_namee = image_namee[0];
+			//alert(paper_surface+','+final_frame_size+','+mount_color+','+only_print+','+glasses+','+glasses_coste+','+total_price+','+MountCost+','+FrameCost+','+print_size+','+image_id+','+image_type+','+user_id+','+mat1_size+','+mat1_color+','+frame_color+','+frame_name+','+mount_name+','+frameSize+','+image_namee);
+			$.ajax({
+				 type: "POST",
+				 url: "<?=base_url()?>index.php/frontend/frameit_addtocart",
+				 data: "glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print,
+				 success:function(data)  
+				 {    
+				 	 //alert(data);
+					 $('.frame-step-header-container').show();
+					 feedback_of_addtocart(data);
+					 $('html, body').animate({ scrollTop: 0 }, 'fast');
+				 }
+			}); 
+		} */ // end function 
+	
+	function addToCart(){
+	var paper_surface = $('#paper_surface').val();
+	var final_frame_size  = '';
+	if($('#click').html() == 'canvas_click'){
+		var framed = $('#finished_size').html();
+		framed = framed.split('"');
+		frameheight = framed[1].split('X');
+		final_frame_size  = ''+framed[0]+'X'+frameheight[1]; 
+	}else{
+		var framed = $('#finished_size').html();
+		framed = framed.split('"');
+		frameheight = framed[1].split('X');
+		final_frame_size = ''+framed[0]+'X'+frameheight[1];
+	}
+	  var mount_color = $('#mount_color').html();
+	  var data = '';
+	  if($('#click').html() == 'print_only'){
+		data = 'print only';   
+	  }else if($('#click').html() == 'canvas_click'){
+		  data = 'canvas print';
+	  }else{
+		  data = 'frame print';
+	  }
+	  var only_print = data;
+	  var glasses = $('#glass_type').html();
+	  var glasses_coste = $('#glass_price').html();	  
+	  var total_price = $('.actual_price').html();
+	  var MountCost = $('#MountCost').html();
+	  var FrameCost = '';
+	  if($('#click').html() == 'canvas_click'){
+	  FrameCost = $('#CanvasCost').html();
+	  }else if($('#click').html() == 'frame_click'){
+	  FrameCost = $('#FrameCost').html();
+	  }
+	 var print_size = '';
+	 var size = $('#sizes').val();
+	 if( size == 'Customize Size'){
+		if( ($('#width').val() == 0) && ($('#height').val() == 0) ){
+			print_size = '0X0';	
+		}else { 
+		print_size = $('#width').val()+'X'+ $('#height').val();
+		}	
+	 }else{
+		 print_size = $('#sizes').val();
+	 }
 			var price = $('#print_price').html();
 			var id = $('#get_img').val();
 		    id = id.split('image');
 			var new_id = id[2].split('.');
 			var image_id = new_id[0];
 			var image_type = new_id[1];
-			var user_id = '<?= $this->session->userdata('userid')?>';
+			var user_id = '<?= $_COOKIE['user_info'] ?>';
+			alert(user_id);
 			var mat1_size = $('#mount_size').html();
 			var mat1_color = $('#mount_color').html();
 		    var frame_color = $('#frame_color').val();
-			  if( $('#click').html()=='canvas_click'){
-				frame_color = 'Streched Canvas Gallary Wrap';	
-			  }else{
-				frame_color = frame_color; 
-			  }
-			var frame_name = 'sasas';
+		    var frame_name = $('#f_name').html(); 
 			var mount_name = $('#mount_code').val();
 			var frameSize = $('#frame_size').html();
 			var img_name = $('#get_img').val();
 			img_name = img_name.split('/');
-			var image_namee = img_name[7];//.split('.');
+			var image_namee = img_name[7].split('.');
+			image_name = image_namee[0];
 			//alert(paper_surface+','+final_frame_size+','+mount_color+','+only_print+','+glasses+','+glasses_coste+','+total_price+','+MountCost+','+FrameCost+','+print_size+','+image_id+','+image_type+','+user_id+','+mat1_size+','+mat1_color+','+frame_color+','+frame_name+','+mount_name+','+frameSize+','+image_namee);
 			$.ajax({
 				 type: "POST",
-				 url: "<?=base_url()?>index.php/frontend/frameit_addtocart",
-				 data: "glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_color+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print,
+				 url: "<?=base_url()?>index.php/frontend/photostocart",
+				 data: "user_id="+user_id+"&image_id="+image_id+"&image_name="+image_name+"&print_type="+only_print+"&paper="+paper_surface+"&FrameCost="+FrameCost+"&price="+total_price+"&print_price="+price+"&size="+print_size+"&type="+image_type,
 				 success:function(data)  
 				 {    
-					swal({
-						  title: 'CART STATUS',
-						  text: 'Item Added Successfully',
-						  timer: 1000
-						})
-					setTimeout(function(){
-					$('.frame-step-header-container').show();
-					 feedback_of_addtocart(data);
-					 $('html, body').animate({ scrollTop: 0 }, 'fast');
-					},1000);
+				 	 alert(data);
+					 //$('.frame-step-header-container').show();
+					 //feedback_of_addtocart(data);
+					 //$('html, body').animate({ scrollTop: 0 }, 'fast');
 				 }
 			}); 
-		}   // end function
- 
-	  		
+				
+	}	
+	 
 	function paper_surface(id){
 		var td = '';
 		$('#paper_surface').html(td);
@@ -323,23 +372,16 @@ Dropzone.options.myDropzone = {
 		}
 	    $('#paper_surface').html(td);
 	}
-
+	
 	function calculate_cost(value){
 		$(document).ready(function(){
 		if(value == 'Customize Size'){
 			$('.dimention').show();
-			 if( $('#width').val() != 0 && $('#height').val() != 0){
-				$('#price_details').attr('onclick','price_details();return false;');
-			} 
 		}else{
 			$('.dimention').hide();
-			$('#price_details').attr('onclick','price_details();return false;');
 		}
 		if($('#sizes').val() == 'Customize Size'){
 			$('.dimention').show();
-			 if( $('#width').val() != 0 && $('#height').val() != 0){
-				$('#price_details').attr('onclick','price_details();return false;');
-			} 
 		}	
 			
 			var size = ''+$('#sizes').val();
@@ -354,6 +396,7 @@ Dropzone.options.myDropzone = {
 			 dimen[0] = width;
 			 dimen[1] = height;
 			 }
+			 
 			 dimen[2] = parseInt(dimen[0]) + parseInt(4);
 			 dimen[3] = parseInt(dimen[1]) + parseInt(4);
  			//$('#finished_size').html(dimen[2]+'"X'+dimen[3]+'" Canvas Print | '+dimen[0]+'"X'+dimen[1]+'" Canvas Print without border');
@@ -503,8 +546,7 @@ Dropzone.options.myDropzone = {
 						}	
 					}else{
 						cost = 0;
-						$('#finished_size').html('Please Select Some Other Sizes');
-						$('.actual_price').html('Rs.0');
+						alert('Not Possible');
 					}
 				 }else{
 					 if(c_width <= 8){
@@ -527,24 +569,21 @@ Dropzone.options.myDropzone = {
 		if($('#click').html() == 'print_only' ){
 			if($('#sizes').val() == 'Customize Size'){
 				if( ($('#width').val() == 0) && ($('#height').val()== 0) ){
-					$('.actual_price').html('Rs.0');
+					var val = 0;
+					$('.actual_price').html(val);
 					$('#finished_size').html('Choose Other Size');
-					$('#price_details').attr('onclick','');
-					$('#price_details').attr('href','JavaScript:void(0);');
 				}else{
 					$('#finished_size').html(Math.round(dimen[0],2)+'"X'+Math.round(dimen[1],2)+'" Print Only ');
 				}
 			}else{ 
 			$('#finished_size').html(Math.round(dimen[0],2)+'"X'+Math.round(dimen[1],2)+'" Print Only ');
 			}
-			$('.actual_price').html('Rs.'+Math.round(cost,2));
+			$('.actual_price').html(Math.round(cost,2));
 		}else if($('#click').html() == 'canvas_click' ){
 			if($('#sizes').val() == 'Customize Size'){
 				if( ($('#width').val() == 0) && ($('#height').val()== 0) ){
-					$('.actual_price').html('Rs.0');
+					$('.actual_price').html('0');
 					$('#finished_size').html('Choose Other Size');
-					$('#price_details').attr('onclick','');
-					$('#price_details').attr('href','JavaScript:void(0);');
 				}else{
 					$('#finished_size').html(Math.round(dimen[2],2)+'"X'+Math.round(dimen[3],2)+'" Canvas Print | '+Math.round(dimen[0],2)+'"X'+Math.round(dimen[1],2)+'" Canvas Print without border');
 					var actual_price = cost + CanvasFrameCost;
@@ -553,25 +592,15 @@ Dropzone.options.myDropzone = {
 			}else{ 
 				$('#finished_size').html(Math.round(dimen[2],2)+'"X'+Math.round(dimen[3],2)+'" Canvas Print | '+Math.round(dimen[0],2)+'"X'+Math.round(dimen[1],2)+'" Canvas Print without border');
 				var actual_price = cost + CanvasFrameCost;
-				$('.actual_price').html("Rs."+ Math.round(actual_price,2));
+			$('.actual_price').html("Rs."+ Math.round(actual_price,2));
 			}
 			
     	}else if($('#click').html() == 'frame_click'){
 			frame_pricing('');
-			setTimeout(function(){
-			if($('#sizes').val() == 'Customize Size'){
-				if( $('#width').val() == 0 && $('#height').val() == 0){
-						$('.actual_price').html('Rs.0');
-						$('#finished_size').html('Choose Other Size');
-						$('#price_details').attr('onclick','');
-						$('#price_details').attr('href','JavaScript:void(0);');
-				}
-			}
-		  },100);	
 		}else{
 			setTimeout(function(){
-			$('#finished_size').html('Choose Other Size');
-			},100);
+			$('#finished_size').html('Choose Your Size');
+			},500);
 		}
 	  }
 	});
@@ -586,10 +615,7 @@ Dropzone.options.myDropzone = {
 			var dimen = size.split('X');
 			dimen[0] = parseInt(dimen[0]);
 			dimen[1] = parseInt(dimen[1]);
-	        if( $('#width').val() == 0 && $('#height').val() == 0 ){
-				$('.actual_price').html('Rs.0');
-			}
-			if($('#sizes').val() == 'Customize Size'){
+	        if($('#sizes').val() == 'Customize Size'){
 			 dimen[0] = $('#width').val();
 			 dimen[1] = $('#height').val();
 			}		
@@ -611,27 +637,28 @@ Dropzone.options.myDropzone = {
 			var mountwidth = parseInt(mount) + parseInt(dimen[0]);  
 			var mountheight = parseInt(mount) + parseInt(dimen[1]);
 			var mount_cost = mountwidth * mountheight * mount_rate; 
-			$('#MountCost').html("Rs."+ Math.round(mount_cost));
-				if($('#sizes').val() == 'Customize Size'){
-					if( ($('#width').val() == 0) && ($('#height').val()== 0) ){
-						$('.actual_price').html('Rs.0');
-						$('#finished_size').html('Choose Other Size');
-					}else{
-						$('#finished_size').html(Math.round(framewidth,2)+'"X'+Math.round(frameheight,2)+'" Framed Print');
-					}
-				}else{ 
-				$('#finished_size').html(Math.round(framewidth,2)+'"X'+Math.round(frameheight,2)+'" Framed Print');
-				}
-				var print_price = $('#print_price').html();
-				if($('#remove-mount').prop('checked') == 'true'){
-						var actual_price = parseInt(print_price) + parseInt(framing_cost) + parseInt(glass_cost);
-						$('.actual_price').html("Rs."+Math.round(actual_price));
+			$('#MountCost').html("Rs."+mount_cost);
+			if($('#sizes').val() == 'Customize Size'){
+				if( ($('#width').val() == 0) && ($('#height').val()== 0) ){
+					var val = 0;
+					$('.actual_price').html(val);
+					$('#finished_size').html('Choose Other Size');
 				}else{
-					var actual_price = parseInt(print_price) + parseInt(framing_cost) + parseInt(glass_cost) + parseInt(mount_cost);
-					setTimeout(function(){
-						$('.actual_price').html("Rs."+ Math.round(actual_price));
-						},100);    
+					$('#finished_size').html(Math.round(framewidth,2)+'"X'+Math.round(frameheight,2)+'" Framed Print');
 				}
+			}else{ 
+			$('#finished_size').html(Math.round(framewidth,2)+'"X'+Math.round(frameheight,2)+'" Framed Print');
+			}
+			var print_price = $('#print_price').html();
+			if($('#remove-mount').prop('checked') == 'true'){
+			var actual_price = parseInt(print_price) + parseInt(framing_cost) + parseInt(glass_cost);
+			$('.actual_price').html("Rs."+actual_price);
+			}else{
+			var actual_price = parseInt(print_price) + parseInt(framing_cost) + parseInt(glass_cost) + parseInt(mount_cost);
+			setTimeout(function(){
+			    $('.actual_price').html("Rs."+ actual_price)
+			    },100);    
+			}
     		}else{
 			var framewidth = parseInt(dimen[0])+  parseInt(2) * $('#frame_inches').val();
 			var frameheight = parseInt(dimen[1])+ parseInt(2) * $('#frame_inches').val();
@@ -643,7 +670,7 @@ Dropzone.options.myDropzone = {
 			$('#glass_price').html(glass_cost);
 			$('#finished_size').html(framewidth+'"X'+frameheight+'" Framed Print');
             var actual_price = parseInt(framing_cost) + parseInt(glass_cost);
-			$('.actual_price').html('Rs.'+actual_price);			
+			$('.actual_price').html(actual_price);			
 			}
 	}
 	
@@ -653,7 +680,7 @@ Dropzone.options.myDropzone = {
 		$('#f_name').html(frame_name);
 		$('#frame_rate').val(rate);
 		$('#frame_inches').val( Math.round(parseInt(size)/25));
-		$('#frame_color').val(frame_name);
+		$('#frame_color').val(color);
 		calculate_cost('');
 	    frame_pricing();
 	}
@@ -665,6 +692,23 @@ Dropzone.options.myDropzone = {
 		calculate_cost('');
 	    frame_pricing();
 	}
+// 	function by_keyup_update(id_val){
+// 	$(".by_keyup_update").keyup(function(){ 
+// 		var newValue = $('#qty_update'+id_val).val().replace(/[^1-9]/g,'');
+// 		if(newValue.length>=1){
+// 		var newValue = $('#qty_update'+id_val).val().replace(/[^0-9]/g,'');
+// 		}
+// 		$('#qty_update'+id_val).val(newValue);
+// 	});
+//  }
+
+// 	var body = document.getElementsByTagName('body')[0];
+// 				var removeLoading = function() {
+// 					setTimeout(function() {
+// 						body.className = body.className.replace(/loading/, '');
+// 					}, 3000);
+// 				};
+// 	removeLoading();
 	function change_image(src){
 		$('#get_img').val(src);
 		var k  =  src.split('/');       
@@ -1229,16 +1273,12 @@ Dropzone.options.myDropzone = {
 		$('.imageBox').css({'width':'100%','height':'550px','border':'none'});    
 		$('.thumbBox').css({'width':'100%', 'height':'400px', 'margin-top':'-200px', 'margin-left':'-50%', 'border':'none'});
 	    $('#crop_image').show(); 
-		} else{
-		var horizon_height = $('#horizonal_height').html();	
-		var horizon_height1 = parseInt(horizon_height);
-		var margin_top = parseInt(-(horizon_height/2));	
-		horizon_height = parseInt(horizon_height)+parseInt(75);
-		$('.uploader_popup_goofy_a').css({'top':'50%','width':'417px','margin-left':'-208px','height': horizon_height,'margin-top':margin_top,'left':'50%'})//a
-		$('.imageBox').css({'height':horizon_height1,'width':'100%','border':'none'});    
-		$('.thumbBox').css({'border': 'none','top':'50%','left':'50%','width':'300px','height':horizon_height1,'margin-top':margin_top,'margin-left':'-150px'});
-	     $('#crop_image').show();
-		} 
+		}else{
+		$('.uploader_popup_goofy_a').css({'top':'50%','width':'417px','margin-left':'-208px','height':'350px','margin-top':'-175px','left':'50%'})//a
+		$('.imageBox').css({'height':'260px','width':'417px','border':'none'});    
+		$('.thumbBox').css({'border': 'none','top':'50%','left':'50%','width':'300px','height':'260px','margin-top':'-130px','margin-left':'-150px'});
+	    $('#crop_image').show();
+		}
 	});
 }
 		
@@ -1348,7 +1388,7 @@ Dropzone.options.myDropzone = {
 	$('#myCanvas3').hide();
 	$('.dimention').hide();
 	$('#glass_price').html("Rs.41");
-	var category = '<?php echo $_SESSION['type'];?>'; 
+	var category = '<?php echo $type;?>'; 
 	if( category == 'canvas'){
 		setTimeout(
         function(){
@@ -1477,10 +1517,10 @@ Dropzone.options.myDropzone = {
 	
 	$('.inputs').click(function(){
 		if( $('#width').val() == ''){
-			$('#finished_size').html('Choose Other Size');
+			$('#finished_size').html('Choose Other Sizes');
 		}
 		if( $('#height').val() == ''){
-			$('#finished_size').html('Choose Other Size');
+			$('#finished_size').html('Choose Other Sizes');
 		}
 		var src = $('#get_img').val();
 		var k  =  src.split('/');       
@@ -1502,41 +1542,10 @@ Dropzone.options.myDropzone = {
 				$('#h_value').val(dimentions[1]);
 			}
         });  
+		
 	});
-	$('#width').keyup(function(){
-				var real_value = $(this).val().replace(/[^1-9]/g,'');
-				$(this).val(real_value);
-				var real_width = $('#w_value').val();
-				var real_height = $('#h_value').val();
-				if($('#type').html() == 'horizontal')
-				var ratio = real_height/real_width;
-				if($('#type').html() == 'vertical')
-				var ratio = real_width/real_height;
-				var max_width = real_width/150;
-			    var max_height = real_height/150;
-				var id = $(this).attr('id');
-				var value = $(this).val();	
-				if(id == 'width'){
-					if(value == ''){
-					$('.actual_price').val('Rs.0');
-					$('#height').val('');	
-					}
-				 }	
-					if( (value <= max_width) && (value != 0) && (value != '') ){
-					var input_height = ratio*value;
-					$('#height').val(Math.round(input_height));
-					setTimeout(function(){
-					calculate_cost('Customize Size');
-					},100);
-				}else{
-				 $('#height').val('');
-				 $('#finished_size').html('Choose Other Size');		
-				}
-		});
-
-	$('#height').keyup(function(){
-				var real_value = $(this).val().replace(/[^1-9]/g,'');
-				$(this).val(real_value);
+	
+	$('#width,#height').keyup(function(){
 				var real_width = $('#w_value').val();
 				var real_height = $('#h_value').val();
 				if($('#type').html() == 'horizontal')
@@ -1549,21 +1558,42 @@ Dropzone.options.myDropzone = {
 				var value = $(this).val();	
 				 if(id == 'height'){
 					if(value == ''){
-					$('.actual_price').val('Rs.0');
 					$('#width').val('');	
 					}
 				 }
+				if(id == 'width'){
+					if(value == ''){
+					$('#height').val('');	
+					}
+				 }	
+				if(id == 'height'){
 				    if( (value <= max_height) && (value != 0) && (value != '') ){
-						var input_width = ratio*value; 	
-						$('#width').val(Math.round(input_width));
-						setTimeout(function(){
-						calculate_cost('Customize Size');
-						},100);
+					var input_width = ratio*value; 	
+					$('#width').val(input_width);
+					setTimeout(function(){
+					calculate_cost('Customize Size');
+					},100);
+					$('#width').html(input_width);
+					console.log("id= "+ value +" width= "+input_width);
 					}else{
 					 $('#width').val('');
-					 $('#finished_size').html('Choose Other Size');		
+					 $('#finished_size').html('Choose Other Sizes');		
 					}
-				});
+				}else{
+					if( (value <= max_width) && (value != 0) && (value != '') ){
+					var input_height = ratio*value;
+					$('#height').val(input_height);
+					setTimeout(function(){
+					calculate_cost('Customize Size');
+					},100);
+					$('#height').val(input_height);
+					console.log("id= "+ value +" height= "+input_height);
+				}else{
+				 $('#height').val('');
+				 $('#finished_size').html('Choose Other Sizes');		
+				}
+			}
+	});
 	
 	$('#btnCrop').click(function(){
         setTimeout(function(){
@@ -1592,8 +1622,6 @@ Dropzone.options.myDropzone = {
 		    $('#price_show').show();
 			$('#width').val('');
 			$('#height').val('');
-			$('#frame_color').val('Absolute Black');
-			$('#mount_code').val('DR 2091');
 			paper_surface('framing');
 			if( $('#frame_ data').val() == ''){
 		    console.log('nothing');
@@ -1611,7 +1639,8 @@ Dropzone.options.myDropzone = {
           	$("#"+ $('#mount_data').val() + "").click();    
     		},100);
 		    }
-			calculate_cost('');
+ 			//frame_change();mount_data
+ 			calculate_cost('');
  			frame_pricing();
  			$('#click').html('frame_click');
  			$('.canvas').hide();
@@ -1637,8 +1666,6 @@ Dropzone.options.myDropzone = {
 	   	    $('#price_show').hide();
 	   	    $('#width').val('');
 			$('#height').val('');
-			$('#frame_color').val('');
-			$('#mount_code').val('');
 			paper_surface('canvas');
  			$('#frame_click').html('canvas_click');
 			calculate_cost('');
@@ -1656,8 +1683,6 @@ Dropzone.options.myDropzone = {
 		    $('#price_show').hide();
 		    $('#width').val('');
 			$('#height').val('');
-			$('#frame_color').val('');
-			$('#mount_code').val('');
 			paper_surface('print_only');
 			calculate_cost('');
 			var size = ''+$('#sizes').val();
@@ -1669,7 +1694,7 @@ Dropzone.options.myDropzone = {
 			$('.framing').hide();
 			$('.print').show();
 		    setTimeout(function(){
-		      $('.actual_price').html('Rs.'+$('#print_price').html());
+		      $('.actual_price').html($('#print_price').html());
 		    },200);
 		    $('#click').html('print_only');
 		  }else{
@@ -1719,7 +1744,7 @@ Dropzone.options.myDropzone = {
 	<input id='frame_rate' style="display:none;">
 	<input id='mount_rate' value='' style="display:none;">
     <input id='frame_inches' value='' style="display:none;">
-	<input id='frame_color' value='' style="display:none;">
+	<input id='frame_color' value='Black' style="display:none;">
     <input id='glass_rate' value='' style="display:none;">
     <input id='frame_data' value='' style="display:none;">
     <input id='mount_data' value='' style="display:none;">

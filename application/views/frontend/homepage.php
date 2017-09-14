@@ -15,7 +15,8 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/popular-art-slider.css" type="text/css">
 <script src="<?php echo base_url()?>assets/js/jquery.flexslider.js"></script>
 
-<div class="container"><div class="row">
+<div class="container">
+<div class="row">
 <div id="myCarousel" class="carousel slide col-md-12" data-ride="carousel" style="margin-top:2px">
 <div class="carousel-inner" role="listbox">
 
@@ -65,62 +66,27 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 </div>
 <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev" style="width:20px"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> 
 <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next" style="width:20px"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
+
 <div class="top-cate col-md-12">
-<h1 class="ttto">TOP CATEGORIES </h1>
+<h1 class="ttto"> What's Trending </h1>
 </div>
-<?php
-         $top_cat= $this->frontend_model->get_home_top_category_images('top category','1');
-         $top_cat2= $this->frontend_model->get_home_top_category_images('top category','2');
-		 $top_cat3= $this->frontend_model->get_home_top_category_images('top category','3');
-		 $top_cat4= $this->frontend_model->get_home_top_category_images('top category','4');
-		 $top_cat5= $this->frontend_model->get_home_top_category_images('top category','5');
-		 $top_cat6= $this->frontend_model->get_home_top_category_images('top category','6');
-		 $top_cat7= $this->frontend_model->get_home_top_category_images('top category','7');
-		 $top_cat8= $this->frontend_model->get_home_top_category_images('top category','8');
-		 $top_cat9= $this->frontend_model->get_home_top_category_images('top category','9');
-		 $top_cat10= $this->frontend_model->get_home_top_category_images('top category','10');
-        ?>
 
-<div class="tpl-cbs col-md-12"><div class="tpl-cb floatLeft">
-<div class="track-group stc2" id="shoptop-test-a" style="display: block ! important;">
-<div id="shoptop-layout-a" class="shopTopCategories">
-<div class="category">
-<a class="st-botanical" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$top_cat[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat[0]->image?>" class="white-frame-bg"/> <br/>  <?=$top_cat[0]->title?> </a>
+<div id="myCarousel2" class="carousel slide col-md-12" data-ride="carousel" style="margin-top:2px">
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+        	<a href="<?=base_url()?>"><img src="<?php echo base_url();?>assets/img/slider/whats trending slider-01.jpg" border="0" /></a>
+    	</div>
+        <div class="item">
+        	<a href="<?=base_url()?>"><img src="<?php echo base_url();?>assets/img/slider/whats trending slider-02.jpg" border="0" /></a>
+    	</div>
+        <div class="item">
+        	<a href="<?=base_url()?>"><img src="<?php echo base_url();?>assets/img/slider/whats trending slider-03.jpg" border="0" /></a>
+    	</div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel2" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> 
+    <a class="right carousel-control" href="#myCarousel2" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> 
 </div>
-<div class="category">
-<a class="st-botanical" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$top_cat6[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat6[0]->image?>" class="brown-frame-bg" /> <br/> <?=$top_cat6[0]->title?> </a>
-</div>
-<div class="category">
-<a class="st-botanical" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$top_cat2[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat2[0]->image?>" class="white-frame-bg" />  <br/>  <?=$top_cat2[0]->title?></a>
-</div>
-<div class="category">
-<a class="st-botanical" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$top_cat7[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat7[0]->image?>" class="black-frame-bg" />  <br/>  <?=$top_cat7[0]->title?></a>
-</div>
-<div class="category">
-<a class="st-botanical" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$top_cat3[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat3[0]->image?>" class="brown-frame-bg" />  <br/>  <?=$top_cat3[0]->title?></a>
-</div>
-<div class="category">
-<a class="st-botanical" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$top_cat8[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat8[0]->image?>" class="white-frame-bg"  />  <br/>  <?=$top_cat8[0]->title?></a>
-</div>
-<div class="category">
-<a class="st-botanical" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$top_cat4[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat4[0]->image?>" class="black-frame-bg"  />  <br/>  <?=$top_cat4[0]->title?></a>
-</div>
-<div class="category">
-<a class="st-botanical" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$top_cat9[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat9[0]->image?>" class="brown-frame-bg"  /> <br/>   <?=$top_cat9[0]->title?></a>
-</div>
-<div class="category">
-<a class="st-botanical" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$top_cat5[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat5[0]->image?>" class="white-frame-bg"  />  <br/>  <?=$top_cat5[0]->title?></a>
-</div>
-<div class="category">
-<a class="st-botanical" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$top_cat10[0]->keyword?>/all"><img src="<?php echo base_url();?><?=$top_cat10[0]->image?>" class="black-frame-bg"  />  <br/>  <?=$top_cat10[0]->title?></a>
-</div>
-</div>
-</div>
-</div><div style="clear: both;"></div></div>
 
-<!--<div class="top-cate toppe">
-<hr class="line">
-</div>-->
 <div style="clear:both"></div>
 <!--bottom top area-->
 <div class="col-md-12" style="margin-bottom:30px">

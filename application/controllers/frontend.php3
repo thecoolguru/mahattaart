@@ -52,36 +52,37 @@ $this->user = $this->facebook->getUser();
 	public function photostoart_inner()
 	{
  		$_SESSION['path'] = IMAGE_PATH;
- 		$id = $_SESSION['user_info'];
+ 		$id = $_COOKIE['user_info'];
 		$_SESSION['user'] = $id;
-		$data1 = 'photostoart';
-		$this->session->set_userdata('page',$data1); 
 		$result = $this->frontend_model->get_images($id);
 		if(isset($_SESSION['user'])){ 
 		$data['mount_name']=$this->frontend_model->get_mount_name_web_price();
 		$data['frame_cat']=$this->frontend_model->get_frame_cat_tbl_web_price();
 		$data['frame_sizze']=$this->frontend_model->get_frame_size();
 		$data['frame_color']=$this->frontend_model->get_frame_color_web_price();
+		$data['type'] = $_SESSION['type'];
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/photostoart_inner',$data);
 		$this->load->view('frontend/footer');
   		}else{
   		echo "<script>window.location.href='photostoart';</script>"; 
   		}
-		unset($_SESSION['type']);
 	}
 
 
-		public function get_web_frame_rate(){
-			$frame=$this->input->post('frame');
-			$sql="select frame_rate from tbl_web_price where frame like '%".$frame."%'";
-			$rows=  mysql_query($sql);
-			$result=  mysql_fetch_assoc($rows);
-			echo $result['frame_rate'];
-		}
+ public function get_web_frame_rate()
+	  {
+           $frame=$this->input->post('frame');
+             
+	  $sql="select frame_rate from tbl_web_price where frame like '%".$frame."%'";
+	  $rows=  mysql_query($sql);
+          $result=  mysql_fetch_assoc($rows);
+          echo $result['frame_rate'];
+	  }
         
         
-         public function get_web_mount_rate(){
+         public function get_web_mount_rate()
+	  {
            $mount=  str_replace(' ', '', $this->input->post('mount'));
              
 	  $sql="select mount_rate from tbl_web_price where mount like '%".$mount."%'";
@@ -2077,7 +2078,8 @@ public function check_img_exist_status()
 	
 	public function frame_it($img_id="",$type="",$cost="",$bodered_size="",$size="",$image_name="",$quality="",$api_image_id="",$images_id="")
 	{
-				$this->session->unset_userdata('page');
+	
+               
                 $data['api_image_id']=$api_image_id;
                 $data['images_id']=$images_id;
                 $data['quality']=$quality;
@@ -2579,17 +2581,23 @@ $subject = 'Welcome to Mahatta Art';
          $this->load->view('frontend/frame_it_page',$data);
          $this->load->view('frontend/footer');
     }
-    
-	public function frameit_addtocart(){ 
-		$print_size=$this->input->post('images_size');
+    //main frontend of bea.maghattaart by mohan
+    public function frameit_addtocart()
+    { 
+	//echo "entry in methode";
+	    
+		// echo "sajid";
+        $print_size=$this->input->post('images_size');
         $images_price=$this->input->post('images_price');
         $img_id=$this->input->post('img_id');
         $user_id=$this->input->post('user_id');
         $mat_color=$this->input->post('mat_color');
         $mat_size=$this->input->post('mat_size');
         $frameSize=$this->input->post('frameSize');
-		$frame_color=$this->input->post('frame_color');
-		$imagsTypes=$this->input->post('image_type');
+		
+        $frame_color=$this->input->post('frame_color');
+				//echo "sajid";																								
+        $imagsTypes=$this->input->post('image_type');
         $FrameCost=$this->input->post('FrameCost');
 		$mount_color=$this->input->post('mount_color');
         $MountCost=$this->input->post('MountCost');
@@ -2597,73 +2605,102 @@ $subject = 'Welcome to Mahatta Art';
         $glasses=$this->input->post('glasses');
         $total_price=$this->input->post('total_price');
 		$paper_surface=$this->input->post('paper_surface');
-        $final_frame_size=$this->input->post('final_frame_size');
+         $final_frame_size=$this->input->post('final_frame_size');
+         
         $images_filename=$this->input->post('image_namee');
 		date_default_timezone_set('Asia/Kolkata');
-		$date=date('Y-m-d H:i:s');
-		$product_size=$this->input->post('product_size');
-		$print_value = $this->input->post('print_v');
-			if($img_id!=''){
-			   if($print_value!=''){
-			   	   if($print_value=='canvas_only'){
-						$canvas_only='canvas';
-						$frame_c = $frame_color;
-						$this->frontend_model->canvas_frame_type($frame_c);
-				   }else{
-				   $canvas_only='print';
-				   $frame_c=0;
-				   $user_id=$user_id;
-				   }
-				   if($this->session->userdata('page')){
-					   echo $path = 1;
-				   }else{
-					   echo $path = 0;
-				   }
-			 $data=array('cart_id'=>'','image_print_type'=>$paper_surface,'image_id'=>$img_id,'qty'=>1,'user_id'=>$user_id,'frame_size'=>'0','frame_color'=>$frame_c,'frame_cost'=>'0','mount_size'=>'0','mount_color'=>'0','mount_cost'=>'0','glass_type'=>'0','glass_cost'=>'0','price'=>$total_price,'updated_price'=>'','total_price'=>'','image_size'=>$print_size,'images_price'=>$images_price,'image_name'=>$images_filename,'create_date'=>$date, 'path'=>$path);
-			 $check1=$this->frontend_model->check_cart_details($user_id,$img_id,$paper_surface,$print_size);			 
-			 }else{
-				if($this->session->userdata('page')){
-					   echo $path = 1;
-				   }else{
-					   echo $path = 0;
-				   }
-			 $res=array('cart_id'=>'', 'image_print_type'=>$paper_surface, 'image_id'=>$img_id, 'qty'=>1, 'user_id'=>$user_id, 'frame_size'=>$frameSize, 'frame_color'=>$frame_color, 'frame_cost'=>$FrameCost, 'mount_size'=>$mat_size,'mount_code'=>$mount_color, 'mount_color'=>$mat_color, 'mount_cost'=>$MountCost, 'glass_type'=>$glasses, 'glass_cost'=>$glasses_coste, 'price'=>$total_price,'total_price'=>$total_price, 'updated_price'=>'', 'image_size'=>$print_size,'framed_image_size'=>$final_frame_size,'images_price'=>$images_price, 'image_name'=>$images_filename, 'create_date'=>$date, 'path'=>$path,'size'=>$product_size);
-			$data=array_map('trim',$res);
+		 $date=date('Y-m-d H:i:s');
+		  $print_value=$this->input->post('print_v');
+    // echo "sajid".$img_id;
+           if($images_filename!='')
+           {
+		   
+               if($print_value!=''){
+			   
+			   if($print_value=='canvas_only'){
+			    $canvas_only='canvas';
+				$frame_c=$frame_color;
+				//echo $frame_c;
+				$this->frontend_model->canvas_frame_type($frame_c);
+				
+			   }
+			   else{
+			   $canvas_only='print';
+			   $frame_c=0;
+			    $user_id=$user_id;
+			   }
+			 
+			 $data=array('cart_id'=>'','image_print_type'=>$paper_surface,'image_id'=>$img_id,'qty'=>1,'user_id'=>$user_id,'frame_size'=>'0','frame_color'=>$frame_c,'frame_cost'=>'0','mount_size'=>'0','mount_color'=>'0','mount_cost'=>'0','glass_type'=>'0','glass_cost'=>'0','price'=>$total_price,'updated_price'=>'','total_price'=>'','image_size'=>$print_size,'images_price'=>$images_price,'image_name'=>$images_filename,'create_date'=>$date);
+			
+		 $check1= $this->frontend_model->check_cart_details($user_id,$img_id,$paper_surface,$print_size);
+		// print_r($check1);
+			  } 
+			  
+			  else{
+             $res=array('cart_id'=>'', 'image_print_type'=>$paper_surface, 'image_id'=>$img_id, 'qty'=>1, 'user_id'=>$user_id, 'frame_size'=>$frameSize, 'frame_color'=>$frame_color, 'frame_cost'=>$FrameCost, 'mount_size'=>$mat_size,'mount_code'=>$mount_color, 'mount_color'=>trim($mat_color), 'mount_cost'=>$MountCost, 'glass_type'=>$glasses, 'glass_cost'=>$glasses_coste, 'price'=>$total_price,'total_price'=>$total_price, 'updated_price'=>'', 'image_size'=>$print_size,'framed_image_size'=>$final_frame_size,'images_price'=>$images_price, 'image_name'=>$images_filename, 'create_date'=>$date);
+			 $data=array_map('trim',$res);
 		   $check1= $this->frontend_model->check_cart_details($user_id,trim($img_id),trim($paper_surface),$print_size,$frame_color,trim($mat_color),trim($glasses));
-		 	 }
-			 print_r($data);
-				$user_id=$this->session->userdata('userid');   
-			if($check1==0){
-			$insert=$this->frontend_model->insert_into_cart($data);
-			}elseif($check1==1){
-			 if($print_value==''){
-			   $check2= $this->frontend_model->get_cart_details($user_id,$img_id,$paper_surface,$print_size,$frame_color,$mat_color,$glasses);
-				}else{
-			   $check2= $this->frontend_model->get_cart_details($user_id,$img_id,$paper_surface,$print_size);
-				}
-			 $framed_image_size=$check2[0]->frame_size;
-			if($framed_image_size!=''){
-				foreach($check2 as $frameddata){
-				 $qty=$frameddata->qty;
-				// echo 'qua'.$qty.'qua';
-				$update_qty=$qty+1;
-				$price=$frameddata->price;
-				$update_price=(($price/$qty)*$update_qty);
-				$data3=array('qty'=>$update_qty,'price'=>$update_price);
-				if($print_value==''){
-				$insert=$this->frontend_model->update_qty_frame_for_cart($print_size,$paper_surface,$images_filename,$data3,$frame_color,$mat_color,$glasses); 
-				}else{
-				$insert=$this->frontend_model->update_qty_for_cart($print_size,$paper_surface,$images_filename,$data3);
-				}
-			}  
-		 } 
-	}
+           }
+		   $user_id=$this->session->userdata('userid');
+		//print_r($data);
+		// echo $check1."sirat";
+		
+		   if($check1==0){
+		   
+           $insert=$this->frontend_model->insert_into_cart($data);
+		   echo "1";
+		   
+		   
+		   }
+		   
+		   elseif($check1==1){
+		   if($print_value==''){
+		   $check2= $this->frontend_model->get_cart_details($user_id,$img_id,$paper_surface,$print_size,$frame_color,$mat_color,$glasses);
+		  }else{
+		  $check2= $this->frontend_model->get_cart_details($user_id,$img_id,$paper_surface,$print_size);
+		  }
+		   $framed_image_size=$check2[0]->frame_size;
+		 // echo $framed_image_size.'for update frame';
+		// echo 'jj'.$framed_image_size.'sajid';
+		  /* if($framed_image_size==0){
+		   $insert2=$this->frontend_model->insert_into_cart($data);
+		   echo 1;
+		   
+		   }
+		   else*/
+		   if($framed_image_size!=''){
+		  
+		   foreach($check2 as $frameddata){
+		   $qty=$frameddata->qty;
+		  // echo 'qua'.$qty.'qua';
+		$update_qty=$qty+1;
+		$price=$frameddata->price;
+		
+		$update_price=(($price/$qty)*$update_qty);
+		//echo 'ss'.$update_price.'ss'.$update_qty;
+		$data3=array('qty'=>$update_qty,'price'=>$update_price);
+		//print_r($data3);
+		if($print_value==''){
+		 $insert=$this->frontend_model->update_qty_frame_for_cart($print_size,$paper_surface,$images_filename,$data3,$frame_color,$mat_color,$glasses); 
+		 } else{
+		 $insert=$this->frontend_model->update_qty_for_cart($print_size,$paper_surface,$images_filename,$data3);
+		 }
+		    
+		 echo $insert;
+		 
+		 
+		 }  
+		   }
+		
+		   }
          elseif($check1==2){
+		 
 		 $check2= $this->frontend_model->get_cart_details($user_id,$img_id,$paper_surface,$print_size);
 		 foreach($check2 as $frameddata){
 		 $frame_size=$frameddata->frame_size;
 		 
-		if($frame_size==1){
+
+		   if($frame_size==1){
 		$qty=$frameddata->qty;
 		$update_qty=$qty+1;
 		$price=$frameddata->price;
@@ -2671,12 +2708,41 @@ $subject = 'Welcome to Mahatta Art';
 		$update_price=(($price/$qty)*$update_qty);
 		$data3=['qty'=>$update_qty,'price'=>$update_price];
 		 $insert=$this->frontend_model->update_qty_frame_for_cart($print_size,$paper_surface,$images_filename,$data3);    
+		 echo $insert;  
 		}   
-	  }
-	}    
-  }
-	echo "1";	   
-}
+		 }
+		
+         }   
+           }  
+    }
+	
+	public function photostocart(){ 
+	    $print_size=$this->input->post('size');
+        $image_name=$this->input->post('image_name');
+		$image_id=$this->input->post('image_id');
+		$print = $this->input->post('print_type');
+		$paper = $this->input->post('paper');
+		$user = $this->input->post('user_id');
+		$total_price = $this->input->post('price');
+		$type = $this->input->post('type');
+		$images_price = $this->input->post('print_price');
+		date_default_timezone_set('Asia/Kolkata');
+		$date = date('Y-m-d H:i:s'); 		
+        if($print == 'canvas print'){
+			$status = $this->frontend_model->check_cart_details($user_id,$image_id,$paper,$print_size);
+			if($status == 0){
+			  $data = array('cart_id'=>'','image_print_type'=>$paper,'image_id'=>$image_id,'qty'=>1,'user_id'=>$user,'frame_size'=>'0','frame_color'=>'0','frame_cost'=>'0','mount_size'=>'0','mount_color'=>'0','mount_cost'=>'0','glass_type'=>'0','glass_cost'=>'0','price'=>$total_price,'updated_price'=>'','total_price'=>'','image_size'=>$print_size,'images_price'=>$images_price,'image_name'=>$image_name,'create_date'=>$date);
+			  echo $result = $this->frontend_model->insert_into_cart($data);	
+			}else{
+			  echo $result = 'Please Choose Different Combination';
+			}
+		}else if($print == 'frame print'){
+			echo "In Frame";
+		}else{
+			echo "In print only"; 			
+		}
+	}
+	
 	
 	public function update_customer(){
 	  $name=$this->input->post('name');
@@ -2696,34 +2762,39 @@ $subject = 'Welcome to Mahatta Art';
 	 $this->frontend_model->update_customer($data);
 	
 	}
-    
+    public function update_qty_for_cart(){
 	
-	public function update_qty_for_cart(){
-		 $frame_s=$this->input->post('frame_s');
-		 $imgsize=$this->input->post('imgsize');
-		 $mainqty=$this->input->post('mainqty');
-		 $papersurface=$this->input->post('papersurface');
-		 $qty=$this->input->post('v');
-		 $filenam=$this->input->post('filenam');
-		 $updprice=$this->input->post('imgprice');
-		 $frame_name=$this->input->post('frame_name');
-		 $mount_name=$this->input->post('mount_name');
-		 $glass=$this->input->post('glass');
-		 $main_price=($updprice/$mainqty);
-		 $each_price=round($main_price,2);
-		 $updated_price=round(($each_price*$qty),2);
-		 $data=array('qty'=>$qty,'price'=>$updated_price);
-	     if($frame_s==0){
-		   $result=$this->frontend_model->update_qty_for_cart($imgsize,$papersurface,$filenam,$data);
-		   echo $result;
-		 }
-		 else if($frame_s>0){
-		   $result=$this->frontend_model->update_qty_frame_for_cart($imgsize,$papersurface,$filenam,$data,$frame_name,$mount_name,$glass);
-		   echo $result;
-		 }
+	$frame_s=$this->input->post('frame_s');
+	
+	 $imgsize=$this->input->post('imgsize');
+	 $mainqty=$this->input->post('mainqty');
+	 $papersurface=$this->input->post('papersurface');
+	 $qty=$this->input->post('v');
+	 $filenam=$this->input->post('filenam');
+	 $updprice=$this->input->post('imgprice');
+	 $frame_name=$this->input->post('frame_name');
+	 $mount_name=$this->input->post('mount_name');
+	 $glass=$this->input->post('glass');
+	  $main_price=($updprice/$mainqty);
+	  $each_price=round($main_price,2);
+	   $updated_price=round(($each_price*$qty),2);
+	 
+	$data=array('qty'=>$qty,'price'=>$updated_price);
+	//print_r($data);saaaa
+	 if($frame_s==0){
+	   $result=$this->frontend_model->update_qty_for_cart($imgsize,$papersurface,$filenam,$data);
+	echo $result;
 	}
-    
-	public function save_frame_details(){
+	else if($frame_s==1){
+	//echo $imgsize.$papersurface.$filenam;
+   // print_r($data);
+	 $result=$this->frontend_model->update_qty_frame_for_cart($imgsize,$papersurface,$filenam,$data,$frame_name,$mount_name,$glass);
+	echo $result;
+	}
+	//echo "saya";
+		
+	}
+    public function save_frame_details(){
 
         $user_id=$this->session->userdata('userid');
         $image_id=$this->input->post('imageid');

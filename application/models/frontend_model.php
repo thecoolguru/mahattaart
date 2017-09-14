@@ -88,16 +88,10 @@ public function reverse_number($number)
 	return $query->result();	
 	}
 	
-	public function image_specifications($user){
-		$this->db->select('*');
-        $this->db->where('user_id',$user);
-        $query=$this->db->get('tbl_cart');
-        return $query->result();	
-	}
-	
 	public function get_images($id){
 	$this->db->select('*');
 	$this->db->where('session_id',$id);
+	$this->db->order_by("id","desc");
 	$query=$this->db->get('add_images_table');
 	return $query->result();
 	}
@@ -213,7 +207,7 @@ public function get_add_details(){
 public function get_tbl_clearence(){
 	 $this->db->select('*');
 	 $this->db->where('available','Yes');
-	 //$thus->db->where('');
+	 $this->db->where_not_in('reasons','damaged');
 	 $query=$this->db->get('tbl_clearence');
 	 return $query->result();
 	 
@@ -1112,8 +1106,6 @@ public function insert_light_box_images($lightbox_id,$img_id,$filename,$img_size
 	$this->db->update('tbl_registration',$data);
 }
 	public function update_qty_frame_for_cart($imgsize,$papersurface,$filenam,$qty,$frame_name,$mount_name,$glass){
-	//echo $imgsize.$papersurface.$filenam;
-	//$this->db->where('frame_size','1');
 	$id=$this->session->userdata('userid');
 	$this->db->where('user_id',$id);
 	$this->db->where('image_size',trim($imgsize));
@@ -1123,12 +1115,11 @@ public function insert_light_box_images($lightbox_id,$img_id,$filename,$img_size
 	$this->db->where('mount_color',$mount_name);
 	$this->db->where('glass_type',$glass);
 	$query=$this->db->update('tbl_cart',$qty);
-	if($query){
-	return 1;
-	}else{
-	return 0;
-	}
-	
+	  if($query){
+		return 1;
+	  }else{
+		return 0;
+	  } 		
 	}
 	
     public  function check_frame_details($user_id,$image_id)
@@ -1148,24 +1139,18 @@ public function insert_light_box_images($lightbox_id,$img_id,$filename,$img_size
 	}
     public  function check_cart_details($user_id,$image_id,$imagsTypes,$total_size,$frame_name,$mount_name,$glass)
     {		
-	//echo $user_id.','.$image_id.','.$imagsTypes.','.$total_size.','.$frame_name.','.$mount_name.','.$glass;
-	  // echo   $this->trans_canv;
-        $this->db->where('user_id',$user_id);
-        $this->db->where('image_id',trim($image_id));
+		$this->db->where('user_id',$user_id);
+        $this->db->where('image_id',$image_id);
 		$this->db->where('image_print_type',trim($imagsTypes));
 		$this->db->where('image_size',trim($total_size));
 		if($frame_name!=''){
 		$this->db->where('frame_color',trim($frame_name));
-		$this->db->where('mount_color',trim($mount_name));
-		$this->db->where('glass_type',trim($glass));
+		$this->db->where('mount_color',$mount_name);
+		$this->db->where('glass_type',$glass);
 		}
         $query=$this->db->get('tbl_cart');
-        return $query->num_rows();
-	  //$res=$query->result();
-	  ////print_r($res);
-		//return 'sss'.$fr_type.'sss';
-		
-    }
+        return $query->num_rows();//$user_id.','.$image_id.','.$imagsTypes.','.$total_size;
+	}
 	
     public function get_frame_values($frame_id)
     {
@@ -1181,30 +1166,28 @@ public function insert_light_box_images($lightbox_id,$img_id,$filename,$img_size
     return $query->result();
     }
    //main frontend_model of mahattart by sajid
-    public  function insert_into_cart($data2)
-    {
     
-        $this->db->insert('tbl_cart',$data2);
-        
-       
-    }
+	public  function insert_into_cart($data2)
+    {
+        $result = $this->db->insert('tbl_cart',$data2);
+		return $result; 
+	}
+			
 	public function update_qty_for_cart($imgsize,$papersurface,$filenam,$qty){
-	
-	//$this->db->where('frame_size','0');
 	$id=$this->session->userdata('userid');
-	
 	$this->db->where('image_size',trim($imgsize));
 	$this->db->where('user_id',$id);
 	$this->db->where('image_print_type',trim($papersurface));
 	$this->db->where('image_name',trim($filenam));
 	$query=$this->db->update('tbl_cart',$qty);
-	if($query){
-	return 1;
-	}else{
-	return 0;
+		if($query){
+		return 1;
+		}else{
+		return 0;
+		}
+	}
 	
-	}
-	}
+	
 	public function get_web_price()
 	  {
 	  
@@ -1219,28 +1202,26 @@ public function insert_light_box_images($lightbox_id,$img_id,$filename,$img_size
 	public  function get_cart_details($user_id,$image_id,$imagsTypes,$total_size,$frame_name,$mount_name,$glass)
     {           
 	    $this->db->where('user_id',$user_id);
-		 $this->db->where('image_id',$image_id);
+		$this->db->where('image_id',$image_id);
 		$this->db->where('image_print_type',trim($imagsTypes));
 		$this->db->where('image_size',trim($total_size));
 		if($frame_name!=''){
-		$this->db->where('frame_color',$frame_name);
-		$this->db->where('mount_color',$mount_name);
-		$this->db->where('glass_type',$glass);
-		}
-		
+			$this->db->where('frame_color',$frame_name);
+			$this->db->where('mount_color',$mount_name);
+			$this->db->where('glass_type',$glass);
+			}
         $query=$this->db->get('tbl_cart');
-       		 return $query->result();
+   		 return $query->result();
     }
-    public function get_frame_data($image_id,$user_id)
-    {
+	
+    public function get_frame_data($image_id,$user_id){
         $this->db->where('user_id',$user_id);
         $this->db->where('image_id',$image_id);
         $query=$this->db->get('tbl_user_frame_details');
         return $query->row();
-
-    }
-    public function frame_detail($id)
-    {
+   }
+	
+    public function frame_detail($id){
         $this->db->select('*');
         $this->db->where('frame_id',$id);
         $query=$this->db->get('tbl_frame2');

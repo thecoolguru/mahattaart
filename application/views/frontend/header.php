@@ -423,7 +423,7 @@
 <div class="row">
     <div class="col-md-3 col-sm-12 col-xs-12">
     <a href="<?php  echo base_url();?>">
-    <img class="fll img-responsive" src="<?php  echo base_url();?>assets/img/one.png" style="margin: 0 auto;" /></a>
+    <img class="fll img-responsive logo_mg" src="<?php  echo base_url();?>assets/img/one.png" style="margin: 0 auto;" /></a>
    	</div>
     <div class="col-md-4 col-sm-5 col-xs-12">
 

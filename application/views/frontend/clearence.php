@@ -512,7 +512,6 @@ $search_data_file = file_get_contents($search_file, false, $context);
 	echo $img_src="http://static.mahattaart.com/158/".$image_filename.'<br>';
 	}*/
 	
-
 if(!empty($search_data)){
 //print_r($search_data);
 foreach ($search_data as $item){
@@ -525,12 +524,33 @@ foreach ($search_data as $item){
 	//print_r($item);
 	if($item->glass=='yes'){
 	$avl_glass="With glass";
-	}else if($item->glass=='no' && $item->glass!='Canvas'){
+	}else if($item->glass=='no' && $item->frame_color!='Canvas'){
 	$avl_glass="Without Glass";
-	}else if($item->glass=='no' && $item->glass=='Canvas'){
+	}else if($item->glass=='no' && $item->frame_color=='Canvas'){
 	$avl_glass="Canvas with gallary wrap";
 	}
-	$filename=$item->image_id.'.JPG';
+	//echo $filename=$item->image_id.'.JPG<br>';
+	}}
+	
+if(!empty($search_data)){
+//print_r($search_data);
+foreach ($search_data as $item){
+	$frame_color=$item->frame_color;
+	$width=$item->width;
+	$height=$item->height;
+	$mrp=$item->mrp;
+	$s_p=$item->s_p;
+	$size=$item->size;
+	//print_r($item);
+	//echo $filename=$item->image_id.'.JPG<br>sss';
+	if($item->glass=='yes'){
+	$avl_glass="With glass";
+	}else if($item->glass=='no' && $item->frame_color!='Canvas'){
+	$avl_glass="Without Glass";
+	}else if($item->glass=='no' && $item->frame_color=='Canvas'){
+	$avl_glass="Canvas with gallary wrap";
+	}
+	 $filename=$item->image_id.'.JPG';
 	    $search_file = "http://api.indiapicture.in/wallsnart/search.php?q=$filename&page=1&per_page=1";
 $opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
 $context = stream_context_create($opts);
@@ -552,15 +572,21 @@ $search_data_file = file_get_contents($search_file, false, $context);
       ?>
 	  
 <li class="col-md-3 col-sm-3 col-xs-6">
-<a href="<?=base_url()."frontend/".$link."/".$image_filename."/".$size."/".$image_id?>">
-<input type="hidden" name="avl_glass" id="" value="<?php print $avl_glass ?>" />
+<a href="<?=base_url()."frontend/".$link."/".$image_filename."/".$size."/".$image_id ?>">
+<input type="hidden" name="avl_glass"  value="<?php echo $avl_glass ?>" />
 <div class="wrap">
 <div class="wrap-inner">
-<?php if($frame_color==''){?>
+<?php if($frame_color==''){
+$tax_prctg='12';
+?>
 <img src="<?=$img_src;  ?>" class="img-responsive" />
-<?php }else if($frame_color!='Canvas'){ ?>
+<?php }else if($frame_color!='Canvas'){ 
+$tax_prctg='18'
+?>
 <img src="<?=$img_src;  ?>" class="img-responsive mainhor" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/<?=$frame_color?>.jpg') 30 30 30 30 round round;background:url('<?=base_url()?>images/uploaded_pdf/mount/DR 2091.jpg') no-repeat scroll 0 0 / cover;" >
-		<?php  }else if($frame_color=='Canvas'){?>
+		<?php  }else if($frame_color=='Canvas'){
+		$tax_prctg='18';
+		?>
         <section class="container3D">
             <div id="cube" class=" ">
                 <figure class="front">
@@ -576,22 +602,23 @@ $search_data_file = file_get_contents($search_file, false, $context);
 <div class="main-title">
 <?= substr($search_data_r['results'][0]['image_caption'],0,20).".."; ?>
 </div>
+
 <div class="main-title">
 <?=$width.' "X '.$height.' "'?>
 </div>
+
 <div class="main-title">
 Framed Painting <?=$avl_glass?>
 </div>
 
 <style>
 	.old_price {text-decoration:line-through}
-	.old_price,.new_price{font-size:14px}
-	.new_price {margin-left: 20px;}
 </style>
 <div class="main-title">
 <div>
-	<h4>Save <?php echo $dis=round((((($item->mrp)-($item->s_p))/($item->mrp))*100)); ?>%</h4>
-    <div>  <span class="old_price"> <?=$item->mrp?></span> <span class="new_price" style="color:#d31d25"><?=$item->s_p?></span> </div>
+	<h4>Discount (<?php echo $dis=round((((($item->mrp)-($item->s_p))/($item->mrp))*100)); ?>%)</h4>
+    <div class="new_price pull-right"> <?=round($s_p-($tax_prctg*$s_p)/100)?> </div>
+    <div class="old_price"><?=round($mrp-($mrp*$tax_prctg)/100)?> </div>
 </div>
 </div>
 
@@ -604,7 +631,7 @@ Framed Painting <?=$avl_glass?>
     <div class="cart-wheel" style="background-color: #2CC3B5"></div>
   </div>
     </a>
-    <a style="color:#999;font-size:20px; float:right" href="javascript:" <?php   if($this->session->userdata('userid')){?> onclick="addtogallery('<?=$item['image_id']?>','<?=$item['image_filename']?>')" <?php }else{?> onclick="login('')" <?php }?> id="tgl"><i class="fa fa-heart-o" style="color:#d31d25; font-size:20px; padding:10px"> </i> </a>
+    <a style="color:#999;font-size:20px; float:right" href="javascript:" <?php  if($this->session->userdata('userid')){?> onclick="addtogallery('<?=$image_id?>','<?=$image_filename?>')" <?php }else{?> onclick="login('')" <?php }?> id="tgl"><i class="fa fa-heart-o" style="color:#d31d25; font-size:20px; padding:10px"> </i> </a>
 </div>
 
 </div>

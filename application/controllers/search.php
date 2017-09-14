@@ -258,19 +258,14 @@ redirect(base_url());
 	}
 
 	//function to show particular image details by id
-	public function image_detail($filename="",$images_id="",$collection_id="")
-	{
-	
-
+	public function image_detail($filename="",$images_id="",$collection_id=""){
+			$this->session->unset_userdata('page');
 			$data['api_image_id']=$images_id;
 			$data['images_id']=$images_id;
 			$data['image_name']=$filename;
 			$data['collection_id']=$collection_id;
-
-			 
-			 
+ 
 			$click_to_enlarge = "http://api.indiapicture.in/wallsnart/get_collection.php";
-			
 			$opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
 			$context = stream_context_create($opts);
 			$search_data_raw = file_get_contents($click_to_enlarge, false, $context);

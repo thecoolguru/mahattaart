@@ -271,12 +271,20 @@
                             </div>
                         </div>
                     </div>
-					<input type="hidden" id='total_price' value="<?=$prod_details[0]->s_p?>">
+					<?php
+					if($prod_details[0]->frame_color==''){
+					$tax_prctg='12';
+					}else if($prod_details[0]->frame_color!=''){
+					$tax_prctg='18';
+					}
+					$total_price=round($prod_details[0]->s_p-($prod_details[0]->s_p*$tax_prctg/100));
+					?>
+					<input type="hidden" id='total_price' value="<?=$total_price?>">
 					<input type="hidden" id='userid' value="<?=$this->session->userdata('userid')?>">
 					<input type="hidden" id='image_id' value="<?php print_r($image_id);?>">
 					<input type="hidden" id='filename' value="<?php echo $prod_details[0]->image_id;?>">
-					<input type="hidden" id='final_frame_size' value="<?php echo $prod_details[0]->width.'X'.$prod_details[0]->height ?>">
-					
+				<input type="hidden" id='final_frame_size' value="<?php echo $prod_details[0]->width.'X'.$prod_details[0]->height ?>">
+					<input type="hidden" id='product_size' value="<?=$prod_details[0]->size?>">
 					
 					<?php if($prod_details[0]->mount!=''){?>
 					<div class="row">
@@ -335,8 +343,8 @@
 <div>
 	<h4 style="font-weight:700">Save (<?php echo $dis=round((((($prod_details[0]->mrp)-($prod_details[0]->s_p))/($prod_details[0]->mrp))*100)); ?>%)</h4>
     <div>
-		<span class="old_price" id="old_price"><?=$prod_details[0]->mrp?> </span>
-        <span id="selling_price" class="new_price" style="color:#d31d25"><?=$prod_details[0]->s_p?></span>
+		<span class="old_price" id="old_price"><?=round($prod_details[0]->mrp-($prod_details[0]->mrp*$tax_prctg)/100)?> </span>
+        <span id="selling_price" class="new_price" style="color:#d31d25"><?=$total_price?></span>
      </div>
 </div>
 </div>
@@ -374,9 +382,10 @@ var price=$('#total_price').val();
 var paper_surface=$('#surface').html();
 var image_namee=$('#filename').val()+'.JPG';
 //alert(frame_name+','+final_frame_size);
+var product_size=$('#product_size').val();
 var only_print='';
 //alert(image_namee);
-var url="glasses_coste"+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_color+"&mount_color="+mount_name+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print;
+var url="glasses_coste"+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_color+"&mount_color="+mount_name+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print+'&product_size='+product_size;
 //alert(url)
  $.ajax({
 		//final_frame_size

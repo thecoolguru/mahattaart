@@ -112,6 +112,13 @@ a:hover {
 	.news {
 		text-align: center !important;
 	}
+	.bg {
+ 	    height: 176px !important;
+	}
+
+	.bg_content{
+	  height: 176px !important;
+	}
 
 }
 
@@ -231,10 +238,10 @@ a:hover {
     }
 	#slide{display:none}
 	.bg {
-	height: 210px;
-	overflow: hidden;
-	padding-right: 0;
-}
+		height: 210px;
+		overflow: hidden;
+		padding-right: 0;
+	}
 
 	.bg_content{
 	  background-color: #eee;
@@ -368,10 +375,6 @@ a:hover {
 	}
 	#content {
 		height: 360px !important;
-	}
-	
-	#socialleft {
-		display: none;
 	}
 	#map_area_01, #map_area_02 {
 		width: 62px;
@@ -1238,7 +1241,6 @@ a:hover {
 		width: 160px;
 		top: 215px;
 		height: 52px;
-		left: 0;
 	}
 	#map_area_03 {
 		width: 126px;
