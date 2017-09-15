@@ -1874,8 +1874,8 @@ Dropzone.options.myDropzone = {
                 </div>
             </div>
             <div class="row">
-            	<div class="frame-it-content col-md-12" style="margin-top:20px">
-                <hr />
+            	<div class="frame-it-content col-md-12">
+                <hr/>
                 	<div class="row">
                         <div class="col-md-6 col-sm-6 text-left">
                             <strong> Total Price </strong>
@@ -1888,8 +1888,8 @@ Dropzone.options.myDropzone = {
             </div>
             <div class="row">
             	<div class="frame-it-button">
-                	<button type="button" class="btn social_icon" style="background-color:#d3131b; color:#fff;"> Add to cart </button>
-                	<button type="button" class="btn social_icon" style="background-color:#555; color:#fff; margin-right:10px"> Cancel </button>
+                	<button <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="addToCart();return false;"<?php }?> type="button" class="btn social_icon" style="background-color:#d3131b; color:#fff;"> Add to cart </button>
+                	<button onclick="remove_pricing(); return false;" type="button" class="btn social_icon" style="background-color:#555; color:#fff; margin-right:10px"> Cancel </button>
                 </div>
             </div>            
         </div>
@@ -2154,13 +2154,13 @@ function right(width,height,x){
           <div class="form-group dimention">
           <label for="country" class="col-sm-7 control-label dimention"> Width (Inch.):</label>
           <div class="col-sm-5">
-          <input id="width" class="form-control by_keyup_update dimention input_control inputs" type="text">
+          <input id="width" maxlength="2" class="form-control by_keyup_update dimention input_control inputs" type="text">
           </div>
           </div>
           <div class="form-group dimention">
           <label for="country" class="col-sm-7 control-label dimention" > Height (Inch.):</label>
           <div class="col-sm-5">
-          <input id="height" class="form-control by_keyup_update dimention input_control inputs" type="text">
+          <input id="height" maxlength="2" class="form-control by_keyup_update dimention input_control inputs" type="text">
           </div>
           </div> <!-- /.form-group -->
           <div class="form-group">
@@ -2207,7 +2207,7 @@ function right(width,height,x){
       <a href='' onclick='price_details();return false;'>Price Details</a>
       </div>
       <div class="text-center addtocartcontainer_popup-button" style="margin-top: 20px;">
-      <button onclick="addToCart();" type="button" class="popup-button2"> Add To Cart</button>
+      <button <?php if(!$this->session->userdata('userid')){?> onclick="login('');return false;"<?php }else{?> onclick="addToCart();return false;"<?php }?> type="button" class="popup-button2"> Add To Cart</button>
 	  </div>
       <div class="addtocartcontainer_popup_details" style="margin-top: 40px;">
       <a href="#">Usually ships in 2-3 days</a>

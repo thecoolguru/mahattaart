@@ -229,7 +229,7 @@ $search_data_r=json_decode($search_data_file,TRUE);
 		<section class="container3D">
             <div id="cube" class=" ">
                  <figure class="front">
-                   <a href="<?=$redirect_details?>">  <img src="<?php if($image['path'] == 1){ echo base_url()."application/views/frontend/upload_images/".$file_name;}else{ echo"http://static.mahattaart.com/158/".$image['image_name'];}?>" class="img-responsive"/></a>
+                   <a href="<?=$redirect_details?>">  <img src="<?php if($image['path'] == 1){ echo base_url()."application/views/frontend/upload_images/".$file_name;}else{ echo"http://static.mahattaart.com/158/".$image['image_name'];}?>" class="img-responsive" width="156px"/></a>
 					<figure class="right"></figure>
 					<figure class="bottom"></figure>
                 </figure>
