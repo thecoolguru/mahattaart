@@ -1504,7 +1504,7 @@ Dropzone.options.myDropzone = {
         });  
 	});
 	$('#width').keyup(function(){
-				var real_value = $(this).val().replace(/[^1-9]/g,'');
+				var real_value = $(this).val().replace(/[^0-9]/g,'');
 				$(this).val(real_value);
 				var real_width = $('#w_value').val();
 				var real_height = $('#h_value').val();
@@ -1535,7 +1535,7 @@ Dropzone.options.myDropzone = {
 		});
 
 	$('#height').keyup(function(){
-				var real_value = $(this).val().replace(/[^1-9]/g,'');
+				var real_value = $(this).val().replace(/[^0-9]/g,'');
 				$(this).val(real_value);
 				var real_width = $('#w_value').val();
 				var real_height = $('#h_value').val();

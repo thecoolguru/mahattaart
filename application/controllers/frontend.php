@@ -1790,7 +1790,7 @@ public function themes_view($lightbox_id,$page_no,$offset=0)
 	if($page_no==''){
 	 $page_no=1;
 	}
-	$per_page=10;
+	$per_page=20;
 
 		$search_file="http://api.indiapicture.in/wallsnart/search_catagory.php?q=$lightbox_id&page=$page_no&per_page=$per_page";
 		//print_r($search_file);
@@ -1799,11 +1799,11 @@ $context = stream_context_create($opts);
 $search_data_file = file_get_contents($search_file, false, $context);
 $search_data_r = json_decode($search_data_file,TRUE);
 //print_r($search_data_r);die;
-$data['search_cat']=$search_data_r;
+$data['search_cat']=$search_data_r['data'];
 	   //$per_page = 5;  
 		//$per_page = 10;  
 		$offset = ($this->uri->segment(4) != '' ? $this->uri->segment(4):0);
-		$config["total_rows"] = 50;
+		$config["total_rows"] = $search_data_r['total'];
 		$config['per_page']= $per_page;
 		$config['use_page_numbers'] = TRUE;
 		$config['first_link'] = 'First';
