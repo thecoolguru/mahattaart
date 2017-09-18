@@ -103,17 +103,10 @@ $this->user = $this->facebook->getUser();
 	public function image_delete(){
 	$name = $_POST['name'];
 	$result = $this->frontend_model->delete_image($name);  
-	if($result){
-	  $state1 = unlink(IMAGE_PATH.$name);
-      $state2 = unlink(IMAGE_PATH.'original/'.$name);    
-     if( ($state1 && $state2) == 'true')
-      $status = 'Image deleted successfully';
-     else
+	if($result)
+	  $status = 'Image deleted successfully';
+    else
 	  $status = 'Some Error Occur';	
-	 }
-	else
-	  $status = 'Some Error Occur';	
-	
 	echo json_encode($status);
 	}
 	

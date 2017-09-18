@@ -72,15 +72,19 @@ public function reverse_number($number)
      return $reverse;
 }
 	//Methods by Tarun Shrivastva 
+		
 	public function delete_image($image_name){
 		$this->db->where('image_name',$image_name);
-		$query=$this->db->delete('add_images_table');
+		$qty = array('removed'=>1);
+		$query=$this->db->update('add_images_table',$qty);
 		if($query)
 		return true;
 		else
 		return false;	
-	} 
-	
+	}
+
+
+
 	public function images($id){
 	$this->db->select('image_name');
 	$this->db->where('session_id',$id);
@@ -91,6 +95,7 @@ public function reverse_number($number)
 	public function get_images($id){
 	$this->db->select('*');
 	$this->db->where('session_id',$id);
+	$this->db->where('removed',0);
 	$this->db->order_by("id","desc");
 	$query=$this->db->get('add_images_table');
 	return $query->result();

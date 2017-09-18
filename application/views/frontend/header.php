@@ -966,41 +966,35 @@
 <?php
                         $subjects=$this->search_model->get_subcategory(84);
 						//print_r($subjects);
-                        for($i=0;$i<=7;$i++){
-                           $artist= $subjects[$i]->name;
-                       if($artist!='Deepali Mundra' && $artist!='Narahari Bhawandla' && $artist!='Prashant Yampure' && $artist!='Shweta Sharma' && $artist!='Subhasish Chakravarty' && $artist!='Vinayak Jarang') {
-                           
+                        for($i=6;$i<=12;$i++){
+                         
 					 
                             ?>
 <li>
-<a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name); ?></a>
+<a href="javascript:category_filter('<?php echo $drop2[$i]->keyword ?>')"><?php print ucwords($drop2[$i]->title); ?></a>
 </li>
-<?php }}?>
+<?php }?>
 </div>
 <div class="col-md-4 col-sm-4">
 <?php 
-                       for($i=8;$i<=14;$i++){
-                           $artist= $subjects[$i]->name;
-                       if($artist!='Deepali Mundra' && $artist!='Narahari Bhawandla' && $artist!='Prashant Yampure' && $artist!='Shweta Sharma' && $artist!='Subhasish Chakravarty' && $artist!='Vinayak Jarang') {
-					 
+                       for($i=13;$i<=19;$i++){
+                           
                             ?>
 <li>
-<a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name); ?></a>
+<a href="javascript:category_filter('<?php echo $drop2[$i]->keyword ?>')"><?php print ucwords($drop2[$i]->title); ?></a>
 </li>
-<?php }}?>
+<?php }?>
 </div>
 <div class="col-md-4 col-sm-4">
 <?php 
-					 for($i=15;$i<=22;$i++){
-					  $artist= $subjects[$i]->name;
-                      if($artist!='Deepali Mundra' && $artist!='Narahari Bhawandla' && $artist!='Prashant Yampure' && $artist!='Shweta Sharma' && $artist!='Subhasish Chakravarty' && $artist!='Vinayak Jarang') {
-                           
+					 for($i=20;$i<=26;$i++){
+					 
 					 
                             ?>
 <li>
-<a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name); ?></a>
+<a href="javascript:category_filter('<?php echo $drop2[$i]->keyword ?>')"><?php print ucwords($drop2[$i]->title); ?></a>
 </li>
-<?php }}?>
+<?php }?>
 </div>
 </div></div>
 <div class="col-md-4">

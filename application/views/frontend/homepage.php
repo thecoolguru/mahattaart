@@ -74,13 +74,13 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div id="myCarousel2" class="carousel slide col-md-12" data-ride="carousel" style="margin-top:2px">
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-        	<a href="<?=base_url()?>"><img src="<?php echo base_url();?>assets/img/slider/whats trending slider-01.jpg" border="0" /></a>
+        	<a href="<?=base_url().'frontend/themes_view/25'?>"><img src="<?php echo base_url();?>assets/img/slider/whats trending slider-01.jpg" border="0" /></a>
     	</div>
         <div class="item">
-        	<a href="<?=base_url()?>"><img src="<?php echo base_url();?>assets/img/slider/whats trending slider-02.jpg" border="0" /></a>
+        	<a href="<?=base_url().'frontend/themes_view/23'?>"><img src="<?php echo base_url();?>assets/img/slider/whats trending slider-02.jpg" border="0" /></a>
     	</div>
         <div class="item">
-        	<a href="<?=base_url()?>"><img src="<?php echo base_url();?>assets/img/slider/whats trending slider-03.jpg" border="0" /></a>
+        	<a href="<?=base_url().'frontend/themes_view/24'?>"><img src="<?php echo base_url();?>assets/img/slider/whats trending slider-03.jpg" border="0" /></a>
     	</div>
     </div>
     <a class="left carousel-control" href="#myCarousel2" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> 

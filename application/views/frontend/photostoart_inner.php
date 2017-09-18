@@ -10,6 +10,80 @@
 <script src="<?php echo base_url();?>assets/js/sweetalert.min.js" type="text/javascript" ></script>
 <script src="<?php echo base_url();?>assets/js/sweetalert-dev.js" type="text/javascript" ></script>
 
+	<script type="text/javascript">
+		$('html').keyup(function(e){
+			var width = $('#width').val();
+			var height= $('#height').val();
+			if(e.keyCode == 8){
+				if(width == 0 || height == 0){
+					$('.actual_price').html('Rs.0');				
+				}
+			}
+		})
+		$(document).ready(function(){		
+				$('#width').keyup(function(){
+						var real_value = $(this).val().replace(/[^0-9]/g,'');
+						$(this).val(real_value);
+						var real_width = $('#w_value').val();
+						var real_height = $('#h_value').val();
+						if($('#type').html() == 'horizontal')
+						var ratio = real_height/real_width;
+						if($('#type').html() == 'vertical')
+						var ratio = real_width/real_height;
+						var max_width = real_width/150;
+					    var max_height = real_height/150;
+						var id = $(this).attr('id');
+						var value = $(this).val();	
+						if(id == 'width'){
+							if(value == ''){
+							$('.actual_price').val('Rs.0');
+							$('#height').val('');	
+							}
+						 }	
+							if( (value <= max_width) && (value != 0) && (value != '') ){
+							var input_height = ratio*value;
+							$('#height').val(Math.round(input_height));
+							setTimeout(function(){
+							calculate_cost('Customize Size');
+							},100);
+						}else{
+						 $('#height').val('');
+						 $('#finished_size').html('Choose Other Size');		
+						}
+				});
+				
+				$('#height').keyup(function(){
+						var real_value = $(this).val().replace(/[^0-9]/g,'');
+						$(this).val(real_value);
+						var real_width = $('#w_value').val();
+						var real_height = $('#h_value').val();
+						if($('#type').html() == 'horizontal')
+						var ratio = real_height/real_width;
+						if($('#type').html() == 'vertical')
+						var ratio = real_width/real_height;
+						var max_width = real_width/150;
+					    var max_height = real_height/150;
+						var id = $(this).attr('id');
+						var value = $(this).val();	
+						 if(id == 'height'){
+							if(value == ''){
+							$('.actual_price').val('Rs.0');
+							$('#width').val('');	
+							}
+						 }
+						    if( (value <= max_height) && (value != 0) && (value != '') ){
+								var input_width = ratio*value; 	
+								$('#width').val(Math.round(input_width));
+								setTimeout(function(){
+								calculate_cost('Customize Size');
+								},100);
+							}else{
+							 $('#width').val('');
+							 $('#finished_size').html('Choose Other Size');		
+							}
+				});
+		})	
+	</script>
 <?php 
  if($this->session->userdata('userid')){
 		$Obj=new Frontend();
@@ -262,7 +336,6 @@ Dropzone.options.myDropzone = {
 			  }else{
 				frame_color = frame_color; 
 			  }
-			var frame_name = 'sasas';
 			var mount_name = $('#mount_code').val();
 			var frameSize = $('#frame_size').html();
 			var img_name = $('#get_img').val();
@@ -951,7 +1024,7 @@ Dropzone.options.myDropzone = {
 		var dert= "<?php echo base_url()?>images/uploaded_pdf/mount/";
             +$('div#abc').css('background','url("'+dert+mount_code+'.jpg")');
 		}
-	    $('#mount_code').val(code);
+	    $('#mount_code').val(mount_code);
 		frame_pricing();
 	}
 
@@ -1202,7 +1275,7 @@ Dropzone.options.myDropzone = {
 		}else{
 		mount_avail='';
 		}
-		td_inner +='<div class="col-xs-12 col-sm-6 col-md-3 mount_data" id="mount'+image+'" onclick="mount_store(this.id);return mount_select('+mount_rate+','+mount_code+','+mount_name+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
+		td_inner +='<div class="col-xs-12 col-sm-6 col-md-3 mount_data" id="mount'+image+'" onclick="mount_store(this.id);return mount_select('+mount_rate+','+mount_code+','+mount_name+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount_new/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
 		image++;
 			}
 				}td_inner +='</div>';
@@ -1503,68 +1576,7 @@ Dropzone.options.myDropzone = {
 			}
         });  
 	});
-	$('#width').keyup(function(){
-				var real_value = $(this).val().replace(/[^0-9]/g,'');
-				$(this).val(real_value);
-				var real_width = $('#w_value').val();
-				var real_height = $('#h_value').val();
-				if($('#type').html() == 'horizontal')
-				var ratio = real_height/real_width;
-				if($('#type').html() == 'vertical')
-				var ratio = real_width/real_height;
-				var max_width = real_width/150;
-			    var max_height = real_height/150;
-				var id = $(this).attr('id');
-				var value = $(this).val();	
-				if(id == 'width'){
-					if(value == ''){
-					$('.actual_price').val('Rs.0');
-					$('#height').val('');	
-					}
-				 }	
-					if( (value <= max_width) && (value != 0) && (value != '') ){
-					var input_height = ratio*value;
-					$('#height').val(Math.round(input_height));
-					setTimeout(function(){
-					calculate_cost('Customize Size');
-					},100);
-				}else{
-				 $('#height').val('');
-				 $('#finished_size').html('Choose Other Size');		
-				}
-		});
-
-	$('#height').keyup(function(){
-				var real_value = $(this).val().replace(/[^0-9]/g,'');
-				$(this).val(real_value);
-				var real_width = $('#w_value').val();
-				var real_height = $('#h_value').val();
-				if($('#type').html() == 'horizontal')
-				var ratio = real_height/real_width;
-				if($('#type').html() == 'vertical')
-				var ratio = real_width/real_height;
-				var max_width = real_width/150;
-			    var max_height = real_height/150;
-				var id = $(this).attr('id');
-				var value = $(this).val();	
-				 if(id == 'height'){
-					if(value == ''){
-					$('.actual_price').val('Rs.0');
-					$('#width').val('');	
-					}
-				 }
-				    if( (value <= max_height) && (value != 0) && (value != '') ){
-						var input_width = ratio*value; 	
-						$('#width').val(Math.round(input_width));
-						setTimeout(function(){
-						calculate_cost('Customize Size');
-						},100);
-					}else{
-					 $('#width').val('');
-					 $('#finished_size').html('Choose Other Size');		
-					}
-				});
-	
+		
 	$('#btnCrop').click(function(){
         setTimeout(function(){
         var	crop_src = $('#large_img2').attr('src');    
@@ -1594,6 +1606,7 @@ Dropzone.options.myDropzone = {
 			$('#height').val('');
 			$('#frame_color').val('Absolute Black');
 			$('#mount_code').val('DR 2091');
+			$('#mount_width').val('1');
 			paper_surface('framing');
 			if( $('#frame_ data').val() == ''){
 		    console.log('nothing');
@@ -1888,7 +1901,7 @@ Dropzone.options.myDropzone = {
             </div>
             <div class="row">
             	<div class="frame-it-button">
-                	<button <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="addToCart();return false;"<?php }?> type="button" class="btn social_icon" style="background-color:#d3131b; color:#fff;"> Add to cart </button>
+                	<button <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> type="button" class="btn social_icon" style="background-color:#d3131b; color:#fff;"> Add to cart </button>
                 	<button onclick="remove_pricing(); return false;" type="button" class="btn social_icon" style="background-color:#555; color:#fff; margin-right:10px"> Cancel </button>
                 </div>
             </div>            
@@ -2204,7 +2217,7 @@ function right(width,height,x){
       <p>Your Price: <span class='actual_price'> </span></p>
       </div>
 	  <div class="page_price_label addtocartcontainer_popup_details" style="margin:10px auto;">
-      <a href='' onclick='price_details();return false;'>Price Details</a>
+      <a id='price_details' href='' onclick='price_details();return false;'>Price Details</a>
       </div>
       <div class="text-center addtocartcontainer_popup-button" style="margin-top: 20px;">
       <button <?php if(!$this->session->userdata('userid')){?> onclick="login('');return false;"<?php }else{?> onclick="addToCart();return false;"<?php }?> type="button" class="popup-button2"> Add To Cart</button>

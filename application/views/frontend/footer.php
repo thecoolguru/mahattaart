@@ -82,7 +82,7 @@
 
    <div class="backblack" id="back" onClick="allclose('')" style="display:none;">&nbsp;</div>
     <div class="signup" id="signpop" style="display:none;" >
-        <div style="float: right" ><a href="#" onClick="allclose('')" >Close</a></div>
+        <div style="float: right" ><a href="" onClick="allclose('');return false;" >Close</a></div>
         
         <h1>New User? Sign Up</h1>
 		<p>
@@ -142,7 +142,7 @@
 
 <div class="backblack" id="back" onClick="allclose('')" style="display:none;">&nbsp;</div>
     <div class="signup" id="signppp" style="display:none" >
-        <div style="float: right" ><a href="#" onClick="allclose('')" >Close</a></div>
+        <div style="float: right" ><a href="" onclick="allclose('');return false;" >Close</a></div>
         
          <h1>Forget Password ?</h1>
 		<p>
@@ -194,7 +194,7 @@
     <!-- login -->
     <div class="backblack" id="back" onClick="allclose('')" style="display:none;">&nbsp;</div>
     <div class="signup" id="loginpop" style="display:none;">
-        <div style="float: right" ><a href="#" onClick="allclose('')" >Close</a></div>
+        <div style="float: right" ><a href="" onClick="allclose('');return false;" >Close</a></div>
 	    
         <div class="signup-l-c">
 		 <h1>User Sign In </h1>
@@ -387,7 +387,7 @@
 
 <div class="backblack" id="back" onClick="allclose('')" style="display:none;">&nbsp;</div>
 	 <div class="signup gall-w" id="addtointrestedgallery" style="display:none;">
-         <div style="float: right" ><a href="#" onClick="allclose('')" >Close</a></div><br>
+         <div style="float: right" ><a href="" onClick="allclose('');return false;" >Close</a></div><br>
         <p>Submit the details below and our client executive will get in touch with you.</p>
         <span id="lightbox_error_image" style="color: red;margin-left: 48px;"></span><br>
          <form name="lightbox_submit" id="intrested_image_submit">
