@@ -863,7 +863,6 @@ Dropzone.options.myDropzone = {
 	    width  = 300;
 	    height = 260;   
 	    }
-	    
 	    if(width >= dimentions[1]){
 				var front_width = Math.round(width*0.825);
 				var front_height = Math.round(height*0.83388); 	
@@ -929,78 +928,72 @@ Dropzone.options.myDropzone = {
 				   }
 				var image = imagedata.split(',');		
 				var total_image = image.length; 
-					var total_slide = total_image/4; 	
-					   var rem_slide = total_image%4;
-						if(total_image<=4){
-						  total_slide = 1; 
-						}else{
-							if(rem_slide){
+				var total_slide = total_image/4; 	
+				var rem_slide = total_image%4;
+					if(total_image<=4){
+						total_slide = 1; 
+					}else{
+						if(rem_slide){
 							total_slide = Math.floor(total_slide)+1;		
-							}else{
+						}else{
 							total_slide = Math.floor(total_slide);	
-							}
 						}
-						var slides,i=0;
-						var value = 0;
-						var td_inner=''; 	
-							td_inner += '<div class="product-detail-content ">';
- 						td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider1">';
- 						td_inner += '<div class="carousel-inner">';	
-						for(var slides=0;slides<=total_slide-1;slides++){
-						if(slides ==0){
-							td_inner += '<div class="item active">';
-						}else{
-							td_inner += '<div class="item">';
-						}
-						for(i=0;i<4;i++){
+					}
+				var slides,i=0;
+				var value = 0;
+				var td_inner=''; 	
+				td_inner += '<div class="product-detail-content ">';
+ 				td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider1">';
+ 				td_inner += '<div class="carousel-inner">';	
+					for(var slides=0;slides<=total_slide-1;slides++){
+					if(slides ==0){
+						td_inner += '<div class="item active">';
+					}else{
+						td_inner += '<div class="item">';
+					}
+					for(i=0;i<4;i++){
 						if(value<total_image){
-						var k = image[value].split('*');
-						//var length = imagesize.length;
-						var get_data = k[1].split('x');
-						var get_data_width  = get_data[0];
-						var get_data_height = get_data[1];
-						if(get_data_width > get_data_height){
-								  aspect_ratio = get_data_height/get_data_width;
-								   new_width = 130;
-								   new_height = Math.round(aspect_ratio*130);
-						}else if(get_data_height > get_data_width ){
-								   aspect_ratio = get_data_width/get_data_height;
-								   new_height = 130;
-								   new_width = Math.round(aspect_ratio*130);
-						}else{
-								   new_height = 130;
-									new_width = 130;
-						} 
-									
-						 var img_src = "<?php echo base_url().'application/views/frontend/upload_images/';?>"+k[0];
-	 td_inner += '<div class="col-xs-12 col-sm-6 col-md-3 thumb_img" id="div_img'+value+'"> <div class="thumb_bg"><img src="<?php echo base_url();?>application/views/frontend/upload_images/'+k[0]+'" class="img1" id="img'+value+'" width="'+new_width+'px" height="'+new_height+'px"onclick="change_image(this.src);" /> </div> <div class="thumb_toolboox"><div class="thumb_icon"><a><i class="glyphicon glyphicon-zoom-in"></i></a> <a class="remove_image " id="'+k[0]+'" onclick="remove_image(this.id );"><i class="glyphicon glyphicon-remove"></i></a></div></div> </div>';			
-						}
-				 value++;
+							var k = image[value].split('*');
+							var get_data = k[1].split('x');
+							var get_data_width  = get_data[0];
+							var get_data_height = get_data[1];
+							if(get_data_width > get_data_height){
+								aspect_ratio = get_data_height/get_data_width;
+								new_width = 130;
+								new_height = Math.round(aspect_ratio*130);
+							}else if(get_data_height > get_data_width ){
+								aspect_ratio = get_data_width/get_data_height;
+								new_height = 130;
+								new_width = Math.round(aspect_ratio*130);
+							}else{
+								new_height = 130;
+								new_width = 130;
+							} 
+				var img_src = "<?php echo base_url().'application/views/frontend/upload_images/';?>"+k[0];
+	 			td_inner += '<div class="col-xs-12 col-sm-6 col-md-3 thumb_img" id="div_img'+value+'"> <div class="thumb_bg"><img src="<?php echo base_url();?>application/views/frontend/upload_images/'+k[0]+'" class="img1" id="img'+value+'" width="'+new_width+'px" height="'+new_height+'px"onclick="change_image(this.src);"/></div><div class="thumb_toolboox"><div class="thumb_icon"><a><i class="glyphicon glyphicon-zoom-in"></i></a> <a class="remove_image" id="'+k[0]+'" onclick="remove_image(this.id );"><i class="glyphicon glyphicon-remove"></i></a></div></div></div>';			}
+				value++;
 				}
 				td_inner += '</div>';
-		}
-				
-		if(total_image>4){
-		td_inner += '<div id="slider-control">';
-        td_inner += '<a class="left carousel-control arrowclick" id="frame_left" href="#itemslider1" data-slide="prev">';
-        td_inner += '<i class="fa fa-angle-left" style="font-size:3em"></i></a>';
-        td_inner += '<a class="right carousel-control arrowclick" id="frame_right" href="#itemslider1" data-slide="next">';
-        td_inner += '<i class="fa fa-angle-right" style="font-size:3em"></i></a>';
-        td_inner += '</div>';
-		}
-		td_inner += '</div></div></div>';	
-		$('#session_images').html(td_inner); 
-		setTimeout(
+			}
+			if(total_image>4){
+				td_inner += '<div id="slider-control">';
+       			td_inner += '<a class="left carousel-control arrowclick" id="frame_left" href="#itemslider1" data-slide="prev">';
+        		td_inner += '<i class="fa fa-angle-left" style="font-size:3em"></i></a>';
+        		td_inner += '<a class="right carousel-control arrowclick" id="frame_right" href="#itemslider1" data-slide="next">';
+        		td_inner += '<i class="fa fa-angle-right" style="font-size:3em"></i></a>';
+        		td_inner += '</div>';
+			}
+				td_inner += '</div></div></div>';	
+				$('#session_images').html(td_inner); 
+				setTimeout(
                     function(){
                     $('#load_buffer').hide();
 					var img_src1 = $('#img0').attr('src');
 	                change_image(img_src1);
                     }, 3000);	
-			} 
-		});
-
-
-	});	
+				} 
+			});
+		});	
 	return status;	
 }
 
@@ -1130,30 +1123,30 @@ Dropzone.options.myDropzone = {
 					}else{
 					mount_avail='';
 					}
-					var f_shape=$('#frame_shape').val();
-					var frame_shape="'"+f_shape+"'";	
-			td_inner += '<div class="col-xs-12 col-sm-6 col-md-3 frame" id="frame'+image+'" onClick="id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
-					}
+				var f_shape=$('#frame_shape').val();
+				var frame_shape="'"+f_shape+"'";	
+				td_inner += '<div class="col-xs-12 col-sm-6 col-md-3 frame" id="frame'+image+'" onClick="id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
+				}
 					image++;
 				}td_inner +='</div>';
 			}	
-		if(array.length>4){
-		td_inner += '<div id="slider-control">';
-        td_inner += '<a class="left carousel-control arrowclick"  href="#itemslider5" data-slide="prev">';
-        td_inner += '<i class="fa fa-angle-left" style="font-size:3em"></i></a>';
-        td_inner += '<a class="right carousel-control arrowclick"  href="#itemslider5" data-slide="next">';
-        td_inner += '<i class="fa fa-angle-right" style="font-size:3em"></i></a>';
-        td_inner += '</div>';
-		}
-		td_inner += '</div></div></div>';	
-		$('#frameimages0').html(td_inner);
-		setTimeout(
-                     function(){
-                     $('#load_buffer').hide();
- 					 }, 1000);
+			if(array.length>4){
+				td_inner += '<div id="slider-control">';
+        		td_inner += '<a class="left carousel-control arrowclick"  href="#itemslider5" data-slide="prev">';
+        		td_inner += '<i class="fa fa-angle-left" style="font-size:3em"></i></a>';
+        		td_inner += '<a class="right carousel-control arrowclick"  href="#itemslider5" data-slide="next">';
+        		td_inner += '<i class="fa fa-angle-right" style="font-size:3em"></i></a>';
+        		td_inner += '</div>';
 			}
-		});
-	}
+				td_inner += '</div></div></div>';	
+				$('#frameimages0').html(td_inner);
+				setTimeout(
+                    function(){
+                    $('#load_buffer').hide();
+ 					}, 1000);
+				}
+			});
+		}
 	
  	function Frame_Size(FrameSize,frame_size_mm){
 		$.ajax({

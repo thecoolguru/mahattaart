@@ -283,21 +283,6 @@ function call_remove_lightBox(imageid,lightbox_id,page_no)
 </ul>
 </div>
 
-<p>COLOR</p>
-<div class="list">
-<ul>
-<li><a <?php if($color=="red"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('red')">Red</a><label></label></li>
-<li><a <?php if($color=="blue"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('blue')">Blue</a><label></label></li>
-<li><a <?php if($color=="green"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('green')">Green</a><label></label></li>
-<li><a <?php if($color=="yellow"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('yellow')">Yellow</a><label></label></li>
-<li><a <?php if($color=="orange"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('orange')">Orange</a><label></label></li>
-<li><a <?php if($color=="pink"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('pink')">Pink</a><label></label></li>
-<li><a <?php if($color=="black"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('black')">Black</a><label></label></li>
-<li><a <?php if($color=="brown"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('brown')">Brown</a><label></label></li>
-<li><a <?php if($color=="white"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('white')">White</a><label></label></li>
-<li><a <?php if($color=="grey"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('grey')">Grey</a><label></label></li>
-</ul>
-</div>
 </aside>
 <div class="right-panel-page col-md-10 col-xs-9">
 <div class="">
