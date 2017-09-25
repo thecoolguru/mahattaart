@@ -546,7 +546,7 @@ invoice_id,customer_type,price,total_paid_with_tax )
 			 $copytoorder="insert into tbl_orders (order_id,order_id2,price,total_paid_with_tax)	
 			  SELECT order_id,order_id2,sum(price),'".$amount."' from tbl_orders_details where order_id='".$order_id."'";
 					  $insert4=  mysql_query($copytoorder);
-		//$this->cart_model->remove_cart($user_id);
+		$this->cart_model->remove_cart($user_id);
 		
 		  $this->load->view('frontend/header');
 			

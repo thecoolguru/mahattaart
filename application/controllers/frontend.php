@@ -34,7 +34,6 @@ parse_str( $_SERVER['QUERY_STRING'], $_REQUEST );
 $this->user = $this->facebook->getUser();
 	}
 	
-	// Method By Tarun Shrivastva  
 	   public function photostoart()
 	{
 		$_SESSION['page_id'] = '9';
@@ -370,10 +369,9 @@ $this->user = $this->facebook->getUser();
           echo $result['rate'];
 	  }
 	  
-	public function clearence(){
-	
-	$data['search_data']=$this->frontend_model->get_tbl_clearence();
-	
+	public function clearence($value){
+
+		$data['search_data']=$this->frontend_model->get_tbl_clearence($value);
 	$this->load->view('frontend/header');
 		$this->load->view('frontend/clearence',$data);
 		$this->load->view('frontend/footer');
@@ -557,6 +555,13 @@ $per_page = 10;
 		$data["sub_val"] = $this->frontend_model->get_header_images_inner(8,$config["per_page"], $offset); 
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/art_advisory',$data);
+		$this->load->view('frontend/footer');
+	}
+	
+		public function promooffer()
+	{
+		$this->load->view('frontend/header');
+		$this->load->view('frontend/promooffer');
 		$this->load->view('frontend/footer');
 	}
 	

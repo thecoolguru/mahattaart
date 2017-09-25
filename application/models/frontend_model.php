@@ -209,10 +209,16 @@ public function get_add_details(){
 }    
 
 
-public function get_tbl_clearence(){
+public function get_tbl_clearence($value){
 	 $this->db->select('*');
+	// echo $value;
 	 $this->db->where('available','Yes');
 	 $this->db->where_not_in('reasons','damaged');
+	 if($value=='price_h'){
+	 $this->db->order_by('s_p','desc');
+	 }else if($value=='price_l'){
+	 $this->db->order_by('s_p','asc');
+	 }
 	 $query=$this->db->get('tbl_clearence');
 	 return $query->result();
 	 

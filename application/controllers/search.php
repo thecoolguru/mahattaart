@@ -597,13 +597,13 @@ $data['search_data']=$get_res;
 		{
 			$page_no=$page;
 		}
-		$no_of_res=7;
+		$no_of_res=32;
 		if($limit!="none")
 		{
 			$no_of_res=$limit;
 		}
 		$data['action']='dosearch';
-           $srch_trm_raw = str_replace("%20","-",$search_text);
+           $srch_trm_raw = str_replace("%20",",",$search_text);
 
 	   if($shap!="?#!" ||  $color!="%@$#"){
 	   	$key=$search_keys;
@@ -660,7 +660,7 @@ $search_api = "http://api.indiapicture.in/wallsnart/collection.php?collection_id
 	$search_api = "http://api.indiapicture.in/wallsnart/search.php?q=$search_keys&page=$page&per_page=$limit";
 	}
 		}
-//echo $search_api;
+echo $search_api;
 
 
 

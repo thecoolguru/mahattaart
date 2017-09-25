@@ -349,15 +349,7 @@ $txt=$search_text;
 <div class="right-panel-page col-md-10 col-xs-9">
 <div class="row" style="margin:0;padding:0;border-bottom:1px solid #d6d6d6">
 <div class="col-md-4 col-sm-4">
-<select id="gal-customcombobox">
-<option value="popularity"> SORT BY: POPULARITY </option>
-<option value="Popularity"> Popularity </option>
-<option value="Price-h"> Price - High </option>
-<option value="Price_Low"> Price - Low </option>
-<option value="Narrow"> Narrow - Width </option>
-<option value="Wide"> Wide - Width </option>
-<option value="Tall"> Tall - Height </option>
-</select>
+
 </div>
 <?php
  $resultsPerPage = $limit;

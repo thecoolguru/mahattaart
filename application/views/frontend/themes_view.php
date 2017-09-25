@@ -269,7 +269,20 @@ function call_remove_lightBox(imageid,lightbox_id,page_no)
 <div class="row">
 <aside class="left-panel-page col-md-2 col-xs-3">
 <p>Refine Filter</p>
-
+<div class="list">
+<ul>
+<li><a <?php if($category_id=="all"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:call_filter2('all')">All art</a>
+<label></label></li>
+<li><a <?php if($category_id=="2"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:call_filter2('2')">Photography</a>
+<label></label></li>
+<li><a <?php if($category_id=="1"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:call_filter2('1')">Paintings</a>
+<label></label></li>
+<li><a <?php if($category_id=="3"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:call_filter2('3')">Poster</a>
+<label></label></li>
+<li><a <?php if($category_id=="4"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:call_filter2('4')">Illustration</a>
+<label></label></li>
+</ul>
+</div>
 <p>SHAPE</p>
 <div class="list">
 <ul>
@@ -286,19 +299,14 @@ function call_remove_lightBox(imageid,lightbox_id,page_no)
 </aside>
 <div class="right-panel-page col-md-10 col-xs-9">
 <div class="">
-<?php   echo $this->pagination->create_links(); ?>
 <div class="row">
 <div class="col-md-4">
-<div class="sortours">
-<select id="gal-customcombobox">
-<option value="popularity"> SORT BY: POPULARITY </option>
-<option value="Popularity"> Popularity </option>
 
-<option value="Narrow"> Narrow - Width </option>
-<option value="Wide"> Wide - Width </option>
-<option value="Tall"> Tall - Height </option>
-</select>
 </div>
+<div class="col-md-8">
+	<div style="text-align:right; margin:7px auto">
+		<?php   echo $this->pagination->create_links(); ?>
+	</div>
 </div>
 <div class="col-md-12"><hr style="margin: 10px 0;" /></div>
 

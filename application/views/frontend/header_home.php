@@ -75,6 +75,7 @@
                     <a href="<?php print base_url(); ?>frontend/photostoart">PHOTOS TO FRAME </a>
                 </li>
                 <li> <a href="<?php print base_url(); ?>frontend/clearence" style="color:#f1464f">CLEARANCE</a></li>
+                <li> <a href="<?php print base_url(); ?>frontend/promooffer"> PROMOTIONAL OFFER </a></li>
                 <!--<li>
                     <a href="#">Frame your art  </a>
                 </li>
@@ -651,35 +652,30 @@
 <?php
                         $subjects=$this->search_model->get_subcategory(84);
 						//print_r($subjects);
-                        for($i=0;$i<=7;$i++){
-                           $artist= $subjects[$i]->name;
-                       if($artist!='Deepali Mundra' && $artist!='Narahari Bhawandla' && $artist!='Prashant Yampure' && $artist!='Shweta Sharma' && $artist!='Subhasish Chakravarty' && $artist!='Vinayak Jarang') {
-                           
-					 
+                        for($i=6;$i<=13;$i++){
+                         //  $artist= $subjects[$i]->name;
+                      
                             ?>
-<li> <a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name); ?></a> </li>
-<?php }}?>
+<li> <a href="javascript:category_filter('<?php echo $drop2[$i]->keyword ?>')"><?php print ucwords($drop2[$i]->title); ?></a> </li>
+<?php }?>
 </div>
 <div class="col-md-4">
 <?php 
-                       for($i=8;$i<=16;$i++){
-                           $artist= $subjects[$i]->name;
-                       if($artist!='Deepali Mundra' && $artist!='Narahari Bhawandla' && $artist!='Prashant Yampure' && $artist!='Shweta Sharma' && $artist!='Subhasish Chakravarty' && $artist!='Vinayak Jarang') {
-					 
+                       for($i=14;$i<=21;$i++){
+                           //$artist= $subjects[$i]->name;
+                    
                             ?>
-<li> <a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name); ?></a> </li>
-<?php }}?>
+<li> <a href="javascript:category_filter('<?php echo $drop2[$i]->keyword ?>')"><?php print ucwords($drop2[$i]->title); ?></a> </li>
+<?php }?>
 </div>
 <div class="col-md-4">
 <?php 
 					 for($i=17;$i<=25;$i++){
-					  $artist= $subjects[$i]->name;
-                      if($artist!='Deepali Mundra' && $artist!='Narahari Bhawandla' && $artist!='Prashant Yampure' && $artist!='Shweta Sharma' && $artist!='Subhasish Chakravarty' && $artist!='Vinayak Jarang') {
-                           
+					 
 					 
                             ?>
-<li> <a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name); ?></a> </li>
-<?php }}?>
+<li> <a href="javascript:category_filter('<?php echo $drop2[$i]->keyword ?>')"><?php print ucwords($drop2[$i]->title); ?></a> </li>
+<?php }?>
 </div>
 </div>
 </div>
@@ -1246,6 +1242,7 @@
 </li>
 <li> <a href="<?php print base_url(); ?>frontend/photostoart" style="color:#ff9800" >PHOTOS TO FRAME</a></li>
 <li> <a href="<?php print base_url(); ?>frontend/clearence" style="color:#f1464f">CLEARANCE</a></li>
+<li> <a href="<?php print base_url(); ?>frontend/promooffer"> PROMOTIONAL OFFER </a></li>
 <!--<li> <a href="#">Frame your art </a>
 <li> <a href="#">Product Page</a>-->
 

@@ -312,7 +312,7 @@ $txt=$search_text;
 }// end if shapes   
         ?>
 
-</span> &nbsp;| &nbsp;<span>Total Result</span>&nbsp; | (<span id="totalnoimages"><?=$total?></span>)
+</span> &nbsp;| &nbsp;<span>Total Result</span>&nbsp; | (<span id="totalnoimages"><?=count($search_data)?></span>)
 </div>
 <div class="row">
 <aside class="left-panel-page col-md-2 col-xs-3">
@@ -344,33 +344,15 @@ $txt=$search_text;
 </ul>
 </div>
 
-<p>COLOR</p>
-<div class="list">
-<ul>
-<li><a <?php if($color=="red"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('red')">Red</a><label></label></li>
-<li><a <?php if($color=="blue"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('blue')">Blue</a><label></label></li>
-<li><a <?php if($color=="green"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('green')">Green</a><label></label></li>
-<li><a <?php if($color=="yellow"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('yellow')">Yellow</a><label></label></li>
-<li><a <?php if($color=="orange"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('orange')">Orange</a><label></label></li>
-<li><a <?php if($color=="pink"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('pink')">Pink</a><label></label></li>
-<li><a <?php if($color=="black"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('black')">Black</a><label></label></li>
-<li><a <?php if($color=="brown"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('brown')">Brown</a><label></label></li>
-<li><a <?php if($color=="white"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('white')">White</a><label></label></li>
-<li><a <?php if($color=="grey"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('grey')">Grey</a><label></label></li>
-</ul>
-</div>
 </aside>
 <div class="right-panel-page col-md-10 col-xs-9">
 <div class="row" style="margin:0;padding:0;border-bottom:1px solid #d6d6d6">
 <div class="col-md-4 col-sm-4">
-<select id="gal-customcombobox">
-<option value="popularity"> SORT BY: POPULARITY </option>
-<option value="Popularity"> Popularity </option>
-<option value="Price-h"> Price - High </option>
-<option value="Price_Low"> Price - Low </option>
-<option value="Narrow"> Narrow - Width </option>
-<option value="Wide"> Wide - Width </option>
-<option value="Tall"> Tall - Height </option>
+<select id="gal-customcombobox" onchange="sort_by_filter(this.value);">
+<option value="popularity"> SORT BY</option>
+<option value="price_h"> Price - High </option>
+<option value="price_l"> Price - Low </option>
+
 </select>
 </div>
 <?php
@@ -385,6 +367,7 @@ $jump=$next+2;
  }else{
  $prev=$prev;
  }
+
 
 if($shape!="?#!" &&  $shape!=""){
 	$shapes='/'.$shape;
@@ -492,6 +475,12 @@ if($shape!="?#!" &&  $shape!=""){
 	padding: 8px;
 }
         </style>
+		<script>
+function sort_by_filter(value){
+//alert('jii');
+window.location = "<?=base_url()?>frontend/clearence/"+value;
+}
+</script>
 <?php 
 //print_r($search_data);
  
@@ -613,12 +602,17 @@ Framed Painting <?=$avl_glass?>
 
 <style>
 	.old_price {text-decoration:line-through}
+	.old_price,.new_price{font-size:14px}
+	.new_price {margin-left: 20px;}
 </style>
+
 <div class="main-title">
 <div>
-	<h4>Discount (<?php echo $dis=round((((($item->mrp)-($item->s_p))/($item->mrp))*100)); ?>%)</h4>
-    <div class="new_price pull-right"> <?=round($s_p-($tax_prctg*$s_p)/100)?> </div>
-    <div class="old_price"><?=round($mrp-($mrp*$tax_prctg)/100)?> </div>
+	<h4>Save <span style="color:#d31d25"><?php echo $dis=round((((($item->mrp)-($item->s_p))/($item->mrp))*100)); ?>%</span></h4>
+    <div>
+        <span class="old_price"><i class="fa fa-inr" aria-hidden="true"></i>  <?=round($mrp-($mrp*$tax_prctg)/100)?> </span>
+        <span class="new_price" style="color:#d31d25"> <i class="fa fa-inr" aria-hidden="true"></i>  <?=round($s_p-($tax_prctg*$s_p)/100)?> </span>
+    </div>
 </div>
 </div>
 

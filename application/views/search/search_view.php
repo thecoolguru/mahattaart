@@ -348,25 +348,11 @@ $txt=$search_text;
 </ul>
 </div>
 
-<p>COLOR</p>
-<div class="list">
-<ul>
-<li><a <?php if($color=="red"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('red')">Red</a><label></label></li>
-<li><a <?php if($color=="blue"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('blue')">Blue</a><label></label></li>
-<li><a <?php if($color=="green"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('green')">Green</a><label></label></li>
-<li><a <?php if($color=="yellow"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('yellow')">Yellow</a><label></label></li>
-<li><a <?php if($color=="orange"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('orange')">Orange</a><label></label></li>
-<li><a <?php if($color=="pink"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('pink')">Pink</a><label></label></li>
-<li><a <?php if($color=="black"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('black')">Black</a><label></label></li>
-<li><a <?php if($color=="brown"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('brown')">Brown</a><label></label></li>
-<li><a <?php if($color=="white"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('white')">White</a><label></label></li>
-<li><a <?php if($color=="grey"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_color('grey')">Grey</a><label></label></li>
-</ul>
-</div>
 </aside>
 <div class="right-panel-page col-md-10 col-xs-9">
 <div class="row" style="margin:0;padding:0;border-bottom:1px solid #d6d6d6">
 <div class="col-md-4 col-sm-4">
+<!--
 <select id="gal-customcombobox">
 <option value="popularity"> SORT BY: POPULARITY </option>
 <option value="Popularity"> Popularity </option>
@@ -376,6 +362,7 @@ $txt=$search_text;
 <option value="Wide"> Wide - Width </option>
 <option value="Tall"> Tall - Height </option>
 </select>
+-->
 </div>
 <?php
 $resultsPerPage = $limit;
@@ -460,25 +447,27 @@ if($bride[0]=='BRID'){
  
       ?>
 <li class="col-md-2 col-sm-3 col-xs-6">
-<a href="<?=base_url()."search/".$link."/".$image_filename."/".$image_id."/".$image_collection_id;  ?>">
-<input type="hidden" name="img_id" id="img_id<?php print $images_id; ?>" value="<?php print $images_id ?>" />
+<!--<div class="producttype_thum_icon" style="position: absolute;width: 30px;top: 0;background: beige;z-index: 1;right: 0;"> 
+	<img src="http://static.mahattaart.com/130x150/media/DANI_NA01_AMI0151.JPG" class="img-responsive" />
+</div>-->
+<a href="<?=base_url()."search/".$link."/".$image_filename."/".$image_id."/".$image_collection_id;  ?>"> 
+<input type="hidden" name="img_id" id="img_id<?php print $images_id; ?>" value="<?php print $images_id ?>" /> </a>
 <div class="wrap">
-<div class="wrap-inner"><img src="<?=$img_src;  ?>" class="img-responsive" /></div>
+<div class="wrap-inner">
+	<img src="<?=$img_src;  ?>" class="img-responsive" />
+</div>
 <div class="main-title">
 <?= substr($item['image_caption'],0,20).".."; ?>
 </div>
 <!--<div class="products" style="padding:0 0 3px 0"> <a href="#"> <?=$item['image_photographer'];?> </a> </div>-->
-<div class="producttype"> 
-	<a href="#"></a>
-</div>
 <div class="product-details">
 		<a href="<?=base_url()."search/".$link."/".$image_filename."/".$image_id."/".$image_collection_id;  ?>" style="float:left"> 
-    <div class="icon-cart" style="clear: left; float: left">
-    <div class="cart-line-1" style="background-color: rgb(44, 195, 181);"></div>
-    <div class="cart-line-2" style="background-color: #2CC3B5"></div>
-    <div class="cart-line-3" style="background-color: #2CC3B5"></div>
-    <div class="cart-wheel" style="background-color: #2CC3B5"></div>
-  </div>
+        <div class="icon-cart" style="clear: left; float: left">
+        <div class="cart-line-1" style="background-color: rgb(44, 195, 181);"></div>
+        <div class="cart-line-2" style="background-color: #2CC3B5"></div>
+        <div class="cart-line-3" style="background-color: #2CC3B5"></div>
+        <div class="cart-wheel" style="background-color: #2CC3B5"></div>
+      </div>
     </a>
     <a style="color:#999;font-size:20px; float:right" href="javascript:" <?php    if($this->session->userdata('userid')){?> onclick="addtogallery('<?=$item['image_id']?>','<?=$item['image_filename']?>')" <?php }else{?> onclick="login('')" <?php }?> id="tgl"><i class="fa fa-heart-o" style="color:#d31d25; font-size:20px; padding:10px"> </i> </a>
 </div>
