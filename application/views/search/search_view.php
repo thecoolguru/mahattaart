@@ -451,11 +451,12 @@ if($bride[0]=='BRID'){
 	<img src="http://static.mahattaart.com/130x150/media/DANI_NA01_AMI0151.JPG" class="img-responsive" />
 </div>-->
 <a href="<?=base_url()."search/".$link."/".$image_filename."/".$image_id."/".$image_collection_id;  ?>"> 
-<input type="hidden" name="img_id" id="img_id<?php print $images_id; ?>" value="<?php print $images_id ?>" /> </a>
+<input type="hidden" name="img_id" id="img_id<?php print $images_id; ?>" value="<?php print $images_id ?>" />
 <div class="wrap">
 <div class="wrap-inner">
 	<img src="<?=$img_src;  ?>" class="img-responsive" />
 </div>
+</a>
 <div class="main-title">
 <?= substr($item['image_caption'],0,20).".."; ?>
 </div>
