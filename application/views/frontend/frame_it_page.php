@@ -575,7 +575,7 @@ bi = style.backgroundImage.slice(50, -2);
    // alert(r_new_mat_width);
    if(frame_color!='')
    {
-    var dert= "http://static.mahattaart.com/398/DANI_US22_SPE0539.JPG";
+    var dert= "http://static.mahattaart.com/media/DANI_US22_SPE0539.JPG";
           +$('div.main_frame').css('background','url("'+dert+frame_color+'")');
       }else{
         var dert= "<?php echo base_url()?>uploaded_pdf/new_frames/split_frame/332x395.jpg";
@@ -1900,7 +1900,7 @@ $bordered_ac_srface='Giclee Print ';
 		 <!-- starts For canvas room print-->
 		<div  class="clickbttonforprint canvas_for_room" style="display:none; width:200px;height:200px;text-align: center;
     margin: 10px auto;">
-		  <img src="http://static.mahattaart.com/398/<?=$image_name;?>" width="auto" height="90%">
+		  <img src="http://static.mahattaart.com/media/<?=$image_name;?>" width="auto" height="90%">
 		  </div>
 		 <!-- ends for canvas room view   -->
           <div class="divimg mainhor_for_room"  style="border-image-source: url(&quot;<?=base_url();?>images/uploaded_pdf/frames/horizontal/Absolute Black.jpg&quot;); border-image-slice: 55; border-image-width: initial; border-image-outset: initial; border-image-repeat: round; border-style: solid; border-width: 22px;">
@@ -1909,7 +1909,7 @@ $bordered_ac_srface='Giclee Print ';
               
                
                       <div id="topa2" style="width:100px;height:auto"> <a href="javascript:" id="demo3" class="imglink">
-                                                <img src="http://static.mahattaart.com/398/<?=$image_name;?>" alt="frame" width="100%" height="auto">
+                                                <img src="http://static.mahattaart.com/media/<?=$image_name;?>" alt="frame" width="100%" height="auto">
                                                 
                        
                         </a> 
@@ -1939,7 +1939,7 @@ $bordered_ac_srface='Giclee Print ';
                   <div id="fir1">
                     <div id="topa1">
                       <div id="fir2">
-                        <div id="topa2"> <img  src="http://static.mahattaart.com/1100/<?=$image_name;?>" class="drag-image" style="height:100%; width: 100%;"  > </div>
+                        <div id="topa2"> <img  src="http://static.mahattaart.com/media/<?=$image_name;?>" class="drag-image" style="height:100%; width: 100%;"  > </div>
                       </div>
                     </div>
                   </div>
@@ -1965,7 +1965,7 @@ $bordered_ac_srface='Giclee Print ';
       <div class="frame-it-main text-center">
    <!--   starts for print only div-->
    		<div  class="clickbttonforprint" style="display:none;">
-		  <img src="http://static.mahattaart.com/398/<?=$image_name;?>">
+		  <img src="http://static.mahattaart.com/media/<?=$image_name;?>">
 		  </div>
         <?php  
 	//	echo $f_shape.'saji';
@@ -2036,7 +2036,7 @@ $bordered_ac_srface='Giclee Print ';
         <section class="container3D">
             <div id="cube" class=" ">
                 <figure class="front">
-                	<img  src="http://static.mahattaart.com/398/<?=$image_name;?>" class="img-responsive">
+                	<img  src="http://static.mahattaart.com/media/<?=$image_name;?>" class="img-responsive">
                     <figure class="right"></figure>
                     <figure class="bottom"></figure>
                 </figure>
@@ -2047,7 +2047,7 @@ $bordered_ac_srface='Giclee Print ';
         <div class="divimg mainhor" id="frame-it" style="margin-top:20px">
           <? } else {?>
 		  <div class="showforprintonly" style="display:none;">
-		  <img src="http://static.mahattaart.com/398/<?=$image_name;?>">
+		  <img src="http://static.mahattaart.com/media/<?=$image_name;?>">
 		  </div>
 		  
           <div class="divimg mainhor" id="frame-it" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/Absolute Black.jpg') 57 57 57 57 round round;
@@ -2065,15 +2065,15 @@ $bordered_ac_srface='Giclee Print ';
                       <div id="topa2"> <a href="javascript:"
                                     id="demo2" class="imglink">
                         <?php if ($f_shape=='Slim'){?>
-                        <img src="http://static.mahattaart.com/398/<?=$image_name;?>" alt="frame" width="140"  height="381" />
+                        <img src="http://static.mahattaart.com/media/<?=$image_name;?>" alt="frame" width="140"  height="381" />
                         <?php }elseif ($f_shape=='Horizontal' ){?>
-                        <img src="http://static.mahattaart.com/398/<?=$image_name;?>" alt="frame"  width="376" height="250" />
+                        <img src="http://static.mahattaart.com/media/<?=$image_name;?>" alt="frame"  width="376" height="250" />
                         <?php }else if ($f_shape=='Vertical' ){?>
-                        <img src="http://static.mahattaart.com/398/<?=$image_name;?>" alt="frame"  style="width:100%"  height="380" />
+                        <img src="http://static.mahattaart.com/media/<?=$image_name;?>" alt="frame"  style="width:100%"  height="380" />
                         <?php }else if ($f_shape=='Square'){?>
-                        <img src="http://static.mahattaart.com/398/<?=$image_name;?>" alt="frame"  width="261" height="260" />
+                        <img src="http://static.mahattaart.com/media/<?=$image_name;?>" alt="frame"  width="261" height="260" />
                         <?php }else if ($f_shape=='Panoramic' ){?>
-                        <img src="http://static.mahattaart.com/398/<?=$image_name;?>" alt="frame"   width="381"  height="140"  />
+                        <img src="http://static.mahattaart.com/media/<?=$image_name;?>" alt="frame"   width="381"  height="140"  />
                         <?php }?>
                         <input type="hidden" value="<?php print $img_details->images_id;?>" id="imag_id"/>
                         <input type="hidden" id="frame_id"/>

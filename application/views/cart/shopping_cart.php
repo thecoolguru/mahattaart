@@ -115,7 +115,7 @@
 				  if($this->session->userdata('page')){
 					$size_data = getimagesize($url."application/views/frontend/upload_images/".$image['image_name']);  
 				  }else{
-				  $size_data = getimagesize("http://static.mahattaart.com/158/".$image['image_name']);
+				  $size_data = getimagesize("http://static.mahattaart.com/media/".$image['image_name']);
                   }
 				  $cart_id = $image['cart_id'];
 				  $file_name = $image['image_name'];
@@ -229,7 +229,7 @@ $search_data_r=json_decode($search_data_file,TRUE);
 		<section class="container3D">
             <div id="cube" class=" ">
                  <figure class="front">
-                   <a href="<?=$redirect_details?>">  <img src="<?php if($image['path'] == 1){ echo base_url()."application/views/frontend/upload_images/".$file_name;}else{ echo"http://static.mahattaart.com/158/".$image['image_name'];}?>" class="img-responsive" width="156px"/></a>
+                   <a href="<?=$redirect_details?>">  <img src="<?php if($image['path'] == 1){ echo base_url()."application/views/frontend/upload_images/".$file_name;}else{ echo"http://static.mahattaart.com/media/".$image['image_name'];}?>" class="img-responsive" width="156px"/></a>
 					<figure class="right"></figure>
 					<figure class="bottom"></figure>
                 </figure>
@@ -245,7 +245,7 @@ $search_data_r=json_decode($search_data_file,TRUE);
 				 ?> 
 				 <div  id="topa2">
 				   <a href="<?=$redirect_details?>"> 
-					 <img src="<?php if($image['path'] == 1){ echo base_url()."application/views/frontend/upload_images/".$file_name;}else{ echo"http://static.mahattaart.com/158/".$image['image_name'];};?>" class="img-responsive mainhor" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/<?=$image['frame_color']?>.jpg') 30 30 30 30 round round;background:url('<?=base_url()?>images/uploaded_pdf/mount/<?=$image['mount_color']?>.jpg') no-repeat scroll 0 0 / cover; padding:<?=$padding?>px" /></a>
+					 <img src="<?php if($image['path'] == 1){ echo base_url()."application/views/frontend/upload_images/".$file_name;}else{ echo"http://static.mahattaart.com/media/".$image['image_name'];};?>" class="img-responsive mainhor" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/<?=$image['frame_color']?>.jpg') 30 30 30 30 round round;background:url('<?=base_url()?>images/uploaded_pdf/mount/<?=$image['mount_color']?>.jpg') no-repeat scroll 0 0 / cover; padding:<?=$padding?>px" /></a>
 				 </div>
             <?php } ?>
           </td>
@@ -360,7 +360,7 @@ $search_data_r=json_decode($search_data_file,TRUE);
 
 	<ul class="shop-detail-holder">
 		<li class="shop-itm">
-			<a href="#"><img src="http://www.indiapicture.in/wallsnart/158/<?= $image['name'];?>"/></a>
+			<a href="#"><img src="http://www.indiapicture.in/wallsnart/media/<?= $image['name'];?>"/></a>
 				<div class="shop-itm-detail">
 					<h4><strong></strong></h4>
 						By | Giclee Print | | Item #: 11787261A <a href="#"

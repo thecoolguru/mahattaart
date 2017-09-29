@@ -76,7 +76,7 @@ $max_size=$this->search_model->get_max_size($images_id);
   $max_height_allowed=$max_h/150;
 
 // calcuulate image ratio
-$size_data = getimagesize("http://static.mahattaart.com/398/".$image_detail[0]['image_filename']."");
+$size_data = getimagesize("http://static.mahattaart.com/media/".$image_detail[0]['image_filename']."");
 //print_r($size_data);
 //echo "sajid";
 $image_alignment="";
@@ -742,7 +742,7 @@ function toTitleCase(str)
 <input type="hidden"  value="<?php echo $pricing_range;?>" id="pricing_ran" name="pricing_ran"/>
 </div>
     <div class="decorative-l-c col-md-4 col-sm-4">
-    <img src="http://static.mahattaart.com/398/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive"  /> 
+    <img src="http://static.mahattaart.com/media/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive"  /> 
       <br>
       View: <a href="javascript:" onClick="get_room();">View in room</a> | <a href="#"
 								onClick="get_win();">Enlarge image</a> </div>
@@ -853,7 +853,7 @@ href="javascript:void(0)" onclick="login('');" <?php }else{?> href="#!" id="fram
           <?php  $wid=$size_array[0]['width']/6 * 720/10;
                                                    $hig=$size_array[0]['height']/6*720/10;
                                           ?>
-          <img  src="http://static.mahattaart.com/398/<?php print $image_detail[0]['image_filename'];?>"class="drag-image" id="draggable"  height="<?=$hig?>" width="<?=$wid?>" style="
+          <img  src="http://static.mahattaart.com/media/<?php print $image_detail[0]['image_filename'];?>"class="drag-image" id="draggable"  height="<?=$hig?>" width="<?=$wid?>" style="
     border-radius: 5px;
     border: solid 2px;
     border-color: #B57424;" /> </div>

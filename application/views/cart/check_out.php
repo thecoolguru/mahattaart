@@ -436,7 +436,7 @@ if(!$key){
                                 <section class="container3D">
                                     <div id="cube" class=" ">
                                         <figure class="front">
-                                            <img src="http://static.mahattaart.com/158/<?= $image['image_name'];?>" class="img-responsive" />
+                                            <img src="http://static.mahattaart.com/media/<?= $image['image_name'];?>" class="img-responsive" />
                                             <figure class="right"></figure>
                                             <figure class="bottom"></figure>
                                         </figure>
@@ -448,7 +448,7 @@ if(!$key){
 									  else {
 									
 									  ?>
-                 <img src="http://static.mahattaart.com/158/<?= $image['image_name'];?>" class="img-responsive mainhor" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/<?=$image['frame_color']?>.jpg') 30 30 30 30 round round;background:url('<?=base_url()?>images/uploaded_pdf/mount/<?=$image['mount_color']?>.jpg') no-repeat scroll 0 0 / cover;" />
+                 <img src="http://static.mahattaart.com/media/<?= $image['image_name'];?>" class="img-responsive mainhor" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/<?=$image['frame_color']?>.jpg') 30 30 30 30 round round;background:url('<?=base_url()?>images/uploaded_pdf/mount/<?=$image['mount_color']?>.jpg') no-repeat scroll 0 0 / cover;" />
             <?php }?>
                                   </td>
                                 
@@ -686,7 +686,7 @@ if(!$key){
 				<? if($image['frame_or_print']==1){?>
                 <img src="<?php echo base_url()?>600/<?= $image['frame_name'];?>" width="auto" height="60" />
             <?  }else {?>
-                 <img src="http://static.mahattaart.com/158/<?= $image['image_name'];?>" width="auto" height="30"/>
+                 <img src="http://static.mahattaart.com/media/<?= $image['image_name'];?>" width="auto" height="30"/>
             <? }?>	
 						</li>
 						 
@@ -734,7 +734,7 @@ if(!$key){
                     	<li class="item">
 						
 				<a href="#"><img
-				src="http://static.mahattaart.com/158/<?= $image['name'];?>" />
+				src="http://static.mahattaart.com/media/<?= $image['name'];?>" />
 		</a>
 						</li>
                         <li class="des"><?php print substr($row->images_caption,0,15); ?> </li>

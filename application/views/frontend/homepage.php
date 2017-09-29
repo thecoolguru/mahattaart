@@ -126,7 +126,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div class="col-md-6 col-sm-6 margn box">
 <div class="row">
 <div class="col-xs-6 col-md-6 col-sm-6  bg">
-<a href="<?php print base_url(); ?><?=$url0;?>">
+<a href="<?php print base_url(); ?>frontend/themes_view/13">
 <img src="<?php echo base_url();?><?=$bottom_top[0]->image?>" class="img-responsive" width="100%" /> </a>
 </div>
 <div class="col-xs-6 col-md-6 col-sm-6 bg_content">
@@ -139,7 +139,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <p>
 <?=$bottom_top[0]->description?>
 </p>
-<div style="text-align:right;padding:5px 0"> <a style="color:#6699FF" href="<?php print base_url(); ?><?=$url0;?>"> Read More. </a> </div>
+<div style="text-align:right;padding:5px 0"> <a style="color:#6699FF" href="<?php print base_url(); ?>frontend/themes_view/13"> Read More. </a> </div>
 </div>
 </div>
 </div>
