@@ -153,58 +153,47 @@ class Cart extends CI_Controller{
 
         
 
-        public function check_out(){
-			error_reporting(0);
+        public function check_out(){ error_reporting(0);
+// echo "ssss";
 		$catgories_id=$_GET['cat_id'];
+
 		$this->search_model->update_category_count($catgories_id);
+        $res=$this->cart_model->get_tbl_promo_code();
+		//print_r($res);
+		$data['tbl_clearence']=$res;
+          
+
 		$img_id="";
+
 		$search_text="";
+
 		$price="";
+
 		$size="";
+
 		$print_type="";
+
 		if(isset($_GET['img_id'])){
+
 			$img_id=$_GET['img_id'];
+
 		}
+
 		if(isset($_GET['search_text'])){
+
 			$search_text=$_GET['search_text'];
+
 		}
-		if(isset($_GET['size'])){
-			$size=$_GET['size'];
-		}
-		if(isset($_GET['price'])){
-			$price=$_GET['price'];
-		}
-		if(isset($_GET['print_type'])){
-			$print_type=$_GET['print_type'];
-		}
-		if( $this->input->get('search')){
-			$datam['key']= $this->input->get('search'); //to pass search text from url to view
-		}else{
-			$datam['key']=$search_text;
-		}
-		if($img_id){
-			$image=$this->search_model->get_image_data($img_id);
-			if(!$this->session->userdata('userid')){
-				$data=array('id'=>$img_id,'qty'=>1,'price'=>$price,'name'=>$image->images_filename);
-				$this->cart->insert($data);
-				$data['key']= $img_id;
-			}else{
-				$data1=array('image_id'=>$img_id,'cart_quantity'=>1,'price'=>$price,'user_id'=>$this->session->userdata('userid'),'image_print_type'=>$print_type,'image_size'=>$size,'image_name'=>$image->images_filename,'row_id'=>$this->session->userdata('userid'));
-				$valid=$this->cart_model->cart_valid($this->session->userdata('userid'),$img_id,$price,$size,$print_type);
-				if(!$valid){
-					$this->cart_model->add_cart($data1);
-				}
-			}
-			$images_id=$img_id;
-			if(isset($_GET['cat_id'])){
-				$catgories_id=$_GET['cat_id'];
-				$this->search_model->insert_pop('add_to_cart',$images_id,$catgories_id);
-			}
-		}
-			$datam['uri']=$this->session->userdata('url');
-			$this->load->view('frontend/header');
-			$this->load->view('cart/check_out',$datam);
-			$this->load->view('frontend/footer');
+
+	
+		$this->load->view('frontend/header');
+
+		$this->load->view('cart/check_out',$data);
+
+		$this->load->view('frontend/footer');
+
+
+
 	}
 
 	protected function CCAVENUE_DETAILTS()  {

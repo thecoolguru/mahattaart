@@ -519,8 +519,25 @@ public function invoice_view($invoice_id)
 
 
 	}
+public function create_promo_code($promo_id){
+	//$data['row_id']=$this->backend_model->update_web_price();
+	if($promo_id!=''){
+	
+	$data['promo_detials']=$this->backend_model->get_all_tbl_promo_code($promo_id);
+	}
+	$this->load->view('backend/dashboard_header');
+		$this->load->view('backend/create_promo_code',$data);
+		$this->load->view('backend/footer');
+	
+	}
+public function manage_promo_offer(){
+$data['web_price_tbl']=$this->backend_model->get_all_tbl_promo_code();
+        $this->load->view('backend/dashboard_header');
+		$this->load->view('backend/manage_promo_code',$data);
+		$this->load->view('backend/footer');
 
 
+}
 
       public function edit_packager_order($order_id="")
       {

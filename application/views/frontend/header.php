@@ -6,6 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Mahatta Art | Art Prints, Framed Art, and Mahatta Art Collections</title>
+<meta name="keywords" content="wall paintings, buy wall paintings, wall painting designs, painting designs" />
+
 <!-- header -->
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/font-awesome.css" type="text/css">
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">

@@ -524,6 +524,15 @@ public function get_all_lightboxes()
 		return $query->result();
 
 	}
+	
+	public function get_all_tbl_promo_code($sr_no){
+        $this->db->select('*');
+		if($sr_no!=''){
+		$this->db->where('sr_no',$sr_no);
+		}
+        $query=$this->db->get('tbl_promo_code');
+        return $query->result();
+       }
 	public function get_tbl_inventory($itemid)
 
     {   

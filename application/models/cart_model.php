@@ -141,6 +141,15 @@ class Cart_model extends CI_Model
 			return '1';
 		   }
 		}
+		public function get_tbl_promo_code(){
+	$this->db->select('*');
+	//$this->db->where('active','1');
+	$this->db->where_not_in('valid_days','8');
+	$query=$this->db->get('tbl_promo_code');
+	return $query->result();
+	
+	
+	}
 
 	public function get_cart($user_id){
         $this->db->select('*');

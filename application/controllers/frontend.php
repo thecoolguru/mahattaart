@@ -1805,7 +1805,7 @@ $data['search_cat']=$search_data_r['data'];
 		$config['per_page']= $per_page;
 		$config['use_page_numbers'] = TRUE;
 		$config['first_link'] = 'First';
-		$config['last_link'] = 'Last';
+		$config['last_link'] = '';
 		$config['uri_segment'] = 4;
 		$data['page_no']=$page_no;
 		

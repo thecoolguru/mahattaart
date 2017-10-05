@@ -157,6 +157,14 @@
 <li>
     <a href="<?=base_url()?>index.php/backend/view_header_images">View/Edit home Info</a></li>
 </ul></li>
+<li> <a href="#">Promo Offer</a>
+<ul>
+<li>
+ <a href="<?=base_url()?>index.php/backend/create_promo_code">Add New Promo Offer</a></li>
+    
+<li>
+  <a href="<?=base_url()?>index.php/backend/manage_promo_offer">View Promo Offers</a></li>
+</ul></li>
 </ul>
 </li>
 

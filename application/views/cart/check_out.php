@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<?=base_url()?>/assets/css/light-box-model.css" type="text/css"/>
 <?php 
 //phpinfo();
 if($this->session->userdata('userid'))
@@ -34,6 +35,141 @@ if(!$key){
 	background: #f9f9f9 !important;
 }   
 	</style>		
+    
+    <style>
+.uploader_popup_header{
+	background-color: #f1f1f1;
+	height: 30px;
+	position: relative;
+	padding: 0 10px;
+}
+
+#uploader_popup_goofy_a {
+	display: block;
+	font-family: Arial;
+	position: absolute;
+	width: 210px;
+	z-index: 10000012;
+	background: #fff;
+	box-shadow: 3px 1px 5px #888;
+	right: -78px;
+	bottom: 141px;
+	right:0px
+}
+
+.uploader_popup_header > h2 {
+	font-size: 22px;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin: 0;
+	font-family: 'BebasNeueRegular' !important;
+	padding-top: 2px;
+}
+
+.uploader_popup_upload-icon > img {
+border: medium none;
+bottom: 0;
+box-shadow: none;
+box-sizing: border-box;
+left: 0;
+margin: 40px 0 10px;
+position: relative;
+right: 0;
+top: 0;
+}
+.popup-default-message > h2 {
+color: #ef9223;
+font-size: 20px;
+line-height: 18px;
+cursor:pointer;
+padding-bottom:10px
+}
+.popup-default-message > p, .popup-default-footer > p {
+color: #888;
+font-size: 12px;
+}
+.popup-default-message > p {
+cursor:pointer
+}
+
+#goofy_a > div {
+padding: 10px;
+}
+.uploader_popup_upload-icon {
+	height: 260px;
+	margin-top: 10px;
+	overflow: auto;
+	position: relative;
+	margin-bottom: 10px;
+}
+#imgInp {
+background: white none repeat scroll 0 0;
+cursor: inherit;
+display: block;
+font-size: 100px;
+height: 100px;
+left: 50%;
+margin-left: -50px;
+margin-top: -50px;
+opacity: 0;
+position: absolute;
+top: 50%;
+width: 100px;
+}
+.dz-upload-image {
+display: none;
+}
+.popup-default-footer {
+	display: block;
+	height: 40px;
+	clear: both;
+	margin: 10px;
+}
+a.lightbox-close {
+	background: transparent;
+	box-sizing: border-box;
+	color: black;
+	display: block;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	text-decoration: none;
+	top: 2px;
+	width: 30px;
+}
+a.lightbox-close::before {
+	background: black none repeat scroll 0 0;
+	content: "";
+	display: block;
+	height: 25px;
+	left: 15px;
+	position: absolute;
+	top: 0;
+	transform: rotate(45deg);
+	width: 1px;
+}
+a.lightbox-close::after {
+	background: black none repeat scroll 0 0;
+	content: "";
+	display: block;
+	height: 25px;
+	left: 15px;
+	position: absolute;
+	top: 0;
+	transform: rotate(-45deg);
+	width: 1px;
+}
+</style>
+
+<script>
+function price_details(){
+		$('#price_detail').show();	
+	}
+	
+	function remove_pricing(){
+	$('#uploader_popup_goofy_a').hide();	
+	}
+</script>
 <div class="container">
 <div class="row">
     	
@@ -44,6 +180,41 @@ if(!$key){
         <!-- checkout -->
         <div class="checkout">
         	<div class="checkout-l-c col-md-7 col-sm-7 col-xs-12">
+            <div id="uploader_popup_goofy_a" style="display: none;">
+                    <div class="uploader_popup_header">
+                    <h2 class="text-center">Promo Codes</h2>
+                    <a class="lightbox-close" href="" onclick="remove_pricing(); return false;"></a>
+                    </div>
+					<?php
+					
+					foreach($tbl_clearence as $clearence_dets){
+					//print_r($clearence_dets);
+
+
+
+					if($clearence_dets->active=='1'){
+					$validation="Apply";
+					}else{
+					$validation="Not Aplicable";
+					}
+					
+					?>
+					
+                    <div class="frame-it-pricing" style="padding: 10px;">
+					
+                        <div class="row">
+                            <div class="frame-it-content">
+                                <div class="col-md-6 col-sm-6 text-left">
+                                	<strong><?php echo $clearence_dets->offer_code; ?></strong>
+                                </div>
+                                <div class="col-md-6 col-sm-6 text-right">
+                                	<strong <?php if($validation=='Apply'){?>onclick="appply_promo_code('<?=$clearence_dets->sr_no?>','<?=$clearence_dets->offer_precentage?>','<?=$clearence_dets->offer_code?>')"<?php } ?> id="apply_text<?=$clearence_dets->sr_no?>"><?php echo $validation; ?> </strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+					<?php  }?>
+                </div>
             	<p>Shipping Information <a id="select" href="javascript:void(0)" onClick="drop('slidedrop','select')" class="drop"><i class="ci"></i></a></p>
                 
                 <div style="display:block;" id="slidedrop">
@@ -89,6 +260,7 @@ if(!$key){
                             <div class="col-sm-9">
                             <select name="state" id="state" class="form-control">
                                 <option value="">------------Select State------------</option>
+
                                 <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
                                 <option value="Andhra Pradesh">Andhra Pradesh</option>
                                 <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -357,7 +529,7 @@ if(!$key){
 								
                               </tr>
                               <?php if($this->session->userdata('userid')){ 
-							  $grand_total=0;
+							  $grand_total=$sub_total=$total_tax_amt=0;
 							 $qty_update_tbl=$_REQUEST['qty_update'];
 		$data=$this->cart_model->get_usercart($this->session->userdata('userid')); $subtotal=0; $i=1;$sr=1;
 		foreach($data as $image){?>
@@ -461,6 +633,7 @@ if(!$key){
       
         <div class="col-xs-10">
 						   <input type="text" style="width:30px" class="by_keyup_update" maxlength="4" name="qty_update" value="<?=$image['qty']?>" id="qty_update<?=$image['cart_id']?>" >
+
 		                       
         </div>
     </div>
@@ -496,7 +669,8 @@ if(!$key){
 								<td><?php echo $total_price_per=$tax_amt_fnl+$price_updt_ornot;?></td>
                               </tr>
                 <?php 
-				
+				 $sub_total=$sub_total + $price_updt_ornot;
+				 $total_tax_amt=$total_tax_amt + $tax_amt_fnl;
 				 $grand_total=$grand_total+$total_price_per;
 				 if($qty_update_tbl!=''){
 				 $this->cart_model->update_serail_noforcart($this->session->userdata('userid'),$sr,$cart_id,$tax_prctg,$tax_amt_fnl,$total_price_per);
@@ -542,6 +716,11 @@ if(!$key){
 	});
 	
 	}
+	function apply_promo(){
+	
+	//alert('jjj')
+	$('#uploader_popup_goofy_a').show();
+	}
 						</script>
 						 
                             <div class="discount">
@@ -551,28 +730,66 @@ if(!$key){
 
                                 
                               <tr>
-                                <td>Payable Amount</td>
+                                <td>Sub Total Amount</td>
                                 <td><img
-                    src="<?=base_url()?>assets/images/rupee-img-price.gif" /> <?= $grand_total;?></td>
+                    src="<?=base_url()?>assets/images/rupee-img-price.gif" /> <span id="sub_total_amount"><?= $sub_total;?></span>&nbsp;&nbsp;<span id="final_amount_after_discount"></span></td>
+                              </tr>
+							   
+							   <tr>
+							   
+							   <tr id="discount_row" style="color:red;display:none">
+                                <td>Promo Offer<br>
+								FLAT &nbsp;<span id="promo_code"></span>%
+								</td>
+                                <td><img src="<?=base_url()?>assets/images/rupee-img-price.gif" />&nbsp;<span id="discounted_amount"></span></td>
+                              </tr>
+                                                          <tr>
+                                <td>GST Tax Amount</td>
+                                <td><img
+                    src="<?=base_url()?>assets/images/rupee-img-price.gif" /> <span id="total_gst_amount"><?= $total_tax_amt;?></span></td>
                               </tr>
 							   
 							   <tr>
 							   
                                 <td>Apply Coupon Code</td>
-                                <td><input type="text" name="apply_coupon"  id="apply_coupon"><button class="">Apply</button></td>
+                                <td><input type="text" name="apply_coupon"  id="apply_coupon" value=""><button class="" onclick="apply_promo();">Apply Codes</button>
+                                </td>
                               </tr>
 							   <tr>
+							   
                                 <td>Grand Total Amount</td>
-                                <td><img
-                    src="<?=base_url()?>assets/images/rupee-img-price.gif" /> <?php
-					
+                                <td id=""><img src="<?=base_url()?>assets/images/rupee-img-price.gif" /><span class="grand_total_amt"> <?php
 					 echo $grand_total;
-					
-					 ?></td>
+					 ?></span></td>
                               </tr>
 							 
                             </table>
+							<script>
+							function appply_promo_code(sr_no,offer_prctg,offer_code){
+							//alert(sr_no);
+							if(sr_no=='' || offer_prctg=='' || offer_code=='' ){
+							return false;
+							}
+							if(sr_no!='none' || offer_prctg!='none' || offer_code!='none'){
+							var sub_total_amount=$('#sub_total_amount').html();
+							$('#discount_row').show();
+							var discounted_amount=((parseFloat(sub_total_amount)*parseFloat(offer_prctg))/100).toFixed(2);
+							$('#discounted_amount').html(discounted_amount);
+							var total_gst_amount=$('#total_gst_amount').html();
+														var final_amount_afteroffer=Math.round(parseFloat(sub_total_amount)-parseFloat(discounted_amount)+parseFloat(total_gst_amount)).toFixed(2);
+							$('#sub_total_amount').css("text-decoration","line-through");
+							$('#final_amount_after_discount').html(Math.round((parseFloat(sub_total_amount)-parseFloat(discounted_amount).toFixed(2))));
+							$('#final_amount_after_discount').css("color","red");
+							//alert(final_amount_afteroffer) .css("color","red")
+							$('#promo_code').html(offer_prctg);
+							$('#apply_text'+sr_no).html('Applied').css("color","red");
+							$('#apply_coupon').val(offer_code);
+							$('.grand_total_amt').html(final_amount_afteroffer);
+							$('.grand_total_amt').val(final_amount_afteroffer);
+							}
 							
+							}
+							</script>
 				        <form  id="payment_action" method="post" action="#" name="payment_ccavenue">
                          
 						 <?php
@@ -596,7 +813,7 @@ if(!$key){
 	<input type="hidden" name="merchant_id" value="<?php echo '64544'; ?>">
   
  <input type="hidden" name="currency" value="<?php echo 'INR' ?>">
- <input type="hidden" name="amount" value="<?php echo $grand_total; ?>">
+ <input type="hidden" name="amount" class="grand_total_amt" value="<?php echo $grand_total; ?>">
   <input type="hidden" name="order_id" value="<?=$order_id_auto?>">
   <input type="hidden" name="redirect_url" value="<?=$redirect_url?>" />
 <input type="hidden" name="cancel_url" value="<?=$cancel_url?>" />
@@ -636,6 +853,7 @@ if(!$key){
         		<input type="submit" class="btn" onclick="return save_order_id_to_cart('online');" value="ONLINE" style="display: inline-block;/* margin: 20px 0 0 0; *//* padding: 6px 12px; */color: #fff;background: #14479a;text-decoration: none;border: 1px solid #14479a;margin-left: 28px;border-radius: 0;"> 
     </div>
         </div>
+
     </div>
     
     

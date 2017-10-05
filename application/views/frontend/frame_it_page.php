@@ -477,14 +477,14 @@ myfuntest('101 Black.jpg','0.75X0.75','40.00','Black','60','0.75','12','8','<?=$
 		  var glass_price=$('#glass_price').html();
 		 
 		var total_price= (parseFloat(print_price)+parseFloat(FrameCost)+parseFloat(MountCost)+parseFloat(glass_price));
-			 $('#total_price').html(parseFloat(total_price));
+			 apply_promo_code(parseFloat(total_price));
 		
 		if(paper_surface=='Photo canvas' || paper_surface=='Hahnemuhle Photo Canvas' || paper_surface=='Hahnemuhle Daguerre canvas'){
 //alert('ss')
 $('.showforprintonly').show();
 $('.for_print_hide').hide();
 $('.showforcanvas').show();
-$('#total_price').html(parseFloat($('#print_price').html()) + parseFloat($('#FrameCost').html()));
+apply_promo_code(parseFloat($('#print_price').html()) + parseFloat($('#FrameCost').html()));
 $('.framed_art').html(print_sizes);
 $('.canvas_for_room').show();
 }
@@ -745,7 +745,7 @@ bi = style.backgroundImage.slice(50, -2);
 	 $('.for_check_printor_frame').val('only_print');
 	var printprice=document.getElementById("print_price").innerHTML;
 	//alert(printprice);
-	  $('#total_price').html(printprice);
+	  apply_promo_code(printprice);
         var type=document.getElementById('type').value;
        
         var imageid=document.getElementById('imag_id').value;
@@ -890,6 +890,8 @@ box-shadow:2px 2px 1px black inset;
 <script type="text/javascript">
 $(document).ready(function(){
 $('#black').show();
+ //window.promo_amount=$('#promo_amount').html();
+ //alert('sajid')
 $('#white').show();
 var paper_surface=$('#paper_surface').val();
 var print_sizes=$('#print_sizes').html();
@@ -909,10 +911,11 @@ $('.showforcanvas').show();
 	$('.for_check_printor_frame').val('canvas_only');
 	$('.tabs-wrapper').hide();
 	$('.edit_this_frame').hide();
-$('#total_price').html(parseFloat($('#print_price').html()) + parseFloat($('#FrameCost').html()));
+apply_promo_code(parseFloat($('#print_price').html()) + parseFloat($('#FrameCost').html()));
 
 $('#canvas_check').val(1);
 }
+//alert('jjj')
 $('#unchkforacrylic').trigger('click');
 });
 
@@ -1154,6 +1157,7 @@ $('#unchkforacrylic').trigger('click');
     {
         document.getElementById('mat1').style.display = 'none';
         document.getElementById('mat2').style.display = 'none';
+		document.getElementById('tab5').style.display = 'none';
     }
    
    
@@ -1214,7 +1218,7 @@ var fram_size_for_t=$('#frame_size').html();
    var  total_size=(parseFloat(newmountheight)+(parseFloat(fram_size_for_t)*2))+' "X'+(newmountwidth+ (parseFloat(fram_size_for_t)*2)+' "');
    $('.framed_art').html(total_size);
   //  alert(total_size);
-$('#total_price').html(total1.toFixed(2));
+apply_promo_code(total1.toFixed(2));
       
       
      document.getElementById('print_mount_size').value=mount;
@@ -1429,7 +1433,8 @@ var printsplit=print_sizes.split('X');
 	 document.getElementById('f_color').innerHTML=f_code;
 	 var price=parseFloat(print_price)+parseFloat(FrameCotsFormat)+parseFloat(mount_cost)+parseFloat(glass_cost);
 	// alert(price)
-	  $('#total_price').html(price);
+	  apply_promo_code(price);
+	 
 	 // alert(frame_cost)
 	 
 	 var mount_size_for_size=$('#mount_size').html();
@@ -1440,16 +1445,16 @@ var printsplit=print_sizes.split('X');
 	  }
 	   var t_price=parseFloat(print_price)+parseFloat(frame_cost)+parseFloat(MountCost)+parseFloat(glass_cost);    
 	    if(!f_code){
-	   var total_price_mount=t_price.toFixed(2);
+	   var total_price_mount=parseFloat(t_price.toFixed(2));
 	   
-	   
+	    apply_promo_code(total_price_mount);
 	  // alert(total_price_mount)
 	   }
 	   
 	// alert(total_price_mount)
 	 
 var mount_it_width= document.getElementById('mount_it_width').value;
- $('#total_price').html(total_price_mount);
+
  if(canvas_check==1){
  //alert(OrgFramCost)
        if(!f_code){
@@ -1459,7 +1464,9 @@ var mount_it_width= document.getElementById('mount_it_width').value;
 	  }
 	  var tot_price_canvas=price_canvas.toFixed(2);
 	// alert(tot_price_canvas);
-	  $('#total_price').html(tot_price_canvas);
+	
+	//alert(tot_price_canvas)
+	  apply_promo_code(tot_price_canvas);
 		 }
     if(document.getElementById('mount_it_width').value !="")
     {
@@ -2047,7 +2054,7 @@ $bordered_ac_srface='Giclee Print ';
         <div class="divimg mainhor" id="frame-it" style="margin-top:20px">
           <? } else {?>
 		  <div class="showforprintonly" style="display:none;">
-		  <img src="http://static.mahattaart.com/media/<?=$image_name;?>">
+		  <img src="http://static.mahattaart.com/m/<?=$image_name;?>">
 		  </div>
 		  
           <div class="divimg mainhor" id="frame-it" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/Absolute Black.jpg') 57 57 57 57 round round;
@@ -2134,7 +2141,7 @@ var MountCost=$('#MountCost').html();
         var newmountheight=parseFloat(printsplit[0])+parseFloat(mount*2);
         var newmountwidth=parseFloat(printsplit[1])+parseFloat(mount*2);
 	    
-	   
+	  
 	  $.ajax({
 	  //alert(glass)
             type: "POST",
@@ -2152,8 +2159,9 @@ var MountCost=$('#MountCost').html();
 			// alert(glass)
 			 if(glass=='Regular'){
 if($('#unchkforacrylic').is(':checked')){
-//alert('jii')
-$('#total_price').html(parseFloat(total_price.toFixed(2)));
+//alert(total_price)
+
+apply_promo_code(parseFloat(total_price.toFixed(2)));
 $('.for_glass').show();
 
 //alert(parseFloat(print_price)+parseFloat(FrameCost)+parseFloat(MountCost)+parseFloat(glass_price))
@@ -2161,7 +2169,7 @@ $('.for_glass').show();
 }
 else{
 $('#glass_type').html('0');
-$('#total_price').html(ppp);
+apply_promo_code(ppp);
 $('.for_glass').hide();
 
 }
@@ -2173,7 +2181,7 @@ $('input:checkbox[name=normal]').attr('checked',false);
 ///$('#total_price').html(parseFloat(total_price.toFixed(2)));
 if($('#unchkfornormal').is(':checked')){
 //alert('jii')
-$('#total_price').html(parseFloat(total_price.toFixed(2)));
+apply_promo_code(parseFloat(total_price.toFixed(2)));
 $('.for_glass').show();
 
 //alert(parseFloat(print_price)+parseFloat(FrameCost)+parseFloat(MountCost)+parseFloat(glass_price))
@@ -2181,7 +2189,7 @@ $('.for_glass').show();
 }
 else{
 $('#glass_type').html('0');
-$('#total_price').html(ppp);
+apply_promo_code(ppp);
 $('.for_glass').hide();
 
 }
@@ -2299,7 +2307,17 @@ $(".after_first_slide"+z+"").append(item_images);
 
 }
 
+function apply_promo_code(total_amount){
+$('#sub_total_price').html(total_amount);
+var promo_precentage=$('#promo_precentage').html();
+var promo_amount_final=parseFloat(Math.round((total_amount*promo_precentage)/100).toFixed(2));
+$('#promo_amount').html(promo_amount_final);
+//alert(promo_amount_final);
+var total_amount_after_gst=parseFloat(total_amount)-parseFloat(promo_amount_final);
 
+$('#total_price').html(total_amount_after_gst);
+
+}
 
 </script>
         </div>
@@ -2397,6 +2415,7 @@ $(".after_first_slide"+z+"").append(item_images);
 			<input type="hidden" id="removed_mount_code" value="" />
 			<input type="hidden" id="removed_mount_color" value="" />
 			<input type="hidden" id="removed_framed_art" value="" />
+			
 			<tr style="display:none;" class="showforcanvas">
               <td><strong>Frame Type:</strong></td>
               <td>&nbsp;</td>
@@ -2438,13 +2457,30 @@ $(".after_first_slide"+z+"").append(item_images);
             </tr>
             
          
-            <?php
-      
-      ?>
             <input type="hidden" id="fitting_price" value="<?=$filting_price?>">
-            <?php 
-    $total_price=$price+$matcost+$FrameCost+$glasscost;
-    ?>
+			<tr class=""  style="color:#d3131b">
+              <td><strong>Sub Total Price:</strong><br>
+			  
+			   </td>
+			 <?php $price=round($price+$matcost+$FrameCost+$glasscost,2); ?>
+              <td>&nbsp;</td>
+              <td align="right" ><strong><span id="sub_total_price"><?php echo $price;  ?></span></strong></td>
+            </tr>
+           <tr class=""  style="color:#d3131b">
+              <td><strong>Discount:</strong><br>
+			   FLAT <span id="promo_precentage">20</span>% <br>
+			   Promo Code Applied
+			   </td>
+			   
+            <?php
+			
+		
+       $promo_amount=round(($price*12)/100,2);
+	   $total_price=$price - $promo_amount;
+      ?>
+              <td>&nbsp;</td>
+              <td align="right" ><strong><span id="promo_amount"><?php echo $promo_amount;  ?></span></strong></td>
+            </tr>
             
             <tr>
               <td>&nbsp;</td>
@@ -2455,6 +2491,7 @@ $(".after_first_slide"+z+"").append(item_images);
               <td colspan="2" style="border-top:1px solid #d3131b"><strong>Total Price</strong></td>
               <td align="right"  style="border-top:1px solid #d3131b" ><strong><img src="<?=base_url()?>assets/images/frameit/rupee.gif" alt="r" align="absmiddle" /><span id="total_price" ><?= round($total_price, 2);?></span></strong></td>
             </tr>
+			
           </table>
 		  
           <a href="javascript:;" onclick="capture();"
@@ -2489,7 +2526,7 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
           <ul id="tabs" class="col-md-8" style="margin-bottom:0">
             <li><a href="javascript:" onClick="hide();showTable('Basic');" name="tab7" id="fr1">FRAMES </a></li>
             <li><a href="javascript:onc" onClick="hide();show_mat('');" name="tab8" id="ma1">Mount</a></li>
-            <li><a href="#" onClick="slide_show_hide();" name="tab3" id="ac1">Glass</a></li>
+            <li><a href="#" onClick="hide();slide_show_hide();" name="tab3" id="ac1">Glass</a></li>
             <!-- <li><a href="#" name="tab4" id="cr1">Cropping</a></li>-->
             <li><a href="#" onClick="slide_show_hide();" name="tab5" id="wa1">Wall Color frames </a></li>
           </ul>
@@ -2834,7 +2871,7 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
                  
                  
                 
-                $('#total_price').html(parseFloat(print_price)+parseFloat(FrameCost)+parseFloat(glass_price));
+                apply_promo_code(parseFloat(print_price)+parseFloat(FrameCost)+parseFloat(glass_price));
                    }
                    else{
                   var removed_framed_art=$('#removed_framed_art').val();
@@ -2845,7 +2882,7 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
                  $('#mount_color').html($('#removed_mount_color').val());
                  
                    $('.for_mount_re').show();
-                   $('#total_price').html(parseFloat(print_price)+parseFloat(FrameCost)+parseFloat(MountCost)+parseFloat(glass_price));
+                   apply_promo_code(parseFloat(print_price)+parseFloat(FrameCost)+parseFloat(MountCost)+parseFloat(glass_price));
                    }
                    });
                 </script>  
@@ -2868,7 +2905,7 @@ $('html, body').animate({ scrollTop: $('.edit_this_frame').offset().top }, 'slow
                 </div>
                 
       </div></div>
-      <div id="tab5" style="display:none;" class="col-md-12 col-sm-12 col-xs-12">
+      <div id="tab5" style="display:none;" class="col-md-8 col-sm-8 col-xs-8">
                   <table class="bor table">
                     <tr>
                       <td><a href="javascript:;" class="color1" onClick="javascript:change_wallcolor('#FFFBF8');"></a></td>
