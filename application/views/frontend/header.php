@@ -35,6 +35,16 @@
 <script src="<?php print base_url();?>assets/js/jquery.js"></script>
 <script src="<?php print base_url();?>assets/js/thumbnail-slider.js" type="text/javascript"></script>
 <script src="<?php print base_url();?>assets/js/custom.js"></script>
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107710559-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107710559-1');
+</script>
+
 
 <?php if($this->session->flashdata('help_message')){//print $this->session->flashdata('help_message'); ?>
 <?php } ?>
