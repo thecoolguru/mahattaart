@@ -6,7 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Mahatta Art | Art Prints, Framed Art, and Mahatta Art Collections</title>
-<meta name="keywords" content="wall paintings, buy wall paintings, wall painting designs, painting designs" />
+ <meta name="description" content="5 Lac+ Artworks from 2500+ artists, Giclee Fine Art Prints &amp; 100+ Framing options at Affordable Prices online. Upload | Photo Printing | Photo frame . Paintings for sale , Canvas painting , Wall painting , Abstract Painting , Modern , Ganesh , Buddha , Landscape , Wall hanging , Buy Living Room &amp; Bed Room Paintings." />
+ <meta name="keywords" content="Paintings Online, Art Online, Artworks Online, Painting Online India, Art Online India, Artworks Online India, Wall Paintings Online, Indian Art, Framed Paintings, Original Paintings Online, Canvas Paintings, Oil Paintings, Mahattaart, 
+Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Paintings, Online Art Gallery India, Art for Sale, Indian Artists, Contemporary Art, Wall Art, Living Room Paintings, Bed Room Paintings" />
 
 <!-- header -->
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/font-awesome.css" type="text/css">
