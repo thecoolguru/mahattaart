@@ -12,12 +12,5 @@
         	<img src="<?php echo base_url()?>assets/images/offer4.jpg" class="img-responsive" />
         </div>
     </div>
-	<div class="row" style="margin-bottom:10px; margin-top:10px">
-    	<div class="col-md-6">
-        	<img src="<?php echo base_url()?>assets/images/offer3.jpg" class="img-responsive" />
-        </div>
-    	<div class="col-md-6">
-        	<img src="<?php echo base_url()?>assets/images/offer2.jpg" class="img-responsive" />
-        </div>
-    </div>
+	
 </div>

@@ -12,6 +12,9 @@
   margin: 1em 0;
   padding: 1em 0;
 }
+.nav-tabs {
+  border-bottom: none;
+}
 .pr-other-attribute-label {
   display: block;
   font-size: 12px;
@@ -197,6 +200,7 @@ h2.product-detail{
 #selector-step{text-align:center}
 .panel.single-accordion {
   margin-bottom: 5px;
+  box-shadow: 0 0px 0px rgba(0,0,0,0);
 }
 .panel h5 {
   margin-top: 0;
@@ -218,7 +222,8 @@ h2.product-detail{
   text-overflow: ellipsis;
   vertical-align: middle;
   white-space: nowrap;
-  padding-left:4px
+  padding-left:4px;
+  color:#888
 }
 .media-list_accordion .media {
   border: 1px solid #cbcccd;
@@ -238,7 +243,7 @@ h2.product-detail{
 .collapsed-menu-step {
   border: 1px solid #cbcccd;
   box-sizing: border-box;
-  color: #888;
+  color: #444;
   cursor: pointer;
   display: block;
   font-size: 16px;
@@ -253,11 +258,11 @@ h2.product-detail{
   display: inline-block;
   font-family: "Helvetica Neue Regular",Helvetica,Arial,sans-serif;
   font-size: 12px;
-  height: 80px;
+  height: 110px;
   position: relative;
   text-align: center;
   vertical-align: middle;
-  width: 109px;
+  width: 105px;
   z-index: 0;
   display: inline-block;
   margin-top: 0;
@@ -272,17 +277,11 @@ li.media > span {
   position: absolute;
   width: 100%;
   z-index: 1;
+  bottom:10px
 }
 
-.single-product-image-inner {
-  margin-top: 40px;
-  min-height: 400px;
-  position: relative;
-}
 .product-tabs {
-  left: 0;
-  position: absolute;
-  top: 0;
+ float: left;
 }
 
 .tab-content > .active {
@@ -296,13 +295,14 @@ li.media > span {
 .product-tabs li {
   margin-bottom: 10px;
   position: relative;
+  width: 60px;
+  border: 1px solid rgb(203, 204, 205);
 }
 .product-tabs li > a {
   display: block;
 }
 .tab-content {
   border-top: 1px solid #d4d4d1;
-  padding: 10px;
 }
 
 ul.social-network {

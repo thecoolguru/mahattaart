@@ -339,6 +339,52 @@ $search_data_r = json_decode($search_data_file,TRUE);
 	
 	}
 
+	public function products($filename="",$images_id="",$collection_id=""){
+		$data['mount_name']=$this->frontend_model->get_mount_name_web_price();
+		$data['frame_cat']=$this->frontend_model->get_frame_cat_tbl_web_price();
+		$data['frame_sizze']=$this->frontend_model->get_frame_size();
+		$data['frame_color']=$this->frontend_model->get_frame_color_web_price();
+		$data['api_image_id']=$images_id;
+		$data['images_id']=$images_id;
+		$data['image_name']=$filename;
+		$data['collection_id']=$collection_id;
+		$click_to_enlarge = "http://api.indiapicture.in/wallsnart/get_collection.php";
+		$opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
+		$context = stream_context_create($opts);
+		$search_data_raw = file_get_contents($click_to_enlarge, false, $context);
+		$search_data = json_decode($search_data_raw,TRUE);
+		for($x=0;$x<=$collection_id;$x++){
+		   	if($search_data[$x]['id']==$collection_id){
+		   		$data['collection_name']=$search_data[$x]['collection_name'];
+		   	}
+		}
+	$click_to_enlarge = "http://api.indiapicture.in/wallsnart/function.php?param=click_to_enlarge&images_id=$api_image_id";
+ 	$opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
+    $context = stream_context_create($opts);
+    $search_data_raw = file_get_contents($click_to_enlarge, false, $context);
+    $search_data = json_decode($search_data_raw,TRUE);
+    if($surface==""){
+			$data['surface']=3;
+	}else{
+			$data['surface']=$surface;
+	}
+	$search_file = "http://api.indiapicture.in/wallsnart/search.php?q=$filename&page=1&per_page=1";
+	$opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
+	$context = stream_context_create($opts);
+
+	$search_data_file = file_get_contents($search_file, false, $context);
+	$search_data_r = json_decode($search_data_file,TRUE);
+	$data['image_detail']=$search_data_r['results'];
+	$data['rate_tbl_web_price']=$this->search_model->get_web_price();
+	$data['papper']=$this->search_model->get_paper_web_price();
+	$data['papper_type']=$this->search_model->get_paper_type_name();
+	$data['type']=$search_text;
+
+		$this->load->view('frontend/header',$data);
+		$this->load->view('frontend/products',$data);
+		$this->load->view('frontend/footer');
+	}
+
 	public function case_test()
 	{
 		$this->search_model->all_cases('A','B','C','D');

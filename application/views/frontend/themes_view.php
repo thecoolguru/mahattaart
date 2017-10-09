@@ -316,7 +316,7 @@ function call_remove_lightBox(imageid,lightbox_id,page_no)
 <?php 
  $user_id=$this->session->userdata('userid');
 //print_r($search_cat);
-$link='image_detail';
+$link = 'products';//'image_detail';
 if(isset($search_cat)){
 foreach($search_cat as $cat_dets){
 	//$result=  $this->frontend_model->get_imagesFilename_details($images->images_filename);
@@ -326,7 +326,7 @@ foreach($search_cat as $cat_dets){
   ?>
 
 <li class="col-md-2 col-sm-2">
-<a href="<?php echo base_url();?>search/image_detail/<?=$cat_dets['image_filename'];?>/<?=$cat_dets['image_id']?>/<?=$cat_dets['image_collection_id']?>">
+<a href="<?php echo base_url();?>search/products/<?=$cat_dets['image_filename'];?>/<?=$cat_dets['image_id']?>/<?=$cat_dets['image_collection_id']?>">
 <input type="hidden" name="img_id" id="img_id<?php print $images_id; ?>" value="<?php echo $cat_dets['image_id']; ?>" />
 <div class="wrap">
 <div class="wrap-inner"><img class="galImage" src="http://static.mahattaart.com/158/<?=$cat_dets['image_filename']?>" alt="<?php print substr($cat_dets['image_caption'],0,10); ?>" title="<?=substr($cat_dets['images_caption'],0,10); ?>" border="0"></div>

@@ -441,7 +441,7 @@ if($bride[0]=='BRID'){
 	$image_filename=$item['image_filename'];
 	$image_id=$item['image_id'];
 	$image_collection_id=$item['image_collection_id'];
-	$link='image_detail';
+	$link='products';//image_detail
  }
 
  
