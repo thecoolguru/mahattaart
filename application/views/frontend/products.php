@@ -97,10 +97,16 @@ $max_size=$this->search_model->get_max_size($images_id);
 $max_width_allowed=$max_w/150;
 $max_height_allowed=$max_h/150;
 // calcuulate image ratio
-$size_data = getimagesize("http://static.mahattaart.com/398/".$image_detail[0]['image_filename']."");
+$size_data = getimagesize("http://static.mahattaart.com/media/".$image_detail[0]['image_filename']."");
 $image_alignment="";
 $image_width=$size_data[0];
 $image_height=$size_data[1];
+
+$size_data1 = getimagesize("http://static.mahattaart.com/400x400/media/".$image_detail[0]['image_filename']."");
+$image_width1=$size_data1[0];
+$image_height1=$size_data1[1];
+
+
 
 $image_ratio=$image_width/$image_height;
 $size_array=array();
@@ -233,104 +239,101 @@ $size_array[$i]['width'];
 			}
 		}
 	})
-	
-	$(window).on('load',function(){
-		$(document).ready(function(){		
-			var i=true;
-			$(".color_btn").click(function(){
-				if(i){
-				$(".showhidenew,.color_btn").css('bottom','0px');
-				$(".color_panel").css('opacity','1');
-				$(".color_panel,#closed").show();
-				i = false;
-				}else{
-					$(".showhidenew").css('bottom','-147px');
-					$(".color_btn").css('bottom','147px');
-					$(".color_panel").css('opacity','0');
-					$(".color_panel,#closed").hide();
-					i= true;
-				}
-			});
-			
-		$('#museum').click(function(){
-			$('#22,#myCanvas,#myCanvas2,#myCanvas3,#large_img5,#large_img6').hide();
-			$('.container3D').show();	
-			$('#museum').prop("checked", true);
-			$('#large_img2').show();
-		});
-		$('#gallery').click(function(){
-			$('#myCanvas,#canvas3D,#myCanvas2,#myCanvas3').show();
-			$('#gallery').prop("checked", true);
-			$('#large_img2,#large_img5,#large_img6,#22').hide();
-		});	
-		
-		$('#sizes').click(function(){
-			var img_width  = '<?= $image_width ?>';
-			var img_height = '<?= $image_height ?>'
-			var size = $('#sizes').val();
-			var dimen = size.split('X');
-			if(img_width > img_height ){
-				if( parseInt(dimen[0]) > 32){
-				var change_width = 325;
-				$('#canvas_show,#frame_img,#printed').css('width', change_width+'px');
-				}else{
-				var change_width = parseInt(dimen[0]) * 10;
-				$('#canvas_show,#frame_img,#printed').css('width', change_width+'px');	
-				}
+	$(document).ready(function(){		
+		var i=true;
+		$(".color_btn").click(function(){
+			if(i){
+			$(".showhidenew,.color_btn").css('bottom','0px');
+			$(".color_panel").css('opacity','1');
+			$(".color_panel,#closed").show();
+			i = false;
 			}else{
-				if( parseInt(dimen[1]) > 25){
-				var change_width = 165;
-				$('#canvas_show,#frame_img,#printed').css('width', change_width+'px');
-				}else{
-				var change_width = parseInt(dimen[0]) * 10;
-				$('#canvas_show,#frame_img,#printed').css('width', change_width+'px');	
-				}
+				$(".showhidenew").css('bottom','-147px');
+				$(".color_btn").css('bottom','147px');
+				$(".color_panel").css('opacity','0');
+				$(".color_panel,#closed").hide();
+				i= true;
 			}
 		});
-
-		$('#mount_rate').val('0.75');
-		var width  = '<?= $image_width ?>'; 
-		var height = '<?= $image_height?>';
-			if(width >= height){
-				var front_width = Math.round(width*0.825);
-				var front_height = Math.round(height*0.83388); 	
-				front(front_width,front_height); 
-				var right_sourceX = Math.round(width*0.825);
-				var right_height = Math.round(height*0.83388);
-				var right_width = width;
-				right(right_width,right_height,right_sourceX);
-				$('#myCanvas').attr('height',right_height+'px');
-				$('#myCanvas').attr('width',right_width+'px');
-				$('#myCanvas').css('width','111px');
-				$('#myCanvas').css('height','100%');
-				var bottom_width = Math.round(width*0.825);
-				var bottom_height = height;
-				var sourceY = Math.round(height*0.83388);
-				bottom(bottom_width,bottom_height,sourceY); 
-				$('#myCanvas3').attr('width',bottom_width+'px');
-				$('#myCanvas3').attr('height',bottom_height+'px');
-				$('#myCanvas3').css('height','111px');
-			} else {
-				var front_width = Math.round(width*0.79381);
-				var front_height = Math.round(height*0.77220); 	
-				front(front_width,front_height);  
-				var right_sourceX = Math.round(width*0.79381);
-				var right_height = Math.round(height*0.77220);
-				var right_width = width*0.20618;
-				right(right_width,right_height,right_sourceX);
-				$('#myCanvas').attr('height',right_height+'px');
-				$('#myCanvas').attr('width',right_width+'px');
-				$('#myCanvas').css('width','20px');
-				var bottom_width = Math.round(width*0.79381);
-				var bottom_height = height*0.22779;
-				var sourceY = Math.round(height*0.77220);
-				bottom(bottom_width,bottom_height,sourceY); 
-				$('#myCanvas3').attr('width',bottom_width+'px');
-				$('#myCanvas3').attr('height',bottom_height+'px'); 
-				$('#myCanvas3').css('height','20px');
-			}
-		});
+		
+	$('#museum').click(function(){
+		$('#22,#myCanvas,#myCanvas2,#myCanvas3,#large_img5,#large_img6,#large_img7,#large_img3').hide();
+		$('.container3D').show();	
+		$('#museum').prop("checked", true);
+		$('#large_img2').show();
 	});
+	$('#gallery').click(function(){
+		$('#myCanvas,#canvas3D,#myCanvas2,#myCanvas3').show();
+		$('#gallery').prop("checked", true);
+		$('#large_img2,#large_img5,#large_img6,#22,#large_img7,#large_img3').hide();
+	});	
+	
+	$('#sizes').click(function(){
+		var img_width  = '<?= $image_width1 ?>';
+		var img_height = '<?= $image_height1 ?>'
+		var size = $('#sizes').val();
+		var dimen = size.split('X');
+		if(img_width > img_height ){
+			if( parseInt(dimen[0]) > 32){
+			var change_width = 325;
+			$('#canvas_show,#frame_img,#printed').css('width', change_width+'px');
+			}else{
+			var change_width = parseInt(dimen[0]) * 10;
+			$('#canvas_show,#frame_img,#printed').css('width', change_width+'px');	
+			}
+		}else{
+			if( parseInt(dimen[1]) > 25){
+			var change_width = 165;
+			$('#canvas_show,#frame_img,#printed').css('width', change_width+'px');
+			}else{
+			var change_width = parseInt(dimen[0]) * 10;
+			$('#canvas_show,#frame_img,#printed').css('width', change_width+'px');	
+			}
+		}
+	});
+
+	$('#mount_rate').val('0.75');
+	var width  = '<?= $image_width1 ?>'; 
+	var height = '<?= $image_height1?>';
+		if(width >= height){
+			var front_width = Math.round(width*0.825);
+			var front_height = Math.round(height*0.83388); 	
+			front(front_width,front_height); 
+			var right_sourceX = Math.round(width*0.825);
+			var right_height = Math.round(height*0.83388);
+			var right_width = width;
+			right(right_width,right_height,right_sourceX);
+			$('#myCanvas').attr('height',right_height+'px');
+			$('#myCanvas').attr('width',right_width+'px');
+			$('#myCanvas').css('width','111px');
+			$('#myCanvas').css('height','100%');
+			var bottom_width = Math.round(width*0.825);
+			var bottom_height = height;
+			var sourceY = Math.round(height*0.83388);
+			bottom(bottom_width,bottom_height,sourceY); 
+			$('#myCanvas3').attr('width',bottom_width+'px');
+			$('#myCanvas3').attr('height',bottom_height+'px');
+			$('#myCanvas3').css('height','111px');
+		} else {
+			var front_width = Math.round(width*0.79381);
+			var front_height = Math.round(height*0.77220); 	
+			front(front_width,front_height);  
+			var right_sourceX = Math.round(width*0.79381);
+			var right_height = Math.round(height*0.77220);
+			var right_width = width*0.20618;
+			right(right_width,right_height,right_sourceX);
+			$('#myCanvas').attr('height',right_height+'px');
+			$('#myCanvas').attr('width',right_width+'px');
+			$('#myCanvas').css('width','20px');
+			var bottom_width = Math.round(width*0.79381);
+			var bottom_height = height*0.22779;
+			var sourceY = Math.round(height*0.77220);
+			bottom(bottom_width,bottom_height,sourceY); 
+			$('#myCanvas3').attr('width',bottom_width+'px');
+			$('#myCanvas3').attr('height',bottom_height+'px'); 
+			$('#myCanvas3').css('height','20px');
+		}
+	});	
 </script>
 
 <input type="hidden" name="image_id" id="image_id" value="<?=$image_id?>">
@@ -434,11 +437,12 @@ $size_array[$i]['width'];
 				k = $('#mount_sized').val();
 				$('#mount_sized').val(k);
 				$('#mount_style').val($('#abc').attr('style'));
-				$('#mount_style2').val($('#abc2').attr('style'));
+				$('#mount_style2').val($('#abc2').css('padding'));
 				$('#abc').attr('style','');
-				$('#abc2').attr('style','');
+				$('#abc2').css('padding','0px');
 				$('#mount_width').val(0);
 				$('#mount_state').val(0);
+				$('.mount').hide();
 				get_quality('');
 			}
 		});
@@ -470,6 +474,7 @@ $size_array[$i]['width'];
 		$('#13').click(function(){
 			$('#large_img6,#large_img3,#large_img7,#zoom_image,#frame-it,#large_img2,#myCanvas,#myCanvas2,#myCanvas3,#canvas3D').hide();
 			$('#22,#large_img5').show();	
+			$('#mount_width').val(1);
 			if($('#type').val() == '1'){
 				$('#canvas_show').show();
 				$('.sa,#frame_show,#print').hide();
@@ -487,6 +492,7 @@ $size_array[$i]['width'];
 
 		$('#14').click(function(){
 			$('#large_img5,#large_img7,#zoom_image,#large_img3,#frame-it,#large_img2,#myCanvas,#myCanvas2,#myCanvas3,#canvas3D').hide();
+			$('#mount_width').val(1);
 			if($('#type').val() == '1'){
 				$('#canvas_show,#22,#large_img6').show();
 				$('.sa,#frame_show,#print').hide();
@@ -809,6 +815,7 @@ $size_array[$i]['width'];
 			if(f_code){
 		       var dert= "<?php echo base_url()?>images/uploaded_pdf/frames/horizontal/";
 			   var border_width="";
+			   var border_width2="";
 			   if(f_size_mm<=40){
 			   border_width=20;
 			   border_width2=10;
@@ -835,25 +842,30 @@ $size_array[$i]['width'];
 	})
 
 	function mount_select(mount_rate,mount_code,mount_name){
-		//mount_details(mount_rate,mount_name,mount_code);
 		$('#mount_rate').val(mount_rate);
 		$('#mount_name').val(mount_code);
 		$('#mount_color').val(mount_name);
 		$('#mount_color').html(mount_name);
 		if(mount_code){
 		var dest= "<?php echo base_url()?>images/uploaded_pdf/mount/";
-            $('div#abc').css('background','url("'+dest+mount_code+'.jpg")');
-			$('div#abc2').css('background','url("'+dest+mount_code+'.jpg")');
+        $('div#abc,div#abc2').css('background','url("'+dest+mount_code+'.jpg")');
+		var padding = $("#mount_style2").val();	
+		$('#abc2').css('padding', padding);
 		}
-		get_quality('');
+		get_quality('');	
 	}
 
 	function change_mount(mount){
    		var change_mount  = mount*10;
    		var change_mount2 = mount*6;
-		$('#mount_sized').val(mount);
+   		$('.mount').show();
+   		$('#mount_sized').val(mount);
 		$("#abc").css('padding',change_mount);
-    	$("#abc2").css('padding',change_mount2);
+    	if(mount == 0){
+    		change_mount2 = '3px';
+    	}
+		$("#abc2").css('padding',change_mount2);
+    	
     	$('#mount_size').val(mount);
     	get_quality('');
     }
@@ -1402,9 +1414,9 @@ function calculate_cost(value){
          <div class="single-product-image">
          	<div class="single-product-image-inner" style="margin-top: 20px">
   <ul class="product-tabs" role="tablist">
-               <li role="presentation" id="11"><img src="http://static.mahattaart.com/398/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive"></li>
+               <li role="presentation" id="11"><img src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive"></li>
                <li role="presentation" id="15">
-                   <img src="http://static.mahattaart.com/398/<?php print $image_detail[0]['image_filename'];?>" style="transform: perspective( 900px ) rotateY( 15deg );  /*!width: 50px;*/padding-left: 5px;padding-right: 5px;" class="img-responsive">
+                   <img src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" style="transform: perspective( 900px ) rotateY( 15deg );  /*!width: 50px;*/padding-left: 5px;padding-right: 5px;" class="img-responsive">
                     <figure style="background: linear-gradient(to right, rgba(227,227,227,0.4) 0%, rgba(255,255,255,1) 100%);position: absolute;height: 10px;width: 40px;transform: skewX(20deg) skewY(-3deg) translate(3px,-1px);bottom: 0;z-index: -1;">
                     </figure>
                </li>
@@ -1447,14 +1459,14 @@ function calculate_cost(value){
 						box-shadow: inset 0 3px 5px rgba(0,0,0,0);
 					}
 				</style>
-                <img src="http://static.mahattaart.com/398/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive mainhor" style="border-image: url('http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg') 30 30 30 30 round round;background:url('http://mahattaart.com/images/uploaded_pdf/mount/DR 2091.jpg') no-repeat scroll 0 0 / contain;">
+                <img src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive mainhor" style="border-image: url('http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg') 30 30 30 30 round round;background:url('http://mahattaart.com/images/uploaded_pdf/mount/DR 2091.jpg') no-repeat scroll 0 0 / contain;">
                </li>
                <li role="presentation" id="12"><img src="<?= base_url() ?>assets/img/product/frame_left.jpg" class="img-responsive" ></li>
                 <li role="presentation" id="20" style="border:0px;">
         			<section class="container3D">
         				<div id="cube">
 	            			<figure class="front">
-	  					<img id="large_img4" src="http://static.mahattaart.com/398/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive">	
+	  					<img id="large_img4" src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive">	
 							<figure class="right" style="transform: skewY(45deg) translate(7px,-3px);
     					width: 7px;height: 100%;right: 0px;top: 0; position: absolute;"></figure>
 	    					<figure class="bottom" style="transform: skewX(45deg) translate(-5px,8px);
@@ -1472,7 +1484,7 @@ function calculate_cost(value){
 
 	    <div id="abc" class="room_mount" style="background:url('<?=base_url()?>images/uploaded_pdf/mount/DR 2091.jpg')  0% 0% / cover no-repeat;width:auto;padding:10px; background-attachment:scroll; position: relative; z-index: 1;">
             	<a href="javascript:" id="demo2" class="imglink img_shadow " target="_self" >
-               		<img id="large_img" src="http://static.mahattaart.com/398/<?php print $image_detail[0]['image_filename'];?>" style=""/>
+               		<img id="large_img" src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" style=""/>
 				  	<input type="hidden" id="frame_shape" value="<?=$f_shape?>"/>
 	        	</a>
 		</div>
@@ -1485,24 +1497,24 @@ function calculate_cost(value){
 					  touch: true
 					});
 				</script>
-	<img id="large_img3"  style="" src="http://static.mahattaart.com/398/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive">			
+	<img id="large_img3"  style="" src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive">			
 	<div id="22" style="position: relative;height: 560px;width: 560px;background-color: #888;">
 		<div id="frame_show" style="margin: 0 auto;text-align: center;padding-top: 58px;">
 		     <div  class="divimg mainhor2" style="border-image-source: url(&quot;http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg &quot;); border-image-slice: 58; border-image-width: initial; border-image-outset: initial; border-image-repeat: round; border-style: solid; border-width:10px; margin-top:-55px; padding:0px; width:auto; display:inline-block; position:relative;">
 
 		    <div id="abc2" style="background:url('http://optimize.pt/Actual_project/images/uploaded_pdf/mount/DR 2091.jpg')  0% 0% / cover no-repeat;width:auto;padding:3px; background-attachment:scroll;position: relative;z-index: 1;">
 	            	<a href="javascript:" id="demo2" class="imglink img_shadow" target="_self">
-	               		<img id="frame_img" src="http://static.mahattaart.com/398/<?php print $image_detail[0]['image_filename'];?>" style="">
+	               		<img id="frame_img" src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" style="">
 					</a>
 			</div> 
     	</div>
 	</div>
 
 		<div id="canvas_show" style=" margin: 0 auto;text-align:center;padding-top:78px; width:120px">
-		    <img style="box-shadow: -11px 4px 25px #555;" src="http://static.mahattaart.com/398/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive">
+		    <img style="box-shadow: -11px 4px 25px #555;" src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive">
 		</div>
 		<div id="printed" style=" margin:0 auto;text-align:center;padding-top: 78px; width: 120px">
-			<img id="print" src="http://static.mahattaart.com/398/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive">
+			<img id="print" src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive">
 		</div>	
 		<div id="sa" class="showhidenew" style="display: flex; position: absolute; background-position: 69.87px 168.871px; width: 100%; bottom: -147px; flex-direction: column; z-index: 1">
                 <div class="btn btn-default edit_btn color_btn" href="javascript:void(0)" style=" position: relative; text-align: center; margin: 0px auto;  background-color: rgba(255, 255, 255, 0.65); max-width: 220px; text-transform: capitalize; color: rgb(68, 68, 68); border: medium none;bottom: 147px;">
@@ -1853,11 +1865,11 @@ function calculate_cost(value){
                     	<img id="large_img5" src="<?= base_url()?>assets/img/product/stock1.png?>">
                     </div>
                 </div>
-	<img id="large_img7" src="http://static.mahattaart.com/398/<?php print $image_detail[0]['image_filename'];?>" style="transform: perspective( 900px ) rotateY( 35deg );padding-left: 5px;padding-right: 5px;" class="img-responsive">
-	<section  id="canvas3D" class="container3D"  style="width:<?= $image_width?>px">
+	<img id="large_img7" src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" style="transform: perspective( 900px ) rotateY( 35deg );padding-left: 5px;padding-right: 5px;" class="img-responsive">
+	<section  id="canvas3D" class="container3D"  style="width:<?= $image_width1 ?>px">
         <div id="cube">
             <figure class="front">
-  		<img id="large_img2"  style="" src="http://static.mahattaart.com/398/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive">	
+  		<img id="large_img2"  style="" src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive">	
   <canvas id="myCanvas2" height="251px" width="330px" style="width:100%;height:100%;max-height:500px;"></canvas> 
   <script>
       function front(source_width,source_height){ 
@@ -2455,7 +2467,7 @@ else {?> href="" onclick="login('');return false;" style="color:#ef9223;"<?php }
 <input type="hidden" id="print_type" value="">
 <input type="hidden" id="mount_state" value="">
 <input type="hidden" id="mount_style" value="">
-<input type="hidden" id="mount_style2" value="">
+<input type="hidden" id="mount_style2" value="3px">
 
 
 <section>
@@ -2655,7 +2667,7 @@ else {?> href="" onclick="login('');return false;" style="color:#ef9223;"<?php }
 </section>
 <!--zooom in image-->
 <style>
-.zoom-image,  .zoom-image > figure { background-image: url(http://static.mahattaart.com/398/<?php print $image_detail[0]['image_filename'];?>);}
+.zoom-image,  .zoom-image > figure { background-image: url(http://static.mahattaart.com/media/<?php print $image_detail[0]['image_filename'];?>);}
 .zoom-image {
   width: 500px;
   height: 450px;
