@@ -20,7 +20,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div id="myCarousel" class="carousel slide col-md-12" data-ride="carousel" style="margin-top:2px">
 <div class="carousel-inner" role="listbox">
     <div class="item active">
-        <a href="<?=base_url()?>frontend/clearence"><img src="<?php echo base_url();?>assets/img/slider/diwali-festival2.jpg" border="0" /></a>
+        <a href="<?=base_url()?>search/dosearch/1/32/26/all"><img src="<?php echo base_url();?>assets/img/slider/diwali-festival2.jpg" border="0" /></a>
     </div>
     <div class="item">
         <img src="<?php echo base_url();?>assets/img/slider/homepage style n space-02.jpg" border="0" />
