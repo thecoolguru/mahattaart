@@ -42,10 +42,10 @@
 	}
 	</script>
 	<style>
-	.item.showforprintonly {
+	/*.item.showforprintonly {
 	width: 190px;
 	float: left;
-	}
+	}*/
 	#fir{padding:2px; background-color:white;
 	box-shadow:2px 2px 1px black inset;
 	}
@@ -69,107 +69,12 @@
 		transform: perspective(600px) rotateY(12deg);
 	}   
 	</style>
-		<div class="container">
-    	  <div class="pagination">
-        	<span> <a href="<?=base_url()?>index.php/frontend/index">HOME</a> > <span> Check Out</span> </span>
-        </div>
-    <div style="margin-left: 38%;">
-      <?php if(isset($success)){
-		echo $success;
-	  }?>
-		<?php if($this->session->flashdata('share_message')){print $this->session->flashdata('share_message');}?>
-	</div> 
-    
-        <!-- shopping cart -->
-	<div class="row">
-	  <div id="no-more-tables" style="overflow-x:scroll">
-        <table class="col-md-12 table-bordered table-striped table-condensed cf">
-           	<thead class="cf">
-                 <tr>
-                                                                <th>S.No.</th>
-                                                                <th>Item</th>
-                                                                <th>Description</th>
-                                                                <th>Detail</th>
-                                                                <th>Quantity</th>
-																<th>Price</th>
-																<th>Tax(%)</th>
-																<th>Tax Amt.</th>
-                                                                <th >Total Price</th>
-																<th>Delete</th>
-																
-                                                </tr>
-                                </thead>
-								<tbody>
-       <?php //echo $this->session->userdata('userid');
-       
-		if($this->session->userdata('userid') ){ 
-		  $data=$this->cart_model->get_usercart($this->session->userdata('userid'));   
-		  $subtotal=0; $i=1;
-          $update_srno=$_REQUEST['search'];
-		  $qty_update_tbl=$_REQUEST['qty_update'];
-		  $sr_no = $data[0]['sr_no'];
-		 	foreach($data as $image){
-                  //echo $image['cart_id'].'ssss';
-                  //$row=$this->search_model->get_image_data($image['image_id']); 
-                  $url = base_url();
-				  if($this->session->userdata('page')){
-					$size_data = getimagesize($url."application/views/frontend/upload_images/".$image['image_name']);  
-				  }else{
-				  $size_data = getimagesize("http://static.mahattaart.com/media/".$image['image_name']);
-                  }
-				  $cart_id = $image['cart_id'];
-				  $file_name = $image['image_name'];
-					$image_alignment="";
-					$image_width=$size_data[0];
-					$image_height=$size_data[1];
-					$newimage_width=$image_width+13;
-					if($size_data[0]>$size_data[1]){
-					$image_alignment="horizontal";
-					$frameborder_width="89px";
-					}else{
-					$image_alignment="vertical";
-					$frameborder_width="65px";
-					}
-					$image_alignment;
-			        if($i%2==0){
-                        $classes='bgc-even';
-                    }elseif($i%2!=0){
-                        $classes='bgc-odd'; 
-                    }
-				    ?>
-				
- <?php
- $search_file = "http://api.indiapicture.in/wallsnart/search.php?q=$file_name&page=1&per_page=1";
- $opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
- $context = stream_context_create($opts);
-
-$search_data_file = file_get_contents($search_file, false, $context);
-$search_data_r=json_decode($search_data_file,TRUE);
-//print_r($search_data_r);
- $collection_id=$search_data_r['results'][0]['image_collection_id'];
- $search_data_r['results'][0]['image_description'];
-?>
-<?php if($image['size']!=''){
-	$redirect_details=base_url().'frontend/product_detail/'.$file_name.'/'.$image['size'].'/'.$image['image_id'];
-	 } else{ 
-	 $redirect_details=base_url().'search/image_detail/'.$file_name.'/'.$image['image_id'].'/'.$collection_id;
-	 }?>
-           <tr>
-                <td> 
-					<div>
-					<?=$i;?>
-					</div>
-				</td>
-				<td class="item showforprintonly">
-                    <?php   
-						if($image['frame_color']=='Streched Canvas Gallary Wrap'){?>
-							 
-<style>
-.container3D {
-	min-height: 180px;
-	position: relative;
-	min-width: 100%;
-}
+		<style>
+	.container3D {
+		/*min-height: 180px;*/
+		position: relative;
+		min-width: 100%;
+	}
     
     #cube {
     width: 100%;
@@ -226,10 +131,106 @@ $search_data_r=json_decode($search_data_file,TRUE);
     background: #ddd;
     }
 </style>
-		<section class="container3D">
-            <div id="cube" class=" ">
+		<div class="container">
+    	  <div class="pagination">
+        	<span> <a href="<?=base_url()?>index.php/frontend/index">HOME</a> > <span> Check Out</span> </span>
+        </div>
+    <div style="margin-left: 38%;">
+      <?php if(isset($success)){
+		echo $success;
+	  }?>
+		<?php if($this->session->flashdata('share_message')){print $this->session->flashdata('share_message');}?>
+	</div> 
+    
+        <!-- shopping cart -->
+	<div class="row">
+	  <div id="no-more-tables" style="overflow-x:scroll">
+        <table class="col-md-12 table-bordered table-striped table-condensed cf">
+           	<thead class="cf">
+                 <tr>
+                                                                <th>S.No.</th>
+                                                                <th>Item</th>
+                                                                <th>Description</th>
+                                                                <th>Detail</th>
+                                                                <th>Quantity</th>
+																<th>Price</th>
+																<th>Tax(%)</th>
+																<th>Tax Amt.</th>
+                                                                <th >Total Price</th>
+																<th>Delete</th>
+																
+                                                </tr>
+                                </thead>
+								<tbody>
+       <?php //echo $this->session->userdata('userid');
+       
+		if($this->session->userdata('userid') ){ 
+		  $data=$this->cart_model->get_usercart($this->session->userdata('userid'));   
+		  $subtotal=0; $i=1;
+          $update_srno=$_REQUEST['search'];
+		  $qty_update_tbl=$_REQUEST['qty_update'];
+		  $sr_no = $data[0]['sr_no'];
+		 	foreach($data as $image){
+                  //echo $image['cart_id'].'ssss';
+                  //$row=$this->search_model->get_image_data($image['image_id']); 
+                  $url = base_url();
+				  if($this->session->userdata('page')){
+					$size_data = getimagesize($url."application/views/frontend/upload_images/".$image['image_name']);  
+				  }else{
+				  $size_data = getimagesize("http://static.mahattaart.com/200x200/media/".$image['image_name']);
+                  }
+				  $cart_id = $image['cart_id'];
+				  $file_name = $image['image_name'];
+					$image_alignment="";
+					$image_width=$size_data[0];
+					$image_height=$size_data[1];
+					$newimage_width=$image_width+13;
+					if($size_data[0]>$size_data[1]){
+					$image_alignment="horizontal";
+					$frameborder_width="89px";
+					}else{
+					$image_alignment="vertical";
+					$frameborder_width="65px";
+					}
+					$image_alignment;
+			        if($i%2==0){
+                        $classes='bgc-even';
+                    }elseif($i%2!=0){
+                        $classes='bgc-odd'; 
+                    }
+				    ?>
+				
+ <?php
+ $search_file = "http://api.indiapicture.in/wallsnart/search.php?q=$file_name&page=1&per_page=1";
+ $opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
+ $context = stream_context_create($opts);
+
+$search_data_file = file_get_contents($search_file, false, $context);
+$search_data_r=json_decode($search_data_file,TRUE);
+//print_r($search_data_r);
+ $collection_id=$search_data_r['results'][0]['image_collection_id'];
+ $search_data_r['results'][0]['image_description'];
+?>
+<?php if($image['size']!=''){
+	$redirect_details=base_url().'frontend/product_detail/'.$file_name.'/'.$image['size'].'/'.$image['image_id'];
+	 } else{ 
+	 $redirect_details=base_url().'search/image_detail/'.$file_name.'/'.$image['image_id'].'/'.$collection_id;
+	 }?>
+           <tr>
+                <td> 
+					<div>
+					<?=$i;?>
+					</div>
+				</td>
+				<td class="item showforprintonly">
+                    <?php   
+						if($image['frame_color']=='Streched Canvas Gallary Wrap'){?>
+							 
+
+		<section class="container3D" style="min-height:<?= $size_data[1]+20?>px;min-width:<?= $size_data[0]+20?>px">
+            <div id="cube">
                  <figure class="front">
-                   <a href="<?=$redirect_details?>">  <img src="<?php if($image['path'] == 1){ echo base_url()."application/views/frontend/upload_images/".$file_name;}else{ echo"http://static.mahattaart.com/media/".$image['image_name'];}?>" class="img-responsive" width="156px"/></a>
+                   <a href="<?=$redirect_details?>">  <img src="<?php if($image['path'] == 1){ echo base_url()."application/views/frontend/upload_images/".$file_name;}else{ echo"http://static.mahattaart.com/200x200/media/".$image['image_name'];}?>" class="img-responsive" /></a>
 					<figure class="right"></figure>
 					<figure class="bottom"></figure>
                 </figure>
@@ -245,7 +246,7 @@ $search_data_r=json_decode($search_data_file,TRUE);
 				 ?> 
 				 <div  id="topa2">
 				   <a href="<?=$redirect_details?>"> 
-					 <img src="<?php if($image['path'] == 1){ echo base_url()."application/views/frontend/upload_images/".$file_name;}else{ echo"http://static.mahattaart.com/media/".$image['image_name'];};?>" class="img-responsive mainhor" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/<?=$image['frame_color']?>.jpg') 30 30 30 30 round round;background:url('<?=base_url()?>images/uploaded_pdf/mount/<?=$image['mount_color']?>.jpg') no-repeat scroll 0 0 / cover; padding:<?=$padding?>px" /></a>
+					 <img src="<?php if($image['path'] == 1){ echo base_url()."application/views/frontend/upload_images/".$file_name;}else{ echo"http://static.mahattaart.com/158/".$image['image_name'];};?>" class="img-responsive mainhor" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/<?=$image['frame_color']?>.jpg') 30 30 30 30 round round;background:url('<?=base_url()?>images/uploaded_pdf/mount/<?=$image['mount_color']?>.jpg') no-repeat scroll 0 0 / cover; padding:<?=$padding?>px" /></a>
 				 </div>
             <?php } ?>
           </td>
@@ -360,7 +361,7 @@ $search_data_r=json_decode($search_data_file,TRUE);
 
 	<ul class="shop-detail-holder">
 		<li class="shop-itm">
-			<a href="#"><img src="http://www.indiapicture.in/wallsnart/media/<?= $image['name'];?>"/></a>
+			<a href="#"><img src="http://www.indiapicture.in/wallsnart/158/<?= $image['name'];?>"/></a>
 				<div class="shop-itm-detail">
 					<h4><strong></strong></h4>
 						By | Giclee Print | | Item #: 11787261A <a href="#"

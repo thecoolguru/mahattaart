@@ -244,12 +244,12 @@ $size_array[$i]['width'];
 		$(".color_btn").click(function(){
 			if(i){
 			$(".showhidenew,.color_btn").css('bottom','0px');
+			$(".color_btn").css('bottom','147px');
 			$(".color_panel").css('opacity','1');
 			$(".color_panel,#closed").show();
 			i = false;
 			}else{
 				$(".showhidenew").css('bottom','-147px');
-				$(".color_btn").css('bottom','147px');
 				$(".color_panel").css('opacity','0');
 				$(".color_panel,#closed").hide();
 				i= true;
@@ -462,7 +462,7 @@ $size_array[$i]['width'];
 		});
 
 		$('#20').click(function(){
-			$('#22,#large_img6,#large_img5,#large_img3,#zoom_image,#frame-it,#large_img3,#19,#12,#large_img7').hide();
+			$('#22,#large_img6,#large_img5,#large_img3,#zoom_image,#frame-it,#large_img3,#19,#12,#large_img7,#myCanvas,#myCanvas2,#myCanvas3').hide();
 			$('#large_img2,.wrapped,#11,#15,#20,#canvas3D').show();
 		});
 
@@ -474,7 +474,6 @@ $size_array[$i]['width'];
 		$('#13').click(function(){
 			$('#large_img6,#large_img3,#large_img7,#zoom_image,#frame-it,#large_img2,#myCanvas,#myCanvas2,#myCanvas3,#canvas3D').hide();
 			$('#22,#large_img5').show();	
-			$('#mount_width').val(1);
 			if($('#type').val() == '1'){
 				$('#canvas_show').show();
 				$('.sa,#frame_show,#print').hide();
@@ -492,7 +491,6 @@ $size_array[$i]['width'];
 
 		$('#14').click(function(){
 			$('#large_img5,#large_img7,#zoom_image,#large_img3,#frame-it,#large_img2,#myCanvas,#myCanvas2,#myCanvas3,#canvas3D').hide();
-			$('#mount_width').val(1);
 			if($('#type').val() == '1'){
 				$('#canvas_show,#22,#large_img6').show();
 				$('.sa,#frame_show,#print').hide();
@@ -849,8 +847,9 @@ $size_array[$i]['width'];
 		if(mount_code){
 		var dest= "<?php echo base_url()?>images/uploaded_pdf/mount/";
         $('div#abc,div#abc2').css('background','url("'+dest+mount_code+'.jpg")');
-		var padding = $("#mount_style2").val();	
-		$('#abc2').css('padding', padding);
+		var padding = $("#mount_width").val();	
+		padding = padding * 6
+		$('#abc2').css('padding', padding+'px');
 		}
 		get_quality('');	
 	}
@@ -861,11 +860,7 @@ $size_array[$i]['width'];
    		$('.mount').show();
    		$('#mount_sized').val(mount);
 		$("#abc").css('padding',change_mount);
-    	if(mount == 0){
-    		change_mount2 = '3px';
-    	}
-		$("#abc2").css('padding',change_mount2);
-    	
+    	$("#abc2").css('padding',change_mount2);
     	$('#mount_size').val(mount);
     	get_quality('');
     }
@@ -1502,7 +1497,7 @@ function calculate_cost(value){
 		<div id="frame_show" style="margin: 0 auto;text-align: center;padding-top: 58px;">
 		     <div  class="divimg mainhor2" style="border-image-source: url(&quot;http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg &quot;); border-image-slice: 58; border-image-width: initial; border-image-outset: initial; border-image-repeat: round; border-style: solid; border-width:10px; margin-top:-55px; padding:0px; width:auto; display:inline-block; position:relative;">
 
-		    <div id="abc2" style="background:url('http://optimize.pt/Actual_project/images/uploaded_pdf/mount/DR 2091.jpg')  0% 0% / cover no-repeat;width:auto;padding:3px; background-attachment:scroll;position: relative;z-index: 1;">
+		    <div id="abc2" style="background:url('<?= base_url()?>images/uploaded_pdf/mount_new/DR 2091.jpg')  0% 0% / cover no-repeat;width:auto;padding:3px; background-attachment:scroll;position: relative;z-index: 1;">
 	            	<a href="javascript:" id="demo2" class="imglink img_shadow" target="_self">
 	               		<img id="frame_img" src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" style="">
 					</a>
@@ -1516,8 +1511,8 @@ function calculate_cost(value){
 		<div id="printed" style=" margin:0 auto;text-align:center;padding-top: 78px; width: 120px">
 			<img id="print" src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive">
 		</div>	
-		<div id="sa" class="showhidenew" style="display: flex; position: absolute; background-position: 69.87px 168.871px; width: 100%; bottom: -147px; flex-direction: column; z-index: 1">
-                <div class="btn btn-default edit_btn color_btn" href="javascript:void(0)" style=" position: relative; text-align: center; margin: 0px auto;  background-color: rgba(255, 255, 255, 0.65); max-width: 220px; text-transform: capitalize; color: rgb(68, 68, 68); border: medium none;bottom: 147px;">
+		<div id="sa" class="showhidenew" style="display: flex; position: absolute; background-position: 69.87px 168.871px; width: 100%; bottom: 0px; flex-direction: column; z-index: 1">
+                <div class="btn btn-default edit_btn color_btn" href="javascript:void(0)" style=" position: absolute; text-align: center; margin: 0px auto;  background-color: rgba(255, 255, 255, 0.65); width: 220px; text-transform: capitalize; color: rgb(68, 68, 68); border: medium none;bottom: 0px; margin-left: -110px; left:50%;" >
                         	Change Wall color
                         	<a href="" onclick="return false;" id="closed" class="close"></a>                        
                 </div>
@@ -1865,7 +1860,14 @@ function calculate_cost(value){
                     	<img id="large_img5" src="<?= base_url()?>assets/img/product/stock1.png?>">
                     </div>
                 </div>
-	<img id="large_img7" src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" style="transform: perspective( 900px ) rotateY( 35deg );padding-left: 5px;padding-right: 5px;" class="img-responsive">
+	<div id="large_img7"  class="3dwrap" style="transform: perspective(1001px) rotateY(22deg) translate(65px, 10px); width: 300px; position: relative; display: block;">
+		<div class="3dwrap_front" >
+			<img src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive">
+			<div class="3dwrap_left" style="transform: perspective(1001px) rotateY(-40deg) translate(-20px, 0px);width: 40px;left: -20px;position: absolute;height: 100%;top: 0; background-color: #000"></div>
+			<div class="3dwrap_shadow" style="transform: perspective(1001px) rotateX(-65deg) translate(-55px, 85px);width: 100%;position: absolute;height: 120px;bottom: 0;z-index: -1; background-color: #ddd; box-shadow: 0 15px 20px rgba(0,0,0,0.3)"></div>
+		</div>
+	</div>
+
 	<section  id="canvas3D" class="container3D"  style="width:<?= $image_width1 ?>px">
         <div id="cube">
             <figure class="front">
@@ -2743,3 +2745,4 @@ background: #ddd;
 .carousel-control.right{background-image:linear-gradient(to right,rgba(0,0,0,0) 0,rgba(0,0,0,.0001) 100%); right:20px;}
 </style>
 </div>
+<?php $this->session->unset_userdata('page');?>
