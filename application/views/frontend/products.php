@@ -21,8 +21,6 @@
 <script>
    $(document).ready(function(){
 	   $(window).bind('scroll', function(){
-			console.log($(window).scrollTop());
-			 //console.log($(window).scrollTop());
 			 if(parseInt($(window).scrollTop()) >= 0 && parseInt($(window).scrollTop()) <= 120){
 				$('.product-tabs').css({'position':'absolute','top':'20px','bottom':'auto'});
 			  }
@@ -229,740 +227,6 @@ $price=(round($size_array[0]['width'])*round($size_array[0]['height'])*2)+$wasta
 $size_array[$i]['width'];
 ?>
 
-<script type="text/javascript">
-	$('html').keyup(function(e){
-		var width = $('#width').val();
-		var height= $('#height').val();
-		if(e.keyCode == 8){
-			if(width == 0 || height == 0){
-				$('.actual_price').html('Rs.0');				
-			}
-		}
-	})
-	$(document).ready(function(){		
-		var i=true;
-		$(".color_btn").click(function(){
-			if(i){
-			$(".showhidenew,.color_btn").css('bottom','0px');
-			$(".color_btn").css('bottom','147px');
-			$(".color_panel").css('opacity','1');
-			$(".color_panel,#closed").show();
-			i = false;
-			}else{
-				$(".showhidenew").css('bottom','-147px');
-				$(".color_panel").css('opacity','0');
-				$(".color_panel,#closed").hide();
-				i= true;
-			}
-		});
-		
-	$('#museum').click(function(){
-		$('#22,#myCanvas,#myCanvas2,#myCanvas3,#large_img5,#large_img6,#large_img7,#large_img3').hide();
-		$('.container3D').show();	
-		$('#museum').prop("checked", true);
-		$('#large_img2').show();
-	});
-	$('#gallery').click(function(){
-		$('#myCanvas,#canvas3D,#myCanvas2,#myCanvas3').show();
-		$('#gallery').prop("checked", true);
-		$('#large_img2,#large_img5,#large_img6,#22,#large_img7,#large_img3').hide();
-	});	
-	
-	$('#sizes').click(function(){
-		var img_width  = '<?= $image_width1 ?>';
-		var img_height = '<?= $image_height1 ?>'
-		var size = $('#sizes').val();
-		var dimen = size.split('X');
-		if(img_width > img_height ){
-			if( parseInt(dimen[0]) > 32){
-			var change_width = 325;
-			$('#canvas_show,#frame_img,#printed').css('width', change_width+'px');
-			}else{
-			var change_width = parseInt(dimen[0]) * 10;
-			$('#canvas_show,#frame_img,#printed').css('width', change_width+'px');	
-			}
-		}else{
-			if( parseInt(dimen[1]) > 25){
-			var change_width = 165;
-			$('#canvas_show,#frame_img,#printed').css('width', change_width+'px');
-			}else{
-			var change_width = parseInt(dimen[0]) * 10;
-			$('#canvas_show,#frame_img,#printed').css('width', change_width+'px');	
-			}
-		}
-	});
-
-	$('#mount_rate').val('0.75');
-	var width  = '<?= $image_width1 ?>'; 
-	var height = '<?= $image_height1?>';
-		if(width >= height){
-			var front_width = Math.round(width*0.825);
-			var front_height = Math.round(height*0.83388); 	
-			front(front_width,front_height); 
-			var right_sourceX = Math.round(width*0.825);
-			var right_height = Math.round(height*0.83388);
-			var right_width = width;
-			right(right_width,right_height,right_sourceX);
-			$('#myCanvas').attr('height',right_height+'px');
-			$('#myCanvas').attr('width',right_width+'px');
-			$('#myCanvas').css('width','111px');
-			$('#myCanvas').css('height','100%');
-			var bottom_width = Math.round(width*0.825);
-			var bottom_height = height;
-			var sourceY = Math.round(height*0.83388);
-			bottom(bottom_width,bottom_height,sourceY); 
-			$('#myCanvas3').attr('width',bottom_width+'px');
-			$('#myCanvas3').attr('height',bottom_height+'px');
-			$('#myCanvas3').css('height','111px');
-		} else {
-			var front_width = Math.round(width*0.79381);
-			var front_height = Math.round(height*0.77220); 	
-			front(front_width,front_height);  
-			var right_sourceX = Math.round(width*0.79381);
-			var right_height = Math.round(height*0.77220);
-			var right_width = width*0.20618;
-			right(right_width,right_height,right_sourceX);
-			$('#myCanvas').attr('height',right_height+'px');
-			$('#myCanvas').attr('width',right_width+'px');
-			$('#myCanvas').css('width','20px');
-			var bottom_width = Math.round(width*0.79381);
-			var bottom_height = height*0.22779;
-			var sourceY = Math.round(height*0.77220);
-			bottom(bottom_width,bottom_height,sourceY); 
-			$('#myCanvas3').attr('width',bottom_width+'px');
-			$('#myCanvas3').attr('height',bottom_height+'px'); 
-			$('#myCanvas3').css('height','20px');
-		}
-	});	
-</script>
-
-<input type="hidden" name="image_id" id="image_id" value="<?=$image_id?>">
-<input type="hidden" name="image_filename" id="image_filename" value="<?=$image_detail[0]['image_filename']?>">
-<input type="hidden" name="user_id" id="user_id" value="<?=$userid?>">
-<input type="hidden" name="api_image_id" id="api_image_id" >
-<input type="hidden" name="quality_rate" id="quality_rate" value="">
-<input type="hidden" name="image_size" id="image_size" value="">
-<input type="hidden" name="quality" id="quality" value="<?=$collection_range;?>">
-<input type="hidden" name="img_id" id="img_id" value="<?php echo $images_id;?>" />
-<input type="hidden" name="img_id" id="gallery_img_id" value="<?=$image_detail[0]['images_id'];?>" />
-<script>
-   function paper_surface(type){
-		var td = '';
-		if(type==2){
-			td = '<option value="Hahnemuhle Photo Luster">Hahnemuhle Photo Luster</option>';
-			td +='<option value="Hahnemuhle Photo Matte Fibre">Hahnemuhle Photo Matte Fibre</option>';
-		}else if(type==3){
-			td = '<option value="Hahnemuhle Photo Luster">Hahnemuhle Photo Luster</option>';
-			td +='<option value="Hahnemuhle Photo Matte Fibre">Hahnemuhle Photo Matte Fibre</option>';
-			td += '<option value="Hahnemuhle Daguerre canvas">Hahnemuhle Daguerre canvas</option>';
-			td += '<option value="Hahnemuhle Photo Canvas">Hahnemuhle Photo Canvas</option>';
-			td += '<option value="Photo canvas">Photo canvas</option>';
-		}else if(type==1){
-			td  = '<option value="Hahnemuhle Daguerre canvas">Hahnemuhle Daguerre canvas</option>';
-			td += '<option value="Hahnemuhle Photo Canvas">Hahnemuhle Photo Canvas</option>';
-			td += '<option value="Photo canvas">Photo canvas</option>';
-		}
-	    $('#surfaces').html(td);
-	}
-	
-   $(document).ready(function(){
-		showTable('Basic');
-		$('#4,#5,#6,#7,#8,#9,#10,#12,#19,#22,#frame-it,#slider_explore,#myCanvas,#myCanvas2,#myCanvas3,#review_rating,#Recommended_item,#zoom_image,#large_img3,#large_img5,#large_img6,#large_img7,.close').hide();		
-		$('#museum').prop('checked','true');
-		$('#print_type').val('canvas_only');
-		paper_surface('1');
-		$('#sizes').click(function(){
-		 	var value = $(this).val();
-		 	if(value == 'Own Size')
-		 		$('#6').show();	
-		 	else
-		 		$('#6').hide();
-		 });
-		$('#gallery').click(function(){
-			$('#large_img2,#22').hide();
-		});
-		
-		$('.item_click').click(function(){
-			var type = $(this).attr('id');	
-			var image_size=$( "#sizes" ).val();
-			var print_sizes=$( "#surfaces").val();
-			var quality_rate=$('#quality_rate').val();
-			var split = image_size.split('X');
-		  	var width=parseInt(split[0]);
-		  	var height=parseInt(split[1]);
-			var orig_image_size = width + '" X '+ height +'"';
-			if(type == '1'){
-				paper_surface(1);
-				$('#22,#frame_show,#zoom_image,#frame-it,#large_img3,#19,#12,#large_img6,#large_img5,#large_img7,#12').hide();
-				$('#large_img2,.wrapped,#11,#15,#20,#canvas_show,#canvas3D').show();
-				$("#museum").prop('checked', true);
-				$('#18').html('Types Of Wrap');
-				$('#print_type').val('canvas_only');
-      			$('#type').val('1');
-      			$('#print_sizes').html(orig_image_size);
-      			get_quality('');
-				}else if(type == '2'){
-				paper_surface(2);	
-				$('#frame-it,#19,#12,#frame_show').show();
-				$('#22,#12,#15,#large_img2,#zoom_image,.wrapped,#myCanvas,#myCanvas2,#myCanvas3,#large_img3,#20,#large_img5,#large_img6,#large_img7,#canvas_show,#canvas3D').hide();
-				$('#18').html('');
-				$('#print_type').val('');
-    			$('#type').val('2');
-    			$('#print_sizes').html(orig_image_size);
-    			get_quality('');
-			}else if(type == '3'){
-				paper_surface(3);	
-				$('#22,#12,#large_img2,#frame-it,.wrapped,#myCanvas,#myCanvas2,#myCanvas3,#12,#15,#19,#20,#large_img5,#large_img6,#large_img7,#canvas_show,#frame_show,#canvas3D').hide();
-				$('#18').html('');
-				$('#large_img3').show();
-				$('#print_type').val('only_print');
-				$('#17').html(orig_image_size+'Print Only');
-				$('#type').val('3');
-				$('#print_sizes').html(orig_image_size);
-				get_quality('');
-			}
-		});
-		
-		get_quality('');
-		$('#f_name').html('Absolute Black');
-		$('#check0').prop('checked',true);
-		$('#glass_type').val('Regular');
-		$('#frame_sized').html('26');
-		$('#mount_width').val('1');
-		$('#mount_state').val(1);
-		$('#sizes').click();
-		var k = 0;
-		$('.remove-mount').click(function(){
-			if($('#mount_state').val() == 1){
-				k = $('#mount_sized').val();
-				$('#mount_sized').val(k);
-				$('#mount_style').val($('#abc').attr('style'));
-				$('#mount_style2').val($('#abc2').css('padding'));
-				$('#abc').attr('style','');
-				$('#abc2').css('padding','0px');
-				$('#mount_width').val(0);
-				$('#mount_state').val(0);
-				$('.mount').hide();
-				get_quality('');
-			}
-		});
-
-		$('#11').click(function(){
-			$('#22,#large_img6,#large_img5,#frame-it,#large_img2,#large_img3,#myCanvas,#myCanvas2,#myCanvas3,#large_img7,#canvas3D').hide();
-				if( $('#type').val() == 1){
-					$('#large_img3,#18,#20').show();
-				}else if( $('#type').val() == 2){
-					$('#20').hide();
-					$('#large_img3').show();
-				}
-				else if( $('#type').val() == 3){
-					$('#15,#20,#19,#12').hide();
-					$('#large_img3').show();
-				}	
-		});
-
-		$('#20').click(function(){
-			$('#22,#large_img6,#large_img5,#large_img3,#zoom_image,#frame-it,#large_img3,#19,#12,#large_img7,#myCanvas,#myCanvas2,#myCanvas3').hide();
-			$('#large_img2,.wrapped,#11,#15,#20,#canvas3D').show();
-		});
-
-		$('#15').click(function(){
-			$('#22,#large_img6,#large_img5,#large_img3,#zoom_image,#frame-it,#large_img3,#19,#12,#large_img2,#myCanvas,#myCanvas2,#myCanvas3,#canvas3D').hide();
-			$('#large_img7').show();
-		});
-
-		$('#13').click(function(){
-			$('#large_img6,#large_img3,#large_img7,#zoom_image,#frame-it,#large_img2,#myCanvas,#myCanvas2,#myCanvas3,#canvas3D').hide();
-			$('#22,#large_img5').show();	
-			if($('#type').val() == '1'){
-				$('#canvas_show').show();
-				$('.sa,#frame_show,#print').hide();
-			}else if($('#type').val() == '2'){
-				$('#frame_show').show();
-				$('.sa,#canvas_show,#print').hide();
-				// var mount_width = $('#mount_width').val();
-				// var border_mount = 2.5 * mount_width; 	 
-				// $('.room_mount').css('padding',border_mount+'px');
-			}else if($('#type').val() == '3'){
-				$('#print').show();
-				$('.sa,#canvas_show,#frame_show').hide();
-			}
-		});
-
-		$('#14').click(function(){
-			$('#large_img5,#large_img7,#zoom_image,#large_img3,#frame-it,#large_img2,#myCanvas,#myCanvas2,#myCanvas3,#canvas3D').hide();
-			if($('#type').val() == '1'){
-				$('#canvas_show,#22,#large_img6').show();
-				$('.sa,#frame_show,#print').hide();
-			}else if($('#type').val() == '2'){
-				$('#frame_show,#22,#large_img6').show();
-				$('.sa,#canvas_show,#print,').hide();
-				// var mount_width = $('#mount_width').val();
-				// var border_mount = 2.5 * mount_width; 	 
-				// $('.room_mount').css('padding',border_mount+'px');
-			}else if($('#type').val() == '3'){
-				$('#print,#22,#large_img6').show();
-				$('.sa,#canvas_show,#frame_show').hide();
-			}
-		});
-		$('#19').click(function(){
-			$('#22,#large_img5,#large_img6,#large_img7,#zoom_image,#large_img3,#large_img2,#myCanvas,#myCanvas2,#myCanvas3,#canvas3D').hide();
-			$('#frame-it').show();
-		});
-	});
-</script>
-<script type="text/javascript">
-		function showTable(frame_cat){
-			$.ajax({
-	            type: "POST",
-	            url: "<?=base_url();?>index.php/frontend/get_frame_code_web_price",
-	            data:'frame_cat='+frame_cat,
-				beforeSend: function(){
-				},
-				success: function(data)
-	            {
-				var obj=JSON.parse(data);
-				var total_items = obj.length; 
-				var i,j,toal_slide,total_s,rem_slide,req_slide,td_inner="";
-				total_s = (obj.length/6);
-				rem_slide = (obj.length%6);
-				total_s = Math.round(total_s);			
-				if(rem_slide){
-				req_slide = total_s +1;	
-				}else{
-				req_slide = total_s;	
-				}
-				var image = 0;	
-				td_inner += '<div class="product-detail-content col-md-10">';
-	            td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider1">';
-	            td_inner += '<div class="carousel-inner">'; 
-				for(j=0;j<=req_slide-1;j++){
-					if(j==0){
-						td_inner += '<div class="item active">';
-					}else{
-						td_inner += '<div class="item">';
-					}
-					for(i=0;i<=5;i++){
-				if(image < total_items){
-				var val=obj[image];
-				var explode=val.split(',');
-				var f_code=explode[0];
-				var explode1=explode[1];
-				var f_name="'"+explode1+"'";
-				var explode2=explode[2];
-				var f_size="'"+explode2+"'";
-				var explode3=explode[3];
-				var f_color="'"+explode3+"'";
-				var explode4=explode[4];
-				var f_rate="'"+explode4+"'";
-				var explode5=explode[5];
-				var f_name="'"+explode5+"'";
-				var explode6=explode[6];
-				var f_name_mm="'"+explode6+"'";
-				if(explode[7]=='0'){
-				mount_avail='Out of stock';
-				}else{
-				mount_avail='';
-				}
-				var f_shape=$('#frame_shape').val();
-				var frame_shape="'"+f_shape+"'";
-				td_inner += '<div class="col-xs-12 col-sm-6 col-md-2 frame" id="frame'+image+'" onclick=" myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block img3"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
-					image++;
-				}
-				} td_inner +='</div>';
-			    }
-				if(total_items>4){
-				td_inner += '<div id="slider-control">';
-		        td_inner += '<a class="left carousel-control arrowclick" id="frame_left" href="#itemslider1" data-slide="prev">';
-		        td_inner += '<i class="fa fa-angle-left" style="font-size:3em"></i></a>';
-		        td_inner += '<a class="right carousel-control arrowclick" id="frame_right" href="#itemslider1" data-slide="next">';
-		        td_inner += '<i class="fa fa-angle-right" style="font-size:3em"></i></a>';
-		        td_inner += '</div>';
-				}
-				td_inner += '</div></div></div>';	
-				$('#frame_slider').html(td_inner);
-				}
-			});
-    	}
-
-    	function show_mat(obj){
-			$.ajax({
-			    type:"post",
-				url:"<?=base_url()?>index.php/frontend/get_all_mount_for_slide",
-				data:'mount='+obj,
-				beforeSend: function(){
-				},
-				success: function(success){
-				var array=JSON.parse(success);
-				var total_s,total_slide="";
-				total_s=(array.length)/6;
-				rem_slide = (array.length)%6;
-				total_slide=Math.round(total_s);
-				if(rem_slide){
-					total_slide = total_slide+1; 
-				}else{
-				total_slide = total_slide;
-				}
-				var breaks,mount_code,mount_rate,mount_name,mount_avail,td_inner='';
-				var image=0;	
-					td_inner += '<div class="product-detail-content col-md-10">';
-		            td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider4">';
-		            td_inner += '<div class="carousel-inner">';
-				for(var i=0;i<total_slide;i++){
-					if(i==0){
-							td_inner += '<div class="item active">';
-						}else{
-							td_inner += '<div class="item">';
-						}
-				for(var j=0;j<=5;j++){
-					if(image<array.length){
-				breaks=array[image].split(',');
-				mount_rate="'"+breaks[1]+"'";
-				mount_code="'"+breaks[0]+"'";
-				mount_name="'"+breaks[2]+"'";
-				if(breaks[3]=='0'){
-				mount_avail='Out of stock';
-				}else{
-				mount_avail='';
-				}
-				td_inner +='<div class="col-xs-12 col-sm-6 col-md-2 mount_data" id="mount'+image+'" onclick=" state_change(); return mount_select('+mount_rate+','+mount_code+','+mount_name+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount_new/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
-				image++;
-					}
-						}td_inner +='</div>';
-					}	
-				td_inner += '<div id="slider-control">';
-		        td_inner += '<a class="left carousel-control arrowclick"  href="#itemslider4" data-slide="prev">';
-		        td_inner += '<i class="fa fa-angle-left" style="font-size:3em"></i></a>';
-		        td_inner += '<a class="right carousel-control arrowclick"  href="#itemslider4" data-slide="next">';
-		        td_inner += '<i class="fa fa-angle-right" style="font-size:3em"></i></a>';
-		        td_inner += '</div>';
-				td_inner += '</div></div></div>';	
-				$('#mount_slider').html(td_inner);
-				}
-			});
-   		}
-
-   		function state_change(){
-   			$('#mount_state').val(1);
-   			var mount = $('#mount_sized').val();  
-   			$('#mount_width').val(mount);
-   			var change_mount = mount*10;
-			$('#abc').css({'width':'auto','padding':change_mount,'background-attachment':'scroll','position': 'relative','z-index':'1'});
-   			$('#mount_state').val(1);
-   			$('.mount').show();
-   		}
-
-   		function Frame_Size(FrameSize,frame_size_mm){
-			$.ajax({
-		      type:'post',
-			  url:'<?=base_url()?>index.php/frontend/get_frame_by_frame_color',
-			  data:'FrameSize='+frame_size_mm,
-			  beforeSend: function(){
-				$('#load_buffer').show();
-				},
-			  success:function(response){
-			  var array= JSON.parse(response);
-			  var td_inner = '';
-			  var total_s,total_slide="";
-			  total_s=(array.length)/4;
-			  rem_slide = (array.length)%4;
-			  total_slide=Math.round(total_s);
-			if(rem_slide){
-				total_slide = total_slide+1; 
-			}else{
-			total_slide = total_slide;
-			}
-			var breaks,mount_code,mount_rate,mount_name,mount_avail,td_inner='';
-			var image=0;	
-			td_inner += '<div class="product-detail-content col-md-10">';
-	        td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider6">';
-	        td_inner += '<div class="carousel-inner">';
-			 	for(var j=0;j<total_slide;j++){
-					if(j==0){
-						td_inner += '<div class="item active">';
-					}else{
-						td_inner += '<div class="item">';
-					}
-			    for(var i=0;i<=3;i++){
-				if(image<array.length){
-					var val = array[image];
-					var explode = val.split(',');
-					var f_code=explode[0];
-					var explode1=explode[1];
-					var f_name="'"+explode1+"'";
-					var explode2=explode[2];
-					var f_size="'"+explode2+"'";
-					var explode3=explode[3];
-					var f_color="'"+explode3+"'";
-					var explode4=explode[4];
-					var f_rate="'"+explode4+"'";
-					var explode5=explode[5];
-					var f_name="'"+explode5+"'";
-					var explode6=explode[6];
-					var f_name_mm="'"+explode6+"'";
-						if(explode[7]=='0'){
-						mount_avail='Out of stock';
-						}else{
-						mount_avail='';
-						}
-						var f_shape=$('#frame_shape').val();
-						var frame_shape="'"+f_shape+"'";	
-				td_inner += '<div class="col-xs-12 col-sm-6 col-md-2 frame" id="frame'+image+'" onClick=" myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
-				}
-					image++;
-					}td_inner +='</div>';
-				}	
-				if(array.length>4){
-			td_inner += '<div id="slider-control">';
-	        td_inner += '<a class="left carousel-control arrowclick"  href="#itemslider2" data-slide="prev">';
-	        td_inner += '<i class="fa fa-angle-left" style="font-size:3em"></i></a>';
-	        td_inner += '<a class="right carousel-control arrowclick"  href="#itemslider2" data-slide="next">';
-	        td_inner += '<i class="fa fa-angle-right" style="font-size:3em"></i></a>';
-	        td_inner += '</div>';
-			}
-			td_inner += '</div></div></div>';	
-			$('#frame_slider').html(td_inner);
-				    $('#load_buffer').hide();
-	 			}
-			});
-		}	
-		
-		function get_frame_color(frame_color){
-			var total_slide,total_s="";
-			$.ajax({
-            type:"post",
-			url:"<?=base_url()?>index.php/frontend/get_frame_by_frame_color",
-			data:'frame_color='+frame_color,
-			beforeSend: function(){
-			$('#load_buffer').show();
-			},
-			success: function(response){
-			var array= JSON.parse(response);
-		  	var td_inner = '';
-		  	var total_s,total_slide="";
-		  	total_s=(array.length)/4;
-		  	rem_slide = (array.length)%4;
-		  	total_slide=Math.round(total_s);
-		  	if(rem_slide){
-			total_slide = total_slide+1; 
-		  	}else{
-		  	total_slide = total_slide;
-		  	}
-		  	var breaks,mount_code,mount_rate,mount_name,mount_avail,td_inner='';
-		 	 var image=0;	
-			td_inner += '<div class="product-detail-content col-md-10">';
-            td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider5">';
-            td_inner += '<div class="carousel-inner">';
-		    for(var j=0;j<total_slide;j++){
-				if(j==0){
-					td_inner += '<div class="item active">';
-				}else{
-					td_inner += '<div class="item">';
-				}
-		  	for(var i=0;i<=3;i++){
-				if(image<array.length){
-				var val = array[image];
-				var explode = val.split(',');
-				var f_code=explode[0];
-				var explode1=explode[1];
-				var f_name="'"+explode1+"'";
-				var explode2=explode[2];
-				var f_size="'"+explode2+"'";
-				var explode3=explode[3];
-				var f_color="'"+explode3+"'";
-				var explode4=explode[4];
-				var f_rate="'"+explode4+"'";
-				var explode5=explode[5];
-				var f_name="'"+explode5+"'";
-				var explode6=explode[6];
-				var f_name_mm="'"+explode6+"'";
-					if(explode[7]=='0'){
-					mount_avail='Out of stock';
-					}else{
-					mount_avail='';
-					}
-				var f_shape=$('#frame_shape').val();
-				var frame_shape="'"+f_shape+"'";	
-				td_inner += '<div class="col-xs-12 col-sm-6 col-md-2 frame" id="frame'+image+'" onClick="myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
-				}
-					image++;
-				}td_inner +='</div>';
-			}	
-			if(array.length>4){
-				td_inner += '<div id="slider-control">';
-        		td_inner += '<a class="left carousel-control arrowclick"  href="#itemslider3" data-slide="prev">';
-        		td_inner += '<i class="fa fa-angle-left" style="font-size:3em"></i></a>';
-        		td_inner += '<a class="right carousel-control arrowclick"  href="#itemslider3" data-slide="next">';
-        		td_inner += '<i class="fa fa-angle-right" style="font-size:3em"></i></a>';
-        		td_inner += '</div>';
-			}
-				td_inner += '</div></div></div>';	
-				$('#frame_slider').html(td_inner);
-				    $('#load_buffer').hide();
- 				}
-			});
-		}
-
-		function myfun(color,size,shape,f_code,f_rate,f_size_mm){
-			$('#frame_name').val(f_code);
-			$('#frame_size').val(size);
-			$('#frame_rate').val(f_rate);
-			$('#frame_sized').html(f_size_mm);
-			$('#f_name').html(f_code);
-
-			if(f_code){
-		       var dert= "<?php echo base_url()?>images/uploaded_pdf/frames/horizontal/";
-			   var border_width="";
-			   var border_width2="";
-			   if(f_size_mm<=40){
-			   border_width=20;
-			   border_width2=10;
-			   }else if(f_size_mm>40 && f_size_mm<=50){
-			   border_width=30;
-			   border_width2=15;
-			   }else if(f_size_mm>50 && f_size_mm<=66){
-			   border_width=40;
-			   border_width2=20;
-			   }else if(f_size_mm>66){
-			   border_width=55;
-			   border_width2=25;
-			   }
-			   $('div.mainhor').css({'border-image':'url("'+dert+f_code+'.jpg") 58 58 58 58 round round','border-style':'solid','border-width':''+ border_width+'px'});
-			   $('div.mainhor2').css({'border-image':'url("'+dert+f_code+'.jpg") 58 58 58 58 round round','border-style':'solid','border-width':''+ border_width2+'px'});
-			   $('#frame_name').val(f_code);
-			}
-			get_quality('');
-		}
-	$(document).ready(function(){
-		$('#hover2').click(function(){
-			show_mat('');			
-		});
-	})
-
-	function mount_select(mount_rate,mount_code,mount_name){
-		$('#mount_rate').val(mount_rate);
-		$('#mount_name').val(mount_code);
-		$('#mount_color').val(mount_name);
-		$('#mount_color').html(mount_name);
-		if(mount_code){
-		var dest= "<?php echo base_url()?>images/uploaded_pdf/mount/";
-        $('div#abc,div#abc2').css('background','url("'+dest+mount_code+'.jpg")');
-		var padding = $("#mount_width").val();	
-		padding = padding * 6
-		$('#abc2').css('padding', padding+'px');
-		}
-		get_quality('');	
-	}
-
-	function change_mount(mount){
-   		var change_mount  = mount*10;
-   		var change_mount2 = mount*6;
-   		$('.mount').show();
-   		$('#mount_sized').val(mount);
-		$("#abc").css('padding',change_mount);
-    	$("#abc2").css('padding',change_mount2);
-    	$('#mount_size').val(mount);
-    	get_quality('');
-    }
-
-
-    function selectOnlyThis(id) {
-	    for (var i = 0;i <=1 ; i++)
-	    {
-	        document.getElementById('check'+i).checked = false;
-	    }
-	    var selected_type = document.getElementById(id) ;
-		if(id == 'check1')
-		$('#glass_type').val('Acrylic');
-		else 
-		$('#glass_type').val('Regular');	
-		selected_type.checked = true;
-	    get_quality('');
-	}
-    
-        
-function addToCart()
-{  
-  var paper_surface = $('#surfaces').val();
-  var framed_art = $('#sizes').val();
-  var print = framed_art.split('X'); 
-  var print_width = print[0];
-  var print_height = print[1]; 
-  var final_frame_size = framed_art;
-  var only_print = $('#print_type').val();
-  var frame_name = '';
-  if(only_print == ''){
-  	frame_name = $('#frame_name').val();
-  }else{
-  	frame_name = 'Streched Canvas Gallary Wrap';	
-  }
-  var mount_name,mount_color,mat1_size;
-  if($('#mount_state').val() == 0 ){
-   	mount_name = 0;
-    mount_color= 0;
-    mat1_size  = 0;
-  }else{ 	
-  	 mount_name=$('#mount_name').val();
-  	mount_color=$('#mount_color').html();
-  	  mat1_size=$('#mount_width').val()+'"';
-  }
-  var glasses= $('#glass_type').html();
-  var glasses_coste= $('#glass_price').html();
-      glasses_coste = glasses_coste.split('.');		
-      glasses_coste = glasses_coste[1];
-  var total_price=$('.total_cost').html();
-      total_price = total_price.split('.');
-  	  total_price = total_price[1];	
-  var MountCost=$('#MountCost').html();
-      MountCost = MountCost.split('.');
-  	  MountCost = MountCost[1];
-  var FrameCost=$('#FrameCost').html();
-  	  FrameCost = FrameCost.split('.');		
-  	  FrameCost = FrameCost[1];
-  var price=$('#print_price').html();
-      price = price.split('.');
-  	  price = price[1];
-  var print_size=$('#print_h_w').val();
-  var image_id=$('#image_id').val();
-  var image_type= $('#surfaces').val();
-  var user_id=$('#user_id').val();
-  var mat1_color=$('#mount_color').html();
-  var image_namee=$('#image_filename').val();
-  var frameSize=$('#frame_sized').html();
-  //alert(paper_surface+','+framed_art+','+print_width+','+print_height+','+final_frame_size+','+only_print+','+frame_name+','+mount_name+','+mount_color+','+glasses+','+glasses_coste+','+total_price+','+MountCost+','+FrameCost+','+price+','+image_id+','+user_id+','+mat1_size+','+mat1_color+','+image_namee+','+frameSize+','+image_type+','+print_size);
-    $.ajax({
-        type: "POST",
-	    url: "<?=base_url()?>frontend/frameit_addtocart",
-        data: "glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print,
-		success:function(data)  
-    	{   
-    		swal({
-				  title: 'CART STATUS',
-				  text: 'Item Added Successfully',
-				  timer: 1000
-				})
-			setTimeout(function(){
-			$('.frame-step-header-container').show();
-			 feedback_of_addtocart(data);
-			 $('html, body').animate({ scrollTop: 0 }, 'fast');
-			},1000); 
-		}
-    });
-}
-	function feedback_of_addtocart(a){
-		$('.frame-step-header-text').html('<span class="glyphicon glyphicon-ok" style="margin-right:10px;"></span>Item Added To Cart.');
-	}
-
-	function change_wallcolor(class_get){
-		var get_class = $(class_get).attr('class');
-		var attribute = $('.'+get_class).css('background-color');	
-		$('#22').css('background-color',attribute);
-	}
-
-	function get_functions(){
-		get_quality('');
-	}
-</script>
 <?php //$continue_shopping_redirect=$this->session->userdata('continue_shopping');?>
 		<div class="frame-step-header-container" style="display:none">
 			<div class="container frame-step-header-wrapper">
@@ -1196,12 +460,12 @@ function calculate_cost(value){
 	}
 
 	function apply_promo_code(total_amount){
-		$('#sub_total_price').html('Rs.'+total_amount);
+		$('#sub_total_price,.old_price').html('Rs.' + total_amount);
 		var promo_precentage=$('#promo_precentage').html();
 		promo_precentage = promo_precentage.split('%');
 		var promo_amount_final=parseFloat(Math.round((total_amount*parseFloat(promo_precentage))/100).toFixed(2));
 		$('#promo_amount').html('Rs.' + Math.round(promo_amount_final,2));
-		var total_amount_after_gst=parseFloat(total_amount)-parseFloat(promo_amount_final);
+		var total_amount_after_gst = parseFloat(total_amount)-parseFloat(promo_amount_final);
 		$('.total_cost,.actual_price').html('Rs.'+ Math.round(total_amount_after_gst,2));
 	}
 	// end function
@@ -1883,7 +1147,6 @@ function calculate_cost(value){
 	  var req_height = source_height; 
 	  var imageObj2 = new Image();
       imageObj2.onload = function() {
-        // draw cropped image
         var sourceX = 0;
         var sourceY = 0;
         var sourceWidth = req_width;
@@ -1906,7 +1169,6 @@ function right(width,height,x){
       var context = canvas.getContext('2d');
       var imageObj = new Image();
       imageObj.onload = function() {
-        // draw cropped image
        var sourceX = x;
         var sourceY = 0;
         var sourceWidth = width;
@@ -1932,7 +1194,6 @@ function right(width,height,x){
       var imageObj1 = new Image();
 		console.log(width,height,y);
       imageObj1.onload = function() {
-        // draw cropped image
         var sourceX = 0;
         var sourceY = y;
         var sourceWidth = width;
@@ -2285,7 +1546,7 @@ extends the image around the sides and is more informal Choose the style that su
                 </div>
             </div>
             	<div class="col-md-9" id="selector-step">
-                    <p class="price" style="display: block;" ><span class="old_price"></span> <span class="total_cost"></span> </p>
+                    <p class="price" style="display: block;"><span class="old_price"></span><span class="total_cost"></span> </p>
                     <p class="bottom-bar-crop" style="display: block;" id="17"></p>
                     <p class="shipping-note">Ships in 1-2 days</p>
                    	<h5><a href='' onclick=" get_functions(''); price_details();return false;">Price Details</a> </h5>
@@ -2746,3 +2007,732 @@ background: #ddd;
 </style>
 </div>
 <?php $this->session->unset_userdata('page');?>
+
+<script type="text/javascript">
+	$('html').keyup(function(e){
+		var width = $('#width').val();
+		var height= $('#height').val();
+		if(e.keyCode == 8){
+			if(width == 0 || height == 0){
+				$('.actual_price').html('Rs.0');				
+			}
+		}
+	})
+	$(document).ready(function(){		
+		var i=true;
+		$(".color_btn").click(function(){
+			if(i){
+			$(".showhidenew,.color_btn").css('bottom','0px');
+			$(".color_btn").css('bottom','147px');
+			$(".color_panel").css('opacity','1');
+			$(".color_panel,#closed").show();
+			i = false;
+			}else{
+				$(".showhidenew").css('bottom','-147px');
+				$(".color_panel").css('opacity','0');
+				$(".color_panel,#closed").hide();
+				i= true;
+			}
+		});
+		
+	$('#museum').click(function(){
+		$('#22,#myCanvas,#myCanvas2,#myCanvas3,#large_img5,#large_img6,#large_img7,#large_img3').hide();
+		$('.container3D').show();	
+		$('#museum').prop("checked", true);
+		$('#large_img2').show();
+	});
+	$('#gallery').click(function(){
+		$('#myCanvas,#canvas3D,#myCanvas2,#myCanvas3').show();
+		$('#gallery').prop("checked", true);
+		$('#large_img2,#large_img5,#large_img6,#22,#large_img7,#large_img3').hide();
+	});	
+	
+	$('#sizes').click(function(){
+		var img_width  = '<?= $image_width1 ?>';
+		var img_height = '<?= $image_height1 ?>'
+		var size = $('#sizes').val();
+		var dimen = size.split('X');
+		if(img_width > img_height ){
+			if( parseInt(dimen[0]) > 32){
+			var change_width = 325;
+			$('#canvas_show,#frame_img,#printed').css('width', change_width+'px');
+			}else{
+			var change_width = parseInt(dimen[0]) * 10;
+			$('#canvas_show,#frame_img,#printed').css('width', change_width+'px');	
+			}
+		}else{
+			if( parseInt(dimen[1]) > 25){
+			var change_width = 165;
+			$('#canvas_show,#frame_img,#printed').css('width', change_width+'px');
+			}else{
+			var change_width = parseInt(dimen[0]) * 10;
+			$('#canvas_show,#frame_img,#printed').css('width', change_width+'px');	
+			}
+		}
+	});
+
+	$('#mount_rate').val('0.75');
+	var width  = '<?= $image_width1 ?>'; 
+	var height = '<?= $image_height1?>';
+		if(width >= height){
+			var front_width = Math.round(width*0.825);
+			var front_height = Math.round(height*0.83388); 	
+			front(front_width,front_height); 
+			var right_sourceX = Math.round(width*0.825);
+			var right_height = Math.round(height*0.83388);
+			var right_width = width;
+			right(right_width,right_height,right_sourceX);
+			$('#myCanvas').attr('height',right_height+'px');
+			$('#myCanvas').attr('width',right_width+'px');
+			$('#myCanvas').css('width','111px');
+			$('#myCanvas').css('height','100%');
+			var bottom_width = Math.round(width*0.825);
+			var bottom_height = height;
+			var sourceY = Math.round(height*0.83388);
+			bottom(bottom_width,bottom_height,sourceY); 
+			$('#myCanvas3').attr('width',bottom_width+'px');
+			$('#myCanvas3').attr('height',bottom_height+'px');
+			$('#myCanvas3').css('height','111px');
+		} else {
+			var front_width = Math.round(width*0.79381);
+			var front_height = Math.round(height*0.77220); 	
+			front(front_width,front_height);  
+			var right_sourceX = Math.round(width*0.79381);
+			var right_height = Math.round(height*0.77220);
+			var right_width = width*0.20618;
+			right(right_width,right_height,right_sourceX);
+			$('#myCanvas').attr('height',right_height+'px');
+			$('#myCanvas').attr('width',right_width+'px');
+			$('#myCanvas').css('width','20px');
+			var bottom_width = Math.round(width*0.79381);
+			var bottom_height = height*0.22779;
+			var sourceY = Math.round(height*0.77220);
+			bottom(bottom_width,bottom_height,sourceY); 
+			$('#myCanvas3').attr('width',bottom_width+'px');
+			$('#myCanvas3').attr('height',bottom_height+'px'); 
+			$('#myCanvas3').css('height','20px');
+		}
+	});	
+</script>
+
+<input type="hidden" name="image_id" id="image_id" value="<?=$image_id?>">
+<input type="hidden" name="image_filename" id="image_filename" value="<?=$image_detail[0]['image_filename']?>">
+<input type="hidden" name="user_id" id="user_id" value="<?=$userid?>">
+<input type="hidden" name="api_image_id" id="api_image_id" >
+<input type="hidden" name="quality_rate" id="quality_rate" value="">
+<input type="hidden" name="image_size" id="image_size" value="">
+<input type="hidden" name="quality" id="quality" value="<?=$collection_range;?>">
+<input type="hidden" name="img_id" id="img_id" value="<?php echo $images_id;?>" />
+<input type="hidden" name="img_id" id="gallery_img_id" value="<?=$image_detail[0]['images_id'];?>" />
+<script>
+   function paper_surface(type){
+		var td = '';
+		if(type==2){
+			td = '<option value="Hahnemuhle Photo Luster">Hahnemuhle Photo Luster</option>';
+			td +='<option value="Hahnemuhle Photo Matte Fibre">Hahnemuhle Photo Matte Fibre</option>';
+		}else if(type==3){
+			td = '<option value="Hahnemuhle Photo Luster">Hahnemuhle Photo Luster</option>';
+			td +='<option value="Hahnemuhle Photo Matte Fibre">Hahnemuhle Photo Matte Fibre</option>';
+			td += '<option value="Hahnemuhle Daguerre canvas">Hahnemuhle Daguerre canvas</option>';
+			td += '<option value="Hahnemuhle Photo Canvas">Hahnemuhle Photo Canvas</option>';
+			td += '<option value="Photo canvas">Photo canvas</option>';
+		}else if(type==1){
+			td  = '<option value="Hahnemuhle Daguerre canvas">Hahnemuhle Daguerre canvas</option>';
+			td += '<option value="Hahnemuhle Photo Canvas">Hahnemuhle Photo Canvas</option>';
+			td += '<option value="Photo canvas">Photo canvas</option>';
+		}
+	    $('#surfaces').html(td);
+	}
+	
+   $(document).ready(function(){
+		showTable('Basic');
+		$('#4,#5,#6,#7,#8,#9,#10,#12,#19,#22,#frame-it,#slider_explore,#myCanvas,#myCanvas2,#myCanvas3,#review_rating,#Recommended_item,#zoom_image,#large_img3,#large_img5,#large_img6,#large_img7,.close').hide();		
+		$('#museum').prop('checked','true');
+		$('#print_type').val('canvas_only');
+		paper_surface('1');
+		$('#sizes').click(function(){
+		 	var value = $(this).val();
+		 	if(value == 'Own Size')
+		 		$('#6').show();	
+		 	else
+		 		$('#6').hide();
+		 });
+		$('#gallery').click(function(){
+			$('#large_img2,#22').hide();
+		});
+		
+		$('.item_click').click(function(){
+			var type = $(this).attr('id');	
+			var image_size=$( "#sizes" ).val();
+			var print_sizes=$( "#surfaces").val();
+			var quality_rate=$('#quality_rate').val();
+			var split = image_size.split('X');
+		  	var width=parseInt(split[0]);
+		  	var height=parseInt(split[1]);
+			var orig_image_size = width + '" X '+ height +'"';
+			if(type == '1'){
+				paper_surface(1);
+				$('#22,#frame_show,#zoom_image,#frame-it,#large_img3,#19,#12,#large_img6,#large_img5,#large_img7,#12').hide();
+				$('#large_img2,.wrapped,#11,#15,#20,#canvas_show,#canvas3D').show();
+				$("#museum").prop('checked', true);
+				$('#18').html('Types Of Wrap');
+				$('#print_type').val('canvas_only');
+      			$('#type').val('1');
+      			$('#print_sizes').html(orig_image_size);
+      			get_quality('');
+				}else if(type == '2'){
+				paper_surface(2);	
+				$('#frame-it,#19,#12,#frame_show').show();
+				$('#22,#12,#15,#large_img2,#zoom_image,.wrapped,#myCanvas,#myCanvas2,#myCanvas3,#large_img3,#20,#large_img5,#large_img6,#large_img7,#canvas_show,#canvas3D').hide();
+				$('#18').html('');
+				$('#print_type').val('');
+    			$('#type').val('2');
+    			$('#print_sizes').html(orig_image_size);
+    			get_quality('');
+			}else if(type == '3'){
+				paper_surface(3);	
+				$('#22,#12,#large_img2,#frame-it,.wrapped,#myCanvas,#myCanvas2,#myCanvas3,#12,#15,#19,#20,#large_img5,#large_img6,#large_img7,#canvas_show,#frame_show,#canvas3D').hide();
+				$('#18').html('');
+				$('#large_img3').show();
+				$('#print_type').val('only_print');
+				$('#17').html(orig_image_size+'Print Only');
+				$('#type').val('3');
+				$('#print_sizes').html(orig_image_size);
+				get_quality('');
+			}
+		});
+		
+		get_quality('');
+		$('#f_name').html('Absolute Black');
+		$('#check0').prop('checked',true);
+		$('#glass_type').val('Regular');
+		$('#frame_sized').html('26');
+		$('#mount_width').val('1');
+		$('#mount_state').val(1);
+		$('#sizes').click();
+		var k = 0;
+		$('.remove-mount').click(function(){
+			if($('#mount_state').val() == 1){
+				k = $('#mount_sized').val();
+				$('#mount_sized').val(k);
+				$('#mount_style').val($('#abc').attr('style'));
+				$('#mount_style2').val($('#abc2').css('padding'));
+				$('#abc').attr('style','');
+				$('#abc2').css('padding','0px');
+				$('#mount_width').val(0);
+				$('#mount_state').val(0);
+				$('.mount').hide();
+				get_quality('');
+			}
+		});
+
+		$('#11').click(function(){
+			$('#22,#large_img6,#large_img5,#frame-it,#large_img2,#large_img3,#myCanvas,#myCanvas2,#myCanvas3,#large_img7,#canvas3D').hide();
+				if( $('#type').val() == 1){
+					$('#large_img3,#18,#20').show();
+				}else if( $('#type').val() == 2){
+					$('#20').hide();
+					$('#large_img3').show();
+				}
+				else if( $('#type').val() == 3){
+					$('#15,#20,#19,#12').hide();
+					$('#large_img3').show();
+				}	
+		});
+
+		$('#20').click(function(){
+			$('#22,#large_img6,#large_img5,#large_img3,#zoom_image,#frame-it,#large_img3,#19,#12,#large_img7,#myCanvas,#myCanvas2,#myCanvas3').hide();
+			$('#large_img2,.wrapped,#11,#15,#20,#canvas3D').show();
+		});
+
+		$('#15').click(function(){
+			$('#22,#large_img6,#large_img5,#large_img3,#zoom_image,#frame-it,#large_img3,#19,#12,#large_img2,#myCanvas,#myCanvas2,#myCanvas3,#canvas3D').hide();
+			$('#large_img7').show();
+		});
+
+		$('#13').click(function(){
+			$('#large_img6,#large_img3,#large_img7,#zoom_image,#frame-it,#large_img2,#myCanvas,#myCanvas2,#myCanvas3,#canvas3D').hide();
+			$('#22,#large_img5').show();	
+			if($('#type').val() == '1'){
+				$('#canvas_show').show();
+				$('.sa,#frame_show,#print').hide();
+			}else if($('#type').val() == '2'){
+				$('#frame_show').show();
+				$('.sa,#canvas_show,#print').hide();
+			}else if($('#type').val() == '3'){
+				$('#print').show();
+				$('.sa,#canvas_show,#frame_show').hide();
+			}
+		});
+
+		$('#14').click(function(){
+			$('#large_img5,#large_img7,#zoom_image,#large_img3,#frame-it,#large_img2,#myCanvas,#myCanvas2,#myCanvas3,#canvas3D').hide();
+			if($('#type').val() == '1'){
+				$('#canvas_show,#22,#large_img6').show();
+				$('.sa,#frame_show,#print').hide();
+			}else if($('#type').val() == '2'){
+				$('#frame_show,#22,#large_img6').show();
+				$('.sa,#canvas_show,#print,').hide();
+			}else if($('#type').val() == '3'){
+				$('#print,#22,#large_img6').show();
+				$('.sa,#canvas_show,#frame_show').hide();
+			}
+		});
+		$('#19').click(function(){
+			$('#22,#large_img5,#large_img6,#large_img7,#zoom_image,#large_img3,#large_img2,#myCanvas,#myCanvas2,#myCanvas3,#canvas3D').hide();
+			$('#frame-it').show();
+		});
+	});
+</script>
+<script type="text/javascript">
+		function showTable(frame_cat){
+			$.ajax({
+	            type: "POST",
+	            url: "<?=base_url();?>index.php/frontend/get_frame_code_web_price",
+	            data:'frame_cat='+frame_cat,
+				beforeSend: function(){
+				},
+				success: function(data)
+	            {
+				var obj=JSON.parse(data);
+				var total_items = obj.length; 
+				var i,j,toal_slide,total_s,rem_slide,req_slide,td_inner="";
+				total_s = (obj.length/6);
+				rem_slide = (obj.length%6);
+				total_s = Math.round(total_s);			
+				if(rem_slide){
+				req_slide = total_s +1;	
+				}else{
+				req_slide = total_s;	
+				}
+				var image = 0;	
+				td_inner += '<div class="product-detail-content col-md-10">';
+	            td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider1">';
+	            td_inner += '<div class="carousel-inner">'; 
+				for(j=0;j<=req_slide-1;j++){
+					if(j==0){
+						td_inner += '<div class="item active">';
+					}else{
+						td_inner += '<div class="item">';
+					}
+					for(i=0;i<=5;i++){
+				if(image < total_items){
+				var val=obj[image];
+				var explode=val.split(',');
+				var f_code=explode[0];
+				var explode1=explode[1];
+				var f_name="'"+explode1+"'";
+				var explode2=explode[2];
+				var f_size="'"+explode2+"'";
+				var explode3=explode[3];
+				var f_color="'"+explode3+"'";
+				var explode4=explode[4];
+				var f_rate="'"+explode4+"'";
+				var explode5=explode[5];
+				var f_name="'"+explode5+"'";
+				var explode6=explode[6];
+				var f_name_mm="'"+explode6+"'";
+				if(explode[7]=='0'){
+				mount_avail='Out of stock';
+				}else{
+				mount_avail='';
+				}
+				var f_shape=$('#frame_shape').val();
+				var frame_shape="'"+f_shape+"'";
+				td_inner += '<div class="col-xs-12 col-sm-6 col-md-2 frame" id="frame'+image+'" onclick=" myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block img3"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
+					image++;
+				}
+				} td_inner +='</div>';
+			    }
+				if(total_items>4){
+				td_inner += '<div id="slider-control">';
+		        td_inner += '<a class="left carousel-control arrowclick" id="frame_left" href="#itemslider1" data-slide="prev">';
+		        td_inner += '<i class="fa fa-angle-left" style="font-size:3em"></i></a>';
+		        td_inner += '<a class="right carousel-control arrowclick" id="frame_right" href="#itemslider1" data-slide="next">';
+		        td_inner += '<i class="fa fa-angle-right" style="font-size:3em"></i></a>';
+		        td_inner += '</div>';
+				}
+				td_inner += '</div></div></div>';	
+				$('#frame_slider').html(td_inner);
+				}
+			});
+    	}
+
+    	function show_mat(obj){
+			$.ajax({
+			    type:"post",
+				url:"<?=base_url()?>index.php/frontend/get_all_mount_for_slide",
+				data:'mount='+obj,
+				beforeSend: function(){
+				},
+				success: function(success){
+				var array=JSON.parse(success);
+				var total_s,total_slide="";
+				total_s=(array.length)/6;
+				rem_slide = (array.length)%6;
+				total_slide=Math.round(total_s);
+				if(rem_slide){
+					total_slide = total_slide+1; 
+				}else{
+				total_slide = total_slide;
+				}
+				var breaks,mount_code,mount_rate,mount_name,mount_avail,td_inner='';
+				var image=0;	
+				td_inner += '<div class="product-detail-content col-md-10">';
+		        td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider4">';
+		        td_inner += '<div class="carousel-inner">';
+				for(var i=0;i<total_slide;i++){
+					if(i==0){
+							td_inner += '<div class="item active">';
+						}else{
+							td_inner += '<div class="item">';
+						}
+				for(var j=0;j<=5;j++){
+					if(image<array.length){
+				breaks=array[image].split(',');
+				mount_rate="'"+breaks[1]+"'";
+				mount_code="'"+breaks[0]+"'";
+				mount_name="'"+breaks[2]+"'";
+				if(breaks[3]=='0'){
+				mount_avail='Out of stock';
+				}else{
+				mount_avail='';
+				}
+				td_inner +='<div class="col-xs-12 col-sm-6 col-md-2 mount_data" id="mount'+image+'" onclick=" state_change(); return mount_select('+mount_rate+','+mount_code+','+mount_name+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount_new/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
+				image++;
+					}
+						}td_inner +='</div>';
+					}	
+				td_inner += '<div id="slider-control">';
+		        td_inner += '<a class="left carousel-control arrowclick"  href="#itemslider4" data-slide="prev">';
+		        td_inner += '<i class="fa fa-angle-left" style="font-size:3em"></i></a>';
+		        td_inner += '<a class="right carousel-control arrowclick"  href="#itemslider4" data-slide="next">';
+		        td_inner += '<i class="fa fa-angle-right" style="font-size:3em"></i></a>';
+		        td_inner += '</div>';
+				td_inner += '</div></div></div>';	
+				$('#mount_slider').html(td_inner);
+				}
+			});
+   		}
+
+   		function state_change(){
+   			$('#mount_state').val(1);
+   			var mount = $('#mount_sized').val();  
+   			$('#mount_width').val(mount);
+   			var change_mount = mount*10;
+			$('#abc').css({'width':'auto','padding':change_mount,'background-attachment':'scroll','position': 'relative','z-index':'1'});
+   			$('#mount_state').val(1);
+   			$('.mount').show();
+   		}
+
+   		function Frame_Size(FrameSize,frame_size_mm){
+			$.ajax({
+		      type:'post',
+			  url:'<?=base_url()?>index.php/frontend/get_frame_by_frame_color',
+			  data:'FrameSize='+frame_size_mm,
+			  beforeSend: function(){
+				$('#load_buffer').show();
+				},
+			  success:function(response){
+			  var array= JSON.parse(response);
+			  var td_inner = '';
+			  var total_s,total_slide="";
+			  total_s=(array.length)/4;
+			  rem_slide = (array.length)%4;
+			  total_slide=Math.round(total_s);
+			if(rem_slide){
+				total_slide = total_slide+1; 
+			}else{
+			total_slide = total_slide;
+			}
+			var breaks,mount_code,mount_rate,mount_name,mount_avail,td_inner='';
+			var image=0;	
+			td_inner += '<div class="product-detail-content col-md-10">';
+	        td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider6">';
+	        td_inner += '<div class="carousel-inner">';
+			 	for(var j=0;j<total_slide;j++){
+					if(j==0){
+						td_inner += '<div class="item active">';
+					}else{
+						td_inner += '<div class="item">';
+					}
+			    for(var i=0;i<=3;i++){
+				if(image<array.length){
+					var val = array[image];
+					var explode = val.split(',');
+					var f_code=explode[0];
+					var explode1=explode[1];
+					var f_name="'"+explode1+"'";
+					var explode2=explode[2];
+					var f_size="'"+explode2+"'";
+					var explode3=explode[3];
+					var f_color="'"+explode3+"'";
+					var explode4=explode[4];
+					var f_rate="'"+explode4+"'";
+					var explode5=explode[5];
+					var f_name="'"+explode5+"'";
+					var explode6=explode[6];
+					var f_name_mm="'"+explode6+"'";
+						if(explode[7]=='0'){
+						mount_avail='Out of stock';
+						}else{
+						mount_avail='';
+						}
+						var f_shape=$('#frame_shape').val();
+						var frame_shape="'"+f_shape+"'";	
+				td_inner += '<div class="col-xs-12 col-sm-6 col-md-2 frame" id="frame'+image+'" onClick=" myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
+				}
+					image++;
+					}td_inner +='</div>';
+				}	
+				if(array.length>4){
+			td_inner += '<div id="slider-control">';
+	        td_inner += '<a class="left carousel-control arrowclick"  href="#itemslider2" data-slide="prev">';
+	        td_inner += '<i class="fa fa-angle-left" style="font-size:3em"></i></a>';
+	        td_inner += '<a class="right carousel-control arrowclick"  href="#itemslider2" data-slide="next">';
+	        td_inner += '<i class="fa fa-angle-right" style="font-size:3em"></i></a>';
+	        td_inner += '</div>';
+			}
+			td_inner += '</div></div></div>';	
+			$('#frame_slider').html(td_inner);
+				    $('#load_buffer').hide();
+	 			}
+			});
+		}	
+		
+		function get_frame_color(frame_color){
+			var total_slide,total_s="";
+			$.ajax({
+            type:"post",
+			url:"<?=base_url()?>index.php/frontend/get_frame_by_frame_color",
+			data:'frame_color='+frame_color,
+			beforeSend: function(){
+			$('#load_buffer').show();
+			},
+			success: function(response){
+			var array= JSON.parse(response);
+		  	var td_inner = '';
+		  	var total_s,total_slide="";
+		  	total_s=(array.length)/4;
+		  	rem_slide = (array.length)%4;
+		  	total_slide=Math.round(total_s);
+		  	if(rem_slide){
+			total_slide = total_slide+1; 
+		  	}else{
+		  	total_slide = total_slide;
+		  	}
+		  	var breaks,mount_code,mount_rate,mount_name,mount_avail,td_inner='';
+		 	 var image=0;	
+			td_inner += '<div class="product-detail-content col-md-10">';
+            td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider5">';
+            td_inner += '<div class="carousel-inner">';
+		    for(var j=0;j<total_slide;j++){
+				if(j==0){
+					td_inner += '<div class="item active">';
+				}else{
+					td_inner += '<div class="item">';
+				}
+		  	for(var i=0;i<=3;i++){
+				if(image<array.length){
+				var val = array[image];
+				var explode = val.split(',');
+				var f_code=explode[0];
+				var explode1=explode[1];
+				var f_name="'"+explode1+"'";
+				var explode2=explode[2];
+				var f_size="'"+explode2+"'";
+				var explode3=explode[3];
+				var f_color="'"+explode3+"'";
+				var explode4=explode[4];
+				var f_rate="'"+explode4+"'";
+				var explode5=explode[5];
+				var f_name="'"+explode5+"'";
+				var explode6=explode[6];
+				var f_name_mm="'"+explode6+"'";
+					if(explode[7]=='0'){
+					mount_avail='Out of stock';
+					}else{
+					mount_avail='';
+					}
+				var f_shape=$('#frame_shape').val();
+				var frame_shape="'"+f_shape+"'";	
+				td_inner += '<div class="col-xs-12 col-sm-6 col-md-2 frame" id="frame'+image+'" onClick="myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
+				}
+					image++;
+				}td_inner +='</div>';
+			}	
+			if(array.length>4){
+				td_inner += '<div id="slider-control">';
+        		td_inner += '<a class="left carousel-control arrowclick"  href="#itemslider3" data-slide="prev">';
+        		td_inner += '<i class="fa fa-angle-left" style="font-size:3em"></i></a>';
+        		td_inner += '<a class="right carousel-control arrowclick"  href="#itemslider3" data-slide="next">';
+        		td_inner += '<i class="fa fa-angle-right" style="font-size:3em"></i></a>';
+        		td_inner += '</div>';
+			}
+				td_inner += '</div></div></div>';	
+				$('#frame_slider').html(td_inner);
+				    $('#load_buffer').hide();
+ 				}
+			});
+		}
+
+		function myfun(color,size,shape,f_code,f_rate,f_size_mm){
+			$('#frame_name').val(f_code);
+			$('#frame_size').val(size);
+			$('#frame_rate').val(f_rate);
+			$('#frame_sized').html(f_size_mm);
+			$('#f_name').html(f_code);
+
+			if(f_code){
+		       var dert= "<?php echo base_url()?>images/uploaded_pdf/frames/horizontal/";
+			   var border_width="";
+			   var border_width2="";
+			   if(f_size_mm<=40){
+			   border_width=20;
+			   border_width2=10;
+			   }else if(f_size_mm>40 && f_size_mm<=50){
+			   border_width=30;
+			   border_width2=15;
+			   }else if(f_size_mm>50 && f_size_mm<=66){
+			   border_width=40;
+			   border_width2=20;
+			   }else if(f_size_mm>66){
+			   border_width=55;
+			   border_width2=25;
+			   }
+			   $('div.mainhor').css({'border-image':'url("'+dert+f_code+'.jpg") 58 58 58 58 round round','border-style':'solid','border-width':''+ border_width+'px'});
+			   $('div.mainhor2').css({'border-image':'url("'+dert+f_code+'.jpg") 58 58 58 58 round round','border-style':'solid','border-width':''+ border_width2+'px'});
+			   $('#frame_name').val(f_code);
+			}
+			get_quality('');
+		}
+	$(document).ready(function(){
+		$('#hover2').click(function(){
+			show_mat('');			
+		});
+	})
+
+	function mount_select(mount_rate,mount_code,mount_name){
+		$('#mount_rate').val(mount_rate);
+		$('#mount_name').val(mount_code);
+		$('#mount_color').val(mount_name);
+		$('#mount_color').html(mount_name);
+		if(mount_code){
+		var dest= "<?php echo base_url()?>images/uploaded_pdf/mount/";
+        $('div#abc,div#abc2').css('background','url("'+dest+mount_code+'.jpg")');
+		var padding = $("#mount_width").val();	
+		padding = padding * 6
+		$('#abc2').css('padding', padding+'px');
+		}
+		get_quality('');	
+	}
+
+	function change_mount(mount){
+   		var change_mount  = mount*10;
+   		var change_mount2 = mount*6;
+   		$('.mount').show();
+   		$('#mount_sized').val(mount);
+		$("#abc").css('padding',change_mount);
+    	$("#abc2").css('padding',change_mount2);
+    	$('#mount_size').val(mount);
+    	get_quality('');
+    }
+
+
+    function selectOnlyThis(id) {
+	    for (var i = 0;i <=1 ; i++)
+	    {
+	        document.getElementById('check'+i).checked = false;
+	    }
+	    var selected_type = document.getElementById(id) ;
+		if(id == 'check1')
+		$('#glass_type').val('Acrylic');
+		else 
+		$('#glass_type').val('Regular');	
+		selected_type.checked = true;
+	    get_quality('');
+	}
+    
+        
+function addToCart()
+{  
+  var paper_surface = $('#surfaces').val();
+  var framed_art = $('#sizes').val();
+  var print = framed_art.split('X'); 
+  var print_width = print[0];
+  var print_height = print[1]; 
+  var final_frame_size = framed_art;
+  var only_print = $('#print_type').val();
+  var frame_name = '';
+  if(only_print == ''){
+  	frame_name = $('#frame_name').val();
+  }else{
+  	frame_name = 'Streched Canvas Gallary Wrap';	
+  }
+  var mount_name,mount_color,mat1_size;
+  if($('#mount_state').val() == 0 ){
+   	mount_name = 0;
+    mount_color= 0;
+    mat1_size  = 0;
+  }else{ 	
+  	 mount_name=$('#mount_name').val();
+  	mount_color=$('#mount_color').html();
+  	  mat1_size=$('#mount_width').val()+'"';
+  }
+  var glasses= $('#glass_type').html();
+  var glasses_coste= $('#glass_price').html();
+      glasses_coste = glasses_coste.split('.');		
+      glasses_coste = glasses_coste[1];
+  var total_price=$('.total_cost').html();
+      total_price = total_price.split('.');
+  	  total_price = total_price[1];	
+  var MountCost=$('#MountCost').html();
+      MountCost = MountCost.split('.');
+  	  MountCost = MountCost[1];
+  var FrameCost=$('#FrameCost').html();
+  	  FrameCost = FrameCost.split('.');		
+  	  FrameCost = FrameCost[1];
+  var price=$('#print_price').html();
+      price = price.split('.');
+  	  price = price[1];
+  var print_size=$('#print_h_w').val();
+  var image_id=$('#image_id').val();
+  var image_type= $('#surfaces').val();
+  var user_id=$('#user_id').val();
+  var mat1_color=$('#mount_color').html();
+  var image_namee=$('#image_filename').val();
+  var frameSize=$('#frame_sized').html();
+  //alert(paper_surface+','+framed_art+','+print_width+','+print_height+','+final_frame_size+','+only_print+','+frame_name+','+mount_name+','+mount_color+','+glasses+','+glasses_coste+','+total_price+','+MountCost+','+FrameCost+','+price+','+image_id+','+user_id+','+mat1_size+','+mat1_color+','+image_namee+','+frameSize+','+image_type+','+print_size);
+    $.ajax({
+        type: "POST",
+	    url: "<?=base_url()?>frontend/frameit_addtocart",
+        data: "glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print,
+		success:function(data)  
+    	{   
+    		swal({
+				  title: 'CART STATUS',
+				  text: 'Item Added Successfully',
+				  timer: 1000
+				})
+			setTimeout(function(){
+			$('.frame-step-header-container').show();
+			 feedback_of_addtocart(data);
+			 $('html, body').animate({ scrollTop: 0 }, 'fast');
+			},1000); 
+		}
+    });
+}
+	function feedback_of_addtocart(a){
+		$('.frame-step-header-text').html('<span class="glyphicon glyphicon-ok" style="margin-right:10px;"></span>Item Added To Cart.');
+	}
+
+	function change_wallcolor(class_get){
+		var get_class = $(class_get).attr('class');
+		var attribute = $('.'+get_class).css('background-color');	
+		$('#22').css('background-color',attribute);
+	}
+
+	function get_functions(){
+		get_quality('');
+	}
+</script>

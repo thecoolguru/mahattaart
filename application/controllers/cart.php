@@ -184,16 +184,16 @@ class Cart extends CI_Controller{
 			$search_text=$_GET['search_text'];
 
 		}
-
-	
+			$user_id = $this->session->userdata('userid');
+			$cart_data = $this->cart_model->get_usercart($user_id);
+	 		$values = array();
+	 		foreach ($cart_data as $datas) {
+	 			$values[] = $datas['path']; 
+	 		}
+		$data['cart_data'] = $values;	
 		$this->load->view('frontend/header');
-
 		$this->load->view('cart/check_out',$data);
-
 		$this->load->view('frontend/footer');
-
-
-
 	}
 
 	protected function CCAVENUE_DETAILTS()  {

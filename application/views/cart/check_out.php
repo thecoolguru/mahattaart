@@ -511,163 +511,141 @@ function price_details(){
 		 <div id="no-more-tables">
                            <table class="col-md-12 table-bordered table-striped table-condensed cf">
                 	<thead class="cf">
-                                                <tr>
-                                                                <th>S.No.</th>
-                                                                <th>Item</th>
-                                                               
-                                                               
-                                                                <th>Quantity</th>
-																  <th>Price</th>
-																<th>Tax(%)</th>
-																<th>Tax Amt.</th>
-                                                                <th >Total Price</th>
-																  
-																
-                                                </tr>
-                                </thead>
-								<tbody>
-								
-                              </tr>
-                              <?php if($this->session->userdata('userid')){ 
-							  $grand_total=$sub_total=$total_tax_amt=0;
-							 $qty_update_tbl=$_REQUEST['qty_update'];
-		$data=$this->cart_model->get_usercart($this->session->userdata('userid')); $subtotal=0; $i=1;$sr=1;
-		foreach($data as $image){?>
-                              <tr>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Item</th>
+                            <th>Quantity</th>
+							<th>Price</th>
+							<th>Tax(%)</th>
+							<th>Tax Amt.</th>
+                            <th >Total Price</th>
+						</tr>
+                    </thead>
+				<tbody>
+					</tr>
+                        <?php if($this->session->userdata('userid')){ 
+					    $grand_total=$sub_total=$total_tax_amt=0;
+						$qty_update_tbl=$_REQUEST['qty_update'];
+		                $data=$this->cart_model->get_usercart($this->session->userdata('userid'));     $subtotal=0; $i=1;$sr=1;
+		                    $k = 0;
+                        foreach($data as $image){
+                            if($cart_data[$k] == 0){
+                           $source = "http://static.mahattaart.com/158x158/media/".$image['image_name'];    
+                            }else{
+                           $url = base_url();
+                           $source = $url."application/views/frontend/upload_images/".$image['image_name'];
+                        }
+                        $k++;?>
+                            <tr>
 							  <td><?=$sr?></td>
                                   <td class="showforprintonly">
                                       <?php if($image['frame_or_print']==1){ ?>
-                <img
-				src="<?php echo base_url()?>600/<?= $image['frame_name'];?>" width="70" height="70" />
-                                      <?php 
-									  
-									  }
-									 if($image['frame_color']=='Streched Canvas Gallary Wrap'){?>
-                                <style>
-.container3D {
-	min-height: 180px;
-	position: relative;
-	min-width: 100%;
-}
-    
-    #cube {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    -webkit-transform-style: preserve-3d;
-    -moz-transform-style: preserve-3d;
-    -o-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    -webkit-transform: translateZ( -100px );
-    -moz-transform: translateZ( -100px );
-    -o-transform: translateZ( -100px );
-    transform: translateZ( -100px );
-    }
-    #cube .front {
-    -webkit-transform: translateZ( 100px );
-    -moz-transform: translateZ( 100px );
-    -o-transform: translateZ( 100px );
-    transform: translateZ( 100px );
-    }
-    #cube figure {
-    display: block;
-    position: absolute;
-    }
-    
-    figure {
-    margin: 0;
-    }
-    
-    #cube .right {
-    -webkit-transform: rotateY( 90deg ) translateZ( 100px );
-    -moz-transform: rotateY( 90deg ) translateZ( 100px );
-    -o-transform: rotateY( 90deg ) translateZ( 100px );
-    transform: skewY(45deg) translate(20px,-10px);
-    width: 20px;
-    height: 100%;
-    right: 0px;
-    top: 0;
-    }
-    
-    #cube .right {
-    background: #000;
-    }
-    #cube .bottom {
-    -webkit-transform: rotateX( -90deg ) translateZ( 100px );
-    -moz-transform: rotateX( -90deg ) translateZ( 100px );
-    -o-transform: rotateX( -90deg ) translateZ( 100px );
-    transform: skewX(45deg) translate(-11px,21px);
-    height: 20px;
-    width: 100%;
-    bottom: 1px;
-    }
-    #cube .bottom {
-    background: #ddd;
-    }
-    </style>
-                                <section class="container3D">
-                                    <div id="cube" class=" ">
-                                        <figure class="front">
-                                            <img src="http://static.mahattaart.com/media/<?= $image['image_name'];?>" class="img-responsive" />
-                                            <figure class="right"></figure>
-                                            <figure class="bottom"></figure>
-                                        </figure>
-                                    </div>
-                                </section>
-									 <?php
-									 } 
-									  
-									  else {
-									
-									  ?>
-                 <img src="http://static.mahattaart.com/media/<?= $image['image_name'];?>" class="img-responsive mainhor" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/<?=$image['frame_color']?>.jpg') 30 30 30 30 round round;background:url('<?=base_url()?>images/uploaded_pdf/mount/<?=$image['mount_color']?>.jpg') no-repeat scroll 0 0 / cover;" />
-            <?php }?>
-                                  </td>
-                                
-                                <td><span id="qty_btn<?=$image['cart_id']?>"><?= $image['qty'];?></span><button style="margin-left:10px;" id="edit_button<?=$image['cart_id']?>" onclick="edit_qty(<?=$image['cart_id']?>);"><span class="glyphicon glyphicon-pencil"></span>Edit</button>
-								<div id="divfor_update<?=$image['cart_id']?>" style="display:none;">
-								<form class="form-horizontal">
-								
-								
-    <div class="form-group">
-      
-        <div class="col-xs-10">
-						   <input type="text" style="width:30px" class="by_keyup_update" maxlength="4" name="qty_update" value="<?=$image['qty']?>" id="qty_update<?=$image['cart_id']?>" >
-
-		                       
-        </div>
-    </div>
-     
-    
-    <div class="form-group row">
-        <button onclick="choose_qty('<?=$image['cart_id']?>','<?=$image['image_name']?>','<?=$image['image_size']?>','<?=$image['image_print_type']?>','<?=$image['price']?>','<?=$image['qty']?>','<?=$image['frame_size']?>','<?=$image['frame_color']?>','<?=$image['mount_color']?>','<?=$image['glass_type']?>');" type="submit" class=""><span class="glyphicon glyphicon-refresh "></span>Update</button>
-		
-           <button type="submit" class=""><span class="	glyphicon glyphicon-remove"></span>Cancel</button>
-			 
-       
-		
-    </div>
-</form>
-								</div>
-								
-								</td>
-                                <td>
-                                    <?php if($image['updated_price']){?>
-            <img
-                src="<?=base_url()?>assets/images/rupee-img-price.gif" /> <?php echo $price_updt_ornot=$image['updated_price'];?>
-                <?php } else{?>
-                <img
-                    src="<?=base_url()?>assets/images/rupee-img-price.gif" /> <?php echo $price_updt_ornot=$image['price'];?>
+            <img src="<?php echo base_url()?>600/<?= $image['frame_name'];?>" width="70" height="70"/>
+                <?php } if($image['frame_color']=='Streched Canvas Gallary Wrap'){?>
+                    <style>
+                        .container3D {
+                        	min-height: 180px;
+                        	position: relative;
+                        	min-width: 100%;
+                        }
+                            
+                            #cube {
+                            width: 100%;
+                            height: 100%;
+                            position: absolute;
+                            -webkit-transform-style: preserve-3d;
+                            -moz-transform-style: preserve-3d;
+                            -o-transform-style: preserve-3d;
+                            transform-style: preserve-3d;
+                            -webkit-transform: translateZ( -100px );
+                            -moz-transform: translateZ( -100px );
+                            -o-transform: translateZ( -100px );
+                            transform: translateZ( -100px );
+                            }
+                            #cube .front {
+                            -webkit-transform: translateZ( 100px );
+                            -moz-transform: translateZ( 100px );
+                            -o-transform: translateZ( 100px );
+                            transform: translateZ( 100px );
+                            }
+                            #cube figure {
+                            display: block;
+                            position: absolute;
+                            }
+                            
+                            figure {
+                            margin: 0;
+                            }
+                            
+                            #cube .right {
+                            -webkit-transform: rotateY( 90deg ) translateZ( 100px );
+                            -moz-transform: rotateY( 90deg ) translateZ( 100px );
+                            -o-transform: rotateY( 90deg ) translateZ( 100px );
+                            transform: skewY(45deg) translate(20px,-10px);
+                            width: 20px;
+                            height: 100%;
+                            right: 0px;
+                            top: 0;
+                            }
+                            
+                            #cube .right {
+                            background: #000;
+                            }
+                            #cube .bottom {
+                            -webkit-transform: rotateX( -90deg ) translateZ( 100px );
+                            -moz-transform: rotateX( -90deg ) translateZ( 100px );
+                            -o-transform: rotateX( -90deg ) translateZ( 100px );
+                            transform: skewX(45deg) translate(-11px,21px);
+                            height: 20px;
+                            width: 100%;
+                            bottom: 1px;
+                            }
+                            #cube .bottom {
+                            background: #ddd;
+                            }
+                        </style>
+                            <section class="container3D">
+                                <div id="cube" class=" ">
+                                    <figure class="front">
+                                        <img src="<?= $source ?>" class="img-responsive" />
+                                        <figure class="right"></figure>
+                                        <figure class="bottom"></figure>
+                                    </figure>
+                                </div>
+                            </section>
+						<?php }else { ?>
+                 <img src="<?= $source?>" class="img-responsive mainhor" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/<?=$image['frame_color']?>.jpg') 30 30 30 30 round round;background:url('<?=base_url()?>images/uploaded_pdf/mount/<?=$image['mount_color']?>.jpg') no-repeat scroll 0 0 / cover;" />
                 <?php }?>
-                                   
-                                    
-                                </td>
-								<?php $cart_id=$image['cart_id'];?>
-								<td><?php echo $tax_prctg=$image['tax_goods'];?></td>
-								<td><?php $tax_amt=(($price_updt_ornot*$tax_prctg)/100);
-								echo $tax_amt_fnl=round($tax_amt,2);?></td>
-								<td><?php echo $total_price_per=$tax_amt_fnl+$price_updt_ornot;?></td>
-                              </tr>
+                </td>
+                                
+                <td><span id="qty_btn<?=$image['cart_id']?>"><?= $image['qty'];?></span><button style="margin-left:10px;" id="edit_button<?=$image['cart_id']?>" onclick="edit_qty(<?=$image['cart_id']?>);"><span class="glyphicon glyphicon-pencil"></span>Edit</button>
+				<div id="divfor_update<?=$image['cart_id']?>" style="display:none;">
+				<form class="form-horizontal">
+        		    <div class="form-group">
+                        <div class="col-xs-10">
+        				   <input type="text" style="width:30px" class="by_keyup_update" maxlength="4" name="qty_update" value="<?=$image['qty']?>" id="qty_update<?=$image['cart_id']?>" >
+                   </div>
+                </div>
+                    <div class="form-group row">
+                        <button onclick="choose_qty('<?=$image['cart_id']?>','<?=$image['image_name']?>','<?=$image['image_size']?>','<?=$image['image_print_type']?>','<?=$image['price']?>','<?=$image['qty']?>','<?=$image['frame_size']?>','<?=$image['frame_color']?>','<?=$image['mount_color']?>','<?=$image['glass_type']?>');" type="submit" class=""><span class="glyphicon glyphicon-refresh "></span>Update</button>
+                    <button type="submit" class=""><span class="	glyphicon glyphicon-remove"></span>Cancel</button>
+                    </div>
+                </form>
+			</div>
+		</td>
+    <td>
+    <?php if($image['updated_price']){?>
+        <img src="<?=base_url()?>assets/images/rupee-img-price.gif" /> <?php echo $price_updt_ornot=$image['updated_price'];?>
+            <?php } else{?>
+        <img src="<?=base_url()?>assets/images/rupee-img-price.gif" /> <?php echo $price_updt_ornot=$image['price'];?>
+        <?php }?>
+    </td>
+		<?php $cart_id=$image['cart_id'];?>
+				<td><?php echo $tax_prctg=$image['tax_goods'];?></td>
+				<td><?php $tax_amt=(($price_updt_ornot*$tax_prctg)/100);
+				echo $tax_amt_fnl=round($tax_amt,2);?></td>
+				<td><?php echo $total_price_per=$tax_amt_fnl+$price_updt_ornot;?></td>
+            </tr>
                 <?php 
 				 $sub_total=$sub_total + $price_updt_ornot;
 				 $total_tax_amt=$total_tax_amt + $tax_amt_fnl;
