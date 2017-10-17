@@ -1546,7 +1546,7 @@ extends the image around the sides and is more informal Choose the style that su
                 </div>
             </div>
             	<div class="col-md-9" id="selector-step">
-                    <p class="price" style="display: block;"><span class="old_price"></span><span class="total_cost"></span> </p>
+                    <p class="price" style="display: block;"><span class="old_price" style="font-size: 15px;color:Tomato;"></span><span class="total_cost"></span> </p>
                     <p class="bottom-bar-crop" style="display: block;" id="17"></p>
                     <p class="shipping-note">Ships in 1-2 days</p>
                    	<h5><a href='' onclick=" get_functions(''); price_details();return false;">Price Details</a> </h5>
@@ -2146,7 +2146,7 @@ background: #ddd;
 	
    $(document).ready(function(){
 		showTable('Basic');
-		$('#4,#5,#6,#7,#8,#9,#10,#12,#19,#22,#frame-it,#slider_explore,#myCanvas,#myCanvas2,#myCanvas3,#review_rating,#Recommended_item,#zoom_image,#large_img3,#large_img5,#large_img6,#large_img7,.close').hide();		
+		$('#4,#5,#6,#7,#8,#9,#10,#12,#19,#22,#frame-it,#slider_explore,#myCanvas,#myCanvas2,#myCanvas3,#review_rating,#Recommended_item,#zoom_image,#canvas3D,#large_img5,#large_img6,#large_img7,.close').hide();		
 		$('#museum').prop('checked','true');
 		$('#print_type').val('canvas_only');
 		paper_surface('1');

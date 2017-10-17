@@ -152,12 +152,9 @@
             <form action="#" id="" name="sign_id" method="post">
             	<p>
                 	<span>Email Address</span>
-                    <input type="text" id="email_regd" name="email_regd" 
-					value="<?php echo $forget_emlid;?>" >
+                    <input type="text" id="email_regd" name="email_regd" value="<?php echo $forget_emlid;?>" >
                 </p>
-                
-                
-                
+
                 <p class="tar">
                     
                     <input style="background: #0C6;

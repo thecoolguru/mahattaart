@@ -322,21 +322,15 @@ public function get_images_lightbox_gallery($lightbox_id,$limit,$start)
 	}
 	
 
-	public function check_email_exist($email)
-	{
-           //print_r($email);die;
-                 $rows=mysql_query("select * from tbl_registration where email_id='".$email."'");
-		 //$query=$this->db->get_where('tbl_registration',array('email_id'=>$email));
-                 //print_r($rows);die;
-                //die(num_rows($query));
-		if(mysql_num_rows($rows)>0)
-		{
-                    
+	public function check_email_exist($email)	{
+		//print_r($email);die;
+		$rows=mysql_query("select * from tbl_registration where email_id='".$email."'");
+		//$query=$this->db->get_where('tbl_registration',array('email_id'=>$email));
+		//print_r($rows);die;
+		//die(num_rows($query));
+		if(mysql_num_rows($rows)>0)	{
 			return 1;
-		}
-		else
-		{
-                  
+		}	else	{
 			return 0;
 		}
 	}
@@ -344,7 +338,6 @@ public function get_images_lightbox_gallery($lightbox_id,$limit,$start)
 
 public function update_passwrd($xrt){
 //echo $xrt;die;
-
 
 }
 

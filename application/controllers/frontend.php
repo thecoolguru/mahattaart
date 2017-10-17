@@ -22,16 +22,16 @@ class Frontend extends CI_Controller
 		$this->load->database();
 		/*parse_str( $_SERVER['QUERY_STRING'], $_REQUEST );
 		$CI = & get_instance();
-        $CI->config->load("facebook",TRUE);
-        $config = $CI->config->item('facebook');
-        $this->load->library('Facebook', $config);*/
+		$CI->config->load("facebook",TRUE);
+		$config = $CI->config->item('facebook');
+		$this->load->library('Facebook', $config);*/
 		//$this->load->model('Facebook_model');
-				// Load facebook library and pass associative array which contains appId and secret key
-$this->load->library('facebook', array('appId' => '819395858121513', 'secret' => 'deea14de0806284586299153cbc1a59b'));
+		// Load facebook library and pass associative array which contains appId and secret key
+		$this->load->library('facebook', array('appId' => '819395858121513', 'secret' => 'deea14de0806284586299153cbc1a59b'));
 
-// Get user's login information
-parse_str( $_SERVER['QUERY_STRING'], $_REQUEST );
-$this->user = $this->facebook->getUser();
+		// Get user's login information
+		parse_str( $_SERVER['QUERY_STRING'], $_REQUEST );
+		$this->user = $this->facebook->getUser();
 	}
 	
 	   public function photostoart()
@@ -40,16 +40,15 @@ $this->user = $this->facebook->getUser();
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/photostoart');
 		$this->load->view('frontend/footer');
-        if(!(isset($_SESSION['type'])) ){
-		$_SESSION['type'] = $_POST['category'];
-		}else{
-		  unset($_SESSION['type']);
+        if(!(isset($_SESSION['type'])) )	{
+			$_SESSION['type'] = $_POST['category'];
+		}	else{
+		 	unset($_SESSION['type']);
 		}
 		unset($_SESSION['page_id']);
 	}
 
-	public function photostoart_inner()
-	{
+	public function photostoart_inner()	{
  		$_SESSION['path'] = IMAGE_PATH;
  		$id = $_SESSION['user_info'];
 		$_SESSION['user'] = $id;
@@ -57,188 +56,181 @@ $this->user = $this->facebook->getUser();
 		$this->session->set_userdata('page',$data1); 
 		$result = $this->frontend_model->get_images($id);
 		if(isset($_SESSION['user'])){ 
-		$data['mount_name']=$this->frontend_model->get_mount_name_web_price();
-		$data['frame_cat']=$this->frontend_model->get_frame_cat_tbl_web_price();
-		$data['frame_sizze']=$this->frontend_model->get_frame_size();
-		$data['frame_color']=$this->frontend_model->get_frame_color_web_price();
-		$this->load->view('frontend/header');
-		$this->load->view('frontend/photostoart_inner',$data);
-		$this->load->view('frontend/footer');
-  		}else{
-  		echo "<script>window.location.href='photostoart';</script>"; 
+			$data['mount_name']=$this->frontend_model->get_mount_name_web_price();
+			$data['frame_cat']=$this->frontend_model->get_frame_cat_tbl_web_price();
+			$data['frame_sizze']=$this->frontend_model->get_frame_size();
+			$data['frame_color']=$this->frontend_model->get_frame_color_web_price();
+			$this->load->view('frontend/header');
+			$this->load->view('frontend/photostoart_inner',$data);
+			$this->load->view('frontend/footer');
+  		}	else{
+  			echo "<script>window.location.href='photostoart';</script>"; 
   		}
 		unset($_SESSION['type']);
 	}
 
+	public function get_web_frame_rate()	{
+		$frame=$this->input->post('frame');
+		$sql="select frame_rate from tbl_web_price where frame like '%".$frame."%'";
+		$rows=  mysql_query($sql);
+		$result=  mysql_fetch_assoc($rows);
+		echo $result['frame_rate'];
+	}
 
-		public function get_web_frame_rate(){
-			$frame=$this->input->post('frame');
-			$sql="select frame_rate from tbl_web_price where frame like '%".$frame."%'";
-			$rows=  mysql_query($sql);
-			$result=  mysql_fetch_assoc($rows);
-			echo $result['frame_rate'];
-		}
-        
-        
-         public function get_web_mount_rate(){
-           $mount=  str_replace(' ', '', $this->input->post('mount'));
-             
-	  $sql="select mount_rate from tbl_web_price where mount like '%".$mount."%'";
-	  $rows=  mysql_query($sql);
-          $result=  mysql_fetch_assoc($rows);
-          echo $result['mount_rate'];
-	  }
+	public function get_web_mount_rate()	{
+		$mount=  str_replace(' ', '', $this->input->post('mount'));
+		$sql="select mount_rate from tbl_web_price where mount like '%".$mount."%'";
+		$rows=  mysql_query($sql);
+		$result=  mysql_fetch_assoc($rows);
+		echo $result['mount_rate'];
+	}
          
-          public function get_web_glass_rate()
-	  {
-           $glass=  str_replace(' ', '', $this->input->post('glass'));
-             
-	  $sql="select glass_rate from tbl_web_price where glass like '%".$glass."%'";
-	  $rows=  mysql_query($sql);
-          $result=  mysql_fetch_assoc($rows);
-          echo $result['glass_rate'];
-	  }
+	public function get_web_glass_rate()	{
+		$glass=  str_replace(' ', '', $this->input->post('glass'));
+		$sql="select glass_rate from tbl_web_price where glass like '%".$glass."%'";
+		$rows=  mysql_query($sql);
+		$result=  mysql_fetch_assoc($rows);
+		echo $result['glass_rate'];
+	}
           
-	public function image_delete(){
-	$name = $_POST['name'];
-	$result = $this->frontend_model->delete_image($name);  
-	if($result)
-	  $status = 'Image deleted successfully';
-    else
-	  $status = 'Some Error Occur';	
-	echo json_encode($status);
+	public function image_delete()	{
+		$name = $_POST['name'];
+		$result = $this->frontend_model->delete_image($name);  
+		if($result)
+		$status = 'Image deleted successfully';
+		else
+		$status = 'Some Error Occur';	
+		echo json_encode($status);
 	}
 	
 	public function image_size(){
-	 if($_POST['url']){
-		$id = $_POST['session_id'];
-		$result = $this->frontend_model->get_images($id); 
-		$url = base_url();
-		for($i=0; $i<count($result); $i++){
-			$k = $_POST['url'].$result[$i]->image_name;
-			$image_dimention = getimagesize($k);	
-			$image_width = $image_dimention[0]; 
-			$image_height = $image_dimention[1];
-			$data[] = $result[$i]->image_name.'*'.$image_width.'x'.$image_height;
-		}
-	}else{
-		$image_dimention = getimagesize($_POST['src']);	
+		if($_POST['url']){
+			$id = $_POST['session_id'];
+			$result = $this->frontend_model->get_images($id); 
+			$url = base_url();
+			for($i=0; $i<count($result); $i++){
+				$k = $_POST['url'].$result[$i]->image_name;
+				$image_dimention = getimagesize($k);	
 				$image_width = $image_dimention[0]; 
-				$image_height = $image_dimention[1]; 
-				$data[] = $image_width.'x'.$image_height;
-	} 
+				$image_height = $image_dimention[1];
+				$data[] = $result[$i]->image_name.'*'.$image_width.'x'.$image_height;
+			}
+		}	else{
+			$image_dimention = getimagesize($_POST['src']);	
+			$image_width = $image_dimention[0]; 
+			$image_height = $image_dimention[1]; 
+			$data[] = $image_width.'x'.$image_height;
+		} 
 		echo json_encode($data);
 	}
 	
 
-	public function get_web_price_detail()
-	  {
+	public function get_web_price_detail()	{
 		$print_paper = $this->input->post('paper_type');
 		$glass_rate  = $this->input->post('type');
 		$result = $this->frontend_model->get_print_only($print_paper,$glass_rate);
 		echo $result[1][0]->glass_rate;
-	  } 
-	 
-	public function result(){
-	$image_dimention = getimagesize($_POST['newpath']);	
-	$imagewidth  = $image_dimention[0]; 
-	$imageheight = $image_dimention[1];
-	$image_dimention = getimagesize($_POST['src']);	
-	$image_width  = $image_dimention[0]; 
-	$image_height = $image_dimention[1];
-	$image_status = '';  
-	$max_width = $image_width/150;
-	$max_height= $image_height/150;
-	$size_array = array();
-	$surface = 1;
-	if($image_width >= $image_height){
-		$image_ratio = $image_height/$image_width; 
-		$image_alignment="horizontal";
-		if($surface==1){// canvas
-		$size_array[0]['height']=8*$image_ratio;
-        $size_array[0]['width']=8;
-        $size_array[1]['height']=10*$image_ratio;
-        $size_array[1]['width']=10;
-        $size_array[2]['height']=12*$image_ratio;
-        $size_array[2]['width']=12;
-        $size_array[3]['height']=16*$image_ratio;
-        $size_array[3]['width']=16;
-        $size_array[4]['height']=18*$image_ratio;
-        $size_array[4]['width']=18;
-        $size_array[5]['height']=20*$image_ratio;
-        $size_array[5]['width']=20;
-        $size_array[6]['height']=24*$image_ratio;
-        $size_array[6]['width']=24;
-        $size_array[7]['height']=28*$image_ratio;
-        $size_array[7]['width']=28;
-        $size_array[8]['height']=32*$image_ratio;
-        $size_array[8]['width']=32;
-        $size_array[9]['height']=36*$image_ratio;
-        $size_array[9]['width']=36;
-        $size_array[10]['height']=40*$image_ratio;
-        $size_array[10]['width']=40;
-        $size_array[11]['height']=44*$image_ratio;
-        $size_array[11]['width']=44;
-        $size_array[12]['height']=48*$image_ratio;
-        $size_array[12]['width']=48;
-        $size_array[13]['height']=50*$image_ratio;
-        $size_array[13]['width']=50;
-        $size_array[14]['height']=56*$image_ratio;
-        $size_array[14]['width']=56;
-        $size_array[15]['height']=60*$image_ratio;
-        $size_array[15]['width']=60;
-		}
-	 for($i=0;$i<=11;$i++){
-			if($size_array[$i]['width']<= $max_width && $size_array[$i]['height']<=$max_height ){
-			$data_rec[]=round($size_array[$i]['width']).'X'.round($size_array[$i]['height']);
-			}
-	 }
-	 $data_rec[]=$imagewidth.'X'.$imageheight;
-	 $data_rec[]=$max_width.'X'.$max_height;
-	 echo json_encode($data_rec);
-	 }
-	 else if($image_width<$image_height)
-	{ $image_ratio = $image_width/$image_height; 
-	    $size_array[0]['width']=8*$image_ratio;
-        $size_array[0]['height']=8;
-	    $size_array[1]['width']=10*$image_ratio;
-        $size_array[1]['height']=10;
-	    $size_array[2]['width']=12*$image_ratio;
-        $size_array[2]['height']=12;
-        $size_array[3]['width']=16*$image_ratio;
-        $size_array[3]['height']=16;
-        $size_array[4]['width']=18*$image_ratio;
-        $size_array[4]['height']=18;
-        $size_array[5]['width']=24*$image_ratio;
-        $size_array[5]['height']=24;
-        $size_array[6]['width']=30*$image_ratio;
-        $size_array[6]['height']=30;
-        $size_array[7]['width']=36*$image_ratio;
-        $size_array[7]['height']=36;
-        $size_array[8]['width']=44*$image_ratio;
-        $size_array[8]['height']=44;
-        $size_array[9]['width']=48*$image_ratio;
-        $size_array[9]['height']=48;
-        $size_array[10]['width']=50*$image_ratio;
-        $size_array[10]['height']=50;
-        $size_array[11]['width']=56*$image_ratio;
-        $size_array[11]['height']=56;
-        $size_array[12]['width']=60*$image_ratio;
-        $size_array[12]['height']=60;
+	}
 
-		 for($i=0;$i<=11;$i++){
-			if($size_array[$i]['width']<= $max_width && $size_array[$i]['height']<=$max_height ){
-			$data_rec[]=round($size_array[$i]['width']).'X'.round($size_array[$i]['height']);
+	public function result()	{
+		$image_dimention = getimagesize($_POST['newpath']);	
+		$imagewidth  = $image_dimention[0]; 
+		$imageheight = $image_dimention[1];
+		$image_dimention = getimagesize($_POST['src']);	
+		$image_width  = $image_dimention[0]; 
+		$image_height = $image_dimention[1];
+		$image_status = '';  
+		$max_width = $image_width/150;
+		$max_height= $image_height/150;
+		$size_array = array();
+		$surface = 1;
+		if($image_width >= $image_height)	{
+			$image_ratio = $image_height/$image_width; 
+			$image_alignment="horizontal";
+			if($surface==1)	{			// canvas
+				$size_array[0]['height']=8*$image_ratio;
+				$size_array[0]['width']=8;
+				$size_array[1]['height']=10*$image_ratio;
+				$size_array[1]['width']=10;
+				$size_array[2]['height']=12*$image_ratio;
+				$size_array[2]['width']=12;
+				$size_array[3]['height']=16*$image_ratio;
+				$size_array[3]['width']=16;
+				$size_array[4]['height']=18*$image_ratio;
+				$size_array[4]['width']=18;
+				$size_array[5]['height']=20*$image_ratio;
+				$size_array[5]['width']=20;
+				$size_array[6]['height']=24*$image_ratio;
+				$size_array[6]['width']=24;
+				$size_array[7]['height']=28*$image_ratio;
+				$size_array[7]['width']=28;
+				$size_array[8]['height']=32*$image_ratio;
+				$size_array[8]['width']=32;
+				$size_array[9]['height']=36*$image_ratio;
+				$size_array[9]['width']=36;
+				$size_array[10]['height']=40*$image_ratio;
+				$size_array[10]['width']=40;
+				$size_array[11]['height']=44*$image_ratio;
+				$size_array[11]['width']=44;
+				$size_array[12]['height']=48*$image_ratio;
+				$size_array[12]['width']=48;
+				$size_array[13]['height']=50*$image_ratio;
+				$size_array[13]['width']=50;
+				$size_array[14]['height']=56*$image_ratio;
+				$size_array[14]['width']=56;
+				$size_array[15]['height']=60*$image_ratio;
+				$size_array[15]['width']=60;
 			}
+			for($i=0;$i<=11;$i++)	{
+				if($size_array[$i]['width']<= $max_width && $size_array[$i]['height']<=$max_height )	{
+					$data_rec[]=round($size_array[$i]['width']).'X'.round($size_array[$i]['height']);
+				}
+			}
+			$data_rec[]=$imagewidth.'X'.$imageheight;
+			$data_rec[]=$max_width.'X'.$max_height;
+			echo json_encode($data_rec);
 		}
-		$data_rec[]=$imagewidth.'X'.$imageheight;
-		$data_rec[]=$max_width.'X'.$max_height;
-		echo json_encode($data_rec);
+		else if($image_width<$image_height)	{
+			$image_ratio = $image_width/$image_height; 
+			$size_array[0]['width']=8*$image_ratio;
+			$size_array[0]['height']=8;
+			$size_array[1]['width']=10*$image_ratio;
+			$size_array[1]['height']=10;
+			$size_array[2]['width']=12*$image_ratio;
+			$size_array[2]['height']=12;
+			$size_array[3]['width']=16*$image_ratio;
+			$size_array[3]['height']=16;
+			$size_array[4]['width']=18*$image_ratio;
+			$size_array[4]['height']=18;
+			$size_array[5]['width']=24*$image_ratio;
+			$size_array[5]['height']=24;
+			$size_array[6]['width']=30*$image_ratio;
+			$size_array[6]['height']=30;
+			$size_array[7]['width']=36*$image_ratio;
+			$size_array[7]['height']=36;
+			$size_array[8]['width']=44*$image_ratio;
+			$size_array[8]['height']=44;
+			$size_array[9]['width']=48*$image_ratio;
+			$size_array[9]['height']=48;
+			$size_array[10]['width']=50*$image_ratio;
+			$size_array[10]['height']=50;
+			$size_array[11]['width']=56*$image_ratio;
+			$size_array[11]['height']=56;
+			$size_array[12]['width']=60*$image_ratio;
+			$size_array[12]['height']=60;
+
+			for($i=0;$i<=11;$i++)	{
+				if($size_array[$i]['width']<= $max_width && $size_array[$i]['height']<=$max_height )	{
+					$data_rec[]=round($size_array[$i]['width']).'X'.round($size_array[$i]['height']);
+				}
+			}
+			$data_rec[]=$imagewidth.'X'.$imageheight;
+			$data_rec[]=$max_width.'X'.$max_height;
+			echo json_encode($data_rec);
 		}
-  
 	}
 	
- 	public function get_default(){
+ 	public function get_default()	{
  	    $frame = $this->input->post('frame');
  	    $mount = $this->input->post('mount');
  		$result = $this->frontend_model->get_default($frame,$mount);
@@ -247,196 +239,185 @@ $this->user = $this->facebook->getUser();
  		echo json_encode($data);
  	} 
 	
-	public function dropzone(){
-         if(!isset($_COOKIE['user_info'])){
-		$user_info = "user_info";
-		$info = $_SESSION['user_info'];
-		setcookie($user_info, $info, time() + (86400 * 30), "/"); // 86400 = 1 day
-		$session_id  = $_SESSION['user_info'];
-		}
-		else{
+	public function dropzone()	{
+		if(!isset($_COOKIE['user_info']))	{
+			$user_info = "user_info";
+			$info = $_SESSION['user_info'];
+			setcookie($user_info, $info, time() + (86400 * 30), "/"); // 86400 = 1 day
+			$session_id  = $_SESSION['user_info'];
+		}	else{
 			$session_id  = $_SESSION['user_info'];;
 		}
-		if (!empty($_FILES['file'])) {
-		for($i=0;$i<=count($_FILES['file']['name'])-1;$i++){
-		$file_extn = explode(".", strtolower($_FILES['file']['name'][$i]));	
-		$change_name[$i] = 'image'.uniqid(rand()).'.'.$file_extn[1];
-		$temp = $_FILES['file']['tmp_name'][$i];
-		$tmp_name = $_FILES['file']['tmp_name'][$i];
-		$image_name = $change_name[$i];
-		$image_type = $_FILES['file']['type'][$i];
-		$image_size = $_FILES['file']['size'][$i];
-	    $max_width=417;
-		$max_height=550;
-		$sourcefile = $temp;
-		$endfile = IMAGE_PATH.$image_name;
-		$type = $image_type;
-		switch($type){
-            	    case'image/png':
-            		$img = imagecreatefrompng($sourcefile);
-            		break;
-            		case'image/jpeg':
-            		$img = imagecreatefromjpeg($sourcefile);
-            		break;
-            		case'image/gif':
-            		$img = imagecreatefromgif($sourcefile);
-            		break;
-            		case'image/jpg':
-            		$img = imagecreatefromjpeg($sourcefile);
-            		break;
-            		default : 
-            		return 'Un supported format';
-            }
-            
-            $width = imagesx( $img );
-            $height = imagesy( $img );
-            
-            if ($width > $height) {
-                if($width < $max_width)
-            		$newwidth = $width;
-            	else
-                $newwidth = $max_width;	
-                $divisor = $width / $newwidth;
-                $newheight = floor( $height / $divisor);
-            }
-            else {
-            	 if($height < $max_height)
-                     $newheight = $height;
-                 else
-            		 $newheight =  $max_height;
-                $divisor = $height / $newheight;
-                $newwidth = floor( $width / $divisor );
-            }
-            // Create a new temporary image.
-            $tmpimg = imagecreatetruecolor( $newwidth, $newheight );
-            
-                imagealphablending($tmpimg, false);
-                imagesavealpha($tmpimg, true);
-            	
-            // Copy and resize old image into new image.
-            imagecopyresampled( $tmpimg, $img, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-            // Save thumbnail into a file.
-            //compressing the file
-            switch($type){
-            	case'image/png':
-            		imagepng($tmpimg, $endfile, 0);
-            		break;
-            	case'image/jpeg':
-            		imagejpeg($tmpimg, $endfile, 100);
-            		break;
-            	case'image/gif':
-            		imagegif($tmpimg, $endfile, 0);
-            		break;	
-            }
-            // release the memory
-               imagedestroy($tmpimg);
-               imagedestroy($img);
-               
-			   $data = array(
-        'image_name'=>$image_name,
-        'image_type'=>$image_type,
-        'image_path'=>$tmp_name,
-        'image_size'=> $image_size,
-        'session_id'=>$session_id
-        );
-			   
-    		if(move_uploaded_file($tmp_name, IMAGE_PATH.'original/'.$change_name[$i])){
-              $result =  $this->frontend_model->insert_image($data);
-              //$query = mysql_query("INSERT INTO add_images_table(image_name,image_type,image_path,image_size,session_id) VALUES('$image_name','$image_type','$tmp_name','$image_size','$session_id')");
-     		}
-    	}
-	}
-}
+		if (!empty($_FILES['file']))	{
+			for($i=0;$i<=count($_FILES['file']['name'])-1;$i++)	{
+				$file_extn = explode(".", strtolower($_FILES['file']['name'][$i]));	
+				$change_name[$i] = 'image'.uniqid(rand()).'.'.$file_extn[1];
+				$temp = $_FILES['file']['tmp_name'][$i];
+				$tmp_name = $_FILES['file']['tmp_name'][$i];
+				$image_name = $change_name[$i];
+				$image_type = $_FILES['file']['type'][$i];
+				$image_size = $_FILES['file']['size'][$i];
+				$max_width=417;
+				$max_height=550;
+				$sourcefile = $temp;
+				$endfile = IMAGE_PATH.$image_name;
+				$type = $image_type;
+				switch($type)	{
+					case'image/png':
+					$img = imagecreatefrompng($sourcefile);
+					break;
+					case'image/jpeg':
+					$img = imagecreatefromjpeg($sourcefile);
+					break;
+					case'image/gif':
+					$img = imagecreatefromgif($sourcefile);
+					break;
+					case'image/jpg':
+					$img = imagecreatefromjpeg($sourcefile);
+					break;
+					default : 
+					return 'Un supported format';
+				}
 
-	public function get_input_dimention(){
-		$image_dimention = getimagesize($_POST['newpath']);	
-		$imagewidth  = $image_dimention[0]; 
+				$width = imagesx( $img );
+				$height = imagesy( $img );
+
+				if ($width > $height) {
+					if($width < $max_width)
+					$newwidth = $width;
+					else
+					$newwidth = $max_width;	
+					$divisor = $width / $newwidth;
+					$newheight = floor( $height / $divisor);
+				}
+				else {
+					if($height < $max_height)
+					$newheight = $height;
+					else
+					$newheight =  $max_height;
+					$divisor = $height / $newheight;
+					$newwidth = floor( $width / $divisor );
+				}
+				// Create a new temporary image.
+				$tmpimg = imagecreatetruecolor( $newwidth, $newheight );
+
+				imagealphablending($tmpimg, false);
+				imagesavealpha($tmpimg, true);
+
+				// Copy and resize old image into new image.
+				imagecopyresampled( $tmpimg, $img, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+				// Save thumbnail into a file.
+				//compressing the file
+				switch($type)	{
+					case'image/png':
+					imagepng($tmpimg, $endfile, 0);
+					break;
+					case'image/jpeg':
+					imagejpeg($tmpimg, $endfile, 100);
+					break;
+					case'image/gif':
+					imagegif($tmpimg, $endfile, 0);
+					break;
+				}
+				// release the memory
+				imagedestroy($tmpimg);
+				imagedestroy($img);
+
+				$data = array(
+				'image_name'=>$image_name,
+				'image_type'=>$image_type,
+				'image_path'=>$tmp_name,
+				'image_size'=> $image_size,
+				'session_id'=>$session_id
+				);
+
+				if(move_uploaded_file($tmp_name, IMAGE_PATH.'original/'.$change_name[$i])){
+					$result =  $this->frontend_model->insert_image($data);
+					//$query = mysql_query("INSERT INTO add_images_table(image_name,image_type,image_path,image_size,session_id) VALUES('$image_name','$image_type','$tmp_name','$image_size','$session_id')");
+				}
+			}
+		}
+	}
+
+	public function get_input_dimention()	{
+		$image_dimention = getimagesize($_POST['newpath']);
+		$imagewidth  = $image_dimention[0];
 		$imageheight = $image_dimention[1];
 		$data = ''.$imagewidth.'X'.$imageheight;
 		echo json_encode($data);
 	}
 
-// End
-	public function get_web_price_detials()
-	  {
-            $print_paper=$this->input->post('print_paper');
-
-	 $quality_range=$this->input->post('quality');
-           
-	$sql="select rate from tbl_web_price where paper='".$print_paper."' and quality='".$quality_range."'";
-	  $rows=  mysql_query($sql);
-          $result=  mysql_fetch_assoc($rows);
-          echo $result['rate'];
-	  }
+	//End
+	public function get_web_price_detials()	{
+		$print_paper=$this->input->post('print_paper');
+		$quality_range=$this->input->post('quality');
+		$sql="select rate from tbl_web_price where paper='".$print_paper."' and quality='".$quality_range."'";
+		$rows=  mysql_query($sql);
+		$result=  mysql_fetch_assoc($rows);
+		echo $result['rate'];
+	}
 	  
-	public function clearence($value){
-
+	public function clearence($value)	{
 		$data['search_data']=$this->frontend_model->get_tbl_clearence($value);
-	$this->load->view('frontend/header');
+		$this->load->view('frontend/header');
 		$this->load->view('frontend/clearence',$data);
 		$this->load->view('frontend/footer');
 	}
-	  public function product_detail($filename,$size,$image_id){
-	//echo $filename;
-	
-	//$data['avl_glass']=$avl_glass;
-	$data['image_id']=$image_id;
-	$data['prod_details']=$this->frontend_model->get_prod_details($filename,$size);
-	$this->load->view('frontend/header');
+
+	public function product_detail($filename,$size,$image_id)	{
+		//echo $filename;
+		//$data['avl_glass']=$avl_glass;
+		$data['image_id']=$image_id;
+		$data['prod_details']=$this->frontend_model->get_prod_details($filename,$size);
+		$this->load->view('frontend/header');
 		$this->load->view('frontend/clearnce_detail',$data);
 		$this->load->view('frontend/footer');
-	
 	}
+
 	public function index() {
+		$search_api = "http://api.indiapicture.in/wallsnart/get_collection.php";
+		$opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
+		$context = stream_context_create($opts);
+		$search_data_raw = file_get_contents($search_api, false, $context);
+		$search_data = json_decode($search_data_raw,TRUE);
+		$data['api_collections']=$search_data;
+		$this->load->view('frontend/header_home',$data);
+		$this->load->view('frontend/homepage');
+		$this->load->view('frontend/footer');
+	}
 
-         $search_api = "http://api.indiapicture.in/wallsnart/get_collection.php";
-        
-        $opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
-        $context = stream_context_create($opts);
-        $search_data_raw = file_get_contents($search_api, false, $context);
-        $search_data = json_decode($search_data_raw,TRUE);
-            $data['api_collections']=$search_data;
- 
-	$this->load->view('frontend/header_home',$data);
-	$this->load->view('frontend/homepage');
-	$this->load->view('frontend/footer');
-}
-public function forget_mail() {
- $xrt['forget_emlid']=$_REQUEST['emailid'];
-//echo $xrt;die;
-  //$this->frontend_model->update_passwrd($xrt);
- //
-	$this->load->view('frontend/header');
-	$this->load->view('frontend/homepage');
-	$this->load->view('frontend/footer',$xrt);
-}
+	public function forget_mail() {
+		$xrt['forget_emlid']=$_REQUEST['emailid'];
+		//echo $xrt;die;
+		//$this->frontend_model->update_passwrd($xrt);
+		$this->load->view('frontend/header');
+		$this->load->view('frontend/homepage');
+		$this->load->view('frontend/footer',$xrt);
+	}
 
 
-public function fblogin() {
-$data['mode'] = "hello";
-	$this->load->view('frontend/header_home',$data);
-	$this->load->view('frontend/homepage',$data);
-	$this->load->view('frontend/footer');
-}
+	public function fblogin()	{
+		$data['mode'] = "hello";
+		$this->load->view('frontend/header_home',$data);
+		$this->load->view('frontend/homepage',$data);
+		$this->load->view('frontend/footer');
+	}
 
-// Logout from facebook
-public function fblogout() {
+	// Logout from facebook
+	public function fblogout() {
+		// Destroy session
+		session_destroy();
+		// Redirect to baseurl
+		redirect(base_url());
+	}
 
-// Destroy session
-session_destroy();
-
-// Redirect to baseurl
-redirect(base_url());
-}
-	public function about()
-	{
+	public function about()	{
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/about_wallsnart');
 		$this->load->view('frontend/footer');
 	}
         
-     public function rooms($offset=0)
-	{
+	public function rooms($offset=0)	{
 		$_SESSION['page_id'] = '6';
 		$per_page = 10;  
 		//$qry = "SELECT * FROM users ORDER BY `u_id` DESC";
@@ -453,23 +434,20 @@ redirect(base_url());
 		$this->data['per_page'] = $this->uri->segment(3);      
 		$this->data['offset'] = $offset ;
 		if($this->data['paginglinks']!= '') {
-		$this->data['pagermessage'] = 'Showing '.((($this->pagination->cur_page-1)*$this->pagination->per_page)+1).' to '.($this->pagination->cur_page*$this->pagination->per_page).' of '.$this->pagination->total_rows;
+			$this->data['pagermessage'] = 'Showing '.((($this->pagination->cur_page-1)*$this->pagination->per_page)+1).' to '.($this->pagination->cur_page*$this->pagination->per_page).' of '.$this->pagination->total_rows;
 		}   
 		$qry .= "limit {$per_page} offset {$offset} ";
-		 
 		$data["sub_val"] = $this->frontend_model->get_header_images_inner(6,0,0);
-	
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/room',$data);
 		$this->load->view('frontend/footer');
 		unset($_SESSION['page_id']);
 	}
         
-         public function places($offset=0)
-	{
+	public function places($offset=0)	{
 		$_SESSION['page_id'] = '7';
 		$per_page = 10; 
-	    $offset = ($this->uri->segment(3) != '' ? $this->uri->segment(3):0);
+		$offset = ($this->uri->segment(3) != '' ? $this->uri->segment(3):0);
 		$config["total_rows"] = $this->frontend_model->get_header_images_count(7);
 		$config['per_page']= $per_page;
 		$config['first_link'] = 'First';
@@ -482,28 +460,23 @@ redirect(base_url());
 		$this->data['per_page'] = $this->uri->segment(3);      
 		$this->data['offset'] = $offset ;
 		if($this->data['paginglinks']!= '') {
-		$this->data['pagermessage'] = 'Showing '.((($this->pagination->cur_page-1)*$this->pagination->per_page)+1).' to '.($this->pagination->cur_page*$this->pagination->per_page).' of '.$this->pagination->total_rows;
+			$this->data['pagermessage'] = 'Showing '.((($this->pagination->cur_page-1)*$this->pagination->per_page)+1).' to '.($this->pagination->cur_page*$this->pagination->per_page).' of '.$this->pagination->total_rows;
 		}   
 		$qry .= "limit {$per_page} offset {$offset} ";
-		 
 		$data["sub_val"] = $this->frontend_model->get_header_images_inner(7,$config["per_page"], $offset); 
-	
-	
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/places',$data);
 		$this->load->view('frontend/footer');
 		unset($_SESSION['page_id']);
 	}
 	
-	     public function searchframe()
-	{
+	public function searchframe()	{
 		$this->load->view('frontend/header_frame');
 		$this->load->view('search/search_view-frame');
 		$this->load->view('frontend/footer');
 	}
-        
-         public function themes($offset=0)
-	{
+
+	public function themes($offset=0)	{
 		$_SESSION['page_id'] = '8';
 		$per_page = 10; 
 		$offset = ($this->uri->segment(3) != '' ? $this->uri->segment(3):0);
@@ -519,10 +492,9 @@ redirect(base_url());
 		$this->data['per_page'] = $this->uri->segment(3);      
 		$this->data['offset'] = $offset ;
 		if($this->data['paginglinks']!= '') {
-		$this->data['pagermessage'] = 'Showing '.((($this->pagination->cur_page-1)*$this->pagination->per_page)+1).' to '.($this->pagination->cur_page*$this->pagination->per_page).' of '.$this->pagination->total_rows;
+			$this->data['pagermessage'] = 'Showing '.((($this->pagination->cur_page-1)*$this->pagination->per_page)+1).' to '.($this->pagination->cur_page*$this->pagination->per_page).' of '.$this->pagination->total_rows;
 		}   
 		$qry .= "limit {$per_page} offset {$offset} ";
-		 
 		$data["sub_val"] = $this->frontend_model->get_header_images_inner(8,$config["per_page"], $offset); 
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/themes',$data);
@@ -531,11 +503,9 @@ redirect(base_url());
 	}
 
 
-         public function art_advisory($offset=0)
-	{
-	
-$per_page = 10; 
-	 $offset = ($this->uri->segment(3) != '' ? $this->uri->segment(3):0);
+	public function art_advisory($offset=0)	{
+		$per_page = 10; 
+		$offset = ($this->uri->segment(3) != '' ? $this->uri->segment(3):0);
 		$config["total_rows"] = $this->frontend_model->get_header_images_count(8);
 		$config['per_page']= $per_page;
 		$config['first_link'] = 'First';
@@ -548,340 +518,230 @@ $per_page = 10;
 		$this->data['per_page'] = $this->uri->segment(3);      
 		$this->data['offset'] = $offset ;
 		if($this->data['paginglinks']!= '') {
-		$this->data['pagermessage'] = 'Showing '.((($this->pagination->cur_page-1)*$this->pagination->per_page)+1).' to '.($this->pagination->cur_page*$this->pagination->per_page).' of '.$this->pagination->total_rows;
+			$this->data['pagermessage'] = 'Showing '.((($this->pagination->cur_page-1)*$this->pagination->per_page)+1).' to '.($this->pagination->cur_page*$this->pagination->per_page).' of '.$this->pagination->total_rows;
 		}   
 		$qry .= "limit {$per_page} offset {$offset} ";
-		 
 		$data["sub_val"] = $this->frontend_model->get_header_images_inner(8,$config["per_page"], $offset); 
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/art_advisory',$data);
 		$this->load->view('frontend/footer');
 	}
 	
-		public function promooffer()
-	{
+	public function promooffer()	{
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/promooffer');
 		$this->load->view('frontend/footer');
 	}
-	
-	public function returns()
-	{
+
+	public function returns()	{
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/returan');
 		$this->load->view('frontend/footer');
 	}
 	
 	
-	public function updateforpassword(){
+	public function updateforpassword()	{
+		$email_regd=$_POST['email_regd'];
+		//echo trim($email_regd);
+		$maill=$this->frontend_model->check_email_exist(trim($email_regd));
+		$verify_email=$this->frontend_model->verify_email($email_regd);
+		$first=$verify_email->first_name;
+		$last=$verify_email->last_name;
 
-    $email_regd=$_POST['email_regd'];
-   
-
-  //echo trim($email_regd);
-   
-$maill=$this->frontend_model->check_email_exist(trim($email_regd));
-        $verify_email=$this->frontend_model->verify_email($email_regd);
-       $first=$verify_email->first_name;
-       $last=$verify_email->last_name;
-	   
-if(!empty($first)||!empty($last)){
-   $first_name=$first;
-    $last_name=$last;
-   }
-else{
-  $first_name=$email_regd;
-
-}
-  // echo $email_regd;
-     //print_r($username);die;
-	 //echo $maill;
-		if($maill==1)
-		{
+		if(!empty($first)||!empty($last))	{
+			$first_name=$first;
+			$last_name=$last;
+		}	else{
+			$first_name=$email_regd;
+		}
+		// echo $email_regd;
+		//print_r($username);die;
+		//echo $maill;
+		if($maill==1)	{
 			//$imgfb=base_url();
-			
 			//$user_name=$this->frontend_model->get_user_details($email_regd);
-			
- 
-
-$salt = "498#2D83B631%3800EBD!801600D*7E3CC13";
-   $password = hash('sha512', $salt.$firgetemailid);
- 
-$pwrurl =base_url()."index.php/user/update_password?emailid=$email_regd&q=".$password;
-//echo $pwrurl;
-
+			$salt = "498#2D83B631%3800EBD!801600D*7E3CC13";
+			$password = hash('sha512', $salt.$firgetemailid);
+			$pwrurl =base_url()."index.php/user/update_password?emailid=$email_regd&q=".$password;
+			//echo $pwrurl;
 			$message='<!DOCTYPE HTML>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title> password forget </title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/font-awesome.css" rel="stylesheet">
-</head>
-<body>
-<style>
-table td a.a_link{font-size:3em; padding:0 20px}
-.btn-instagram{color:#3f729b}
-.btn-facebook{color:#3b5998}
-.btn-linkedin{color:#007bb6}
-</style>
-
-<table id="Table_01" style="margin:0 auto" width="750" cellspacing="0" cellpadding="0" border="0">
-    <tr>
-    	<td colspan="4">
-        	<p><img src="'.base_url().'images/mahattaArt_logo.png" width="300"></p>
-        </td>
-    </tr>
-    <tr>
-    	<td colspan="4">
-          <p>Hi '.$first_name.' '.$last_name.'</p>
-        </td>
-    </tr>
-    <tr>
-    	<td colspan="4">
-        	<p>We received a request to reset your Mahatta Art password.</p>
-        </td>
-    </tr>
-    <tr>
-    	<td colspan="4">
-        	<p><a href="'.$pwrurl.'">Click here</a> to change your password.</p>
-        </td>
-    </tr>
-   
-    <tr>
-    	<td colspan="4">
-            <p>For any query feel free to contact us: +91-8800639075   or mail us: info@mahattaart.com</p>
-            <p>To know more about us <a href="'.base_url().'">click here</a></p>
-        </td>
-    </tr>
-    <tr>
-    	<td colspan="4">
-        	<p>Happy exploring!</p>
-        </td>
-    </tr>
-    <tr>
-    	<td style="vertical-align:top" width="150">
-	        <p>Mahatta Art Team</p>
-        </td>
-        <td>
-			<a href="https://www.facebook.com/mahattaart"><img src="'.base_url().'images/facebook.jpg" width="50px" height="50px"></a>
-			<a href="https://www.facebook.com/mahattaart"><img src="'.base_url().'images/linkdin.jpg" width="50px" height="50px"></a>
-			<a href="https://twitter.com/mahattaart"><img src="'.base_url().'images/twitter.jpg" width="50px" height="50px"></a>
-        </td>
-    </tr>
-    <tr>
-    	<td colspan="4" style="text-align:center">
-        	<p>Having trouble seeing this email? Visit our <a href="'.base_url().'">Website</a></p>
-        </td>
-    </tr>
-</table>
-</body>
-</html>
-';
-         
-        
-      $this->email->clear(TRUE);
-         $this->email->from('info@mahattaart.com', 'MahattaArt');
+			<html>
+				<head>
+					<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+					<title> password forget </title>
+					<link href="css/bootstrap.min.css" rel="stylesheet">
+					<link href="css/font-awesome.css" rel="stylesheet">
+				</head>
+				<body>
+					<style>
+						table td a.a_link{font-size:3em; padding:0 20px}
+						.btn-instagram{color:#3f729b}
+						.btn-facebook{color:#3b5998}
+						.btn-linkedin{color:#007bb6}
+					</style>
+					<table id="Table_01" style="margin:0 auto" width="750" cellspacing="0" cellpadding="0" border="0">
+						<tr>
+							<td colspan="4"><p><img src="'.base_url().'images/mahattaArt_logo.png" width="300"></p></td>
+						</tr>
+						<tr>
+							<td colspan="4"><p>Hi '.$first_name.' '.$last_name.'</p></td>
+						</tr>
+						<tr>
+							<td colspan="4"><p>We received a request to reset your Mahatta Art password.</p></td>
+						</tr>
+						<tr>
+							<td colspan="4"><p><a href="'.$pwrurl.'">Click here</a> to change your password.</p></td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<p>For any query feel free to contact us: +91-8800639075   or mail us: info@mahattaart.com</p>
+								<p>To know more about us <a href="'.base_url().'">click here</a></p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4"><p>Happy exploring!</p></td>
+						</tr>
+						<tr>
+							<td style="vertical-align:top" width="150"><p>Mahatta Art Team</p></td>
+							<td>
+								<a href="https://www.facebook.com/mahattaart"><img src="'.base_url().'images/facebook.jpg" width="50px" height="50px"></a>
+								<a href="https://www.facebook.com/mahattaart"><img src="'.base_url().'images/linkdin.jpg" width="50px" height="50px"></a>
+								<a href="https://twitter.com/mahattaart"><img src="'.base_url().'images/twitter.jpg" width="50px" height="50px"></a>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4" style="text-align:center"><p>Having trouble seeing this email? Visit our <a href="'.base_url().'">Website</a></p></td>
+						</tr>
+					</table>
+				</body>
+			</html>';
+			$this->email->clear(TRUE);
+			$this->email->from('info@mahattaart.com', 'MahattaArt');
 			$this->email->to(trim($email_regd));
 			$this->email->subject('Welcome to Mahatta Art');
 			$this->email->message($message);
 			$send=$this->email->send();
-			if($send){
-						//print "1";
-                        echo "Check Your mail box.";
-                         //echo $email_regd;       
-                             }
-                     else{
-                  echo json_encode(array("result"=>"0"));
-                          }
-		
-                
+			if($send)	{
+				//print "1";
+				echo "Check Your mail box.";
+				//echo $email_regd;       
+			}	else{
+				echo json_encode(array("result"=>"0"));
+			}
+		}	else	{
+			echo "<br>This email is not registered.";
 		}
-		else
-		{
-		echo "<br>This email is not registered.";
-		
-		}
+	}
 
-
-
-}
-
-
-
-
-
-
-	 public function curators()
-	{
+	public function curators()	{
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/curators');
 		$this->load->view('frontend/footer');
 	}
-	
-	
-	
 
-	public function register()
-	{
- 
-$maill=$this->frontend_model->check_email_exist($this->input->post('email_reg'));
-        
-		if($maill==1)
-		{
+	public function register()	{
+		$maill=$this->frontend_model->check_email_exist($this->input->post('email_reg'));
+		if($maill==1)	{
 			echo "<br>This email is already registered.";
-		}
-		else
-		{
+		}	else	{
 			$email=$this->input->post('email_reg');
 			$password=$this->input->post('passwordd');
-		        $quote="'";
-                        
+			$quote="'";
 			$this->frontend_model->insert_registeration($email,$password);
 			//$this->frontend_model->update_user_status($user_id);
 			//sent email to Admin
 			$messages='<!DOCTYPE HTML>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title> signup email</title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/font-awesome.css" rel="stylesheet">
-</head>
-<body>
-<style>
-table td a.a_link{font-size:3em; padding:0 20px}
-.btn-instagram{color:#3f729b}
-.btn-facebook{color:#3b5998}
-.btn-linkedin{color:#007bb6}
-</style>
-
-<table id="Table_01" width="750" border="0" cellpadding="0" cellspacing="0"  style="margin:0 auto">
-	<tr>
-    	<td colspan="4">
-        	<p><img src="'.base_url().'images/mahattaArt_logo.png" width="300"/></p>
-        </td>
-    </tr>
-    <tr>
-    	<td colspan="4">
-        	<p>Hi '.$email.',</p>
-        </td>
-    </tr>
-    <tr>
-    	<td colspan="4">
-        	<p> Thank you for registering with Mahatta Art, one of the India '.$quote.'s finest online art gallery providing one stop solution for Wall Art.</p>
-        </td>
-    </tr>
-    <tr>
-    	<td colspan="4">
-        	<p>Your login details:</p>
-        </td>
-    </tr>
-    <tr>
-    	<td>
-        	<p>Email address: '.$email.' </p>
-        </td>
-    </tr>
-    <tr>
-    	<td colspan="4">
-        	<p>Password:'.$password.'</p>
-        </td>
-    </tr>
-    <tr>
-    	<td colspan="4">
-        	<p>Welcome to Mahatta Art </p>
-        </td>
-    </tr>
-    <tr>
-    	<td colspan="4">
-        	<p>Browse through the largest repository of artwork from more than 550+ museum collections consists of more than 5 Lacs artworks in Fine Art paintings, worldwide photography, Vintage Posters and Illustrations. </p>
-        </td>
-    </tr>
-    <tr>
-    	<td colspan="4">
-        	<p><a href="'.base_url().'">Explore now</a></p>
-        </td>
-    </tr>
-    <tr>
-    	<td  colspan="4">
-        	<p>Why Us?</p>
-        </td>
-    </tr>
-    <tr>
-    	<td colspan="4">
-        	<ul>
-					<li>
-		            	Licensed Art 
-                    </li>
-					<li>                
-						Runs on a Reprint model making art less expensive than original 
-					</li>
-					<li>                
-						Free Art advisory services 
-					</li>
-					<li>                
-						In-house Framing & Printing facilities 
-					</li>
-					<li>                
-						Ships in 48 business hours
-					</li>
-					<li>                
-						Strong packaging 
-					</li>
-					<li>                
-						100% Satisfaction Guaranteed
-					</li>            
-			</ul>
-        </td>
-    </tr>
-    <tr>
-    	<td colspan="4">
-            <p>For any query feel free to contact us: +91-8800639075 or mail us: <a href="info@mahattaart.com">info@mahattaart.com</a></p>
-            <p>To know more about us <a href="'.base_url().'">click here</a></p>
-        </td>
-    </tr>
-    <tr>
-    	<td colspan="4">
-        	<p>Happy exploring!</p>
-        </td>
-    </tr>
-    <tr>
-    	<td width="150" style="vertical-align:top">
-	        <p>Mahatta Art Team</p>
-        </td>
-        <td>
+			<html>
+				<head>
+					<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+					<title> signup email</title>
+					<link href="css/bootstrap.min.css" rel="stylesheet">
+					<link href="css/font-awesome.css" rel="stylesheet">
+				</head>
+			<body>
+			<style>
+				table td a.a_link{font-size:3em; padding:0 20px}
+				.btn-instagram{color:#3f729b}
+				.btn-facebook{color:#3b5998}
+				.btn-linkedin{color:#007bb6}
+			</style>
+			<table id="Table_01" width="750" border="0" cellpadding="0" cellspacing="0"  style="margin:0 auto">
+			<tr>
+				<td colspan="4"><p><img src="'.base_url().'images/mahattaArt_logo.png" width="300"/></p></td>
+			</tr>
+			<tr>
+				<td colspan="4"><p>Hi '.$email.',</p></td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<p>Thank you for registering with Mahatta Art, one of the India '.$quote.'s finest online art gallery providing one stop solution for Wall Art.</p>
+				</td>
+			</tr>
+			<tr><td colspan="4"><p>Your login details:</p></td></tr>
+			<tr><td><p>Email address: '.$email.' </p></td></tr>
+			<tr><td colspan="4"><p>Password:'.$password.'</p></td></tr>
+			<tr><td colspan="4"><p>Welcome to Mahatta Art </p></td></tr>
+			<tr>
+			<td colspan="4">
+			<p>Browse through the largest repository of artwork from more than 550+ museum collections consists of more than 5 Lacs artworks in Fine Art paintings, worldwide photography, Vintage Posters and Illustrations. </p>
+			</td>
+			</tr>
+			<tr><td colspan="4"><p><a href="'.base_url().'">Explore now</a></p></td></tr>
+			<tr><td colspan="4"><p>Why Us?</p></td></tr>
+			<tr>
+				<td colspan="4">
+					<ul>
+						<li>Licensed Art</li>
+						<li>Runs on a Reprint model making art less expensive than original</li>
+						<li>Free Art advisory services</li>
+						<li>In-house Framing & Printing facilities</li>
+						<li>Ships in 48 business hours</li>
+						<li>Strong packaging</li>
+						<li>100% Satisfaction Guaranteed</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<p>For any query feel free to contact us: +91-8800639075 or mail us: <a href="info@mahattaart.com">info@mahattaart.com</a></p>
+					<p>To know more about us <a href="'.base_url().'">click here</a></p>
+				</td>
+			</tr>
+			<tr>
+			<td colspan="4"><p>Happy exploring!</p></td>
+			</tr>
+			<tr>
+			<td width="150" style="vertical-align:top"><p>Mahatta Art Team</p></td>
+			<td>
 			<a href="https://www.facebook.com/mahattaart"><img src="'.base_url().'images/facebook.jpg" width="50px" height="50px"></a>
 			<a href="https://www.facebook.com/mahattaart"><img src="'.base_url().'images/linkdin.jpg" width="50px" height="50px"></a>
 			<a href="https://twitter.com/mahattaart"><img src="'.base_url().'images/twitter.jpg" width="50px" height="50px"></a>
-			
-        </td>
-    </tr>
-    <tr>
-    	<td colspan="4" style="text-align:center">
-        	<p>Having trouble seeing this email? Visit our <a href="'.base_url().'">Website</a></p>
-        </td>
-    </tr>
-</table>
-</body>
-</html>
-';      
-        $this->email->clear(TRUE);
-         $this->email->from('info@mahattart.com', 'MahattaArt');
-			$this->email->to(trim($email));
+			</td>
+			</tr>
+			<tr>
+			<td colspan="4" style="text-align:center">
+			<p>Having trouble seeing this email? Visit our <a href="'.base_url().'">Website</a></p>
+			</td>
+			</tr>
+			</table>
+			</body>
+			</html>';
+			$this->email->clear(TRUE);
+			$this->email->from('info@mahattaart.com', 'MahattaArt');
+			$this->email->to($email);
+			$this->email->cc('operations@mahattaart.com');
 			$this->email->subject('Welcome to Mahatta Art');
 			$this->email->message($messages);
 			$send=$this->email->send();
-     
-			if($send){
-						//print "1";
-						//echo  $email;
-                        echo json_encode(array("result"=>"1"));
-                                     
-                             }
-                     else{
-					// print "0";
-                  echo json_encode(array("result"=>"0"));
-                          }
+
+			if($send)	{
+			//print "1";
+			//echo  $email;
+			echo json_encode(array("result"=>"1"));
+			}	else{
+			// print "0";
+			echo json_encode(array("result"=>"0"));
+			}
 		}
 	}
 
@@ -945,8 +805,9 @@ table td a.a_link{font-size:3em; padding:0 20px}
 		$user=$this->frontend_model->verify_email($email);
 		if($user)
 		{
-			$this->email->from('admin@wallsnart.com', 'Wallsnart');
+			$this->email->from('info@mahattaart.com', 'MahattaArt');
 			$this->email->to($email);
+			$this->email->cc('operations@mahattaart.com');
 			$this->email->subject('Your Password');
 			$this->email->message('Your Password is :'.$user->password);
 			$this->email->send();
@@ -963,80 +824,51 @@ table td a.a_link{font-size:3em; padding:0 20px}
 
 	//}
 
-public function mail_registration_confirm_front(){
-$email_reg = $_POST['email_reg'];
+	public function mail_registration_confirm_front(){
+		$email_reg = $_POST['email_reg'];
 
-//echo $email_reg ;die;
-if($email_reg <>''){
-$frntfrgtpwd='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>india</title>
-<style> p { text-align:justify; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;font-size:14px;} </style>
-</head>
-
-<body style="background:#f2f2f2; font-size:14px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;">
-<table width="900" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td bgcolor="#ede2ea"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      
-    </table></td>
-  </tr>
-  
-   <tr>
-    <td> <p> <strong> Dear Customer ! </strong> </p>  </td>
-  </tr>
-  
-    <tr>
-    <td> 
-<p> Thank you! For subscribing on Mahatta Art.com </p> 
-
-<p> We will keep you updated on our exclusive and latest collections! </p>
-
-Mahatta Art is an online art gallery having 5.5 Lakh Images including Photography, Paintings, Poster & Illustrations from world renowned Collections and Artists. The content ranges from Abstracts to Nature photography, Legendary to Amateur artists, Heritage to Modern Indian art, Modern to Contemporary art, Humorous quotes to Serious & Hollywood Vintage posters and so on. 
-
-<p>  Click here to know more about us  <a style="text-decoration:none;" href="'.base_url().'index.php/frontend/index"> link  </a> </p> 
-<p>  For any queries  email us at <a style="text-decoration:none;" href="mailto:info@wallsnart.com"> info@wallsnart.com </a>  or contact us at </p> 
-<p> <strong> Regards, </strong>  </p> 
-<p> <strong> Mahattaart Team </strong>  </p> 
-
-<p> <a href="#"> <img style="padding: 0px 8px 0px 0px;" src="http://dev.wallsnart.com/assets/img/facbook.png" /> </a> <a href="#"> <img src="http://dev.wallsnart.com/assets/img/google.png" /> </a></p>
-
-
- </td>
-  </tr>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-</table>
-</body>
-</html>
-';
-         
-        
-      $to=$email_reg;   
-$headers  = 'MIME-Version: 1.0' . "\r\n";
-$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-$headers .= 'From:Wallsnart <info@wallsnart.com>' . "\r\n";
-$subject = 'Registration confirmation';
-        $send=mail($email_reg,$subject,$frntfrgtpwd,$headers);
-
-
-}
-
-}
+		//echo $email_reg ;die;
+		if($email_reg <>''){
+			$frntfrgtpwd='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+			<html xmlns="http://www.w3.org/1999/xhtml">
+			<head>
+				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+				<title>india</title>
+				<style>
+					p { text-align:justify;	font-family: "Helvetica Neue",	Helvetica,	Arial,	sans-serif;	font-size:14px;	}
+				</style>
+			</head>
+			<body style="background:#f2f2f2;	font-size:14px;	font-family: "Helvetica Neue",	Helvetica,	Arial,	sans-serif;">
+				<table width="900" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td bgcolor="#ede2ea"><table width="100%" border="0" cellspacing="0" cellpadding="0"></td>
+				</tr>
+				<tr><td><p><strong> Dear Customer ! </strong></p></td>
+				</tr>
+				<tr>
+				<td> 
+				<p>Thank you! For subscribing on Mahatta Art.com</p> 
+				<p> We will keep you updated on our exclusive and latest collections! </p>
+				Mahatta Art is an online art gallery having 5.5 Lakh Images including Photography, Paintings, Poster & Illustrations from world renowned Collections and Artists. The content ranges from Abstracts to Nature photography, Legendary to Amateur artists, Heritage to Modern Indian art, Modern to Contemporary art, Humorous quotes to Serious & Hollywood Vintage posters and so on. 
+				<p>  Click here to know more about us  <a style="text-decoration:none;" href="'.base_url().'index.php/frontend/index"> link  </a> </p> 
+				<p>  For any queries  email us at <a style="text-decoration:none;" href="mailto:info@mahattaart.com "> info@mahattaart.com </a>  or contact us at </p> 
+				<p> <strong> Regards, </strong>  </p> 
+				<p> <strong> Mahattaart Team </strong>  </p> 
+				<p><a href="#"> <img style="padding: 0px 8px 0px 0px;" src="'.base_url().'assets/img/facbook.png" /> </a> <a href="#"> <img src="'.base_url().'assets/img/google.png" /> </a></p>
+				</td>
+				</tr>
+				</table>
+			</body>
+			</html>
+			';
+			$to=$email_reg;   
+			$headers  = 'MIME-Version: 1.0' . "\r\n";
+			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+			$headers .= 'From:Mahattaart <info@mahattaart.com>' . "\r\n";
+			$subject = 'Registration confirmation';
+			$send=mail($email_reg,$subject,$frntfrgtpwd,$headers);
+		}
+	}
 
 	public function career()
 	{
@@ -1566,7 +1398,7 @@ $frntfrgtpwd='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "ht
 	
 	<p> At your comfort , now you may login to mahattaart.com,change your temporary login password and explore the mahatta Art gallery!
 	
-	 <p>  For any queries email us at <a href="mailto:info@wallsnart.com"> info@wallsnart.com </a>  or contact us at  </p> 
+	 <p>  For any queries email us at <a href="mailto:info@mahattaart.com"> info@mahattaart.com </a>  or contact us at  </p> 
 <p>   KEEP  EXPLORING WITH US !  </p> 
 <p> <strong>  Regards,  </strong> </p> 
 
@@ -1575,7 +1407,7 @@ $frntfrgtpwd='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "ht
 <p> <strong> Mahatta Art Team  </strong> </p> 
 
 
-<p> <a href="#"> <img style="padding: 0px 8px 0px 0px;" src="http://dev.wallsnart.com/assets/facbook.png" /> </a> <a href="#"> <img src="http://dev.wallsnart.com/assets/img/google.png" /> </a></p>
+<p> <a href="#"> <img style="padding: 0px 8px 0px 0px;" src="'.base_url().'assets/facbook.png" /> </a> <a href="#"> <img src="'.base_url().'assets/img/google.png" /> </a></p>
 	
 	</td>
   </tr>
@@ -1596,7 +1428,7 @@ $frntfrgtpwd='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "ht
       $to=$firgetemailid;   
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-$headers .= 'From:Wallsnart <info@wallsnart.com>' . "\r\n";
+$headers .= 'From:Wallsnart <info@mahattaart.com>' . "\r\n";
 $subject = 'password confermation';
         $send=mail($firgetemailid,$subject,$frntfrgtpwd,$headers);
         if($send){
@@ -1901,7 +1733,7 @@ $data['search_cat']=$search_data_r['data'];
       $to=$mailto;   
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-$headers .= 'From:MahattaArt<info@wallsnart.com>' . "\r\n";
+$headers .= 'From:MahattaArt<info@mahattaart.com>' . "\r\n";
 $subject = 'Welcome to Mahatta Art';
         $send=mail($mailto,$subject,$message,$headers);
   if($send)
@@ -2283,7 +2115,7 @@ $message='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http:/
      
 	  <p>To know more about Mahatta Art gallery <a href="'.base_url().'">click here </a></p>
 	  
-	   <p>For any queries call us at <a href="#">+91-11-41828972<a/> or email us at <a href="mailto:info@wallsnart.com"> info@wallsnart.com </a>  </p>
+	   <p>For any queries call us at <a href="#">+91-11-41828972<a/> or email us at <a href="mailto:info@mahattaart.com"> info@mahattaart.com </a>  </p>
 	  
 	</td>
   </tr>
@@ -2311,7 +2143,7 @@ $message='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http:/
       $to=$emailto;   
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-$headers .= 'From:MahattaArt<info@wallsnart.com>' . "\r\n";
+$headers .= 'From:MahattaArt<info@mahattaart.com>' . "\r\n";
 $subject = 'Welcome to Mahatta Art';
         $send=mail($emailto,$subject,$message,$headers);
         
@@ -2444,7 +2276,7 @@ $subject = 'Welcome to Mahatta Art';
 			$user=$this->frontend_model->submit_subscriber($email,$date);
 			$this->email->from($email);
 			//$this->email->to('sweta.khushi2012@gmail.com', 'Wallsnart');
-			$this->email->to('info@wallsnart.com', 'Wallsnart');
+			$this->email->to('info@mahattaart.com', 'Mahattaart');
 			$this->email->subject('Newsletter');
 			$this->email->message('New user '.$email.' has been registered ');
 			if($this->email->send()){
@@ -2466,8 +2298,9 @@ $subject = 'Welcome to Mahatta Art';
 		{
 			$user=$this->frontend_model->query_submit($email,$contact,$date);
 			$subject="Help";
-			$this->email->from('info@wallsnart.com');
-			$this->email->to('shalini@wallsnart.com', 'Wallsnart');
+			$this->email->from('info@mahattaart.com');
+			$this->email->to('$email', 'Mahattaart');
+			$this->email->cc('operations@mahattaart.com', 'Mahattaart');
 			$this->email->subject($subject);
 			$this->email->message('New user With email address :'.$email.'and Phone number :'.$contact.' has registered  a query with us through help');
 			$this->email->send();
@@ -2492,8 +2325,8 @@ $subject = 'Welcome to Mahatta Art';
 			$user=$this->frontend_model->query_submit($email,$contact,$date);
 			$subject="Query From Need Help? ";
 			$this->email->from($email);
-			$this->email->to('info@wallsnart.com', 'Wallsnart');
-			$this->email->cc('marketing@wallsnart.com', 'Wallsnart');
+			$this->email->to('info@mahattaart.com', 'Mahattaart');
+			$this->email->cc('operations@mahattaart.com', 'Mahattaart');
 			$this->email->subject($subject);
 			$this->email->message('New user With email address :'.$email.'and Phone number :'.$contact.' has registered  a query with us ');
 		if($this->email->send()){
