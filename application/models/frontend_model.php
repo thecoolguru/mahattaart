@@ -10,98 +10,89 @@ class Frontend_model extends CI_Model
 //main frontend of beta.mahattaart by mohan
 
 
-public function get_header_images_inner_collection($title,$cat_id)
-    {
-	
+	public function get_header_images_inner_collection($title,$cat_id)	{
 		$this->db->select('*');
 		$this->db->where('cat_id',$cat_id);
 		$this->db->like('title',$title);
 		$this->db->where('status','1');
 		$this->db->order_by('title','asc');		
-		
 		$query=$this->db->get('header_images');
 		return $query->result(); 
-    }	
-	public function get_frame_code_web_price(){
-	 //	$frame_cat=$this->input->post('frame_cat');
-	$this->db->select('*');
-	$this->db->where('frame_category','Basic');
-	$this->db->where_not_in('frame_code','');
-	$query=$this->db->get('tbl_web_price');
-	return $query->result();
-	
+	}	
+
+	public function get_frame_code_web_price()	{
+		//	$frame_cat=$this->input->post('frame_cat');
+		$this->db->select('*');
+		$this->db->where('frame_category','Basic');
+		$this->db->where_not_in('frame_code','');
+		$query=$this->db->get('tbl_web_price');
+		return $query->result();
 	}
-	
-public function get_frame_size(){
- $this->db->select('*');
- // $this->db->group_by('frame_type');
- $this->db->where_not_in('frame_size','');
-  $this->db->group_by('frame_size','asc');
- $query=$this->db->get('tbl_web_price');
 
- return $query->result();
- }
- public function get_frame_color_web_price(){
-$this->db->select('frame_color');
-$this->db->group_by('frame_color');
-$query=$this->db->get('tbl_web_price');
-return $query->result();
+	public function get_frame_size()	{
+		$this->db->select('*');
+		// $this->db->group_by('frame_type');
+		$this->db->where_not_in('frame_size','');
+		$this->db->group_by('frame_size','asc');
+		$query=$this->db->get('tbl_web_price');
+		return $query->result();
+	}
 
+	public function get_frame_color_web_price()	{
+		$this->db->select('frame_color');
+		$this->db->group_by('frame_color');
+		$query=$this->db->get('tbl_web_price');
+		return $query->result();
+	}
 
-}
-public function get_mount_name_web_price(){
-$this->db->select('mount');
-$this->db->group_by('mount');
-$query=$this->db->get('tbl_web_price');
-return $query->result();
+	public function get_mount_name_web_price()	{
+		$this->db->select('mount');
+		$this->db->group_by('mount');
+		$query=$this->db->get('tbl_web_price');
+		return $query->result();
+	}
 
+	public function get_frame_cat_tbl_web_price()	{
+		$this->db->select('*');
+		$this->db->group_by('frame_category','asc');
+		$query= $this->db->get('tbl_web_price');
+		return $query->result();
+	}
 
-}
- public function get_frame_cat_tbl_web_price(){
+	public function reverse_number($number)	{
+		$snum = (string) $number;
+		$revstr = strrev($snum);
+		$reverse = (int) $revstr;
+		return $reverse;
+	}
 
-      $this->db->select('*');
-	  $this->db->group_by('frame_category','asc');
-	 $query= $this->db->get('tbl_web_price');
-	 return $query->result();
-}
-public function reverse_number($number)
-{
-    $snum = (string) $number;
-    $revstr = strrev($snum);
-    $reverse = (int) $revstr;
-     return $reverse;
-}
-	//Methods by Tarun Shrivastva 
-		
-	public function delete_image($image_name){
+	public function delete_image($image_name)	{
 		$this->db->where('image_name',$image_name);
 		$qty = array('removed'=>1);
 		$query=$this->db->update('add_images_table',$qty);
 		if($query)
 		return true;
 		else
-		return false;	
+		return false;
 	}
 
-
-
-	public function images($id){
-	$this->db->select('image_name');
-	$this->db->where('session_id',$id);
-	$query=$this->db->get('add_images_table');
-	return $query->result();	
+	public function images($id)	{
+		$this->db->select('image_name');
+		$this->db->where('session_id',$id);
+		$query=$this->db->get('add_images_table');
+		return $query->result();
 	}
-	
-	public function get_images($id){
-	$this->db->select('*');
-	$this->db->where('session_id',$id);
-	$this->db->where('removed',0);
-	$this->db->order_by("id","desc");
-	$query=$this->db->get('add_images_table');
-	return $query->result();
+
+	public function get_images($id)	{
+		$this->db->select('*');
+		$this->db->where('session_id',$id);
+		$this->db->where('removed',0);
+		$this->db->order_by("id","desc");
+		$query=$this->db->get('add_images_table');
+		return $query->result();
 	}
-	
-	public function get_print_only($paper_type,$glass){
+
+	public function get_print_only($paper_type,$glass)	{
 		$this->db->select('rate')->where('paper',$paper_type)->where('quality','Star');
 		$query = $this->db->get('tbl_web_price');
 		$data[0] = $query->result(); 
@@ -111,149 +102,116 @@ public function reverse_number($number)
 		return $data;
 	}
 	
-	public function get_default($frame,$mount){
-	    $this->db->select('*')->where('frame_code',$frame);
-	    $query = $this->db->get('tbl_web_price');
-	    $data[0] = $query->result(); 
-	    $this->db->select('*')->where('mount_code',$mount);
-	    $query = $this->db->get('tbl_web_price');
-	    $data[1] =$query->result();
-	    return $data; 
+	public function get_default($frame,$mount)	{
+		$this->db->select('*')->where('frame_code',$frame);
+		$query = $this->db->get('tbl_web_price');
+		$data[0] = $query->result(); 
+		$this->db->select('*')->where('mount_code',$mount);
+		$query = $this->db->get('tbl_web_price');
+		$data[1] =$query->result();
+		return $data;
 	}
-	
-	public function insert_image($data){
-	    
-        $this->db->insert('add_images_table', $data);
+
+	public function insert_image($data)	{
+		$this->db->insert('add_images_table', $data);
 	}
-	
- // End
+	// End
 
-
-public function get_all_lightboxes_gallery($user_id)
-	{
+	public function get_all_lightboxes_gallery($user_id)	{
 		$this->db->select('*');
 		$this->db->where('user_id',$user_id);
 		$this->db->order_by("lightbox_name");
-		
 		$query=$this->db->get('tbl_lightbox_details');
 		return $query->result();
-
 	}
-  
- public function create_image_intrested($data)
- {
 
-$this->db->insert('tbl_buy_details', $data);
-
- 
- }
-         public function get_web_frame_rate($frame)
-	  {
-             
-	  $sql="select frame_rate from tbl_web_price where frame like '%".$frame."%'";
-	  $rows=  mysql_query($sql);
-          $result=  mysql_fetch_assoc($rows);
-          return $result['frame_rate'];
-	  }
-        
-        
-         public function get_web_mount_rate($mount)
-	  {
-           
-             
-	  $sql="select mount_rate from tbl_web_price where mount like '%".$mount."%'";
-	  $rows=  mysql_query($sql);
-          $result=  mysql_fetch_assoc($rows);
-          return $result['mount_rate'];
-	  }
-         
-          public function get_web_glass_rate($glass)
-	  {
-             
-	  $sql="select glass_rate from tbl_web_price where glass like '%".$glass."%'";
-	  $rows=  mysql_query($sql);
-          $result=  mysql_fetch_assoc($rows);
-          return $result['glass_rate'];
-	  }
-          
-
-public function get_collection() {
-            $search_api = "http://api.indiapicture.in/wallsnart/get_collection.php";
-        
-        $opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
-        $context = stream_context_create($opts);
-        $search_data_raw = file_get_contents($search_api, false, $context);
-        $search_data = json_decode($search_data_raw,TRUE);
-            return $search_data;
-            
-            
-            
-        }
-public function get_tbl_order_details(){
-
- $id=$this->session->userdata('userid');
-$this->db->select('*');
-$this->db->where('customer_id',$id);
-$this->db->where_not_in('inv_order_id','');
-$this->db->order_by('order_date','desc');
-$query=$this->db->get('order_details');
-  return $query->result();
-
-}
-
-public function get_add_details(){
-         $this->db->select('*');
-        $this->db->where_not_in('print_paper','0');
-        $query=$this->db->get('tbl_add_details');
-        return $query->result(); 
-}    
-
-
-public function get_tbl_clearence($value){
-	 $this->db->select('*');
-	// echo $value;
-	 $this->db->where('available','Yes');
-	 $this->db->where_not_in('reasons','damaged');
-	 if($value=='price_h'){
-	 $this->db->order_by('s_p','desc');
-	 }else if($value=='price_l'){
-	 $this->db->order_by('s_p','asc');
-	 }
-	 $query=$this->db->get('tbl_clearence');
-	 return $query->result();
-	 
-	
+	public function create_image_intrested($data)	{
+		$this->db->insert('tbl_buy_details', $data);
 	}
-	public function get_prod_details($image_id,$size){
-	 $filename=rtrim($image_id,'.JPG');
-	
-	$this->db->select('*');
-	$this->db->where('image_id',$filename);
-	$this->db->where('size',trim($size));
-	$query=$this->db->get('tbl_clearence');
-	 return $query->result();
-	
+
+	public function get_web_frame_rate($frame)	{
+		$sql="select frame_rate from tbl_web_price where frame like '%".$frame."%'";
+		$rows=  mysql_query($sql);
+		$result=  mysql_fetch_assoc($rows);
+		return $result['frame_rate'];
 	}
-	public function insert_registeration($email,$password)
-	{
-          
+
+	public function get_web_mount_rate($mount)	{
+		$sql="select mount_rate from tbl_web_price where mount like '%".$mount."%'";
+		$rows=  mysql_query($sql);
+		$result=  mysql_fetch_assoc($rows);
+		return $result['mount_rate'];
+	}
+
+	public function get_web_glass_rate($glass)	{
+		$sql="select glass_rate from tbl_web_price where glass like '%".$glass."%'";
+		$rows=  mysql_query($sql);
+		$result=  mysql_fetch_assoc($rows);
+		return $result['glass_rate'];
+	}
+
+	public function get_collection() {
+		$search_api = "http://api.indiapicture.in/wallsnart/get_collection.php";
+		$opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
+		$context = stream_context_create($opts);
+		$search_data_raw = file_get_contents($search_api, false, $context);
+		$search_data = json_decode($search_data_raw,TRUE);
+		return $search_data;
+	}
+
+	public function get_tbl_order_details()	{
+		$id=$this->session->userdata('userid');
+		$this->db->select('*');
+		$this->db->where('customer_id',$id);
+		$this->db->where_not_in('inv_order_id','');
+		$this->db->order_by('order_date','desc');
+		$query=$this->db->get('order_details');
+		return $query->result();
+	}
+
+	public function get_add_details()	{
+		$this->db->select('*');
+		$this->db->where_not_in('print_paper','0');
+		$query=$this->db->get('tbl_add_details');
+		return $query->result(); 
+	}    
+
+	public function get_tbl_clearence($value)	{
+		$this->db->select('*');
+		// echo $value;
+		$this->db->where('available','Yes');
+		$this->db->where_not_in('reasons','damaged');
+		if($value=='price_h'){
+		$this->db->order_by('s_p','desc');
+		}else if($value=='price_l'){
+		$this->db->order_by('s_p','asc');
+		}
+		$query=$this->db->get('tbl_clearence');
+		return $query->result();
+	}
+
+	public function get_prod_details($image_id,$size)	{
+		$filename=rtrim($image_id,'.JPG');
+		$this->db->select('*');
+		$this->db->where('image_id',$filename);
+		$this->db->where('size',trim($size));
+		$query=$this->db->get('tbl_clearence');
+		return $query->result();
+	}
+
+	public function insert_registeration($email,$password)	{
 		$data=array(
-				'email_id'=>$email,
-				'password'=>$password
+		'email_id'=>$email,
+		'password'=>$password
 		);
-        //print_r($data);die;
+		//print_r($data);die;
 		$insert=$this->db->insert('tbl_registration',$data);
-if($insert){
-
-echo "";
-}
+		if($insert)	{
+			echo "";
+		}
 	}
-	
 
-
-public function get_images_lightbox_gallery($lightbox_id,$limit,$start)
-	{
-		
+	public function get_images_lightbox_gallery($lightbox_id,$limit,$start)	{
 		$this->db->select('*');
 		$this->db->where('lightbox_id',$lightbox_id);
 		$this->db->where('status','1');
@@ -261,66 +219,58 @@ public function get_images_lightbox_gallery($lightbox_id,$limit,$start)
 		$query=$this->db->get('tbl_lightbox_images');
 		return $query->result();
 		//print $this->db->last_query();
-
 	}
-	
-	
-	public function get_light_boxName($image_id,$user_id)
-        {
-		
-	$this->db->select('*');
-	$this->db->from('tbl_lightbox_images');
-	$this->db->join('tbl_lightbox_details',	'tbl_lightbox_details.lightbox_id=tbl_lightbox_images.lightbox_id');
-	$this->db->where('tbl_lightbox_images.image_id',$image_id);
-	$this->db->where('tbl_lightbox_details.user_id',$user_id);
-	$this->db->where('tbl_lightbox_images.status','1');
-	$query=$this->db->get();
-	return $query->result();
-        }
-        
-	
-	
-	public function fb_insert_registeration($customer_parent_id,$first_name,$last_name,$email,$password,$address,$city,$state,$country,$contact,$zip_code,$status,$date_account_create,$date_account_last_update,$date_account_last_login,$account_last_login_ip,$no_of_logon,$register_form,$register_type,$customer_facebook_userid,$customer_business_type,$customer_created_by,$customers_account_type,$customers_region,$company_type,$company_name,$job,$martial_status,$gender,$occupation_other,$purpose,$gift_address)
-	{
+
+	public function get_light_boxName($image_id,$user_id)	{
+		$this->db->select('*');
+		$this->db->from('tbl_lightbox_images');
+		$this->db->join('tbl_lightbox_details',	'tbl_lightbox_details.lightbox_id=tbl_lightbox_images.lightbox_id');
+		$this->db->where('tbl_lightbox_images.image_id',$image_id);
+		$this->db->where('tbl_lightbox_details.user_id',$user_id);
+		$this->db->where('tbl_lightbox_images.status','1');
+		$query=$this->db->get();
+		return $query->result();
+	}
+
+	public function fb_insert_registeration($customer_parent_id,$first_name,$last_name,$email,$password,$address,$city,$state,$country,$contact,$zip_code,$status,$date_account_create,$date_account_last_update,$date_account_last_login,$account_last_login_ip,$no_of_logon,$register_form,$register_type,$customer_facebook_userid,$customer_business_type,$customer_created_by,$customers_account_type,$customers_region,$company_type,$company_name,$job,$martial_status,$gender,$occupation_other,$purpose,$gift_address)	{
 		$data=array(
-				'customer_parent_id'=>$customer_parent_id,
-				'first_name'=>$first_name,
-				'last_name'=>$last_name,
-				'email_id'=>$email,
-				'password'=>$password,
-				'address'=>$address,
-				'city'=>$city,
-				'state'=>$state,
-				'country'=>$country,
-				'zip_code'=>$zip_code,
-				'contact'=>$contact,
-				'status'=>$status,
-				'date_account_create'=>$date_account_create,
-				'date_account_last_update'=>$date_account_last_update,
-				'date_account_last_login'=>$date_account_last_login,
-				'account_last_login_ip'=>$account_last_login_ip,
-				'no_of_logon'=>$no_of_logon,
-				'register_form'=>$register_form,
-				'register_type'=>$register_type,
-				'customer_facebook_userid'=>$customer_facebook_userid,
-				'customer_business_type'=>$customer_business_type,
-				'customer_created_by'=>$customer_created_by,
-				'customers_account_type'=>$customers_account_type,
-				'customers_region'=>$customers_region,
-				'company_type'=>$company_type,
-				'company_name'=>$company_name,
-				'job'=>$job,
-				'martial_status'=>$martial_status,
-				'gender'=>$gender,
-				'occupation_other'=>$occupation_other,
-				'purpose'=>$purpose,
-				'gift_address'=>$gift_address
+			'customer_parent_id'=>$customer_parent_id,
+			'first_name'=>$first_name,
+			'last_name'=>$last_name,
+			'email_id'=>$email,
+			'password'=>$password,
+			'address'=>$address,
+			'city'=>$city,
+			'state'=>$state,
+			'country'=>$country,
+			'zip_code'=>$zip_code,
+			'contact'=>$contact,
+			'status'=>$status,
+			'date_account_create'=>$date_account_create,
+			'date_account_last_update'=>$date_account_last_update,
+			'date_account_last_login'=>$date_account_last_login,
+			'account_last_login_ip'=>$account_last_login_ip,
+			'no_of_logon'=>$no_of_logon,
+			'register_form'=>$register_form,
+			'register_type'=>$register_type,
+			'customer_facebook_userid'=>$customer_facebook_userid,
+			'customer_business_type'=>$customer_business_type,
+			'customer_created_by'=>$customer_created_by,
+			'customers_account_type'=>$customers_account_type,
+			'customers_region'=>$customers_region,
+			'company_type'=>$company_type,
+			'company_name'=>$company_name,
+			'job'=>$job,
+			'martial_status'=>$martial_status,
+			'gender'=>$gender,
+			'occupation_other'=>$occupation_other,
+			'purpose'=>$purpose,
+			'gift_address'=>$gift_address
 		);
 		//echo "<pre>"; print_r($data);
 		//die;
 		$this->db->insert('tbl_registration',$data);
 	}
-	
 
 	public function check_email_exist($email)	{
 		//print_r($email);die;
@@ -335,440 +285,375 @@ public function get_images_lightbox_gallery($lightbox_id,$limit,$start)
 		}
 	}
 
+	public function update_passwrd($xrt)	{
+		//echo $xrt;die;
+	}
 
-public function update_passwrd($xrt){
-//echo $xrt;die;
-
-}
-
-
-public function get_imagesFilename_details($filename)
-	{
+	public function get_imagesFilename_details($filename)	{
 		$this->db->select('*');
 		$this->db->where('images_filename',$filename);
 		$query=$this->db->get('tbl_images_search');
 		return $query->result();
 	}
-	
 
-public function get_header_images($cat_id)
-    {
-	
-        $this->db->select('*');
-        $this->db->where('cat_id',$cat_id);
-        $this->db->where('status','1');
-		
+	public function get_header_images($cat_id)	{
+		$this->db->select('*');
+		$this->db->where('cat_id',$cat_id);
+		$this->db->where('status','1');
 		$query=$this->db->get('header_images');
-        return $query->result(); 
-    }
+		return $query->result(); 
+	}
 	
+	public function get_header_images_inner($cat_id,$limit=0,$start=0)	{
+		$this->db->select('*');
+		$this->db->where('cat_id',$cat_id);
+		$this->db->where('status','1');
+		$this->db->order_by('title','asc');
+		if($limit != 0)	{
+			$this->db->limit($limit,$start);
+		}
+		$query=$this->db->get('header_images');
+		return $query->result(); 
+	}
 
-public function get_header_images_inner($cat_id,$limit=0,$start=0)
-    {
-	
-        $this->db->select('*');
-        $this->db->where('cat_id',$cat_id);
-        $this->db->where('status','1');
-        $this->db->order_by('title','asc');
-        if($limit != 0){
-            $this->db->limit($limit,$start);
-        }
-        $query=$this->db->get('header_images');
-        return $query->result(); 
-    }
+	public function get_header_images_count($cat_id)	{
+		$this->db->select('*');
+		$this->db->where('cat_id',$cat_id);
+		$this->db->where('status','1');
+		$query=$this->db->get('header_images');
+		return $query->num_rows(); 
+	}	
 
+	public function get_home_top_category_images($title_name,$imageno)	{
+		$this->db->select('*');
+		if($imageno<>''){
+			$this->db->where('image_no',$imageno);
+		}
+		$this->db->where('title_name',$title_name);
+		$this->db->where('status','1');
+		$query=$this->db->get('header_images');
+		return $query->result();
+	}
 
-public function get_header_images_count($cat_id)
-    {
-        $this->db->select('*');
-        $this->db->where('cat_id',$cat_id);
-        $this->db->where('status','1');
-        $query=$this->db->get('header_images');
-        return $query->num_rows(); 
-    }	
-	
-
-
-    public function get_home_top_category_images($title_name,$imageno)
-    {
-
-        $this->db->select('*');
-	 if($imageno<>''){
-             $this->db->where('image_no',$imageno);
-         }
-        $this->db->where('title_name',$title_name);
-        $this->db->where('status','1');
-        $query=$this->db->get('header_images');
-        return $query->result(); 
-    }
-        
-	
-
-	public function login_verification($email,$password)
-	{
-         //echo $email;die;
+	public function login_verification($email,$password)	{
+		//echo $email;die;
 		$this->db->select('*');
 		$this->db->where('email_id',$email);
 		$this->db->where('password',$password);
 		//$this->db->where('status','1');
-
-		 $query=$this->db->get('tbl_registration');
-		 $query->num_rows();
-		if($query->num_rows()>0)
-		{
-		
+		$query=$this->db->get('tbl_registration');
+		$query->num_rows();
+		if($query->num_rows()>0)	{
 			return  $query->row();
-		}
-		else
-		{
+		}	else	{
 			return false;
 		}
 	}
-	public function verify_email($email)
-	{
+
+	public function verify_email($email)	{
 		$this->db->select('*');
 		$this->db->where('email_id',$email);
 		$query=$this->db->get('tbl_registration');
-		if($query->num_rows()>0)
-		{
+		if($query->num_rows()>0)	{
 			return $query->row();
-		}
-		else
-		{
+		}	else	{
 			return false;
 		}
-
 	}
-        
-        public function GetFilename_details($images_id) {
-            $sql_1="select images_filename from tbl_images_search where images_id in ($images_id)";
-            $rows=  mysql_query($sql_1);
-            return $rows;
-        }
-	public function update_user_status($user_id)
-	{
+
+	public function GetFilename_details($images_id) {
+		$sql_1="select images_filename from tbl_images_search where images_id in ($images_id)";
+		$rows=  mysql_query($sql_1);
+		return $rows;
+	}
+
+	public function update_user_status($user_id)	{
 		$data=array('status'=>'1');
 		$this->db->where('customer_id',$user_id);
 		$this->db->update('tbl_registration',$data);
 	}
 
-	public function get_user_details($user_id)
-	{
+	public function get_user_details($user_id)	{
 		$this->db->select('*');
 		$this->db->where('customer_id',$user_id);
 		$query=$this->db->get('tbl_registration');
 		return $query->row();
 	}
 
-	public function get_frames_compo()
-	{
-
+	public function get_frames_compo()	{
 		/*$query=$this->db->query("SELECT DISTINCT tbl_images_search.images_filename,tbl_channel_partner_details.email_id,tbl_images_search.images_photographer,tbl_framenmount_detail.framenmount_code,tbl_framenmount_detail.framenmount_upload_image_name,\n"
-		 . "tbl_vender.vender_code,tbl_channel_partner_details.cp_id\n"
-				. "FROM `tbl_images_search` INNER JOIN `tbl_channel_partner_details` ON tbl_images_search.images_photographer=tbl_channel_partner_details.cp_id \n"
-				. "INNER JOIN tbl_vender ON tbl_vender.vender_email_id=tbl_channel_partner_details.email_id INNER JOIN tbl_framenmount_detail ON tbl_vender.vender_code=tbl_framenmount_detail.vender_code\n"
-				. "WHERE tbl_images_search.images_id=$img_id");*/
+		. "tbl_vender.vender_code,tbl_channel_partner_details.cp_id\n"
+		. "FROM `tbl_images_search` INNER JOIN `tbl_channel_partner_details` ON tbl_images_search.images_photographer=tbl_channel_partner_details.cp_id \n"
+		. "INNER JOIN tbl_vender ON tbl_vender.vender_email_id=tbl_channel_partner_details.email_id INNER JOIN tbl_framenmount_detail ON tbl_vender.vender_code=tbl_framenmount_detail.vender_code\n"
+		. "WHERE tbl_images_search.images_id=$img_id");*/
 
 		$this->db->select('*');
 		//$this->db->where('frame_id','33');
 		//$this->db->or_where('frame_id','34');
-        $this->db->or_where('frame_id','43');
-        $this->db->or_where('frame_id','47');
-        $this->db->or_where('frame_id','63');
-        $this->db->or_where('frame_id','49');
-        $this->db->or_where('frame_id','51');
-       //$this->db->or_where('frame_id','39');
-       // $this->db->or_where('frame_id','40');
-       // $this->db->or_where('frame_id','41');
-        //$this->db->or_where('frame_id','31');
+		$this->db->or_where('frame_id','43');
+		$this->db->or_where('frame_id','47');
+		$this->db->or_where('frame_id','63');
+		$this->db->or_where('frame_id','49');
+		$this->db->or_where('frame_id','51');
+		//$this->db->or_where('frame_id','39');
+		// $this->db->or_where('frame_id','40');
+		// $this->db->or_where('frame_id','41');
+		//$this->db->or_where('frame_id','31');
 
-      //  $this->db->or_where('frame_id','29');
-            $this->db->or_where('frame_id','
-            35');
-     //     $this->db->or_where('frame_id','36');
+		//  $this->db->or_where('frame_id','29');
+		$this->db->or_where('frame_id','
+		35');
+		//     $this->db->or_where('frame_id','36');
 		$query=$this->db->get('tbl_frame2');
 		if($query->num_rows()>0)
-			return $query->result();
+		return $query->result();
 		else return false;
 	}
-    public function get_frames_black_compo()
-    {
 
+	public function get_frames_black_compo()	{
+		$this->db->select('*');
+		$this->db->or_where('frame_id','46');
+		$this->db->or_where('frame_id','45');
+		$this->db->or_where('frame_id','52');
+		$this->db->or_where('frame_id','60');
+		$this->db->or_where('frame_id','65');
+		//$this->db->or_where('frame_id','46');
+		$query=$this->db->get('tbl_frame2');
+		if($query->num_rows()>0)
+		return $query->result();
+		else return false;
+	}
 
-        $this->db->select('*');
-        $this->db->or_where('frame_id','46');
-        $this->db->or_where('frame_id','45');
-        $this->db->or_where('frame_id','52');
-        $this->db->or_where('frame_id','60');
-        $this->db->or_where('frame_id','65');
-        //$this->db->or_where('frame_id','46');
-        $query=$this->db->get('tbl_frame2');
-        if($query->num_rows()>0)
-            return $query->result();
-        else return false;
-    }
-    public function get_frames_gold_compo()
-    {
+	public function get_frames_gold_compo()	{
+		$this->db->select('*');
+		$this->db->where('frame_id','55');
+		$this->db->or_where('frame_id','39');
+		$this->db->or_where('frame_id','58');
+		$this->db->or_where('frame_id','63');
+		$this->db->or_where('frame_id','64');
+		$query=$this->db->get('tbl_frame2');
+		if($query->num_rows()>0)
+		return $query->result();
+		else return false;
+	}
 
-        $this->db->select('*');
-        $this->db->where('frame_id','55');
-        $this->db->or_where('frame_id','39');
-        $this->db->or_where('frame_id','58');
-        $this->db->or_where('frame_id','63');
-        $this->db->or_where('frame_id','64');
-        $query=$this->db->get('tbl_frame2');
-        if($query->num_rows()>0)
-            return $query->result();
-        else return false;
-    }
-    public function get_frames_gray_compo()
-    {
+	public function get_frames_gray_compo()	{
+		$this->db->select('*');
+		//  $this->db->where('frame_id','30');
+		$this->db->or_where('frame_id','34');
+		//$this->db->or_where('frame_id','36');
+		$query=$this->db->get('tbl_frame2');
+		if($query->num_rows()>0)
+		return $query->result();
+		else return false;
+	}
 
-        $this->db->select('*');
-      //  $this->db->where('frame_id','30');
-        $this->db->or_where('frame_id','34');
-        //$this->db->or_where('frame_id','36');
-        $query=$this->db->get('tbl_frame2');
-        if($query->num_rows()>0)
-            return $query->result();
-        else return false;
-    }
-    public function get_frames_blue_compo()
-    {
+	public function get_frames_blue_compo()	{
+		$this->db->select('*');
+		//  $this->db->where('frame_id','30');
+		//$this->db->or_where('frame_id','34');
+		$this->db->or_where('frame_id','37');
+		$this->db->or_where('frame_id','51');
+		$this->db->or_where('frame_id','56');
+		$query=$this->db->get('tbl_frame2');
+		if($query->num_rows()>0)
+		return $query->result();
+		else return false;
+	}
 
-        $this->db->select('*');
-        //  $this->db->where('frame_id','30');
-        //$this->db->or_where('frame_id','34');
-        $this->db->or_where('frame_id','37');
-        $this->db->or_where('frame_id','51');
-        $this->db->or_where('frame_id','56');
-       $query=$this->db->get('tbl_frame2');
-        if($query->num_rows()>0)
-            return $query->result();
-        else return false;
-    }
-    public function get_frames_white_compo()
-    {
+	public function get_frames_white_compo()	{
+		$this->db->select('*');
+		//$this->db->where('frame_id','30');
+		//$this->db->or_where('frame_id','34');
+		$this->db->or_where('frame_id','38');
+		$this->db->or_where('frame_id','53');
+		$query=$this->db->get('tbl_frame2');
+		if($query->num_rows()>0)
+		return $query->result();
+		else return false;
+	}
 
-        $this->db->select('*');
-        //  $this->db->where('frame_id','30');
-        //$this->db->or_where('frame_id','34');
-        $this->db->or_where('frame_id','38');
-        $this->db->or_where('frame_id','53');
-        $query=$this->db->get('tbl_frame2');
-        if($query->num_rows()>0)
-            return $query->result();
-        else return false;
-    }
-    public function get_frames_yellow_compo()
-    {
-        $this->db->select('*');
-        
-        $this->db->or_where('frame_id','42');
-        $query=$this->db->get('tbl_frame2');
-        if($query->num_rows()>0)
-            return $query->result();
-        else return false;
-    }
-	public function get_framenmount_price($code)
-	{
+	public function get_frames_yellow_compo()	{
+		$this->db->select('*');
+		$this->db->or_where('frame_id','42');
+		$query=$this->db->get('tbl_frame2');
+		if($query->num_rows()>0)
+		return $query->result();
+		else return false;
+	}
+
+	public function get_framenmount_price($code)	{
 		$this->db->select('*');
 		$this->db->where('framenmount_code',$code);
 		$query=$this->db->get('tbl_framenmount_detail');
 		return $query->row();
-
 	}
-	public function get_mount_compo(){
 
+	public function get_mount_compo()	{
 		$this->db->select('*');
-		
 		$query=$this->db->get('tbl_mount1');
 		if($query->num_rows()>0)
-			return $query->result();
+		return $query->result();
 		else return false;
 	}
 
-	public function get_artist_name($start1)
-	{
+	public function get_artist_name($start1)	{
 		$this->db->distinct();
 		$this->db->select('artist_name');
 		$this->db->like('artist_name',$start1,'after');
 		$query=$this->db->get('tbl_images_search');
 		if($query->num_rows()>'0')
-			return $query->result_array();
+		return $query->result_array();
 		else return null;
 	}
-	public function get_result_for_images($artist_name)
-	{
+
+	public function get_result_for_images($artist_name)	{
 		$this->db->limit('1','0');
 		$this->db->select('*');
 		$this->db->where('artist_name',$artist_name);
 		$query=$this->db->get('tbl_images_search');
-		if($query->num_rows()>'0')
-		{
+		if($query->num_rows()>'0')	{
 			return $query->result_array();
 		}
 		else return null;
 	}
-	public function get_sales_counter_artstyle_category($categ,$count)
-	{
+
+	public function get_sales_counter_artstyle_category($categ,$count)	{
 		$this->db->select('sales_counter');
-		for($i=0;$i<$count;$i++)
-		{
+		for($i=0;$i<$count;$i++)	{
 			$this->db->like('images_keywords',$categ[$i]);
 			$this->db->or_like('images_description',$categ[$i]);
 			$this->db->or_like('images_filename',$categ[$i]);
 		}
 		$query=$this->db->get('tbl_images_search');
-
 		return $query->result_array();
 	}
-	public function artstyle_list_sort($arr1,$arr2,$coun)
-	{
+
+	public function artstyle_list_sort($arr1,$arr2,$coun)	{
 		$co=$coun-2;
-		for($i=0;$i<=$co;$i++)
-		{
-			for($k=0;$k<=$co-$i;$k++)
-			{
-				if($arr1[$k]>$arr1[$k+1])
-				{
+		for($i=0;$i<=$co;$i++)	{
+			for($k=0;$k<=$co-$i;$k++)	{
+				if($arr1[$k]>$arr1[$k+1])	{
 					$temp1=$arr1[$k];
 					$arr1[$k]=$arr1[$k+1];
 					$arr1[$k+1]=$temp1;
 					$temp2=$arr2[$k];
 					$arr2[$k]=$arr2[$k+1];
 					$arr2[$k+1]=$temp2;
-						
 				}
 			}
 		}
 		return $arr2;
 	}
 
-	public function get_keyword_per_fine_art($fine_art_type)
-	{
+	public function get_keyword_per_fine_art($fine_art_type)	{
 		$this->db->select('*');
 		$this->db->where('fine_art_type',$fine_art_type);
 		$query=$this->db->get('tbl_artstyles_fine_art');
 		return $query->row();
 	}
-	public function get_keyword_per_vintage_art($vintage_art_type)
-	{
+
+	public function get_keyword_per_vintage_art($vintage_art_type)	{
 		$this->db->select('*');
 		$this->db->where('vintage_art_type',$vintage_art_type);
 		$query=$this->db->get('tbl_artstyles_vintage_art');
 		return $query->row();
 	}
 
-	public function get_keyword_per_indian_art($indian_art_type)
-	{
+	public function get_keyword_per_indian_art($indian_art_type)	{
 		$this->db->select('*');
 		$this->db->where('indian_art_type',$indian_art_type);
 		$query=$this->db->get('tbl_artstyles_indian_art');
 		return $query->row();
 	}
-	public function get_keyword_per_photography($photography_type)
-	{
+
+	public function get_keyword_per_photography($photography_type)	{
 		$this->db->select('*');
 		$this->db->where('photography_type',$photography_type);
 		$query=$this->db->get('tbl_artstyles_photography');
 		return $query->row();
 	}
 
-
-
-	public function get_max_val_sale_coun($categ,$count)
-	{
+	public function get_max_val_sale_coun($categ,$count)	{
 		$this->db->select('*');
 		$this->db->select_max('sales_counter');
-		for($i=0;$i<$count;$i++)
-		{
+		for($i=0;$i<$count;$i++)	{
 			$this->db->like('images_keywords',$categ[$i]);
 			$this->db->or_like('images_description',$categ[$i]);
 			$this->db->or_like('images_filename',$categ[$i]);
 		}
-	 $query=$this->db->get('tbl_images_search');
-	 if($query->num_rows()>'0')
-	 	return $query->row();
+		$query=$this->db->get('tbl_images_search');
+		if($query->num_rows()>'0')
+		return $query->row();
 		else return null;
 	}
-	 
 
-	public function fine_art($limit,$start)
-	{
+	public function fine_art($limit,$start)	{
 		$this->db->limit($limit,$start);
 		$this->db->select('*');
 		$query=$this->db->get('tbl_artstyles_fine_art');
 		return $query->result_array();
 	}
 
-	public function indian_art($limit,$start)
-	{
+	public function indian_art($limit,$start)	{
 		$this->db->limit($limit,$start);
 		$this->db->select('*');
 		$query=$this->db->get('tbl_artstyles_indian_art');
 		return $query->result_array();
 	}
 
-	public function vintage_art($limit,$start)
-	{
+	public function vintage_art($limit,$start)	{
 		$this->db->limit($limit,$start);
 		$this->db->select('*');
 		$query=$this->db->get('tbl_artstyles_vintage_art');
 		return $query->result_array();
 	}
-	public function photography($limit,$start)
-	{
+
+	public function photography($limit,$start)	{
 		$this->db->limit($limit,$start);
 		$this->db->select('*');
 		$query=$this->db->get('tbl_artstyles_photography');
 		return $query->result_array();
 	}
-	public function count_rows_fine_art()
-	{
+
+	public function count_rows_fine_art()	{
 		return $this->db->count_all('tbl_artstyles_fine_art');
 	}
-	public function count_rows_vintage_art()
-	{
+	public function count_rows_vintage_art()	{
 		return $this->db->count_all('tbl_artstyles_vintage_art');
 	}
-	public function count_rows_indian_art()
-	{
+	public function count_rows_indian_art()	{
 		return $this->db->count_all('tbl_artstyles_indian_art');
 	}
-	public function count_rows_photography()
-	{
+	public function count_rows_photography()	{
 		return $this->db->count_all('tbl_artstyles_photography');
 	}
 
-	/*public function get_bestsellers()
-	 {
-	$query=$this->db->query("SELECT * FROM `tbl_images_search` ORDER BY sales_counter DESC limit 0,16");
-	return $query->result();
-
+	/*public function get_bestsellers()	{
+		$query=$this->db->query("SELECT * FROM `tbl_images_search` ORDER BY sales_counter DESC limit 0,16");
+		return $query->result();
 	}*/
-	public function get_collection_bestselling($cid)
-	{
+
+	public function get_collection_bestselling($cid)	{
 		$query=$this->db->query("SELECT * FROM `tbl_images_search` where images_collectionid='$cid' ORDER BY sales_counter DESC limit 0,3");
 		return $query->result();
 	}
-	public function get_product_types_best_selling($id,$coun)
-	{
+
+	public function get_product_types_best_selling($id,$coun)	{
 		$limit=3;
 		$start=0;
 		$this->db->limit($limit,$start);
 		$this->db->select('*');
 		$this->db->where('images_collectionid',$id['0']);
-		for($i=1;$i<$coun;$i++)
-		{
+		for($i=1;$i<$coun;$i++)	{
 			$this->db->or_where('images_collectionid',$id[$i]);
 		}
 		$this->db->order_by("sales_counter","desc");
 		$query=$this->db->get('tbl_images_search');
 		return $query->result();
 	}
-	public function get_top_photographers($limit,$start)
-	{
+
+	public function get_top_photographers($limit,$start)	{
 		$this->db->limit($limit,$start);
 		$this->db->select('artist_name');
 		$this->db->distinct();
@@ -776,188 +661,153 @@ public function get_header_images_count($cat_id)
 		$query=$this->db->get('tbl_images_search');
 		return $query->result();
 	}
-	public function insert_light_box_details($user_id,$lt_bx_nm,$lt_bx_des,$date)
-	{
+
+	public function insert_light_box_details($user_id,$lt_bx_nm,$lt_bx_des,$date)	{
 		$this->db->select('*');
 		$this->db->where('lightbox_name',$lt_bx_nm);
 		$query=$this->db->get('tbl_lightbox_details');
-		if($query->num_rows()>'0')
-		{
+		if($query->num_rows()>'0')	{
 			return null;
-		}
-		else{
+		}	else{
 			$data=array('user_id'=>$user_id,
-					'lightbox_name'=>$lt_bx_nm,
-					'lightbox_description'=>$lt_bx_des,'creation_date'=>$date);
+			'lightbox_name'=>$lt_bx_nm,
+			'lightbox_description'=>$lt_bx_des,'creation_date'=>$date);
 			$this->db->insert('tbl_lightbox_details',$data);
 			return mysql_insert_id();
 		}
-
 	}
-	public function get_lt_detail_row($lt_id,$lt_nm)
-	{
+
+	public function get_lt_detail_row($lt_id,$lt_nm)	{
 		$this->db->select('*');
 		$this->db->where('lightbox_id',$lt_id);
 		$this->db->where('lightbox_name',$lt_nm);
 		$query=$this->db->get('tbl_lightbox_details');
 		return $query->row();
-
 	}
 
-	public function insert_get_lightbox_id($user_id,$lt_bx_nm,$lt_bx_des,$date)
-	{
+	public function insert_get_lightbox_id($user_id,$lt_bx_nm,$lt_bx_des,$date)	{
 		$data=array('user_id'=>$user_id,
-				'lightbox_name'=>$lt_bx_nm,
-				'lightbox_description'=>$lt_bx_des,
-				'creation_date'=>$date);
+		'lightbox_name'=>$lt_bx_nm,
+		'lightbox_description'=>$lt_bx_des,
+		'creation_date'=>$date);
 		$this->db->insert('tbl_lightbox_details',$data);
 		//echo $this->db->last_query();
-                
-                //print_r($data);
+		//print_r($data);
 		return mysql_insert_id();
-
 	}
-	public function get_only_last_lightbox($user_id,$lightbox_id)
-	{
+
+	public function get_only_last_lightbox($user_id,$lightbox_id)	{
 		$this->db->select('*');
 		$this->db->where('user_id',$user_id);
 		$this->db->where('lightbox_id',$lightbox_id);
 		$query=$this->db->get('tbl_lightbox_details');
 		return $query->row();
 	}
-	public function update_light_box_details($lightbox_id,$lt_bx_nm,$lt_bx_des)
-	{
+
+	public function update_light_box_details($lightbox_id,$lt_bx_nm,$lt_bx_des)	{
 		$this->db->select('*');
 		$this->db->where('lightbox_id',$lightbox_id);
 		$this->db->where('lightbox_name',$lt_bx_nm);
 		$this->db->where('lightbox_description',$lt_bx_des);
 		$query=$this->db->get('tbl_lightbox_details');
-		if($query->num_rows()>'0')
-		{
+		if($query->num_rows()>'0')	{
 			return $query->num_rows();
-		}
-		else{
+		}	else{
 			$data=array('lightbox_name'=>$lt_bx_nm,
-					'lightbox_description'=>$lt_bx_des
+			'lightbox_description'=>$lt_bx_des
 			);
-			$this->db->where('lightbox_id',$lightbox_id);
-			$this->db->update('tbl_lightbox_details',$data);
-			return null;
+		$this->db->where('lightbox_id',$lightbox_id);
+		$this->db->update('tbl_lightbox_details',$data);
+		return null;
 		}
 	}
-	
-	
-	public function  gallery_record_count($user_id){
-  		
-	$this->db->select('*');
-	$this->db->from('tbl_lightbox_images');
-	$this->db->join('tbl_lightbox_details',	'tbl_lightbox_details.lightbox_id=tbl_lightbox_images.lightbox_id','right');
-	$this->db->where('tbl_lightbox_details.user_id',$user_id);
-	$this->db->where('tbl_lightbox_images.status','1');
-	$query=$this->db->get();
-	return $query->num_rows();
-		
-}
-	
-	public function get_all_lightboxes($user_id,$limit, $start)
-	{
+
+	public function  gallery_record_count($user_id)	{
+		$this->db->select('*');
+		$this->db->from('tbl_lightbox_images');
+		$this->db->join('tbl_lightbox_details',	'tbl_lightbox_details.lightbox_id=tbl_lightbox_images.lightbox_id','right');
+		$this->db->where('tbl_lightbox_details.user_id',$user_id);
+		$this->db->where('tbl_lightbox_images.status','1');
+		$query=$this->db->get();
+		return $query->num_rows();
+	}
+
+	public function get_all_lightboxes($user_id,$limit, $start)	{
 		$this->db->select('*');
 		$this->db->where('user_id',$user_id);
-		 $this->db->limit($limit, $start);
+		$this->db->limit($limit, $start);
 		$this->db->order_by("lightbox_name");
-		
 		$query=$this->db->get('tbl_lightbox_details');
 		return $query->result();
-
 	}
 
 
-public function get_all_lightboxes2($user_id)
-	{
+	public function get_all_lightboxes2($user_id)	{
 		$this->db->select('*');
 		$this->db->where('user_id',$user_id);
 		$query=$this->db->get('tbl_lightbox_details');
 		return $query->result();
-
 	}
 
 
-	public function get_lightbox_name($lightbox_id)
-	{
+	public function get_lightbox_name($lightbox_id)	{
 		$this->db->select('*');
 		$this->db->where('lightbox_id',$lightbox_id);
 		$query=$this->db->get('tbl_lightbox_details');
 		return $query->row();
-
 	}
-	public function change_status($lt_id,$img_id)
-	{
+
+	public function change_status($lt_id,$img_id)	{
 		$data=array('status'=>'2');
 		$this->db->where('lightbox_id',$lt_id);
 		$this->db->where('image_id',$img_id);
 		$this->db->update('tbl_lightbox_images',$data);
 	}
-	public function sorting_lightbox($sortby,$user_id)
-	{
+
+	public function sorting_lightbox($sortby,$user_id)	{
 		$this->db->select('*');
 		$this->db->where("user_id",$user_id);
 		if($sortby=='1')
-			$this->db->order_by("lightbox_name");
+		$this->db->order_by("lightbox_name");
 		if($sortby=='2')
-			$this->db->order_by("creation_date","desc");
+		$this->db->order_by("creation_date","desc");
 		$query=$this->db->get('tbl_lightbox_details');
 		return $query->result();
 	}
-	
 
-public function count_images_lightbox($lightbox_id)
-	{
+	public function count_images_lightbox($lightbox_id)	{
 		$this->db->select('*');
 		$this->db->where('lightbox_id',$lightbox_id);
 		$this->db->where('status','1');
 		$query=$this->db->get('tbl_lightbox_images');
 		if($query->num_rows()>'0')
-			return $query->num_rows();
+		return $query->num_rows();
 		else return null;
-
 	}
 
-
-
-
-public function insert_light_box_images($lightbox_id,$img_id,$filename,$img_size,$image_price,$print_type)
-	{
-               $sql="update tbl_images_search set visibility_status ='1' where images_id in ($img_id)";
-               $update=  mysql_query($sql);
-	      
-  $sql="insert into tbl_lightbox_images set  lightbox_id='".$lightbox_id."', image_id='".$img_id."', images_filename='".$filename."', status='1', image_size='".$img_size."', image_print_type='".$print_type."', price='".$image_price."'";
-	 mysql_query($sql);
-
-
+	public function insert_light_box_images($lightbox_id,$img_id,$filename,$img_size,$image_price,$print_type)	{
+		$sql="update tbl_images_search set visibility_status ='1' where images_id in ($img_id)";
+		$update=  mysql_query($sql);
+		$sql="insert into tbl_lightbox_images set  lightbox_id='".$lightbox_id."', image_id='".$img_id."', images_filename='".$filename."', status='1', image_size='".$img_size."', image_print_type='".$print_type."', price='".$image_price."'";
+		mysql_query($sql);
 	}
 
-
-
-
-	public function insert_light_box_images22222($lightbox_id,$img_id,$filename,$img_size,$image_price,$print_type)
-	{
-                $sql="update tbl_images_search set visibility_status ='1' where images_id in ($img_id) ";
-                $update=  mysql_query($sql);
+	public function insert_light_box_images22222($lightbox_id,$img_id,$filename,$img_size,$image_price,$print_type)	{
+		$sql="update tbl_images_search set visibility_status ='1' where images_id in ($img_id) ";
+		$update=  mysql_query($sql);
 		$data=array('lightbox_id'=>$lightbox_id,'image_id'=>$img_id,'images_filename'=>$filename,'image_size'=>$img_size,'image_print_type'=>$print_type,'price'=>$image_price);
 		//print_r($data);die;
-           $this->db->insert('tbl_lightbox_images',$data);				
+		$this->db->insert('tbl_lightbox_images',$data);
 	}
-        
-       public function get_image_id($images_filename){
-                 $this->db->select('*');
+
+	public function get_image_id($images_filename)	{
+		$this->db->select('*');
 		$this->db->where('images_filename',$images_filename);
 		$query=$this->db->get('tbl_images_search');
-		return $query->result();  
-       } 
-       
-	public function get_images_lightbox($lightbox_id)
-	{
-		
+		return $query->result();
+	}
+
+	public function get_images_lightbox($lightbox_id)	{
 		$this->db->select('*');
 		$this->db->where('lightbox_id',$lightbox_id);
 		$this->db->where('status','1');
@@ -965,57 +815,40 @@ public function insert_light_box_images($lightbox_id,$img_id,$filename,$img_size
 		$query=$this->db->get('tbl_lightbox_images');
 		return $query->result();
 		//print $this->db->last_query();
-
 	}
         
-        
-        public function get_Gallery_images_lightbox($lightbox_id)
-	{
-		
+	public function get_Gallery_images_lightbox($lightbox_id)	{
 		$this->db->select('*');
 		$this->db->where('lightbox_id',$lightbox_id);
 		$query=$this->db->get('tbl_lightbox_images');
 		return $query->result();
 		//print $this->db->last_query();
-
 	}
-        
-        
-         public function get_Gallery_images_lightbox_details($lightbox_id)
-	{
+
+	public function get_Gallery_images_lightbox_details($lightbox_id)	{
 		//echo $lightbox_id;
 		$this->db->select('*');
 		$this->db->where('lightbox_id',$lightbox_id);
 		$query=$this->db->get('tbl_lightbox_images');
 		return $query->result();
 		//print $this->db->last_query();
-
 	}
-        
-        
-        
-	public function check_existing_image_ltbox($lightbox_id,$image_id)
-	{
-	 $sql_1="select * from tbl_lightbox_images where lightbox_id='".$lightbox_id."' and image_id='".$image_id."'";
-	$rows=mysql_query($sql_1);
-		if(mysql_num_rows($rows)>0)
-		{
-		  return '2';
-		}
-		else
-		{
 
+	public function check_existing_image_ltbox($lightbox_id,$image_id)	{
+		$sql_1="select * from tbl_lightbox_images where lightbox_id='".$lightbox_id."' and image_id='".$image_id."'";
+		$rows=mysql_query($sql_1);
+		if(mysql_num_rows($rows)>0)	{
+			return '2';
+		}	else	{
 			return '1';
 		}
-
 	}
-	public function get_light_box_details($user_id)
-	{
+
+	public function get_light_box_details($user_id)	{
 		$this->db->select('*');
 		$this->db->where('user_id',$user_id);
 		$query=$this->db->get('tbl_lightbox_details');
 		return $query->result();
-
 	}
 	public function get_most_selling_image($img_arr)
 	{

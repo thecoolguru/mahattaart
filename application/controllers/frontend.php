@@ -2226,106 +2226,80 @@ class Frontend extends CI_Controller
 		if($frame_s==0)	{
 			$result=$this->frontend_model->update_qty_for_cart($imgsize,$papersurface,$filenam,$data);
 			echo $result;
-		}
-		else if($frame_s>0)	{
+		}	else if($frame_s>0)	{
 			$result=$this->frontend_model->update_qty_frame_for_cart($imgsize,$papersurface,$filenam,$data,$frame_name,$mount_name,$glass);
 			echo $result;
 		}
 	}
     
-	public function save_frame_details(){
+	public function save_frame_details()	{
+		$user_id=$this->session->userdata('userid');
+		$image_id=$this->input->post('imageid');
+		$data=array('frame_width'=>$this->input->post('framewidth'),'frame_price'=>$this->input->post('frameprice'),
+		'mat_price'=>$this->input->post('matprice'),'print_price'=>$this->input->post('printprice'),
+		'total'=>$this->input->post('total'),'user_id'=>$user_id,'image_id'=>$this->input->post('imageid'),
+		'frame_id'=>$this->input->post('frameid'),'glass_price'=>$this->input->post('glassprice'));
+		$check= $this->frontend_model->check_frame_details($user_id,$image_id);
+		if($check==0)	{
+			$frame_id = $this->frontend_model->insert_user_frame_details($data);
+		}	else	{
+			$this->frontend_model->update_user_frame_details($data,$user_id,$image_id);
+		}
+		$d = $this->frontend_model->get_id($user_id,$image_id);
+		foreach($d as $a)	{
+			$data1=array('price'=>$this->input->post('total'),'frame_name'=>$this->input->post('image_name'),'frame_id'=>$a->id,'frame_or_print'=>1);
+			$data2=array('image_id'=>$this->input->post('imageid'),'cart_quantity'=>1,'user_id'=>$user_id,'frame_id'=>$a->id,'price'=>$this->input->post('total'),'frame_name'=>$this->input->post('image_name'),'image_size'=>$this->input->post('printsize'),'image_print_type'=>$this->input->post('type'),'frame_or_print'=>1,'image_name'=>$this->input->post('image'));
+			$check1= $this->frontend_model->check_cart_details($user_id,$image_id);
+			if($check1==0)	{
+				$this->frontend_model->insert_cart_details($data2);
+			}	else	{
+				$this->frontend_model->update_crt($data1,$user_id,$image_id);
+			}
+		}
+		// $frame_values=$this->frontend_model->get_frame_values($frame_id);
+	}
 
-        $user_id=$this->session->userdata('userid');
-        $image_id=$this->input->post('imageid');
-        $data=array('frame_width'=>$this->input->post('framewidth'),'frame_price'=>$this->input->post('frameprice'),
-            'mat_price'=>$this->input->post('matprice'),'print_price'=>$this->input->post('printprice'),
-            'total'=>$this->input->post('total'),'user_id'=>$user_id,'image_id'=>$this->input->post('imageid'),
-            'frame_id'=>$this->input->post('frameid'),'glass_price'=>$this->input->post('glassprice'));
+	public function save_cart_details()	{
+		$user_id=$this->session->userdata('user_id');
+		$image_id=$this->input->post('image_id');
+		$image_filename=$this->input->post('image_filename');
+		$total_size=$this->input->post('total_size');
+		$action_method=$this->input->post('action_method');
 
-        $check= $this->frontend_model->check_frame_details($user_id,$image_id);
+		if($action_method=='search')	{
+			$data2=array('image_id'=>$image_id,'cart_quantity'=>1,'user_id'=>$user_id,'price'=>'100','image_size'=>$total_size,'image_print_type'=>$this->input->post('type'),'image_name'=>$image_filename,'frame_or_print'=>0);
+		}	else{
+			$data2=array('image_id'=>$this->input->post('imageid'),'cart_quantity'=>1,'user_id'=>$user_id,'price'=>$this->input->post('printprice'),'image_size'=>$this->input->post('printsize'),'image_print_type'=>$this->input->post('type'),'image_name'=>$this->input->post('imagename'),'frame_or_print'=>0);
+		}
+		$check1= $this->frontend_model->check_cart_details($user_id,$image_id);
+		if($check1==0)	{
+			$this->frontend_model->insert_into_cart($data2);
+		}	else	{
+			$this->frontend_model->update_crt($data2,$user_id,$image_id);
+		}
+	}
 
-           if($check==0)
-           {
-              $frame_id = $this->frontend_model->insert_user_frame_details($data);
-           }
-         else
-         {
-             $this->frontend_model->update_user_frame_details($data,$user_id,$image_id);
-         }
-        $d = $this->frontend_model->get_id($user_id,$image_id);
-        foreach($d as $a)
-        {
-            $data1=array('price'=>$this->input->post('total'),'frame_name'=>$this->input->post('image_name'),'frame_id'=>$a->id,'frame_or_print'=>1);
-            $data2=array('image_id'=>$this->input->post('imageid'),'cart_quantity'=>1,'user_id'=>$user_id,'frame_id'=>$a->id,'price'=>$this->input->post('total'),'frame_name'=>$this->input->post('image_name'),'image_size'=>$this->input->post('printsize'),'image_print_type'=>$this->input->post('type'),'frame_or_print'=>1,'image_name'=>$this->input->post('image'));
-            $check1= $this->frontend_model->check_cart_details($user_id,$image_id);
-            if($check1==0)
-            {
-                 $this->frontend_model->insert_cart_details($data2);
-            }
-            else
-            {
-            $this->frontend_model->update_crt($data1,$user_id,$image_id);
-            }
-        }
+	public function frame_detail($id)	{
+		$data['details']=$this->frontend_model->frame_detail($id);
+		$this->load->view('frontend/frame_detail',$data);
+	}
 
+	public function room_view()	{
+		$this->load->view('frontend/room_view2');
+	}
 
-       // $frame_values=$this->frontend_model->get_frame_values($frame_id);
+	public function larger_image()	{
+		$this->load->view('frontend/larger_image');
+	}
 
-    }
-    public function save_cart_details()
-    {
-        $user_id=$this->session->userdata('user_id');
-        $image_id=$this->input->post('image_id');
-        $image_filename=$this->input->post('image_filename');
-        $total_size=$this->input->post('total_size');
-        $action_method=$this->input->post('action_method');
-        
-        if($action_method=='search'){
-            
-        $data2=array('image_id'=>$image_id,'cart_quantity'=>1,'user_id'=>$user_id,'price'=>'100','image_size'=>$total_size,'image_print_type'=>$this->input->post('type'),'image_name'=>$image_filename,'frame_or_print'=>0);
-        }else{
-            $data2=array('image_id'=>$this->input->post('imageid'),'cart_quantity'=>1,'user_id'=>$user_id,'price'=>$this->input->post('printprice'),'image_size'=>$this->input->post('printsize'),'image_print_type'=>$this->input->post('type'),'image_name'=>$this->input->post('imagename'),'frame_or_print'=>0);
-        }
-        $check1= $this->frontend_model->check_cart_details($user_id,$image_id);
-        
-        if($check1==0)
-        {
-            $this->frontend_model->insert_into_cart($data2);
-        }
-        else
-        {
-            $this->frontend_model->update_crt($data2,$user_id,$image_id);
-        }
-    }
-    public function frame_detail($id)
-    {
-        $data['details']=$this->frontend_model->frame_detail($id);
-        $this->load->view('frontend/frame_detail',$data);
-    }
-    public function room_view()
-    {
-        $this->load->view('frontend/room_view2');
-    }
-    public function larger_image()
-    {
-        $this->load->view('frontend/larger_image');
-    }
-
-    public  function save_user_login_details($user_id,$url,$ipaddress)
-        {
-       
-                $data2=array('user_id'=>$user_id,'login_session_detals'=>$url,'system_ip'=>$ipaddress);
-                $check1= $this->frontend_model->check_user_login_details($user_id);
-
-                if($check1==0)
-                    {
-                    $this->frontend_model->track_login_details($data2);
-                    }
-                else
-                {
-                    $this->frontend_model->update_track_login_details($data2,$user_id);
-                }
-        
-        }   
+	public  function save_user_login_details($user_id,$url,$ipaddress)	{
+		$data2=array('user_id'=>$user_id,'login_session_detals'=>$url,'system_ip'=>$ipaddress);
+		$check1= $this->frontend_model->check_user_login_details($user_id);
+		if($check1==0)	{
+			$this->frontend_model->track_login_details($data2);
+		}	else	{
+			$this->frontend_model->update_track_login_details($data2,$user_id);
+		}
+	}   
 }
 ?>
