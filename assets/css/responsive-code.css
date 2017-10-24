@@ -11,9 +11,18 @@ body {
 	color: #FFF;
 	width: 100%;
 	line-height: 2;
-	text-align: right;
+	text-align: center;
 }
 
+.sicon {
+	font-size: 22px;
+	font-weight: bold;
+}
+.sicon2{
+	position: absolute;
+	right: 10px;
+	top: 8px;
+}
 .thumbnail {
     border: 0 none;
     box-shadow: none;
@@ -54,10 +63,10 @@ a:hover {
 		font-size: ;
 	}
 	.bg {
-	height: 210px;
-	overflow: hidden;
-	padding-right: 0;
-}
+			height: 210px;
+			overflow: hidden;
+			padding-right: 0;
+		}
 
 	.bg_content{
 	  background-color: #eee;
@@ -119,7 +128,12 @@ a:hover {
 	.bg_content{
 	  height: 176px !important;
 	}
-
+	.sicon {
+		font-size: 20px !important;
+	}
+	.news {
+		text-align: right !important;
+	}	
 }
 
 
@@ -401,23 +415,23 @@ a:hover {
 		left: 369px;
 		height: 18px;
 	}
-	.news {
-		text-align: center !important;
-	}	
 /*	photostoart
 */
 	.top_slider_content {
 		position: relative !important;
-		left: 0;
 		right: 0 !important;
 		margin: 0 auto;
-		width:auto !important;
+		width:380px !important
 	}
 	#uploader_popup_goofy_a {
 		top: 60px !important;
 		width: 480px !important;
 		margin-left: -240px !important;
 	}
+	.top_slider_content h1 {
+		font-size: 38px !important;
+	}
+	
 /*	photostoart_inner
 */
 	.addtocartcontainer_page, .addtocartcontainer_page3 {
@@ -425,6 +439,16 @@ a:hover {
 	}
 	.pull-right.add_photo {
 		margin-right: 145px !important;
+	}
+	.sicon {
+		font-size: 22px;
+		font-weight: bold;
+		display: block;
+	}
+	.sicon2 {
+		position: relative;
+		right: 0;
+		top: 0;
 	}
 }
 
@@ -465,6 +489,9 @@ a:hover {
 	}
 	.uploader_popup_upload-icon {
 		height: 290px !important;
+	}
+	.top_slider_content {
+		width: 290px !important;
 	}
 }
 
@@ -757,7 +784,7 @@ a:hover {
 */
 	.top_slider_content {
 		width: 240px !important;
-		padding: 0 !important;
+		right:40px !important
 	}
 	.top_slider_content h1 {
 		font-size: 35px !important;
@@ -783,6 +810,16 @@ a:hover {
 	}
 	.pull-right.add_photo {
 		margin-right: 180px !important;
+	}
+	.sicon {
+		font-size: 22px;
+		font-weight: bold;
+		display: block;
+	}
+	.sicon2 {
+		position: relative;
+		right: 0;
+		top: 0;
 	}
 }
 
@@ -983,7 +1020,7 @@ a:hover {
 		color: #FFF;
 		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 		padding: 11px 16px 10px 0;
-		font-size: 13px;
+		font-size: 10px;
 		letter-spacing: 1.25px;
 	}
 		#gal-customcombobox {

@@ -417,15 +417,16 @@ $minus_keyword='sssss';
 
   for($x=0;$x<64;$x++){
 foreach ($search_data as $item){
-//print_r($item);
-	$bride=split('_',$item['image_filename']);
-echo $bride[0];
-print_r($bride);
+//print_r($item['results'][0]['image_filename']);
+//print_r($item['image_filename']);
+	$bride=split('_',$item['results'][$x]['image_filename']);
+//echo $bride[0];
+//print_r($bride);
 if($bride[0]=='BRID'){
-	$data= str_split($item['image_filename'],8);
+	//$data= str_split($item['results'][0]['image_filename'],8);
 	//print_r($data);
 	//$dataa= substr($item['image_filename'],8);
-    $bridege_image_id=substr($item['image_filename'],8,-4);
+    $bridege_image_id=substr($item['results'][$x]['image_filename'],8,-4);
 	 //$bridge_id=$data[1];
 	 //$data.'ss';
 	 
@@ -434,21 +435,21 @@ if($bride[0]=='BRID'){
 	//$reverse_val= $this->frontend_model->reverse_number($add_imgid);
 	$append_zero=$reverse_val.'0';
 	$bride_id=$append_zero;
-	echo "bridge";
+	
 }
 
  if($bride[0]=='BRID'){
  $img_src= "http://images2.bridgemanart.com/cgi-bin/bridgemanImage.cgi/150.XIR.".$bride_id.".7055475/".$bridege_image_id.".JPG";
-	$image_filename=$item['image_filename'];
-	$image_id=$item['image_id'];
-	$image_collection_id=$item['image_collection_id'];
+	$image_filename=$item['results'][$x]['image_filename'];
+	$image_id=$item['results'][$x]['image_id'];
+	$image_collection_id=$item['results'][$x]['image_collection_id'];
 	$link='products';
 	
  }else{
 	$img_src="http://static.mahattaart.com/130x150/media/".$item['results'][$x]['image_filename'];
 	$image_filename=$item['results'][$x]['image_filename'];
 	$image_id=$item['results'][$x]['image_id'];
-	$image_collection_id=$item['results'][$x]['image_collection_id'];;
+	$image_collection_id=$item['results'][$x]['image_collection_id'];
 	$link= 'products';//'image_detail';
  }
  

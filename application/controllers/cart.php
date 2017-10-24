@@ -471,81 +471,116 @@ invoice_id,customer_type,price,total_paid_with_tax )
 
         
 	public function payment_by_cod(){
-	$order_id=$this->input->post('order_id');
-	$user_id=$this->input->post('merchant_param1');
-	$billing_name=$this->input->post('billing_name');
-	$billing_address=$this->input->post('billing_address');
-	$billing_country=$this->input->post('billing_country');
-	$billing_zip=$this->input->post('billing_zip');
-	$billing_tel=$this->input->post('billing_tel');
-	$billing_email=$this->input->post('billing_email');
-
-	$delivery_name=$this->input->post('delivery_name');
-	$delivery_address=$this->input->post('delivery_address');
-	$delivery_city=$this->input->post('delivery_city');
-	$delivery_state=$this->input->post('delivery_state');
-	$delivery_name=$this->input->post('delivery_name');
-	$delivery_address=$this->input->post('delivery_address');
-	$delivery_zip=$this->input->post('delivery_zip');
-	$delivery_country=$this->input->post('delivery_country');
-	$delivery_tel=$this->input->post('delivery_tel');
-	$amount=$this->input->post('amount');
-	$merchant_param2=$this->input->post('merchant_param2');
-	$merchant_param3=$this->input->post('merchant_param3');
-	$merchant_param4=$this->input->post('merchant_param4');
-	$merchant_param5=$this->input->post('merchant_param5');
-	$payment_mode='COD';
-	date_default_timezone_set('Asia/Kolkata');
-		   // $date=date('d-m-Y H:i');
-			 $date=date('Y-m-d H:i:s');
-		
-		//$order_date=date('Y-m-d h:t');
-	  $sql="insert into order_details set  inv_order_id='".$order_id."',customer_id='".$user_id."', customer_name='".$billing_name."', customer_address='".$billing_address."', customer_city='".$billing_city."', customer_state='".$billing_state."', customer_country='".$billing_country."', customer_pincode='".$billing_zip."', customer_contact='".$billing_tel."', customer_email='".$billing_email."',delivery_name='".$delivery_name."',delivery_address='".$delivery_address."',delivery_city='".$delivery_city."',delivery_state='".$delivery_state."',delivery_zip='".$delivery_zip."',delivery_country='".$delivery_country."',delivery_tel='".$delivery_tel."', order_amount='".$amount."', bank_ref_no='".$bank_ref_no."', bank_name='".$card_name."', payment_mode='".$payment_mode."', order_date='".$date."',order_status='".$order_status."', order_comments='".$order_status."',company_name='".$merchant_param3."',invoice_no='".$merchant_param2."',gst_no='".$merchant_param4."',pan_no='".$merchant_param5."'";      
-			 $insert=  mysql_query($sql);
-			$data['msg']= "<br>Thank you for shopping with us. Your credit card has been charged and your transaction is successful. We will be shipping your order to you soon.";
-			$data=array('order_id'=>$order_id,'order_date'=>$date,'invoice_no'=>$merchant_param2);
+		$order_id=$this->input->post('order_id');
+		$user_id=$this->input->post('merchant_param1');
+		$billing_name=$this->input->post('billing_name');
+		$billing_address=$this->input->post('billing_address');
+		$billing_country=$this->input->post('billing_country');
+		$billing_zip=$this->input->post('billing_zip');
+		$billing_tel=$this->input->post('billing_tel');
+		$billing_email=$this->input->post('billing_email');
+		$delivery_name=$this->input->post('delivery_name');
+		$delivery_address=$this->input->post('delivery_address');
+		$delivery_city=$this->input->post('delivery_city');
+		$delivery_state=$this->input->post('delivery_state');
+		$delivery_name=$this->input->post('delivery_name');
+		$delivery_address=$this->input->post('delivery_address');
+		$delivery_zip=$this->input->post('delivery_zip');
+		$delivery_country=$this->input->post('delivery_country');
+		$delivery_tel=$this->input->post('delivery_tel');
+		$amount=$this->input->post('amount');
+		$merchant_param2=$this->input->post('merchant_param2');
+		$merchant_param3=$this->input->post('merchant_param3');
+		$merchant_param4=$this->input->post('merchant_param4');
+		$merchant_param5=$this->input->post('merchant_param5');
+		$payment_mode='COD';
+		date_default_timezone_set('Asia/Kolkata');
+		$date=date('Y-m-d H:i:s');
+		$sql="insert into order_details set  inv_order_id='".$order_id."',customer_id='".$user_id."', customer_name='".$billing_name."', customer_address='".$billing_address."', customer_city='".$billing_city."', customer_state='".$billing_state."', customer_country='".$billing_country."', customer_pincode='".$billing_zip."', customer_contact='".$billing_tel."', customer_email='".$billing_email."',delivery_name='".$delivery_name."',delivery_address='".$delivery_address."',delivery_city='".$delivery_city."',delivery_state='".$delivery_state."',delivery_zip='".$delivery_zip."',delivery_country='".$delivery_country."',delivery_tel='".$delivery_tel."', order_amount='".$amount."', bank_ref_no='".$bank_ref_no."', bank_name='".$card_name."', payment_mode='".$payment_mode."', order_date='".$date."',order_status='".$order_status."', order_comments='".$order_status."',company_name='".$merchant_param3."',invoice_no='".$merchant_param2."',gst_no='".$merchant_param4."',pan_no='".$merchant_param5."'";      
+		$insert=  mysql_query($sql);
+		$data['msg']= "<br>Thank you for shopping with us. Your credit card has been charged and your transaction is successful. We will be shipping your order to you soon.";
+		$data=array('order_id'=>$order_id,'order_date'=>$date,'invoice_no'=>$merchant_param2);
 		$this->cart_model->order_id_update_for_cart($data,$user_id);
-		 $copytoinvoice_details="insert into tbl_invoice_details (
-	invoice_id,surface,qty,customer_id,frame_size_height,frame_size_width,frame_color,frame_cost,mount_size_height,mount_size_width,mount_color,mount_cost,glass_name ,glass_cost,price,image_size,image_id,sku_id,customer_type,created_date,sr_id,paid_status,region,updated_status,tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price)	
-			SELECT order_id, image_print_type,qty,user_id,frame_size,frame_size,frame_color,frame_cost,mount_size,mount_size,mount_color,mount_cost,glass_type,glass_cost,price,image_size,image_name,image_name,'B2C',order_date,sr_no,'0','Online','Processing',
-	tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price
-					from tbl_cart where user_id='".$user_id."'";
-					  $insert1=  mysql_query($copytoinvoice_details);
-					  
-					  
-					  $copytoinvoice="insert into tbl_invoice (
-	invoice_id,customer_type,price,total_paid_with_tax )
-			SELECT invoice_id,'B2C',sum(price),'".$amount."'
-					from tbl_invoice_details where invoice_id='".$order_id."'";
-					  $insert2=  mysql_query($copytoinvoice);
-			   $udate_tbl_invoice="update tbl_invoice_details set company_name='".$merchant_param3."',customer_city='".$delivery_city."',created_date='".$date."',payment_mode='COD' where invoice_id='".$order_id."'";
-			 $udate_tbl_insert=mysql_query($udate_tbl_invoice);
-	// starts for order details
-																	 
-		   $copytoorder_details="insert into tbl_orders_details (
-	order_id,surface,quantity,customer_id,frame_size_height,frame_size_width,frame_color,frame_cost,mount_size_height,mount_size_width,mount_color,mount_cost,glass_name ,glass_cost,price,image_size,image_id,sku_id,customer_type,created_date,sr_id,region,paid_status,sales_person,client_servicing,convert_to_order,tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price)	
-			SELECT order_id,image_print_type,qty,user_id,frame_size,frame_size,frame_color,frame_cost,mount_size,mount_size,mount_color,mount_cost,glass_type,glass_cost,price,image_size,image_name,image_name,'B2C',order_date,sr_no,'Online','0','Online','Online','6',tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price
-					from tbl_cart where order_id='".$order_id."'";
-					  $insert3=  mysql_query($copytoorder_details);
-					  
-					  
-																	 
-					 $udate_tbl_orders="update tbl_orders_details set company_name='".$merchant_param3."',customer_city='".$delivery_city."',created_date='".$date."',order_id2='".$merchant_param2."' where order_id='".$order_id."'";
-			 $udate_tbl_orders_insert=mysql_query($udate_tbl_orders);												  
-			 $copytoorder="insert into tbl_orders (order_id,order_id2,price,total_paid_with_tax)	
-			  SELECT order_id,order_id2,sum(price),'".$amount."' from tbl_orders_details where order_id='".$order_id."'";
-					  $insert4=  mysql_query($copytoorder);
+		$copytoinvoice_details="insert into tbl_invoice_details (
+		invoice_id,surface,qty,customer_id,frame_size_height,frame_size_width,frame_color,frame_cost,mount_size_height,mount_size_width,mount_color,mount_cost,glass_name ,glass_cost,price,image_size,image_id,sku_id,customer_type,created_date,sr_id,paid_status,region,updated_status,tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price)	
+		SELECT order_id, image_print_type,qty,user_id,frame_size,frame_size,frame_color,frame_cost,mount_size,mount_size,mount_color,mount_cost,glass_type,glass_cost,price,image_size,image_name,image_name,'B2C',order_date,sr_no,'0','Online','Processing',
+		tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price
+		from tbl_cart where user_id='".$user_id."'";
+		$insert1=  mysql_query($copytoinvoice_details);
+
+		$copytoinvoice="insert into tbl_invoice (
+		invoice_id,customer_type,price,total_paid_with_tax )
+		SELECT invoice_id,'B2C',sum(price),'".$amount."'
+		from tbl_invoice_details where invoice_id='".$order_id."'";
+		$insert2=  mysql_query($copytoinvoice);
+		$udate_tbl_invoice="update tbl_invoice_details set company_name='".$merchant_param3."',customer_city='".$delivery_city."',created_date='".$date."',payment_mode='COD' where invoice_id='".$order_id."'";
+		$udate_tbl_insert=mysql_query($udate_tbl_invoice);
+		// starts for order details
+
+		$copytoorder_details="insert into tbl_orders_details (
+		order_id,surface,quantity,customer_id,frame_size_height,frame_size_width,frame_color,frame_cost,mount_size_height,mount_size_width,mount_color,mount_cost,glass_name ,glass_cost,price,image_size,image_id,sku_id,customer_type,created_date,sr_id,region,paid_status,sales_person,client_servicing,convert_to_order,tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price)	
+		SELECT order_id,image_print_type,qty,user_id,frame_size,frame_size,frame_color,frame_cost,mount_size,mount_size,mount_color,mount_cost,glass_type,glass_cost,price,image_size,image_name,image_name,'B2C',order_date,sr_no,'Online','0','Online','Online','6',tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price
+		from tbl_cart where order_id='".$order_id."'";
+		$insert3=  mysql_query($copytoorder_details);
+
+		$udate_tbl_orders="update tbl_orders_details set company_name='".$merchant_param3."',customer_city='".$delivery_city."',created_date='".$date."',order_id2='".$merchant_param2."' where order_id='".$order_id."'";
+		$udate_tbl_orders_insert=mysql_query($udate_tbl_orders);												  
+		$copytoorder="insert into tbl_orders (order_id,order_id2,price,total_paid_with_tax)	
+		SELECT order_id,order_id2,sum(price),'".$amount."' from tbl_orders_details where order_id='".$order_id."'";
+		$insert4=  mysql_query($copytoorder);
+
+		//$user_details="select * from tbl_registration where customer_id='".$user_id."'";
+		//$user_get_details=mysql_query($user_details);
+		//$user_name=$user_get_details['first_name'].' '.$user_get_details['last_name'];
+		//$user_email=$user_get_details['email_id'];
+
+		$messages='<!DOCTYPE HTML>
+		<html>
+		<head>
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+			<title> signup email</title>
+			<link href="css/bootstrap.min.css" rel="stylesheet">
+			<link href="css/font-awesome.css" rel="stylesheet">
+		</head>
+		<body>
+		<style>
+		table td a.a_link{font-size:3em; padding:0 20px}
+		.btn-instagram{color:#3f729b}
+		.btn-facebook{color:#3b5998}
+		.btn-linkedin{color:#007bb6}
+		</style>
+		<table id="Table_01" width="750" border="0" cellpadding="0" cellspacing="0"  style="margin:0 auto">
+		<tr><td colspan="4"><p><img src="'.base_url().'images/mahattaArt_logo.png" width="300"/></p></td></tr>
+		<tr><td colspan="4"><p>Dear '.$billing_name.'!</p></td></tr>
+		<tr><td colspan="4"><p>Thank you! For subscribing on <a href="'.base_url().'">MahattaArt.com</a></p></td></tr>
+		<tr><td colspan="4"><p>We will keep you updated on our exclusive and latest collections!</p></td></tr>
+		<tr><td colspan="4"><p>Mahatta Art is an online art gallery having 5.5 Lakh Images including Photography, Paintings, Poster & Illustrations from world renowned Collections and Artists. The content ranges from Abstracts to Nature photography, Legendary to Amateur artists, Heritage to Modern Indian art, Modern to Contemporary art, Humorous quotes to Serious & Hollywood Vintage posters and so on.</p></td></tr>
+		<tr><td colspan="4"><p>Click here to know more about us <a href="'.base_url().'">link</a></p></td></tr>
+		<tr><td colspan="4"><p>For any queries email us at <a href="mailto:info@mahattaart.com">info@mahattaart.com</a> or contact us at: +91-8800639075, 011-41828972</p></td></tr>
+		<tr><td colspan="4"><p>Regards,</p></td></tr>
+		<tr>
+		<td width="150" style="vertical-align:top"><p>Mahattaart Team</p></td>
+		<td><a href="https://www.facebook.com/mahattaart"><img src="'.base_url().'images/facebook.jpg" width="50px" height="50px"></a><a href="https://www.linkedin.com/company/13458390"><img src="'.base_url().'images/linkdin.jpg" width="50px" height="50px"></a><a href="https://twitter.com/mahattaart"><img src="'.base_url().'images/twitter.jpg" width="50px" height="50px"></a></td>
+		</tr>
+		</table>
+		</body>
+		</html>';
+		$this->email->clear(TRUE);
+		$this->email->from('info@mahattaart.com', 'MahattaArt');
+		$this->email->to($billing_email);
+		//$this->email->cc('operations@mahattaart.com');
+		$this->email->subject('Welcome to Mahatta Art');
+		$this->email->message($messages);
+		$send=$this->email->send();
+
+
 		$this->cart_model->remove_cart($user_id);
-		
-		  $this->load->view('frontend/header');
-			
-			$this->load->view('cart/order_success',$data);
-			
-			
-			$this->load->view('frontend/footer');
+		$this->load->view('frontend/header');
+		$this->load->view('cart/order_success_cod',$data);
+		$this->load->view('frontend/footer');
 
 	}
-        
+
 
         public function Cart_remove($row_id,$cart_td){
             if($cart_td<>''){

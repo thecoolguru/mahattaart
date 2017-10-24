@@ -259,7 +259,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 
 .hamburger {
   position: absolute;
-  top: 30px;  
+  top: 20px;  
   z-index: 999;
   display: block;
   width: 32px;
@@ -307,7 +307,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 .hamburger.is-closed .hamb-top,
 .hamburger.is-closed .hamb-middle,
 .hamburger.is-closed .hamb-bottom {
-  background-color: #1a1a1a;
+  background-color: #fff;
 }
 .hamburger.is-closed .hamb-top { 
   top: 5px; 
@@ -421,9 +421,9 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 
 
 <header role="banner" class="navbar navbar-default" style="min-height:auto">
-<div class="news" style="text-align:center">
-<span style="font-size:22px; font-weight:bold"> FLAT 20% OFF SITEWIDE</span>
-<span style="position:absolute; right:10px; top:8px"> <a href="#" class="header_link"> <i class="glyphicon glyphicon-earphone"></i> +91-8800639075</a> &nbsp; &nbsp; <a href="mailto:info@mahattaart.com" class="header_link"> <i class="glyphicon glyphicon-envelope"></i> info@mahattaart.com</a> </span>
+<div class="news">
+<span class="sicon"> FLAT 20% OFF SITEWIDE</span>
+<span class="sicon2"> <a href="#" class="header_link"> <i class="glyphicon glyphicon-earphone"></i> +91-8800639075</a> &nbsp; &nbsp; <a href="mailto:info@mahattaart.com" class="header_link"> <i class="glyphicon glyphicon-envelope"></i> info@mahattaart.com</a> </span>
 </div>
 </header>
 <style>.search-input:focus+button{z-index:3}</style>
@@ -869,7 +869,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
             background-color: transparent;
         }
 </style>
-<div style="background-color:#999;height:35px">
+<div style="background-color:#999; position:relative">
 <div class="offers container">
 <nav id="menu">
 <ul>

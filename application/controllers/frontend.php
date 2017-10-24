@@ -656,6 +656,18 @@ class Frontend extends CI_Controller
 			$this->frontend_model->insert_registeration($first_name,$last_name,$email,$password);
 			//$this->frontend_model->update_user_status($user_id);
 			//sent email to Admin
+			//$email=$_POST['email'];
+			//$password=$_POST['password'];
+			$user=$this->frontend_model->login_verification($email,$password);
+			if($user->customer_id<>'')	{
+				$this->session->set_userdata('userid',$user->customer_id);
+				$this->session->set_userdata('email',$user->email_id);
+				$user_id= $this->session->userdata('userid');
+				$user_login= $this->frontend_model->check_user_login_sesion($user_id);
+				$login_session_detals= $user_login[0]->login_session_detals; 
+				//echo json_encode(array("result"=>"1"));
+			}
+
 			$messages='<!DOCTYPE HTML>
 			<html>
 				<head>
