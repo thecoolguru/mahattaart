@@ -34,7 +34,7 @@ class Frontend extends CI_Controller
 		$this->user = $this->facebook->getUser();
 	}
 	
-	   public function photostoart()
+	   public function photostoframe()
 	{
 		$_SESSION['page_id'] = '9';
 		$this->load->view('frontend/header');
@@ -52,7 +52,7 @@ class Frontend extends CI_Controller
  		$_SESSION['path'] = IMAGE_PATH;
  		$id = $_SESSION['user_info'];
 		$_SESSION['user'] = $id;
-		$data1 = 'photostoart';
+		$data1 = 'photostoframe';
 		$this->session->set_userdata('page',$data1); 
 		$result = $this->frontend_model->get_images($id);
 		if(isset($_SESSION['user'])){ 
@@ -357,7 +357,7 @@ class Frontend extends CI_Controller
 		echo $result['rate'];
 	}
 	  
-	public function clearence($value)	{
+	public function clearance($value)	{
 		$data['search_data']=$this->frontend_model->get_tbl_clearence($value);
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/clearence',$data);
@@ -584,7 +584,7 @@ class Frontend extends CI_Controller
 							<td colspan="4"><p><img src="'.base_url().'images/mahattaArt_logo.png" width="300"></p></td>
 						</tr>
 						<tr>
-							<td colspan="4"><p>Hi '.$first_name.' '.$last_name.'</p></td>
+							<td colspan="4"><p>Dear '.$first_name.' '.$last_name.',</p></td>
 						</tr>
 						<tr>
 							<td colspan="4"><p>We received a request to reset your Mahatta Art password.</p></td>
@@ -594,7 +594,7 @@ class Frontend extends CI_Controller
 						</tr>
 						<tr>
 							<td colspan="4">
-								<p>For any query feel free to contact us: +91-8800639075   or mail us: info@mahattaart.com</p>
+								<p>For any query feel free to contact us: +91-8800639075, 011-41828972 or mail us: <a href="mailto:info@mahattaart.com">info@mahattaart.com</a></p>
 								<p>To know more about us <a href="'.base_url().'">click here</a></p>
 							</td>
 						</tr>
@@ -603,14 +603,17 @@ class Frontend extends CI_Controller
 						</tr>
 						<tr>
 							<td style="vertical-align:top" width="150"><p>Mahatta Art Team</p></td>
+						</tr>
+						<tr>
 							<td>
 								<a href="https://www.facebook.com/mahattaart"><img src="'.base_url().'images/facebook.jpg" width="50px" height="50px"></a>
-								<a href="https://www.facebook.com/mahattaart"><img src="'.base_url().'images/linkdin.jpg" width="50px" height="50px"></a>
+								<a href="https://www.linkedin.com/company/13458390"><img src="'.base_url().'images/linkdin.jpg" width="50px" height="50px"></a>
 								<a href="https://twitter.com/mahattaart"><img src="'.base_url().'images/twitter.jpg" width="50px" height="50px"></a>
+								<a href="https://www.instagram.com/mahattaart"><img src="'.base_url().'images/instagram.png" width="50px" height="50px"></a>
 							</td>
 						</tr>
 						<tr>
-							<td colspan="4" style="text-align:center"><p>Having trouble seeing this email? Visit our <a href="'.base_url().'">Website</a></p></td>
+							<td colspan="4" style="text-align:center"><p></p><p>Having trouble seeing this email? Visit our <a href="'.base_url().'">Website</a></p></td>
 						</tr>
 					</table>
 				</body>
@@ -618,6 +621,7 @@ class Frontend extends CI_Controller
 			$this->email->clear(TRUE);
 			$this->email->from('info@mahattaart.com', 'MahattaArt');
 			$this->email->to(trim($email_regd));
+			$this->email->cc('operations@mahattaart.com');
 			$this->email->subject('Welcome to Mahatta Art');
 			$this->email->message($message);
 			$send=$this->email->send();
@@ -644,10 +648,12 @@ class Frontend extends CI_Controller
 		if($maill==1)	{
 			echo "<br>This email is already registered.";
 		}	else	{
+			$first_name=$this->input->post('first_name');
+			$last_name=$this->input->post('last_name');
 			$email=$this->input->post('email_reg');
 			$password=$this->input->post('passwordd');
 			$quote="'";
-			$this->frontend_model->insert_registeration($email,$password);
+			$this->frontend_model->insert_registeration($first_name,$last_name,$email,$password);
 			//$this->frontend_model->update_user_status($user_id);
 			//sent email to Admin
 			$messages='<!DOCTYPE HTML>
@@ -669,58 +675,33 @@ class Frontend extends CI_Controller
 					<tr>
 						<td colspan="4"><p><img src="'.base_url().'images/mahattaArt_logo.png" width="300"/></p></td>
 					</tr>
+					<tr><td colspan="4"><p>Dear '.$first_name.' '.$last_name.'!</p></td></tr>
 					<tr>
-						<td colspan="4"><p>Hi '.$email.',</p></td>
+						<td colspan="4"><p>Thank you! For subscribing on <a href="'.base_url().'">MahattaArt.com</a></p></td>
+					</tr>
+					<tr>
+						<td colspan="4"><p>We will keep you updated on our exclusive and latest collections!</p></td>
 					</tr>
 					<tr>
 						<td colspan="4">
-							<p>Thank you for registering with Mahatta Art, one of the India '.$quote.'s finest online art gallery providing one stop solution for Wall Art.</p>
+							<p>Mahatta Art is an online art gallery having 5.5 Lakh Images including Photography, Paintings, Poster & Illustrations from world renowned Collections and Artists. The content ranges from Abstracts to Nature photography, Legendary to Amateur artists, Heritage to Modern Indian art, Modern to Contemporary art, Humorous quotes to Serious & Hollywood Vintage posters and so on.</p>
 						</td>
 					</tr>
-					<tr><td colspan="4"><p>Your login details:</p></td></tr>
-					<tr><td><p>Email address: '.$email.' </p></td></tr>
-					<tr><td colspan="4"><p>Password:'.$password.'</p></td></tr>
-					<tr><td colspan="4"><p>Welcome to Mahatta Art </p></td></tr>
 					<tr>
-					<td colspan="4">
-					<p>Browse through the largest repository of artwork from more than 550+ museum collections consists of more than 5 Lacs artworks in Fine Art paintings, worldwide photography, Vintage Posters and Illustrations. </p>
-					</td>
-					</tr>
-					<tr><td colspan="4"><p><a href="'.base_url().'">Explore now</a></p></td></tr>
-					<tr><td colspan="4"><p>Why Us?</p></td></tr>
-					<tr>
-						<td colspan="4">
-							<ul>
-								<li>Licensed Art</li>
-								<li>Runs on a Reprint model making art less expensive than original</li>
-								<li>Free Art advisory services</li>
-								<li>In-house Framing & Printing facilities</li>
-								<li>Ships in 48 business hours</li>
-								<li>Strong packaging</li>
-								<li>100% Satisfaction Guaranteed</li>
-							</ul>
-						</td>
+						<td colspan="4"><p>Click here to know more about us <a href="'.base_url().'">link</a></p></td>
 					</tr>
 					<tr>
 						<td colspan="4">
-							<p>For any query feel free to contact us: +91-8800639075 or mail us: <a href="info@mahattaart.com">info@mahattaart.com</a></p>
-							<p>To know more about us <a href="'.base_url().'">click here</a></p>
+							<p>For any queries email us at <a href="mailto:info@mahattaart.com">info@mahattaart.com</a> or contact us at: +91-8800639075, 011-41828972</p>
 						</td>
 					</tr>
+					<tr><td colspan="4"><p>Regards,</p></td></tr>
 					<tr>
-						<td colspan="4"><p>Happy exploring!</p></td>
-					</tr>
-					<tr>
-						<td width="150" style="vertical-align:top"><p>Mahatta Art Team</p></td>
+						<td width="150" style="vertical-align:top"><p>Mahattaart Team</p></td>
 						<td>
 							<a href="https://www.facebook.com/mahattaart"><img src="'.base_url().'images/facebook.jpg" width="50px" height="50px"></a>
-							<a href="https://www.facebook.com/mahattaart"><img src="'.base_url().'images/linkdin.jpg" width="50px" height="50px"></a>
+							<a href="https://www.linkedin.com/company/13458390"><img src="'.base_url().'images/linkdin.jpg" width="50px" height="50px"></a>
 							<a href="https://twitter.com/mahattaart"><img src="'.base_url().'images/twitter.jpg" width="50px" height="50px"></a>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="4" style="text-align:center">
-							<p>Having trouble seeing this email? Visit our <a href="'.base_url().'">Website</a></p>
 						</td>
 					</tr>
 					</table>
@@ -848,6 +829,7 @@ class Frontend extends CI_Controller
 		$headers  = 'MIME-Version: 1.0' . "\r\n";
 		$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 		$headers .= 'From:Mahattaart <info@mahattaart.com>' . "\r\n";
+		$headers .= 'Cc: operations@mahattaart.com' . "\r\n";
 		$subject = 'Registration confirmation';
 		$send=mail($email_reg,$subject,$frntfrgtpwd,$headers);
 		}
@@ -1845,7 +1827,7 @@ class Frontend extends CI_Controller
 									<p> Your friend '.ucfirst($first_name).'  '.ucfirst($last_name).' knew you would love this and has shared this gallery with you . Just have a look Mahatta Art gallery products. </p>
 									<p>Please <a href="'.base_url().'index.php/frontend/lightbox_view?lightbox_id='.$lightbox_id.'&page=1&per_page=16">Click here</a> to view gallery.</p>
 									<p>To know more about Mahatta Art gallery <a href="'.base_url().'">click here </a></p>
-									<p>For any queries call us at <a href="#">+91-11-41828972<a/> or email us at <a href="mailto:info@mahattaart.com"> info@mahattaart.com </a>  </p>
+									<p>For any queries call us at <a href="#">+91-11-41828972<a/> or email us at <a href="mailto:info@mahattaart.com"> info@mahattaart.com </a></p>
 								</td>
 							</tr>
 							<tr>

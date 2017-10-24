@@ -42,6 +42,34 @@
 }
 </style>
 <?php 
+// starts for images brige and others
+//echo $image_name;
+$image_type=split('_',$image_name);
+//print_r($image_type[0]);
+//print_r($image_detail);
+if($image_type[0]=='BRID'){
+
+	//$data= str_split($image_detail[0]['image_filename'],8);
+	//print_r($data);
+	//$dataa= substr($item['image_filename'],8);
+    $bridege_image_id=substr($image_detail[0]['image_filename'],8,-4);
+	 //$bridge_id=$data[1];
+	 //$data.'ss';
+	 
+	$add_imgid= $bridege_image_id+3179;
+	$reverse_val=strrev($add_imgid);
+	//$reverse_val= $this->frontend_model->reverse_number($add_imgid);
+	$append_zero=$reverse_val.'0';
+	$bride_id=$append_zero;
+$image_path= "http://images2.bridgemanart.com/cgi-bin/bridgemanImage.cgi/150.XIR.".$bride_id.".7055475/".$bridege_image_id.".JPG";
+
+}else{
+$image_path="http://static.mahattaart.com/400x400/media/".$image_detail[0]['image_filename'];
+}
+//echo $image_path;
+//end for images
+
+
 $collection_name;
 $continue_shopping_redirect=$this->session->userdata('continue_shopping');
 $this->load->library('multipledb'); // loading library.
@@ -95,22 +123,20 @@ $max_size=$this->search_model->get_max_size($images_id);
 $max_width_allowed=$max_w/150;
 $max_height_allowed=$max_h/150;
 // calcuulate image ratio
-$size_data = getimagesize("http://static.mahattaart.com/media/".$image_detail[0]['image_filename']."");
+$size_data = getimagesize($image_path);
 $image_alignment="";
 $image_width=$size_data[0];
 $image_height=$size_data[1];
 
-$size_data1 = getimagesize("http://static.mahattaart.com/400x400/media/".$image_detail[0]['image_filename']."");
+$size_data1 = getimagesize($image_path);
 $image_width1=$size_data1[0];
 $image_height1=$size_data1[1];
-
-
 
 $image_ratio=$image_width/$image_height;
 $size_array=array();
 $role_size = 64;
 $lower_value = 0;
-
+//print_r($size_data);
 if($size_data[0]>=$size_data[1])
 { 
     $size_array[0]['height']=10/$image_ratio;
@@ -183,6 +209,7 @@ function choose_role_size($width,$height){
 		$fix_val = $height;	
 	}else{
 		$fix_val = $width;
+
 	}
       if($fix_val<=17){
            return 17;
@@ -673,9 +700,9 @@ function calculate_cost(value){
          <div class="single-product-image">
          	<div class="single-product-image-inner" style="margin-top: 20px">
   <ul class="product-tabs" role="tablist">
-               <li role="presentation" id="11"><img src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive"></li>
+               <li role="presentation" id="11"><img src="<?php echo $image_path;?>" class="img-responsive"></li>
                <li role="presentation" id="15">
-                   <img src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" style="transform: perspective( 900px ) rotateY( 15deg );  /*!width: 50px;*/padding-left: 5px;padding-right: 5px;" class="img-responsive">
+                   <img src="<?php echo $image_path;?>" style="transform: perspective( 900px ) rotateY( 15deg );  /*!width: 50px;*/padding-left: 5px;padding-right: 5px;" class="img-responsive">
                     <figure style="background: linear-gradient(to right, rgba(227,227,227,0.4) 0%, rgba(255,255,255,1) 100%);position: absolute;height: 10px;width: 40px;transform: skewX(20deg) skewY(-3deg) translate(3px,-1px);bottom: 0;z-index: -1;">
                     </figure>
                </li>
@@ -718,14 +745,14 @@ function calculate_cost(value){
 						box-shadow: inset 0 3px 5px rgba(0,0,0,0);
 					}
 				</style>
-                <img src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive mainhor" style="border-image: url('http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg') 30 30 30 30 round round;background:url('http://mahattaart.com/images/uploaded_pdf/mount/DR 2091.jpg') no-repeat scroll 0 0 / contain;">
+                <img src="<?php echo $image_path;?>" class="img-responsive mainhor" style="border-image: url('http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg') 30 30 30 30 round round;background:url('http://mahattaart.com/images/uploaded_pdf/mount/DR 2091.jpg') no-repeat scroll 0 0 / contain;">
                </li>
                <li role="presentation" id="12"><img src="<?= base_url() ?>assets/img/product/frame_left.jpg" class="img-responsive" ></li>
                 <li role="presentation" id="20" style="border:0px;">
         			<section class="container3D">
         				<div id="cube">
 	            			<figure class="front">
-	  					<img id="large_img4" src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive">	
+	  					<img id="large_img4" src="<?php echo $image_path;?>" class="img-responsive">	
 							<figure class="right" style="transform: skewY(45deg) translate(7px,-3px);
     					width: 7px;height: 100%;right: 0px;top: 0; position: absolute;"></figure>
 	    					<figure class="bottom" style="transform: skewX(45deg) translate(-5px,8px);
@@ -743,7 +770,7 @@ function calculate_cost(value){
 
 	    <div id="abc" class="room_mount" style="background:url('<?=base_url()?>images/uploaded_pdf/mount/DR 2091.jpg')  0% 0% / cover no-repeat;width:auto;padding:10px; background-attachment:scroll; position: relative; z-index: 1;">
             	<a href="javascript:" id="demo2" class="imglink img_shadow " target="_self" >
-               		<img id="large_img" src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" style=""/>
+               		<img id="large_img" src="<?php echo $image_path;?>" style=""/>
 				  	<input type="hidden" id="frame_shape" value="<?=$f_shape?>"/>
 	        	</a>
 		</div>
@@ -756,24 +783,24 @@ function calculate_cost(value){
 					  touch: true
 					});
 				</script>
-	<img id="large_img3"  style="" src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive">			
+	<img id="large_img3"  style="" src="<?php echo $image_path;?>" class="img-responsive">			
 	<div id="22" style="position: relative;height: 560px;width: 560px;background-color: #888;">
 		<div id="frame_show" style="margin: 0 auto;text-align: center;padding-top: 58px;">
 		     <div  class="divimg mainhor2" style="border-image-source: url(&quot;http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg &quot;); border-image-slice: 58; border-image-width: initial; border-image-outset: initial; border-image-repeat: round; border-style: solid; border-width:10px; margin-top:-55px; padding:0px; width:auto; display:inline-block; position:relative;">
 
 		    <div id="abc2" style="background:url('<?= base_url()?>images/uploaded_pdf/mount_new/DR 2091.jpg')  0% 0% / cover no-repeat;width:auto;padding:3px; background-attachment:scroll;position: relative;z-index: 1;">
 	            	<a href="javascript:" id="demo2" class="imglink img_shadow" target="_self">
-	               		<img id="frame_img" src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" style="">
+	               		<img id="frame_img" src="<?php echo $image_path;?>" style="">
 					</a>
 			</div> 
     	</div>
 	</div>
 
 		<div id="canvas_show" style=" margin: 0 auto;text-align:center;padding-top:78px; width:120px">
-		    <img style="box-shadow: -11px 4px 25px #555;" src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive">
+		    <img style="box-shadow: -11px 4px 25px #555;" src="<?php echo $image_path; ?>" class="img-responsive">
 		</div>
 		<div id="printed" style=" margin:0 auto;text-align:center;padding-top: 78px; width: 120px">
-			<img id="print" src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive">
+			<img id="print" src="<?php echo $image_path; ?>" class="img-responsive">
 		</div>	
 		<div id="sa" class="showhidenew" style="display: flex; position: absolute; background-position: 69.87px 168.871px; width: 100%; bottom: 0px; flex-direction: column; z-index: 1">
                 <div class="btn btn-default edit_btn color_btn" href="javascript:void(0)" style=" position: absolute; text-align: center; margin: 0px auto;  background-color: rgba(255, 255, 255, 0.65); width: 220px; text-transform: capitalize; color: rgb(68, 68, 68); border: medium none;bottom: 0px; margin-left: -110px; left:50%;" >
@@ -1126,7 +1153,7 @@ function calculate_cost(value){
                 </div>
 	<div id="large_img7"  class="3dwrap" style="transform: perspective(1001px) rotateY(22deg) translate(65px, 10px); width: 300px; position: relative; display: block;">
 		<div class="3dwrap_front" >
-			<img src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive">
+			<img src="<?php echo $image_path; ?>" class="img-responsive">
 			<div class="3dwrap_left" style="transform: perspective(1001px) rotateY(-40deg) translate(-20px, 0px);width: 40px;left: -20px;position: absolute;height: 100%;top: 0; background-color: #000"></div>
 			<div class="3dwrap_shadow" style="transform: perspective(1001px) rotateX(-65deg) translate(-55px, 85px);width: 100%;position: absolute;height: 120px;bottom: 0;z-index: -1; background-color: #ddd; box-shadow: 0 15px 20px rgba(0,0,0,0.3)"></div>
 		</div>
@@ -1135,7 +1162,7 @@ function calculate_cost(value){
 	<section  id="canvas3D" class="container3D"  style="width:<?= $image_width1 ?>px">
         <div id="cube">
             <figure class="front">
-  		<img id="large_img2"  style="" src="http://static.mahattaart.com/400x400/media/<?php print $image_detail[0]['image_filename'];?>" class="img-responsive">	
+  		<img id="large_img2"  style="" src="<?php echo $image_path; ?>" class="img-responsive">	
   <canvas id="myCanvas2" height="251px" width="330px" style="width:100%;height:100%;max-height:500px;"></canvas> 
   <script>
       function front(source_width,source_height){ 
@@ -1930,7 +1957,7 @@ else {?> href="" onclick="login('');return false;" style="color:#ef9223;"<?php }
 </section>
 <!--zooom in image-->
 <style>
-.zoom-image,  .zoom-image > figure { background-image: url(http://static.mahattaart.com/media/<?php print $image_detail[0]['image_filename'];?>);}
+.zoom-image,  .zoom-image > figure { background-image: url(<?php echo $image_path;?>);}
 .zoom-image {
   width: 500px;
   height: 450px;

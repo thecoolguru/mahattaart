@@ -89,6 +89,16 @@
 		</p>
         <div class="signup-l-c">
             <form action="#" id="signup_form" name="sign_id" method="post">
+                <p>
+                    <span>First Name</span>
+                    <input type="text" name="first_name" 
+                    id="first_name" placeholder="First Name" >
+                </p>
+                <p>
+                    <span>Last Name</span>
+                    <input type="text" name="last_name" 
+                    id="last_name" placeholder="Last Name" >
+                </p>
             	<p>
                 	<span>Email Address</span>
                     <input type="text" name="email_reg" 
@@ -637,6 +647,16 @@ function checkRegisterValidation(){
 // jquery written by kunal saxena
 
         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        if($('#first_name').val()=="")
+        {
+            $('#email_error').html("Please Enter First Name");
+            return false;
+        }
+        if($('#last_name').val()=="")
+        {
+            $('#email_error').html("Please Enter Last Name");
+            return false;
+        }
         if($('#email_reg').val()=="")
         {
             $('#email_error').html("Please Enter Email");
@@ -677,17 +697,13 @@ function checkRegisterValidation(){
                 data: $("#signup_form").serialize(),
                 success: function(response)
                 {
-        // alert(response);
-                  $('#cpassword_error').html(response);
-                   
-                     var obj=$.parseJSON(response);
-            //alert(obj.result);
-            if(obj.result=='1')
-                    {
-                         //alert(response);
-                       // window.location.href('<?php echo base_url()?>index.php');
-                       window.location.replace('<?php echo base_url()?>index.php');
-                        allclose('');
+                    var obj=$.parseJSON(response);
+                    if(obj.result =='0')
+                      $('#cpassword_error').html(response);
+                    
+                    if(obj.result=='1'){
+                           window.location.replace('<?php echo base_url()?>index.php');
+                           allclose('');
                     }
                 }
             });

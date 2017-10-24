@@ -178,66 +178,36 @@ $frntfrgtpwd='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "ht
 <title>india</title>
 <style> p { text-align:justify; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;font-size:14px;} </style>
 </head>
-
 <body style="background:#f2f2f2; font-size:14px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;">
-
 <table width="880" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td bgcolor="#ede2ea"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      
     </table></td>
-	
   </tr>
- 
-
-   <tr>
-    
-    <td> <p>  Dear '.ucfirst($first_name).'  '.ucfirst($last_name).',   </p> </td>
-  </tr>
-
-  
+    <tr><td><p>Dear '.ucfirst($first_name).'  '.ucfirst($last_name).', </p></td></tr>
+  <tr><td><p>Your Password has been successfully changed !</p></td></tr>
+  <tr><td><p>Your new password is - <a href="#">'.$passwordnew.'</a></p></td></tr>
   <tr>
-    <td> <p>  Your Password has been successfully changed !    </p>  </td>
+    <td><p>Keep exploring the Mahatta art gallery, an online art gallery with 2500+ Indian & International artists and more content from archival museum collections with over 5 lac+ art works.</p></td>
   </tr>
-  
-  
-   <tr>
-    <td> <p>  Your new password is <a href="#">'.$passwordnew.'</a></p> </td>
-  </tr>
-  
-  
-   <tr>
-    <td> <p> Keep exploring the Mahatta art gallery , an online art gallery with 600+ Indian & International artists and more content from archival museum collections with over 17,000 art works. </p> </td>
-  </tr>
-  
-  
-
- 
   <tr>
     <td> 
-	
-	 <p>  For any queries  email us at  <a href="mailto:info@wallsnart.com"> info@wallsnart.com  </a>  or contact us at <a href="#">+91-11-41828972</a> </p> 
-
-<p>  Regards,  </p> 
-<p>  Mahattaart Team  </p>
-
-<p> <a href="#"> <img style="padding: 0px 8px 0px 0px;" src="'.base_url().'assets/img/facbook.png" /> </a> <a href="#"> <img src="'.base_url().'assets/img/google.png" /> </a></p>
-	
+	 <p>For any queries  email us at  <a href="mailto:info@mahattaart.com">info@mahattaart.com</a> or contact us at <a href="#">+91-8800639075, +91-11-41828972</a> </p>
+<p>Regards,</p> 
+<p>Mahattaart Team</p>
+<p><a href="https://www.facebook.com/mahattaart"> <img style="padding: 0px 8px 0px 0px;" src="'.base_url().'assets/img/facbook.png" /> </a> <a href="https://twitter.com/mahattaart"> <img style="padding: 0px 8px 0px 0px;" src="'.base_url().'assets/img/twitter.png" /> </a> <a href="https://www.instagram.com/mahattaart"> <img src="'.base_url().'assets/img/instagram.png" /> </a> <a href="https://www.linkedin.com/company/13458390"> <img src="'.base_url().'assets/img/linkdin.png" /> </a></p>
 	</td>
   </tr>
-  
-  
 </table>
 </body>
-</html>
-
-';
+</html>';
          
         
       $to=$emaill;   
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-$headers .= 'From:MahattaArt<info@wallsnart.com>' . "\r\n";
+$headers .= 'From:MahattaArt<info@mahattaart.com>' . "\r\n";
+$headers .= 'Cc: operations@mahattaart.com' . "\r\n";
 $subject = 'Welcome to Mahatta Art';
         $send=mail($emaill,$subject,$frntfrgtpwd,$headers);
         //$this->session->set_flashdata('You Have Successfully Updated Your Password.");

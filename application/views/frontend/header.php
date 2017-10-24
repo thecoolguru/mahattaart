@@ -89,10 +89,10 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
                     <a href="<?php print base_url(); ?>frontend/themes">THEMES </a>
                 </li>
                 <li>
-                    <a href="<?php print base_url(); ?>frontend/photostoart">PHOTOS TO FRAME</a>
+                    <a href="<?php print base_url(); ?>frontend/photostoframe">PHOTOS TO FRAME</a>
                 </li>
                 <li>
-                    <a href="<?php print base_url(); ?>frontend/clearence"> CLEARANCE </a>
+                    <a href="<?php print base_url(); ?>frontend/clearance"> CLEARANCE </a>
                 </li>
                 <li> <a href="<?php print base_url(); ?>frontend/promooffer"> PROMOTIONAL OFFER </a></li>
                 <!--<li>
@@ -421,8 +421,9 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 
 
 <header role="banner" class="navbar navbar-default" style="min-height:auto">
-<div class="news pull-right">
-<p style="float:right"> <a href="#" class="header_link"> <i class="glyphicon glyphicon-earphone"></i> +91-8800639075</a> &nbsp; &nbsp; <a href="mailto:info@mahattaart.com" class="header_link"> <i class="glyphicon glyphicon-envelope"></i> info@mahattaart.com</a> </p>
+<div class="news" style="text-align:center">
+<span style="font-size:22px; font-weight:bold"> FLAT 20% OFF SITEWIDE</span>
+<span style="position:absolute; right:10px; top:8px"> <a href="#" class="header_link"> <i class="glyphicon glyphicon-earphone"></i> +91-8800639075</a> &nbsp; &nbsp; <a href="mailto:info@mahattaart.com" class="header_link"> <i class="glyphicon glyphicon-envelope"></i> info@mahattaart.com</a> </span>
 </div>
 </header>
 <style>.search-input:focus+button{z-index:3}</style>
@@ -667,7 +668,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
         width: auto!important
     }
     #menu ul li ul {
-        display: none;
+        /*display: none;*/
         position: absolute;
         top: 16px;
         width: 200px;
@@ -868,21 +869,15 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
             background-color: transparent;
         }
 </style>
-
-
 <div style="background-color:#999;height:35px">
 <div class="offers container">
 <nav id="menu">
 <ul>
 <li> <a href="<?php echo base_url();?>">HOME </a> </li>
-<li><a href="<?php print base_url(); ?>frontend/art_subject"> SUBJECTS </a>
-<ul>
+<li><a href="" onclick="return false;" id="H2"> SUBJECTS </a>
+<ul class="H2" style="display: none">
 <div id="mouse-over">
-<?php 
-           $sub_val=$this->frontend_model->get_header_images(1);
-         
-          
-            ?>
+<?php $sub_val=$this->frontend_model->get_header_images(1); ?>
 <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/11/<?=$sub_val[0]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[0]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[0]->title)?> </span></a></div>
 <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/11/<?=$sub_val[1]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[1]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[1]->title)?> </span></a></div>
 <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/11/<?=$sub_val[2]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[2]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[2]->title)?> </span></a></div>
@@ -892,21 +887,18 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <div style="clear:both"></div>
 <div class="sub-hor fist-sub-bar">
 <div class="rowour">
-<div class="col-md-3 col-sm-3">
+<div class="col-md-3 col-sm-3 H2" style="display: none">
 <ul class="menu2">
-<?php
-                       $subjects=$this->search_model->get_subcategory(1);
-                        for($i=6;$i<=13;$i++){
-                            ?>
-<li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
+<?php $subjects=$this->search_model->get_subcategory(1);
+      for($i=6;$i<=13;$i++){
+?>
+<li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a></li>
 <?php } ?>
 </ul>
 </div>
 <div class="col-md-3 col-sm-3">
 <ul class="menu2">
-<?php
-                        for($i=14;$i<=21;$i++){
-                            ?>
+<?php for($i=14;$i<=21;$i++){ ?>
 <li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
 <?php } ?>
 </ul>
@@ -914,27 +906,21 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <div class="col-md-3 col-sm-3">
 
 <ul class="menu2">
-<?php
-                        for($i=22;$i<=29;$i++){
-                            ?>
+<?php for($i=22;$i<=29;$i++){ ?>
 <li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
 <?php } ?>
 </ul>
 </div>
 <div class="col-md-3 col-sm-3">
 <ul class="menu2">
-<?php
-                        for($i=30;$i<=37;$i++){
-                            ?>
+<?php for($i=30;$i<=37;$i++){ ?>
 <li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
 <?php } ?>
 </ul>
 </div>
 <div class="col-md-3 col-sm-3">
 <ul class="menu2">
-<?php
-                        for($i=38;$i<=45;$i++){
-                            ?>
+<?php for($i=38;$i<=45;$i++){ ?>
 <li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
 <?php } ?>
 </ul>
@@ -947,14 +933,12 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </ul>
 </li>
 <li>
-<a href="<?php echo base_url();?>frontend/artists"> ARTISTS </a>
-<ul>
+<a href="" onclick="return false;" id="H3"> ARTISTS </a>
+<ul class="H3" style="display: none">
 <div id="mouse-over">
-<?php  
-           $drop2=$this->frontend_model->get_header_images(2);
+<?php $drop2=$this->frontend_model->get_header_images(2);
           //print_r($drop2);
-          
-            ?>
+?>
 <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$drop2[0]->keyword?>/all"><img src="<?php print base_url();?><?=$drop2[0]->menu_image?>" border="0" class="img-responsive" ><span class="dblock1"><?php echo ucwords($drop2[0]->title)?> </span></a></div>
 <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$drop2[1]->keyword?>/all"><img src="<?php print base_url();?><?=$drop2[1]->menu_image?>" border="0" class="img-responsive" ><span class="dblock1"> <?php echo ucwords($drop2[1]->title)?> </span></a></div>
 <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$drop2[2]->keyword?>/all"><img src="<?php print base_url();?><?=$drop2[2]->menu_image?>" border="0" class="img-responsive" ><span class="dblock1"> <?php echo ucwords($drop2[2]->title)?> </span></a></div>
@@ -969,35 +953,25 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <div class="col-md-8"  style="border-right:solid 1px #FC0; margin:8px 0">
 <div class="artist row">
 <a style="display:block;padding:8px 0;text-align:center;font-weight:600" href="<?php echo base_url();?>frontend/artists">International Artist </a>
-<div class="col-md-4 col-sm-4">
-<?php
-                        $subjects=$this->search_model->get_subcategory(84);
-						//print_r($subjects);
-                        for($i=6;$i<=12;$i++){
-                         
-					 
-                            ?>
+<div class="col-md-4 col-sm-4 H3" style="display: none">
+<?php $subjects=$this->search_model->get_subcategory(84);
+  		//print_r($subjects);
+      for($i=6;$i<=12;$i++){
+?>
 <li>
 <a href="javascript:category_filter('<?php echo $drop2[$i]->keyword ?>')"><?php print ucwords($drop2[$i]->title); ?></a>
 </li>
 <?php }?>
 </div>
 <div class="col-md-4 col-sm-4">
-<?php 
-                       for($i=13;$i<=19;$i++){
-                           
-                            ?>
+<?php for($i=13;$i<=19;$i++){ ?>
 <li>
 <a href="javascript:category_filter('<?php echo $drop2[$i]->keyword ?>')"><?php print ucwords($drop2[$i]->title); ?></a>
 </li>
 <?php }?>
 </div>
 <div class="col-md-4 col-sm-4">
-<?php 
-					 for($i=20;$i<=26;$i++){
-					 
-					 
-                            ?>
+<?php for($i=20;$i<=26;$i++){ ?>
 <li>
 <a href="javascript:category_filter('<?php echo $drop2[$i]->keyword ?>')"><?php print ucwords($drop2[$i]->title); ?></a>
 </li>
@@ -1009,12 +983,10 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <div>
 <a style="display:block;padding:8px 0;text-align:center;font-weight:600" href="<?php echo base_url();?>frontend/artists"> Indian Artist </a>
 <div>
-<?php 
-                       for($i=0;$i<=count($subjects);$i++){
-					   
-					   $artist= $subjects[$i]->name;
-                       if($artist=='Deepali Mundra' || $artist=='Narahari Bhawandla' || $artist=='Prashant Yampure' || $artist=='Shweta Sharma' || $artist=='Subhasish Chakravarty' || $artist=='Vinayak Jarang') {
-                            ?>
+<?php for($i=0;$i<=count($subjects);$i++){
+      $artist= $subjects[$i]->name;
+      if($artist=='Deepali Mundra' || $artist=='Narahari Bhawandla' || $artist=='Prashant Yampure' || $artist=='Shweta Sharma' || $artist=='Subhasish Chakravarty' || $artist=='Vinayak Jarang') {
+?>
 <li>
 <a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name); ?></a>
 </li>
@@ -1033,14 +1005,12 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 </ul>
 </li>
-<li> <a href="<?php echo base_url();?>frontend/art_styles">ART STYLES </a>
-<ul>
+<li> <a href="" onclick="return false;" id="H4">ART STYLES </a>
+<ul class="H4" style="display: none">
 <div id="mouse-over">
-<?php 
-           $drop3=$this->frontend_model->get_header_images(3);
+<?php $drop3=$this->frontend_model->get_header_images(3);
           //print_r($drop3);
-          
-            ?>
+?>
 <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$drop3[0]->keyword?>/all"><img src="<?php print base_url();?><?=$drop3[0]->menu_image?>" border="0" class="img-responsive" ><span class="dblock1"><?php echo ucwords($drop3[0]->title)?> </span></a></div>
 <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$drop3[1]->keyword?>/all"><img src="<?php print base_url();?><?=$drop3[1]->menu_image?>" border="0" class="img-responsive" ><span class="dblock1"> <?php echo ucwords($drop3[1]->title)?> </span></a></div>
 <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$drop3[2]->keyword?>/all"><img src="<?php print base_url();?><?=$drop3[2]->menu_image?>" border="0" class="img-responsive" ><span class="dblock1"> <?php echo ucwords($drop3[2]->title)?> </span></a></div>
@@ -1050,12 +1020,11 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <div style="clear:both"></div>
 <div class="sub-hor fist-sub-bar">
 <div class="rowour">
-<div class="col-md-3 col-sm-3">
+<div class="col-md-3 col-sm-3 H4" style="display: none">
 <ul class="menu2">
-<?php
-                        $subjects=$this->search_model->get_subcategory(2);
-                        for($i=0;$i<=3;$i++){
-                            ?>
+<?php  $subjects=$this->search_model->get_subcategory(2);
+        for($i=0;$i<=3;$i++){
+?>
 <li>
 <a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')" onClick="return show_subjects('subjects','<?php print ucwords($subjects[$i]->name)?>')"><?php print ucwords($subjects[$i]->name); ?></a>
 </li>
@@ -1064,9 +1033,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 <div class="col-md-3 col-sm-3">
 <ul class="menu2">
-<?php
-                        for($i=4;$i<=8;$i++){
-                            ?>
+<?php for($i=4;$i<=8;$i++){ ?>
 <li>
 <a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name); ?></a>
 </li>
@@ -1075,9 +1042,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 <div class="col-md-3 col-sm-3">
 <ul class="menu2">
-<?php
-                        for($i=9;$i<=13;$i++){
-                            ?>
+<?php for($i=9;$i<=13;$i++){ ?>
 <li>
 <a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name);?></a>
 </li>
@@ -1086,9 +1051,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 <div class="col-md-3 col-sm-3">
 <ul class="menu2">
-<?php
-                        for($i=14;$i<=18;$i++){
-                            ?>
+<?php for($i=14;$i<=18;$i++){ ?>
 <li>
 <a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name); ?></a>
 </li>
@@ -1097,13 +1060,10 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 <div class="col-md-3 col-sm-3">
 <ul class="menu2">
-<?php
-                        for($i=19;$i<=25;$i++){
-                            ?>
+<?php for($i=19;$i<=25;$i++){ ?>
 <li>
 <a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name); ?></a>
 </li>
-
 <?php } ?>
 </ul>
 </div>
@@ -1168,22 +1128,18 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 </ul>
 </li>-->
-<li><a href="<?php print base_url(); ?>frontend/collection">COLLECTIONS</a>
-<ul>
+<li><a href="" onclick="return false;" id="H5">COLLECTIONS</a>
+<ul class="H5" style="display: none">
 <div id="mouse-over">
-<?php 
-           $drop4=$this->frontend_model->get_header_images(5);
+<?php $drop4=$this->frontend_model->get_header_images(5);
           //print_r($drop4);
-          
-            ?>
+?>
 <div class="collections-one collct col-md-3 col-sm-3">
 <p style="padding:5px 0;font-size:18px"> <?=$drop4[0]->title?> </p> 
 <a href="<?=base_url()?>search/dosearch/1/64/<?=$drop4[0]->title?>/all"><img src="<?php print base_url();?><?=$drop4[0]->menu_image?>" border="0"  style="padding:0 0 5px 0" class="img-responsive" /></a>
-<?php   $collection=$this->search_model->get_subcategory(85);
-				 
-                  // print_r($collection);
-                    ?>
-
+<?php $collection=$this->search_model->get_subcategory(85);
+      // print_r($collection);
+?>
 </div>
 <div class="collections-one collct col-md-3 col-sm-3">
 <p style="padding:5px 0;font-size:18px"> <?=$drop4[1]->title?> </p> <a href="<?=base_url()?>search/dosearch/1/64/<?=$drop4[1]->title?>/all"><img src="<?php print base_url();?><?=$drop4[1]->menu_image?>" border="0"  style="padding:0 0 5px 0" class="img-responsive" /></a>
@@ -1199,68 +1155,51 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <div class="rowour">
 <div class="col-md-3 col-sm-3">
 <ul class="menu2">
-<?php 
-						   $api_collections=$this->frontend_model->get_collection();
-           
-                           // print_r($api_collections);
-                           foreach($api_collections as $result){ 
-                      $category= $result['category'];
-					  $id= $result['id'];
-                          if($category==4){
-					   echo '<li><a href="javascript:call_collection('.$id.')"> '.ucwords($result['collection_name']).'</a></li>' ;  }
-					   
-                       }// end loop
-                               
-                              
-                           ?>
+<?php $api_collections=$this->frontend_model->get_collection();
+      // print_r($api_collections);
+      foreach($api_collections as $result){ 
+      $category= $result['category'];
+		  $id= $result['id'];
+      if($category==4){
+        echo '<li><a href="javascript:call_collection('.$id.')"> '.ucwords($result['collection_name']).'</a></li>' ;  }
+			}// end loop
+?>
 </ul>
 </div>
 <div class="col-md-3 col-sm-3">
 <ul class="menu2">
-<?php 
-                           
-                   // print_r($api_collections);
-                           foreach($api_collections as $result){ 
-                      $category= $result['category'];
-					  $id= $result['id'];
-                          if($category==2){
-					   echo '<li><a href="javascript:call_collection('.$id.')"> '.ucwords($result['collection_name']).'</a></li>' ;  }
-					   
-                       }// end loop
-                              
-                           ?>
+<?php // print_r($api_collections);
+      foreach($api_collections as $result){ 
+        $category= $result['category'];
+		    $id= $result['id'];
+        if($category==2){
+				  echo '<li><a href="javascript:call_collection('.$id.')"> '.ucwords($result['collection_name']).'</a></li>' ;  }
+				}// end loop
+?>
+</ul>
+</div>
+<div class="col-md-3 col-sm-3 H5" style="display: none">
+<ul class="menu2">
+<?php /// print_r($api_collections);
+     foreach($api_collections as $result){ 
+    $category= $result['category'];
+	  $id= $result['id'];
+    if($category==3){
+      echo '<li><a href="javascript:call_collection('.$id.')"> '.ucwords($result['collection_name']).'</a></li>' ;  }
+    }// end loop
+?>
 </ul>
 </div>
 <div class="col-md-3 col-sm-3">
 <ul class="menu2">
-<?php 
-                           
-                   /// print_r($api_collections);
-                           foreach($api_collections as $result){ 
-                      $category= $result['category'];
-					  $id= $result['id'];
-                          if($category==3){
-					   echo '<li><a href="javascript:call_collection('.$id.')"> '.ucwords($result['collection_name']).'</a></li>' ;  }
-					   
-                       }// end loop
-                              
-                           ?>
-</ul>
-</div>
-<div class="col-md-3 col-sm-3">
-<ul class="menu2">
-<?php 
-                           
-                   /// print_r($api_collections);
-                           foreach($api_collections as $result){ 
-                      $category= $result['category'];
-					  $id= $result['id'];
-                          if($category==1){
-					   echo '<li><a href="javascript:call_collection('.$id.')"> '.ucwords($result['collection_name']).'</a></li>' ;  }
-					   
-                       }// end loop
-                              
-                           ?>
+<?php /// print_r($api_collections);
+      foreach($api_collections as $result){ 
+      $category= $result['category'];
+			$id= $result['id'];
+      if($category==1){
+			  echo '<li><a href="javascript:call_collection('.$id.')"> '.ucwords($result['collection_name']).'</a></li>' ;  }
+			}// end loop
+?>
 </ul>
 </div>
 </div>
@@ -1271,48 +1210,45 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </ul>
 </li>
 <li>
-<a href="<?php print base_url(); ?>frontend/rooms">ROOMS</a>
-<ul>
+<a href="" onclick="return false;" id="H6">ROOMS</a>
+<ul class="H6" style="display: none">
 <div id="mouse-over">
 <?php 
-           $drop6=$this->frontend_model->get_header_images(6);
-          //print_r($drop6);
-          
-		    $spit0= split('/',$drop6[0]->keyword);
-			 $spit1= split('/',$drop6[1]->keyword);
-			  $spit2= split('/',$drop6[2]->keyword);
-			   $spit3= split('/',$drop6[3]->keyword);
-			    $spit4= split('/',$drop6[4]->keyword);
-				 $spit5= split('/',$drop6[5]->keyword);
-				
-                                     if($spit0[1]=='frontend'){
-                                              $url0=$drop6[0]->keyword;
-                                          }else{
-                                              $url0="frontend/themes_view/".$drop6[0]->keyword."";
-                                          }if($spit1[1]=='frontend'){
-                                              $url1=$drop6[1]->keyword;
-                                          }else{
-                                              $url1="frontend/themes_view/".$drop6[1]->keyword."";
-                                          }if($spit2[1]=='frontend'){
-                                              $url2=$drop6[2]->keyword;
-                                          }else{
-                                              $url2="frontend/themes_view/".$drop6[2]->keyword."";
-                                          }if($spit3[1]=='frontend'){
-                                              $url3=$drop6[3]->keyword;
-                                          }else{
-                                              $url3="frontend/themes_view/".$drop6[3]->keyword."";
-                                          }if($spit4[1]=='frontend'){
-                                              $url4=$drop6[4]->keyword;
-                                          }else{
-                                              $url4="frontend/themes_view/".$drop6[4]->keyword."";
-                                          }if($spit5[1]=='frontend'){
-                                              $url5=$drop6[5]->keyword;
-                                          }else{
-                                              $url5="frontend/themes_view/".$drop6[5]->keyword."";
-                                          }
-										 
-		  //echo $url2.'_'.$url;
-            ?>
+      $drop6=$this->frontend_model->get_header_images(6);
+      //print_r($drop6);
+      $spit0= split('/',$drop6[0]->keyword);
+	    $spit1= split('/',$drop6[1]->keyword);
+		  $spit2= split('/',$drop6[2]->keyword);
+		  $spit3= split('/',$drop6[3]->keyword);
+		  $spit4= split('/',$drop6[4]->keyword);
+		  $spit5= split('/',$drop6[5]->keyword);
+       if($spit0[1]=='frontend'){
+        $url0=$drop6[0]->keyword;
+       }else{
+        $url0="frontend/themes_view/".$drop6[0]->keyword."";
+       }if($spit1[1]=='frontend'){
+        $url1=$drop6[1]->keyword;
+       }else{
+        $url1="frontend/themes_view/".$drop6[1]->keyword."";
+       }if($spit2[1]=='frontend'){
+        $url2=$drop6[2]->keyword;
+       }else{
+        $url2="frontend/themes_view/".$drop6[2]->keyword."";
+       }if($spit3[1]=='frontend'){
+       $url3=$drop6[3]->keyword;
+       }else{
+       $url3="frontend/themes_view/".$drop6[3]->keyword."";
+       }if($spit4[1]=='frontend'){
+       $url4=$drop6[4]->keyword;
+       }else{
+       $url4="frontend/themes_view/".$drop6[4]->keyword."";
+       }if($spit5[1]=='frontend'){
+       $url5=$drop6[5]->keyword;
+       }else{
+       $url5="frontend/themes_view/".$drop6[5]->keyword."";
+       }
+	   	 //echo $url2.'_'.$url;
+?>
 <div id="sub-pic"><a href="<?php print base_url(); ?><?=$url0?>"><img src="<?php print base_url();?><?=$drop6[0]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"><?php echo ucwords($drop6[0]->title)?>
 </span></a></div>
 <div id="sub-pic"><a href="<?php print base_url(); ?><?=$url1?>"><img src="<?php print base_url();?><?=$drop6[1]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($drop6[1]->title)?>
@@ -1330,48 +1266,37 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <div class="rowour">
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php
-                        $rooms=$this->search_model->get_subcategory(859);
-                        for($i=0;$i<=5;$i++){
-                            ?>
+<?php $rooms=$this->search_model->get_subcategory(859);
+      for($i=0;$i<=5;$i++){
+?>
 <li> <a href="javascript:category_filter('<?php echo $rooms[$i]->keyword?>')" onClick="return show_subjects('subjects','<?php print ucwords($rooms[$i]->title)?>')"><?php print ucwords($rooms[$i]->title); ?></a> </li>
 <?php } ?>
 </ul>
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php
-                        for($i=6;$i<=11;$i++){
-                            ?>
+<?php for($i=6;$i<=11;$i++){ ?>
 <li> <a href="javascript:category_filter('<?php echo $rooms[$i]->keyword ?>')"><?php print ucwords($rooms[$i]->title); ?></a> </li>
 <?php } ?>
 </ul>
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php
-                        for($i=12;$i<=17;$i++){
-                            ?>
+<?php for($i=12;$i<=17;$i++){ ?>
 <li> <a href="javascript:category_filter('<?php echo $rooms[$i]->keyword ?>')"><?php print ucwords($rooms[$i]->title); ?></a> </li>
 <?php } ?>
 </ul>
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php
-                        for($i=18;$i<=22;$i++){
-
-
-                            ?>
+<?php for($i=18;$i<=22;$i++){ ?>
 <li> <a href="javascript:category_filter('<?php echo $rooms[$i]->keyword ?>')"><?php print ucwords($rooms[$i]->title); ?></a> </li>
 <?php } ?>
 </ul>
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php
-                        for($i=23;$i<=29;$i++){
-                            ?>
+<?php for($i=23;$i<=29;$i++){ ?>
 <li> <a href="javascript:category_filter('<?php echo $rooms[$i]->keyword ?>')"><?php print ucwords($rooms[$i]->title); ?></a> </li>
 <?php } ?>
 </ul>
@@ -1383,15 +1308,12 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 </ul>
 </li>
-<li> <a href="<?php print base_url(); ?>frontend/places">PLACES</a>
-<ul>
+<li> <a href="" onclick="return false;" id="H7">PLACES</a>
+<ul class="H7" style="display: none">
 <div id="mouse-over">
-<?php 
-           $drop7=$this->frontend_model->get_header_images(7);
-          //print_r($drop7);
-
-          
-            ?>
+<?php $drop7=$this->frontend_model->get_header_images(7);
+      //print_r($drop7);
+?>
 <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$drop7[0]->keyword?>/all"><img src="<?php print base_url();?><?=$drop7[0]->menu_image?>" border="0" class="img-responsive" ><span class="dblock1"><?php echo ucwords($drop7[0]->title)?> </span></a></div>
 <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$drop7[1]->keyword?>/all"><img src="<?php print base_url();?><?=$drop7[1]->menu_image?>" border="0" class="img-responsive" ><span class="dblock1"> <?php echo ucwords($drop7[1]->title)?> </span></a></div>
 <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$drop7[2]->keyword?>/all"><img src="<?php print base_url();?><?=$drop7[2]->menu_image?>" border="0" class="img-responsive" ><span class="dblock1"> <?php echo ucwords($drop7[2]->title)?> </span></a></div>
@@ -1403,10 +1325,9 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <div class="rowour">
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php //857
-                        $subjects=$this->search_model->get_subcategory();
-                        for($i=0;$i<=4;$i++){
-                            ?>
+<?php $subjects=$this->search_model->get_subcategory();
+      for($i=0;$i<=4;$i++){
+?>
 <li>
 <a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')" onClick="return show_subjects('subjects','<?php print ucwords($subjects[$i]->name)?>')"><?php print ucwords($subjects[$i]->name); ?></a>
 </li>
@@ -1415,9 +1336,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php
-                        for($i=5;$i<=10;$i++){
-                            ?>
+<?php for($i=5;$i<=10;$i++){ ?>
 <li>
 <a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name); ?></a>
 </li>
@@ -1426,9 +1345,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php
-                        for($i=11;$i<=15;$i++){
-                            ?>
+<?php for($i=11;$i<=15;$i++){ ?>
 <li>
 <a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name);?></a>
 </li>
@@ -1437,9 +1354,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php
-                        for($i=15;$i<=20;$i++){
-                            ?>
+<?php for($i=15;$i<=20;$i++){ ?>
 <li>
 <a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name); ?></a>
 </li>
@@ -1448,9 +1363,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php
-                        for($i=21;$i<=25;$i++){
-                            ?>
+<?php for($i=21;$i<=25;$i++){ ?>
 <li>
 <a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name); ?></a>
 </li>
@@ -1459,9 +1372,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php
-                        for($i=26;$i<=26;$i++){
-                            ?>
+<?php for($i=26;$i<=26;$i++){ ?>
 <li>
 <a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name); ?></a>
 </li>
@@ -1475,14 +1386,12 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 </ul>
 </li>
-<li> <a href="<?php print base_url(); ?>frontend/themes">THEMES</a>
-<ul>
+<li> <a href="" onclick="return false;" id="H8">THEMES</a>
+<ul class="H8" style="display: none">
 <div id="mouse-over">
-<?php 
-           $drop8=$this->frontend_model->get_header_images(8);
+<?php $drop8=$this->frontend_model->get_header_images(8);
           //print_r($drop8);
-          
-            ?>
+?>
 <div id="sub-pic"><a href="<?php print base_url(); ?>frontend/themes_view/<?=$drop8[0]->keyword?>"><img src="<?php print base_url();?><?=$drop8[0]->menu_image?>" border="0" class="img-responsive" ><span class="dblock1"><?php echo ucwords($drop8[0]->title)?> </span></a></div>
 <div id="sub-pic"><a href="<?php print base_url(); ?>frontend/themes_view/<?=$drop8[1]->keyword?>"><img src="<?php print base_url();?><?=$drop8[1]->menu_image?>" border="0" class="img-responsive" ><span class="dblock1"> <?php echo ucwords($drop8[1]->title)?> </span></a></div>
 <div id="sub-pic"><a href="<?php print base_url(); ?>frontend/themes_view/<?=$drop8[2]->keyword?>"><img src="<?php print base_url();?><?=$drop8[2]->menu_image?>" border="0" class="img-responsive" ><span class="dblock1"> <?php echo ucwords($drop8[2]->title)?> </span></a></div>
@@ -1494,17 +1403,14 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <div class="rowour">
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php
-                       // $subjects=$this->search_model->get_subcategory(880);
-                       ?>
+<?php // $subjects=$this->search_model->get_subcategory(880);?>
 </ul>
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php
-                        for($i=6;$i<=10;$i++){
-						//echo $drop8[$i]->keyword;
-                            ?>
+<?php for($i=6;$i<=10;$i++){
+			//echo $drop8[$i]->keyword;
+?>
 <li>
 <a href="<?=base_url()?>frontend/themes_view/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
 </li>
@@ -1513,9 +1419,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php
-                        for($i=11;$i<=15;$i++){
-                            ?>
+<?php for($i=11;$i<=15;$i++){ ?>
 <li>
 <a href="<?=base_url()?>frontend/themes_view/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title);?></a>
 </li>
@@ -1524,9 +1428,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php
-                        for($i=16;$i<=20;$i++){
-                            ?>
+<?php for($i=16;$i<=20;$i++){ ?>
 <li>
 <a href="<?=base_url()?>frontend/themes_view/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
 </li>
@@ -1535,9 +1437,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php
-                        for($i=21;$i<=25;$i++){
-                            ?>
+<?php for($i=21;$i<=25;$i++){ ?>
 <li>
 <a href="<?=base_url()?>frontend/themes_view/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
 </li>
@@ -1546,9 +1446,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php
-                        for($i=26;$i<=26;$i++){
-                            ?>
+<?php for($i=26;$i<=26;$i++){ ?>
 <li>
 <a href="<?=base_url()?>frontend/themes_view/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
 </li>
@@ -1562,8 +1460,8 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 </ul>
 </li>
-<li> <a href="<?php print base_url(); ?>frontend/photostoart" style="color:#ff9800">PHOTOS TO FRAME </a> </li>
-<li> <a href="<?php print base_url(); ?>frontend/clearence" style="color:#f1464f">CLEARANCE</a></li>
+<li> <a href="<?php print base_url(); ?>frontend/photostoframe" style="color:#ff9800">PHOTOS TO FRAME </a> </li>
+<li> <a href="<?php print base_url(); ?>frontend/clearance" style="color:#f1464f">CLEARANCE</a></li>
 <li> <a href="<?php print base_url(); ?>frontend/promooffer"> PROMOTIONAL OFFER </a></li>
 <!--<li> <a href="#">Frame your art </a>
 <li> <a href="#">Product Page</a>-->
@@ -1578,9 +1476,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </nav>
 </div>
 </div>
-
 <div id="blank" onMouseOver="dropdownout('')">&nbsp;</div>
-
 <div class="offers container">
 <div class="col-md- off">
 <!--<div id="skinnybanner_stp" class="walbanner">
@@ -1591,9 +1487,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>-->
 </div>
 </div>
-
 <input type="hidden" id="fileName" value="" ></input>
-
 <input type="hidden" id="show_ligt_box_name" value="" ></input>
 <script>/*<![CDATA[*/(function(c){var b=c('<i class="fa fa-caret-right"></i>');c("nav#menu li:has(ul) > a").append(b);c("nav#menu li:has(ul)").on("click",function(){c(this).toggleClass("open")});c("a#toggle").on("click",function(d){c("html").toggleClass("open-menu");return false});c("div#overlay").on("click",function(){c("html").removeClass("open-menu")})})(jQuery);/*]]>*/</script>
 
@@ -2027,6 +1921,44 @@ $('#dsend').click(function(){
 		}
 		
 	});
-	
-
+</script>
+<script>
+    $(document).ready(function(){
+      $('.H2,.H3,.H4,.H5,.H6,.H7,.H8').hide();
+      
+      $('#H2').click(function(){
+        $('.H2').toggle();  
+        $('.H3,.H4,.H5,.H6,.H7,.H8').hide();
+      })
+      
+      $('#H3').click(function(){
+        $('.H3').toggle();  
+        $('.H2,.H4,.H5,.H6,.H7,.H8').hide();
+      })
+      
+      $('#H4').click(function(){
+        $('.H4').toggle();  
+        $('.H2,.H3,.H5,.H6,.H7,.H8').hide();
+      })
+      
+      $('#H5').click(function(){
+        $('.H5').toggle();  
+        $('.H2,.H3,.H4,.H6,.H7,.H8').hide();
+      })
+      
+      $('#H6').click(function(){
+        $('.H6').toggle();  
+        $('.H2,.H3,.H4,.H5,.H7,.H8').hide();
+      })
+      
+      $('#H7').click(function(){
+        $('.H7').toggle();  
+        $('.H2,.H3,.H4,.H5,.H6,.H8').hide();
+      })
+      
+      $('#H8').click(function(){
+        $('.H8').toggle();  
+        $('.H2,.H3,.H4,.H5,.H6,.H7').hide();
+      })
+    });
 </script>

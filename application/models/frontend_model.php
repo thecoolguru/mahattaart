@@ -199,8 +199,10 @@ class Frontend_model extends CI_Model
 		return $query->result();
 	}
 
-	public function insert_registeration($email,$password)	{
+	public function insert_registeration($first_name,$last_name,$email,$password)	{
 		$data=array(
+		'first_name'=>$first_name,
+		'last_name'=>$last_name,
 		'email_id'=>$email,
 		'password'=>$password
 		);
@@ -850,246 +852,224 @@ class Frontend_model extends CI_Model
 		$query=$this->db->get('tbl_lightbox_details');
 		return $query->result();
 	}
-	public function get_most_selling_image($img_arr)
-	{
+
+	public function get_most_selling_image($img_arr)	{
 		$this->db->select('*');
 		$this->db->where_in('images_id',$img_arr);
 		$query=$this->db->get('tbl_images_search');
 		return $query->result();
 	}
-	public function get_emerging_artists_images($emerge,$limit,$start)
-	{
+
+	public function get_emerging_artists_images($emerge,$limit,$start)	{
 		$query=$this->db->query("SELECT * FROM `tbl_images_search` where artist_name='".$emerge."' order by sales_counter desc limit $start,$limit");
 		//echo $this->db->last_query();
 		return $query->row();
 	}
 	
-	public function delete_lightbox($lightbox_id)
-	{
+	public function delete_lightbox($lightbox_id)	{
 		$this->db->where('lightbox_id',$lightbox_id);
 		$this->db->delete('tbl_lightbox_details');
 	}
 	
-	public function delete_lightbox_images($lightbox_id)
-	{
+	public function delete_lightbox_images($lightbox_id)	{
 		$this->db->where('lightbox_id',$lightbox_id);
 		$this->db->delete('tbl_lightbox_images');
 	}
 	
-	public function newsletter_entry($email)
-	{
+	public function newsletter_entry($email)	{
 		$data=array(
 				'email'=>$email,
 				);		
 		$this->db->insert('tbl_newsletter',$data);
 	}
 	
-	public function delete_gallery_image($image_id,$lightbox_id)
-	{
+	public function delete_gallery_image($image_id,$lightbox_id)	{
 		$this->db->where('lightbox_id',$lightbox_id);
 		$this->db->where('image_id',$image_id);
 		$this->db->delete('tbl_lightbox_images');
 		//print $this->db->last_query();
 	}
 	
-	public function update_image_exist($image,$data)
-	{
+	public function update_image_exist($image,$data)	{
 		$this->db->where('images_filename',$image);
 		$this->db->update('tbl_images_search',$data);
 		print $this->db->last_query();		
 	}
-     public function query_submit($email,$contact,$date)
-    {
-          $data=array(
-            'email'=>$email,
-            'contact_number'=>$contact,
-            'date'=>$date
-        );
-        $this->db->insert('tbl_query',$data);
-    }
-  public function submit_subscriber($email,$date)
- {
- $data=array(
-            'email_id'=>$email,          
-            'date'=>$date
-           );
-        $this->db->insert('tbl_subscriber',$data);
- }
 
-   public function insert_user_frame_details($data)
-    {
-        $this->db->insert('tbl_user_frame_details',$data);
-        return $this->db->insert_id();
-    }
-    public function update_user_frame_details($data,$user_id,$image_id)
-    {
-        $this->db->where('image_id',$image_id);
-        $this->db->where('user_id',$user_id);
-        $this->db->update('tbl_user_frame_details',$data);
+	public function query_submit($email,$contact,$date)    {
+		$data=array(
+		'email'=>$email,
+		'contact_number'=>$contact,
+		'date'=>$date
+		);
+		$this->db->insert('tbl_query',$data);
+	}
 
+	public function submit_subscriber($email,$date)	{
+		$data=array(
+		'email_id'=>$email,          
+		'date'=>$date
+		);
+		$this->db->insert('tbl_subscriber',$data);
+	}
 
-    }
-    public function update_crt($data1,$user_id,$image_id)
-    {
+	public function insert_user_frame_details($data)	{
+		$this->db->insert('tbl_user_frame_details',$data);
+		return $this->db->insert_id();
+	}
+
+	public function update_user_frame_details($data,$user_id,$image_id)	{
+		$this->db->where('image_id',$image_id);
+		$this->db->where('user_id',$user_id);
+		$this->db->update('tbl_user_frame_details',$data);
+	}
+
+    public function update_crt($data1,$user_id,$image_id)	{
         $this->db->where('image_id',$image_id);
         $this->db->where('user_id',$user_id);
         $this->db->update('tbl_cart',$data1);
+    }
 
-    }
-	public function update_customer($data)
-{
-    $id=$this->session->userdata('userid');
-	$this->db->where('customer_id',$id);
-	$this->db->update('tbl_registration',$data);
-}
-	public function update_qty_frame_for_cart($imgsize,$papersurface,$filenam,$qty,$frame_name,$mount_name,$glass){
-	$id=$this->session->userdata('userid');
-	$this->db->where('user_id',$id);
-	$this->db->where('image_size',trim($imgsize));
-	$this->db->where('image_print_type',trim($papersurface));
-	$this->db->where('image_name',trim($filenam));
-	$this->db->where('frame_color',$frame_name);
-	$this->db->where('mount_color',$mount_name);
-	$this->db->where('glass_type',$glass);
-	$query=$this->db->update('tbl_cart',$qty);
-	  if($query){
-		return 1;
-	  }else{
-		return 0;
-	  } 		
+	public function update_customer($data)	{
+	    $id=$this->session->userdata('userid');
+		$this->db->where('customer_id',$id);
+		$this->db->update('tbl_registration',$data);
 	}
-	
-    public  function check_frame_details($user_id,$image_id)
-    {
-        $this->db->where('user_id',$user_id);
-        $this->db->where('image_id',$image_id);
-        $query=$this->db->get('tbl_user_frame_details');
-        return $query->num_rows();
-    }
-	function canvas_frame_type($frame_type){
-	//return  $frame_type;
-	//$data['fr_type']=$frame_type;
-	//$this->trans_canv=$frame_type;
-	 //$this->check_cart_details();
-	
-	
-	}
-    public  function check_cart_details($user_id,$image_id,$imagsTypes,$total_size,$frame_name,$mount_name,$glass)
-    {		
-		$this->db->where('user_id',$user_id);
-        $this->db->where('image_id',$image_id);
-		$this->db->where('image_print_type',trim($imagsTypes));
-		$this->db->where('image_size',trim($total_size));
-		if($frame_name!=''){
-		$this->db->where('frame_color',trim($frame_name));
+
+	public function update_qty_frame_for_cart($imgsize,$papersurface,$filenam,$qty,$frame_name,$mount_name,$glass)	{
+		$id=$this->session->userdata('userid');
+		$this->db->where('user_id',$id);
+		$this->db->where('image_size',trim($imgsize));
+		$this->db->where('image_print_type',trim($papersurface));
+		$this->db->where('image_name',trim($filenam));
+		$this->db->where('frame_color',$frame_name);
 		$this->db->where('mount_color',$mount_name);
 		$this->db->where('glass_type',$glass);
-		}
-        $query=$this->db->get('tbl_cart');
-        return $query->num_rows();//$user_id.','.$image_id.','.$imagsTypes.','.$total_size;
-	}
-	
-    public function get_frame_values($frame_id)
-    {
-       // $this->db->where('id',$image_id);
-        //$query=$this->db->get('tbl_user_frame_details');
-
-    }
-    public function get_id($user_id,$image_id)
-    {
-    $this->db->where('user_id',$user_id);
-    $this->db->where('image_id',$image_id);
-    $query=$this->db->get('tbl_user_frame_details');
-    return $query->result();
-    }
-   //main frontend_model of mahattart by sajid
-    
-	public  function insert_into_cart($data2)
-    {
-        $result = $this->db->insert('tbl_cart',$data2);
-		return $result; 
-	}
-			
-	public function update_qty_for_cart($imgsize,$papersurface,$filenam,$qty){
-	$id=$this->session->userdata('userid');
-	$this->db->where('image_size',trim($imgsize));
-	$this->db->where('user_id',$id);
-	$this->db->where('image_print_type',trim($papersurface));
-	$this->db->where('image_name',trim($filenam));
-	$query=$this->db->update('tbl_cart',$qty);
+		$query=$this->db->update('tbl_cart',$qty);
 		if($query){
-		return 1;
-		}else{
-		return 0;
+			return 1;
+		}	else{
+			return 0;
 		}
 	}
-	
-	
-	public function get_web_price()
-	  {
-	  
-	   $this->db->select('*');
-        $this->db->where('quality','Smart');
-		$this->db->where('paper','Hahnemuhle Photo Matte Fibre');
-      //  $this->db->where('status','1');
-        $query=$this->db->get('tbl_web_price');
-        return $query->result(); 
-	  }
 
-	public  function get_cart_details($user_id,$image_id,$imagsTypes,$total_size,$frame_name,$mount_name,$glass)
-    {           
-	    $this->db->where('user_id',$user_id);
+	public  function check_frame_details($user_id,$image_id)	{
+		$this->db->where('user_id',$user_id);
+		$this->db->where('image_id',$image_id);
+		$query=$this->db->get('tbl_user_frame_details');
+		return $query->num_rows();
+	}
+
+	function canvas_frame_type($frame_type){
+		//return  $frame_type;
+		//$data['fr_type']=$frame_type;
+		//$this->trans_canv=$frame_type;
+		//$this->check_cart_details();
+	}
+
+	public  function check_cart_details($user_id,$image_id,$imagsTypes,$total_size,$frame_name,$mount_name,$glass)	{
+		$this->db->where('user_id',$user_id);
 		$this->db->where('image_id',$image_id);
 		$this->db->where('image_print_type',trim($imagsTypes));
 		$this->db->where('image_size',trim($total_size));
-		if($frame_name!=''){
+		if($frame_name!='')	{
+			$this->db->where('frame_color',trim($frame_name));
+			$this->db->where('mount_color',$mount_name);
+			$this->db->where('glass_type',$glass);
+		}
+		$query=$this->db->get('tbl_cart');
+		return $query->num_rows();//$user_id.','.$image_id.','.$imagsTypes.','.$total_size;
+	}
+
+	public function get_frame_values($frame_id)	{
+		// $this->db->where('id',$image_id);
+		//$query=$this->db->get('tbl_user_frame_details');
+	}
+
+	public function get_id($user_id,$image_id)	{
+		$this->db->where('user_id',$user_id);
+		$this->db->where('image_id',$image_id);
+		$query=$this->db->get('tbl_user_frame_details');
+		return $query->result();
+	}
+
+	//main frontend_model of mahattart by sajid
+
+	public  function insert_into_cart($data2)	{
+		$result = $this->db->insert('tbl_cart',$data2);
+		return $result; 
+	}
+			
+	public function update_qty_for_cart($imgsize,$papersurface,$filenam,$qty)	{
+		$id=$this->session->userdata('userid');
+		$this->db->where('image_size',trim($imgsize));
+		$this->db->where('user_id',$id);
+		$this->db->where('image_print_type',trim($papersurface));
+		$this->db->where('image_name',trim($filenam));
+		$query=$this->db->update('tbl_cart',$qty);
+		if($query)	{
+			return 1;
+		}	else{
+			return 0;
+		}
+	}
+
+
+	public function get_web_price()	{
+		$this->db->select('*');
+		$this->db->where('quality','Smart');
+		$this->db->where('paper','Hahnemuhle Photo Matte Fibre');
+		//  $this->db->where('status','1');
+		$query=$this->db->get('tbl_web_price');
+		return $query->result(); 
+	}
+
+	public  function get_cart_details($user_id,$image_id,$imagsTypes,$total_size,$frame_name,$mount_name,$glass)	{
+		$this->db->where('user_id',$user_id);
+		$this->db->where('image_id',$image_id);
+		$this->db->where('image_print_type',trim($imagsTypes));
+		$this->db->where('image_size',trim($total_size));
+		if($frame_name!='')	{
 			$this->db->where('frame_color',$frame_name);
 			$this->db->where('mount_color',$mount_name);
 			$this->db->where('glass_type',$glass);
-			}
-        $query=$this->db->get('tbl_cart');
-   		 return $query->result();
-    }
+		}
+		$query=$this->db->get('tbl_cart');
+		return $query->result();
+	}
 	
-    public function get_frame_data($image_id,$user_id){
-        $this->db->where('user_id',$user_id);
-        $this->db->where('image_id',$image_id);
-        $query=$this->db->get('tbl_user_frame_details');
-        return $query->row();
-   }
-	
-    public function frame_detail($id){
-        $this->db->select('*');
-        $this->db->where('frame_id',$id);
-        $query=$this->db->get('tbl_frame2');
-        return $query->row();
-    }
-    
-    
-   
-    public  function check_user_login_details($user_id)
-    {
-        $this->db->where('user_id',$user_id);
-        $query=$this->db->get('tbl_user_save_login');
-        return $query->num_rows();
-    }
-    
-     public  function check_user_login_sesion($user_id)
-    {
-        $this->db->select('*');
-        $this->db->where('user_id',$user_id);
-        $query=$this->db->get('tbl_user_save_login');
-        return $query->result();
-    }
-    
-    
-    public function track_login_details($data)
-        { 
-        
-         $this->db->insert('tbl_user_save_login',$data);
-        }
-    public function update_track_login_details($data1,$user_id)
-    {
+	public function get_frame_data($image_id,$user_id)	{
+		$this->db->where('user_id',$user_id);
+		$this->db->where('image_id',$image_id);
+		$query=$this->db->get('tbl_user_frame_details');
+		return $query->row();
+	}
+
+	public function frame_detail($id)	{
+		$this->db->select('*');
+		$this->db->where('frame_id',$id);
+		$query=$this->db->get('tbl_frame2');
+		return $query->row();
+	}
+
+	public  function check_user_login_details($user_id)	{
+		$this->db->where('user_id',$user_id);
+		$query=$this->db->get('tbl_user_save_login');
+		return $query->num_rows();
+	}
+
+	public  function check_user_login_sesion($user_id)	{
+		$this->db->select('*');
+		$this->db->where('user_id',$user_id);
+		$query=$this->db->get('tbl_user_save_login');
+		return $query->result();
+	}
+
+	public function track_login_details($data)	{
+		$this->db->insert('tbl_user_save_login',$data);
+	}
+
+    public function update_track_login_details($data1,$user_id)	{
         $this->db->where('user_id',$user_id);
         $this->db->update('tbl_user_save_login',$data1);
 
