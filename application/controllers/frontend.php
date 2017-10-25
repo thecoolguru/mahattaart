@@ -587,19 +587,23 @@ class Frontend extends CI_Controller
 							<td colspan="4"><p>Dear '.$first_name.' '.$last_name.',</p></td>
 						</tr>
 						<tr>
-							<td colspan="4"><p>We received a request to reset your Mahatta Art password.</p></td>
+							<td colspan="4"><p>FORGOT PASSWORD?</p></td>
 						</tr>
 						<tr>
-							<td colspan="4"><p><a href="'.$pwrurl.'">Click here</a> to change your password.</p></td>
+							<td colspan="4"><p><a href="'.$pwrurl.'">Click here</a> to reset your password.</p></td>
 						</tr>
 						<tr>
 							<td colspan="4">
-								<p>For any query feel free to contact us: +91-8800639075, 011-41828972 or mail us: <a href="mailto:info@mahattaart.com">info@mahattaart.com</a></p>
-								<p>To know more about us <a href="'.base_url().'">click here</a></p>
+								<p>For any queries email us at <a href="mailto:info@mahattaart.com">info@mahattaart.com</a> or contact us at +91-8800639075, 011-41828972.</p>
 							</td>
 						</tr>
 						<tr>
-							<td colspan="4"><p>Happy exploring!</p></td>
+							<td colspan="4">
+								<p>KEEP <a href="'.base_url().'">EXPLORING</a> WITH US!</p>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4"><p>Regards,</p></td>
 						</tr>
 						<tr>
 							<td style="vertical-align:top" width="150"><p>Mahatta Art Team</p></td>
@@ -714,6 +718,7 @@ class Frontend extends CI_Controller
 							<a href="https://www.facebook.com/mahattaart"><img src="'.base_url().'images/facebook.jpg" width="50px" height="50px"></a>
 							<a href="https://www.linkedin.com/company/13458390"><img src="'.base_url().'images/linkdin.jpg" width="50px" height="50px"></a>
 							<a href="https://twitter.com/mahattaart"><img src="'.base_url().'images/twitter.jpg" width="50px" height="50px"></a>
+							<a href="https://www.instagram.com/mahattaart"><img src="'.base_url().'images/instagram.png" width="50px" height="50px"></a>
 						</td>
 					</tr>
 					</table>
@@ -1242,7 +1247,7 @@ class Frontend extends CI_Controller
 		$password = hash('sha512', $salt.$firgetemailid);
 		$pwrurl = "http://dev.wallsnart.com/index.php/frontend/?emailid=$firgetemailid&q=".$password;
 		//echo $pwrurl;die;
-		if($firgetemailid=='tamjsay7@gmail.com')	{
+		if($firgetemailid!='')	{
 			//$frntfrgtpwd=$this->load->view('backend/forget_password.php');
 			$frntfrgtpwd='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 				<html xmlns="http://www.w3.org/1999/xhtml">
@@ -1834,19 +1839,30 @@ class Frontend extends CI_Controller
 								<td bgcolor="#ede2ea"><table width="100%" border="0" cellspacing="0" cellpadding="0"></table></td>
 							</tr>
 							<tr>
-								<td>
-									<p>  Dear Customer , </p>
-									<p> Your friend '.ucfirst($first_name).'  '.ucfirst($last_name).' knew you would love this and has shared this gallery with you . Just have a look Mahatta Art gallery products. </p>
-									<p>Please <a href="'.base_url().'index.php/frontend/lightbox_view?lightbox_id='.$lightbox_id.'&page=1&per_page=16">Click here</a> to view gallery.</p>
-									<p>To know more about Mahatta Art gallery <a href="'.base_url().'">click here </a></p>
-									<p>For any queries call us at <a href="#">+91-11-41828972<a/> or email us at <a href="mailto:info@mahattaart.com"> info@mahattaart.com </a></p>
+								<td colspan="4">
+									<p><img src="'.base_url().'images/mahattaArt_logo.png" width="300"/></p>
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<p>  Regards,  </p>
-									<p>  Mahatta Art Team  </p> 
-									<p> <a href="#"> <img style="padding: 0px 8px 0px 0px;" src="'.base_url().'assets/img/facbook.png" /> </a> <a href="#"> <img src="'.base_url().'assets/img/google.png" /> </a></p>
+									<p> Your friend '.ucfirst($first_name).'  '.ucfirst($last_name).' knew you would love this and has shared this gallery with you . Just have a look Mahatta Art gallery products. </p>
+
+									<p>To know more about Mahatta Art gallery <a href="'.base_url().'index.php/frontend/lightbox_view?lightbox_id='.$lightbox_id.'&page=1&per_page=16">click here </a></p>
+									<p>For any queries call us at <a href="#">+91-11-41828972<a/> or email us at <a href="mailto:info@mahattaart.com"> info@mahattaart.com </a></p>
+								</td>
+							</tr>
+							<tr>
+								<td><p>Regards,</p></td>
+							</tr>
+							<tr>
+									<td><p>Mahatta Art Team</p></td>
+							</tr>
+							<tr>
+								<td>
+									<a href="https://www.facebook.com/mahattaart"><img src="'.base_url().'images/facebook.jpg" width="50px" height="50px"></a>
+									<a href="https://www.linkedin.com/company/13458390"><img src="'.base_url().'images/linkdin.jpg" width="50px" height="50px"></a>
+									<a href="https://twitter.com/mahattaart"><img src="'.base_url().'images/twitter.jpg" width="50px" height="50px"></a>
+									<a href="https://www.instagram.com/mahattaart"><img src="'.base_url().'images/instagram.png" width="50px" height="50px"></a>
 								</td>
 							</tr>
 						</table>
@@ -1856,6 +1872,7 @@ class Frontend extends CI_Controller
 			$headers  = 'MIME-Version: 1.0' . "\r\n";
 			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 			$headers .= 'From:MahattaArt<info@mahattaart.com>' . "\r\n";
+			$headers .= 'Cc: operations@mahattaart.com' . "\r\n";
 			$subject = 'Welcome to Mahatta Art';
 			$send=mail($emailto,$subject,$message,$headers);
 		}

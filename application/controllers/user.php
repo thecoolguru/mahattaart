@@ -180,6 +180,9 @@ $frntfrgtpwd='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "ht
 </head>
 <body style="background:#f2f2f2; font-size:14px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;">
 <table width="880" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+	<td colspan="4"><p><img src="'.base_url().'images/mahattaArt_logo.png" width="300"></p></td>
+</tr>
   <tr>
     <td bgcolor="#ede2ea"><table width="100%" border="0" cellspacing="0" cellpadding="0">
     </table></td>
@@ -195,6 +198,10 @@ $frntfrgtpwd='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "ht
 	 <p>For any queries  email us at  <a href="mailto:info@mahattaart.com">info@mahattaart.com</a> or contact us at <a href="#">+91-8800639075, +91-11-41828972</a> </p>
 <p>Regards,</p> 
 <p>Mahattaart Team</p>
+</td>
+ </tr>
+  <tr>
+    <td> 
 <p><a href="https://www.facebook.com/mahattaart"> <img style="padding: 0px 8px 0px 0px;" src="'.base_url().'assets/img/facbook.png" /> </a> <a href="https://twitter.com/mahattaart"> <img style="padding: 0px 8px 0px 0px;" src="'.base_url().'assets/img/twitter.png" /> </a> <a href="https://www.instagram.com/mahattaart"> <img src="'.base_url().'assets/img/instagram.png" /> </a> <a href="https://www.linkedin.com/company/13458390"> <img src="'.base_url().'assets/img/linkdin.png" /> </a></p>
 	</td>
   </tr>

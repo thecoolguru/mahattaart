@@ -424,9 +424,8 @@ a:hover {
 		width:380px !important
 	}
 	#uploader_popup_goofy_a {
-		top: 60px !important;
-		width: 480px !important;
-		margin-left: -240px !important;
+		top: 70px !important;
+		width: 400px !important;
 	}
 	.top_slider_content h1 {
 		font-size: 38px !important;
@@ -438,7 +437,7 @@ a:hover {
 		width: 100% !important;
 	}
 	.pull-right.add_photo {
-		margin-right: 145px !important;
+		margin-right: 40px !important;
 	}
 	.sicon {
 		font-size: 22px;
@@ -476,9 +475,8 @@ a:hover {
 		font-size: 45px !important;
 	}
 	#uploader_popup_goofy_a {
-		top: 60px !important;
-		width: 320px !important;
-		margin-left: -160px !important;
+		top: 70px !important;
+		width: 300px !important;
 	}
 	.popup-default-message > h2 {
 		color: #ef9223;
@@ -492,6 +490,10 @@ a:hover {
 	}
 	.top_slider_content {
 		width: 290px !important;
+	}
+	.popup-default-button.pull-right {
+		float: none !important;
+		text-align: center;
 	}
 }
 
@@ -820,6 +822,9 @@ a:hover {
 		position: relative;
 		right: 0;
 		top: 0;
+	}
+	.addtocartcontainer_page2,.addtocartcontainer_page {
+		width: 90% !important;
 	}
 }
 

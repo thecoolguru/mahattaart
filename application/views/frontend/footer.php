@@ -192,19 +192,19 @@
     </div>
 
 <!--End sign up-->
-    
+
     <!-- login -->
     <div class="backblack" id="back" onClick="allclose('')" style="display:none;">&nbsp;</div>
     <div class="signup" id="loginpop" style="display:none;">
         <div style="float: right" ><a href="" onClick="allclose('');return false;" >Close</a></div>
-	    
+
         <div class="signup-l-c">
 		 <h1>User Sign In </h1>
 		<p> <span></span><b style="color: red; " id="password_login_error"></b>
 		 <b style="color: red;  " id="email_login_error"></b>
 		 <b style="color: red;  " id="login_error"></b> </p>
                 <form action="#" id="login_id" name="login_id" method="post">
-			
+
             	<p>
                 	<span>Email Address</span>
                    <input name="email" type="text" id="email_login" placeholder="Email Address"  /><br>

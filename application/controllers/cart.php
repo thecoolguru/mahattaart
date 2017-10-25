@@ -551,16 +551,23 @@ invoice_id,customer_type,price,total_paid_with_tax )
 		</style>
 		<table id="Table_01" width="750" border="0" cellpadding="0" cellspacing="0"  style="margin:0 auto">
 		<tr><td colspan="4"><p><img src="'.base_url().'images/mahattaArt_logo.png" width="300"/></p></td></tr>
-		<tr><td colspan="4"><p>Dear '.$billing_name.'!</p></td></tr>
-		<tr><td colspan="4"><p>Thank you! For subscribing on <a href="'.base_url().'">MahattaArt.com</a></p></td></tr>
-		<tr><td colspan="4"><p>We will keep you updated on our exclusive and latest collections!</p></td></tr>
-		<tr><td colspan="4"><p>Mahatta Art is an online art gallery having 5.5 Lakh Images including Photography, Paintings, Poster & Illustrations from world renowned Collections and Artists. The content ranges from Abstracts to Nature photography, Legendary to Amateur artists, Heritage to Modern Indian art, Modern to Contemporary art, Humorous quotes to Serious & Hollywood Vintage posters and so on.</p></td></tr>
-		<tr><td colspan="4"><p>Click here to know more about us <a href="'.base_url().'">link</a></p></td></tr>
+		<tr><td colspan="4"><p>Dear '.$billing_name.',</p></td></tr>
+		<tr><td colspan="4"><p>Thank you for placing your order with <a href="'.base_url().'">MahattaArt.com</a>!</p></td></tr>
+		<tr><td colspan="4"><p>We have received your order for PAINTING WITH GLASS with order ID is '.$order_id.' AMOUNTING RS '.$amount.' /- </p></td></tr>
+		<tr><td colspan="4"><p>We will ship your order within 5-6 business days.</p></td></tr>
+		<tr><td colspan="4"><p>We will send you an update when your order will be ready for shipping.</p></td></tr>
+		<tr><td colspan="4"><p>Details of Your Order:</p></td></tr>
+		<tr><td colspan="4"><p>Order Name:</p></td></tr>
+		<tr><td colspan="4"><p>Order ID:	'.$order_id.'</p></td></tr>
+		<tr><td colspan="4"><p>Order Date:	'.$date.'</p></td></tr>
+		<tr><td colspan="4"><p>Shipping Address:	'.$delivery_address.'</p></td></tr>
+		<tr><td colspan="4"><p>Mode of Payment: Cash on Delivery</p></td></tr>
+		<tr><td colspan="4"><p>Keep exploring the Mahatta Art gallery, an online art gallery having archival collection from more than 550 international museums. To know more <a href="'.base_url().'">click here link</a></p></td></tr>
 		<tr><td colspan="4"><p>For any queries email us at <a href="mailto:info@mahattaart.com">info@mahattaart.com</a> or contact us at: +91-8800639075, 011-41828972</p></td></tr>
 		<tr><td colspan="4"><p>Regards,</p></td></tr>
 		<tr>
 		<td width="150" style="vertical-align:top"><p>Mahattaart Team</p></td>
-		<td><a href="https://www.facebook.com/mahattaart"><img src="'.base_url().'images/facebook.jpg" width="50px" height="50px"></a><a href="https://www.linkedin.com/company/13458390"><img src="'.base_url().'images/linkdin.jpg" width="50px" height="50px"></a><a href="https://twitter.com/mahattaart"><img src="'.base_url().'images/twitter.jpg" width="50px" height="50px"></a></td>
+		<td><a href="https://www.facebook.com/mahattaart"><img src="'.base_url().'images/facebook.jpg" width="50px" height="50px"></a><a href="https://www.linkedin.com/company/13458390"><img src="'.base_url().'images/linkdin.jpg" width="50px" height="50px"></a><a href="https://twitter.com/mahattaart"><img src="'.base_url().'images/twitter.jpg" width="50px" height="50px"></a><a href="https://www.instagram.com/mahattaart"><img src="'.base_url().'images/instagram.png" width="50px" height="50px"></a></td>
 		</tr>
 		</table>
 		</body>

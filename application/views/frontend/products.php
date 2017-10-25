@@ -42,33 +42,20 @@
 }
 </style>
 <?php 
-// starts for images brige and others
-//echo $image_name;
+$image_data = '';
 $image_type=split('_',$image_name);
-//print_r($image_type[0]);
-//print_r($image_detail);
 if($image_type[0]=='BRID'){
-
-	//$data= str_split($image_detail[0]['image_filename'],8);
-	//print_r($data);
-	//$dataa= substr($item['image_filename'],8);
-    $bridege_image_id=substr($image_detail[0]['image_filename'],8,-4);
-	 //$bridge_id=$data[1];
-	 //$data.'ss';
-	 
+  $bridege_image_id=substr($image_detail[0]['image_filename'],8,-4);
 	$add_imgid= $bridege_image_id+3179;
 	$reverse_val=strrev($add_imgid);
-	//$reverse_val= $this->frontend_model->reverse_number($add_imgid);
 	$append_zero=$reverse_val.'0';
 	$bride_id=$append_zero;
-$image_path= "http://images2.bridgemanart.com/cgi-bin/bridgemanImage.cgi/150.XIR.".$bride_id.".7055475/".$bridege_image_id.".JPG";
-
-}else{
-$image_path="http://static.mahattaart.com/400x400/media/".$image_detail[0]['image_filename'];
+  	$image_path = "http://images2.bridgemanart.com/cgi-bin/bridgemanImage.cgi/600.XIR.".$bride_id.".7055475/".$bridege_image_id.".JPG";
+	$image_data = getimagesize($image_path);
+	}else{
+	$image_path="http://static.mahattaart.com/400x400/media/".$image_detail[0]['image_filename'];
+	$image_data = getimagesize($image_path);
 }
-//echo $image_path;
-//end for images
-
 
 $collection_name;
 $continue_shopping_redirect=$this->session->userdata('continue_shopping');
@@ -87,9 +74,7 @@ $rate= $result_rate[0]->rate;
 $this->load->model('cart_model');
 $userid=$this->session->userdata('userid');
 $image_id=$image_detail[0]['image_id'];
-//print_r($image_id);
 $lightbox= $this->frontend_model->get_light_boxName($images_id,$userid); 
-//print_r($lightbox);
 $max_w=$image_detail[0]['image_original_width'];
 $max_h=$image_detail[0]['image_original_height'];
 $s_height=$max_h;
@@ -750,7 +735,7 @@ function calculate_cost(value){
                <li role="presentation" id="12"><img src="<?= base_url() ?>assets/img/product/frame_left.jpg" class="img-responsive" ></li>
                 <li role="presentation" id="20" style="border:0px;">
         			<section class="container3D">
-        				<div id="cube">
+        				<div id="cube" style="<?php if($image_data[0] >= $image_data[1]){?> height:40px;    <?php }else{ ?>height:90px;"<?php } ?> >
 	            			<figure class="front">
 	  					<img id="large_img4" src="<?php echo $image_path;?>" class="img-responsive">	
 							<figure class="right" style="transform: skewY(45deg) translate(7px,-3px);
@@ -770,7 +755,7 @@ function calculate_cost(value){
 
 	    <div id="abc" class="room_mount" style="background:url('<?=base_url()?>images/uploaded_pdf/mount/DR 2091.jpg')  0% 0% / cover no-repeat;width:auto;padding:10px; background-attachment:scroll; position: relative; z-index: 1;">
             	<a href="javascript:" id="demo2" class="imglink img_shadow " target="_self" >
-               		<img id="large_img" src="<?php echo $image_path;?>" style=""/>
+               		<img id="large_img"  style="max-height: 400px" src="<?php echo $image_path;?>" style=""/>
 				  	<input type="hidden" id="frame_shape" value="<?=$f_shape?>"/>
 	        	</a>
 		</div>
@@ -783,7 +768,7 @@ function calculate_cost(value){
 					  touch: true
 					});
 				</script>
-	<img id="large_img3"  style="" src="<?php echo $image_path;?>" class="img-responsive">			
+	<img id="large_img3"  style="max-height:400px" src="<?php echo $image_path;?>" class="img-responsive">			
 	<div id="22" style="position: relative;height: 560px;width: 560px;background-color: #888;">
 		<div id="frame_show" style="margin: 0 auto;text-align: center;padding-top: 58px;">
 		     <div  class="divimg mainhor2" style="border-image-source: url(&quot;http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg &quot;); border-image-slice: 58; border-image-width: initial; border-image-outset: initial; border-image-repeat: round; border-style: solid; border-width:10px; margin-top:-55px; padding:0px; width:auto; display:inline-block; position:relative;">
@@ -1153,16 +1138,16 @@ function calculate_cost(value){
                 </div>
 	<div id="large_img7"  class="3dwrap" style="transform: perspective(1001px) rotateY(22deg) translate(65px, 10px); width: 300px; position: relative; display: block;">
 		<div class="3dwrap_front" >
-			<img src="<?php echo $image_path; ?>" class="img-responsive">
+			<img src="<?php echo $image_path; ?>" style=" max-height: 400px;" class="img-responsive">
 			<div class="3dwrap_left" style="transform: perspective(1001px) rotateY(-40deg) translate(-20px, 0px);width: 40px;left: -20px;position: absolute;height: 100%;top: 0; background-color: #000"></div>
 			<div class="3dwrap_shadow" style="transform: perspective(1001px) rotateX(-65deg) translate(-55px, 85px);width: 100%;position: absolute;height: 120px;bottom: 0;z-index: -1; background-color: #ddd; box-shadow: 0 15px 20px rgba(0,0,0,0.3)"></div>
 		</div>
 	</div>
 
-	<section  id="canvas3D" class="container3D"  style="width:<?= $image_width1 ?>px">
+	<section  id="canvas3D" class="container3D"  style="height: 420px;width:520px; ">
         <div id="cube">
             <figure class="front">
-  		<img id="large_img2"  style="" src="<?php echo $image_path; ?>" class="img-responsive">	
+  		<img id="large_img2"  style="max-height: 400px" src="<?php echo $image_path; ?>" class="img-responsive">	
   <canvas id="myCanvas2" height="251px" width="330px" style="width:100%;height:100%;max-height:500px;"></canvas> 
   <script>
       function front(source_width,source_height){ 
@@ -1993,6 +1978,7 @@ transform: translateZ( 100px );
 display: block;
 height: auto;
 width: auto;
+position: absolute;
 }
 
 figure {

@@ -924,7 +924,7 @@ Dropzone.options.myDropzone = {
 				var imagedata = JSON.parse(data);
 				imagedata = ''+imagedata; 
 				   if(imagedata == 'null' ){
-				       window.location.href = 'photostoart';
+				       window.location.href = 'photostoframe';
 				   }
 				var image = imagedata.split(',');		
 				var total_image = image.length; 
@@ -1983,7 +1983,7 @@ Dropzone.options.myDropzone = {
 
 <div class="container">
 	<div class="row">
-      <div class="col-md-9 col-sm-9">
+      <div class="col-md-9 col-sm-8">
       <div class="panel panel-primary h2a_ms_selector">
           <div class="panel-heading h2a_ms_photos">
           <h3 class="panel-title"> <i>  1 </i> Panel 1 </h3>
@@ -2002,21 +2002,21 @@ Dropzone.options.myDropzone = {
                       <div class="carousel carousel-showmanymoveone slide" id="itemslider7">
                           <div class="carousel-inner">
                               <div class="item active">
-                                  <div class="col-xs-12 col-sm-6 col-md-2">
+                                  <div class="col-xs-4 col-sm-2 col-md-2">
                                   	<div class="thumb_bg_hover">
                                       <a href="JavaScript:void(0);">
                                       <img id="canvas" src="<?php echo $path2 = base_url()."images/uploaded_pdf/canvas_img.jpg";?>" class="img2 img-responsive center-block"></a>
                                       <h5 class="text-center">Canvas</h5>
                                     </div>
                                   </div>
-                                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-1">
+                                  <div class="col-xs-4 col-sm-2 col-md-2 cloneditem-1">
                                   	<div class="thumb_bg_hover">
                                       <a href="JavaScript:void(0);">
                                       <img id="framing" src="<?php echo $path1 = base_url()."images/uploaded_pdf/frame_img.jpg";?>" class="img2 img-responsive center-block"></a>
                                       <h5 class="text-center">Framing</h5>
                                     </div>
                                   </div>
-                                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-4">
+                                  <div class="col-xs-4 col-sm-2 col-md-2 cloneditem-4">
                                   	<div class="thumb_bg_hover">
                                       <a href="JavaScript:void(0);">
                                       <img id="print_only" src="<?php echo $path3 = base_url()."images/uploaded_pdf/print_img.jpg";?>" class="img2 img-responsive center-block"></a>
@@ -2030,7 +2030,7 @@ Dropzone.options.myDropzone = {
               </div>
           </div>
           <div class="row" style="margin-bottom:20px">
-        <div class="col-md-7 col-sm-7">
+        <div class="col-md-6 col-sm-6">
          <div class="divimg mainhor" id="frame-it" style="border-image-source: url('http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg'); border-image-slice: 58; border-image-width: initial; border-image-outset: initial; border-image-repeat: round; border-style: solid; border-width: 40px; margin-top: 20px; padding: 0px; width: auto; display:inline-block; position: relative;">
 
            <div id="abc" style="background:url('<?=base_url()?>images/uploaded_pdf/mount/DR 2091.jpg')  0% 0% / cover no-repeat;width:auto;padding:10px; background-attachment:scroll; position: relative; z-index: 1;">
@@ -2040,10 +2040,10 @@ Dropzone.options.myDropzone = {
              </a>
 						
 	
-<section class="container3D"  style="perspective: 1000px; perspective-origin: 0% 0%;">
+<section class="container3D">
         <div id="cube">
             <figure class="front">
-		    <img id="large_img2"  style="max-height:500px;" src="" class="img-responsive">
+		    <img id="large_img2" src="" class="img-responsive">
    <canvas id="myCanvas2" height="251px" width="330px" style="width:100%;height:100%;max-height:500px;"></canvas> 
   <script>
       function front(source_width,source_height){ 
@@ -2131,7 +2131,7 @@ function right(width,height,x){
              </div>
 		 <?php echo $f_shape; ?>   
 	</div>
-	  <div class="col-md-5 col-sm-5">
+	  <div class="col-md-6 col-sm-6">
       <style>
 	  	.input_control{
 			height: 25px;
@@ -2151,40 +2151,40 @@ function right(width,height,x){
 	  </style>
       <form class="form-horizontal form-modify" role="form">
           <div class="form-group">
-          <label for="country" class="col-sm-7 control-label">Select size:</label>
-           <div class="col-sm-5">
+          <label for="country" class="col-sm-5 control-label">Select size:</label>
+           <div class="col-sm-7">
           <select name="sizes" id="sizes" class="form-control input_control" onchange="calculate_cost(this.value)">
           </select>
             </div>
            </div>
           <div class="form-group dimention">
-          <label for="country" class="col-sm-7 control-label dimention"> Width (Inch.):</label>
-          <div class="col-sm-5">
+          <label for="country" class="col-sm-5 control-label dimention"> Width (Inch.):</label>
+          <div class="col-sm-7">
           <input id="width" maxlength="2" class="form-control by_keyup_update dimention input_control inputs" type="text">
           </div>
           </div>
           <div class="form-group dimention">
-          <label for="country" class="col-sm-7 control-label dimention" > Height (Inch.):</label>
-          <div class="col-sm-5">
+          <label for="country" class="col-sm-5 control-label dimention" > Height (Inch.):</label>
+          <div class="col-sm-7">
           <input id="height" maxlength="2" class="form-control by_keyup_update dimention input_control inputs" type="text">
           </div>
           </div> <!-- /.form-group -->
           <div class="form-group">
-          <label for="country" class="col-sm-7 control-label">Paper Printing Surface:</label>
-          <div class="col-sm-5">
+          <label for="country" class="col-sm-5 control-label">Paper Printing Surface:</label>
+          <div class="col-sm-7">
           <select id='paper_surface' class="form-control input_control input" onclick="calculate_cost('')"> 
     	  </select>
     	  </div>
     	  </div>
     	  <div class="form-group">
-		  <label class="control-label col-sm-7">Finished Size:</label>
-          <div class="col-sm-5">
+		  <label class="control-label col-sm-5">Finished Size:</label>
+          <div class="col-sm-7">
           <div id='finished_size'style='padding-top:8px;'></div>
           </div> 
 		  </div>
     	  <div class="form-group" id="canvas_opt" style="display: none;">
-          <label for="country" class="control-label col-sm-7">Canvas Wrap:</label>
-          <div class="col-sm-5">
+          <label for="country" class="control-label col-sm-5">Canvas Wrap:</label>
+          <div class="col-sm-7">
           <label class="radio-inline">
           <input id="museum" value="museum" name="canvas_radio" type="radio">Museum
           </label>
@@ -2194,8 +2194,8 @@ function right(width,height,x){
          </div>
          </div> 
           <div class="form-group" id="options" >
-              <label class="control-label col-sm-7">Options:</label>
-              <div class="col-sm-5">
+              <label class="control-label col-sm-5">Options:</label>
+              <div class="col-sm-7">
                   <button id="file1" onclick="cropImage();" type="button" class="btn social_icon crop"> Crop Image</button>
               </div>
 	      </div>
@@ -2205,7 +2205,7 @@ function right(width,height,x){
 	  <div id="imageDiv">
 	  </div>
 	  <!--Image End Div -->
-	  <div class="addtocartcontainer_page text-center" style="float:right; width:340px;height: 170px;">
+	  <div class="addtocartcontainer_page text-center">
       <div class="page_price_label">
       <p>Your Price: <span class='actual_price'> </span></p>
       </div>
@@ -2219,12 +2219,12 @@ function right(width,height,x){
       <a href="#">Usually ships in 2-3 days</a>
       </div>
       </div>
-      <div class="addtocartcontainer_page2" id="canvas_details" style="display: none; margin-bottom:40px; width:340px; float:right">
+      <div class="addtocartcontainer_page2" id="canvas_details">
       <div class="addtocartcontainer_heading">
       <h2>About Canvas</h2>
       </div>
       <div class="col-md-12 addtocartcontainer_header_img">
-      	<img src="<?php echo base_url().'images/uploaded_pdf/canvas.png'; ?>" class="img-responsive" />
+      	<img src="<?php echo base_url().'images/uploaded_pdf/canvas.png'; ?>" class="img-responsive" style="margin:0 auto" />
       </div>
       <div class="addtocartcontainer_header">
       <p>Create an artistic look with depth and texture by printing your photos on canvas</p>
@@ -2518,7 +2518,7 @@ function right(width,height,x){
     <!-- Tab Content 3 -->
        
     </div>
-    <div class="col-md-3 col-sm-3">
+    <div class="col-md-3 col-sm-4">
       	<div class="addtocartcontainer_page2">
         	<div class="addtocartcontainer_heading">
 	        	<h2>Sign In</h2>
@@ -2558,7 +2558,7 @@ function right(width,height,x){
 	            <p>Create an artistic look with depth and texture by printing your photos on canvas. Create an artistic look with depth and texture by printing your photos on canvas</p>
             </div>
         </div>
-        <div class="addtocartcontainer_page2" style="border:none">
+        <div class="addtocartcontainer_page2" style="border:none; margin-bottom:10px">
             <p class="text-center" style="font-size:13px; color:#888; margin-top:6px">Other ways to order:</p>
             <p class="text-center" style="font-size:11px; color:#888; margin-top:6px">  +91-8800639075 </p>
         </div>
@@ -2748,10 +2748,10 @@ text-transform: uppercase;
 .addtocartcontainer_page {
 background: #f1f1f1 none repeat scroll 0 0;
 border: 1px solid #d6d6d6;
-float: left;
+float: right;
 margin-top: 20px;
 padding: 10px;
-width: 100%;
+width: 80%;
 }
 .page_price_label > p {
 color: #888;
@@ -2828,9 +2828,9 @@ text-transform: uppercase;
 }
 .addtocartcontainer_page2 {
 	border: 1px solid #d6d6d6;
-	float: left;
+	float: right;
 	margin-top: 10px;
-	width: 200px;
+	width: 80%;
 }
 .addtocartcontainer_heading {
 	background: #f1f1f1 none repeat scroll 0 0;
@@ -2998,11 +2998,12 @@ top: 0;
 	background: white none repeat scroll 0 0;
 	display: block;
 	font-family: Arial;
-	left: 314.5px;
+	left: 50%;
 	position: absolute;
 	top: 134px;
 	width: 720px;
 	z-index: 10000012;
+	transform:translate(-50%, 0)
 }
 
 .uploader_popup_header > h2 {
@@ -3069,7 +3070,6 @@ display: none;
 }
 .popup-default-footer {
 	display: block;
-	height: 40px;
 	clear: both;
 	margin: 10px;
 }
@@ -3089,18 +3089,14 @@ margin-right: 10px;
 </style>
 <style>
 .container3D {
-height: 200px;
 position: relative;
--webkit-perspective: 1200px;
--moz-perspective: 1200px;
--o-perspective: 1200px;
-perspective: 1200px;
+margin-bottom:40px;
+display:inline-block
 }
 
 #cube {
 width: 100%;
 height: 100%;
-position: absolute;
 -webkit-transform-style: preserve-3d;
 -moz-transform-style: preserve-3d;
 -o-transform-style: preserve-3d;
@@ -3121,7 +3117,6 @@ transform: translateZ( 100px );
 }
 #cube figure {
 display: block;
-position: absolute;
 height: auto;
 width: auto;
 }
@@ -3139,6 +3134,7 @@ width: 20px;
 height: 100%;
 right: 0px;
 top: 0;
+position: absolute;
 }
 
 #cube .right {
@@ -3152,6 +3148,7 @@ transform: skewX(45deg) translate(-11px,21px);
 height: 20px;
 width: 100%;
 bottom: 1px;
+position: absolute;
 }
 #cube .bottom {
 background: #ddd;

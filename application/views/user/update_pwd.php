@@ -87,17 +87,16 @@
 	}		
 	     
 </script>
-<div class="main-container">
-    	
-        <div class="pagination">
- <span> <a href="<?php print base_url();?>index.php">HOME</a> > My Account > <span> Profile</span> </span>
-        </div>
-        
-        <!-- art style -->
-        <div class="art-style">
-        	
-            <!-- aside -->
-            <aside style="width: 150px;">
+<div class="container">
+
+	<div class="row">
+		<div class="art-style col-md-12">
+			<div class="pagination">
+				 <span> <a href="<?php print base_url();?>index.php">HOME</a> > My Account > <span> Profile</span> </span>
+	        </div>	
+
+	        <div class="row">
+	        	 <aside class="left-panel-page col-md-2 col-xs-3">
             	<p>Let Us Help</p>
             	<div class="list">
                 	<ul>
@@ -129,6 +128,54 @@
                 
             </aside>
 
+            <div class="right-panel-page col-md-10 col-xs-9">
+            	<div class="art-movements">
+                       
+	 <p align="center"><span style="color: red; margin-right: 125px;
+    "><?php print $msg;?></span></p><br>
+                        <form method="post"action="<?php echo base_url();?>user/update_pwd" name=""id="">
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      
+                        <tr>
+                          <td>Email ID</td>
+                          <td><input name="email" type="email" id="email" class="email"value="<?php echo $emailid;?>" readonly/></td>
+                        </tr>
+                        
+                       
+                        <tr>
+                          <td>Create New Password</td>
+                          <td><input type="password" required class="city" name="passwordnew" id="passwordnew" />
+                          <br/><span style="color: red" id="fname_error"></span></td>
+                          
+                        <td><input type="hidden" name="emaill" value ="<?php echo $emailid;?>" id="passwordnew" />
+                        </tr>
+                        <tr>
+                          <td>Confirm Password</td>
+                          <td><input type="password" name="passwordconfirm" required  id="passwordconfirm" class="city"/></td>
+						  <td id="result_pass"></td>
+                        </tr>
+                       
+                        
+                      </table>
+                    <input type="submit"  id="submitt" value="Update" style=" width:120px; height:25px; background-color:#336699; color:#FFFFFF; border-radius: 5px; border:none; margin-top:30px; margin-left:144px;" ></form>
+                    </div>
+					
+                   
+                    
+                </div>
+            </div>
+	        </div>
+		</div>
+	</div>
+    	
+        
+        
+        <!-- art style -->
+        <div class="art-style">
+        	
+            <!-- aside -->
+           
+
 
         <!-- starts email by sajid-->
            
@@ -141,42 +188,7 @@
             <div class="right-panel">
             	
                 <!--  Art Movements -->
-                	<div class="art-movements">
-                       <div class="profile" style="margin: 7%;
-    MARGIN-TOP: 1%;">
-	 <p align="center"><span style="color: red; margin-right: 125px;
-    "><?php print $msg;?></span></p><br>
-                        <form method="post"action="<?php echo base_url();?>user/update_pwd" name=""id="">
-                      <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                      
-                        <tr>
-                          <td>Email ID</td>
-                          <td><input name="email" type="text" id="email" class="email"value="<?php echo $emailid;?>" readonly/></td>
-                        </tr>
-                        
-                       
-                        <tr>
-                          <td>Create New Password</td>
-                          <td><input type="text" required class="city" name="passwordnew" id="passwordnew" />
-                          <br/><span style="color: red" id="fname_error"></span></td>
-                          
-                        <td><input type="hidden" name="emaill" value ="<?php echo $emailid;?>" id="passwordnew" />
-                        </tr>
-                        <tr>
-                          <td>Confirm Password</td>
-                          <td><input type="text" name="passwordconfirm" required  id="passwordconfirm" class="city"/></td>
-						  <td id="result_pass"></td>
-                        </tr>
-                       
-                        
-                      </table>
-                    <input type="submit"  id="submitt" value="Update" style=" width:120px; height:25px; background-color:#336699; color:#FFFFFF; border-radius: 5px; border:none; margin-top:30px; margin-left:144px;" ></form>
-                    </div>
-                    </div>
-					
-                   
-                    
-                </div>
+                	
                 <!--  Art Movements -->
  
             </div>
