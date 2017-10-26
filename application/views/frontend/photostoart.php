@@ -431,7 +431,8 @@ a.lightbox-close::after {
 	position: absolute;
 	top: 134px;
 	width: 720px;
-	margin-left: -360px;
+	z-index: 10000012;
+	transform: translate(-50%, 0);
 }
 
 .uploader_popup_header > h2 {
@@ -498,7 +499,6 @@ display: none;
 }
 .popup-default-footer {
 	display: block;
-	height: 40px;
 	clear: both;
 	margin: 10px;
 }

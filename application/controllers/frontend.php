@@ -180,8 +180,10 @@ class Frontend extends CI_Controller
 				$size_array[14]['width']=56;
 				$size_array[15]['height']=60*$image_ratio;
 				$size_array[15]['width']=60;
+				$size_array[16]['height']=1*$image_ratio;
+				$size_array[16]['width']=1;
 			}
-			for($i=0;$i<=11;$i++)	{
+			for($i=0;$i<=16;$i++)	{
 				if($size_array[$i]['width']<= $max_width && $size_array[$i]['height']<=$max_height )	{
 					$data_rec[]=round($size_array[$i]['width']).'X'.round($size_array[$i]['height']);
 				}
@@ -218,8 +220,23 @@ class Frontend extends CI_Controller
 			$size_array[11]['height']=56;
 			$size_array[12]['width']=60*$image_ratio;
 			$size_array[12]['height']=60;
+			$size_array[13]['width']=1*$image_ratio;
+			$size_array[13]['height']=1;
+			$size_array[14]['width']=2*$image_ratio;
+			$size_array[14]['height']=2;
+			$size_array[15]['width']=3*$image_ratio;
+			$size_array[15]['height']=3;
+			$size_array[16]['width']=4*$image_ratio;
+			$size_array[16]['height']=4;
+			$size_array[17]['width']=5*$image_ratio;
+			$size_array[17]['height']=5;
+			$size_array[18]['width']=6*$image_ratio;
+			$size_array[18]['height']=6;
+			$size_array[19]['width']=7*$image_ratio;
+			$size_array[19]['height']=7;
 
-			for($i=0;$i<=11;$i++)	{
+
+			for($i=0;$i<=19;$i++)	{
 				if($size_array[$i]['width']<= $max_width && $size_array[$i]['height']<=$max_height )	{
 					$data_rec[]=round($size_array[$i]['width']).'X'.round($size_array[$i]['height']);
 				}
@@ -587,23 +604,19 @@ class Frontend extends CI_Controller
 							<td colspan="4"><p>Dear '.$first_name.' '.$last_name.',</p></td>
 						</tr>
 						<tr>
-							<td colspan="4"><p>FORGOT PASSWORD?</p></td>
+							<td colspan="4"><p>We received a request to reset your Mahatta Art password.</p></td>
 						</tr>
 						<tr>
-							<td colspan="4"><p><a href="'.$pwrurl.'">Click here</a> to reset your password.</p></td>
-						</tr>
-						<tr>
-							<td colspan="4">
-								<p>For any queries email us at <a href="mailto:info@mahattaart.com">info@mahattaart.com</a> or contact us at +91-8800639075, 011-41828972.</p>
-							</td>
+							<td colspan="4"><p><a href="'.$pwrurl.'">Click here</a> to change your password.</p></td>
 						</tr>
 						<tr>
 							<td colspan="4">
-								<p>KEEP <a href="'.base_url().'">EXPLORING</a> WITH US!</p>
+								<p>For any query feel free to contact us: +91-8800639075, 011-41828972 or mail us: <a href="mailto:info@mahattaart.com">info@mahattaart.com</a></p>
+								<p>To know more about us <a href="'.base_url().'">click here</a></p>
 							</td>
 						</tr>
 						<tr>
-							<td colspan="4"><p>Regards,</p></td>
+							<td colspan="4"><p>Happy exploring!</p></td>
 						</tr>
 						<tr>
 							<td style="vertical-align:top" width="150"><p>Mahatta Art Team</p></td>
@@ -660,18 +673,6 @@ class Frontend extends CI_Controller
 			$this->frontend_model->insert_registeration($first_name,$last_name,$email,$password);
 			//$this->frontend_model->update_user_status($user_id);
 			//sent email to Admin
-			//$email=$_POST['email'];
-			//$password=$_POST['password'];
-			$user=$this->frontend_model->login_verification($email,$password);
-			if($user->customer_id<>'')	{
-				$this->session->set_userdata('userid',$user->customer_id);
-				$this->session->set_userdata('email',$user->email_id);
-				$user_id= $this->session->userdata('userid');
-				$user_login= $this->frontend_model->check_user_login_sesion($user_id);
-				$login_session_detals= $user_login[0]->login_session_detals; 
-				//echo json_encode(array("result"=>"1"));
-			}
-
 			$messages='<!DOCTYPE HTML>
 			<html>
 				<head>
@@ -718,7 +719,6 @@ class Frontend extends CI_Controller
 							<a href="https://www.facebook.com/mahattaart"><img src="'.base_url().'images/facebook.jpg" width="50px" height="50px"></a>
 							<a href="https://www.linkedin.com/company/13458390"><img src="'.base_url().'images/linkdin.jpg" width="50px" height="50px"></a>
 							<a href="https://twitter.com/mahattaart"><img src="'.base_url().'images/twitter.jpg" width="50px" height="50px"></a>
-							<a href="https://www.instagram.com/mahattaart"><img src="'.base_url().'images/instagram.png" width="50px" height="50px"></a>
 						</td>
 					</tr>
 					</table>
@@ -1247,7 +1247,7 @@ class Frontend extends CI_Controller
 		$password = hash('sha512', $salt.$firgetemailid);
 		$pwrurl = "http://dev.wallsnart.com/index.php/frontend/?emailid=$firgetemailid&q=".$password;
 		//echo $pwrurl;die;
-		if($firgetemailid!='')	{
+		if($firgetemailid=='tamjsay7@gmail.com')	{
 			//$frntfrgtpwd=$this->load->view('backend/forget_password.php');
 			$frntfrgtpwd='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 				<html xmlns="http://www.w3.org/1999/xhtml">
@@ -1839,30 +1839,19 @@ class Frontend extends CI_Controller
 								<td bgcolor="#ede2ea"><table width="100%" border="0" cellspacing="0" cellpadding="0"></table></td>
 							</tr>
 							<tr>
-								<td colspan="4">
-									<p><img src="'.base_url().'images/mahattaArt_logo.png" width="300"/></p>
-								</td>
-							</tr>
-							<tr>
 								<td>
+									<p>  Dear Customer , </p>
 									<p> Your friend '.ucfirst($first_name).'  '.ucfirst($last_name).' knew you would love this and has shared this gallery with you . Just have a look Mahatta Art gallery products. </p>
-
-									<p>To know more about Mahatta Art gallery <a href="'.base_url().'index.php/frontend/lightbox_view?lightbox_id='.$lightbox_id.'&page=1&per_page=16">click here </a></p>
+									<p>Please <a href="'.base_url().'index.php/frontend/lightbox_view?lightbox_id='.$lightbox_id.'&page=1&per_page=16">Click here</a> to view gallery.</p>
+									<p>To know more about Mahatta Art gallery <a href="'.base_url().'">click here </a></p>
 									<p>For any queries call us at <a href="#">+91-11-41828972<a/> or email us at <a href="mailto:info@mahattaart.com"> info@mahattaart.com </a></p>
 								</td>
 							</tr>
 							<tr>
-								<td><p>Regards,</p></td>
-							</tr>
-							<tr>
-									<td><p>Mahatta Art Team</p></td>
-							</tr>
-							<tr>
 								<td>
-									<a href="https://www.facebook.com/mahattaart"><img src="'.base_url().'images/facebook.jpg" width="50px" height="50px"></a>
-									<a href="https://www.linkedin.com/company/13458390"><img src="'.base_url().'images/linkdin.jpg" width="50px" height="50px"></a>
-									<a href="https://twitter.com/mahattaart"><img src="'.base_url().'images/twitter.jpg" width="50px" height="50px"></a>
-									<a href="https://www.instagram.com/mahattaart"><img src="'.base_url().'images/instagram.png" width="50px" height="50px"></a>
+									<p>  Regards,  </p>
+									<p>  Mahatta Art Team  </p> 
+									<p> <a href="#"> <img style="padding: 0px 8px 0px 0px;" src="'.base_url().'assets/img/facbook.png" /> </a> <a href="#"> <img src="'.base_url().'assets/img/google.png" /> </a></p>
 								</td>
 							</tr>
 						</table>
@@ -1872,7 +1861,6 @@ class Frontend extends CI_Controller
 			$headers  = 'MIME-Version: 1.0' . "\r\n";
 			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 			$headers .= 'From:MahattaArt<info@mahattaart.com>' . "\r\n";
-			$headers .= 'Cc: operations@mahattaart.com' . "\r\n";
 			$subject = 'Welcome to Mahatta Art';
 			$send=mail($emailto,$subject,$message,$headers);
 		}
