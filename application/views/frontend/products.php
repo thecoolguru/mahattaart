@@ -2659,9 +2659,9 @@ background: #ddd;
 	    }
 	    var selected_type = document.getElementById(id) ;
 		if(id == 'check1')
-		$('#glass_type').val('Acrylic');
+		$('#glass_type').html('Acrylic');
 		else 
-		$('#glass_type').val('Regular');	
+		$('#glass_type').html('Regular');	
 		selected_type.checked = true;
 	    get_quality('');
 	}
@@ -2728,12 +2728,15 @@ function addToCart()
 				  timer: 1000
 				})
 			setTimeout(function(){
-			$('.frame-step-header-container').show();
+			 $('.frame-step-header-container').show();
 			 feedback_of_addtocart(data);
 			 $('html, body').animate({ scrollTop: 0 }, 'fast');
-			},1000); 
-		}
-    });
+		  },1000); 
+      var cartItem = parseInt($('.cart_add').html());
+      cartItem++;
+      $('.cart_add').html(cartItem);
+    }
+  });
 }
 	function feedback_of_addtocart(a){
 		$('.frame-step-header-text').html('<span class="glyphicon glyphicon-ok" style="margin-right:10px;"></span>Item Added To Cart.');

@@ -114,10 +114,6 @@ a:hover {
 		left: 238px!important;
 		height: 11px!important;
 	}
-	img.logo_mg {
-		width: 240px;
-		float: right;
-	}
 	.news {
 		text-align: center !important;
 	}
@@ -424,7 +420,6 @@ a:hover {
 		width:380px !important
 	}
 	#uploader_popup_goofy_a {
-		top: 70px !important;
 		width: 400px !important;
 	}
 	.top_slider_content h1 {
@@ -433,7 +428,7 @@ a:hover {
 	
 /*	photostoart_inner
 */
-	.addtocartcontainer_page, .addtocartcontainer_page3 {
+	.addtocartcontainer_page, .addtocartcontainer_page3, .addtocartcontainer_page2 {
 		width: 100% !important;
 	}
 	.pull-right.add_photo {
@@ -475,7 +470,6 @@ a:hover {
 		font-size: 45px !important;
 	}
 	#uploader_popup_goofy_a {
-		top: 70px !important;
 		width: 300px !important;
 	}
 	.popup-default-message > h2 {
@@ -1002,7 +996,7 @@ a:hover {
 		color: #777;
 		display: block;
 		font-family: "Open Sans",Arial,Helvetica,sans-serif;
-		font-size: 11px;
+		font-size: 12px;
 		font-weight: normal;
 		padding: 15px 7px;
 		text-align: center;
@@ -1089,6 +1083,9 @@ a:hover {
 		width: 103px;
 		left: 771px;
 		height:35px;
+	}
+	#imaginary_container #searchtext {
+		font-size: 12px;
 	}
 }
 @media(min-width:1200px) {

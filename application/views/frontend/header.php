@@ -433,7 +433,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
     <a href="<?php  echo base_url();?>">
     <img class="fll img-responsive logo_mg" src="<?php  echo base_url();?>assets/img/one.png" style="margin: 0 auto;" /></a>
    	</div>
-    <div class="col-md-4 col-sm-5 col-xs-12">
+    <div class="col-lg-4 col-md-3 col-sm-4 col-xs-12">
 
 <div id="imaginary_container"> 
     <div class="input-group stylish-input-group">
@@ -464,9 +464,10 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 
     
     </div>
-    <div class="col-md-5 col-sm-7 col-xs-12 help">
+    <div class="col-lg-5 col-md-6 col-sm-8 col-xs-12 help">
     <ul class="nav navbar-nav navbar-right menu-list text-center" style="margin-right:0">
 <li> <a href="<?php print base_url(); ?>frontend/contact"> <i class="glyphicon glyphicon-earphone"></i> Help </a> </li>
+<li> <a href="<?php print base_url(); ?>frontend/myUpload"> <i class="glyphicon glyphicon-upload"></i> My Upload </a> </li>
 <li> <a <?php     if(!$this->session->userdata('userid')){?> href="javascript:void(0)" onclick="login('')" <?php  }else{ ?> href="<?php  echo base_url();?>frontend/lightbox" <?php }?>> <i class="glyphicon glyphicon-user"></i> My Gallery </a> </li>
 <?php if($this->session->userdata('userid')){
             $user_id=$this->session->userdata('userid');
@@ -488,7 +489,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <?php }
 			if($this->session->userdata('userid')){
 			?>
-<li> <a style="position:relative" href="<?=base_url()?>cart/cart_view"> <i class="glyphicon glyphicon-shopping-cart cart-size"> </i> <span id="HeaderCartCount" class="hdr-cart-count">
+<li> <a style="position:relative" href="<?=base_url()?>cart/cart_view"> <i class="glyphicon glyphicon-shopping-cart cart-size"> </i> <span id="HeaderCartCount" class="hdr-cart-count cart_add">
 <?php if($this->session->userdata('userid')){
                         $num=$this->cart_model->count_cart_byid($this->session->userdata('userid')); $sum=0;foreach($num as $quant){
                             $sum=$sum + $quant['qty'];

@@ -1,4 +1,4 @@
-<?php 
+0.<?php 
 ob_start();
 define('IMAGE_PATH', APPPATH.'views/frontend/upload_images/');
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
@@ -132,7 +132,7 @@ class Frontend extends CI_Controller
 		echo $result[1][0]->glass_rate;
 	}
 
-	public function result()	{
+		public function result()	{
 		$image_dimention = getimagesize($_POST['newpath']);	
 		$imagewidth  = $image_dimention[0]; 
 		$imageheight = $image_dimention[1];
@@ -148,42 +148,56 @@ class Frontend extends CI_Controller
 			$image_ratio = $image_height/$image_width; 
 			$image_alignment="horizontal";
 			if($surface==1)	{			// canvas
-				$size_array[0]['height']=8*$image_ratio;
-				$size_array[0]['width']=8;
-				$size_array[1]['height']=10*$image_ratio;
-				$size_array[1]['width']=10;
-				$size_array[2]['height']=12*$image_ratio;
-				$size_array[2]['width']=12;
-				$size_array[3]['height']=16*$image_ratio;
-				$size_array[3]['width']=16;
-				$size_array[4]['height']=18*$image_ratio;
-				$size_array[4]['width']=18;
-				$size_array[5]['height']=20*$image_ratio;
-				$size_array[5]['width']=20;
-				$size_array[6]['height']=24*$image_ratio;
-				$size_array[6]['width']=24;
-				$size_array[7]['height']=28*$image_ratio;
-				$size_array[7]['width']=28;
-				$size_array[8]['height']=32*$image_ratio;
-				$size_array[8]['width']=32;
-				$size_array[9]['height']=36*$image_ratio;
-				$size_array[9]['width']=36;
-				$size_array[10]['height']=40*$image_ratio;
-				$size_array[10]['width']=40;
-				$size_array[11]['height']=44*$image_ratio;
-				$size_array[11]['width']=44;
-				$size_array[12]['height']=48*$image_ratio;
-				$size_array[12]['width']=48;
-				$size_array[13]['height']=50*$image_ratio;
-				$size_array[13]['width']=50;
-				$size_array[14]['height']=56*$image_ratio;
-				$size_array[14]['width']=56;
-				$size_array[15]['height']=60*$image_ratio;
-				$size_array[15]['width']=60;
-				$size_array[16]['height']=1*$image_ratio;
-				$size_array[16]['width']=1;
+				$size_array[0]['height']=1*$image_ratio;
+				$size_array[0]['width']=1;
+				$size_array[1]['height']=2*$image_ratio;
+				$size_array[1]['width']=2;
+				$size_array[2]['height']=3*$image_ratio;
+				$size_array[2]['width']=3;
+				$size_array[3]['height']=4*$image_ratio;
+				$size_array[3]['width']=4;
+				$size_array[4]['height']=5*$image_ratio;
+				$size_array[4]['width']=5;
+				$size_array[5]['height']=6*$image_ratio;
+				$size_array[5]['width']=6;
+				$size_array[6]['height']=7*$image_ratio;
+				$size_array[6]['width']=7;	
+
+				$size_array[7]['height']=8*$image_ratio;
+				$size_array[7]['width']=8;
+				$size_array[8]['height']=10*$image_ratio;
+				$size_array[8]['width']=10;
+				$size_array[9]['height']=12*$image_ratio;
+				$size_array[9]['width']=12;
+				$size_array[10]['height']=16*$image_ratio;
+				$size_array[10]['width']=16;
+				$size_array[11]['height']=18*$image_ratio;
+				$size_array[11]['width']=18;
+				$size_array[12]['height']=20*$image_ratio;
+				$size_array[12]['width']=20;
+				$size_array[13]['height']=24*$image_ratio;
+				$size_array[13]['width']=24;
+				$size_array[14]['height']=28*$image_ratio;
+				$size_array[14]['width']=28;
+				$size_array[15]['height']=32*$image_ratio;
+				$size_array[15]['width']=32;
+				$size_array[16]['height']=36*$image_ratio;
+				$size_array[16]['width']=36;
+				$size_array[17]['height']=40*$image_ratio;
+				$size_array[17]['width']=40;
+				$size_array[18]['height']=44*$image_ratio;
+				$size_array[18]['width']=44;
+				$size_array[19]['height']=48*$image_ratio;
+				$size_array[19]['width']=48;
+				$size_array[20]['height']=50*$image_ratio;
+				$size_array[20]['width']=50;
+				$size_array[21]['height']=56*$image_ratio;
+				$size_array[21]['width']=56;
+				$size_array[22]['height']=60*$image_ratio;
+				$size_array[22]['width']=60;
+		
 			}
-			for($i=0;$i<=16;$i++)	{
+			for($i=0;$i<=22;$i++)	{
 				if($size_array[$i]['width']<= $max_width && $size_array[$i]['height']<=$max_height )	{
 					$data_rec[]=round($size_array[$i]['width']).'X'.round($size_array[$i]['height']);
 				}
@@ -194,47 +208,47 @@ class Frontend extends CI_Controller
 		}
 		else if($image_width<$image_height)	{
 			$image_ratio = $image_width/$image_height; 
-			$size_array[0]['width']=8*$image_ratio;
-			$size_array[0]['height']=8;
-			$size_array[1]['width']=10*$image_ratio;
-			$size_array[1]['height']=10;
-			$size_array[2]['width']=12*$image_ratio;
-			$size_array[2]['height']=12;
-			$size_array[3]['width']=16*$image_ratio;
-			$size_array[3]['height']=16;
-			$size_array[4]['width']=18*$image_ratio;
-			$size_array[4]['height']=18;
-			$size_array[5]['width']=24*$image_ratio;
-			$size_array[5]['height']=24;
-			$size_array[6]['width']=30*$image_ratio;
-			$size_array[6]['height']=30;
-			$size_array[7]['width']=36*$image_ratio;
-			$size_array[7]['height']=36;
-			$size_array[8]['width']=44*$image_ratio;
-			$size_array[8]['height']=44;
-			$size_array[9]['width']=48*$image_ratio;
-			$size_array[9]['height']=48;
-			$size_array[10]['width']=50*$image_ratio;
-			$size_array[10]['height']=50;
-			$size_array[11]['width']=56*$image_ratio;
-			$size_array[11]['height']=56;
-			$size_array[12]['width']=60*$image_ratio;
-			$size_array[12]['height']=60;
-			$size_array[13]['width']=1*$image_ratio;
-			$size_array[13]['height']=1;
-			$size_array[14]['width']=2*$image_ratio;
-			$size_array[14]['height']=2;
-			$size_array[15]['width']=3*$image_ratio;
-			$size_array[15]['height']=3;
-			$size_array[16]['width']=4*$image_ratio;
-			$size_array[16]['height']=4;
-			$size_array[17]['width']=5*$image_ratio;
-			$size_array[17]['height']=5;
-			$size_array[18]['width']=6*$image_ratio;
-			$size_array[18]['height']=6;
-			$size_array[19]['width']=7*$image_ratio;
-			$size_array[19]['height']=7;
+			$size_array[0]['width']=1*$image_ratio;
+			$size_array[0]['height']=1;
+			$size_array[1]['width']=2*$image_ratio;
+			$size_array[1]['height']=2;
+			$size_array[2]['width']=3*$image_ratio;
+			$size_array[2]['height']=3;
+			$size_array[3]['width']=4*$image_ratio;
+			$size_array[3]['height']=4;
+			$size_array[4]['width']=5*$image_ratio;
+			$size_array[4]['height']=5;
+			$size_array[5]['width']=6*$image_ratio;
+			$size_array[5]['height']=6;
+			$size_array[6]['width']=7*$image_ratio;
+			$size_array[6]['height']=7;
 
+			$size_array[7]['width']=8*$image_ratio;
+			$size_array[7]['height']=8;
+			$size_array[8]['width']=10*$image_ratio;
+			$size_array[8]['height']=10;
+			$size_array[9]['width']=12*$image_ratio;
+			$size_array[9]['height']=12;
+			$size_array[10]['width']=16*$image_ratio;
+			$size_array[10]['height']=16;
+			$size_array[11]['width']=18*$image_ratio;
+			$size_array[11]['height']=18;
+			$size_array[12]['width']=24*$image_ratio;
+			$size_array[12]['height']=24;
+			$size_array[13]['width']=30*$image_ratio;
+			$size_array[13]['height']=30;
+			$size_array[14]['width']=36*$image_ratio;
+			$size_array[14]['height']=36;
+			$size_array[15]['width']=44*$image_ratio;
+			$size_array[15]['height']=44;
+			$size_array[16]['width']=48*$image_ratio;
+			$size_array[16]['height']=48;
+			$size_array[17]['width']=50*$image_ratio;
+			$size_array[17]['height']=50;
+			$size_array[18]['width']=56*$image_ratio;
+			$size_array[18]['height']=56;
+			$size_array[19]['width']=60*$image_ratio;
+			$size_array[19]['height']=60;
 
 			for($i=0;$i<=19;$i++)	{
 				if($size_array[$i]['width']<= $max_width && $size_array[$i]['height']<=$max_height )	{
@@ -1365,9 +1379,11 @@ class Frontend extends CI_Controller
 		$this->load->view("frontend/footer");
 	}
 
-
-
-
+	public function myUpload()	{
+			$this->load->view('frontend/header');
+			$this->load->view('frontend/myUpload',$data);
+			$this->load->view('frontend/footer');
+  	}
 
 	public function lightbox_sorting($sortby)	{
 		$user_id=$this->session->userdata('userid');

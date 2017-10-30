@@ -372,29 +372,23 @@ if($shape!="?#!" &&  $shape!=""){
 ?>
 <div class="col-md-8 col-sm-8">
 <div class="row">
-<div class="ourpp col-md-6 col-md-push-4 col-sm-6 col-sm-push-2 col-xs-12">
-<ul class="viwepr pull-right">
-<li>View Per Page</li>
-<li class="link" <?php if($limit=='16'){?> style="color:#000 !important;font-size:16px;" <?php } ?>> <? echo '<a href="' . base_url() . 'search/'.$action.'/'.$prev.'/16/'.$search_text.'/'.$category_id.$shapes.$colors.'"> 16 </a>'; ?> </li>
-<li class="link"> | </li>
-<li class="link"  <?php if($limit=='32'){?> style="color:#000 !important; font-size:16px;" <?php } ?>> <? echo '<a href="' . base_url() . 'search/'.$action.'/'.$prev.'/32/'.$search_text.'/'.$category_id.$shapes.$colors.'"> 32 </a>'; ?> </li>
-<li class="link"> | </li>
-<li class="link" <?php if($limit=='64'){?> style="color:#000 !important;font-size:16px;" <?php } ?>> <? echo '<a href="' . base_url() . 'search/'.$action.'/'.$next.'/64/'.$search_text.'/'.$category_id.$shapes.$colors.'"> 64 </a>'; ?> </li></ul>
-</div>
-<div class="ourpp col-md-3 col-md-push-3 col-sm-4 col-sm-push-2 col-xs-12">
-<div>
-
+<div class="ourpp col-md-12 col-sm-12 col-xs-12">
 <ul class="pagination viwepr pull-right" style="padding:0; margin-right:-15px">
-<li> <? echo '<a class="page-link Prev"  aria-label="Prev" href="' . base_url() . 'search/'.$action.'/'.$prev.'/'.$limit.'/'.$search_text.'/'.$category_id.$shapes.$colors.'">'?> </a> </li>
+<li class=""> <? echo '<a class="page-link Prev"  aria-label="Prev" href="' . base_url() . 'search/'.$action.'/'.$prev.'/'.$limit.'/'.$search_text.'/'.$category_id.$shapes.$colors.'">'?> </a> </li>
 <?php if($page!=1){?>
-
 <li><? echo '<a href="' . base_url() . 'search/'.$action.'/'.$prev.'/'.$limit.'/'.$search_text.'/'.$category_id.$shapes.$colors.'"> '.$prev.' </a>'; ?></li>
 <?php }?>
 <li ><? echo '<a  href="' . base_url() . 'search/'.$action.'/'.$page.'/'.$limit.'/'.$search_text.'/'.$category_id.$shapes.$colors.'" style="color:#000; !important;font-size:16px;"><b > '.$page.'</b> </a>'; ?></li>
 <li><? echo '<a href="' . base_url() . 'search/'.$action.'/'.$next.'/'.$limit.'/'.$search_text.'/'.$category_id.$shapes.$colors.'">'; ?><?=$next;?></a></li>
 <li> <? echo '<a class="page-link Next"  aria-label="Next" href="' . base_url() . 'search/'.$action.'/'.$next.'/'.$limit.'/'.$search_text.'/'.$category_id.$shapes.$colors.'">'?> </a> </li>
 </ul>
-</div>
+<ul class="viwepr pull-right" style="margin-right:10px">
+<li>View Per Page</li>
+<li class="link" <?php if($limit=='16'){?> style="color:#000 !important;font-size:16px;" <?php } ?>> <? echo '<a href="' . base_url() . 'search/'.$action.'/'.$prev.'/16/'.$search_text.'/'.$category_id.$shapes.$colors.'"> 16 </a>'; ?> </li>
+<li class="link"> | </li>
+<li class="link"  <?php if($limit=='32'){?> style="color:#000 !important; font-size:16px;" <?php } ?>> <? echo '<a href="' . base_url() . 'search/'.$action.'/'.$prev.'/32/'.$search_text.'/'.$category_id.$shapes.$colors.'"> 32 </a>'; ?> </li>
+<li class="link"> | </li>
+<li class="link" <?php if($limit=='64'){?> style="color:#000 !important;font-size:16px;" <?php } ?>> <? echo '<a href="' . base_url() . 'search/'.$action.'/'.$prev.'/64/'.$search_text.'/'.$category_id.$shapes.$colors.'"> 64 </a>'; ?> </li></ul>
 </div>
 </div>
 </div>
@@ -503,20 +497,9 @@ $array=explode(',',$item['results'][$x]['image_keywords']);
 <div id="back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" style="padding:5px 0 0"> <span class="glyphicon glyphicon-chevron-up"> </span> <a style="color:#333333" href="#"> Back To Top </a> </div> </div>
 <div class="col-md-8 col-sm-8">
 <div class="row">
-<div class="ourpp col-md-6 col-md-push-4 col-sm-6 col-sm-push-2 col-xs-12">
-<ul class="viwepr pull-right">
-<li>View Per Page</li>
-<li class="link" <?php if($limit=='16'){?> style="color:#000 !important;font-size:16px;" <?php } ?>> <? echo '<a href="' . base_url() . 'search/'.$action.'/'.$prev.'/16/'.$search_text.'/'.$category_id.$shapes.$colors.'"> 16 </a>'; ?> </li>
-<li class="link"> | </li>
-<li class="link"  <?php if($limit=='32'){?> style="color:#000 !important; font-size:16px;" <?php } ?>> <? echo '<a href="' . base_url() . 'search/'.$action.'/'.$prev.'/32/'.$search_text.'/'.$category_id.$shapes.$colors.'"> 32 </a>'; ?> </li>
-<li class="link"> | </li>
-<li class="link" <?php if($limit=='64'){?> style="color:#000 !important;font-size:16px;" <?php } ?>> <? echo '<a href="' . base_url() . 'search/'.$action.'/'.$next.'/64/'.$search_text.'/'.$category_id.$shapes.$colors.'"> 64 </a>'; ?> </li></ul>
-</div>
-<div class="ourpp col-md-3 col-md-push-3 col-sm-4 col-sm-push-2 col-xs-12">
-<div>
-
+<div class="ourpp col-md-12 col-sm-12 col-xs-12">
 <ul class="pagination viwepr pull-right" style="padding:0; margin-right:-15px">
-<li> <? echo '<a class="page-link Prev"  aria-label="Prev" href="' . base_url() . 'search/'.$action.'/'.$prev.'/'.$limit.'/'.$search_text.'/'.$category_id.$shapes.$colors.'">'?> </a> </li>
+<li class=""> <? echo '<a class="page-link Prev"  aria-label="Prev" href="' . base_url() . 'search/'.$action.'/'.$prev.'/'.$limit.'/'.$search_text.'/'.$category_id.$shapes.$colors.'">'?> </a> </li>
 <?php if($page!=1){?>
 <li><? echo '<a href="' . base_url() . 'search/'.$action.'/'.$prev.'/'.$limit.'/'.$search_text.'/'.$category_id.$shapes.$colors.'"> '.$prev.' </a>'; ?></li>
 <?php }?>
@@ -524,7 +507,13 @@ $array=explode(',',$item['results'][$x]['image_keywords']);
 <li><? echo '<a href="' . base_url() . 'search/'.$action.'/'.$next.'/'.$limit.'/'.$search_text.'/'.$category_id.$shapes.$colors.'">'; ?><?=$next;?></a></li>
 <li> <? echo '<a class="page-link Next"  aria-label="Next" href="' . base_url() . 'search/'.$action.'/'.$next.'/'.$limit.'/'.$search_text.'/'.$category_id.$shapes.$colors.'">'?> </a> </li>
 </ul>
-</div>
+<ul class="viwepr pull-right" style="margin-right:10px">
+<li>View Per Page</li>
+<li class="link" <?php if($limit=='16'){?> style="color:#000 !important;font-size:16px;" <?php } ?>> <? echo '<a href="' . base_url() . 'search/'.$action.'/'.$prev.'/16/'.$search_text.'/'.$category_id.$shapes.$colors.'"> 16 </a>'; ?> </li>
+<li class="link"> | </li>
+<li class="link"  <?php if($limit=='32'){?> style="color:#000 !important; font-size:16px;" <?php } ?>> <? echo '<a href="' . base_url() . 'search/'.$action.'/'.$prev.'/32/'.$search_text.'/'.$category_id.$shapes.$colors.'"> 32 </a>'; ?> </li>
+<li class="link"> | </li>
+<li class="link" <?php if($limit=='64'){?> style="color:#000 !important;font-size:16px;" <?php } ?>> <? echo '<a href="' . base_url() . 'search/'.$action.'/'.$prev.'/64/'.$search_text.'/'.$category_id.$shapes.$colors.'"> 64 </a>'; ?> </li></ul>
 </div>
 </div>
 </div>

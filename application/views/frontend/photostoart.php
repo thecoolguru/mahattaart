@@ -159,7 +159,7 @@
             <h1  class="text-left">SAVE your JOYFUL MEMORIES AS ART</h1>
             <p class="p_top-slider">Turn cherished memories and extra-special occasions into something you'll enjoy each day. Upload photos and choose from a variety of customizable looks. Put the moments that define you on display in the perfect place&mdash;your home.</p>
             <div id="val"></div>
-			<p target="_self" class="button-slider-upload para" href="" onclick="dropzone_box(); return false;">
+			<a target="_self" class="button-slider-upload para" href="" onclick="dropzone_box(); return false;"></a>
 			<p class="p_top-slider" style="text-align:center"><a href="#" onclick="return login('')" style="color:#41484c">Login/Register</a></p> 
 		</div>
     </div>
@@ -429,10 +429,10 @@ a.lightbox-close::after {
 	font-family: Arial;
 	left: 50%;
 	position: absolute;
-	top: 134px;
+	top: 50%;
 	width: 720px;
 	z-index: 10000012;
-	transform: translate(-50%, 0);
+	transform: translate(-50%, -50%);
 }
 
 .uploader_popup_header > h2 {
