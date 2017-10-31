@@ -169,7 +169,7 @@
 <!-- Item slider-->
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-4 col-md-4 text-center">
+    <div class="col-xs-4 col-sm-4 col-md-4 text-center">
     	<div class="img_center">
       		<a href="#"><img src="http://mirror.mahattaart.com/assets/img/slider/canvas_img.jpg" class="img-responsive"></a>  
         </div>
@@ -177,14 +177,14 @@
       <a target="_self" class="button-slider-upload category" onclick="dropzone_box()" id='canvas'>Canvas</a>
       <h5 class="text-center">Starting at Rs.250</h5>
     </div>
-    <div class="col-xs-12 col-sm-4 col-md-4 text-center">
+    <div class="col-xs-4 col-sm-4 col-md-4 text-center">
       <div class="img_center">
 	      <a href="#"><img src="http://mirror.mahattaart.com/assets/img/slider/frame_img.jpg" class="img-responsive"></a>
       </div>
       <a target="_self" class="button-slider-upload category" onclick="dropzone_box()" id='framing'>Framing</a>
       <h5 class="text-center">Starting at Rs.150</h5>
     </div>
-    <div class="col-xs-12 col-sm-4 col-md-4 text-center">
+    <div class="col-xs-4 col-sm-4 col-md-4 text-center">
       <div class="img_center">
 	      <a href="#"><img src="http://mirror.mahattaart.com/assets/img/slider/print_img.jpg" class="img-responsive"></a>
       </div>
@@ -311,11 +311,11 @@
   display: inline-block;
   font-size: 18px;
   font-weight: bold;
-  line-height: 1;
-  padding: 7px 30px;
+  line-height: 2;
   text-transform: capitalize;
   vertical-align: middle;
-  margin-top:10px
+  margin-top:10px;
+  width:50%
 }
 
 .button-slider-upload:hover {
@@ -474,7 +474,7 @@ cursor:pointer
 padding: 10px;
 }
 .uploader_popup_upload-icon {
-	height: 260px;
+	height: 300px;
 	margin-top: 10px;
 	overflow: auto;
 	position: relative;

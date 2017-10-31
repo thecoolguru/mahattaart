@@ -1,4 +1,4 @@
-0.<?php 
+<?php 
 ob_start();
 define('IMAGE_PATH', APPPATH.'views/frontend/upload_images/');
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
@@ -1318,7 +1318,6 @@ class Frontend extends CI_Controller
 
 
 
-
 	public function lightbox($page_no=0,$offset=0)	{
 		$check="";
 		$lt_nm="";
@@ -1380,9 +1379,30 @@ class Frontend extends CI_Controller
 	}
 
 	public function myUpload()	{
+
+		$_SESSION['path'] = IMAGE_PATH;
+ 		$id = $_SESSION['user_info'];
+		$_SESSION['user'] = $id;
+		$data1 = 'photostoframe';
+		$this->session->set_userdata('page',$data1); 
+		$result = $this->frontend_model->get_images($id);
+		if(isset($_SESSION['user'])){ 
+			$data['mount_name']=$this->frontend_model->get_mount_name_web_price();
+			$data['frame_cat']=$this->frontend_model->get_frame_cat_tbl_web_price();
+			$data['frame_sizze']=$this->frontend_model->get_frame_size();
+			$data['frame_color']=$this->frontend_model->get_frame_color_web_price();
 			$this->load->view('frontend/header');
 			$this->load->view('frontend/myUpload',$data);
 			$this->load->view('frontend/footer');
+  		}	else{
+  			echo "<script>window.location.href='photostoart';</script>"; 
+  		}
+		unset($_SESSION['type']);
+
+
+			//$this->load->view('frontend/header');
+			//$this->load->view('frontend/myUpload',$data);
+			//$this->load->view('frontend/footer');
   	}
 
 	public function lightbox_sorting($sortby)	{

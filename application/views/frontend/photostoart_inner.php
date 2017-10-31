@@ -973,7 +973,7 @@ Dropzone.options.myDropzone = {
 								new_width = 130;
 							} 
 				var img_src = "<?php echo base_url().'application/views/frontend/upload_images/';?>"+k[0];
-	 			td_inner += '<div class="col-xs-12 col-sm-6 col-md-3 thumb_img" id="div_img'+value+'"> <div class="thumb_bg"><img src="<?php echo base_url();?>application/views/frontend/upload_images/'+k[0]+'" class="img1" id="img'+value+'" width="'+new_width+'px" height="'+new_height+'px"onclick="change_image(this.src);"/></div><div class="thumb_toolboox"><div class="thumb_icon"><a><i class="glyphicon glyphicon-zoom-in"></i></a> <a class="remove_image" id="'+k[0]+'" onclick="remove_image(this.id );"><i class="glyphicon glyphicon-remove"></i></a></div></div></div>';			}
+	 			td_inner += '<div class="col-xs-6 col-sm-3 col-md-3 thumb_img" id="div_img'+value+'"> <div class="thumb_bg"><img src="<?php echo base_url();?>application/views/frontend/upload_images/'+k[0]+'" class="img1 img-responsive" id="img'+value+'" width="'+new_width+'px" height="'+new_height+'px"onclick="change_image(this.src);"/></div><div class="thumb_toolboox"><div class="thumb_icon"><a><i class="glyphicon glyphicon-zoom-in"></i></a> <a class="remove_image" id="'+k[0]+'" onclick="remove_image(this.id );"><i class="glyphicon glyphicon-remove"></i></a></div></div></div>';			}
 				value++;
 				}
 				td_inner += '</div>';
@@ -1018,7 +1018,7 @@ Dropzone.options.myDropzone = {
 		mount_details(mount_rate,mount_name,mount_code);
 		if(mount_code){
 		var dert= "<?php echo base_url()?>images/uploaded_pdf/mount/";
-            +$('div#abc').css('background','url("'+dert+mount_code+'.jpg")');
+            +$('div#frame-it').css('background','url("'+dert+mount_code+'.jpg")');
 		}
 	    $('#mount_code').val(mount_code);
 		frame_pricing();
@@ -1027,7 +1027,7 @@ Dropzone.options.myDropzone = {
  function change_mount(mount)
    {
    var change_mount = mount*10;
-	$("#abc").css('padding',change_mount);
+	$("#frame-it").css('padding',change_mount);
     frame_pricing();
    }// end function
  
@@ -1094,7 +1094,7 @@ Dropzone.options.myDropzone = {
 		}
 		var breaks,mount_code,mount_rate,mount_name,mount_avail,td_inner='';
 		var image=0;	
-			td_inner += '<div class="product-detail-content col-md-10">';
+			td_inner += '<div class="product-detail-content col-md-10 col-sm-9">';
             td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider5">';
             td_inner += '<div class="carousel-inner">';
 		  
@@ -1128,7 +1128,7 @@ Dropzone.options.myDropzone = {
 					}
 				var f_shape=$('#frame_shape').val();
 				var frame_shape="'"+f_shape+"'";	
-				td_inner += '<div class="col-xs-12 col-sm-6 col-md-3 frame" id="frame'+image+'" onClick="id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
+				td_inner += '<div class="col-xs-6 col-sm-3 col-md-3 frame" id="frame'+image+'" onClick="id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
 				}
 					image++;
 				}td_inner +='</div>';
@@ -1173,7 +1173,7 @@ Dropzone.options.myDropzone = {
 		}
 		var breaks,mount_code,mount_rate,mount_name,mount_avail,td_inner='';
 		var image=0;	
-			td_inner += '<div class="product-detail-content col-md-10">';
+			td_inner += '<div class="product-detail-content col-md-10 col-sm-9">';
             td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider6">';
             td_inner += '<div class="carousel-inner">';
 		  
@@ -1207,7 +1207,7 @@ Dropzone.options.myDropzone = {
 					}
 					var f_shape=$('#frame_shape').val();
 					var frame_shape="'"+f_shape+"'";	
-			td_inner += '<div class="col-xs-12 col-sm-6 col-md-3 frame" id="frame'+image+'" onClick=" id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
+			td_inner += '<div class="col-xs-6 col-sm-3 col-md-3 frame" id="frame'+image+'" onClick=" id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
 					}
 					image++;
 				}td_inner +='</div>';
@@ -1251,7 +1251,7 @@ Dropzone.options.myDropzone = {
 		}
 		var breaks,mount_code,mount_rate,mount_name,mount_avail,td_inner='';
 		var image=0;	
-			td_inner += '<div class="product-detail-content col-md-10">';
+			td_inner += '<div class="product-detail-content col-md-10 col-sm-9">';
             td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider2">';
             td_inner += '<div class="carousel-inner">';
 		for(var i=0;i<total_slide;i++){
@@ -1271,7 +1271,7 @@ Dropzone.options.myDropzone = {
 		}else{
 		mount_avail='';
 		}
-		td_inner +='<div class="col-xs-12 col-sm-6 col-md-3 mount_data" id="mount'+image+'" onclick="mount_store(this.id);return mount_select('+mount_rate+','+mount_code+','+mount_name+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount_new/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
+		td_inner +='<div class="col-xs-6 col-sm-3 col-md-3 mount_data" id="mount'+image+'" onclick="mount_store(this.id);return mount_select('+mount_rate+','+mount_code+','+mount_name+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount_new/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
 		image++;
 			}
 				}td_inner +='</div>';
@@ -1294,7 +1294,7 @@ Dropzone.options.myDropzone = {
 		var vert_width = $('#vertical_width').html();	
 		vert_width = parseInt(vert_width);
 		var margin_left = parseInt(-(vert_width/2)); 
-		$('.uploader_popup_goofy_a').css({'width': vert_width,'height':'634px','margin-left': margin_left,'margin-top':'-317px','left':'50%','top':'50%'})//a
+		$('.uploader_popup_goofy_a').css({'width': vert_width,'height':'634px'})//a
 		$('.imageBox').css({'width':'100%','height':'550px','border':'none'});    
 		$('.thumbBox').css({'width':'100%', 'height':'400px', 'margin-top':'-200px', 'margin-left':'-50%', 'border':'none'});
 	    $('#crop_image').show(); 
@@ -1334,7 +1334,7 @@ Dropzone.options.myDropzone = {
 			req_slide = total_s;	
 			}
 			var image = 0;	
-			td_inner += '<div class="product-detail-content col-md-10">';
+			td_inner += '<div class="product-detail-content col-md-10 col-sm-9">';
             td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider3">';
             td_inner += '<div class="carousel-inner">'; 
 			for(j=0;j<=req_slide-1;j++){
@@ -1372,7 +1372,7 @@ Dropzone.options.myDropzone = {
 		}
 			var f_shape=$('#frame_shape').val();
 			var frame_shape="'"+f_shape+"'";
-			td_inner += '<div class="col-xs-12 col-sm-6 col-md-3 frame" id="frame'+image+'" onclick="id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block img3"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
+			td_inner += '<div class="col-xs-6 col-sm-3 col-md-3 frame" id="frame'+image+'" onclick="id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block img3"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
 			image++;
 		}
 		 } td_inner +='</div>';
@@ -2005,21 +2005,21 @@ Dropzone.options.myDropzone = {
                       <div class="carousel carousel-showmanymoveone slide" id="itemslider7">
                           <div class="carousel-inner">
                               <div class="item active">
-                                  <div class="col-xs-4 col-sm-2 col-md-2">
+                                  <div class="col-xs-4 col-sm-4 col-md-2">
                                   	<div class="thumb_bg_hover">
                                       <a href="JavaScript:void(0);">
                                       <img id="canvas" src="<?php echo $path2 = base_url()."images/uploaded_pdf/canvas_img.jpg";?>" class="img2 img-responsive center-block"></a>
                                       <h5 class="text-center">Canvas</h5>
                                     </div>
                                   </div>
-                                  <div class="col-xs-4 col-sm-2 col-md-2 cloneditem-1">
+                                  <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-1">
                                   	<div class="thumb_bg_hover">
                                       <a href="JavaScript:void(0);">
                                       <img id="framing" src="<?php echo $path1 = base_url()."images/uploaded_pdf/frame_img.jpg";?>" class="img2 img-responsive center-block"></a>
                                       <h5 class="text-center">Framing</h5>
                                     </div>
                                   </div>
-                                  <div class="col-xs-4 col-sm-2 col-md-2 cloneditem-4">
+                                  <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-4">
                                   	<div class="thumb_bg_hover">
                                       <a href="JavaScript:void(0);">
                                       <img id="print_only" src="<?php echo $path3 = base_url()."images/uploaded_pdf/print_img.jpg";?>" class="img2 img-responsive center-block"></a>
@@ -2033,16 +2033,27 @@ Dropzone.options.myDropzone = {
               </div>
           </div>
           <div class="row" style="margin-bottom:20px">
-        <div class="col-md-6 col-sm-6">
-         <div class="divimg mainhor" id="frame-it" style="border-image-source: url('http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg'); border-image-slice: 58; border-image-width: initial; border-image-outset: initial; border-image-repeat: round; border-style: solid; border-width: 40px; margin-top: 20px; padding: 0px; width: auto; display:inline-block; position: relative;">
-
-           <div id="abc" style="background:url('<?=base_url()?>images/uploaded_pdf/mount/DR 2091.jpg')  0% 0% / cover no-repeat;width:auto;padding:10px; background-attachment:scroll; position: relative; z-index: 1;">
+        <div class="col-md-6 col-sm-12">
+         <div class="divimg mainhor" id="frame-it" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/Absolute Black.jpg')30 30 30 30 round round;border-width: 10px;padding: 10px;background:url('<?=base_url()?>images/uploaded_pdf/mount/DR 2091.jpg')  0% 0% / cover no-repeat;">
+           <div id="abc">
              <a href="javascript:" id="demo2" class="imglink img_shadow" target="_self" >
-               <img id="large_img" src="http://static.mahattaart.com/398/FLPT_RE_0088.JPG" class="img-responsive" style="max-width:260px;"/>
+               <img id="large_img" src="http://static.mahattaart.com/398/FLPT_RE_0088.JPG" class="img-responsive" />
 				  <input type="hidden" id="frame_shape" value="<?=$f_shape?>"/>
              </a>
 						
-	
+	<style>
+		.mainhor {
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	border-color: transparent;
+	border-style: solid;
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+}
+	</style>
 <section class="container3D">
         <div id="cube">
 
@@ -2135,7 +2146,7 @@ function right(width,height,x){
              </div>
 		 <?php echo $f_shape; ?>   
 	</div>
-	  <div class="col-md-6 col-sm-6">
+	  <div class="col-md-6 col-sm-12">
       <style>
 	  	.input_control{
 			height: 25px;
@@ -2266,7 +2277,7 @@ function right(width,height,x){
     <div class="tab-content">
     <!-- Tab Content 1 -->
         <div class="tab-pane fade active in row" style="margin-top: 5px;" id="tab-1">
-        	<div class="col-md-2">
+        	<div class="col-md-2 col-sm-3">
                 <h4 class="choose-colors"> Select frame style</h4>
                 <ul class="choose-colors-type">
                   	<?php 
@@ -2301,7 +2312,7 @@ function right(width,height,x){
         </div>
     <!-- Tab Content 2 -->
     <div class="tab-pane fade row" id="tab-2" style="margin-top:5px">
-                    <div class="col-md-2">
+                    <div class="col-md-2 col-sm-3">
                         <h4 class="choose-colors"> Remove Mount <input id="remove-mount" name="remove-mount" type="checkbox"> </h4>
                         <h4 class="choose-colors"> CHOOSE BY COLOR: </h4>
                         <ul class="choose-colors-type">
@@ -2636,6 +2647,9 @@ p.rmve-p2 {
 	text-align:center; 
 	position:relative; 
 	max-height:500px;
+}
+.thumb_bg img {
+	display: inline-block;
 }
 
 .tabs-section .nav > li > a:hover, .tabs-section .nav > li > a:focus {
@@ -3043,7 +3057,7 @@ cursor:pointer
 padding: 10px;
 }
 .uploader_popup_upload-icon {
-	height: 260px;
+	height: 300px;
 	margin-top: 10px;
 	overflow: auto;
 	position: relative;
@@ -3075,10 +3089,8 @@ display: none;
 <style>
 
 .action {
-	width: 100%;
 	margin: 10px 0;
-	position: absolute;
-	bottom: 0;
+	text-align:center
 }
 .cropped>img
 {
@@ -3152,43 +3164,44 @@ position: absolute;
 background: #ddd;
 }
 
-.carousel-control{width:10px; top:40px;}
+.carousel-control {
+	width: 10px;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}
 .carousel-control.left{background-image:linear-gradient(to right,rgba(0,0,0,0) 0,rgba(0,0,0,.0001) 100%); left:20px;}
 .carousel-control.right{background-image:linear-gradient(to right,rgba(0,0,0,0) 0,rgba(0,0,0,.0001) 100%); right:20px;}
 </style>
 <style>
 .thumb_img {
 	text-align: center;
-	width: 187px;
 	height: 180px;
 	padding: 0;
-		border-left: 1px solid #d6d6d6;
 	border-right: 1px solid #d6d6d6;
+	cursor:pointer
 
 }
-.thumb_img:hover > .thumb_bg{ background-color:#f1f1f1}
+.thumb_img:hover { background-color:#f1f1f1}
 .thumb_img:hover .thumb_toolboox{ display:block}
 
 .thumb_bg {
-	text-align: center;
-	width: 187px;
-	height: 150px;
-	position: relative;
-	vertical-align: middle;
-	display: table-cell;
+	width: 100%;
+	position: absolute;
+	display: block;
+	transform: translate(-50%,-50%);
+	top: 50%;
+	left: 50%;
 }
 .thumb_toolboox {
 	background-color: #c1c1c1;
 	height: 30px;
 	line-height: 2;
 	display: none;
+	position: absolute;
+	width: 100%;
+	bottom: 0;
 }
 
-.thumb_icon {
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-}
 .thumb_icon > a {
 	color: #2a2a2a;
 	font-size: 15px;
