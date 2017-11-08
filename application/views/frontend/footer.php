@@ -2,7 +2,7 @@
 <!-- footer -->
     <footer class="container-fluid">
     	<div class="footer-content container">
-        	<div class="col-xs-6 col-sm-3 col-md-3" style="padding-right:0">
+        	<div class="col-xs-6 col-sm-2 col-md-2" style="padding-right:0">
             	<h1>Quick  <span>Links</span></h1>
                 <ul>
                 	<li><a href="<?php echo base_url()?>frontend/about">About Mahatta Art</a></li>
@@ -15,7 +15,7 @@
                 </ul>
             </div>
                 <?php // $forget_emlid;?>
-                   <div class="col-xs-6 col-sm-3 col-md-3">
+                   <div class="col-xs-6 col-sm-2 col-md-2">
                 	<h1>Let us <span>Help</span></h1>
                 <ul>
                 	<li><a href="<?php echo base_url()?>frontend/contact">Contact Us</a></li>
@@ -26,7 +26,7 @@
                 </ul>
             </div>
             <?php  if($this->session->userdata('userid')){ ?>
-             <div class="col-xs-6 col-sm-3 col-md-3">
+             <div class="col-xs-6 col-sm-2 col-md-2">
             	<h1>My  <span>Account</span></h1>
                 <ul>
                 	<li>
@@ -38,13 +38,20 @@
                 </ul>
             </div>
             <?php }?>
-             <div class="col-xs-6 col-sm-3 col-md-3">
+             <div class="col-xs-6 col-sm-2 col-md-2">
             	<h1>Term &  <span>Policies </span></h1>
                 <ul>
                 	<li><a href="<?php echo base_url()?>frontend/terms_of_use">Terms of Use </a></li>
                     <li><a href="<?php echo base_url()?>frontend/privacy_policy">Privacy Policy</a></li>
                 </ul>
             </div>
+            <div class="col-xs-6 col-sm-2 col-md-2 pull-right">
+                <h1>
+                    <a href="https://msg91.com/startups/?utm_source=startup-banner"><img src="https://msg91.com/images/startups/msg91Badge.png" width="120" height="90" title="MSG91 - SMS for Startups" alt="Bulk SMS - MSG91"></a>
+
+                </h1>
+            </div>
+
             
             <!--<div>
             	<h1>Newsletter <span></span></h1>

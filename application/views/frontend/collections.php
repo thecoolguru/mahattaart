@@ -3,13 +3,10 @@ if($this->session->userdata('userid'))
 {
 $Obj=new Frontend();
 $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-//echo $url;
-
     $splitUrl=split('/', $_SERVER['REQUEST_URI']);
     $ipaddress = getenv('HTTP_CLIENT_IP');
     $Obj->save_user_login_details($this->session->userdata('userid'),$url,$ipaddress);
  }
- 
 ?>
 
 <div class="container">
@@ -36,6 +33,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
             <li><a href="<?=base_url()?>search/dosearch/1/32/1/all"> Danita Painting </a></li>
             <li><a href="<?=base_url()?>search/dosearch/1/32/2/all"> Deagostini Painting </a></li>
             <li><a href="<?=base_url()?>search/dosearch/1/32/4/all">Painting Shree </a></li>
+            <li><a href="<?=base_url()?>search/dosearch/1/32/23/all">Bridgeman</a></li>
             <li><a href="<?=base_url()?>search/dosearch/1/32/3/all">Universal Images Group Paint </a></li>
           </ul>
         </div>
@@ -48,6 +46,9 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
             <li><a href="<?=base_url()?>search/dosearch/1/32/5/all">Flower Photos </a></li>
             <li><a href="<?=base_url()?>search/dosearch/1/32/13/all">Kashmir </a></li>
             <li><a href="<?=base_url()?>search/dosearch/1/32/21/all">Tetra </a></li>
+            <li><a href="<?=base_url()?>search/dosearch/1/32/22/all">Roop </a></li>
+            <li><a href="<?=base_url()?>search/dosearch/1/32/24/all">Food Collection </a></li>
+            <li><a href="<?=base_url()?>search/dosearch/1/32/26/all">God </a></li>
             <li><a href="<?=base_url()?>search/dosearch/1/32/10/all">Tips </a></li>
             <li><a href="<?=base_url()?>search/dosearch/1/32/7/all">Universal Images Group Photo </a></li>
           </ul>

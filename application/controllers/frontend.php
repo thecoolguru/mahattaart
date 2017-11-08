@@ -105,25 +105,52 @@ class Frontend extends CI_Controller
 	
 	public function image_size(){
 		if($_POST['url']){
-			$id = $_POST['session_id'];
-			$result = $this->frontend_model->get_images($id); 
-			$url = base_url();
-			for($i=0; $i<count($result); $i++){
-				$k = $_POST['url'].$result[$i]->image_name;
-				$image_dimention = getimagesize($k);	
-				$image_width = $image_dimention[0]; 
-				$image_height = $image_dimention[1];
-				$data[] = $result[$i]->image_name.'*'.$image_width.'x'.$image_height;
-			}
-		}	else{
-			$image_dimention = getimagesize($_POST['src']);	
-			$image_width = $image_dimention[0]; 
-			$image_height = $image_dimention[1]; 
-			$data[] = $image_width.'x'.$image_height;
-		} 
+				$id = $_POST['session_id'];
+				$result = $this->frontend_model->get_images($id); 
+				$url = base_url();
+				for($i=0; $i<count($result); $i++){
+			 	$k = $_POST['url'].$result[$i]->image_name;
+			 	$image_dimention = getimagesize($k);	
+			 	$image_width = $image_dimention[0]; 
+			 	$image_height = $image_dimention[1];
+			 	$data[] = $result[$i]->image_name.'*'.$image_width.'x'.$image_height;
+			 }
+		}else{
+		 	$image_dimention = getimagesize($_POST['src']);	
+		 	$image_width = $image_dimention[0]; 
+		 	$image_height = $image_dimention[1]; 
+		 	$data[] = $image_width.'x'.$image_height;
+		 }
 		echo json_encode($data);
 	}
 	
+	public function image_user_size(){
+		if($_POST['url']){
+			if($this->session->userdata('userid')){
+				$id = $this->session->userdata('userid');
+				$result = $this->frontend_model->get_user_images($id);
+			}else{
+				$id = $_POST['session_id'];
+				$result = $this->frontend_model->get_images($id); 
+			}
+			 $user = array('user' => $result[0]->session_id);
+			 $this->session->set_userdata($user);
+			 $url = base_url();
+			 for($i=0; $i<count($result); $i++){
+			 	$k = $_POST['url'].$result[$i]->image_name;
+			 	$image_dimention = getimagesize($k);	
+			 	$image_width = $image_dimention[0]; 
+			 	$image_height = $image_dimention[1];
+			 	$data[] = $result[$i]->image_name.'*'.$image_width.'x'.$image_height;
+			 }
+		}else{
+		 	$image_dimention = getimagesize($_POST['src']);	
+		 	$image_width = $image_dimention[0]; 
+		 	$image_height = $image_dimention[1]; 
+		 	$data[] = $image_width.'x'.$image_height;
+		 }
+		echo json_encode($data);
+	}
 
 	public function get_web_price_detail()	{
 		$print_paper = $this->input->post('paper_type');
@@ -1379,30 +1406,13 @@ class Frontend extends CI_Controller
 	}
 
 	public function myUpload()	{
-
-		$_SESSION['path'] = IMAGE_PATH;
- 		$id = $_SESSION['user_info'];
-		$_SESSION['user'] = $id;
-		$data1 = 'photostoframe';
-		$this->session->set_userdata('page',$data1); 
-		$result = $this->frontend_model->get_images($id);
-		if(isset($_SESSION['user'])){ 
-			$data['mount_name']=$this->frontend_model->get_mount_name_web_price();
-			$data['frame_cat']=$this->frontend_model->get_frame_cat_tbl_web_price();
-			$data['frame_sizze']=$this->frontend_model->get_frame_size();
-			$data['frame_color']=$this->frontend_model->get_frame_color_web_price();
-			$this->load->view('frontend/header');
-			$this->load->view('frontend/myUpload',$data);
-			$this->load->view('frontend/footer');
-  		}	else{
-  			echo "<script>window.location.href='photostoart';</script>"; 
-  		}
-		unset($_SESSION['type']);
-
-
-			//$this->load->view('frontend/header');
-			//$this->load->view('frontend/myUpload',$data);
-			//$this->load->view('frontend/footer');
+		$user_id = $_POST['session_id'];
+		$customer_id = $this->session->userdata('userid');
+		$response = $this->frontend_model->user_for_photostoFrame($user_id,$customer_id);
+		
+		$this->load->view('frontend/header');
+		$this->load->view('frontend/myUpload');
+		$this->load->view('frontend/footer');
   	}
 
 	public function lightbox_sorting($sortby)	{

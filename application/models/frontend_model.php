@@ -5,11 +5,8 @@ class Frontend_model extends CI_Model
 	{
 		$this->load->database();
 	}
-
-
-//main frontend of beta.mahattaart by mohan
-
-
+		//main frontend of beta.mahattaart by mohan
+	
 	public function get_header_images_inner_collection($title,$cat_id)	{
 		$this->db->select('*');
 		$this->db->where('cat_id',$cat_id);
@@ -92,6 +89,24 @@ class Frontend_model extends CI_Model
 		return $query->result();
 	}
 
+	public function get_user_images($id)	{
+		$this->db->select('*');
+		$this->db->where('customer_id',$id);
+		$this->db->where('removed',0);
+		$this->db->order_by("id","desc");
+		$query=$this->db->get('add_images_table');
+		return $query->result();
+	}
+
+	public function get_session($customer_id){
+		$this->db->select('session_id');
+		$this->db->where('customer_id',$customer_id);
+		$this->db->where('removed',0);
+		$this->db->order_by("id","desc");
+		$query=$this->db->get('add_images_table');
+		return $query->result();	
+	}
+
 	public function get_print_only($paper_type,$glass)	{
 		$this->db->select('rate')->where('paper',$paper_type)->where('quality','Star');
 		$query = $this->db->get('tbl_web_price');
@@ -102,6 +117,14 @@ class Frontend_model extends CI_Model
 		return $data;
 	}
 	
+
+	public function user_for_photostoFrame($user_id , $customer_id){
+		$this->db->where('session_id',$user_id);
+		$id = array('customer_id'=> $customer_id);
+		$query = $this->db->update('add_images_table',$id);
+		echo $query;
+	}
+
 	public function get_default($frame,$mount)	{
 		$this->db->select('*')->where('frame_code',$frame);
 		$query = $this->db->get('tbl_web_price');

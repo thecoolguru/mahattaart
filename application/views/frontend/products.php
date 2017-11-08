@@ -1571,14 +1571,7 @@ href="" onclick="addtogallery('<?=$api_image_id?>','<?=$image_id?>');return fals
 else {?> href="" onclick="login('');return false;" style="color:#ef9223;"<?php }?> >Add to Gallery </a>
                 	</span>
                 </div>
-                <div id="panel-product-details" class="col-md-9">
-                	<span>
-                    	Malcesine, Lake Garda, 1913 (oil on canvas), Klimt, Gustav (1862-1918) / Private Collection / Artothek / Bridgeman Images This giclée print offers...
-                    </span>
-  
-  
-                </div>
-
+                
                 <div class="col-md-9" id="9">
                   <div class="col-md-6"><a target="_self" class="btn btn-default edit_btn" href="">Edit This Frame</a></div>
                 <div class="col-md-6"><a target="_self" class="btn btn-default remove_btn" href="">REMOVE FRAME</a></div>

@@ -228,7 +228,7 @@ foreach($image as $images){
   ?>
 
 <li class="col-md-2 col-sm-2">
-<a href="<?php echo base_url();?>search/image_detail/<?=$images->images_filename;?>">
+<a href="<?php echo base_url();?>frontend/products/<?=$images->images_filename;?>">
 <input type="hidden" name="img_id" id="img_id<?php print $images_id; ?>" value="<?php print $images_id ?>" />
 <div class="wrap">
 <div class="wrap-inner"><img class="galImage" src="http://static.mahattaart.com/158/<?=$images->images_filename;?>" alt="<?php print substr($result->images_caption,0,10); ?>" title="<?=substr($result[0]->images_caption,0,10); ?>" border="0"></div>

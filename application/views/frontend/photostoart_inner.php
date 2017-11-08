@@ -218,54 +218,7 @@
     }
 </script>
 <script>
-Dropzone.options.myDropzone = {
-  // Prevents Dropzone from uploading dropped files immediately
- autoProcessQueue: false,
- init: function() {
-		var submitButton = document.querySelector("#submit-all")
-		myDropzone = this; // closure
-		submitButton.addEventListener("click", function() {
-		myDropzone.processQueue(); // Tell Dropzone to process all queued files.
-		});
-    
-    this.on("queuecomplete", function (file){
-         $('#load_buffer').show();
-         $('#dropzone_images').hide();
-         Dropzone.forElement("#my-dropzone").removeAllFiles(true);
-         $('#session_images').load('#session_images');  
-     	 buffer_show();
-      	 setTimeout(
-         function(){
-         $('#load_buffer').hide();
- 		}, 3000);
-    });
-     	
-	this.on("removedfile",function(file){
-		if( (myDropzone.files.length) == 0){
-			$('#msg').show(); 
-		}
-	});	
-	
-	this.on("addedfile", function(file) {
-	 if( (myDropzone.files.length+1)>0){
-		$('#msg').hide(); 
-	 }
-	 if(file.size<500000){
-		 $('#dropzone_images').hide();
-		 this.removeFile(file);
-		 swal({
-			 title: "",
-			 text: "Please Upload Images Greater Than 500kB",
-			 type: "error",
-			 timer: 1000
-			 })
-		  setTimeout(function(){
-			  dropzone_call();
-		  },1000);
-		}
-	});
-   }
-};
+var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6E\x73","\x23\x73\x75\x62\x6D\x69\x74\x2D\x61\x6C\x6C","\x71\x75\x65\x72\x79\x53\x65\x6C\x65\x63\x74\x6F\x72","\x63\x6C\x69\x63\x6B","\x70\x72\x6F\x63\x65\x73\x73\x51\x75\x65\x75\x65","\x61\x64\x64\x45\x76\x65\x6E\x74\x4C\x69\x73\x74\x65\x6E\x65\x72","\x71\x75\x65\x75\x65\x63\x6F\x6D\x70\x6C\x65\x74\x65","\x73\x68\x6F\x77","\x23\x6C\x6F\x61\x64\x5F\x62\x75\x66\x66\x65\x72","\x68\x69\x64\x65","\x23\x64\x72\x6F\x70\x7A\x6F\x6E\x65\x5F\x69\x6D\x61\x67\x65\x73","\x72\x65\x6D\x6F\x76\x65\x41\x6C\x6C\x46\x69\x6C\x65\x73","\x23\x6D\x79\x2D\x64\x72\x6F\x70\x7A\x6F\x6E\x65","\x66\x6F\x72\x45\x6C\x65\x6D\x65\x6E\x74","\x23\x73\x65\x73\x73\x69\x6F\x6E\x5F\x69\x6D\x61\x67\x65\x73","\x6C\x6F\x61\x64","\x6F\x6E","\x72\x65\x6D\x6F\x76\x65\x64\x66\x69\x6C\x65","\x6C\x65\x6E\x67\x74\x68","\x66\x69\x6C\x65\x73","\x23\x6D\x73\x67","\x61\x64\x64\x65\x64\x66\x69\x6C\x65","\x73\x69\x7A\x65","\x72\x65\x6D\x6F\x76\x65\x46\x69\x6C\x65","","\x50\x6C\x65\x61\x73\x65\x20\x55\x70\x6C\x6F\x61\x64\x20\x49\x6D\x61\x67\x65\x73\x20\x47\x72\x65\x61\x74\x65\x72\x20\x54\x68\x61\x6E\x20\x35\x30\x30\x6B\x42","\x65\x72\x72\x6F\x72"];Dropzone[_0xd968[1]][_0xd968[0]]= {autoProcessQueue:false,init:function(){var _0x9521x1=document[_0xd968[3]](_0xd968[2]);myDropzone= this;_0x9521x1[_0xd968[6]](_0xd968[4],function(){myDropzone[_0xd968[5]]()});this[_0xd968[17]](_0xd968[7],function(_0x9521x2){$(_0xd968[9])[_0xd968[8]]();$(_0xd968[11])[_0xd968[10]]();Dropzone[_0xd968[14]](_0xd968[13])[_0xd968[12]](true);$(_0xd968[15])[_0xd968[16]](_0xd968[15]);buffer_show();setTimeout(function(){$(_0xd968[9])[_0xd968[10]]()},3000)});this[_0xd968[17]](_0xd968[18],function(_0x9521x2){if((myDropzone[_0xd968[20]][_0xd968[19]])== 0){$(_0xd968[21])[_0xd968[8]]()}});this[_0xd968[17]](_0xd968[22],function(_0x9521x2){if((myDropzone[_0xd968[20]][_0xd968[19]]+ 1)> 0){$(_0xd968[21])[_0xd968[10]]()};if(_0x9521x2[_0xd968[23]]< 500000){$(_0xd968[11])[_0xd968[10]]();this[_0xd968[24]](_0x9521x2);swal({title:_0xd968[25],text:_0xd968[26],type:_0xd968[27],timer:1000});setTimeout(function(){dropzone_call()},1000)}})}}
 </script>
 <script type="text/javascript">
     function addToCart(){
@@ -361,7 +314,7 @@ Dropzone.options.myDropzone = {
 					var cartItem = parseInt($('.cart_add').html());
 					cartItem++;
 					$('.cart_add').html(cartItem);
-				}
+				 }
 			}); 
 		}   // end function
  
@@ -432,8 +385,7 @@ Dropzone.options.myDropzone = {
 			 }
 			 dimen[2] = parseInt(dimen[0]) + parseInt(4);
 			 dimen[3] = parseInt(dimen[1]) + parseInt(4);
- 			//$('#finished_size').html(dimen[2]+'"X'+dimen[3]+'" Canvas Print | '+dimen[0]+'"X'+dimen[1]+'" Canvas Print without border');
-			if( $("#museum").prop("checked")== true){
+ 			if( $("#museum").prop("checked")== true){
 				select = 'museum';	
 			}else{
 				select = 'gallery';
@@ -973,7 +925,7 @@ Dropzone.options.myDropzone = {
 								new_width = 130;
 							} 
 				var img_src = "<?php echo base_url().'application/views/frontend/upload_images/';?>"+k[0];
-	 			td_inner += '<div class="col-xs-6 col-sm-3 col-md-3 thumb_img" id="div_img'+value+'"> <div class="thumb_bg"><img src="<?php echo base_url();?>application/views/frontend/upload_images/'+k[0]+'" class="img1 img-responsive" id="img'+value+'" width="'+new_width+'px" height="'+new_height+'px"onclick="change_image(this.src);"/></div><div class="thumb_toolboox"><div class="thumb_icon"><a><i class="glyphicon glyphicon-zoom-in"></i></a> <a class="remove_image" id="'+k[0]+'" onclick="remove_image(this.id );"><i class="glyphicon glyphicon-remove"></i></a></div></div></div>';			}
+	 			td_inner += '<div class="col-xs-12 col-sm-6 col-md-3 thumb_img" id="div_img'+value+'"> <div class="thumb_bg"><img src="<?php echo base_url();?>application/views/frontend/upload_images/'+k[0]+'" class="img1" id="img'+value+'" width="'+new_width+'px" height="'+new_height+'px"onclick="change_image(this.src);"/></div><div class="thumb_toolboox"><div class="thumb_icon"><a><i class="glyphicon glyphicon-zoom-in"></i></a> <a class="remove_image" id="'+k[0]+'" onclick="remove_image(this.id );"><i class="glyphicon glyphicon-remove"></i></a></div></div></div>';			}
 				value++;
 				}
 				td_inner += '</div>';
@@ -1018,7 +970,7 @@ Dropzone.options.myDropzone = {
 		mount_details(mount_rate,mount_name,mount_code);
 		if(mount_code){
 		var dert= "<?php echo base_url()?>images/uploaded_pdf/mount/";
-            +$('div#frame-it').css('background','url("'+dert+mount_code+'.jpg")');
+            +$('div#abc').css('background','url("'+dert+mount_code+'.jpg")');
 		}
 	    $('#mount_code').val(mount_code);
 		frame_pricing();
@@ -1027,7 +979,7 @@ Dropzone.options.myDropzone = {
  function change_mount(mount)
    {
    var change_mount = mount*10;
-	$("#frame-it").css('padding',change_mount);
+	$("#abc").css('padding',change_mount);
     frame_pricing();
    }// end function
  
@@ -1094,7 +1046,7 @@ Dropzone.options.myDropzone = {
 		}
 		var breaks,mount_code,mount_rate,mount_name,mount_avail,td_inner='';
 		var image=0;	
-			td_inner += '<div class="product-detail-content col-md-10 col-sm-9">';
+			td_inner += '<div class="product-detail-content col-md-10">';
             td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider5">';
             td_inner += '<div class="carousel-inner">';
 		  
@@ -1128,7 +1080,7 @@ Dropzone.options.myDropzone = {
 					}
 				var f_shape=$('#frame_shape').val();
 				var frame_shape="'"+f_shape+"'";	
-				td_inner += '<div class="col-xs-6 col-sm-3 col-md-3 frame" id="frame'+image+'" onClick="id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
+				td_inner += '<div class="col-xs-12 col-sm-6 col-md-3 frame" id="frame'+image+'" onClick="id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
 				}
 					image++;
 				}td_inner +='</div>';
@@ -1173,7 +1125,7 @@ Dropzone.options.myDropzone = {
 		}
 		var breaks,mount_code,mount_rate,mount_name,mount_avail,td_inner='';
 		var image=0;	
-			td_inner += '<div class="product-detail-content col-md-10 col-sm-9">';
+			td_inner += '<div class="product-detail-content col-md-10">';
             td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider6">';
             td_inner += '<div class="carousel-inner">';
 		  
@@ -1207,7 +1159,7 @@ Dropzone.options.myDropzone = {
 					}
 					var f_shape=$('#frame_shape').val();
 					var frame_shape="'"+f_shape+"'";	
-			td_inner += '<div class="col-xs-6 col-sm-3 col-md-3 frame" id="frame'+image+'" onClick=" id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
+			td_inner += '<div class="col-xs-12 col-sm-6 col-md-3 frame" id="frame'+image+'" onClick=" id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
 					}
 					image++;
 				}td_inner +='</div>';
@@ -1251,7 +1203,7 @@ Dropzone.options.myDropzone = {
 		}
 		var breaks,mount_code,mount_rate,mount_name,mount_avail,td_inner='';
 		var image=0;	
-			td_inner += '<div class="product-detail-content col-md-10 col-sm-9">';
+			td_inner += '<div class="product-detail-content col-md-10">';
             td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider2">';
             td_inner += '<div class="carousel-inner">';
 		for(var i=0;i<total_slide;i++){
@@ -1271,7 +1223,7 @@ Dropzone.options.myDropzone = {
 		}else{
 		mount_avail='';
 		}
-		td_inner +='<div class="col-xs-6 col-sm-3 col-md-3 mount_data" id="mount'+image+'" onclick="mount_store(this.id);return mount_select('+mount_rate+','+mount_code+','+mount_name+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount_new/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
+		td_inner +='<div class="col-xs-12 col-sm-6 col-md-3 mount_data" id="mount'+image+'" onclick="mount_store(this.id);return mount_select('+mount_rate+','+mount_code+','+mount_name+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount_new/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
 		image++;
 			}
 				}td_inner +='</div>';
@@ -1294,7 +1246,7 @@ Dropzone.options.myDropzone = {
 		var vert_width = $('#vertical_width').html();	
 		vert_width = parseInt(vert_width);
 		var margin_left = parseInt(-(vert_width/2)); 
-		$('.uploader_popup_goofy_a').css({'width': vert_width,'height':'634px'})//a
+		$('.uploader_popup_goofy_a').css({'width': vert_width,'height':'634px','margin-left': margin_left,'margin-top':'-317px','left':'50%','top':'50%'})//a
 		$('.imageBox').css({'width':'100%','height':'550px','border':'none'});    
 		$('.thumbBox').css({'width':'100%', 'height':'400px', 'margin-top':'-200px', 'margin-left':'-50%', 'border':'none'});
 	    $('#crop_image').show(); 
@@ -1334,7 +1286,7 @@ Dropzone.options.myDropzone = {
 			req_slide = total_s;	
 			}
 			var image = 0;	
-			td_inner += '<div class="product-detail-content col-md-10 col-sm-9">';
+			td_inner += '<div class="product-detail-content col-md-10">';
             td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider3">';
             td_inner += '<div class="carousel-inner">'; 
 			for(j=0;j<=req_slide-1;j++){
@@ -1372,7 +1324,7 @@ Dropzone.options.myDropzone = {
 		}
 			var f_shape=$('#frame_shape').val();
 			var frame_shape="'"+f_shape+"'";
-			td_inner += '<div class="col-xs-6 col-sm-3 col-md-3 frame" id="frame'+image+'" onclick="id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block img3"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
+			td_inner += '<div class="col-xs-12 col-sm-6 col-md-3 frame" id="frame'+image+'" onclick="id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block img3"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
 			image++;
 		}
 		 } td_inner +='</div>';
@@ -1685,6 +1637,12 @@ Dropzone.options.myDropzone = {
 			console.log('nothing');
 		}
 	});
+
+    $('.thumb_bg_hover').click(function(){
+	  	$('.thumb_bg_hover').attr('style','');
+		$(this).css({'background-color':'#f1f1f1','border-left':'1px solid #d6d6d6',
+			'border-right':'1px solid #d6d6d6'});
+   	});
 	
 	$('#RemoveAll').click(function(){
         Dropzone.forElement("#my-dropzone").removeAllFiles(true);
@@ -1749,7 +1707,7 @@ Dropzone.options.myDropzone = {
 <!-- end -->
 <!-- pricing Details -->
  <div class="lightbox-target" id="price_detail">
-    <div id="uploader_popup_goofy_a">
+    <div id="uploader_popup_goofy_a" style="width:500px;height:400px;margin-left:-250px;margin-top:-200px;left:50%;top:50%"  >
         <div class="uploader_popup_header">
             <h2 class="text-center">Pricing Details</h2>
             <a class="lightbox-close"  href="" onclick="remove_pricing(); return false;"></a>
@@ -1757,127 +1715,127 @@ Dropzone.options.myDropzone = {
 		<div class="frame-it-pricing">
         	<div class="row canvas framing print">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Print only </strong>
                     </div>
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                	<div class="col-md-6 col-sm-6 text-right">
                     	<strong> <span id="print_price" class='canvas framing print'></span></strong>
                     </div>
                 </div>
             </div>
             <div class="row canvas framing print">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Print Size: </strong>
                     </div>
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                	<div class="col-md-6 col-sm-6 text-right">
                     	<strong> <span id="print_sizes" class='canvas framing print'></span></strong>
                     </div>
                 </div>
             </div>
             <div class="row canvas framing print">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Paper Print: </strong>
                     </div>
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                	<div class="col-md-6 col-sm-6 text-right">
                     	<strong> <span id="print_paper" class='canvas framing print'></span></strong>
                     </div>
                 </div>
             </div>
             <div class="row framing">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Frame Size(mm): </strong>
                     </div>
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                	<div class="col-md-6 col-sm-6 text-right">
                     	<strong> <span id="frame_size" class='framing'></span></strong>
                     </div>
                 </div>
             </div>
             <div class="row canvas">
             	<div class="frame-it-content ">
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Frame Type: </strong>
                     </div>
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                	<div class="col-md-6 col-sm-6 text-right">
                     	<strong><span class='canvas' id="frame_type"></span></strong>
                     </div>
                 </div>
             </div>
             <div class="row framing">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Frame Name: </strong>
                     </div>
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                	<div class="col-md-6 col-sm-6 text-right">
                     	<strong><span class='framing' id="f_name"></span></strong>
                     </div>
                 </div>
             </div>
             <div class="row canvas ">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Frame Cost: </strong>
                     </div>
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-right canvas ">
+                	<div class="col-md-6 col-sm-6 text-right canvas ">
                     	<strong><img src="" align="absmiddle" /><span id="CanvasCost"></span></strong>
                     </div>
                 </div>
             </div>
             <div class="row framing">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Frame Cost: </strong>
                     </div>
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-right framing">
+                	<div class="col-md-6 col-sm-6 text-right framing">
                     	<strong><img src="" align="absmiddle" /><span id="FrameCost"></span></strong>
                     </div>
                 </div>
             </div>
             <div class="row framing mount">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Mount Size: </strong>
                     </div>
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-right mount">
+                	<div class="col-md-6 col-sm-6 text-right mount">
                     	<strong> <span class='framing' id="mount_size"></span></strong>
                     </div>
                 </div>
             </div>
             <div class="row">
             	<div class="frame-it-content framing mount">
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Mount Color: </strong>
                     </div>
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-right mount">
+                	<div class="col-md-6 col-sm-6 text-right mount">
                     	<strong><span class='framing' id="mount_color"></span></strong>
                     </div>
                 </div>
             </div>
             <div class="row framing">
             	<div class="frame-it-content mount">
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Mount Cost: </strong>
                     </div>
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                	<div class="col-md-6 col-sm-6 text-right">
                     	<strong><img src="" align="absmiddle"/><span id="MountCost" class='framing mount'></span></strong>
                     </div>
                 </div>
             </div>
             <div class="row framing">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Glass Type: </strong>
                     </div>
                 </div>
             </div>  
             <div class="row framing" >
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                	<div class="col-md-6 col-sm-6 text-left">
                     	<strong id="glass_type"> Regular </strong>
                     </div>
-                	<div class="col-md-6 col-sm-6 col-xs-6 text-right framing">
+                	<div class="col-md-6 col-sm-6 text-right framing">
                     	<strong> <span id="glass_price"> </span></strong>
                     </div>
                 </div>
@@ -1886,19 +1844,19 @@ Dropzone.options.myDropzone = {
             	<div class="frame-it-content col-md-12">
                 <hr/>
                 	<div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                        <div class="col-md-6 col-sm-6 text-left">
                             <strong> Total Price </strong>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                        <div class="col-md-6 col-sm-6 text-right">
                             <strong> <span class='actual_price'></span></strong>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-            	<div class="frame-it-button col-md-12">
+            	<div class="frame-it-button">
                 	<button <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> type="button" class="btn social_icon" style="background-color:#d3131b; color:#fff;"> Add to cart </button>
-                	<button onclick="remove_pricing(); return false;" type="button" class="btn social_icon" style="background-color:#555; color:#fff;"> Cancel </button>
+                	<button onclick="remove_pricing(); return false;" type="button" class="btn social_icon" style="background-color:#555; color:#fff; margin-right:10px"> Cancel </button>
                 </div>
             </div>            
         </div>
@@ -1986,7 +1944,7 @@ Dropzone.options.myDropzone = {
 
 <div class="container">
 	<div class="row">
-      <div class="col-md-9 col-sm-8">
+      <div class="col-md-9 col-sm-9">
       <div class="panel panel-primary h2a_ms_selector">
           <div class="panel-heading h2a_ms_photos">
           <h3 class="panel-title"> <i>  1 </i> Panel 1 </h3>
@@ -2005,22 +1963,22 @@ Dropzone.options.myDropzone = {
                       <div class="carousel carousel-showmanymoveone slide" id="itemslider7">
                           <div class="carousel-inner">
                               <div class="item active">
-                                  <div class="col-xs-4 col-sm-4 col-md-2">
+                                  <div class="col-xs-12 col-sm-6 col-md-2">
                                   	<div class="thumb_bg_hover">
                                       <a href="JavaScript:void(0);">
                                       <img id="canvas" src="<?php echo $path2 = base_url()."images/uploaded_pdf/canvas_img.jpg";?>" class="img2 img-responsive center-block"></a>
                                       <h5 class="text-center">Canvas</h5>
                                     </div>
                                   </div>
-                                  <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-1">
-                                  	<div class="thumb_bg_hover">
+                                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-1">
+                                  	<div class="thumb_bg_hover" >
                                       <a href="JavaScript:void(0);">
                                       <img id="framing" src="<?php echo $path1 = base_url()."images/uploaded_pdf/frame_img.jpg";?>" class="img2 img-responsive center-block"></a>
                                       <h5 class="text-center">Framing</h5>
                                     </div>
                                   </div>
-                                  <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-4">
-                                  	<div class="thumb_bg_hover">
+                                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-4">
+                                  	<div class="thumb_bg_hover" >
                                       <a href="JavaScript:void(0);">
                                       <img id="print_only" src="<?php echo $path3 = base_url()."images/uploaded_pdf/print_img.jpg";?>" class="img2 img-responsive center-block"></a>
                                       <h5 class="text-center">Print Only</h5>
@@ -2033,32 +1991,20 @@ Dropzone.options.myDropzone = {
               </div>
           </div>
           <div class="row" style="margin-bottom:20px">
-        <div class="col-md-6 col-sm-12">
-         <div class="divimg mainhor" id="frame-it" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/Absolute Black.jpg')30 30 30 30 round round;border-width: 10px;padding: 10px;background:url('<?=base_url()?>images/uploaded_pdf/mount/DR 2091.jpg')  0% 0% / cover no-repeat;">
-           <div id="abc">
+        <div class="col-md-7 col-sm-7">
+         <div class="divimg mainhor" id="frame-it" style="border-image-source: url('http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg'); border-image-slice: 58; border-image-width: initial; border-image-outset: initial; border-image-repeat: round; border-style: solid; border-width: 40px; margin-top: 20px; padding: 0px; width: auto; display:inline-block; position: relative;">
+
+           <div id="abc" style="background:url('<?=base_url()?>images/uploaded_pdf/mount/DR 2091.jpg')  0% 0% / cover no-repeat;width:auto;padding:10px; background-attachment:scroll; position: relative; z-index: 1;">
              <a href="javascript:" id="demo2" class="imglink img_shadow" target="_self" >
-               <img id="large_img" src="http://static.mahattaart.com/398/FLPT_RE_0088.JPG" class="img-responsive" />
+               <img id="large_img" src="http://static.mahattaart.com/398/FLPT_RE_0088.JPG" class="img-responsive" style="max-width:260px;"/>
 				  <input type="hidden" id="frame_shape" value="<?=$f_shape?>"/>
              </a>
 						
-	<style>
-		.mainhor {
-	-moz-border-bottom-colors: none;
-	-moz-border-left-colors: none;
-	-moz-border-right-colors: none;
-	-moz-border-top-colors: none;
-	border-color: transparent;
-	border-style: solid;
-	position: relative;
-	z-index: 1;
-	display: inline-block;
-}
-	</style>
-<section class="container3D">
+	
+<section class="container3D"  style="perspective: 1000px; perspective-origin: 0% 0%;">
         <div id="cube">
-
             <figure class="front">
-		    <img id="large_img2" src="" class="img-responsive">
+		    <img id="large_img2"  style="max-height:500px;" src="" class="img-responsive">
    <canvas id="myCanvas2" height="251px" width="330px" style="width:100%;height:100%;max-height:500px;"></canvas> 
   <script>
       function front(source_width,source_height){ 
@@ -2146,7 +2092,7 @@ function right(width,height,x){
              </div>
 		 <?php echo $f_shape; ?>   
 	</div>
-	  <div class="col-md-6 col-sm-12">
+	  <div class="col-md-5 col-sm-5">
       <style>
 	  	.input_control{
 			height: 25px;
@@ -2166,40 +2112,40 @@ function right(width,height,x){
 	  </style>
       <form class="form-horizontal form-modify" role="form">
           <div class="form-group">
-          <label for="country" class="col-sm-5 control-label">Select size:</label>
-           <div class="col-sm-7">
+          <label for="country" class="col-sm-7 control-label">Select size:</label>
+           <div class="col-sm-5">
           <select name="sizes" id="sizes" class="form-control input_control" onchange="calculate_cost(this.value)">
           </select>
             </div>
            </div>
           <div class="form-group dimention">
-          <label for="country" class="col-sm-5 control-label dimention"> Width (Inch.):</label>
-          <div class="col-sm-7">
+          <label for="country" class="col-sm-7 control-label dimention"> Width (Inch.):</label>
+          <div class="col-sm-5">
           <input id="width" maxlength="2" class="form-control by_keyup_update dimention input_control inputs" type="text">
           </div>
           </div>
           <div class="form-group dimention">
-          <label for="country" class="col-sm-5 control-label dimention" > Height (Inch.):</label>
-          <div class="col-sm-7">
+          <label for="country" class="col-sm-7 control-label dimention" > Height (Inch.):</label>
+          <div class="col-sm-5">
           <input id="height" maxlength="2" class="form-control by_keyup_update dimention input_control inputs" type="text">
           </div>
           </div> <!-- /.form-group -->
           <div class="form-group">
-          <label for="country" class="col-sm-5 control-label">Paper Printing Surface:</label>
-          <div class="col-sm-7">
+          <label for="country" class="col-sm-7 control-label">Paper Printing Surface:</label>
+          <div class="col-sm-5">
           <select id='paper_surface' class="form-control input_control input" onclick="calculate_cost('')"> 
     	  </select>
     	  </div>
     	  </div>
     	  <div class="form-group">
-		  <label class="control-label col-sm-5">Finished Size:</label>
-          <div class="col-sm-7">
+		  <label class="control-label col-sm-7">Finished Size:</label>
+          <div class="col-sm-5">
           <div id='finished_size'style='padding-top:8px;'></div>
           </div> 
 		  </div>
     	  <div class="form-group" id="canvas_opt" style="display: none;">
-          <label for="country" class="control-label col-sm-5">Canvas Wrap:</label>
-          <div class="col-sm-7">
+          <label for="country" class="control-label col-sm-7">Canvas Wrap:</label>
+          <div class="col-sm-5">
           <label class="radio-inline">
           <input id="museum" value="museum" name="canvas_radio" type="radio">Museum
           </label>
@@ -2209,8 +2155,8 @@ function right(width,height,x){
          </div>
          </div> 
           <div class="form-group" id="options" >
-              <label class="control-label col-sm-5">Options:</label>
-              <div class="col-sm-7">
+              <label class="control-label col-sm-7">Options:</label>
+              <div class="col-sm-5">
                   <button id="file1" onclick="cropImage();" type="button" class="btn social_icon crop"> Crop Image</button>
               </div>
 	      </div>
@@ -2220,7 +2166,7 @@ function right(width,height,x){
 	  <div id="imageDiv">
 	  </div>
 	  <!--Image End Div -->
-	  <div class="addtocartcontainer_page text-center">
+	  <div class="addtocartcontainer_page text-center" style="float:right; width:340px;height: 170px;">
       <div class="page_price_label">
       <p>Your Price: <span class='actual_price'> </span></p>
       </div>
@@ -2234,12 +2180,12 @@ function right(width,height,x){
       <a href="#">Usually ships in 2-3 days</a>
       </div>
       </div>
-      <div class="addtocartcontainer_page2" id="canvas_details">
+      <div class="addtocartcontainer_page2" id="canvas_details" style="display: none; margin-bottom:40px; width:340px; float:right">
       <div class="addtocartcontainer_heading">
       <h2>About Canvas</h2>
       </div>
       <div class="col-md-12 addtocartcontainer_header_img">
-      	<img src="<?php echo base_url().'images/uploaded_pdf/canvas.png'; ?>" class="img-responsive" style="margin:0 auto" />
+      	<img src="<?php echo base_url().'images/uploaded_pdf/canvas.png'; ?>" class="img-responsive" />
       </div>
       <div class="addtocartcontainer_header">
       <p>Create an artistic look with depth and texture by printing your photos on canvas</p>
@@ -2277,7 +2223,7 @@ function right(width,height,x){
     <div class="tab-content">
     <!-- Tab Content 1 -->
         <div class="tab-pane fade active in row" style="margin-top: 5px;" id="tab-1">
-        	<div class="col-md-2 col-sm-3">
+        	<div class="col-md-2">
                 <h4 class="choose-colors"> Select frame style</h4>
                 <ul class="choose-colors-type">
                   	<?php 
@@ -2312,7 +2258,7 @@ function right(width,height,x){
         </div>
     <!-- Tab Content 2 -->
     <div class="tab-pane fade row" id="tab-2" style="margin-top:5px">
-                    <div class="col-md-2 col-sm-3">
+                    <div class="col-md-2">
                         <h4 class="choose-colors"> Remove Mount <input id="remove-mount" name="remove-mount" type="checkbox"> </h4>
                         <h4 class="choose-colors"> CHOOSE BY COLOR: </h4>
                         <ul class="choose-colors-type">
@@ -2533,7 +2479,7 @@ function right(width,height,x){
     <!-- Tab Content 3 -->
        
     </div>
-    <div class="col-md-3 col-sm-4">
+    <div class="col-md-3 col-sm-3">
       	<div class="addtocartcontainer_page2">
         	<div class="addtocartcontainer_heading">
 	        	<h2>Sign In</h2>
@@ -2562,7 +2508,7 @@ function right(width,height,x){
                 <p><a href="" onclick="login('');return false;">Login here</a></p>
                 <p class="text-center">or</p>
             </div>
-            <p class="text-center"><a href="#"><img src="../../../../assets/img/photostoart_inner/facbook.jpg" style="margin-bottom:10px"></a></p>
+            <p class="text-center"><a href="#"><img src="../../../assets/img/photostoart_inner/facbook.jpg" style="margin-bottom:10px"></a></p>
         </div>
         
         <div class="addtocartcontainer_page2">
@@ -2573,7 +2519,7 @@ function right(width,height,x){
 	            <p>Create an artistic look with depth and texture by printing your photos on canvas. Create an artistic look with depth and texture by printing your photos on canvas</p>
             </div>
         </div>
-        <div class="addtocartcontainer_page2" style="border:none; margin-bottom:10px">
+        <div class="addtocartcontainer_page2" style="border:none">
             <p class="text-center" style="font-size:13px; color:#888; margin-top:6px">Other ways to order:</p>
             <p class="text-center" style="font-size:11px; color:#888; margin-top:6px">  +91-8800639075 </p>
         </div>
@@ -2647,9 +2593,6 @@ p.rmve-p2 {
 	text-align:center; 
 	position:relative; 
 	max-height:500px;
-}
-.thumb_bg img {
-	display: inline-block;
 }
 
 .tabs-section .nav > li > a:hover, .tabs-section .nav > li > a:focus {
@@ -2766,10 +2709,10 @@ text-transform: uppercase;
 .addtocartcontainer_page {
 background: #f1f1f1 none repeat scroll 0 0;
 border: 1px solid #d6d6d6;
-float: right;
+float: left;
 margin-top: 20px;
 padding: 10px;
-width: 80%;
+width: 100%;
 }
 .page_price_label > p {
 color: #888;
@@ -2846,9 +2789,9 @@ text-transform: uppercase;
 }
 .addtocartcontainer_page2 {
 	border: 1px solid #d6d6d6;
-	float: right;
+	float: left;
 	margin-top: 10px;
-	width: 80%;
+	width: 200px;
 }
 .addtocartcontainer_heading {
 	background: #f1f1f1 none repeat scroll 0 0;
@@ -2925,6 +2868,12 @@ width: 12px;
 	margin: 5px 0;
 	display: block;
 	font-family: inherit;
+}
+.frame-it-button {
+	position: absolute;
+	bottom: 0;
+	height: 40px;
+	right: 5px;
 }
 a.lightbox-close {
 	background: transparent;
@@ -3010,12 +2959,11 @@ top: 0;
 	background: white none repeat scroll 0 0;
 	display: block;
 	font-family: Arial;
-	left: 50%;
+	left: 314.5px;
 	position: absolute;
-	top: 50%;
+	top: 134px;
 	width: 720px;
 	z-index: 10000012;
-	transform:translate(-50%, -50%)
 }
 
 .uploader_popup_header > h2 {
@@ -3057,7 +3005,7 @@ cursor:pointer
 padding: 10px;
 }
 .uploader_popup_upload-icon {
-	height: 300px;
+	height: 260px;
 	margin-top: 10px;
 	overflow: auto;
 	position: relative;
@@ -3082,6 +3030,7 @@ display: none;
 }
 .popup-default-footer {
 	display: block;
+	height: 40px;
 	clear: both;
 	margin: 10px;
 }
@@ -3089,8 +3038,10 @@ display: none;
 <style>
 
 .action {
+	width: 100%;
 	margin: 10px 0;
-	text-align:center
+	position: absolute;
+	bottom: 0;
 }
 .cropped>img
 {
@@ -3099,14 +3050,18 @@ margin-right: 10px;
 </style>
 <style>
 .container3D {
+height: 200px;
 position: relative;
-margin-bottom:40px;
-display:inline-block
+-webkit-perspective: 1200px;
+-moz-perspective: 1200px;
+-o-perspective: 1200px;
+perspective: 1200px;
 }
 
 #cube {
 width: 100%;
 height: 100%;
+position: absolute;
 -webkit-transform-style: preserve-3d;
 -moz-transform-style: preserve-3d;
 -o-transform-style: preserve-3d;
@@ -3127,6 +3082,7 @@ transform: translateZ( 100px );
 }
 #cube figure {
 display: block;
+position: absolute;
 height: auto;
 width: auto;
 }
@@ -3144,7 +3100,6 @@ width: 20px;
 height: 100%;
 right: 0px;
 top: 0;
-position: absolute;
 }
 
 #cube .right {
@@ -3158,50 +3113,48 @@ transform: skewX(45deg) translate(-11px,21px);
 height: 20px;
 width: 100%;
 bottom: 1px;
-position: absolute;
 }
 #cube .bottom {
 background: #ddd;
 }
 
-.carousel-control {
-	width: 10px;
-	top: 50%;
-	transform: translate(-50%,-50%);
-}
+.carousel-control{width:10px; top:40px;}
 .carousel-control.left{background-image:linear-gradient(to right,rgba(0,0,0,0) 0,rgba(0,0,0,.0001) 100%); left:20px;}
 .carousel-control.right{background-image:linear-gradient(to right,rgba(0,0,0,0) 0,rgba(0,0,0,.0001) 100%); right:20px;}
 </style>
 <style>
 .thumb_img {
 	text-align: center;
+	width: 187px;
 	height: 180px;
 	padding: 0;
+		border-left: 1px solid #d6d6d6;
 	border-right: 1px solid #d6d6d6;
-	cursor:pointer
 
 }
-.thumb_img:hover { background-color:#f1f1f1}
+.thumb_img:hover > .thumb_bg{ background-color:#f1f1f1}
 .thumb_img:hover .thumb_toolboox{ display:block}
 
 .thumb_bg {
-	width: 100%;
-	position: absolute;
-	display: block;
-	transform: translate(-50%,-50%);
-	top: 50%;
-	left: 50%;
+	text-align: center;
+	width: 187px;
+	height: 150px;
+	position: relative;
+	vertical-align: middle;
+	display: table-cell;
 }
 .thumb_toolboox {
 	background-color: #c1c1c1;
 	height: 30px;
 	line-height: 2;
 	display: none;
-	position: absolute;
-	width: 100%;
-	bottom: 0;
 }
 
+.thumb_icon {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
 .thumb_icon > a {
 	color: #2a2a2a;
 	font-size: 15px;

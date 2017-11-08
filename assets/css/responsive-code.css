@@ -493,6 +493,18 @@ a:hover {
 	#itemslider2 .carousel-inner {
 		margin-top: 20px;
 	}
+	.frame-step-header-text {
+		font-size: 40px !important;
+	}
+	.frame-step-button-wrapper {
+		float: left !important;
+	}
+	.frame-step-continue-shopping-button, .frame-step-proceed-to-cart-button {
+		font-size: 12px !important;
+		margin-right: 5px !important;
+		max-width: 140px !important;
+		font-weight:normal !important
+	}
 }
 
 

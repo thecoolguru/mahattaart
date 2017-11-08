@@ -467,7 +467,8 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
     <div class="col-lg-5 col-md-6 col-sm-8 col-xs-12 help">
     <ul class="nav navbar-nav navbar-right menu-list text-center" style="margin-right:0">
 <li> <a href="<?php print base_url(); ?>frontend/contact"> <i class="glyphicon glyphicon-earphone"></i> Help </a> </li>
-<li> <a href="<?php print base_url(); ?>frontend/myUpload"> <i class="glyphicon glyphicon-upload"></i> My Upload </a> </li>
+<li> <a <?php if(!$this->session->userdata('userid')){?> href="javascript:void(0)" onclick="login('')" <?php }else{ ?> href="<?php echo base_url();?>frontend/myUpload" <?php }?>></i> My Upload </a> </li>
+<!--<li> <a href="<?php print base_url(); ?>frontend/myUpload"> <i class="glyphicon glyphicon-upload"></i> My Upload </a> </li>-->
 <li> <a <?php     if(!$this->session->userdata('userid')){?> href="javascript:void(0)" onclick="login('')" <?php  }else{ ?> href="<?php  echo base_url();?>frontend/lightbox" <?php }?>> <i class="glyphicon glyphicon-user"></i> My Gallery </a> </li>
 <?php if($this->session->userdata('userid')){
             $user_id=$this->session->userdata('userid');
