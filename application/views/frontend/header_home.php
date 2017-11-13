@@ -655,23 +655,21 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <div class="rowour">
 <div class="n-layer">
 <ul class="menu2">
-<div class="col-md-8" style="border-right:solid 1px #FC0;margin:8px 0">
+<div class="col-md-8" style="margin:8px 0">
 <div class="artist row"> <a style="display:block;padding:8px 0;text-align:center;font-weight:600" href="<?php echo base_url();?>frontend/artists">International Artist </a>
 <div class="col-md-4 " >
 <?php $subjects=$this->search_model->get_subcategory(84);
 			//print_r($subjects);
       for($i=6;$i<=13;$i++){
-      //  $artist= $subjects[$i]->name;
+      //$artist= $subjects[$i]->name;
 ?>
 <li> <a href="javascript:category_filter('<?php echo $drop2[$i]->keyword ?>')"><?php print ucwords($drop2[$i]->title); ?></a> </li>
 <?php }?>
 </div>
 <div class="col-md-4">
-<?php 
-                       for($i=14;$i<=21;$i++){
-                           //$artist= $subjects[$i]->name;
-                    
-                            ?>
+<?php for($i=14;$i<=21;$i++){
+  //$artist= $subjects[$i]->name;
+?>
 <li> <a href="javascript:category_filter('<?php echo $drop2[$i]->keyword ?>')"><?php print ucwords($drop2[$i]->title); ?></a> </li>
 <?php }?>
 </div>
@@ -686,23 +684,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 </div>
 </div>
-<div class="col-md-4">
-<div class="artist">
-<div style="float:left;margin:8px 0"> <a style="display:block;padding:8px 0;text-align:center;font-weight:600" href="<?php echo base_url();?>frontend/artists"> Indian Artist </a>
-<div style="width:230px;float:left">
-<?php 
-                       for($i=0;$i<=count($subjects);$i++){
-					   
-					   $artist= $subjects[$i]->name;
-                       if($artist=='Deepali Mundra' || $artist=='Narahari Bhawandla' || $artist=='Prashant Yampure' || $artist=='Shweta Sharma' || $artist=='Subhasish Chakravarty' || $artist=='Vinayak Jarang') {
-                            ?>
-<li> <a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name); ?></a> </li>
-<?php }}?>
-</div>
-<div style="width:230px;float:left"> </div>
-</div>
-</div>
-</div>
+
 
 </ul>
 </div>

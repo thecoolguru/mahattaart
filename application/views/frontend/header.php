@@ -43,24 +43,18 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'UA-107710559-1');
 </script>
-
-
 <?php if($this->session->flashdata('help_message')){//print $this->session->flashdata('help_message'); ?>
 <?php } ?>
-
 </head>
 
-<body >
-
+<body>
 <input type="hidden" id="mail_filename" value="<?=$image_detail[0]['image_filename'];?>">
  <input type="hidden" id="mail_image_id" value="<?=$image_detail[0]['image_id'];?>">
     <div id="wrapper">
         <div class="overlay"></div>
-    
-        <!-- Sidebar -->
+       <!-- Sidebar -->
         <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
             <ul class="nav sidebar-nav">
                 <li>
@@ -469,7 +463,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <li> <a href="<?php print base_url(); ?>frontend/contact"> <i class="glyphicon glyphicon-earphone"></i> Help </a> </li>
 <li> <a <?php if(!$this->session->userdata('userid')){?> href="javascript:void(0)" onclick="login('')" <?php }else{ ?> href="<?php echo base_url();?>frontend/myUpload" <?php }?>></i> My Upload </a> </li>
 <!--<li> <a href="<?php print base_url(); ?>frontend/myUpload"> <i class="glyphicon glyphicon-upload"></i> My Upload </a> </li>-->
-<li> <a <?php     if(!$this->session->userdata('userid')){?> href="javascript:void(0)" onclick="login('')" <?php  }else{ ?> href="<?php  echo base_url();?>frontend/lightbox" <?php }?>> <i class="glyphicon glyphicon-user"></i> My Gallery </a> </li>
+<li> <a <?php   if(!$this->session->userdata('userid')){?> href="javascript:void(0)" onclick="login('')" <?php  }else{ ?> href="<?php  echo base_url();?>frontend/lightbox" <?php }?>> <i class="glyphicon glyphicon-user"></i> My Gallery </a> </li>
 <?php if($this->session->userdata('userid')){
             $user_id=$this->session->userdata('userid');
             $user_data=$this->user_model->get_user_details($user_id);?>
@@ -484,9 +478,6 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <li> <a href="#" onClick="return login('')"> <i class="glyphicon glyphicon-lock"></i> Sign up | </a> </li>
 <li> <a href="#" onClick="return login('')"> Log in </a> </li>
 
-
-
-
 <?php }
 			if($this->session->userdata('userid')){
 			?>
@@ -495,19 +486,15 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
                         $num=$this->cart_model->count_cart_byid($this->session->userdata('userid')); $sum=0;foreach($num as $quant){
                             $sum=$sum + $quant['qty'];
                         } print $sum;
-                    }
-
-                    else
-                    {
-                        
-    echo '0';}?>
+                    }else {
+                    echo '0';}?>
 </span> </a> </li>
 <?php }if(!$this->session->userdata('userid')){?>
 <li> <a style="position:relative" href="#" onClick="return login('')"> <i class="glyphicon glyphicon-shopping-cart cart-size"> </i> <span id="HeaderCartCount" class="hdr-cart-count">0</span> </a> </li>
 <? }?>
 </ul>
-    </div>
-	<div id="slide" style="right:-405px;">
+  </div>
+	   <div id="slide" style="right:-405px;">
               <div id="sidebar1" onClick="close_panel()"><img src="http://beta.mahattaart.com/images/contact.png"></div>
                 <div id="heade">
                   <div id="results" style="color:red"></div>
@@ -952,13 +939,11 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <div class="rowour">
 <div class="n-layer">
 <ul class="menu2">
-<div class="col-md-8"  style="border-right:solid 1px #FC0; margin:8px 0">
+<div class="col-md-8"  style="margin:8px 0">
 <div class="artist row">
-<a style="display:block;padding:8px 0;text-align:center;font-weight:600" href="<?php echo base_url();?>frontend/artists">International Artist </a>
 <div class="col-md-4 col-sm-4 H3" style="display: none">
 <?php $subjects=$this->search_model->get_subcategory(84);
-  		//print_r($subjects);
-      for($i=6;$i<=12;$i++){
+  		for($i=6;$i<=12;$i++){
 ?>
 <li>
 <a href="javascript:category_filter('<?php echo $drop2[$i]->keyword ?>')"><?php print ucwords($drop2[$i]->title); ?></a>
@@ -979,25 +964,9 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </li>
 <?php }?>
 </div>
-</div></div>
-<div class="col-md-4">
-<div class="">
-<div>
-<a style="display:block;padding:8px 0;text-align:center;font-weight:600" href="<?php echo base_url();?>frontend/artists"> Indian Artist </a>
-<div>
-<?php for($i=0;$i<=count($subjects);$i++){
-      $artist= $subjects[$i]->name;
-      if($artist=='Deepali Mundra' || $artist=='Narahari Bhawandla' || $artist=='Prashant Yampure' || $artist=='Shweta Sharma' || $artist=='Subhasish Chakravarty' || $artist=='Vinayak Jarang') {
-?>
-<li>
-<a href="javascript:category_filter('<?php echo $subjects[$i]->keywords ?>')"><?php print ucwords($subjects[$i]->name); ?></a>
-</li>
-<?php }}?>
-</div>
-<div>
 </div>
 </div>
-</div></div>
+
 </ul>
 </div>
 </div>
