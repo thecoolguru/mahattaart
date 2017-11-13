@@ -25,7 +25,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
         <div class="Map_area">
                 <a href="<?=base_url()?>frontend/themes_view/13" id="map_area_03"></a>
                 <a href="<?=base_url()?>frontend/themes_view/15" id="map_area_04"></a>
-                <a href="<?=base_url()?>frontend/themes_view/17" id="map_area_05"></a>
+                <a href="<?=base_url()?>search/dosearch/1/32/27/all" id="map_area_05"></a>
                 <a href="<?=base_url()?>frontend/themes_view/12	" id="map_area_06"></a>
         </div>
         <style>
