@@ -11,6 +11,7 @@ class Frontend extends CI_Controller
 		$this->load->library('session');
 		$this->load->library('cart');
 		$this->load->library('email');
+		$this->load->library('msg91');
 		$this->load->helper('form');
 		$this->load->helper('url');
 		$this->load->model('frontend_model');
@@ -47,6 +48,44 @@ class Frontend extends CI_Controller
 		}
 		unset($_SESSION['page_id']);
 	}
+
+	public function msg91()	{
+		$this->form_validation->set_rules('sendTo', 'Mobile number', 'trim|required|regex_match[/^[0-9]{10}$/]');
+		//echo "<pre>";
+		//print_r($var);
+		//echo "</pre>";
+		$this->form_validation->set_rules('message', 'Text Message', 'trim|required');
+		//print_r($var1);
+		//die();
+		$this->load->view('frontend/header');
+		if ($this->form_validation->run() == FALSE)	{
+			$this->load->view('frontend/message_form');	
+		}	else 	{
+			echo $to = $this->input->post('sendTo');
+			echo $message = $this->input->post('message');//die();
+			if($to) {
+				if($this->msg91->send($to, $message) == TRUE)  {
+					$this->session->set_userdata('update_status', '
+					<div class="alert alert-success">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<strong><i class="dripicons-checkmark"></i> Hooray!</strong> Message Sent.
+					</div>');
+					redirect('frontend/msg91','refresh');
+				}	else	{
+					$this->session->set_userdata('update_status', '
+					<div class="alert alert-danger">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<strong><i class="dripicons-checkmark"></i> Oops!</strong> Message  not sent.
+					</div>');
+					redirect('frontend/msg91','refresh');
+				}
+			}
+		}
+		$this->load->view('frontend/footer');
+	}
+
+
+
 
 	public function photostoart_inner()	{
  		$_SESSION['path'] = IMAGE_PATH;

@@ -50,6 +50,7 @@
                     <a href="https://msg91.com/startups/?utm_source=startup-banner"><img src="https://msg91.com/images/startups/msg91Badge.png" width="120" height="90" title="MSG91 - SMS for Startups" alt="Bulk SMS - MSG91"></a>
 
                 </h1>
+                <h1><a href="<?php echo base_url()?>frontend/msg91"">send msg</a></h1>
             </div>
 
             
