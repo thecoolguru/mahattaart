@@ -1,10 +1,10 @@
-<?php
+<?php 
 ob_start();
 use Aws\S3\S3Client;
 define('IMAGE_PATH', APPPATH.'views/frontend/upload_images/');
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Frontend extends CI_Controller
-{
+{                                                   //8979883081
 	function __construct()
 	{
 		parent::__construct();
@@ -36,34 +36,6 @@ class Frontend extends CI_Controller
 		$this->user = $this->facebook->getUser();
 	}
 	
-	public function frameit_myupload()	{
-		//"user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&frameSize="+frameSize+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee,
-		//$img_id=$this->input->post('img_id');
-		$user_id=$this->input->post('user_id');
-		$mat_color=$this->input->post('mat_color');
-		$frameSize=$this->input->post('frameSize');
-		$paper_surface=$this->input->post('paper_surface');
-		$final_frame_size=$this->input->post('final_frame_size');
-		$images_filename=$this->input->post('image_namee');
-		date_default_timezone_set('Asia/Kolkata');
-		$date=date('Y-m-d H:i:s');
-		$product_size=$this->input->post('product_size');
-		$print_value = $this->input->post('print_v');
-		if($user_id!=''){
-			print_r($data);
-			$user_id=$this->session->userdata('userid');
-			//$insert=$this->frontend_model->insert_into_cart($data);
-			$insert=$this->frontend_model->insert_into_myupload($data);
-
-			$res=array('image_print_type'=>$paper_surface, 'user_id'=>$user_id, 'mount_code'=>$mount_color, 'image_name'=>$images_filename, 'create_date'=>$date);
-				$data=array_map('trim',$res);
-				$check1= $this->frontend_model->insert_into_myupload($user_id,trim($img_id),trim($paper_surface),$print_size,$frame_color,trim($mat_color),trim($glasses));
-		}
-		echo "1";
-	}
-
-
-
 	   public function photostoframe()
 	{
 		$_SESSION['page_id'] = '9';
@@ -94,7 +66,7 @@ class Frontend extends CI_Controller
 			$this->load->view('frontend/photostoart_inner',$data);
 			$this->load->view('frontend/footer');
   		}	else{
-  			
+  			//echo "<script>window.location.href='photostoart';</script>"; 
   		}
 		unset($_SESSION['type']);
 	}
@@ -459,40 +431,12 @@ class Frontend extends CI_Controller
 
 	//End
 	public function get_web_price_detials()	{
-    //echo $quality_range;
 		$print_paper=$this->input->post('print_paper');
 		$quality_range=$this->input->post('quality');
-		//$print_type_main=$this->input->post('print_type_main');
-		$res=$this->frontend_model->get_tbl_web_price_test($print_paper);
-		
-		$rate=explode(',',$res[0]->rate);
-		//print_r($rate);
-		
-		$quality_ranges=array(
-		'Star',
-		'Platinum',
-		'Gold',
-		'Silver'
-		);
-	
-		 $index=array_search($quality_range,$quality_ranges);
-		echo json_encode($rate[$index].','.$res[0]->paper_type_only);
-		
-	}
-	public function get_surface_tbl_web_price($print_type){
-	
-	$print_type=$this->input->post('print_type');
-	$print_type_main=$this->input->post('print_type_main');
-
-	$result=$this->frontend_model->get_surface_tbl_web_price($print_type,$print_type_main);
-	//print_r($result);
-	foreach($result as $res){
-	echo "<option value='".$res->paper."'>".$res->paper."</option>";
-	//print_r($res->paper);
-	}
-
-	
-	
+		$sql="select rate from tbl_web_price where paper='".$print_paper."' and quality='".$quality_range."'";
+		$rows=  mysql_query($sql);
+		$result=  mysql_fetch_assoc($rows);
+		echo $result['rate'];
 	}
 	  
 	public function clearance($value)	{

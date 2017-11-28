@@ -375,10 +375,11 @@ $search_data_r = json_decode($search_data_file,TRUE);
 	$search_data_file = file_get_contents($search_file, false, $context);
 	$search_data_r = json_decode($search_data_file,TRUE);
 	$data['image_detail']=$search_data_r['results'];
-	$data['rate_tbl_web_price']=$this->search_model->get_web_price();
-	$data['papper']=$this->search_model->get_paper_web_price();
+	//$data['rate_tbl_web_price']=$this->search_model->get_web_price();
+	$data['display_p_name']=$this->frontend_model->get_surface_tbl_web_price(1,'Archival Premium');
+	
 	$data['papper_type']=$this->search_model->get_paper_type_name();
-	$data['type']=$search_text;
+	//$data['type']=$search_text;
 
 		$this->load->view('frontend/header',$data);
 		$this->load->view('frontend/products',$data);

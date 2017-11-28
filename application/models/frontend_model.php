@@ -7,6 +7,16 @@ class Frontend_model extends CI_Model
 	}
 		//main frontend of beta.mahattaart by mohan
 	
+	public  function insert_into_myupload($user_id,$mat_color,$frameSize,$paper_surface,$final_frame_size,$frame_name,$image_namee)	{
+		$this->db->where('user_id',$user_id);
+		$this->db->where('image_id',$image_id);
+		$this->db->where('image_print_type',trim($imagsTypes));
+		$this->db->where('image_size',trim($total_size));
+
+		$query=$this->db->get('add_images_table');
+		return $query->num_rows();//$user_id.','.$image_id.','.$imagsTypes.','.$total_size;
+	}
+
 	public function get_header_images_inner_collection($title,$cat_id)	{
 		$this->db->select('*');
 		$this->db->where('cat_id',$cat_id);
@@ -16,7 +26,15 @@ class Frontend_model extends CI_Model
 		$query=$this->db->get('header_images');
 		return $query->result(); 
 	}	
+public function get_tbl_web_price_test($paper,$paper_type_name){
+//echo $paper;
+$this->db->select('*');
+$this->db->where('paper',$paper);
+//$this->db->where('paper_type_name','Archival Standard');
+$query=$this->db->get('tbl_web_price_test');
+return $query->result();
 
+}
 	public function get_frame_code_web_price()	{
 		//	$frame_cat=$this->input->post('frame_cat');
 		$this->db->select('*');
@@ -235,7 +253,19 @@ class Frontend_model extends CI_Model
 			echo "";
 		}
 	}
+public function get_surface_tbl_web_price($print_type,$print_type_name){
+if($print_type==3){
+$print_type=array(1,2);
+//print_r($print_type);
+}
+$this->db->select('*');
+$this->db->where_in('paper_type_only',$print_type);
+$this->db->where('paper_type_name',$print_type_name);
+$this->db->group_by('paper');
+$query=$this->db->get('tbl_web_price_test');
+return $query->result();
 
+}
 	public function get_images_lightbox_gallery($lightbox_id,$limit,$start)	{
 		$this->db->select('*');
 		$this->db->where('lightbox_id',$lightbox_id);
