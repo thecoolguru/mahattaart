@@ -104,7 +104,7 @@ public function get_paper_type_name(){
 	  $this->db->select('paper_type_name');
 	  $this->db->group_by('paper_type_name');
 	  $this->db->where_not_in('paper_type_name','');
-	  $query=$this->db->get('tbl_web_price');
+	  $query=$this->db->get('tbl_web_price_test');
 	  return $query->result();
 	  }
 	public function post_comment($com,$image_id,$user_id)
@@ -991,6 +991,7 @@ return $search_data;
                 
                 
 		
+
                 if($price_slab!="none")
                 {
                     if($price_slab==1)

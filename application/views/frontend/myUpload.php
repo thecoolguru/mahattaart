@@ -8,8 +8,7 @@
             url:'<?=base_url()?>index.php/frontend/myUpload',
             data:{session_id},
             success: function(data){
-                //alert(data);
-                
+            //alert(data);
             }
         });            
         $.ajax({

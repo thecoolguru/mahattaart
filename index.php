@@ -19,7 +19,9 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
+	error_reporting(0);
 	define('ENVIRONMENT', 'production');
+	//include_once './vendor/autoload.php';
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING

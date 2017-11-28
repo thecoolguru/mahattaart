@@ -19,6 +19,151 @@
  	}
 ?>
 <script>
+   
+	
+   $(document).ready(function(){
+   //alert('gg')
+		showTable('Basic');
+		$('#4,#5,#6,#7,#8,#9,#10,#12,#19,#22,#frame-it,#slider_explore,#myCanvas,#myCanvas2,#myCanvas3,#review_rating,#Recommended_item,#zoom_image,#canvas3D,#large_img5,#large_img6,#large_img7,.close').hide();		
+		$('#museum').prop('checked','true');
+		//$('#print_type').val('canvas_only');
+		//paper_surface('1');
+		$('#sizes').click(function(){
+		 	var value = $(this).val();
+		 	if(value == 'Own Size')
+		 		$('#6').show();	
+		 	else
+		 		$('#6').hide();
+		 });
+		$('#gallery').click(function(){
+			$('#large_img2,#22').hide();
+		});
+		
+		$('.item_click').click(function(){
+			var type = $(this).attr('id');
+				$('#paper_type').val(type);
+			var image_size=$( "#sizes" ).val();
+			var print_sizes=$( "#surfaces").val();
+			var quality_rate=$('#quality_rate').val();
+			var split = image_size.split('X');
+		  	var width=parseInt(split[0]);
+		  	var height=parseInt(split[1]);
+			var orig_image_size = width + '" X '+ height +'"';
+			if(type == '1'){
+				paper_surface(1);
+				$('#22,#frame_show,#zoom_image,#frame-it,#large_img3,#19,#12,#large_img6,#large_img5,#large_img7,#12').hide();
+				$('#large_img2,.wrapped,#11,#15,#20,#canvas_show,#canvas3D').show();
+				$("#museum").prop('checked', true);
+				$('#18').html('Types Of Wrap');
+				$('#print_type').val('canvas_only');
+      			$('#type').val('1');
+      			$('#print_sizes').html(orig_image_size);
+      			get_quality('');
+				}else if(type == '2'){
+				paper_surface(2);	
+				$('#frame-it,#19,#12,#frame_show').show();
+				$('#22,#12,#15,#large_img2,#zoom_image,.wrapped,#myCanvas,#myCanvas2,#myCanvas3,#large_img3,#20,#large_img5,#large_img6,#large_img7,#canvas_show,#canvas3D').hide();
+				$('#18').html('');
+				$('#print_type').val('');
+    			$('#type').val('2');
+    			$('#print_sizes').html(orig_image_size);
+    			get_quality('');
+			}else if(type == '3'){
+				paper_surface(3);	
+				$('#22,#12,#large_img2,#frame-it,.wrapped,#myCanvas,#myCanvas2,#myCanvas3,#12,#15,#19,#20,#large_img5,#large_img6,#large_img7,#canvas_show,#frame_show,#canvas3D').hide();
+				$('#18').html('');
+				$('#large_img3').show();
+				$('#print_type').val('only_print');
+				$('#17').html(orig_image_size+'Print Only');
+				$('#type').val('3');
+				$('#print_sizes').html(orig_image_size);
+				get_quality('');
+			}
+		});
+		
+		get_quality('');
+		$('#f_name').html('Absolute Black');
+		$('#check0').prop('checked',true);
+		$('#glass_type').val('Regular');
+		$('#frame_sized').html('26');
+		$('#mount_width').val('1');
+		$('#mount_state').val(1);
+		$('#sizes').click();
+		var k = 0;
+		$('.remove-mount').click(function(){
+			if($('#mount_state').val() == 1){
+				k = $('#mount_sized').val();
+				$('#mount_sized').val(k);
+				$('#mount_style').val($('#abc').attr('style'));
+				$('#mount_style2').val($('#abc2').css('padding'));
+				$('#abc').attr('style','');
+				$('#abc2').css('padding','0px');
+				$('#mount_width').val(0);
+				$('#mount_state').val(0);
+				$('.mount').hide();
+				get_quality('');
+			}
+		});
+
+		$('#11').click(function(){
+			$('#22,#large_img6,#large_img5,#frame-it,#large_img2,#large_img3,#myCanvas,#myCanvas2,#myCanvas3,#large_img7,#canvas3D').hide();
+				if( $('#type').val() == 1){
+					$('#large_img3,#18,#20').show();
+				}else if( $('#type').val() == 2){
+					$('#20').hide();
+					$('#large_img3').show();
+				}
+				else if( $('#type').val() == 3){
+					$('#15,#20,#19,#12').hide();
+					$('#large_img3').show();
+				}	
+		});
+
+		$('#20').click(function(){
+			$('#22,#large_img6,#large_img5,#large_img3,#zoom_image,#frame-it,#large_img3,#19,#12,#large_img7,#myCanvas,#myCanvas2,#myCanvas3').hide();
+			$('#large_img2,.wrapped,#11,#15,#20,#canvas3D').show();
+		});
+
+		$('#15').click(function(){
+			$('#22,#large_img6,#large_img5,#large_img3,#zoom_image,#frame-it,#large_img3,#19,#12,#large_img2,#myCanvas,#myCanvas2,#myCanvas3,#canvas3D').hide();
+			$('#large_img7').show();
+		});
+
+		$('#13').click(function(){
+			$('#large_img6,#large_img3,#large_img7,#zoom_image,#frame-it,#large_img2,#myCanvas,#myCanvas2,#myCanvas3,#canvas3D').hide();
+			$('#22,#large_img5').show();	
+			if($('#type').val() == '1'){
+				$('#canvas_show').show();
+				$('.sa,#frame_show,#print').hide();
+			}else if($('#type').val() == '2'){
+				$('#frame_show').show();
+				$('.sa,#canvas_show,#print').hide();
+			}else if($('#type').val() == '3'){
+				$('#print').show();
+				$('.sa,#canvas_show,#frame_show').hide();
+			}
+		});
+
+		$('#14').click(function(){
+			$('#large_img5,#large_img7,#zoom_image,#large_img3,#frame-it,#large_img2,#myCanvas,#myCanvas2,#myCanvas3,#canvas3D').hide();
+			if($('#type').val() == '1'){
+				$('#canvas_show,#22,#large_img6').show();
+				$('.sa,#frame_show,#print').hide();
+			}else if($('#type').val() == '2'){
+				$('#frame_show,#22,#large_img6').show();
+				$('.sa,#canvas_show,#print,').hide();
+			}else if($('#type').val() == '3'){
+				$('#print,#22,#large_img6').show();
+				$('.sa,#canvas_show,#frame_show').hide();
+			}
+		});
+		$('#19').click(function(){
+			$('#22,#large_img5,#large_img6,#large_img7,#zoom_image,#large_img3,#large_img2,#myCanvas,#myCanvas2,#myCanvas3,#canvas3D').hide();
+			$('#frame-it').show();
+		});
+	});
+</script>
+<script>
    $(document).ready(function(){
 	   $(window).bind('scroll', function(){
 			 if(parseInt($(window).scrollTop()) >= 0 && parseInt($(window).scrollTop()) <= 120){
@@ -41,6 +186,31 @@
 	bottom: auto;
 }
 </style>
+<script>
+
+function paper_surface(type){
+		//var print_type= '';
+		//alert('should first')
+		if(!type){
+		type=$('#paper_type').val()
+		}
+		var print_type_main=$('#print_type_main').val();
+		//alert(print_type_main+','+type)
+		
+			$.ajax({
+	            type: "POST",
+	            url: "<?=base_url();?>index.php/frontend/get_surface_tbl_web_price",
+	            data:'print_type='+type+'&print_type_main='+print_type_main,
+				async:false,
+				success: function(data)
+	            {
+				//alert(data)
+				//alert('jjjj')
+				$('#surfaces').html(data);
+				}
+			});
+	}
+</script>
 <?php 
 $image_data = '';
 $image_type=split('_',$image_name);
@@ -100,7 +270,6 @@ $opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
 $context = stream_context_create($opts);
 $search_data_raw = file_get_contents($click_to_enlarge, false, $context);
 $search_data = json_decode($search_data_raw,TRUE);
-
 $collection_id=$this->search_model->get_image_collection($images_id);
 $pricing_ran=$this->search_model->get_range($images_id);
 $pricing_range=$pricing_ran->pricing_range;
@@ -305,32 +474,41 @@ $size_array[$i]['width'];
   margin: 0 auto;
 }
 </style>
+
 <script type="text/javascript">
 	function get_quality(value){
-		var quality=$('#quality').val();
+	    var quality=$('#quality').val();
 		var paper = $('#surfaces').val();
+		//alert(quality+','+paper);
 		$.ajax({
       		type: 'post',
       		url: '<?=base_url()?>frontend/get_web_price_detials',
       		data:'print_paper='+paper+'&quality='+quality,
       		success: function(response){
-        		$('#quality_rate').val(response);
-      	   			throw_price(response,value);
+			//alert(response)
+			var obj=JSON.parse(response);
+			var res=obj.split(',');
+        		$('#quality_rate').val(res[0]);
+      	   			throw_price(res[0],res[1]);
            	}
     	});
   	}
     
-function throw_price(rate,surface){
+function throw_price(rate,surface_type){
 	var image_size=$( "#sizes option:selected" ).val();
 	var split = image_size.split('X');
 	var width = parseInt(split[0]);
 	var height = parseInt(split[1]);
 	var surface = $('#surfaces').val();
 	var ratesof = rate;
-	if(surface=='Photo canvas' || surface=='Hahnemuhle Photo Canvas' || surface=='Hahnemuhle Daguerre canvas'){
+	if(surface_type=='1'){
+	//alert('canvas')
+	///$('#test').val('canvas');
     var c_height=parseInt(height)+parseInt(4);
     var c_width=parseInt(width)+parseInt(4);
   	}else{
+	//alert('paper')
+	//$('#test').val('frame');
   	var c_width=width+parseInt(1);
   	var c_height=height+parseInt(1);
   	} 
@@ -362,8 +540,10 @@ function throw_price(rate,surface){
    {
     var role_size = 44;
   }
+  
   if((Number(c_width) && Number(c_height))<=(role_size)){
 		  if(c_width < c_height){
+		 // alert(c_width+'*'+role_size+'*'+ratesof)
 	     var cost=c_width*role_size*ratesof;
 		  }else if(c_width > c_height){
 		    var cost=c_height*role_size*ratesof;
@@ -377,6 +557,7 @@ function throw_price(rate,surface){
     }
   }
   if(c_height==c_width){
+ // alert(c_height+','+role_size+','+ratesof)
     var cost=(c_height*parseInt(role_size)*ratesof);
   }
 	$('#print_price').html('Rs.'+ Math.round(parseInt(cost),2));
@@ -1266,10 +1447,32 @@ function right(width,height,x){
                 </ul>
             </div>
             <div class="row" id="accordion2">
+			<div class="panel single-accordion col-md-9">
+	                <h5><a role="button" class="collapsed collapsed-menu-step" aria-expanded="false" aria-controls="three" data-toggle="collapse" data-parent="#accordion2" href="#three">Select Print Type<span class="fa fa-plus pull-right"></span><span class="accor-close"><i class="icofont icofont-rounded-up"></i></span></a></h5>
+	                <div id="three" class="accordion-content collapse" aria-expanded="false">
+	                    <select class="form-control input_control" id='print_type_main' onchange="paper_surface();" onclick="get_functions();return false;">
+						<?php 
+						foreach($papper_type as $results){?>
+						<option value="<?=$results->paper_type_name?>"><?=$results->paper_type_name?></option>
+						
+						<?php
+						}
+						?>
+	                    </select>
+	                </div>
+                </div>
+				
                 <div class="panel single-accordion col-md-9">
 	                <h5><a role="button" class="collapsed collapsed-menu-step" aria-expanded="false" aria-controls="two" data-toggle="collapse" data-parent="#accordion2" href="#two">Print type<span class="fa fa-plus pull-right"></span><span class="accor-close"><i class="icofont icofont-rounded-up"></i></span></a></h5>
 	                <div id="two" class="accordion-content collapse" aria-expanded="false">
 	                    <select class="form-control input_control" id='surfaces' onclick="   get_functions();return false;">
+						<?php
+						foreach($display_p_name as $d_p_name){
+	echo "<option value='".$d_p_name->paper."'>".$d_p_name->display_p_name."</option>";
+	//print_r($res->paper);
+	}
+						
+						?>
 	                    </select>
 	                </div>
                 </div>
@@ -1396,6 +1599,7 @@ a.lightbox-close::before {
 	width: 1px;
 }
 a.lightbox-close::after {
+
 	background: black none repeat scroll 0 0;
 	content: "";
 	display: block;
@@ -1732,7 +1936,7 @@ else {?> href="" onclick="login('');return false;" style="color:#ef9223;"<?php }
 <input type="hidden" id="mount_rate" value="">
 <input type="hidden" id="type" value="1">
 <input type="hidden" id="print_h_w" value="">
-<input type="hidden" id="print_type" value="">
+<input type="hidden" id="print_type" value="canvas_only">
 <input type="hidden" id="mount_state" value="">
 <input type="hidden" id="mount_style" value="">
 <input type="hidden" id="mount_style2" value="3px">
@@ -2098,6 +2302,7 @@ background: #ddd;
 			bottom(bottom_width,bottom_height,sourceY); 
 			$('#myCanvas3').attr('width',bottom_width+'px');
 			$('#myCanvas3').attr('height',bottom_height+'px');
+
 			$('#myCanvas3').css('height','111px');
 		} else {
 			var front_width = Math.round(width*0.79381);
@@ -2130,166 +2335,8 @@ background: #ddd;
 <input type="hidden" name="quality" id="quality" value="<?=$collection_range;?>">
 <input type="hidden" name="img_id" id="img_id" value="<?php echo $images_id;?>" />
 <input type="hidden" name="img_id" id="gallery_img_id" value="<?=$image_detail[0]['images_id'];?>" />
-<script>
-   function paper_surface(type){
-		var td = '';
-		if(type==2){
-			td = '<option value="Hahnemuhle Photo Luster">Hahnemuhle Photo Luster</option>';
-			td +='<option value="Hahnemuhle Photo Matte Fibre">Hahnemuhle Photo Matte Fibre</option>';
-		}else if(type==3){
-			td = '<option value="Hahnemuhle Photo Luster">Hahnemuhle Photo Luster</option>';
-			td +='<option value="Hahnemuhle Photo Matte Fibre">Hahnemuhle Photo Matte Fibre</option>';
-			td += '<option value="Hahnemuhle Daguerre canvas">Hahnemuhle Daguerre canvas</option>';
-			td += '<option value="Hahnemuhle Photo Canvas">Hahnemuhle Photo Canvas</option>';
-			td += '<option value="Photo canvas">Photo canvas</option>';
-		}else if(type==1){
-			td  = '<option value="Hahnemuhle Daguerre canvas">Hahnemuhle Daguerre canvas</option>';
-			td += '<option value="Hahnemuhle Photo Canvas">Hahnemuhle Photo Canvas</option>';
-			td += '<option value="Photo canvas">Photo canvas</option>';
-		}
-	    $('#surfaces').html(td);
-	}
-	
-   $(document).ready(function(){
-		showTable('Basic');
-		$('#4,#5,#6,#7,#8,#9,#10,#12,#19,#22,#frame-it,#slider_explore,#myCanvas,#myCanvas2,#myCanvas3,#review_rating,#Recommended_item,#zoom_image,#canvas3D,#large_img5,#large_img6,#large_img7,.close').hide();		
-		$('#museum').prop('checked','true');
-		$('#print_type').val('canvas_only');
-		paper_surface('1');
-		$('#sizes').click(function(){
-		 	var value = $(this).val();
-		 	if(value == 'Own Size')
-		 		$('#6').show();	
-		 	else
-		 		$('#6').hide();
-		 });
-		$('#gallery').click(function(){
-			$('#large_img2,#22').hide();
-		});
-		
-		$('.item_click').click(function(){
-			var type = $(this).attr('id');	
-			var image_size=$( "#sizes" ).val();
-			var print_sizes=$( "#surfaces").val();
-			var quality_rate=$('#quality_rate').val();
-			var split = image_size.split('X');
-		  	var width=parseInt(split[0]);
-		  	var height=parseInt(split[1]);
-			var orig_image_size = width + '" X '+ height +'"';
-			if(type == '1'){
-				paper_surface(1);
-				$('#22,#frame_show,#zoom_image,#frame-it,#large_img3,#19,#12,#large_img6,#large_img5,#large_img7,#12').hide();
-				$('#large_img2,.wrapped,#11,#15,#20,#canvas_show,#canvas3D').show();
-				$("#museum").prop('checked', true);
-				$('#18').html('Types Of Wrap');
-				$('#print_type').val('canvas_only');
-      			$('#type').val('1');
-      			$('#print_sizes').html(orig_image_size);
-      			get_quality('');
-				}else if(type == '2'){
-				paper_surface(2);	
-				$('#frame-it,#19,#12,#frame_show').show();
-				$('#22,#12,#15,#large_img2,#zoom_image,.wrapped,#myCanvas,#myCanvas2,#myCanvas3,#large_img3,#20,#large_img5,#large_img6,#large_img7,#canvas_show,#canvas3D').hide();
-				$('#18').html('');
-				$('#print_type').val('');
-    			$('#type').val('2');
-    			$('#print_sizes').html(orig_image_size);
-    			get_quality('');
-			}else if(type == '3'){
-				paper_surface(3);	
-				$('#22,#12,#large_img2,#frame-it,.wrapped,#myCanvas,#myCanvas2,#myCanvas3,#12,#15,#19,#20,#large_img5,#large_img6,#large_img7,#canvas_show,#frame_show,#canvas3D').hide();
-				$('#18').html('');
-				$('#large_img3').show();
-				$('#print_type').val('only_print');
-				$('#17').html(orig_image_size+'Print Only');
-				$('#type').val('3');
-				$('#print_sizes').html(orig_image_size);
-				get_quality('');
-			}
-		});
-		
-		get_quality('');
-		$('#f_name').html('Absolute Black');
-		$('#check0').prop('checked',true);
-		$('#glass_type').val('Regular');
-		$('#frame_sized').html('26');
-		$('#mount_width').val('1');
-		$('#mount_state').val(1);
-		$('#sizes').click();
-		var k = 0;
-		$('.remove-mount').click(function(){
-			if($('#mount_state').val() == 1){
-				k = $('#mount_sized').val();
-				$('#mount_sized').val(k);
-				$('#mount_style').val($('#abc').attr('style'));
-				$('#mount_style2').val($('#abc2').css('padding'));
-				$('#abc').attr('style','');
-				$('#abc2').css('padding','0px');
-				$('#mount_width').val(0);
-				$('#mount_state').val(0);
-				$('.mount').hide();
-				get_quality('');
-			}
-		});
+<input type="hiden" name="paper_type" id="paper_type" value="1">
 
-		$('#11').click(function(){
-			$('#22,#large_img6,#large_img5,#frame-it,#large_img2,#large_img3,#myCanvas,#myCanvas2,#myCanvas3,#large_img7,#canvas3D').hide();
-				if( $('#type').val() == 1){
-					$('#large_img3,#18,#20').show();
-				}else if( $('#type').val() == 2){
-					$('#20').hide();
-					$('#large_img3').show();
-				}
-				else if( $('#type').val() == 3){
-					$('#15,#20,#19,#12').hide();
-					$('#large_img3').show();
-				}	
-		});
-
-		$('#20').click(function(){
-			$('#22,#large_img6,#large_img5,#large_img3,#zoom_image,#frame-it,#large_img3,#19,#12,#large_img7,#myCanvas,#myCanvas2,#myCanvas3').hide();
-			$('#large_img2,.wrapped,#11,#15,#20,#canvas3D').show();
-		});
-
-		$('#15').click(function(){
-			$('#22,#large_img6,#large_img5,#large_img3,#zoom_image,#frame-it,#large_img3,#19,#12,#large_img2,#myCanvas,#myCanvas2,#myCanvas3,#canvas3D').hide();
-			$('#large_img7').show();
-		});
-
-		$('#13').click(function(){
-			$('#large_img6,#large_img3,#large_img7,#zoom_image,#frame-it,#large_img2,#myCanvas,#myCanvas2,#myCanvas3,#canvas3D').hide();
-			$('#22,#large_img5').show();	
-			if($('#type').val() == '1'){
-				$('#canvas_show').show();
-				$('.sa,#frame_show,#print').hide();
-			}else if($('#type').val() == '2'){
-				$('#frame_show').show();
-				$('.sa,#canvas_show,#print').hide();
-			}else if($('#type').val() == '3'){
-				$('#print').show();
-				$('.sa,#canvas_show,#frame_show').hide();
-			}
-		});
-
-		$('#14').click(function(){
-			$('#large_img5,#large_img7,#zoom_image,#large_img3,#frame-it,#large_img2,#myCanvas,#myCanvas2,#myCanvas3,#canvas3D').hide();
-			if($('#type').val() == '1'){
-				$('#canvas_show,#22,#large_img6').show();
-				$('.sa,#frame_show,#print').hide();
-			}else if($('#type').val() == '2'){
-				$('#frame_show,#22,#large_img6').show();
-				$('.sa,#canvas_show,#print,').hide();
-			}else if($('#type').val() == '3'){
-				$('#print,#22,#large_img6').show();
-				$('.sa,#canvas_show,#frame_show').hide();
-			}
-		});
-		$('#19').click(function(){
-			$('#22,#large_img5,#large_img6,#large_img7,#zoom_image,#large_img3,#large_img2,#myCanvas,#myCanvas2,#myCanvas3,#canvas3D').hide();
-			$('#frame-it').show();
-		});
-	});
-</script>
 <script type="text/javascript">
 		function showTable(frame_cat){
 			$.ajax({

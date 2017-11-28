@@ -13,10 +13,10 @@
             $this->ci =& get_instance();
             //echo "</pre>";
             //echo "<pre>";
-            $this->authKey = "6Cb8BVyNtjuPwFzzhXn9";
+            $this->authKey = "182961AGzU89Qyn95a043144";
             //echo "</pre>";
             //echo "<pre>";
-            $this->senderID = "Shivq";
+            $this->senderID = "mahatt";
             //echo "</pre>";
         }
         public function send($to, $message) {

@@ -176,45 +176,117 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 
 	function addTomyupload()	{
 		var paper_surface = $('#paper_surface').val();
-		var frame_name = $('#frame').val();
 		var final_frame_size  = '';
-		var mount_name = $('#mount_code').val();
-		var frameSize = $('#frame_size').html();
+		if($('#click').html() == 'canvas_click')
+		{
+			var framed = $('#finished_size').html();
+			framed = framed.split('"');
+			frameheight = framed[1].split('X');
+			final_frame_size  = ''+framed[0]+'X'+frameheight[1]; 
+		}
+		else
+		{
+			var framed = $('#finished_size').html();
+			framed = framed.split('"');
+			frameheight = framed[1].split('X');
+			final_frame_size = ''+framed[0]+'X'+frameheight[1];
+		}
+		var mount_color = $('#mount_color').html();
+		var data = '';
+		if($('#click').html() == 'print_only')
+		{
+			data = 'only_print';   
+		}
+		else if($('#click').html() == 'canvas_click')
+		{
+			data = 'canvas_only';
+		}
+		else
+		{
+			data = '';
+		}
+		var only_print = data;
+		var glasses = $('#glass_type').html();
+		var glasses_coste = $('#glass_price').html();	  
+		glasses_coste = glasses_coste.split('.');
+		glasses_coste = glasses_coste[1];
+		var gettotal = $('.actual_price').html();
+		gettotal = gettotal.split('.');
+		var total_price = gettotal[1];
+		var MountCost = $('#MountCost').html();
+		MountCost = MountCost.split('.');
+		MountCost = MountCost[1];
+		var FrameCost = '';
+		if($('#click').html() == 'canvas_click')
+		{
+			FrameCost = $('#CanvasCost').html();
+		}
+		else if($('#click').html() == 'frame_click')
+		{
+			FrameCost = $('#FrameCost').html();
+		}
+		FrameCost = FrameCost.split('.'); 
+		FrameCost = FrameCost[1];
+		var print_size = '';
 		var size = $('#sizes').val();
-		var framed = $('#finished_size').html();
-		var user_id = '<?= $this->session->userdata('userid')?>';
+		if( size == 'Customize Size')
+		{
+			if( ($('#width').val() == 0) && ($('#height').val() == 0) )
+			{
+				print_size = '0X0';	
+			}
+			else
+			{ 
+				print_size = $('#width').val()+'X'+ $('#height').val();
+			}	
+		}
+		else
+		{
+			print_size = $('#sizes').val();
+		}
+		var price = $('#print_price').html();
 		var id = $('#get_img').val();
 		id = id.split('image');
 		var new_id = id[2].split('.');
 		var image_id = new_id[0];
 		var image_type = new_id[1];
+		var user_id = '<?= $this->session->userdata('userid')?>';
+		var mat1_size = $('#mount_size').html();
+		var mat1_color = $('#mount_color').html();
+		var frame_color = $('#frame_color').val();
+		if( $('#click').html()=='canvas_click')
+		{
+			frame_color = 'Streched Canvas Gallary Wrap';	
+		}
+		else
+		{
+			frame_color = frame_color; 
+		}
+		var mount_name = $('#mount_code').val();
+		var frameSize = $('#frame_size').html();
 		var img_name = $('#get_img').val();
 		img_name = img_name.split('/');
-		var image_namee = img_name[7];
-
-		//alert(paper_surface);
-		//alert(frame_name);
-		//alert(frameSize);
-		//alert(size);
-		alert(user_id);
-		//alert(id);
-		//alert(new_id);
-		//alert(image_id);
-		//alert(image_type);
-		//alert(img_name);
-		alert(image_namee);
+		var image_namee = img_name[7];//.split('.');
 		$.ajax({
 			type: "POST",
 			url: "<?=base_url()?>index.php/frontend/frameit_myupload",
-			data: "user_id="+user_id+"&mat_color="+mount_name+"&frameSize="+frameSize+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&frame_name="+frame_name+"&image_namee="+image_namee,
+			data: "glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_color+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print,
+			alert(data);
 			success:function(data)  
-			{
-				alert(data);
-				swal({
-					title: 'My Upload STATUS',
-					text: 'Item Added Successfully',
-					timer: 1000
-				})
+			{    
+			swal({
+			title: 'CART STATUS',
+			text: 'Item Added Successfully',
+			timer: 1000
+			})
+			setTimeout(function()	{
+				$('.frame-step-header-container').show();
+				feedback_of_addtocart(data);
+				$('html, body').animate({ scrollTop: 0 }, 'fast');
+			},1000);
+			var cartItem = parseInt($('.cart_add').html());
+			cartItem++;
+			$('.cart_add').html(cartItem);
 			}
 		}); 
 	}   // end function addTomyupload
@@ -297,7 +369,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 			//alert(paper_surface+','+final_frame_size+','+mount_color+','+only_print+','+glasses+','+glasses_coste+','+total_price+','+MountCost+','+FrameCost+','+print_size+','+image_id+','+image_type+','+user_id+','+mat1_size+','+mat1_color+','+frame_color+','+frame_name+','+mount_name+','+frameSize+','+image_namee);
 			$.ajax({
 				 type: "POST",
-				 url: "<?=base_url()?>index.php/frontend/frameit_myupload",
+				 url: "<?=base_url()?>index.php/frontend/frameit_addtocart",
 				 data: "glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_color+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print,
 				 success:function(data)  
 				 {    
@@ -1858,7 +1930,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
                 	<button <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> type="button" class="btn social_icon" style="background-color:#d3131b; color:#fff;"> Add to cart </button>
                 	<button onclick="remove_pricing(); return false;" type="button" class="btn social_icon" style="background-color:#555; color:#fff; margin-right:10px"> Cancel </button>
                 </div>
-            </div>            
+            </div>
         </div>
 
                

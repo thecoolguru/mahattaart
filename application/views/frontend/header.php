@@ -83,10 +83,10 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
                     <a href="<?php print base_url(); ?>frontend/themes">THEMES </a>
                 </li>
                 <li>
-                    <a href="<?php print base_url(); ?>frontend/photostoframe">PHOTOS TO FRAME</a>
+                    <a href="<?php print base_url(); ?>frontend/photostoframe" style="color:#ff9800">PHOTOS TO FRAME</a>
                 </li>
                 <li>
-                    <a href="<?php print base_url(); ?>frontend/clearance"> CLEARANCE </a>
+                    <a href="<?php print base_url(); ?>frontend/clearance" style="color:#f1464f"> CLEARANCE </a>
                 </li>
                 <li> <a href="<?php print base_url(); ?>frontend/promooffer"> PROMOTIONAL OFFER </a></li>
                 <!--<li>
@@ -468,12 +468,16 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
             $user_id=$this->session->userdata('userid');
             $user_data=$this->user_model->get_user_details($user_id);?>
 <li><a href="<?=base_url()?>frontend/logout">Sign Out</a></li>
- <li><a href="<?=base_url()?>user/profile"> Welcome
-<?php if ($user_data->first_name){
+ <li>
+  	<a href="<?=base_url()?>user/profile"> Welcome
+		<div style="position:absolute; right:0; bottom:-5px; white-space:nowrap">
+			<?php if ($user_data->first_name){
                         echo $user_data->first_name;
-                    }else  $email=$user_data->email_id;
+                    }else $email=$user_data->email_id;
 					echo  substr($email,0,12);?>
-</a></li>
+        </div>
+    </a>
+</li>
 <?php }else{?>
 <li> <a href="#" onClick="return login('')"> <i class="glyphicon glyphicon-lock"></i> Sign up | </a> </li>
 <li> <a href="#" onClick="return login('')"> Log in </a> </li>
