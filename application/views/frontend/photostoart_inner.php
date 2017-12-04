@@ -184,25 +184,25 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 		var framed = $('#finished_size').html();
 		var user_id = '<?= $this->session->userdata('userid')?>';
 		var id = $('#get_img').val();
-		id = id.split('image');
+		//id = id.split('image');
 		var new_id = id[2].split('.');
 		var image_id = new_id[0];
 		var image_type = new_id[1];
 		var img_name = $('#get_img').val();
 		img_name = img_name.split('/');
 		var image_namee = img_name[7];
-
+alert('yes')
 		//alert(paper_surface);
 		//alert(frame_name);
 		//alert(frameSize);
 		//alert(size);
-		alert(user_id);
+		//alert(user_id);
 		//alert(id);
 		//alert(new_id);
 		//alert(image_id);
 		//alert(image_type);
 		//alert(img_name);
-		alert(image_namee);
+		//alert(image_namee);
 		$.ajax({
 			type: "POST",
 			url: "<?=base_url()?>index.php/frontend/frameit_myupload",
@@ -294,6 +294,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 			var img_name = $('#get_img').val();
 			img_name = img_name.split('/');
 			var image_namee = img_name[7];//.split('.');
+			//alert('yes')
 			//alert(paper_surface+','+final_frame_size+','+mount_color+','+only_print+','+glasses+','+glasses_coste+','+total_price+','+MountCost+','+FrameCost+','+print_size+','+image_id+','+image_type+','+user_id+','+mat1_size+','+mat1_color+','+frame_color+','+frame_name+','+mount_name+','+frameSize+','+image_namee);
 			$.ajax({
 				 type: "POST",
@@ -319,38 +320,38 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 		}   // end function
  
 	  		
-	function paper_surface(id){
+	function paper_surface_fun(id){
 		var td = '';
-		$('#paper_surface').html(td);
-		if(id=='framing'){
-			td = '<option value="Enhanced Matt">Enhanced Matt</option>';
-			td += '<option value="Photography Paper Glossy">Photography Paper Glossy</option>';
-			td += '<option value="Photographic Luster">Photographic Luster</option>';
-			td += '<option value="Fine Art Luster">Fine Art Luster</option>';
-			td += '<option value="Matt Fine Art">Matt Fine Art</option>';
-			td += '<option value="Glossy Fine Art">Glossy Fine Art</option>';
-			td += '<option value="Photo Luster">Photo Luster</option>';
-			td += '<option value="Photo Matt">Photo Matt</option>';
-			td += '<option value="Vinyl">Vinyl</option>';
-		}else if(id=='print_only'){
-			td = '<option value="Enhanced Matt">Enhanced Matt</option>';
-			td += '<option value="Photography Paper Glossy">Photography Paper Glossy</option>';
-			td += '<option value="Photographic Luster">Photographic Luster</option>';
-			td += '<option value="Fine Art Luster">Fine Art Luster</option>';
-			td += '<option value="Matt Fine Art">Matt Fine Art</option>';
-			td += '<option value="Glossy Fine Art">Glossy Fine Art</option>';
-			td += '<option value="Photo Luster">Photo Luster</option>';
-			td += '<option value="Photo Matt">Photo Matt</option>';
-			td += '<option value="Vinyl">Vinyl</option>';
-			td += '<option value="Photo Canvas">Photo canvas</option>';
-			td += '<option value="Canvas">Canvas</option>';
-			td += '<option value="Daguerre Canvas">Daguerre Canvas</option>';
-		}else{
-			td  = '<option value="Canvas">Canvas</option>';
-			td += '<option value="Photo Canvas">Photo canvas</option>';
-			td += '<option value="Daguerre Canvas">Daguerre Canvas</option>';
+		var type='';
+		//alert(id)
+		if(!id){
+		//alert('ysblank');
+		id=$('#value_print_type').val();
+		
 		}
-	    $('#paper_surface').html(td);
+		if(id=='canvas'){
+			type=1;
+		}else if(id=='framing'){
+			type=2;
+		}else{
+		type=3;
+		}
+	   // $('#paper_surface').html(td);
+		var paper_surface=$('#paper_surface').html();
+		var print_type_main=$('#print_type_main').val();
+         //alert(print_type_main+'x'+id)
+		$.ajax({
+	            type: "POST",
+	            url: "<?=base_url();?>index.php/frontend/get_surface_tbl_web_price",
+	            data:'print_type='+type+'&print_type_main='+print_type_main,
+				async:false,
+				success: function(data)
+	            {
+				//alert(data)
+				$('#paper_surface').html(data);
+				}
+			});
+
 	}
 
 	function calculate_cost(value){
@@ -395,31 +396,19 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 			var role_size = '';
 			var rates = '';
 			
-			if(paper == 'Enhanced Matt'){
-				rates = 1.2;
-			}else if(paper == 'Photography Paper Glossy'){
-				rates = 1;
-			}else if(paper == 'Photographic Luster'){
-				rates = 0.7;
-			}else if(paper == 'Fine Art Luster'){
-				rates = 1.6;
-			}else if(paper == 'Matt Fine Art'){
-				rates = 1;
-			}else if(paper == 'Glossy Fine Art'){
-				rates = 2.25;
-			}else if(paper == 'Photo Matt'){
-				rates = 1.5;
-			}else if(paper == 'Photo Luster'){
-				rates = 1.5;
-			}else if(paper == 'Vinyl'){
-				rates = 1;
-			}else if(paper == 'Canvas'){
-				rates = 1.25;
-			}else if(paper == 'Photo Canvas'){
-				rates = 2.5;
-			}else if(paper == 'Daguerre Canvas'){
-				rates = 3.5;
-			} 
+			$.ajax({
+      		type: 'post',
+      		url: '<?=base_url()?>frontend/get_web_price_detials',
+      		data:'print_paper='+paper,
+      		success: function(response){
+			//alert(response)
+			var obj=JSON.parse(response);
+			//	alert(obj)
+			$('#quality_rate').val(obj);
+			
+           	}
+    	});
+			rates=$('#quality_rate').val();
 			var glass_type='';
 			if( $('#check1').prop('checked') ){
 				glass_type = 'Acrylic';
@@ -694,6 +683,8 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 	    frame_pricing();
 	}
 	function change_image(src){
+	
+	
 		$('#get_img').val(src);
 		var k  =  src.split('/');       
 		var path = '';
@@ -712,6 +703,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 			  success:function(data) {
                 var obj = JSON.parse(data);
 				console.log(obj);
+				
 				var str = ''+obj;
 				var res = str.split(",");
 				var td ='';
@@ -720,9 +712,11 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 				var dim = str1.split('X');
 				var width = dim[0];
 				var height = dim[1];
+				//alert(height)
 				td += '<option value="'+width+'X'+height+'">'+width+'"X'+height+'"</option>';
 				}
 				td += '<option value="Customize Size">Customize Size</option>';
+				//alert(td)
 				$('#sizes').html(td);
 				calculate_cost('');
 				var dimention = obj[obj.length-2];  
@@ -1391,7 +1385,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
       	$('#canvas').click();
 		}, 500);
 	}
-	paper_surface('canvas');
+	paper_surface_fun('canvas');
 	$('#cropbox').show();
 	$('#museum').click(function(){
 		$('#myCanvas').hide();
@@ -1538,6 +1532,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
    $('.img2').click(function(){
     var id = $(this).attr("id");  
 		if(id == 'framing'){
+		$('#value_print_type').val(id);
 			$('#framingdiv1,#framingdiv2').show();	
 			showTable('Basic');
 			$('#canvas_details').hide();
@@ -1555,7 +1550,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 			$('#frame_color').val('Absolute Black');
 			$('#mount_code').val('DR 2091');
 			$('#mount_width').val('1');
-			paper_surface('framing');
+			paper_surface_fun('framing');
 			if( $('#frame_ data').val() == ''){
 		    console.log('nothing');
             }else{
@@ -1578,6 +1573,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
  			$('.canvas').hide();
  			$('.framing').show();
         }else if(id == 'canvas'){
+		$('#value_print_type').val(id);
 			$('#canvas_details').show();
 			$('#framingdiv1,#framingdiv2').hide();	 
 			$('#abc').attr('style','');
@@ -1600,11 +1596,12 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 			$('#height').val('');
 			$('#frame_color').val('');
 			$('#mount_code').val('');
-			paper_surface('canvas');
+			paper_surface_fun('canvas');
  			$('#frame_click').html('canvas_click');
 			calculate_cost('');
  			$('#click').html('canvas_click');
  			}else if(id == 'print_only'){
+			$('#value_print_type').val(id);
 			$('#canvas_details').hide();
 			$('#framingdiv1,#framingdiv2').hide();
 			$('#abc').attr('style','');
@@ -1619,7 +1616,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 			$('#height').val('');
 			$('#frame_color').val('');
 			$('#mount_code').val('');
-			paper_surface('print_only');
+			paper_surface_fun('print_only');
 			calculate_cost('');
 			var size = ''+$('#sizes').val();
 		    var dimen = size.split('X');
@@ -2111,35 +2108,63 @@ function right(width,height,x){
 		.form-modify label.radio-inline{color:#888}
 	  </style>
       <form class="form-horizontal form-modify" role="form">
+	  <?php
+	 // print_r($papper_type);
+	  ?>
+	  
+	  <div class="form-group">
+          <label for="country" class="col-sm-4 control-label">Print Type:</label>
+          <div class="col-sm-8">
+          <select id='print_type_main' class="form-control input_control input" onChange="paper_surface_fun();calculate_cost('');"> 
+		  <?php 
+						foreach($papper_type as $results){?>
+						<option value="<?=$results->paper_type_name?>"><?=$results->paper_type_name?></option>
+						
+						<?php
+						}
+						?>
+    	  </select>
+    	  </div>
+    	  </div>
+	  <div class="form-group">
+          <label for="country" class="col-sm-4 control-label">Printing Surface:</label>
+          <div class="col-sm-8">
+		
+          <select id='paper_surface' class="form-control input_control input" onclick="calculate_cost('')"> 
+		  <?php
+		
+						foreach($display_p_name as $d_p_name){
+	echo "<option value='".$d_p_name->paper."'>".$d_p_name->display_p_name."</option>";
+	//print_r($res->paper);
+	}
+						
+						?>
+    	  </select>
+    	  </div>
+    	  </div>
           <div class="form-group">
-          <label for="country" class="col-sm-7 control-label">Select size:</label>
-           <div class="col-sm-5">
+          <label for="country" class="col-sm-4 control-label">Select size:</label>
+           <div class="col-sm-8">
           <select name="sizes" id="sizes" class="form-control input_control" onchange="calculate_cost(this.value)">
           </select>
             </div>
            </div>
           <div class="form-group dimention">
-          <label for="country" class="col-sm-7 control-label dimention"> Width (Inch.):</label>
-          <div class="col-sm-5">
+          <label for="country" class="col-sm-4 control-label dimention"> Width (Inch.):</label>
+          <div class="col-sm-8">
           <input id="width" maxlength="2" class="form-control by_keyup_update dimention input_control inputs" type="text">
           </div>
           </div>
           <div class="form-group dimention">
-          <label for="country" class="col-sm-7 control-label dimention" > Height (Inch.):</label>
+          <label for="country" class="col-sm-5 control-label dimention" > Height (Inch.):</label>
           <div class="col-sm-5">
-          <input id="height" maxlength="2" class="form-control by_keyup_update dimention input_control inputs" type="text">
+          <input id="height" maxlength="7" class="form-control by_keyup_update dimention input_control inputs" type="text">
           </div>
           </div> <!-- /.form-group -->
-          <div class="form-group">
-          <label for="country" class="col-sm-7 control-label">Paper Printing Surface:</label>
-          <div class="col-sm-5">
-          <select id='paper_surface' class="form-control input_control input" onclick="calculate_cost('')"> 
-    	  </select>
-    	  </div>
-    	  </div>
+          
     	  <div class="form-group">
-		  <label class="control-label col-sm-7">Finished Size:</label>
-          <div class="col-sm-5">
+		  <label class="control-label col-sm-5">Finished Size:</label>
+          <div class="col-sm-7">
           <div id='finished_size'style='padding-top:8px;'></div>
           </div> 
 		  </div>
@@ -2257,6 +2282,8 @@ function right(width,height,x){
 					?>
                 </ul>
             </div>
+			<input type="hidden" id='value_print_type' value="" />
+			<input type="hidden" name="quality_rate" id="quality_rate" value="">
             <div id="frameimages0"></div>
         </div>
     <!-- Tab Content 2 -->

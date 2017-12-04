@@ -676,7 +676,8 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
         position: static!important
     }
     #menu .menu2 li a {
-        color: #000!important
+        color: #000!important;
+		display:inline-block
     }
     #menu ul li ul li {
         display: block
@@ -688,7 +689,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
         color: #ff9800;
         text-decoration: none
     }
-    #menu .menu2 li:hover>a {
+    #menu .menu2 li > a:hover {
         color: #e19a28!important
     }
     #menu ul li:hover>a>i {
@@ -706,7 +707,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
         top: 16px;
         left: 0;
         border: 3px solid #e19a28;
-        min-height: 470px;
+        min-height: auto;
         -webkit-box-shadow: 0 6px 7px #CCC;
         -moz-box-shadow: 0 6px 7px #CCC;
         box-shadow: 0 6px 7px #CCC;
@@ -883,39 +884,48 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <div class="col-md-3 col-sm-3 H2" style="display: none">
 <ul class="menu2">
 <?php $subjects=$this->search_model->get_subcategory(1);
-      for($i=6;$i<=13;$i++){
+if(count($sub_val)>=6){
+for($i=6;$i<=13;$i++){
 ?>
 <li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a></li>
-<?php } ?>
+<?php } }?>
 </ul>
 </div>
 <div class="col-md-3 col-sm-3">
 <ul class="menu2">
-<?php for($i=14;$i<=21;$i++){ ?>
+<?php 
+if(count($sub_val)>=14){
+for($i=14;$i<=21;$i++){ ?>
 <li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
-<?php } ?>
+<?php } }?>
 </ul>
 </div>
 <div class="col-md-3 col-sm-3">
 
 <ul class="menu2">
-<?php for($i=22;$i<=29;$i++){ ?>
+<?php 
+if(count($sub_val)>=22){
+for($i=22;$i<=29;$i++){ ?>
 <li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
-<?php } ?>
+<?php } }?>
 </ul>
 </div>
 <div class="col-md-3 col-sm-3">
 <ul class="menu2">
-<?php for($i=30;$i<=37;$i++){ ?>
+<?php 
+if(count($sub_val)>=30){
+for($i=30;$i<=37;$i++){ ?>
 <li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
-<?php } ?>
+<?php } }?>
 </ul>
 </div>
 <div class="col-md-3 col-sm-3">
 <ul class="menu2">
-<?php for($i=38;$i<=45;$i++){ ?>
+<?php 
+if(count($sub_val)>=38){
+for($i=38;$i<=45;$i++){ ?>
 <li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
-<?php } ?>
+<?php } }?>
 </ul>
 </div>
 </div>
@@ -1237,48 +1247,58 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <div id="sub-pic"><a href="<?php print base_url(); ?><?=$url5?>"><img src="<?php print base_url();?><?=$drop6[5]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($drop6[5]->title)?>
 </span></a></div>
 <div style="clear:both"></div>
-<div class="sub-hor fist-sub-bar">
+<!--<div class="sub-hor fist-sub-bar" style="display:none">
 <div class="rowour">
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php $rooms=$this->search_model->get_subcategory(859);
-      for($i=0;$i<=5;$i++){
+<?php 
+$rooms=$this->search_model->get_subcategory(859);
+if(count($rooms)>=0){
+for($i=0;$i<=5;$i++){
 ?>
 <li> <a href="javascript:category_filter('<?php echo $rooms[$i]->keyword?>')" onClick="return show_subjects('subjects','<?php print ucwords($rooms[$i]->title)?>')"><?php print ucwords($rooms[$i]->title); ?></a> </li>
-<?php } ?>
+<?php } }?>
 </ul>
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php for($i=6;$i<=11;$i++){ ?>
+<?php
+if(count($rooms)>=6){
+for($i=6;$i<=11;$i++){ ?>
 <li> <a href="javascript:category_filter('<?php echo $rooms[$i]->keyword ?>')"><?php print ucwords($rooms[$i]->title); ?></a> </li>
-<?php } ?>
+<?php } }?>
 </ul>
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php for($i=12;$i<=17;$i++){ ?>
+<?php 
+if(count($rooms)>=12){
+for($i=12;$i<=17;$i++){ ?>
 <li> <a href="javascript:category_filter('<?php echo $rooms[$i]->keyword ?>')"><?php print ucwords($rooms[$i]->title); ?></a> </li>
-<?php } ?>
+<?php } }?>
 </ul>
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php for($i=18;$i<=22;$i++){ ?>
+<?php 
+if(count($rooms)>=18){
+for($i=18;$i<=22;$i++){ ?>
 <li> <a href="javascript:category_filter('<?php echo $rooms[$i]->keyword ?>')"><?php print ucwords($rooms[$i]->title); ?></a> </li>
-<?php } ?>
+<?php } }?>
 </ul>
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
-<?php for($i=23;$i<=29;$i++){ ?>
+<?php 
+if(count($rooms)>=23){
+for($i=23;$i<=29;$i++){ ?>
 <li> <a href="javascript:category_filter('<?php echo $rooms[$i]->keyword ?>')"><?php print ucwords($rooms[$i]->title); ?></a> </li>
-<?php } ?>
+<?php } }?>
 </ul>
 </div>
 </div>
 <div style="clear:both"></div>
-</div>
+</div>-->
 <div class="rowour" style="text-align:center"> <a style="padding:10px;color:#960;font-size:20px;text-align:center"href="<?php print base_url(); ?>frontend/rooms">See all Rooms</a> </div>
 </div>
 </ul>
@@ -1296,7 +1316,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$drop7[4]->keyword?>/all"><img src="<?php print base_url();?><?=$drop7[4]->menu_image?>" border="0" class="img-responsive" ><span class="dblock1"><?php echo ucwords($drop7[4]->title)?> </span></a></div>
 <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$drop7[5]->keyword?>/all"><img src="<?php print base_url();?><?=$drop7[5]->menu_image?>" border="0" class="img-responsive" ><span class="dblock1"> <?php echo ucwords($drop7[5]->title)?> </span></a></div>
 <div style="clear:both"></div>
-<div class="sub-hor fist-sub-bar">
+<!--<div class="sub-hor fist-sub-bar" style="display:none">
 <div class="rowour">
 <div class="n-layer artstyle2">
 <ul class="menu2">
@@ -1356,7 +1376,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 </div>
 <div style="clear:both"></div>
-</div>
+</div>-->
 <div class="rowour" style="text-align:center"> <a style="padding:10px;color:#960;font-size:20px;text-align:center"href="<?php print base_url(); ?>frontend/places">See all Places </a></a> </div>
 </div>
 </ul>
