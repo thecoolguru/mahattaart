@@ -41,7 +41,7 @@
 		
 		$('.item_click').click(function(){
 			var type = $(this).attr('id');
-				$('#paper_type').val(type);
+			$('#paper_type').val(type);
 			var image_size=$( "#sizes" ).val();
 			var print_sizes=$( "#surfaces").val();
 			var quality_rate=$('#quality_rate').val();
@@ -51,7 +51,7 @@
 			var orig_image_size = width + '" X '+ height +'"';
 			if(type == '1'){
 				paper_surface(1);
-				$('#22,#frame_show,#zoom_image,#frame-it,#large_img3,#19,#12,#large_img6,#large_img5,#large_img7,#12').hide();
+				$('#22,#frame_show,#zoom_image,#frame-it,#large_img3,#19,#12,#large_img6,#large_img5,#large_img7,#12,.bshow').hide();
 				$('#large_img2,.wrapped,#11,#15,#20,#canvas_show,#canvas3D').show();
 				$("#museum").prop('checked', true);
 				$('#18').html('Types Of Wrap');
@@ -61,7 +61,7 @@
       			get_quality('');
 				}else if(type == '2'){
 				paper_surface(2);	
-				$('#frame-it,#19,#12,#frame_show').show();
+				$('#frame-it,#19,#12,#frame_show,.bshow').show();
 				$('#22,#12,#15,#large_img2,#zoom_image,.wrapped,#myCanvas,#myCanvas2,#myCanvas3,#large_img3,#20,#large_img5,#large_img6,#large_img7,#canvas_show,#canvas3D').hide();
 				$('#18').html('');
 				$('#print_type').val('');
@@ -72,7 +72,7 @@
 				paper_surface(3);	
 				$('#22,#12,#large_img2,#frame-it,.wrapped,#myCanvas,#myCanvas2,#myCanvas3,#12,#15,#19,#20,#large_img5,#large_img6,#large_img7,#canvas_show,#frame_show,#canvas3D').hide();
 				$('#18').html('');
-				$('#large_img3').show();
+				$('#large_img3,.bshow').show();
 				$('#print_type').val('only_print');
 				$('#17').html(orig_image_size+'Print Only');
 				$('#type').val('3');
@@ -932,7 +932,7 @@ function calculate_cost(value){
 </ul>  
 <!-- Tab panes -->
 <div  style="padding-left: 10px; margin-left: 90px;">
-	<div class="divimg mainhor room_frame" id="frame-it" style="border-image-source: url('http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg'); border-image-slice: 58; border-image-width: initial; border-image-outset: initial; border-image-repeat: round; border-style: solid; border-width: 20px; margin-top: 20px; padding: 0px; width: auto; display:inline-block; position: relative;">
+	<div class="divimg mainhor room_frame" id="frame-it" style="border-image-source: url('http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg'); border-image-slice: 58; border-image-width: initial; border-image-outset: initial; border-image-repeat: round; border-style: solid; border-width: 20px; padding: 0px; width: auto; display:inline-block; position: relative;">
 
 	    <div id="abc" class="room_mount" style="background:url('<?=base_url()?>images/uploaded_pdf/mount/DR 2091.jpg')  0% 0% / cover no-repeat;width:auto;padding:10px; background-attachment:scroll; position: relative; z-index: 1;">
             	<a href="javascript:" id="demo2" class="imglink img_shadow " target="_self" >
@@ -1422,11 +1422,24 @@ function right(width,height,x){
       </div>
      
       <div class="clearfix visible-xs"></div>
+        <style>
+   .active2{ border: 1px solid #ef9223!important}
+   </style>         
+            <script>
+			$(function() {
+   $("li.item_click").click(function() {
+      // remove classes from all
+      $("li.item_click").removeClass("active2");
+      // add class to the one we clicked
+      $(this).toggleClass("active2");
+   });
+});
+</script>
       <div class="col-md-5 col-sm-6">
          <div class="single-product-details">
          	<div class="row">
                 <ul class="media-list main-list col-md-9">
-                  <li class="media item_click" id="1" onclick="return false;">
+                  <li class="media item_click active2" id="1" onclick="return false;">
                     <span> Canvas</span>
                       <img class="media-object pull-left" src="<?php print base_url();?>images/uploaded_pdf/canvas_img2.jpg" >
                   </li>
@@ -1446,48 +1459,7 @@ function right(width,height,x){
                   </li>
                 </ul>
             </div>
-            <div class="row" id="accordion2">
-			<div class="panel single-accordion col-md-9">
-	                <h5><a role="button" class="collapsed collapsed-menu-step" aria-expanded="false" aria-controls="three" data-toggle="collapse" data-parent="#accordion2" href="#three">Select Print Type<span class="fa fa-plus pull-right"></span><span class="accor-close"><i class="icofont icofont-rounded-up"></i></span></a></h5>
-	                <div id="three" class="accordion-content collapse" aria-expanded="false">
-	                    <select class="form-control input_control" id='print_type_main' onchange="paper_surface();" onclick="get_functions();return false;">
-						<?php 
-						foreach($papper_type as $results){?>
-						<option value="<?=$results->paper_type_name?>"><?=$results->paper_type_name?></option>
-						
-						<?php
-						}
-						?>
-	                    </select>
-	                </div>
-                </div>
-				
-                <div class="panel single-accordion col-md-9">
-	                <h5><a role="button" class="collapsed collapsed-menu-step" aria-expanded="false" aria-controls="two" data-toggle="collapse" data-parent="#accordion2" href="#two">Print type<span class="fa fa-plus pull-right"></span><span class="accor-close"><i class="icofont icofont-rounded-up"></i></span></a></h5>
-	                <div id="two" class="accordion-content collapse" aria-expanded="false">
-	                    <select class="form-control input_control" id='surfaces' onclick="   get_functions();return false;">
-						<?php
-						foreach($display_p_name as $d_p_name){
-	echo "<option value='".$d_p_name->paper."'>".$d_p_name->display_p_name."</option>";
-	//print_r($res->paper);
-	}
-						
-						?>
-	                    </select>
-	                </div>
-                </div>
-    
-                <div class="panel single-accordion col-md-9">
-                  <h5><a role="button" class="collapsed collapsed-menu-step" aria-expanded="false" aria-controls="one" data-toggle="collapse" data-parent="#accordion2" href="#one">Size<span class="menu-selection-text">(In Inches)</span><span class="fa fa-plus pull-right"></span><span class="accor-close"><i class="icofont icofont-rounded-up"></i></span></a></h5>
-                  <div id="one" class="accordion-content collapse" aria-expanded="false" style="">
-                   <select name="print_sizes" id="sizes" class="form-control input_control" onclick=" get_quality('');return false;">
-                    <?php for($i=0;$i<=count($size_array)-1;$i++){
-              			if($size_array[$i]['width']<=round($max_width_allowed) && $size_array[$i]['height']<= round($max_height_allowed)){ ?>
-          			<option value="<?php print round(number_format($size_array[$i]['width'],1,'.','')).'X'.round(number_format($size_array[$i]['height'],1,'.',''));?>" ><?php print round(number_format($size_array[$i]['width'],1,'.','')).'" X '. round(number_format($size_array[$i]['height'])).'"';?></option>
-          			<?php }} ?>
-                    <!-- <option value="Own Size">Choose Your Own Size</option> -->
-          			</select>
-                   <style>
+            <style>
 				   	.input_control {
 						height: 35px;
 						padding: 4px 2px;
@@ -1531,21 +1503,6 @@ function right(width,height,x){
 						margin-top: -32px;
 					}
 				   </style>
-                   <div style="margin:10px auto">
-                   	<form class="form-inline" id="6">
-                        <div class="form-group">
-                          <label for="email">Width</label>
-                          <input type="text" class="form-control input_control" id="width" style="width:110px">
-                        </div>
-                        <div class="form-group" style="float:right">
-                          <label for="pwd">Height</label>
-                          <input type="text" class="form-control input_control" id="height" style="width:110px">
-                        </div>
-  					</form>
-                   </div>
-                  </div>
-                </div>
-            </div>
             <div class="row">
             	<div class="col-md-9">
                 	<div class="row" id="5">
@@ -1555,10 +1512,52 @@ function right(width,height,x){
                 </div>
             </div>
             <div class="row">
-            <h4 class="col-md-9" id="18" style="margin-bottom: 0;">Types of Wrap</h4>
             <div class="col-md-9">
             	<form class="form-horizontal">
-                    	<div class="row">
+	                	<div class="form-group">
+                            <label for="country" class="col-sm-4"><h4>Print Type</h4></label>
+                            <div class="col-sm-8">
+                                <select class="form-control input_control" id='print_type_main' onchange="paper_surface();" onclick="get_functions();return false;">
+                                <?php 
+                                foreach($papper_type as $results){?>
+                                <option value="<?=$results->paper_type_name?>"><?=$results->paper_type_name?></option>
+                                
+                                <?php
+                                }
+                                ?>
+                                </select>
+                            </div>
+	                    </div>
+                        <div class="form-group">
+                        	<label for="country" class="col-sm-4"><h4>Print Surface</h4></label>
+                            <div class="col-sm-8">
+	                            <select class="form-control input_control" id='surfaces' onclick="   get_functions();return false;">
+						<?php
+						foreach($display_p_name as $d_p_name){
+	echo "<option value='".$d_p_name->paper."'>".$d_p_name->display_p_name."</option>";
+	//print_r($res->paper);
+	}
+						
+						?>
+	                    </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        	<label for="country" class="col-sm-4">
+                            	<h4> Size<span class="menu-selection-text">(In Inches)</span></h4>
+                            </label>
+                            <div class="col-sm-8">
+	                            <select name="print_sizes" id="sizes" class="form-control input_control" onclick=" get_quality('');return false;">
+                    <?php for($i=0;$i<=count($size_array)-1;$i++){
+              			if($size_array[$i]['width']<=round($max_width_allowed) && $size_array[$i]['height']<= round($max_height_allowed)){ ?>
+          			<option value="<?php print round(number_format($size_array[$i]['width'],1,'.','')).'X'.round(number_format($size_array[$i]['height'],1,'.',''));?>" ><?php print round(number_format($size_array[$i]['width'],1,'.','')).'" X '. round(number_format($size_array[$i]['height'])).'"';?></option>
+          			<?php }} ?>
+                    <!-- <option value="Own Size">Choose Your Own Size</option> -->
+          			</select>
+                            </div>
+                        </div>
+                    	<div class="form-group">
+	                        <h4 class="col-md-9" id="18" style="margin-bottom: 0;">Types Of Wrap</h4>
                         	<div class="col-md-4 wrapped">
                                 <label class="checkbox-inline whiteTxt" onclick="get_quality('');"style="font-size: 14px;padding-left: 0;display: block;">
                                     <input name="canvas_type" type="radio" id="museum"> Museum
@@ -1835,8 +1834,8 @@ else {?> href="" onclick="login('');return false;" style="color:#ef9223;"<?php }
   </div>
 </div>
 </section>
-<div class="container">
-	<div class="row" style="background-color:#7f7d7e; margin-top:20px">
+<div class="container bshow" style="display:none">
+<div class="row" style="background-color:#7f7d7e; margin-top:20px">
         <div class="col-md-10 col-md-offset-2">
           <div class="tabs-section tabs-section1">
             <ul class="nav nav-tabs">
@@ -1848,7 +1847,7 @@ else {?> href="" onclick="login('');return false;" style="color:#ef9223;"<?php }
             </div>
         </div>
     </div>
-	<div class="row" style="margin-bottom:20px">
+<div class="row" style="margin-bottom:20px">
     <div class="tab-content">
     <!-- Tab Content 1 -->
       <div class="tab-pane fade active in row" id="tab-1" style="margin-top:5px">
@@ -1940,8 +1939,7 @@ else {?> href="" onclick="login('');return false;" style="color:#ef9223;"<?php }
 <input type="hidden" id="mount_state" value="">
 <input type="hidden" id="mount_style" value="">
 <input type="hidden" id="mount_style2" value="3px">
-
-
+</div>
 <section>
 	<div class="container">
     	<div class="row">
@@ -2137,6 +2135,7 @@ else {?> href="" onclick="login('');return false;" style="color:#ef9223;"<?php }
         </div>  
     </div>
 </section>
+<?php $this->session->unset_userdata('page');?>
 <!--zooom in image-->
 <style>
 .zoom-image,  .zoom-image > figure { background-image: url(<?php echo $image_path;?>);}
@@ -2215,8 +2214,6 @@ background: #ddd;
 .carousel-control.left{background-image:linear-gradient(to right,rgba(0,0,0,0) 0,rgba(0,0,0,.0001) 100%); left:20px;}
 .carousel-control.right{background-image:linear-gradient(to right,rgba(0,0,0,0) 0,rgba(0,0,0,.0001) 100%); right:20px;}
 </style>
-</div>
-<?php $this->session->unset_userdata('page');?>
 
 <script type="text/javascript">
 	$('html').keyup(function(e){
@@ -2335,7 +2332,7 @@ background: #ddd;
 <input type="hidden" name="quality" id="quality" value="<?=$collection_range;?>">
 <input type="hidden" name="img_id" id="img_id" value="<?php echo $images_id;?>" />
 <input type="hidden" name="img_id" id="gallery_img_id" value="<?=$image_detail[0]['images_id'];?>" />
-<input type="hiden" name="paper_type" id="paper_type" value="1">
+<input type="hidden" name="paper_type" id="paper_type" value="1">
 
 <script type="text/javascript">
 		function showTable(frame_cat){

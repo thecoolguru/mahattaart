@@ -37,11 +37,21 @@ class Frontend extends CI_Controller
 	}
 	
 	public function frameit_myupload()	{
-		//"user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&frameSize="+frameSize+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee,
-		//$img_id=$this->input->post('img_id');
+		$print_size=$this->input->post('images_size');
+		$images_price=$this->input->post('images_price');
+		$img_id=$this->input->post('img_id');
 		$user_id=$this->input->post('user_id');
 		$mat_color=$this->input->post('mat_color');
+		$mat_size=$this->input->post('mat_size');
 		$frameSize=$this->input->post('frameSize');
+		$frame_color=$this->input->post('frame_color');
+		$imagsTypes=$this->input->post('image_type');
+		$FrameCost=$this->input->post('FrameCost');
+		$mount_color=$this->input->post('mount_color');
+		$MountCost=$this->input->post('MountCost');
+		$glasses_coste=$this->input->post('glasses_coste');
+		$glasses=$this->input->post('glasses');
+		$total_price=$this->input->post('total_price');
 		$paper_surface=$this->input->post('paper_surface');
 		$final_frame_size=$this->input->post('final_frame_size');
 		$images_filename=$this->input->post('image_namee');
@@ -49,15 +59,75 @@ class Frontend extends CI_Controller
 		$date=date('Y-m-d H:i:s');
 		$product_size=$this->input->post('product_size');
 		$print_value = $this->input->post('print_v');
-		if($user_id!=''){
-			print_r($data);
-			$user_id=$this->session->userdata('userid');
-			//$insert=$this->frontend_model->insert_into_cart($data);
-			$insert=$this->frontend_model->insert_into_myupload($data);
-
-			$res=array('image_print_type'=>$paper_surface, 'user_id'=>$user_id, 'mount_code'=>$mount_color, 'image_name'=>$images_filename, 'create_date'=>$date);
+		if($img_id!=''){
+		 	if($print_value!='')	{
+				if($print_value=='canvas_only')	{
+					$canvas_only='canvas';
+					$frame_c = $frame_color;
+					$this->frontend_model->canvas_frame_type($frame_c);
+				}	else{
+					$canvas_only='print';
+					$frame_c=0;
+					$user_id=$user_id;
+				}
+				if($this->session->userdata('page'))	{
+					echo $path = 1;
+				}	else{
+					echo $path = 0;
+				}
+				echo $data=array('cart_id'=>'','image_print_type'=>$paper_surface,'image_id'=>$img_id,'qty'=>1,'user_id'=>$user_id,'frame_size'=>'0','frame_color'=>$frame_c,'frame_cost'=>'0','mount_size'=>'0','mount_color'=>'0','mount_cost'=>'0','glass_type'=>'0','glass_cost'=>'0','price'=>$total_price,'updated_price'=>'','total_price'=>'','image_size'=>$print_size,'images_price'=>$images_price,'image_name'=>$images_filename,'create_date'=>$date, 'path'=>$path);
+				$check1=$this->frontend_model->check_cart_details($user_id,$img_id,$paper_surface,$print_size);			 
+			}	else{
+				if($this->session->userdata('page'))	{
+					echo $path = 1;
+				}	else{
+					echo $path = 0;
+				}
+				$res=array('cart_id'=>'', 'image_print_type'=>$paper_surface, 'image_id'=>$img_id, 'qty'=>1, 'user_id'=>$user_id, 'frame_size'=>$frameSize, 'frame_color'=>$frame_color, 'frame_cost'=>$FrameCost, 'mount_size'=>$mat_size,'mount_code'=>$mount_color, 'mount_color'=>$mat_color, 'mount_cost'=>$MountCost, 'glass_type'=>$glasses, 'glass_cost'=>$glasses_coste, 'price'=>$total_price,'total_price'=>$total_price, 'updated_price'=>'', 'image_size'=>$print_size,'framed_image_size'=>$final_frame_size,'images_price'=>$images_price, 'image_name'=>$images_filename, 'create_date'=>$date, 'path'=>$path,'size'=>$product_size);
 				$data=array_map('trim',$res);
-				$check1= $this->frontend_model->insert_into_myupload($user_id,trim($img_id),trim($paper_surface),$print_size,$frame_color,trim($mat_color),trim($glasses));
+				$check1= $this->frontend_model->check_cart_details($user_id,trim($img_id),trim($paper_surface),$print_size,$frame_color,trim($mat_color),trim($glasses));
+			}
+			//print_r($data);
+			$user_id=$this->session->userdata('userid');   
+			if($check1==0)	{
+				$insert=$this->frontend_model->insert_into_cart($data);
+			}	elseif($check1==1)	{
+				if($print_value=='')	{
+					$check2= $this->frontend_model->get_cart_details($user_id,$img_id,$paper_surface,$print_size,$frame_color,$mat_color,$glasses);
+				}	else{
+					$check2= $this->frontend_model->get_cart_details($user_id,$img_id,$paper_surface,$print_size);
+				}
+				$framed_image_size=$check2[0]->frame_size;
+				if($framed_image_size!='')	{
+					foreach($check2 as $frameddata)	{
+						$qty=$frameddata->qty;
+						// echo 'qua'.$qty.'qua';
+						$update_qty=$qty+1;
+						$price=$frameddata->price;
+						$update_price=(($price/$qty)*$update_qty);
+						$data3=array('qty'=>$update_qty,'price'=>$update_price);
+						if($print_value=='')	{
+							$insert=$this->frontend_model->update_qty_frame_for_cart($print_size,$paper_surface,$images_filename,$data3,$frame_color,$mat_color,$glasses); 
+						}	else{
+							$insert=$this->frontend_model->update_qty_for_cart($print_size,$paper_surface,$images_filename,$data3);
+						}
+					}  
+				} 
+			}
+			elseif($check1==2)	{
+				$check2= $this->frontend_model->get_cart_details($user_id,$img_id,$paper_surface,$print_size);
+				foreach($check2 as $frameddata)	{
+					$frame_size=$frameddata->frame_size;
+					if($frame_size==1)	{
+						$qty=$frameddata->qty;
+						$update_qty=$qty+1;
+						$price=$frameddata->price;
+						$update_price=(($price/$qty)*$update_qty);
+						$data3=['qty'=>$update_qty,'price'=>$update_price];
+						$insert=$this->frontend_model->update_qty_frame_for_cart($print_size,$paper_surface,$images_filename,$data3);    
+					}   
+				}
+			}    
 		}
 		echo "1";
 	}
@@ -90,6 +160,8 @@ class Frontend extends CI_Controller
 			$data['frame_cat']=$this->frontend_model->get_frame_cat_tbl_web_price();
 			$data['frame_sizze']=$this->frontend_model->get_frame_size();
 			$data['frame_color']=$this->frontend_model->get_frame_color_web_price();
+			$data['display_p_name']=$this->frontend_model->get_surface_tbl_web_price(1,'Archival Premium');
+			$data['papper_type']=$this->search_model->get_paper_type_name();
 			$this->load->view('frontend/header');
 			$this->load->view('frontend/photostoart_inner',$data);
 			$this->load->view('frontend/footer');
@@ -464,7 +536,8 @@ class Frontend extends CI_Controller
 		$quality_range=$this->input->post('quality');
 		//$print_type_main=$this->input->post('print_type_main');
 		$res=$this->frontend_model->get_tbl_web_price_test($print_paper);
-		
+	//	print_r($res[0]->web_print_price);
+		if($quality_range!=''){
 		$rate=explode(',',$res[0]->rate);
 		//print_r($rate);
 		
@@ -477,6 +550,10 @@ class Frontend extends CI_Controller
 	
 		 $index=array_search($quality_range,$quality_ranges);
 		echo json_encode($rate[$index].','.$res[0]->paper_type_only);
+		}else{
+		
+		echo json_encode($res[0]->web_print_price);
+		}
 		
 	}
 	public function get_surface_tbl_web_price($print_type){

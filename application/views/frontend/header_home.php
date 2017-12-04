@@ -562,74 +562,97 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <li><a href="" onclick="return false;" id="H2"> SUBJECTS </a>
 <ul class="H2" style="display: none">
 <div id="mouse-over">
-<?php 
-           $sub_val=$this->frontend_model->get_header_images(1);
-         
-          
-            ?>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/20/<?=$sub_val[0]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[0]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[0]->title)?>
-</span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/20/<?=$sub_val[1]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[1]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[1]->title)?>
-</span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/20/<?=$sub_val[2]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[2]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[2]->title)?>
-</span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/20/<?=$sub_val[3]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[3]->menu_image?>" border="0" class="img-responsive" /> <span class="dblock1"> <?php echo ucwords($sub_val[3]->title)?>
-</span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/20/<?=$sub_val[4]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[4]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"><?php echo ucwords($sub_val[4]->title)?>
-</span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/20/<?=$sub_val[5]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[5]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[5]->title)?>
-</span></a></div>
-<div style="clear:both"></div>
-<div class="sub-hor fist-sub-bar H2"  style="display: none">
-<div class="rowour">
-<div class="n-layer fistn-layer ">
-<ul class="menu2">
-<?php //$subjects=$this->search_model->get_subcategory(1);
-		  for($i=6;$i<=13;$i++){
-?>
-<li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
-<?php } ?>
-</ul>
-</div>
-<div class="n-layer fistn-layer">
-<ul class="menu2">
-<?php
-                        for($i=14;$i<=21;$i++){
-                            ?>
-<li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
-<?php } ?>
-</ul>
-</div>
-<div class="n-layer fistn-layer">
-<ul class="menu2">
-<?php
-                        for($i=22;$i<=29;$i++){
-                            ?>
-<li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
-<?php } ?>
-</ul>
-</div>
-<div class="n-layer fistn-layer">
-<ul class="menu2">
-<?php
-                        for($i=30;$i<=37;$i++){
-                            ?>
-<li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
-<?php } ?>
-</ul>
-</div>
-<div class="n-layer fistn-layer">
-<ul class="menu2">
-<?php
-                        for($i=38;$i<=45;$i++){
-                            ?>
-<li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
-<?php } ?>
-</ul>
-</div>
-</div>
-<div style="clear:both"></div>
-</div>
+<?php $sub_val=$this->frontend_model->get_header_images(1); ?>
+    <div id="sub-pic">
+        <a href="<?php print base_url(); ?>search/dosearch_cat/1/20/<?=$sub_val[0]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[0]->menu_image?>" border="0" class="img-responsive" />
+        	<span class="dblock1"> <?php echo ucwords($sub_val[0]->title)?></span>
+        </a>
+    </div>
+    <div id="sub-pic">
+        <a href="<?php print base_url(); ?>search/dosearch_cat/1/20/<?=$sub_val[1]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[1]->menu_image?>" border="0" class="img-responsive" />
+        	<span class="dblock1"> <?php echo ucwords($sub_val[1]->title)?></span>
+        </a>
+    </div>
+    <div id="sub-pic">
+        <a href="<?php print base_url(); ?>search/dosearch_cat/1/20/<?=$sub_val[2]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[2]->menu_image?>" border="0" class="img-responsive" />
+        	<span class="dblock1"> <?php echo ucwords($sub_val[2]->title)?></span>
+        </a>
+    </div>
+    <div id="sub-pic">
+        <a href="<?php print base_url(); ?>search/dosearch_cat/1/20/<?=$sub_val[3]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[3]->menu_image?>" border="0" class="img-responsive" /> 
+        	<span class="dblock1"> <?php echo ucwords($sub_val[3]->title)?></span>
+        </a>
+    </div>
+    <div id="sub-pic">
+        <a href="<?php print base_url(); ?>search/dosearch_cat/1/20/<?=$sub_val[4]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[4]->menu_image?>" border="0" class="img-responsive" />
+    	    <span class="dblock1"><?php echo ucwords($sub_val[4]->title)?>
+    </span>
+	    </a>
+    </div>
+    <div id="sub-pic">
+        <a href="<?php print base_url(); ?>search/dosearch_cat/1/20/<?=$sub_val[5]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[5]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[5]->title)?>
+    </span></a>
+    </div>
+	<div style="clear:both"></div>
+    <div class="sub-hor fist-sub-bar H2"  style="display: none">
+    <div class="rowour">
+    <div class="n-layer fistn-layer ">
+    <ul class="menu2">
+    <?php
+	 if(count($sub_val)>=6){
+    for($i=6;$i<=13;$i++){
+    ?>
+    <li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
+    <?php } }?>
+    </ul>
+    </div>
+    
+    <div class="n-layer fistn-layer">
+    <ul class="menu2">
+    <?php
+	if(count($sub_val)>=14){
+    for($i=14;$i<=21;$i++){
+    ?>
+    <li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
+    <?php } }?>
+    </ul>
+    </div>
+    
+    <div class="n-layer fistn-layer">
+    <ul class="menu2">
+    <?php
+	if(count($sub_val)>=22){
+    for($i=22;$i<=29;$i++){
+    ?>
+    <li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
+    <?php } }?>
+    </ul>
+    </div>
+    
+    <div class="n-layer fistn-layer">
+    <ul class="menu2">
+    <?php
+	if(count($sub_val)>=30){
+    for($i=30;$i<=37;$i++){
+    ?>
+    <li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
+    <?php } }?>
+    </ul>
+    </div>
+    
+    <div class="n-layer fistn-layer">
+    <ul class="menu2">
+    <?php
+	if(count($sub_val)>=38){
+    for($i=38;$i<=45;$i++){
+    ?>
+    <li> <a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[$i]->title?>/all"><?=$sub_val[$i]->title?></a> </li>
+    <?php } }?>
+    </ul>
+    </div>
+    </div>
+    <div style="clear:both"></div>
+    </div>
 <div class="rowour" style="text-align:center"> <a style="padding:10px;color:#960;font-size:20px;text-align:center"href="<?php print base_url(); ?>frontend/art_subject"> See all Subjects </a> </a> </div>
 </div>
 </ul>
@@ -1009,7 +1032,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <div id="sub-pic"><a href="<?php print base_url(); ?><?=$url5?>"><img src="<?php print base_url();?><?=$drop6[5]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($drop6[5]->title)?>
 </span></a></div>
 <div style="clear:both"></div>
-<div class="sub-hor fist-sub-bar">
+<!--<div class="sub-hor fist-sub-bar">
 <div class="rowour">
 <div class="n-layer artstyle2">
 <ul class="menu2">
@@ -1062,7 +1085,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 </div>
 <div style="clear:both"></div>
-</div>
+</div>-->
 <div class="rowour" style="text-align:center"> <a style="padding:10px;color:#960;font-size:20px;text-align:center"href="<?php print base_url(); ?>frontend/rooms">See all Rooms</a> </div>
 </div>
 </ul>
@@ -1088,7 +1111,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$drop7[5]->keyword?>/all"><img src="<?php print base_url();?><?=$drop7[5]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($drop7[5]->title)?>
 </span></a></div>
 <div style="clear:both"></div>
-<div class="sub-hor fist-sub-bar">
+<!--<div class="sub-hor fist-sub-bar">
 <div class="rowour">
 <div class="n-layer artstyle2">
 <ul class="menu2">
@@ -1130,7 +1153,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 </div>
 <div style="clear:both"></div>
-</div>
+</div>-->
 <div class="rowour" style="text-align:center"> <a style="padding:10px;color:#960;font-size:20px;text-align:center"href="<?php print base_url(); ?>frontend/places">See all Places </a></a> </div>
 </div>
 </ul>
@@ -1161,68 +1184,67 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <div class="n-layer artstyle2">
 <ul class="menu2">
 <?php
-                        //$subjects=$this->search_model->get_subcategory(880);
-                         ?>
-</ul>
-</div>
-<div class="n-layer artstyle2">
-<ul class="menu2">
-<?php
+if(count($drop8)>=6){
                         for($i=6;$i<=10;$i++){
 						//echo $drop8[$i]->keyword;
                             ?>
 <li>
 <a href="<?=base_url()?>frontend/themes_view/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
 </li>
-<?php } ?>
+<?php } }?>
 </ul>
 </div>
+
 <div class="n-layer artstyle2">
 <ul class="menu2">
 <?php
+if(count($drop8)>=11){
                         for($i=11;$i<=15;$i++){
 						//echo $drop8[$i]->keyword;
                             ?>
 <li>
 <a href="<?=base_url()?>frontend/themes_view/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
 </li>
-<?php } ?>
+<?php } }?>
 </ul>
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
 <?php
+if(count($drop8)>=16){
                         for($i=16;$i<=20;$i++){
 						
                             ?>
 <li>
 <a href="<?=base_url()?>frontend/themes_view/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
 </li>
-<?php } ?>
+<?php } }?>
 </ul>
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
 <?php
+if(count($drop8)>=21){
                         for($i=21;$i<=25;$i++){
 					
                             ?>
 <li>
 <a href="<?=base_url()?>frontend/themes_view/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
 </li>
-<?php } ?>
+<?php } }?>
 </ul>
 </div>
 <div class="n-layer artstyle2">
 <ul class="menu2">
 <?php
+if(count($drop8)>=26){
                         for($i=26;$i<=26;$i++){
 						
                             ?>
 <li>
 <a href="<?=base_url()?>frontend/themes_view/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
 </li>
-<?php } ?>
+<?php } }?>
 </ul>
 </div>
 </div>
@@ -1748,7 +1770,8 @@ function checkSubmit(e)
         position: static!important
     }
     #menu .menu2 li a {
-        color: #000!important
+        color: #000!important;
+		display:inline-block
     }
     #menu ul li ul li {
         display: block
@@ -1760,7 +1783,7 @@ function checkSubmit(e)
         color: #ff9800;
         /* text-decoration: none */
     }
-    #menu .menu2 li:hover>a {
+    #menu .menu2 li > a:hover {
         color: #e19a28!important
     }
     #menu ul li:hover>a>i {
@@ -1778,7 +1801,7 @@ function checkSubmit(e)
         top: 16px;
         left: 0;
         border: 3px solid #e19a28;
-        min-height: 470px;
+        min-height: auto;
         -webkit-box-shadow: 0 6px 7px #CCC;
         -moz-box-shadow: 0 6px 7px #CCC;
         box-shadow: 0 6px 7px #CCC;

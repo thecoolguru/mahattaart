@@ -522,19 +522,24 @@ function price_details(){
 						</tr>
                     </thead>
 				<tbody>
-					</tr>
+                
+                
                         <?php if($this->session->userdata('userid')){ 
 					    $grand_total=$sub_total=$total_tax_amt=0;
 						$qty_update_tbl=$_REQUEST['qty_update'];
 		                $data=$this->cart_model->get_usercart($this->session->userdata('userid'));     $subtotal=0; $i=1;$sr=1;
 		                    $k = 0;
                         foreach($data as $image){
+
                             if($cart_data[$k] == 0){
                            $source = "http://static.mahattaart.com/158x158/media/".$image['image_name'];    
                             }else{
                            $url = base_url();
                            $source = $url."application/views/frontend/upload_images/".$image['image_name'];
                         }
+						// get image size
+						$size_data = getimagesize($source); 
+
                         $k++;?>
                             <tr>
 							  <td><?=$sr?></td>
@@ -604,7 +609,7 @@ function price_details(){
                             background: #ddd;
                             }
                         </style>
-                            <section class="container3D">
+                            <section class="container3D" style="min-height:<?= $size_data[1]+20?>px;min-width:<?= $size_data[0]+20?>px">
                                 <div id="cube" class=" ">
                                     <figure class="front">
                                         <img src="<?= $source ?>" class="img-responsive" />

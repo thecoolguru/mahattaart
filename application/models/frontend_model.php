@@ -37,7 +37,7 @@ return $query->result();
 }
 	public function get_frame_code_web_price()	{
 		//	$frame_cat=$this->input->post('frame_cat');
-		$this->db->select('*');
+		$this->db->select('rate,paper_type_only,web_print_price');
 		$this->db->where('frame_category','Basic');
 		$this->db->where_not_in('frame_code','');
 		$query=$this->db->get('tbl_web_price');

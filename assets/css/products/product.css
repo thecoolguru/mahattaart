@@ -262,7 +262,7 @@ h2.product-detail{
   position: relative;
   text-align: center;
   vertical-align: middle;
-  width: 105px;
+  width: 109px;
   z-index: 0;
   display: inline-block;
   margin-top: 0;
@@ -383,8 +383,13 @@ ul.social-network li {
   line-height: 1.2em;
   word-spacing: 2px;
 }
-#tabs-section3 #tab-4 > h3 {
+#tabs-section3 #tab-4 > h3 h4 {
   text-decoration: underline;
+}
+.tab-content h3{
+  font-family:'BebasNeueRegular';
+  text-transform:uppercase;
+  font-size:26px
 }
 .framing-list > li {
   font-size: 14px;
