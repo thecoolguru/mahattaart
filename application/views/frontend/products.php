@@ -42,6 +42,10 @@
 		$('.item_click').click(function(){
 			var type = $(this).attr('id');
 			$('#paper_type').val(type);
+			if(type==3){
+			//alert(type)
+			$('#paper_type').val(4);
+			}
 			var image_size=$( "#sizes" ).val();
 			var print_sizes=$( "#surfaces").val();
 			var quality_rate=$('#quality_rate').val();
@@ -69,7 +73,7 @@
     			$('#print_sizes').html(orig_image_size);
     			get_quality('');
 			}else if(type == '3'){
-				paper_surface(3);	
+				paper_surface(4);	
 				$('#22,#12,#large_img2,#frame-it,.wrapped,#myCanvas,#myCanvas2,#myCanvas3,#12,#15,#19,#20,#large_img5,#large_img6,#large_img7,#canvas_show,#frame_show,#canvas3D').hide();
 				$('#18').html('');
 				$('#large_img3,.bshow').show();
@@ -954,7 +958,7 @@ function calculate_cost(value){
 		<div id="frame_show" style="margin: 0 auto;text-align: center;padding-top: 58px;">
 		     <div  class="divimg mainhor2" style="border-image-source: url(&quot;http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg &quot;); border-image-slice: 58; border-image-width: initial; border-image-outset: initial; border-image-repeat: round; border-style: solid; border-width:10px; margin-top:-55px; padding:0px; width:auto; display:inline-block; position:relative;">
 
-		    <div id="abc2" style="background:url('<?= base_url()?>images/uploaded_pdf/mount_new/DR 2091.jpg')  0% 0% / cover no-repeat;width:auto;padding:3px; background-attachment:scroll;position: relative;z-index: 1;">
+		    <div id="abc2" style="background:url('<?= base_url()?>images/uploaded_pdf/mount/DR 2091.jpg')  0% 0% / cover no-repeat;width:auto;padding:3px; background-attachment:scroll;position: relative;z-index: 1;">
 	            	<a href="javascript:" id="demo2" class="imglink img_shadow" target="_self">
 	               		<img id="frame_img" src="<?php echo $image_path;?>" style="">
 					</a>
@@ -1073,6 +1077,7 @@ function calculate_cost(value){
                                   <td><a href="javascript:;" class="color46" onclick="javascript:change_wallcolor(this);"></a></td>
                                   <td><a href="javascript:;" class="color47" onclick="javascript:change_wallcolor(this);"></a></td>
                                   <td><a href="javascript:;" class="color48" onclick="javascript:change_wallcolor(this);"></a></td>
+
                             </tr>
                           </tbody>
                         </table>
@@ -1820,6 +1825,9 @@ else {?> href="" onclick="login('');return false;" style="color:#ef9223;"<?php }
                             </div><div class="col-xs-12 col-sm-6 col-md-3 cloneditem-2">
                               <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
                               <p class="text-center itemslider-p2"> <span class="old_price">$10</span> <span class="new_price">$120</span> </p>
+
+
+
                             </div><div class="col-xs-12 col-sm-6 col-md-3 cloneditem-3">
                               <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
                               <p class="text-center itemslider-p2"> <span class="old_price">$10</span> <span class="new_price">$120</span> </p>
@@ -2448,7 +2456,7 @@ background: #ddd;
 				}else{
 				mount_avail='';
 				}
-				td_inner +='<div class="col-xs-12 col-sm-6 col-md-2 mount_data" id="mount'+image+'" onclick=" state_change(); return mount_select('+mount_rate+','+mount_code+','+mount_name+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount_new/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
+				td_inner +='<div class="col-xs-12 col-sm-6 col-md-2 mount_data" id="mount'+image+'" onclick=" state_change(); return mount_select('+mount_rate+','+mount_code+','+mount_name+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
 				image++;
 					}
 						}td_inner +='</div>';
@@ -2752,6 +2760,7 @@ function addToCart()
   var mat1_color=$('#mount_color').html();
   var image_namee=$('#image_filename').val();
   var frameSize=$('#frame_sized').html();
+
   //alert(paper_surface+','+framed_art+','+print_width+','+print_height+','+final_frame_size+','+only_print+','+frame_name+','+mount_name+','+mount_color+','+glasses+','+glasses_coste+','+total_price+','+MountCost+','+FrameCost+','+price+','+image_id+','+user_id+','+mat1_size+','+mat1_color+','+image_namee+','+frameSize+','+image_type+','+print_size);
     $.ajax({
         type: "POST",
