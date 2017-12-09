@@ -31,7 +31,7 @@ public function get_tbl_web_price_test($paper,$paper_type_name){
 $this->db->select('*');
 $this->db->where('paper',$paper);
 //$this->db->where('paper_type_name','Archival Standard');
-$query=$this->db->get('tbl_web_price_test');
+$query=$this->db->get('tbl_web_price');
 return $query->result();
 
 }
@@ -49,28 +49,28 @@ return $query->result();
 		// $this->db->group_by('frame_type');
 		$this->db->where_not_in('frame_size','');
 		$this->db->group_by('frame_size','asc');
-		$query=$this->db->get('tbl_web_price');
+		$query=$this->db->get('tbl_frame_details');
 		return $query->result();
 	}
 
 	public function get_frame_color_web_price()	{
 		$this->db->select('frame_color');
 		$this->db->group_by('frame_color');
-		$query=$this->db->get('tbl_web_price');
+		$query=$this->db->get('tbl_frame_details');
 		return $query->result();
 	}
 
 	public function get_mount_name_web_price()	{
 		$this->db->select('mount');
 		$this->db->group_by('mount');
-		$query=$this->db->get('tbl_web_price');
+		$query=$this->db->get('tbl_mount_details');
 		return $query->result();
 	}
 
 	public function get_frame_cat_tbl_web_price()	{
 		$this->db->select('*');
 		$this->db->group_by('frame_category','asc');
-		$query= $this->db->get('tbl_web_price');
+		$query= $this->db->get('tbl_frame_details');
 		return $query->result();
 	}
 
@@ -130,7 +130,7 @@ return $query->result();
 		$query = $this->db->get('tbl_web_price');
 		$data[0] = $query->result(); 
 		$this->db->select('glass_rate')->where('glass',$glass);
-		$query = $this->db->get('tbl_web_price');
+		$query = $this->db->get('tbl_glass_details');
 		$data[1] = $query->result();
 		return $data;
 	}
@@ -145,10 +145,10 @@ return $query->result();
 
 	public function get_default($frame,$mount)	{
 		$this->db->select('*')->where('frame_code',$frame);
-		$query = $this->db->get('tbl_web_price');
+		$query = $this->db->get('tbl_frame_details');
 		$data[0] = $query->result(); 
 		$this->db->select('*')->where('mount_code',$mount);
-		$query = $this->db->get('tbl_web_price');
+		$query = $this->db->get('tbl_mount_details');
 		$data[1] =$query->result();
 		return $data;
 	}
@@ -171,21 +171,21 @@ return $query->result();
 	}
 
 	public function get_web_frame_rate($frame)	{
-		$sql="select frame_rate from tbl_web_price where frame like '%".$frame."%'";
+		$sql="select frame_rate from tbl_frame_details where frame like '%".$frame."%'";
 		$rows=  mysql_query($sql);
 		$result=  mysql_fetch_assoc($rows);
 		return $result['frame_rate'];
 	}
 
 	public function get_web_mount_rate($mount)	{
-		$sql="select mount_rate from tbl_web_price where mount like '%".$mount."%'";
+		$sql="select mount_rate from tbl_mount_details where mount like '%".$mount."%'";
 		$rows=  mysql_query($sql);
 		$result=  mysql_fetch_assoc($rows);
 		return $result['mount_rate'];
 	}
 
 	public function get_web_glass_rate($glass)	{
-		$sql="select glass_rate from tbl_web_price where glass like '%".$glass."%'";
+		$sql="select glass_rate from tbl_glass_details where glass like '%".$glass."%'";
 		$rows=  mysql_query($sql);
 		$result=  mysql_fetch_assoc($rows);
 		return $result['glass_rate'];
@@ -254,7 +254,7 @@ return $query->result();
 		}
 	}
 public function get_surface_tbl_web_price($print_type,$print_type_name){
-if($print_type==3){
+if($print_type==4){
 $print_type=array(1,2);
 //print_r($print_type);
 }
@@ -262,7 +262,7 @@ $this->db->select('*');
 $this->db->where_in('paper_type_only',$print_type);
 $this->db->where('paper_type_name',$print_type_name);
 $this->db->group_by('paper');
-$query=$this->db->get('tbl_web_price_test');
+$query=$this->db->get('tbl_web_price');
 return $query->result();
 
 }

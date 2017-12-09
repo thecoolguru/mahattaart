@@ -570,21 +570,25 @@ footer {
 	padding:0;
 }
 .footer-content div ul li {
-	list-style:none;
-	margin:0;
-	padding:0;
-	background:url(../img/btm-bullet.png) no-repeat left;
-	line-height:23px;
+    padding-right: 20px;
+    background-image: url(../img/btm-bullet.png);
+    line-height: 20px;
+    display: inline-flex;
+    background-repeat: no-repeat;
+    background-position: 0 6px;
 }
 .footer-content div ul li a {
 	padding-left:20px;
 	color:#fff;
 	text-transform:uppercase;
 }
-.footer-content div ul li a:hover {
-	padding-left:20px;
-	background:url(../img/btm-bulleth.png) no-repeat left;
-	text-decoration:none;
+.footer-content div ul li:hover {
+    padding-right: 20px;
+    background-image: url(../img/btm-bulleth.png);
+    line-height: 20px;
+    display: inline-flex;
+    background-repeat: no-repeat;
+    background-position: 0 6px;
 }
 .news-input {
 	display:block;

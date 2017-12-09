@@ -209,7 +209,7 @@ class Frontend extends CI_Controller
 
 	public function get_web_frame_rate()	{
 		$frame=$this->input->post('frame');
-		$sql="select frame_rate from tbl_web_price where frame like '%".$frame."%'";
+		$sql="select frame_rate from tbl_frame_details where frame like '%".$frame."%'";
 		$rows=  mysql_query($sql);
 		$result=  mysql_fetch_assoc($rows);
 		echo $result['frame_rate'];
@@ -217,7 +217,7 @@ class Frontend extends CI_Controller
 
 	public function get_web_mount_rate()	{
 		$mount=  str_replace(' ', '', $this->input->post('mount'));
-		$sql="select mount_rate from tbl_web_price where mount like '%".$mount."%'";
+		$sql="select mount_rate from tbl_mount_details where mount like '%".$mount."%'";
 		$rows=  mysql_query($sql);
 		$result=  mysql_fetch_assoc($rows);
 		echo $result['mount_rate'];
@@ -225,7 +225,7 @@ class Frontend extends CI_Controller
          
 	public function get_web_glass_rate()	{
 		$glass=  str_replace(' ', '', $this->input->post('glass'));
-		$sql="select glass_rate from tbl_web_price where glass like '%".$glass."%'";
+		$sql="select glass_rate from tbl_glass_details where glass like '%".$glass."%'";
 		$rows=  mysql_query($sql);
 		$result=  mysql_fetch_assoc($rows);
 		echo $result['glass_rate'];
@@ -1921,7 +1921,7 @@ class Frontend extends CI_Controller
 		$this->db->select('*');
 		$this->db->where('frame_category',$frame_cat);
 		$this->db->where_not_in('frame_code','');
-		$query=$this->db->get('tbl_web_price');
+		$query=$this->db->get('tbl_frame_details');
 		$xx=$query->result();
 		//print_r($xx);
 		foreach($xx as $frame_code)	{
@@ -1951,7 +1951,7 @@ class Frontend extends CI_Controller
 			// echo "blank";
 			$this->db->where('frame_color',$frame_color);
 		}
-		$query=$this->db->get('tbl_web_price');
+		$query=$this->db->get('tbl_frame_details');
 		$result=$query->result();
 		//	print_r($result);
 		foreach($result as $frame_d)	{
@@ -1977,7 +1977,7 @@ class Frontend extends CI_Controller
 		if($mount!='')	{
 			$this->db->where('mount',$mount);
 		}
-		$query=$this->db->get('tbl_web_price');
+		$query=$this->db->get('tbl_mount_details');
 		foreach($query->result() as $mount_d)	{
 			$mount_code=$mount_d->mount_code;
 			$mount_rate=$mount_d->mount_rate;

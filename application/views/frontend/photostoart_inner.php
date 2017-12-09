@@ -48,7 +48,7 @@
 							},200);
 						}else{
 						 $('#height').val('');
-						 $('#finished_size').html('<p style="color:red;">Choose Some Minimum Size </p>');		
+						 $('#finished_size').html('<p style="color:red;">Choose Less than Max. Width ('+Math.round(max_width)+')</p>');		
 						}
 				});
 				
@@ -79,7 +79,7 @@
 								},200);
 							}else{
 							$('#width').val('');
-							$('#finished_size').html('<p style="color:red;">Choose Some Minimum Size </p>');	
+							$('#finished_size').html('<p style="color:red;">Choose Less than Max. Height ('+Math.round(max_height)+')</p>');	
 							}
 						});
 					})	
@@ -184,14 +184,14 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 		var framed = $('#finished_size').html();
 		var user_id = '<?= $this->session->userdata('userid')?>';
 		var id = $('#get_img').val();
-		//id = id.split('image');
+		id = id.split('image');
 		var new_id = id[2].split('.');
 		var image_id = new_id[0];
 		var image_type = new_id[1];
 		var img_name = $('#get_img').val();
 		img_name = img_name.split('/');
 		var image_namee = img_name[7];
-alert('yes')
+
 		//alert(paper_surface);
 		//alert(frame_name);
 		//alert(frameSize);
@@ -294,7 +294,6 @@ alert('yes')
 			var img_name = $('#get_img').val();
 			img_name = img_name.split('/');
 			var image_namee = img_name[7];//.split('.');
-			//alert('yes')
 			//alert(paper_surface+','+final_frame_size+','+mount_color+','+only_print+','+glasses+','+glasses_coste+','+total_price+','+MountCost+','+FrameCost+','+print_size+','+image_id+','+image_type+','+user_id+','+mat1_size+','+mat1_color+','+frame_color+','+frame_name+','+mount_name+','+frameSize+','+image_namee);
 			$.ajax({
 				 type: "POST",
@@ -333,8 +332,10 @@ alert('yes')
 			type=1;
 		}else if(id=='framing'){
 			type=2;
-		}else{
+		}else if(id=='poster'){
 		type=3;
+		}else{
+		type=4;
 		}
 	   // $('#paper_surface').html(td);
 		var paper_surface=$('#paper_surface').html();
@@ -395,11 +396,12 @@ alert('yes')
 			$('#print_paper').html(paper);
 			var role_size = '';
 			var rates = '';
-			
+			//alert(paper)
 			$.ajax({
       		type: 'post',
       		url: '<?=base_url()?>frontend/get_web_price_detials',
       		data:'print_paper='+paper,
+			async:false,
       		success: function(response){
 			//alert(response)
 			var obj=JSON.parse(response);
@@ -482,6 +484,7 @@ alert('yes')
 		  if(c_width < c_height){
 		   cost = c_width*role_size*rates;
 		  }else if(c_width > c_height){
+		 // alert(c_height+','+role_size+','+rates)
 		   cost = c_height*role_size*rates;
 		  }
 		}
@@ -1217,7 +1220,7 @@ alert('yes')
 		}else{
 		mount_avail='';
 		}
-		td_inner +='<div class="col-xs-12 col-sm-6 col-md-3 mount_data" id="mount'+image+'" onclick="mount_store(this.id);return mount_select('+mount_rate+','+mount_code+','+mount_name+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount_new/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
+		td_inner +='<div class="col-xs-12 col-sm-6 col-md-3 mount_data" id="mount'+image+'" onclick="mount_store(this.id);return mount_select('+mount_rate+','+mount_code+','+mount_name+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
 		image++;
 			}
 				}td_inner +='</div>';
@@ -1531,6 +1534,7 @@ alert('yes')
 	
    $('.img2').click(function(){
     var id = $(this).attr("id");  
+	//alert(id)
 		if(id == 'framing'){
 		$('#value_print_type').val(id);
 			$('#framingdiv1,#framingdiv2').show();	
@@ -1600,7 +1604,7 @@ alert('yes')
  			$('#frame_click').html('canvas_click');
 			calculate_cost('');
  			$('#click').html('canvas_click');
- 			}else if(id == 'print_only'){
+ 			}else if(id == 'print_only' || id=='poster'){
 			$('#value_print_type').val(id);
 			$('#canvas_details').hide();
 			$('#framingdiv1,#framingdiv2').hide();
@@ -1616,7 +1620,7 @@ alert('yes')
 			$('#height').val('');
 			$('#frame_color').val('');
 			$('#mount_code').val('');
-			paper_surface_fun('print_only');
+			paper_surface_fun(id);
 			calculate_cost('');
 			var size = ''+$('#sizes').val();
 		    var dimen = size.split('X');
@@ -1981,6 +1985,13 @@ alert('yes')
                                       <h5 class="text-center">Print Only</h5>
                                     </div>
                                   </div>
+								  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-4">
+                                  	<div class="thumb_bg_hover" >
+                                      <a href="JavaScript:void(0);">
+                                      <img id="poster" src="<?php echo $path3 = base_url()."images/uploaded_pdf/print_img.jpg";?>" class="img2 img-responsive center-block"></a>
+                                      <h5 class="text-center">Poster</h5>
+                                    </div>
+                                  </div>
                              </div>
                           </div>
                       </div>
@@ -2130,7 +2141,7 @@ function right(width,height,x){
           <label for="country" class="col-sm-4 control-label">Printing Surface:</label>
           <div class="col-sm-8">
 		
-          <select id='paper_surface' class="form-control input_control input" onclick="calculate_cost('')"> 
+          <select id='paper_surface' class="form-control input_control input" onchange="calculate_cost('')"> 
 		  <?php
 		
 						foreach($display_p_name as $d_p_name){
@@ -2187,6 +2198,7 @@ function right(width,height,x){
 	      </div>
           
           </form>
+		  <input type="hidden" name="quality_rate" id="quality_rate" value="">
 	  <!--Image Div --> 
 	  <div id="imageDiv">
 	  </div>
@@ -2283,7 +2295,7 @@ function right(width,height,x){
                 </ul>
             </div>
 			<input type="hidden" id='value_print_type' value="" />
-			<input type="hidden" name="quality_rate" id="quality_rate" value="">
+			
             <div id="frameimages0"></div>
         </div>
     <!-- Tab Content 2 -->
