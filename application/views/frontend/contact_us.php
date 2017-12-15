@@ -1,7 +1,7 @@
 
 
 <?php 
-//echo "Sajid";
+//echo "Sajid"; test for live
 if($this->session->userdata('userid'))
 {
 $Obj=new Frontend();

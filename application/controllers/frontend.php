@@ -883,8 +883,10 @@ class Frontend extends CI_Controller
 			$last_name=$this->input->post('last_name');
 			$email=$this->input->post('email_reg');
 			$password=$this->input->post('passwordd');
+			$ima=$this->input->post('ima');
+			$job_dec=$this->input->post('job_dec');
 			$quote="'";
-			$this->frontend_model->insert_registeration($first_name,$last_name,$email,$password);
+			$this->frontend_model->insert_registeration($first_name,$last_name,$email,$password,$ima,$job_dec);
 			//$this->frontend_model->update_user_status($user_id);
 			//sent email to Admin
 			$messages='<!DOCTYPE HTML>

@@ -49,8 +49,8 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'indiapicture.cjgqyv6rnqde.ap-southeast-1.rds.amazonaws.com';
-$db['default']['username'] = 'mahattaart';
-$db['default']['password'] = 'arts@#009';
+$db['default']['username'] = 'mahattaartnew';
+$db['default']['password'] = 'j2foj39FS#012#';
 $db['default']['database'] = 'mahattaart';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
@@ -71,8 +71,8 @@ $db['default']['stricton'] = FALSE;
 
 
 $db['indiapicture']['hostname'] = 'indiapicture.cjgqyv6rnqde.ap-southeast-1.rds.amazonaws.com';
-$db['indiapicture']['username'] = 'indiapicture';
-$db['indiapicture']['password'] = '!9Waha77a!nd!a';
+$db['indiapicture']['username'] = 'indiapicturenew';
+$db['indiapicture']['password'] = 'fh238hf@FC#Cdie';
 $db['indiapicture']['database'] = 'indiapicture';
 $db['indiapicture']['dbdriver'] = 'mysql';
 $db['indiapicture']['dbprefix'] = '';

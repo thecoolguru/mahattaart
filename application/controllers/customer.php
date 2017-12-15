@@ -16,6 +16,185 @@ class Customer extends CI_Controller
         $this->load->model('channel_partner_model');
         $this->load->database();
     }
+	
+	  public function add_customer_query($id)
+     {
+		 
+		    //echo $id;
+		
+		
+		$this->form_validation->set_rules('name','Name','required');
+		$this->form_validation->set_rules('email','Email','required|valid_email');
+		$this->form_validation->set_rules('mobile','Mobile','required|numeric|exact_length[10]');
+		$this->form_validation->set_rules('gender','Gender','required');
+		$this->form_validation->set_rules('pinterest','Product Interest','required');
+		$this->form_validation->set_rules('added_locaion','Location','required');
+		$this->form_validation->set_rules('feadback','Feadback','required');
+		
+		
+		$name=$this->input->post('name');
+		$email=$this->input->post('email');
+		$mobile=$this->input->post('mobile');
+		$gender=$this->input->post('gender');
+		$pinterest=$this->input->post('pinterest');
+		$addlocation=$this->input->post('added_locaion');
+		$feadback=$this->input->post('feadback');
+	if($id!='')
+		  {
+		$query['customer_details']=$this->customer_model->get_customer_details($id);
+		
+		  }
+	
+	       if($this->form_validation->run()==true)
+		   {
+			  
+			  $data=array(
+		                'customer_name'=>$name,
+	                    'customer_email'=>$email,
+	                    'customer_mobile'=>$mobile,
+						'gender'=>$gender,
+	                    'cutomer_interest'=>$pinterest,
+	                    'cutomer_location'=>$addlocation,
+	                    'cutomer_feadback'=>$feadback,
+				  
+				   );
+				   
+		$query['message_success']="Customer Query successfully Submitted";
+		$query['message_Failed']="Customer Query Not Submit,Please Check?";
+	    
+		
+		
+		if($id!='')
+		  {
+		//$query['customer_details']=$this->customer_model->get_customer_details($id);
+		$x=$this->customer_model->update_customer_details($id,$data);
+		redirect('index.php/customer/view_cutomer_query');
+		  
+		 }else{
+			 
+	$query['add_success']="Customer Query Added Success Fully,";
+	$query['add_customer']=$this->customer_model->add_customer_query_mod($data);
+			 }
+	             
+	 }
+	 
+	  $this->load->view('backend/dashboard_header');
+      $this->load->view('backend/customer/add_customer_query',$query);     
+      $this->load->view('backend/footer');
+
+	 
+	 
+	 
+	 }
+	 
+	 
+	 
+	  public function view_cutomer_query()
+	   {
+	   $this->load->model('customer_model');
+	   $query['sucess']=$this->customer_model->view_cutomer_query_mod();
+	   $this->load->view('backend/customer/view_cutomer_query',$query);
+	   
+	 }
+	 
+	 
+	 public function select_custom_query($id)
+	 {
+	 // echo $id;die;
+	  //$id=$this->uri->segment(3);
+
+	  $this->load->model('customer_model');
+	  $select['select_success']=$this->customer_model->get_customer_details($id);
+	  $this->load->view('backend/customer/add_customer_query',$select);
+	 }
+	 public function edit_customer_query()
+	{
+	 $id=$this->uri->segment(3);
+	 
+	 
+	 
+	    $this->form_validation->set_rules('name','Name','required');
+		$this->form_validation->set_rules('email','Email','required|valid_email');
+		$this->form_validation->set_rules('mobile','Mobile','required|numeric|exact_length[10]');
+		$this->form_validation->set_rules('gender','Gender','required');
+		$this->form_validation->set_rules('pinterest','Product Interest','required');
+		$this->form_validation->set_rules('added_locaion','Location','required');
+		$this->form_validation->set_rules('feadback','Feadback','required');
+		
+		
+		$name=$this->input->post('name');
+		$email=$this->input->post('email');
+		$mobile=$this->input->post('mobile');
+		$gender=$this->input->post('gender');
+		$pinterest=$this->input->post('pinterest');
+		$addlocation=$this->input->post('added_locaion');
+		$feadback=$this->input->post('feadback');
+		
+		
+		$data=array(
+		                'customer_name'=>$name,
+	                    'customer_email'=>$email,
+	                    'customer_mobile'=>$mobile,
+						'gender'=>$gender,
+	                    'cutomer_interest'=>$pinterest,
+	                    'cutomer_location'=>$addlocation,
+	                    'cutomer_feadback'=>$feadback,
+				  
+				   );
+				 
+           
+		
+	    if($this->form_validation->run==false)
+		{
+		 $this->load->view('backend/customer/add_customer_query');
+		}else{
+			
+		$data=array(
+		                'customer_name'=>$name,
+	                    'customer_email'=>$email,
+	                    'customer_mobile'=>$mobile,
+						'gender'=>$gender,
+	                    'cutomer_interest'=>$pinterest,
+	                    'cutomer_location'=>$addlocation,
+	                    'cutomer_feadback'=>$feadback,
+				  
+				   );
+				 
+				   
+		$this->load->model('customer_model');
+		$success['query']=$this->customer_model->edit_customer_query_mod($id,$data);	   
+		$query['message_success']="Customer Record successfully Updated";
+		$query['message_Failed']="Something is Rong,Please Check?";
+		
+		
+         
+		   // $this->load->view('backend/dashboard_header');
+            $this->load->view('backend/customer/add_customer_query',$query);
+          //  $this->load->view('backend/footer');
+
+		
+		
+		
+		
+		$this->load->view('backend/customer/add_customer_query',$id);
+			
+			}
+	}
+	public function delete_cutomer_query()
+	  {
+	   
+	   $id=$this->uri->segment(3);
+	 
+	   $this->load->model('customer_model');
+	   $delete['success_delete']=$this->customer_model->delete_cutomer_query_mod($id);
+	   redirect('index.php/customer/view_cutomer_query'); 
+	   
+	  }
+
+	
+	
+	
+	
 
     public  function customer_download()
     {

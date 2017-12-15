@@ -1,38 +1,37 @@
-<?php  $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";?>
+<?php  $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>
+<script defer src="<?php echo base_url()?>assets/js/jquery.flexslider.js"></script>   
+
 <!-- footer -->
     <footer class="container-fluid">
-    	<div class="footer-content container">
-        	<div class="col-xs-6 col-sm-2 col-md-2" style="padding-right:0">
-            	<h1>Quick  <span>Links</span></h1>
+		<div class="footer-content container">
+            <div class="col-xs-6 col-sm-2 col-md-2" style="padding-right:0">
+                <h1>Quick  <span>Links</span></h1>
                 <ul>
-                	<li><a href="<?php echo base_url()?>frontend/about">About Mahatta Art</a></li>
-<!--                    <li><a href="<?php echo base_url()?>frontend/media_center">Media Center</a></li>-->
+                    <li><a href="<?php echo base_url()?>frontend/about">About Mahatta Art</a></li>
+                    <!--                    <li><a href="<?php echo base_url()?>frontend/media_center">Media Center</a></li>-->
                     <li><a href="<?php echo base_url()?>frontend/findart">Find Art</a></li>
                     <li><a href="<?php echo base_url()?>frontend/partner">Partners</a></li>
                     <li><a href="<?php echo base_url()?>frontend/career">Career</a></li>
-                   <!-- <li><a href="http://mahatta.com/submission/photographer.php">Become a contributor</a></li>-->
-                     <li><a href="http://mahatta.com/submission/">Become a contributor</a></li>
+                    <!-- <li><a href="http://mahatta.com/submission/photographer.php">Become a contributor</a></li>-->
+                    <li><a href="http://mahatta.com/submission/">Become a contributor</a></li>
                 </ul>
             </div>
                 <?php // $forget_emlid;?>
-                   <div class="col-xs-6 col-sm-2 col-md-2">
-                	<h1>Let us <span>Help</span></h1>
+            <div class="col-xs-6 col-sm-2 col-md-2">
+                <h1>Let us <span>Help</span></h1>
                 <ul>
-                	<li><a href="<?php echo base_url()?>frontend/contact">Contact Us</a></li>
+                    <li><a href="<?php echo base_url()?>frontend/contact">Contact Us</a></li>
                     <li><a href="<?php echo base_url()?>frontend/faq">FAQ's</a></li>
                     <li><a href="<?php echo base_url()?>frontend/ordering">Ordering</a></li>
                     <li><a href="<?php echo base_url()?>frontend/shipping">Shipping & Delivery</a></li>
-                     <li><a href="<?php echo base_url()?>return">Returns</a></li>
+                    <li><a href="<?php echo base_url()?>return">Returns</a></li>
                 </ul>
             </div>
             <?php  if($this->session->userdata('userid')){ ?>
-             <div class="col-xs-6 col-sm-2 col-md-2">
-            	<h1>My  <span>Account</span></h1>
+            <div class="col-xs-6 col-sm-2 col-md-2">
+                <h1>My  <span>Account</span></h1>
                 <ul>
-                	<li>
-					
-                  	<a href="<?php print base_url();?>user/profile">My Profile</a></li>
-                        
+                    <li><a href="<?php print base_url();?>user/profile">My Profile</a></li>
                     <li><a href="#">Track My Order</a></li>
                     <li><a href="#">Order History</a></li>
                 </ul>
@@ -46,12 +45,10 @@
                 </ul>
             </div>
             <div class="col-xs-6 col-sm-2 col-md-2 pull-right">
-                <h1>
-                    <a href="https://msg91.com/startups/?utm_source=startup-banner"><img src="https://msg91.com/images/startups/msg91Badge.png" width="120" height="90" title="MSG91 - SMS for Startups" alt="Bulk SMS - MSG91"></a>
-
-                </h1>
-                <h1><a href="<?php echo base_url()?>frontend/msg91"">send msg</a></h1>
+                <h1> <a href="https://msg91.com/startups/?utm_source=startup-banner"><img src="https://msg91.com/images/startups/msg91Badge.png" width="120" height="90" title="MSG91 - SMS for Startups" alt="Bulk SMS - MSG91"></a> </h1>
+                <h1> <a href="<?php echo base_url()?>frontend/msg91">send msg</a></h1>
             </div>
+		</div>
 
             
             <!--<div>
@@ -83,7 +80,7 @@
 
 
 
-   <div class="backblack" id="back" onClick="allclose('')" style="display:none;">&nbsp;</div>
+   
     <div class="signup" id="signpop" style="display:none;" >
         <div style="float: right" ><a href="" onClick="allclose('');return false;" >Close</a></div>
         
@@ -124,6 +121,41 @@
                     <input name="cpassword" type="password"
 					id="cpassword" placeholder="Confirm Password">
                 </p>
+
+
+                <p>
+                	<span>Company Name </span>
+                    <input name="company_name" type="text"
+					id="company_name" placeholder="company name">
+                </p>
+
+                <p>
+                    <span> I'm a</span>
+                    <select style="width:120px" name="ima" id="ima">
+                        <option value="hotelier"> Hotelier </option>
+                        <option value="interior designer"> Interior Designer </option>
+                        <option value="architects"> Architects </option>
+                        <option value="b2c customer"> B2C Customer </option>
+                        <option value="corporate"> Corporate </option>
+                        <option value="design house"> Design House </option>
+                        <option value="other"> Other </option>
+                    </select>
+                </p>
+                <p>
+                    <span> Job Description  </span>
+                    <select style="width:120px" name="job_dec" id="job_dec">
+                        <option value="purchase manager"> Purchase Manager </option>
+                        <option value="owner"> Owner </option>
+                        <option value="ceo"> CEO </option>
+                        <option value="coo"> COO </option>
+                        <option value="interior designer"> Interior Designer </option>
+                        <option value="architects"> Architects </option>
+                        <option value="art buyer"> Art Buyer </option>
+                        <option value="art collector"> Art Collector </option>
+                        <option value="vice president"> Vice President </option>
+                        <option value="other"> Other </option>
+                    </select>
+                </p>
                 
                 <p class="tar">
                     
@@ -153,7 +185,7 @@
 
 
 
-<div class="backblack" id="back" onClick="allclose('')" style="display:none;">&nbsp;</div>
+
     <div class="signup" id="signppp" style="display:none" >
         <div style="float: right" ><a href="" onclick="allclose('');return false;" >Close</a></div>
         
@@ -202,7 +234,7 @@
 <!--End sign up-->
 
     <!-- login -->
-    <div class="backblack" id="back" onClick="allclose('')" style="display:none;">&nbsp;</div>
+    
     <div class="signup" id="loginpop" style="display:none;">
         <div style="float: right" ><a href="" onClick="allclose('');return false;" >Close</a></div>
 
@@ -372,10 +404,6 @@
         	
         </div>
     </div>
-   
-     <div class="backblack" id="back" onClick="allclose('')" style="display:none;">&nbsp;</div>
-    
-
 
      <!-- create model of image details for intres by sajid-->
 
@@ -395,7 +423,7 @@
         
     </div>-->
 
-<div class="backblack" id="back" onClick="allclose('')" style="display:none;">&nbsp;</div>
+
 	 <div class="signup gall-w" id="addtointrestedgallery" style="display:none;">
          <div style="float: right" ><a href="" onClick="allclose('');return false;" >Close</a></div><br>
         <p>Submit the details below and our client executive will get in touch with you.</p>
@@ -418,14 +446,7 @@
         
     </div>
 	 
-	 <!-- close image details--->
-     
-    
-	
-	
-	
-
-
+	 <!-- close image details -->
      <div class="backblack" id="back" onClick="allclose('')" style="display:none;">&nbsp;</div>
     <div class="signup gall-w" id="addtogallery" style="display:none;">
          <div style="float: right" ><a href="#" onClick="allclose('')" >Close</a></div>
@@ -474,7 +495,6 @@ $result=$this->frontend_model->get_all_lightboxes2($user_id);
     
 });
   </script>
-<script defer src="<?php echo base_url()?>assets/js/jquery.flexslider.js"></script>   
         <!-- BEGIN JIVOSITE CODE {literal} -->
 <script type='text/javascript'>
     (function(){ var widget_id = 'wAZSuUVEkD';var d=document;var w=window;function l(){
@@ -691,6 +711,14 @@ function checkRegisterValidation(){
         {
             $('#password_error').html("");
             $('#cpassword_error').html("Password and confirm password do not match");
+            return false;
+        }
+        if($('#ima').val()=="")   {
+            $('#email_error').html("Please Enter Select Your Designation");
+            return false;
+        }
+        if($('#job_dec').val()=="")   {
+            $('#email_error').html("Please Enter Select Your Job Description");
             return false;
         }
         else
