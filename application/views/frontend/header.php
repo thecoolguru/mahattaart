@@ -479,7 +479,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
     </a>
 </li>
 <?php }else{?>
-<li> <a href="#" onClick="return login('')"> <i class="glyphicon glyphicon-lock"></i> Sign up | </a> </li>
+<li> <a href="#" onClick="return signup('')"> <i class="glyphicon glyphicon-lock"></i> Sign up | </a> </li>
 <li> <a href="#" onClick="return login('')"> Log in </a> </li>
 
 <?php }

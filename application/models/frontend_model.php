@@ -240,12 +240,14 @@ return $query->result();
 		return $query->result();
 	}
 
-	public function insert_registeration($first_name,$last_name,$email,$password)	{
+	public function insert_registeration($first_name,$last_name,$email,$password,$ima,$job_dec)	{
 		$data=array(
 		'first_name'=>$first_name,
 		'last_name'=>$last_name,
 		'email_id'=>$email,
-		'password'=>$password
+		'password'=>$password,
+		'customer_designation'=>$ima,
+		'customer_position'=>$job_dec
 		);
 		//print_r($data);die;
 		$insert=$this->db->insert('tbl_registration',$data);

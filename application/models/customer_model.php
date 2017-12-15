@@ -11,6 +11,43 @@ class Customer_model extends CI_Model
         $this->load->database();
 
     }
+	
+	 public function add_customer_query_mod($data)
+       {
+	     $query=$this->db->insert('tbl_customer_query',$data); 
+	   } 
+	
+	public function view_cutomer_query_mod()
+	{
+	  $this->db->order_by("id", "DESC");
+	  $query=$this->db->get('tbl_customer_query');
+	  return $query->result();
+	}
+	
+	public function delete_cutomer_query_mod($id)
+	{
+	  $this->db->where('id',$id);
+	  $this->db->delete('tbl_customer_query');
+	 
+	}
+	
+	public function update_customer_details($id,$data)
+	  {
+	 
+	   $this->db->where('id',$id);
+	   $result=$this->db->update('tbl_customer_query',$data);
+        	  
+	  }
+	  
+	  
+	  public function get_customer_details($id)
+      {
+        $this->db->where('id',$id);
+	    $query=$this->db->get('tbl_customer_query');
+	    return $query->result();
+      }
+	
+	
 
     public function get_parent_customers()
 

@@ -53,6 +53,15 @@
  </ul>
 </li>
 
+<li><a href="<?=base_url()?>index.php/backend/inventory">Customer Query</a>
+  <ul>
+      <li> <a href="<?=base_url()?>index.php/customer/add_customer_query">Add Query</a></li>
+      <li> <a href="<?=base_url()?>index.php/customer/view_cutomer_query">List Of Query</a></li>
+      
+     
+ </ul>
+</li>
+
 
 </ul>
 </div>

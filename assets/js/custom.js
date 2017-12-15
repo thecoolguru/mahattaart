@@ -89,8 +89,9 @@ function login(){
 
 
 function signup(){
-	if( document.getElementById("signpop").style.display=="none")
+	if( (document.getElementById("back").style.display=="none") || document.getElementById("signpop").style.display=="none")
 		{
+		  $("#back").fadeIn(300)	
 		  $("#signpop").fadeIn(300)
 		  $("#loginpop").hide()
                   

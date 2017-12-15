@@ -258,7 +258,6 @@ h2.product-detail{
   display: inline-block;
   font-family: "Helvetica Neue Regular",Helvetica,Arial,sans-serif;
   font-size: 12px;
-  height: 110px;
   position: relative;
   text-align: center;
   vertical-align: middle;
@@ -270,14 +269,15 @@ h2.product-detail{
 }
 .media-list{padding-left:15px}
 li.media > span {
-  background: #fff none repeat scroll 0 0;
-  bottom: 0;
-  color: #888;
-  left: 0;
-  position: absolute;
-  width: 100%;
-  z-index: 1;
-  bottom:10px
+	background: #fff none repeat scroll 0 0;
+	bottom: 0;
+	color: #888;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	z-index: 1;
+	height: 20px;
+	line-height: 2;
 }
 
 .product-tabs {
