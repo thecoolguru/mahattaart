@@ -9,8 +9,7 @@
 <script src="<?php echo base_url();?>assets/js/croppie.js" type="text/javascript" ></script>
 <script src="<?php echo base_url();?>assets/js/sweetalert.min.js" type="text/javascript" ></script>
 <script src="<?php echo base_url();?>assets/js/sweetalert-dev.js" type="text/javascript" ></script>
-
-	<script type="text/javascript">
+<script type="text/javascript">
 		$('html').keyup(function(e){
 			var width = $('#width').val();
 			var height= $('#height').val();
@@ -129,12 +128,13 @@
 		})
 	});
 </script>
-	<script>
+<script>
 		function feedback_of_addtocart(a){
 		$('.frame-step-header-text').html('<span class="glyphicon glyphicon-ok" style="margin-right:10px;"></span>Item Added To Cart.');
 		}
 	</script>
-	<?php //$continue_shopping_redirect = $_SESSION['user_info'];?>
+<?php //$continue_shopping_redirect = $_SESSION['user_info'];?>
+
 <div class="frame-step-header-container" style="display:none">
     <div class="container frame-step-header-wrapper">
         <div class="frame-step-header-text"></div>
@@ -922,7 +922,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 								new_width = 130;
 							} 
 				var img_src = "<?php echo base_url().'application/views/frontend/upload_images/';?>"+k[0];
-	 			td_inner += '<div class="col-xs-12 col-sm-6 col-md-3 thumb_img" id="div_img'+value+'"> <div class="thumb_bg"><img src="<?php echo base_url();?>application/views/frontend/upload_images/'+k[0]+'" class="img1" id="img'+value+'" width="'+new_width+'px" height="'+new_height+'px"onclick="change_image(this.src);"/></div><div class="thumb_toolboox"><div class="thumb_icon"><a><i class="glyphicon glyphicon-zoom-in"></i></a> <a class="remove_image" id="'+k[0]+'" onclick="remove_image(this.id );"><i class="glyphicon glyphicon-remove"></i></a></div></div></div>';			}
+	 			td_inner += '<div class="col-xs-6 col-sm-3 col-md-3 thumb_img" id="div_img'+value+'"> <div class="thumb_bg"><img src="<?php echo base_url();?>application/views/frontend/upload_images/'+k[0]+'" class="img1" id="img'+value+'" width="'+new_width+'px" height="'+new_height+'px"onclick="change_image(this.src);"/></div><div class="thumb_toolboox"><div class="thumb_icon"><a><i class="glyphicon glyphicon-zoom-in"></i></a> <a class="remove_image" id="'+k[0]+'" onclick="remove_image(this.id );"><i class="glyphicon glyphicon-remove"></i></a></div></div></div>';			}
 				value++;
 				}
 				td_inner += '</div>';
@@ -967,7 +967,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 		mount_details(mount_rate,mount_name,mount_code);
 		if(mount_code){
 		var dert= "<?php echo base_url()?>images/uploaded_pdf/mount/";
-            +$('div#abc').css('background','url("'+dert+mount_code+'.jpg")');
+            +$('div#frame-it').css('background','url("'+dert+mount_code+'.jpg")');
 		}
 	    $('#mount_code').val(mount_code);
 		frame_pricing();
@@ -1683,189 +1683,190 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 });  
 	    
 </script>
-<!-- div for dynamic variable storage style='display:none'-->
-	<input id='frame_rate' style="display:none;">
-	<input id='mount_rate' value='' style="display:none;">
-    <input id='frame_inches' value='' style="display:none;">
-	<input id='frame_color' value='' style="display:none;">
-    <input id='glass_rate' value='' style="display:none;">
-    <input id='frame_data' value='' style="display:none;">
-    <input id='mount_data' value='' style="display:none;">
-    <input id='get_img' value='' style="display:none;">
-    <div id='type' style="display:none"></div>
-    <input id='crop_src' style='display:none'>
-    <input id='data' style='display:none'>
-	<input id='w_value' style='display:none'>
-    <input id='h_value' style='display:none'>
-    <div id='click' style='display:none'></div>
-	<div id='vertical_width' style='display:none'></div>
-	<div id='horizonal_height' style='display:none'></div>
-	<input id='w_value' style='display:none'>
-	<input id='h_value' style='display:none'>
-	<input id='mount_code' value='' style='display:none'>
-	<!--<input id='mount_name' style='display:none'> -->
-	
-<!-- end -->
-<!-- pricing Details -->
- <div class="lightbox-target" id="price_detail">
-    <div id="uploader_popup_goofy_a" style="width:500px;height:400px;margin-left:-250px;margin-top:-200px;left:50%;top:50%"  >
-        <div class="uploader_popup_header">
-            <h2 class="text-center">Pricing Details</h2>
-            <a class="lightbox-close"  href="" onclick="remove_pricing(); return false;"></a>
-        </div>
-		<div class="frame-it-pricing">
-        	<div class="row canvas framing print">
-            	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Print only </strong>
-                    </div>
-                	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> <span id="print_price" class='canvas framing print'></span></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="row canvas framing print">
-            	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Print Size: </strong>
-                    </div>
-                	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> <span id="print_sizes" class='canvas framing print'></span></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="row canvas framing print">
-            	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Paper Print: </strong>
-                    </div>
-                	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> <span id="print_paper" class='canvas framing print'></span></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="row framing">
-            	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Frame Size(mm): </strong>
-                    </div>
-                	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> <span id="frame_size" class='framing'></span></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="row canvas">
-            	<div class="frame-it-content ">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Frame Type: </strong>
-                    </div>
-                	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong><span class='canvas' id="frame_type"></span></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="row framing">
-            	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Frame Name: </strong>
-                    </div>
-                	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong><span class='framing' id="f_name"></span></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="row canvas ">
-            	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Frame Cost: </strong>
-                    </div>
-                	<div class="col-md-6 col-sm-6 text-right canvas ">
-                    	<strong><img src="" align="absmiddle" /><span id="CanvasCost"></span></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="row framing">
-            	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Frame Cost: </strong>
-                    </div>
-                	<div class="col-md-6 col-sm-6 text-right framing">
-                    	<strong><img src="" align="absmiddle" /><span id="FrameCost"></span></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="row framing mount">
-            	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Mount Size: </strong>
-                    </div>
-                	<div class="col-md-6 col-sm-6 text-right mount">
-                    	<strong> <span class='framing' id="mount_size"></span></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-            	<div class="frame-it-content framing mount">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Mount Color: </strong>
-                    </div>
-                	<div class="col-md-6 col-sm-6 text-right mount">
-                    	<strong><span class='framing' id="mount_color"></span></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="row framing">
-            	<div class="frame-it-content mount">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Mount Cost: </strong>
-                    </div>
-                	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong><img src="" align="absmiddle"/><span id="MountCost" class='framing mount'></span></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="row framing">
-            	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Glass Type: </strong>
-                    </div>
-                </div>
-            </div>  
-            <div class="row framing" >
-            	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong id="glass_type"> Regular </strong>
-                    </div>
-                	<div class="col-md-6 col-sm-6 text-right framing">
-                    	<strong> <span id="glass_price"> </span></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-            	<div class="frame-it-content col-md-12">
-                <hr/>
-                	<div class="row">
-                        <div class="col-md-6 col-sm-6 text-left">
-                            <strong> Total Price </strong>
-                        </div>
-                        <div class="col-md-6 col-sm-6 text-right">
-                            <strong> <span class='actual_price'></span></strong>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-            	<div class="frame-it-button">
-                	<button <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> type="button" class="btn social_icon" style="background-color:#d3131b; color:#fff;"> Add to cart </button>
-                	<button onclick="remove_pricing(); return false;" type="button" class="btn social_icon" style="background-color:#555; color:#fff; margin-right:10px"> Cancel </button>
-                </div>
-            </div>            
-        </div>
 
-               
-	</div>
+<!-- div for dynamic variable storage style='display:none'-->
+<input id='frame_rate' style="display:none;">
+<input id='mount_rate' value='' style="display:none;">
+<input id='frame_inches' value='' style="display:none;">
+<input id='frame_color' value='' style="display:none;">
+<input id='glass_rate' value='' style="display:none;">
+<input id='frame_data' value='' style="display:none;">
+<input id='mount_data' value='' style="display:none;">
+<input id='get_img' value='' style="display:none;">
+<div id='type' style="display:none"></div>
+<input id='crop_src' style='display:none'>
+<input id='data' style='display:none'>
+<input id='w_value' style='display:none'>
+<input id='h_value' style='display:none'>
+<div id='click' style='display:none'></div>
+<div id='vertical_width' style='display:none'></div>
+<div id='horizonal_height' style='display:none'></div>
+<input id='w_value' style='display:none'>
+<input id='h_value' style='display:none'>
+<input id='mount_code' value='' style='display:none'>
+<!--<input id='mount_name' style='display:none'> -->
+
+<!-- end -->
+
+<!-- pricing Details -->
+<div class="lightbox-target" id="price_detail">
+  <div id="uploader_popup_goofy_a" style="width:500px;height:400px;margin-left:-250px;margin-top:-200px;left:50%;top:50%"  >
+      <div class="uploader_popup_header">
+          <h2 class="text-center">Pricing Details</h2>
+          <a class="lightbox-close"  href="" onclick="remove_pricing(); return false;"></a>
+      </div>
+      <div class="frame-it-pricing">
+          <div class="row canvas framing print">
+              <div class="frame-it-content">
+                  <div class="col-md-6 col-sm-6 text-left">
+                      <strong> Print only </strong>
+                  </div>
+                  <div class="col-md-6 col-sm-6 text-right">
+                      <strong> <span id="print_price" class='canvas framing print'></span></strong>
+                  </div>
+              </div>
+          </div>
+          <div class="row canvas framing print">
+              <div class="frame-it-content">
+                  <div class="col-md-6 col-sm-6 text-left">
+                      <strong> Print Size: </strong>
+                  </div>
+                  <div class="col-md-6 col-sm-6 text-right">
+                      <strong> <span id="print_sizes" class='canvas framing print'></span></strong>
+                  </div>
+              </div>
+          </div>
+          <div class="row canvas framing print">
+              <div class="frame-it-content">
+                  <div class="col-md-6 col-sm-6 text-left">
+                      <strong> Paper Print: </strong>
+                  </div>
+                  <div class="col-md-6 col-sm-6 text-right">
+                      <strong> <span id="print_paper" class='canvas framing print'></span></strong>
+                  </div>
+              </div>
+          </div>
+          <div class="row framing">
+              <div class="frame-it-content">
+                  <div class="col-md-6 col-sm-6 text-left">
+                      <strong> Frame Size(mm): </strong>
+                  </div>
+                  <div class="col-md-6 col-sm-6 text-right">
+                      <strong> <span id="frame_size" class='framing'></span></strong>
+                  </div>
+              </div>
+          </div>
+          <div class="row canvas">
+              <div class="frame-it-content ">
+                  <div class="col-md-6 col-sm-6 text-left">
+                      <strong> Frame Type: </strong>
+                  </div>
+                  <div class="col-md-6 col-sm-6 text-right">
+                      <strong><span class='canvas' id="frame_type"></span></strong>
+                  </div>
+              </div>
+          </div>
+          <div class="row framing">
+              <div class="frame-it-content">
+                  <div class="col-md-6 col-sm-6 text-left">
+                      <strong> Frame Name: </strong>
+                  </div>
+                  <div class="col-md-6 col-sm-6 text-right">
+                      <strong><span class='framing' id="f_name"></span></strong>
+                  </div>
+              </div>
+          </div>
+          <div class="row canvas ">
+              <div class="frame-it-content">
+                  <div class="col-md-6 col-sm-6 text-left">
+                      <strong> Frame Cost: </strong>
+                  </div>
+                  <div class="col-md-6 col-sm-6 text-right canvas ">
+                      <strong><img src="" align="absmiddle" /><span id="CanvasCost"></span></strong>
+                  </div>
+              </div>
+          </div>
+          <div class="row framing">
+              <div class="frame-it-content">
+                  <div class="col-md-6 col-sm-6 text-left">
+                      <strong> Frame Cost: </strong>
+                  </div>
+                  <div class="col-md-6 col-sm-6 text-right framing">
+                      <strong><img src="" align="absmiddle" /><span id="FrameCost"></span></strong>
+                  </div>
+              </div>
+          </div>
+          <div class="row framing mount">
+              <div class="frame-it-content">
+                  <div class="col-md-6 col-sm-6 text-left">
+                      <strong> Mount Size: </strong>
+                  </div>
+                  <div class="col-md-6 col-sm-6 text-right mount">
+                      <strong> <span class='framing' id="mount_size"></span></strong>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="frame-it-content framing mount">
+                  <div class="col-md-6 col-sm-6 text-left">
+                      <strong> Mount Color: </strong>
+                  </div>
+                  <div class="col-md-6 col-sm-6 text-right mount">
+                      <strong><span class='framing' id="mount_color"></span></strong>
+                  </div>
+              </div>
+          </div>
+          <div class="row framing">
+              <div class="frame-it-content mount">
+                  <div class="col-md-6 col-sm-6 text-left">
+                      <strong> Mount Cost: </strong>
+                  </div>
+                  <div class="col-md-6 col-sm-6 text-right">
+                      <strong><img src="" align="absmiddle"/><span id="MountCost" class='framing mount'></span></strong>
+                  </div>
+              </div>
+          </div>
+          <div class="row framing">
+              <div class="frame-it-content">
+                  <div class="col-md-6 col-sm-6 text-left">
+                      <strong> Glass Type: </strong>
+                  </div>
+              </div>
+          </div>  
+          <div class="row framing" >
+              <div class="frame-it-content">
+                  <div class="col-md-6 col-sm-6 text-left">
+                      <strong id="glass_type"> Regular </strong>
+                  </div>
+                  <div class="col-md-6 col-sm-6 text-right framing">
+                      <strong> <span id="glass_price"> </span></strong>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="frame-it-content col-md-12">
+              <hr/>
+                  <div class="row">
+                      <div class="col-md-6 col-sm-6 text-left">
+                          <strong> Total Price </strong>
+                      </div>
+                      <div class="col-md-6 col-sm-6 text-right">
+                          <strong> <span class='actual_price'></span></strong>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="frame-it-button">
+                  <button <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> type="button" class="btn social_icon" style="background-color:#d3131b; color:#fff;"> Add to cart </button>
+                  <button onclick="remove_pricing(); return false;" type="button" class="btn social_icon" style="background-color:#555; color:#fff; margin-right:10px"> Cancel </button>
+              </div>
+          </div>            
+      </div>
+  </div>
 </div>	
 <!-- end -->
+
 <!-- Crop Image-->
 <div class="lightbox-target" id="crop_image">
         <div id="uploader_popup_goofy_a" class="uploader_popup_goofy_a" style=""> 
@@ -1945,85 +1946,97 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 
 <div class="container">
 	<div class="row">
-      <div class="col-md-9 col-sm-9">
-      <div class="panel panel-primary h2a_ms_selector">
-          <div class="panel-heading h2a_ms_photos">
-          <h3 class="panel-title"> <i>  1 </i> Panel 1 </h3>
-          <span class="pull-right add_photo"><a href="" onclick="dropzone_call(); return false;"> + Add More Photos </a></span>
-          <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
-          </div>
-
-          <div class="panel-body" style="display: block; padding:0" id="session_images"></div>
-    </div>
-		<div class="panel panel-primary h2a_ms_selector" style="margin-bottom:10px">
-              <div class="panel-heading h2a_ms_photos">
-              	<h3 class="panel-title"> <i>2</i>Choose Your Options</h3>
-              </div>
-              <div style="display: block;">
-                  <div class="product-detail-content">
-                      <div class="carousel carousel-showmanymoveone slide" id="itemslider7">
-                          <div class="carousel-inner">
-                              <div class="item active">
-                                  <div class="col-xs-12 col-sm-6 col-md-2">
-                                  	<div class="thumb_bg_hover">
-                                      <a href="JavaScript:void(0);">
-                                      <img id="canvas" src="<?php echo $path2 = base_url()."images/uploaded_pdf/canvas_img.jpg";?>" class="img2 img-responsive center-block"></a>
-                                      <h5 class="text-center">Canvas</h5>
-                                    </div>
-                                  </div>
-                                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-1">
-                                  	<div class="thumb_bg_hover" >
-                                      <a href="JavaScript:void(0);">
-                                      <img id="framing" src="<?php echo $path1 = base_url()."images/uploaded_pdf/frame_img.jpg";?>" class="img2 img-responsive center-block"></a>
-                                      <h5 class="text-center">Framing</h5>
-                                    </div>
-                                  </div>
-                                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-4">
-                                  	<div class="thumb_bg_hover" >
-                                      <a href="JavaScript:void(0);">
-                                      <img id="print_only" src="<?php echo $path3 = base_url()."images/uploaded_pdf/print_img.jpg";?>" class="img2 img-responsive center-block"></a>
-                                      <h5 class="text-center">Print Only</h5>
-                                    </div>
-                                  </div>
-								  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-4">
-                                  	<div class="thumb_bg_hover" >
-                                      <a href="JavaScript:void(0);">
-                                      <img id="poster" src="<?php echo $path3 = base_url()."images/uploaded_pdf/print_img.jpg";?>" class="img2 img-responsive center-block"></a>
-                                      <h5 class="text-center">Poster</h5>
-                                    </div>
-                                  </div>
-                             </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="row" style="margin-bottom:20px">
-        <div class="col-md-7 col-sm-7">
-         <div class="divimg mainhor" id="frame-it" style="border-image-source: url('http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg'); border-image-slice: 58; border-image-width: initial; border-image-outset: initial; border-image-repeat: round; border-style: solid; border-width: 40px; margin-top: 20px; padding: 0px; width: auto; display:inline-block; position: relative;">
-
-           <div id="abc" style="background:url('<?=base_url()?>images/uploaded_pdf/mount/DR 2091.jpg')  0% 0% / cover no-repeat;width:auto;padding:10px; background-attachment:scroll; position: relative; z-index: 1;">
-             <a href="javascript:" id="demo2" class="imglink img_shadow" target="_self" >
-               <img id="large_img" src="http://static.mahattaart.com/398/FLPT_RE_0088.JPG" class="img-responsive" style="max-width:260px;"/>
-				  <input type="hidden" id="frame_shape" value="<?=$f_shape?>"/>
-             </a>
-						
-	
-<section class="container3D"  style="perspective: 1000px; perspective-origin: 0% 0%;">
+      <div class="col-md-9 col-sm-8">
+        <div class="panel panel-primary h2a_ms_selector">
+        <div class="panel-heading h2a_ms_photos">
+        <h3 class="panel-title"> <i>  1 </i> Panel 1 </h3>
+        <span class="pull-right add_photo"><a href="" onclick="dropzone_call(); return false;"> + Add More Photos </a></span>
+        <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
+        </div>
+        
+        <div class="panel-body" style="display: block; padding:0" id="session_images"></div>
+        </div>
+        <div class="panel panel-primary h2a_ms_selector" style="margin-bottom:10px">
+        <div class="panel-heading h2a_ms_photos">
+        <h3 class="panel-title"> <i>2</i>Choose Your Options</h3>
+        </div>
+        <div style="display: block;">
+        <div class="product-detail-content">
+        <div class="carousel carousel-showmanymoveone slide" id="itemslider7">
+        <div class="carousel-inner">
+        <div class="item active">
+        <div class="col-xs-4 col-sm-4 col-md-2">
+        <div class="thumb_bg_hover">
+        <a href="JavaScript:void(0);">
+        <img id="canvas" src="<?php echo $path2 = base_url()."images/uploaded_pdf/canvas_img.jpg";?>" class="img2 img-responsive center-block"></a>
+        <h5 class="text-center">Canvas</h5>
+        </div>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-1">
+        <div class="thumb_bg_hover" >
+        <a href="JavaScript:void(0);">
+        <img id="framing" src="<?php echo $path1 = base_url()."images/uploaded_pdf/frame_img.jpg";?>" class="img2 img-responsive center-block"></a>
+        <h5 class="text-center">Framing</h5>
+        </div>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-4">
+        <div class="thumb_bg_hover" >
+        <a href="JavaScript:void(0);">
+        <img id="print_only" src="<?php echo $path3 = base_url()."images/uploaded_pdf/print_img.jpg";?>" class="img2 img-responsive center-block"></a>
+        <h5 class="text-center">Print Only</h5>
+        </div>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-4">
+        <div class="thumb_bg_hover" >
+        <a href="JavaScript:void(0);">
+        <img id="poster" src="<?php echo $path3 = base_url()."images/uploaded_pdf/print_img.jpg";?>" class="img2 img-responsive center-block"></a>
+        <h5 class="text-center">Poster</h5>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="row" style="margin-bottom:20px">
+        <div class="col-md-6 col-sm-12">
+        <div class="divimg mainhor" id="frame-it" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/Absolute Black.jpg')30 30 30 30 round round;border-width: 10px;padding: 10px;background:url('<?=base_url()?>images/uploaded_pdf/mount/DR 2091.jpg')  0% 0% / cover no-repeat;">
+        
+        <div id="abc">
+        <a href="javascript:" id="demo2" class="imglink img_shadow" target="_self" >
+        <img id="large_img" src="http://static.mahattaart.com/398/FLPT_RE_0088.JPG" class="img-responsive" />
+        <input type="hidden" id="frame_shape" value="<?=$f_shape?>" />
+        </a>
+        
+        <style>
+        .mainhor {
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        border-color: transparent;
+        border-style: solid;
+        position: relative;
+        z-index: 1;
+        display: inline-block;
+        }
+        </style>
+        <section class="container3D">
         <div id="cube">
-            <figure class="front">
-		    <img id="large_img2"  style="max-height:500px;" src="" class="img-responsive">
-   <canvas id="myCanvas2" height="251px" width="330px" style="width:100%;height:100%;max-height:500px;"></canvas> 
-  <script>
-      function front(source_width,source_height){ 
-	  var canvas2 = document.getElementById('myCanvas2');
-      var context2 = canvas2.getContext('2d');
-      $('#myCanvas2').attr('width',source_width+'px');
-	  $('#myCanvas2').attr('height',source_height+'px');
-	  var req_width = source_width;
-	  var req_height = source_height; 
-	  var imageObj2 = new Image();
-      imageObj2.onload = function() {
+        <figure class="front">
+        <img id="large_img2"  style="max-height:500px;" src="" class="img-responsive">
+        <canvas id="myCanvas2" height="251px" width="330px" style="width:100%;height:100%;max-height:500px;"></canvas> 
+        <script>
+        function front(source_width,source_height){ 
+        var canvas2 = document.getElementById('myCanvas2');
+        var context2 = canvas2.getContext('2d');
+        $('#myCanvas2').attr('width',source_width+'px');
+        $('#myCanvas2').attr('height',source_height+'px');
+        var req_width = source_width;
+        var req_height = source_height; 
+        var imageObj2 = new Image();
+        imageObj2.onload = function() {
         // draw cropped image
         var sourceX = 0;
         var sourceY = 0;
@@ -2034,48 +2047,48 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         var destX = canvas2.width / 2 - destWidth / 2;
         var destY = canvas2.height / 2 - destHeight / 2;
         context2.drawImage(imageObj2, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
-      };
-      imageObj2.src =  $('#large_img2').attr('src');
+        };
+        imageObj2.src =  $('#large_img2').attr('src');
         
-          
-      }
-    </script>
-
-	<figure class="right">
-	<canvas id="myCanvas" height="251px" width="400px" style="width:111px;height:100%;"></canvas> 
-	<script>
-function right(width,height,x){
-	  var canvas = document.getElementById('myCanvas');
-      var context = canvas.getContext('2d');
-      
-      var imageObj = new Image();
-      imageObj.onload = function() {
+        
+        }
+        </script>
+        
+        <figure class="right">
+        <canvas id="myCanvas" height="251px" width="400px" style="width:111px;height:100%;"></canvas> 
+        <script>
+        function right(width,height,x){
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+        
+        var imageObj = new Image();
+        imageObj.onload = function() {
         // draw cropped image
-       var sourceX = x;
+        var sourceX = x;
         var sourceY = 0;
         var sourceWidth = width;
         var sourceHeight = height;
-		var destWidth = sourceWidth;
+        var destWidth = sourceWidth;
         var destHeight = sourceHeight;
         var destX = canvas.width / 2 - destWidth / 2;
         var destY = canvas.height / 2 - destHeight / 2;
-
+        
         context.drawImage(imageObj, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
-      };
-      imageObj.src = $('#large_img2').attr('src');
-    }
-	</script>
-	
-		</figure>
-            <figure class="bottom">
-	<canvas id="myCanvas3" height="301px" width="330px" style="width:100%;height:111px;"></canvas> 
-	 <script>
-     function bottom(width,height,y){ 
-	  var canvas1 = document.getElementById('myCanvas3');
-      var context1 = canvas1.getContext('2d');
-      var imageObj1 = new Image();
-		console.log(width,height,y);
-      imageObj1.onload = function() {
+        };
+        imageObj.src = $('#large_img2').attr('src');
+        }
+        </script>
+        
+        </figure>
+        <figure class="bottom">
+        <canvas id="myCanvas3" height="301px" width="330px" style="width:100%;height:111px;"></canvas> 
+        <script>
+        function bottom(width,height,y){ 
+        var canvas1 = document.getElementById('myCanvas3');
+        var context1 = canvas1.getContext('2d');
+        var imageObj1 = new Image();
+        console.log(width,height,y);
+        imageObj1.onload = function() {
         // draw cropped image
         var sourceX = 0;
         var sourceY = y;
@@ -2085,443 +2098,439 @@ function right(width,height,x){
         var destHeight = sourceHeight;
         var destX = canvas1.width / 2 - destWidth / 2;
         var destY = canvas1.height / 2 - destHeight / 2;
-
+        
         context1.drawImage(imageObj1, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
-      };
-      imageObj1.src = $('#large_img2').attr('src');
-     }
-    </script>
-			</figure>
-            </figure>
-			</div>
-    </section>				
-	     
-				</div>
-             </div>
-		 <?php echo $f_shape; ?>   
-	</div>
-	  <div class="col-md-5 col-sm-5">
-      <style>
-	  	.input_control{
-			height: 25px;
-			padding: 4px 2px;
-			border-radius: 0;
-			font-size: 10px;
-		}
-		.form-modify .control-label {
-			font-weight: normal;
-			color: #888;
-			text-transform: ;
-		}
-		#finished_size {
-			color: #888;
-		}
-		.form-modify label.radio-inline{color:#888}
-	  </style>
-      <form class="form-horizontal form-modify" role="form">
-	  <?php
-	 // print_r($papper_type);
-	  ?>
-	  
-	  <div class="form-group">
-          <label for="country" class="col-sm-4 control-label">Print Type:</label>
-          <div class="col-sm-8">
-          <select id='print_type_main' class="form-control input_control input" onChange="paper_surface_fun();calculate_cost('');"> 
-		  <?php 
-						foreach($papper_type as $results){?>
-						<option value="<?=$results->paper_type_name?>"><?=$results->paper_type_name?></option>
-						
-						<?php
-						}
-						?>
-    	  </select>
-    	  </div>
-    	  </div>
-	  <div class="form-group">
-          <label for="country" class="col-sm-4 control-label">Printing Surface:</label>
-          <div class="col-sm-8">
-		
-          <select id='paper_surface' class="form-control input_control input" onchange="calculate_cost('')"> 
-		  <?php
-		
-						foreach($display_p_name as $d_p_name){
-	echo "<option value='".$d_p_name->paper."'>".$d_p_name->display_p_name."</option>";
-	//print_r($res->paper);
-	}
-						
-						?>
-    	  </select>
-    	  </div>
-    	  </div>
-          <div class="form-group">
-          <label for="country" class="col-sm-4 control-label">Select size:</label>
-           <div class="col-sm-8">
-          <select name="sizes" id="sizes" class="form-control input_control" onchange="calculate_cost(this.value)">
-          </select>
-            </div>
-           </div>
-          <div class="form-group dimention">
-          <label for="country" class="col-sm-4 control-label dimention"> Width (Inch.):</label>
-          <div class="col-sm-8">
-          <input id="width" maxlength="2" class="form-control by_keyup_update dimention input_control inputs" type="text">
-          </div>
-          </div>
-          <div class="form-group dimention">
-          <label for="country" class="col-sm-5 control-label dimention" > Height (Inch.):</label>
-          <div class="col-sm-5">
-          <input id="height" maxlength="7" class="form-control by_keyup_update dimention input_control inputs" type="text">
-          </div>
-          </div> <!-- /.form-group -->
-          
-    	  <div class="form-group">
-		  <label class="control-label col-sm-5">Finished Size:</label>
-          <div class="col-sm-7">
-          <div id='finished_size'style='padding-top:8px;'></div>
-          </div> 
-		  </div>
-    	  <div class="form-group" id="canvas_opt" style="display: none;">
-          <label for="country" class="control-label col-sm-7">Canvas Wrap:</label>
-          <div class="col-sm-5">
-          <label class="radio-inline">
-          <input id="museum" value="museum" name="canvas_radio" type="radio">Museum
-          </label>
-          <label class="radio-inline">
-          <input id="gallery" value="gallery" name="canvas_radio" type="radio">Gallery
-          </label>
-         </div>
-         </div> 
-          <div class="form-group" id="options" >
-              <label class="control-label col-sm-7">Options:</label>
-              <div class="col-sm-5">
-                  <button id="file1" onclick="cropImage();" type="button" class="btn social_icon crop"> Crop Image</button>
-              </div>
-	      </div>
-          
-          </form>
-		  <input type="hidden" name="quality_rate" id="quality_rate" value="">
-	  <!--Image Div --> 
-	  <div id="imageDiv">
-	  </div>
-	  <!--Image End Div -->
-	  <div class="addtocartcontainer_page text-center" style="float:right; width:340px;height: 200px;">
-      <div class="page_price_label">
-      <p>Your Price: <span class='actual_price'> </span></p>
-      </div>
-	  <div class="page_price_label addtocartcontainer_popup_details" style="margin:10px auto;">
-      <a id='price_details' href='' onclick='price_details();return false;'>Price Details</a>
-      </div>
-      <div class="text-center addtocartcontainer_popup-button" style="margin-top: 20px;">
-      <button <?php if(!$this->session->userdata('userid')){?> onclick="login('');return false;"<?php }else{?> onclick="addToCart();return false;"<?php }?> type="button" class="popup-button2"> Add To Cart</button>
-	  </div>
-	  <div <?php if(!$this->session->userdata('userid')){?> onclick="login('');return false;"<?php }else{?> onclick="addTomyupload();return false;"<?php }?> class="text-center addtocartcontainer_popup-button" style="margin-top: 20px;">
-      	<button type="button" class="popup-button2"> Add To My Uploads</button>
-	  </div>
-      <div class="addtocartcontainer_popup_details" style="margin-top: 20px;">
-      <a href="#">Usually ships in 2-3 days</a>
-      </div>
-      </div>
-      <div class="addtocartcontainer_page2" id="canvas_details" style="display: none; margin-bottom:40px; width:340px; float:right">
-      <div class="addtocartcontainer_heading">
-      <h2>About Canvas</h2>
-      </div>
-      <div class="col-md-12 addtocartcontainer_header_img">
-      	<img src="<?php echo base_url().'images/uploaded_pdf/canvas.png'; ?>" class="img-responsive" />
-      </div>
-      <div class="addtocartcontainer_header">
-      <p>Create an artistic look with depth and texture by printing your photos on canvas</p>
-      </div>
-      <ul>
-      <li> Giclee printed on artist-grade cotton canvas</li>
-      </ul>
-      <div class="addtocartcontainer_footer">
-      </div>
-      </div>
-      </div>
-	  </div>
-            <div class="row">
-            <div style="background-color: rgb(127, 125, 126); margin-top: 20px; display: block;min-height: 41px;" id="framingdiv1">
+        };
+        imageObj1.src = $('#large_img2').attr('src');
+        }
+        </script>
+        </figure>
+        </figure>
+        </div>
+        </section>				
+        
+        </div>
+        </div>
+        <?php echo $f_shape; ?>   
+        </div>
+        <div class="col-md-6 col-sm-12">
+        <style>
+        .input_control{
+        height: 25px;
+        padding: 4px 2px;
+        border-radius: 0;
+        font-size: 10px;
+        }
+        .form-modify .control-label {
+        font-weight: normal;
+        color: #888;
+        text-transform: ;
+        }
+        #finished_size {
+        color: #888;
+        }
+        .form-modify label.radio-inline{color:#888}
+        </style>
+        <form class="form-horizontal form-modify" role="form">
+        <?php
+        // print_r($papper_type);
+        ?>
+        
+        <div class="form-group">
+        <label for="country" class="col-sm-4 control-label">Print Type:</label>
+        <div class="col-sm-8">
+        <select id='print_type_main' class="form-control input_control input" onChange="paper_surface_fun();calculate_cost('');"> 
+        <?php 
+        foreach($papper_type as $results){?>
+        <option value="<?=$results->paper_type_name?>"><?=$results->paper_type_name?></option>
+        
+        <?php
+        }
+        ?>
+        </select>
+        </div>
+        </div>
+        <div class="form-group">
+        <label for="country" class="col-sm-4 control-label">Printing Surface:</label>
+        <div class="col-sm-8">
+        
+        <select id='paper_surface' class="form-control input_control input" onchange="calculate_cost('')"> 
+        <?php
+        
+        foreach($display_p_name as $d_p_name){
+        echo "<option value='".$d_p_name->paper."'>".$d_p_name->display_p_name."</option>";
+        //print_r($res->paper);
+        }
+        
+        ?>
+        </select>
+        </div>
+        </div>
+        <div class="form-group">
+        <label for="country" class="col-sm-4 control-label">Select size:</label>
+        <div class="col-sm-8">
+        <select name="sizes" id="sizes" class="form-control input_control" onchange="calculate_cost(this.value)">
+        </select>
+        </div>
+        </div>
+        <div class="form-group dimention">
+        <label for="country" class="col-sm-4 control-label dimention"> Width (Inch.):</label>
+        <div class="col-sm-8">
+        <input id="width" maxlength="2" class="form-control by_keyup_update dimention input_control inputs" type="text">
+        </div>
+        </div>
+        <div class="form-group dimention">
+        <label for="country" class="col-sm-5 control-label dimention" > Height (Inch.):</label>
+        <div class="col-sm-5">
+        <input id="height" maxlength="7" class="form-control by_keyup_update dimention input_control inputs" type="text">
+        </div>
+        </div> <!-- /.form-group -->
+        
+        <div class="form-group">
+        <label class="control-label col-sm-5">Finished Size:</label>
+        <div class="col-sm-7">
+        <div id='finished_size'style='padding-top:8px;'></div>
+        </div> 
+        </div>
+        <div class="form-group" id="canvas_opt" style="display: none;">
+        <label for="country" class="control-label col-sm-7">Canvas Wrap:</label>
+        <div class="col-sm-5">
+        <label class="radio-inline">
+        <input id="museum" value="museum" name="canvas_radio" type="radio">Museum
+        </label>
+        <label class="radio-inline">
+        <input id="gallery" value="gallery" name="canvas_radio" type="radio">Gallery
+        </label>
+        </div>
+        </div> 
+        <div class="form-group" id="options" >
+        <label class="control-label col-sm-7">Options:</label>
+        <div class="col-sm-5">
+        <button id="file1" onclick="cropImage();" type="button" class="btn social_icon crop"> Crop Image</button>
+        </div>
+        </div>
+        
+        </form>
+        <input type="hidden" name="quality_rate" id="quality_rate" value="">
+        <!--Image Div --> 
+        <div id="imageDiv">
+        </div>
+        <!--Image End Div -->
+        <div class="addtocartcontainer_page text-center" style="float:right; width:340px;height: 200px;">
+        <div class="page_price_label">
+        <p>Your Price: <span class='actual_price'> </span></p>
+        </div>
+        <div class="page_price_label addtocartcontainer_popup_details" style="margin:10px auto;">
+        <a id='price_details' href='' onclick='price_details();return false;'>Price Details</a>
+        </div>
+        <div class="text-center addtocartcontainer_popup-button" style="margin-top: 20px;">
+        <button <?php if(!$this->session->userdata('userid')){?> onclick="login('');return false;"<?php }else{?> onclick="addToCart();return false;"<?php }?> type="button" class="popup-button2"> Add To Cart</button>
+        </div>
+        <div <?php if(!$this->session->userdata('userid')){?> onclick="login('');return false;"<?php }else{?> onclick="addTomyupload();return false;"<?php }?> class="text-center addtocartcontainer_popup-button" style="margin-top: 20px;">
+        <button type="button" class="popup-button2"> Add To My Uploads</button>
+        </div>
+        <div class="addtocartcontainer_popup_details" style="margin-top: 20px;">
+        <a href="#">Usually ships in 2-3 days</a>
+        </div>
+        </div>
+        <div class="addtocartcontainer_page2" id="canvas_details" style="display: none; margin-bottom:40px; width:340px; float:right">
+        <div class="addtocartcontainer_heading">
+        <h2>About Canvas</h2>
+        </div>
+        <div class="col-md-12 addtocartcontainer_header_img">
+        <img src="<?php echo base_url().'images/uploaded_pdf/canvas.png'; ?>" class="img-responsive" />
+        </div>
+        <div class="addtocartcontainer_header">
+        <p>Create an artistic look with depth and texture by printing your photos on canvas</p>
+        </div>
+        <ul>
+        <li> Giclee printed on artist-grade cotton canvas</li>
+        </ul>
+        <div class="addtocartcontainer_footer">
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="row">
+        <div style="background-color: rgb(127, 125, 126); margin-top: 20px; display: block;min-height: 41px;" id="framingdiv1">
         <div class="col-md-12 col-md-push-2">
-          <div class="tabs-section">
-              <!-- Nav Tabs -->
-              <ul class="nav nav-tabs" id="tabs">
-          <li class="active"><a href="#tab-1" data-toggle="tab" aria-expanded="false" onclick="showTable('Basic');"><i class=""></i>Frames</a></li>
-          <li class=""><a href="#tab-2" data-toggle="tab" aria-expanded="false" onclick="show_mat('');" name="tab8"><i class=""></i>Mount</a></li>
-          <li class=""><a href="#tab-3" data-toggle="tab" aria-expanded="false"><i class=""></i>Glass</a></li>
-         <!--<li class=""><a href="#tab-4" data-toggle="tab" aria-expanded="false"><i class=""></i>Wall Color frames </a></li>
-             <li class=""><a href="#tab-5" data-toggle="tab" aria-expanded="true"><i class=""></i>Glass</a></li> 
-             <li class=""><a href="#tab-6" data-toggle="tab"><i class=""></i>Remove Mount</a></li> -->
-              </ul>
-
-              <!-- Tab panels -->
-              
-              <!-- End Tab Panels -->
-            </div>
+        <div class="tabs-section">
+        <!-- Nav Tabs -->
+        <ul class="nav nav-tabs" id="tabs">
+        <li class="active"><a href="#tab-1" data-toggle="tab" aria-expanded="false" onclick="showTable('Basic');"><i class=""></i>Frames</a></li>
+        <li class=""><a href="#tab-2" data-toggle="tab" aria-expanded="false" onclick="show_mat('');" name="tab8"><i class=""></i>Mount</a></li>
+        <li class=""><a href="#tab-3" data-toggle="tab" aria-expanded="false"><i class=""></i>Glass</a></li>
+        <!--<li class=""><a href="#tab-4" data-toggle="tab" aria-expanded="false"><i class=""></i>Wall Color frames </a></li>
+        <li class=""><a href="#tab-5" data-toggle="tab" aria-expanded="true"><i class=""></i>Glass</a></li> 
+        <li class=""><a href="#tab-6" data-toggle="tab"><i class=""></i>Remove Mount</a></li> -->
+        </ul>
+        
+        <!-- Tab panels -->
+        
+        <!-- End Tab Panels -->
         </div>
-    </div></div>
-    
-<div class="row" style="margin-bottom: 20px; display: block;" id="framingdiv2">
-    <div class="tab-content">
-    <!-- Tab Content 1 -->
+        </div>
+        </div></div>
+        <div class="row" style="margin-bottom: 20px; display: block;" id="framingdiv2">
+        <div class="tab-content">
+        <!-- Tab Content 1 -->
         <div class="tab-pane fade active in row" style="margin-top: 5px;" id="tab-1">
-        	<div class="col-md-2">
-                <h4 class="choose-colors"> Select frame style</h4>
-                <ul class="choose-colors-type">
-                  	<?php 
-					foreach($frame_cat as $frame_c){ ?>
-					<li><a href="javascript:" onclick=" showTable('<?=$frame_c->frame_category;?>');" class="active"><?=$frame_c->frame_category;?></a></li>
-						<?php }	?>
-					  
-				</ul>
-                <h4 class="choose-colors"> Choose by Size(mm) </h4>
-                <ul class="choose-colors-type">
-                    <?php
-					 foreach($frame_sizze as $frame_s){  ?>
-                      <li><a href="javascript:" onClick="Frame_Size('<?=$frame_s->frame_size_inch;?>','<?=$frame_s->frame_size;?>');">
-					  <?php	 echo  $frame_s->frame_size; ?></a></li>
-					  <?php } ?>
-                </ul>
-                <h4 class="choose-colors"> Choose by Color </h4>
-                <ul class="choose-colors-type">
-                	<?php 
-					foreach($frame_color as $frame_co){
-					//print_r($frame_c);
-					?>
-					<li>
-					<a href="javascript:" onclick="get_frame_color('<?=$frame_co->frame_color;?>');"><?=$frame_co->frame_color;?></a>
-					</li>
-					<?php
-					}
-					?>
-                </ul>
-            </div>
-			<input type="hidden" id='value_print_type' value="" />
-			
-            <div id="frameimages0"></div>
+        <div class="col-md-2">
+        <h4 class="choose-colors"> Select frame style</h4>
+        <ul class="choose-colors-type">
+        <?php 
+        foreach($frame_cat as $frame_c){ ?>
+        <li><a href="javascript:" onclick=" showTable('<?=$frame_c->frame_category;?>');" class="active"><?=$frame_c->frame_category;?></a></li>
+        <?php }	?>
+        
+        </ul>
+        <h4 class="choose-colors"> Choose by Size(mm) </h4>
+        <ul class="choose-colors-type">
+        <?php
+        foreach($frame_sizze as $frame_s){  ?>
+        <li><a href="javascript:" onClick="Frame_Size('<?=$frame_s->frame_size_inch;?>','<?=$frame_s->frame_size;?>');">
+        <?php	 echo  $frame_s->frame_size; ?></a></li>
+        <?php } ?>
+        </ul>
+        <h4 class="choose-colors"> Choose by Color </h4>
+        <ul class="choose-colors-type">
+        <?php 
+        foreach($frame_color as $frame_co){
+        //print_r($frame_c);
+        ?>
+        <li>
+        <a href="javascript:" onclick="get_frame_color('<?=$frame_co->frame_color;?>');"><?=$frame_co->frame_color;?></a>
+        </li>
+        <?php
+        }
+        ?>
+        </ul>
         </div>
-    <!-- Tab Content 2 -->
-    <div class="tab-pane fade row" id="tab-2" style="margin-top:5px">
-                    <div class="col-md-2">
-                        <h4 class="choose-colors"> Remove Mount <input id="remove-mount" name="remove-mount" type="checkbox"> </h4>
-                        <h4 class="choose-colors"> CHOOSE BY COLOR: </h4>
-                        <ul class="choose-colors-type">
-                     <?php 
-						foreach($mount_name as $mount_t)
-						{ ?>
-						<li><a href="javascript:" onclick="return show_mat('<?=$mount_t->mount;?>');"><?=$mount_t->mount;?></a>
-                        </li>
-							<?php }?>
-                        </ul>
-                        <h4 class="choose-colors"> Select Width: </h4>
-                        <select id="mount_width" onchange="calculate_cost('');frame_pricing(); return change_mount(this.value);" style="padding:5px; width:100%;">
-                           <option value="0">--Select--</option>
-							<? for($i=0.50;$i<=6.00;$i=$i+0.50){ ?>
-								<option value="<?=$i?>"><b><?=$i.'"'?></b>
-							</option>
-							<? }?>
-                        </select>
-                        
-                    </div>
-                
-                
-								<div id="mount_div0"></div>
-				           
-                
-                </div>
-            <!-- Tab Content 3 -->
-            <div class="tab-pane fade row" id="tab-3" style="margin-top:5px">
-            <div class="col-md-6">
-            <h4 class="choose-colors regul-glass">  REGULAR Glass </h4>
-            <ul class="choose-colors-type">
-            	<li>Protect prints from protects dust and scratches
-                	<span class="pull-right"><input id="check0" name="re-mount" type="checkbox" onclick="selectOnlyThis(this.id);frame_pricing();"> </span>
-                </li>
-                <li>Regular Glass </li>
-            </ul>
-            <h4 class="choose-colors regul-glass"> Acrylic Glass   </h4>
-            <ul class="choose-colors-type">
-            	<li> Lightweight, Transparent, Shatter- resistance
-                  <span class="pull-right"><input id="check1" name="re-mount" type="checkbox" onclick="selectOnlyThis(this.id);frame_pricing();"> </span>
-                </li>
-                <li>Acrylic Glass  </li>
-            </ul>
-            </div>
-            
-                            </div>
-            
-            <div class="tab-pane fade" id="tab-5" style="margin-top:5px">
-            <div class="product-detail-content col-md-12">
-            <div class="carousel carousel-showmanymoveone slide" id="itemslider4">
-            <div class="carousel-inner">
-            <div class="item active">
-            <div class="col-xs-12 col-sm-6 col-md-6">
-            <div class="remove-mat row">
-            <div class="col-md-3">
-            <a href="#"><img src="https://s12.postimg.org/655583bx9/item_1_180x200.png" class="img-responsive"></a>
-            </div>
-            <div clas="rmove-mat-details col-md-9">
-            <h5 style="margin:0 0 2px 0"> demo </h5>
-            <p class="rmve-p2">sdsds</p>
-            </div>
-            </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 cloneditem-1">
-            <div class="remove-mat row">
-            <div class="col-md-3">
-            <a href="#"><img src="https://s12.postimg.org/655583bx9/item_1_180x200.png" class="img-responsive"></a>
-            </div>
-            <div clas="rmove-mat-details col-md-9">
-            <h5 style="margin:0 0 2px 0"> demo </h5>
-            <p class="rmve-p2">sdsds</p>
-            </div>
-            </div>
-            </div></div>
-            <div class="item">
-            <div class="col-xs-12 col-sm-6 col-md-6">
-            <div class="remove-mat row">
-            <div class="col-md-3">
-            <a href="#"><img src="https://s12.postimg.org/655583bx9/item_1_180x200.png" class="img-responsive"></a>
-            </div>
-            <div clas="rmove-mat-details col-md-9">
-            <h5 style="margin:0 0 2px 0"> demo </h5>
-            <p class="rmve-p2">sdsds</p>
-            </div>
-            </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 cloneditem-1">
-            <div class="remove-mat row">
-            <div class="col-md-3">
-            <a href="#"><img src="https://s12.postimg.org/655583bx9/item_1_180x200.png" class="img-responsive"></a>
-            </div>
-            <div clas="rmove-mat-details col-md-9">
-            <h5 style="margin:0 0 2px 0"> demo </h5>
-            <p class="rmve-p2">sdsds</p>
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>
-            <div id="slider-control">
-            <a class="left carousel-control" href="#itemslider4" data-slide="prev"><img src="https://s12.postimg.org/uj3ffq90d/arrow_left.png" alt="Left" class="img-responsive"></a>
-            <a class="right carousel-control" href="#itemslider4" data-slide="next"><img src="https://s12.postimg.org/djuh0gxst/arrow_right.png" alt="Right" class="img-responsive"></a>
-            </div>
-            </div>
-            </div>
-            </div>
-            
-            <div class="tab-pane fade" id="tab-6" style="margin-top:5px">
-            <div class="remove-mount-selector text-center">
-              <span style="color: rgb(136, 136, 136); font-size: 12px;">Mat Width: </span>
-              <select id="country" class="">
-                  <option>10" x 15"</option>
-                  <option>10" x 15"</option>
-                  <option>10" x 15"</option>
-                  <option>10" x 15"</option>
-                  <option>10" x 15"</option>
-                  <option>10" x 15"</option>
-                  <option>10" x 15"</option>
-                  </select>
-            </div>
-            <div class="product-detail-content col-md-12">
-            <div class="carousel carousel-showmanymoveone slide" id="itemslider6">
-              <div class="carousel-inner">
-              <div class="item active">
-                  <div class="col-xs-12 col-sm-6 col-md-2">
-                  <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
-                  <h5 class="text-center">Canvas</h5>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-1">
-                  <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
-                  <h5 class="text-center">Framing</h5>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-2">
-                  <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
-                  <span class="badge">10%</span>
-                  <h5 class="text-center">Wood Mounting</h5>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-3">
-                  <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
-                  <h5 class="text-center">Art on Metal</h5>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-4">
-                  <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
-                  <h5 class="text-center">Print Only</h5>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-5">
-                  <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
-                  <h5 class="text-center">4000,00 RSD</h5>
-                  </div>
-              </div>
-              <div class="item">
-                  <div class="col-xs-12 col-sm-6 col-md-2">
-                  <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
-                  <h5 class="text-center">Canvas</h5>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-1">
-                  <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
-                  <h5 class="text-center">Framing</h5>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-2">
-                  <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
-                  <span class="badge">10%</span>
-                  <h5 class="text-center">Wood Mounting</h5>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-3">
-                  <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
-                  <h5 class="text-center">Art on Metal</h5>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-4">
-                  <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
-                  <h5 class="text-center">Print Only</h5>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-5">
-                  <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
-                  <h5 class="text-center">4000,00 RSD</h5>
-                  </div>
-              </div><div class="item">
-                  <div class="col-xs-12 col-sm-6 col-md-2">
-                  <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
-                  <h5 class="text-center">Canvas</h5>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-1">
-                  <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
-                  <h5 class="text-center">Framing</h5>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-2">
-                  <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
-                  <span class="badge">10%</span>
-                  <h5 class="text-center">Wood Mounting</h5>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-3">
-                  <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
-                  <h5 class="text-center">Art on Metal</h5>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-4">
-                  <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
-                  <h5 class="text-center">Print Only</h5>
-                  </div>
-                  <div class="col-xs-12 col-sm-6 col-md-2 cloneditem-5">
-                  <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
-                  <h5 class="text-center">4000,00 RSD</h5>
-                  </div>
-              </div>
-              </div>
-              <div id="slider-control">
-              <a class="left carousel-control" href="#itemslider6" data-slide="prev">
-              <i class="fa fa-angle-left" style="font-size:3em"></i></a>
-              <a class="right carousel-control" href="#itemslider6" data-slide="next">
-              <i class="fa fa-angle-right" style="font-size:3em"></i></a>
-              </div>
-              </div>
-            </div>
-            </div>
-            </div>
-    </div>
-
-
-    <!-- Tab Content 3 -->
-       
-    </div>
-    <div class="col-md-3 col-sm-3">
+        <input type="hidden" id='value_print_type' value="" />
+        
+        <div id="frameimages0"></div>
+        </div>
+        <!-- Tab Content 2 -->
+        <div class="tab-pane fade row" id="tab-2" style="margin-top:5px">
+        <div class="col-md-2">
+        <h4 class="choose-colors"> Remove Mount <input id="remove-mount" name="remove-mount" type="checkbox"> </h4>
+        <h4 class="choose-colors"> CHOOSE BY COLOR: </h4>
+        <ul class="choose-colors-type">
+        <?php 
+        foreach($mount_name as $mount_t)
+        { ?>
+        <li><a href="javascript:" onclick="return show_mat('<?=$mount_t->mount;?>');"><?=$mount_t->mount;?></a>
+        </li>
+        <?php }?>
+        </ul>
+        <h4 class="choose-colors"> Select Width: </h4>
+        <select id="mount_width" onchange="calculate_cost('');frame_pricing(); return change_mount(this.value);" style="padding:5px; width:100%;">
+        <option value="0">--Select--</option>
+        <? for($i=0.50;$i<=6.00;$i=$i+0.50){ ?>
+        <option value="<?=$i?>"><b><?=$i.'"'?></b>
+        </option>
+        <? }?>
+        </select>
+        
+        </div>
+        
+        
+        <div id="mount_div0"></div>
+        
+        
+        </div>
+        <!-- Tab Content 3 -->
+        <div class="tab-pane fade row" id="tab-3" style="margin-top:5px">
+        <div class="col-md-6">
+        <h4 class="choose-colors regul-glass">  REGULAR Glass </h4>
+        <ul class="choose-colors-type">
+        <li>Protect prints from protects dust and scratches
+        <span class="pull-right"><input id="check0" name="re-mount" type="checkbox" onclick="selectOnlyThis(this.id);frame_pricing();"> </span>
+        </li>
+        <li>Regular Glass </li>
+        </ul>
+        <h4 class="choose-colors regul-glass"> Acrylic Glass   </h4>
+        <ul class="choose-colors-type">
+        <li> Lightweight, Transparent, Shatter- resistance
+        <span class="pull-right"><input id="check1" name="re-mount" type="checkbox" onclick="selectOnlyThis(this.id);frame_pricing();"> </span>
+        </li>
+        <li>Acrylic Glass  </li>
+        </ul>
+        </div>
+        
+        </div>
+        
+        <div class="tab-pane fade" id="tab-5" style="margin-top:5px">
+        <div class="product-detail-content col-md-12">
+        <div class="carousel carousel-showmanymoveone slide" id="itemslider4">
+        <div class="carousel-inner">
+        <div class="item active">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="remove-mat row">
+        <div class="col-md-3">
+        <a href="#"><img src="https://s12.postimg.org/655583bx9/item_1_180x200.png" class="img-responsive"></a>
+        </div>
+        <div clas="rmove-mat-details col-md-9">
+        <h5 style="margin:0 0 2px 0"> demo </h5>
+        <p class="rmve-p2">sdsds</p>
+        </div>
+        </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 cloneditem-1">
+        <div class="remove-mat row">
+        <div class="col-md-3">
+        <a href="#"><img src="https://s12.postimg.org/655583bx9/item_1_180x200.png" class="img-responsive"></a>
+        </div>
+        <div clas="rmove-mat-details col-md-9">
+        <h5 style="margin:0 0 2px 0"> demo </h5>
+        <p class="rmve-p2">sdsds</p>
+        </div>
+        </div>
+        </div></div>
+        <div class="item">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="remove-mat row">
+        <div class="col-md-3">
+        <a href="#"><img src="https://s12.postimg.org/655583bx9/item_1_180x200.png" class="img-responsive"></a>
+        </div>
+        <div clas="rmove-mat-details col-md-9">
+        <h5 style="margin:0 0 2px 0"> demo </h5>
+        <p class="rmve-p2">sdsds</p>
+        </div>
+        </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 cloneditem-1">
+        <div class="remove-mat row">
+        <div class="col-md-3">
+        <a href="#"><img src="https://s12.postimg.org/655583bx9/item_1_180x200.png" class="img-responsive"></a>
+        </div>
+        <div clas="rmove-mat-details col-md-9">
+        <h5 style="margin:0 0 2px 0"> demo </h5>
+        <p class="rmve-p2">sdsds</p>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <div id="slider-control">
+        <a class="left carousel-control" href="#itemslider4" data-slide="prev"><img src="https://s12.postimg.org/uj3ffq90d/arrow_left.png" alt="Left" class="img-responsive"></a>
+        <a class="right carousel-control" href="#itemslider4" data-slide="next"><img src="https://s12.postimg.org/djuh0gxst/arrow_right.png" alt="Right" class="img-responsive"></a>
+        </div>
+        </div>
+        </div>
+        </div>
+        
+        <div class="tab-pane fade" id="tab-6" style="margin-top:5px">
+        <div class="remove-mount-selector text-center">
+        <span style="color: rgb(136, 136, 136); font-size: 12px;">Mat Width: </span>
+        <select id="country" class="">
+        <option>10" x 15"</option>
+        <option>10" x 15"</option>
+        <option>10" x 15"</option>
+        <option>10" x 15"</option>
+        <option>10" x 15"</option>
+        <option>10" x 15"</option>
+        <option>10" x 15"</option>
+        </select>
+        </div>
+        <div class="product-detail-content col-md-12">
+        <div class="carousel carousel-showmanymoveone slide" id="itemslider6">
+        <div class="carousel-inner">
+        <div class="item active">
+        <div class="col-xs-4 col-sm-4 col-md-2">
+        <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
+        <h5 class="text-center">Canvas</h5>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-1">
+        <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
+        <h5 class="text-center">Framing</h5>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-2">
+        <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
+        <span class="badge">10%</span>
+        <h5 class="text-center">Wood Mounting</h5>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-3">
+        <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
+        <h5 class="text-center">Art on Metal</h5>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-4">
+        <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
+        <h5 class="text-center">Print Only</h5>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-5">
+        <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
+        <h5 class="text-center">4000,00 RSD</h5>
+        </div>
+        </div>
+        <div class="item">
+        <div class="col-xs-4 col-sm-4 col-md-2">
+        <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
+        <h5 class="text-center">Canvas</h5>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-1">
+        <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
+        <h5 class="text-center">Framing</h5>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-2">
+        <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
+        <span class="badge">10%</span>
+        <h5 class="text-center">Wood Mounting</h5>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-3">
+        <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
+        <h5 class="text-center">Art on Metal</h5>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-4">
+        <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
+        <h5 class="text-center">Print Only</h5>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-5">
+        <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
+        <h5 class="text-center">4000,00 RSD</h5>
+        </div>
+        </div><div class="item">
+        <div class="col-xs-4 col-sm-4 col-md-2">
+        <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
+        <h5 class="text-center">Canvas</h5>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-1">
+        <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
+        <h5 class="text-center">Framing</h5>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-2">
+        <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
+        <span class="badge">10%</span>
+        <h5 class="text-center">Wood Mounting</h5>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-3">
+        <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
+        <h5 class="text-center">Art on Metal</h5>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-4">
+        <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
+        <h5 class="text-center">Print Only</h5>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-5">
+        <a href="#"><img src="http://cdn.indiapicture.in/media1/398/AGOS_11002462.JPG" class="img-responsive center-block"></a>
+        <h5 class="text-center">4000,00 RSD</h5>
+        </div>
+        </div>
+        </div>
+        <div id="slider-control">
+        <a class="left carousel-control" href="#itemslider6" data-slide="prev">
+        <i class="fa fa-angle-left" style="font-size:3em"></i></a>
+        <a class="right carousel-control" href="#itemslider6" data-slide="next">
+        <i class="fa fa-angle-right" style="font-size:3em"></i></a>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+     </div>
+    
+    <div class="col-md-3 col-sm-4">
       	<div class="addtocartcontainer_page2">
         	<div class="addtocartcontainer_heading">
 	        	<h2>Sign In</h2>
@@ -2561,13 +2570,13 @@ function right(width,height,x){
 	            <p>Create an artistic look with depth and texture by printing your photos on canvas. Create an artistic look with depth and texture by printing your photos on canvas</p>
             </div>
         </div>
-        <div class="addtocartcontainer_page2" style="border:none">
+        <div class="addtocartcontainer_page2" style="border:none; margin-bottom:10px">
             <p class="text-center" style="font-size:13px; color:#888; margin-top:6px">Other ways to order:</p>
             <p class="text-center" style="font-size:11px; color:#888; margin-top:6px">  +91-8800639075 </p>
         </div>
       </div>
 </div>
-      </div>
+</div>
 <script>
 // $(window).on('load',function(){
 // $(document).on('click', '.panel-heading span.clickable', function(e){
@@ -2591,8 +2600,6 @@ $(".dz-upload-icon").click(function() {
 	$(".dz-upload-image").css("display", "block");	
 });
 </script>
-
-
 <style>
 .remove-mat {
   border: 1px solid #888;
@@ -2686,6 +2693,7 @@ ul.choose-colors-type {
     z-index: -1;
 }
 </style>
+
 <style>
 .clickable{
 cursor: pointer;   
@@ -2955,7 +2963,6 @@ a.lightbox-close::after {
 	padding: 10px;
 }
 </style>
-
 <style>
 .black_overlay{
 display: none;
@@ -2982,6 +2989,8 @@ top: 50%;
 width: 400px;
 display:none;
 }
+
+
 #light > a {
 position: absolute;
 right: 0;
@@ -3001,11 +3010,12 @@ top: 0;
 	background: white none repeat scroll 0 0;
 	display: block;
 	font-family: Arial;
-	left: 314.5px;
+	left: 50%;
 	position: absolute;
-	top: 134px;
+	top: 50%;
 	width: 720px;
 	z-index: 10000012;
+	transform: translate(-50%, -50%);
 }
 
 .uploader_popup_header > h2 {
@@ -3071,9 +3081,6 @@ width: 100px;
 display: none;
 }
 .popup-default-footer {
-	display: block;
-	height: 40px;
-	clear: both;
 	margin: 10px;
 }
 </style>
@@ -3092,26 +3099,17 @@ margin-right: 10px;
 </style>
 <style>
 .container3D {
-height: 200px;
-position: relative;
--webkit-perspective: 1200px;
--moz-perspective: 1200px;
--o-perspective: 1200px;
-perspective: 1200px;
+	position: relative;
+	margin-bottom: 40px;
+	display: inline-block;
 }
-
 #cube {
 width: 100%;
 height: 100%;
-position: absolute;
 -webkit-transform-style: preserve-3d;
 -moz-transform-style: preserve-3d;
 -o-transform-style: preserve-3d;
 transform-style: preserve-3d;
--webkit-transform: translateZ( -100px );
--moz-transform: translateZ( -100px );
--o-transform: translateZ( -100px );
-transform: translateZ( -100px );
 }
 #cube .front {
 -webkit-transform: translateZ( 100px );
@@ -3119,42 +3117,31 @@ transform: translateZ( -100px );
 -o-transform: translateZ( 100px );
 transform: translateZ( 100px );
 }
-#cube .front {
-/*background: hsla( 0, 100%, 50%, 0.7 );*/
-}
-#cube figure {
-display: block;
-position: absolute;
-height: auto;
-width: auto;
-}
-
-figure {
-margin: 0;
-}
 
 #cube .right {
--webkit-transform: rotateY( 90deg ) translateZ( 100px );
--moz-transform: rotateY( 90deg ) translateZ( 100px );
--o-transform: rotateY( 90deg ) translateZ( 100px );
-transform: skewY(45deg) translate(20px,-10px);
-width: 20px;
-height: 100%;
-right: 0px;
-top: 0;
+	-webkit-transform: rotateY( 90deg ) translateZ( 100px );
+	-moz-transform: rotateY( 90deg ) translateZ( 100px );
+	-o-transform: rotateY( 90deg ) translateZ( 100px );
+	transform: skewY(45deg) translate(20px,-10px);
+	width: 20px;
+	height: 100%;
+	right: 0px;
+	top: 0;
+	position: absolute;
 }
 
 #cube .right {
 background: #000;
 }
 #cube .bottom {
--webkit-transform: rotateX( -90deg ) translateZ( 100px );
--moz-transform: rotateX( -90deg ) translateZ( 100px );
--o-transform: rotateX( -90deg ) translateZ( 100px );
-transform: skewX(45deg) translate(-11px,21px);
-height: 20px;
-width: 100%;
-bottom: 1px;
+	-webkit-transform: rotateX( -90deg ) translateZ( 100px );
+	-moz-transform: rotateX( -90deg ) translateZ( 100px );
+	-o-transform: rotateX( -90deg ) translateZ( 100px );
+	transform: skewX(45deg) translate(-11px,21px);
+	height: 20px;
+	width: 100%;
+	bottom: 1px;
+	position: absolute;
 }
 #cube .bottom {
 background: #ddd;
@@ -3167,12 +3154,11 @@ background: #ddd;
 <style>
 .thumb_img {
 	text-align: center;
-	width: 187px;
 	height: 180px;
 	padding: 0;
-		border-left: 1px solid #d6d6d6;
 	border-right: 1px solid #d6d6d6;
-
+	cursor: pointer;
+	margin-bottom:5px;
 }
 .thumb_img:hover > .thumb_bg{ background-color:#f1f1f1}
 .thumb_img:hover .thumb_toolboox{ display:block}

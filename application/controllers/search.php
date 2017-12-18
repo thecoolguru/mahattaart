@@ -596,20 +596,35 @@ $search_api = "http://api.indiapicture.in/wallsnart/collection.php?collection_id
 			if($category_id=='1' || $category_id=='2' || $category_id=='3' || $category_id=='4' ){
 	 $search_api = "http://api.indiapicture.in/wallsnart/search_filter.php?q=$search_keys&page=$page&category=$category_id&per_page=$limit";
 	}else{
-	$search_api = "http://api.indiapicture.in/wallsnart/search.php?q=$search_keys&page=$page&per_page=$limit";
+	$result_header_image=$this->search_model->get_header_images($search_keys);
+//print_r($result_header_image[0]->minus_keyword);
+//Abstract(-(Jim+Zuckerman+PLANTS%20Anna%20Miller%20FULL%20FRAME))
+//$result_header_image[0]->minus_keyword
+if($result_header_image[0]->minus_logic==1){
+$minus_keyword=$search_keys.'(-('.$result_header_image[0]->minus_keyword.'))';
+}else{
+$minus_keyword='sssss';
+}
+	$search_api = "http://api.indiapicture.in/wallsnart/search.php?q=$minus_keyword&page=$page&per_page=$limit";
 	}
 		}
 //echo $search_api;
+//echo $minus_keyword;
+$opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
+$context = stream_context_create($opts);
 
-$get_res=$this->search_model->search_allany($page_no,$no_of_res,$search_keys);
+$search_data_raw = file_get_contents($search_api, false, $context);
+$search_data = json_decode($search_data_raw,TRUE);
+//print_r($search_data);
+//$get_res=$this->search_model->search_allany($page_no,$no_of_res,$search_keys);
 //print_r($get_res);
-$total_search=0;
-for($c=0;$c<count($get_res);$c++){
+//$total_search=0;
+/*for($c=0;$c<count($get_res);$c++){
 $total_search= $total_search+$get_res[$c]['total'];
-}
-
- $data['total']=$total_search;
-$data['search_data']=$get_res;
+}*/
+//print_r($total_search);
+ $data['total']=$search_data['total'];
+$data['search_data']=$search_data['results'];
   
   
 
