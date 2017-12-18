@@ -397,23 +397,28 @@ if($shape!="?#!" &&  $shape!=""){
 <ul>
 <?php 
 //print_r($action);
-//print_r($search_data);
+//print_r($search_data[0]['image_filename']);
 
-
-if(!empty($search_data)){
-$result_header_image=$this->search_model->get_header_images($search_text);
-//print_r($result_header_image);
-if($result_header_image[0]->minus_logic==1){
-$minus_keyword=$result_header_image[0]->minus_keyword;
-}else{
-$minus_keyword='sssss';
-}
-
-  for($x=0;$x<64;$x++){
 foreach ($search_data as $item){
 //print_r($item['results'][0]['image_filename']);
 //print_r($item['image_filename']);
-	$bride=split('_',$item['results'][$x]['image_filename']);
+	//echo $bride=$item['image_filename'].'<br>';
+	
+	}
+if(!empty($search_data)){
+//$result_header_image=$this->search_model->get_header_images($search_text);
+//print_r($result_header_image);
+/*if($result_header_image[0]->minus_logic==1){
+$minus_keyword=$result_header_image[0]->minus_keyword;
+}else{
+$minus_keyword='sssss';
+}*/
+
+ 
+foreach ($search_data as $item){
+//print_r($item['results'][0]['image_filename']);
+//print_r($item['image_filename']);
+	$bride=split('_',$item['image_filename']);
 //echo $bride[0];
 //print_r($bride);
 if($bride[0]=='BRID'){
@@ -440,23 +445,18 @@ if($bride[0]=='BRID'){
 	$link='products';
 	
  }else{
-	$img_src="http://static.mahattaart.com/130x150/media/".$item['results'][$x]['image_filename'];
-	$image_filename=$item['results'][$x]['image_filename'];
-	$image_id=$item['results'][$x]['image_id'];
-	$image_collection_id=$item['results'][$x]['image_collection_id'];
+	$img_src="http://static.mahattaart.com/130x150/media/".$item['image_filename'];
+	$image_filename=$item['image_filename'];
+	$image_id=$item['image_id'];
+	$image_collection_id=$item['image_collection_id'];
 	$link= 'products';//'image_detail';
  }
  
-//print_r($item['image_filename']);
-//$array_minus=array('ARCHITECTURE','GODDESS');
-//$array_m=array("PINE MOUNTAIN","ARCHITECTURE","MEDICINE");
-//print_r($array_m);
-$array_minus=explode(',',$minus_keyword);
-//print_r($array_minus);
-$array=explode(',',$item['results'][$x]['image_keywords']);
+ //echo $item['image_filename'].'<br>';
 
-//print_r($item['results'][$x]['image_keywords']);
- if(($item['results'][$x]['image_filename']!='') && (!array_intersect($array_minus,$array))){
+ if(($item['image_filename']!='')){
+ 
+
       ?>
 <li class="col-md-2 col-sm-3 col-xs-6">
 <a href="<?=base_url()."search/".$link."/".$image_filename."/".$image_id."/".$image_collection_id;  ?>">
@@ -464,7 +464,7 @@ $array=explode(',',$item['results'][$x]['image_keywords']);
 <div class="wrap">
 <div class="wrap-inner"><img src="<?=$img_src;  ?>" class="img-responsive" /></div>
 <div class="main-title">
-<?= substr($item['results'][$x]['image_caption'],0,20).".."; ?>
+<?= substr($item['image_caption'],0,20).".."; ?>
 </div>
 <!--<div class="products" style="padding:0 0 3px 0"> <a href="#"> <?=$item['image_photographer'];?> </a> </div>-->
 <div class="producttype"> 
@@ -479,13 +479,13 @@ $array=explode(',',$item['results'][$x]['image_keywords']);
     <div class="cart-wheel" style="background-color: #2CC3B5"></div>
   </div>
     </a>
-    <a style="color:#999;font-size:20px; float:right" href="javascript:" <?php    if($this->session->userdata('userid')){?> onclick="addtogallery('<?=$item['image_id']?>','<?=$item['image_filename']?>')" <?php }else{?> onclick="login('')" <?php }?> id="tgl"><i class="fa fa-heart-o" style="color:#d31d25; font-size:20px; padding:10px"> </i> </a>
+    <a style="color:#999;font-size:20px; float:right" href="javascript:" <?php   if($this->session->userdata('userid')){?> onclick="addtogallery('<?=$item['image_id']?>','<?=$item['image_filename']?>')" <?php }else{?> onclick="login('')" <?php }?> id="tgl"><i class="fa fa-heart-o" style="color:#d31d25; font-size:20px; padding:10px"> </i> </a>
 </div>
 
 </div>
 </a>
 </li>
-<?php }}} }else {?>
+<?php }} }else {?>
 <span style="margin-top:150px;margin-left:300px;color:red"> No result found.</span>
 <?php }?>
 </ul>

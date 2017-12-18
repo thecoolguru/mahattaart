@@ -591,7 +591,7 @@ function calculate_cost(value){
 		$('#print_h_w').val(c_width+'X'+c_height);
 		var newwidth1 = parseInt(width)+(1*2);
 		var	newlenght1 = parseInt(height)+(1*2);
-		var CanvasFrameCost = parseInt( (parseInt((parseInt(newwidth1)+(1*2))*parseInt(2)) + parseInt((parseInt(newlenght1)+(1*2))*parseInt(2)))*75)/12;
+		var CanvasFrameCost = parseInt( (parseInt((parseInt(width)+(1*2))*parseInt(2)) + parseInt((parseInt(height)+(1*2))*parseInt(2)))*75)/12;
 		CanvasFrameCost = Math.round(parseInt(CanvasFrameCost),2);
 		var total_cost = CanvasFrameCost + parseInt(price[1]); 
 		$('.framing,.print').hide();
