@@ -603,7 +603,7 @@ $search_api = "http://api.indiapicture.in/wallsnart/collection.php?collection_id
 if($result_header_image[0]->minus_logic==1){
 $minus_keyword=$search_keys.'(-('.$result_header_image[0]->minus_keyword.'))';
 }else{
-$minus_keyword='sssss';
+$minus_keyword=$search_keys;
 }
 	$search_api = "http://api.indiapicture.in/wallsnart/search.php?q=$minus_keyword&page=$page&per_page=$limit";
 	}

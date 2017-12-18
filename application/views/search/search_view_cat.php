@@ -425,7 +425,7 @@ if($bride[0]=='BRID'){
 	//$data= str_split($item['results'][0]['image_filename'],8);
 	//print_r($data);
 	//$dataa= substr($item['image_filename'],8);
-    $bridege_image_id=substr($item['results'][$x]['image_filename'],8,-4);
+    $bridege_image_id=substr($item['image_filename'],8,-4);
 	 //$bridge_id=$data[1];
 	 //$data.'ss';
 	 
