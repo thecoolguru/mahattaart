@@ -283,7 +283,17 @@ public function get_qut_csv()
         return $query->result();
 
     }
-
+public function get_vendor_name_tbl_web_price($vendor_name){
+		$query=$this->db->query('SELECT unique_ven_id,vendor_name,vendor_contact,vendor_lead_time,vendor_dtls FROM tbl_web_price where vendor_name="'.$vendor_name.'" UNION SELECT unique_ven_id,vendor_name,vendor_contact,vendor_lead_time,vendor_dtls FROM tbl_web_price_final where vendor_name="'.$vendor_name.'"');
+		 if($vendor_name==''){
+        return $query->result();
+		}else{
+		$ven_details=$query->result();
+		$new_result[]=$ven_details[0]->unique_ven_id.','.$ven_details[0]->vendor_name.','.$ven_details[0]->vendor_contact.','.$ven_details[0]->vendor_lead_time.','.$ven_details[0]->vendor_dtls;
+		//$ven_id=
+		echo json_encode($new_result);
+		}
+}
 
 public function get_order_details($order_id)
 
@@ -1437,13 +1447,59 @@ public function get_tbl_quotation_details($quotation_id)
 		return $query->result();	
 		
 		}
-  //Ends shortlist method from dev to mahattaart by sajid(04-05-17)
-
-		public function get_all_tbl_web_price(){
+			public function get_all_tbl_web_price(){
         $this->db->select('*');
         $query=$this->db->get('tbl_web_price');
         return $query->result();
        }
+		 public function get_tbl_frame_details(){
+        $this->db->select('*');
+        $query=$this->db->get('tbl_frame_details');
+        return $query->result();
+       }
+	   public function tbl_mount_details(){
+        $this->db->select('*');
+        $query=$this->db->get('tbl_mount_details');
+        return $query->result();
+       }
+	    public function get_tbl_glass_details(){
+        $this->db->select('*');
+        $query=$this->db->get('tbl_glass_details');
+        return $query->result();
+       }
+	    public function get_tbl_ink_details(){
+        $this->db->select('*');
+        $query=$this->db->get('tbl_ink_details');
+        return $query->result();
+       }
+	   public function get_tbl_framing_raw_meterails(){
+        $this->db->select('*');
+        $query=$this->db->get('tbl_framing_raw_meterails');
+        return $query->result();
+       }
+	   public function get_tbl_packeging_details(){
+        $this->db->select('*');
+        $query=$this->db->get('tbl_packeging_details');
+        return $query->result();
+       }
+	    public function get_tbl_corrugated_5ply(){
+        $this->db->select('*');
+        $query=$this->db->get('tbl_corrugated_5ply');
+        return $query->result();
+       }
+	    public function get_tbl_corrugated_3ply(){
+        $this->db->select('*');
+        $query=$this->db->get('tbl_corrugated_3ply');
+        return $query->result();
+       }
+	    public function get_tbl_brown_tape_5ply(){
+        $this->db->select('*');
+        $query=$this->db->get('tbl_brown_tape_5ply');
+        return $query->result();
+       }
+  //Ends shortlist method from dev to mahattaart by sajid(04-05-17)
+
+	
 public function get_glass_name(){
     $this->db->select('DISTINCT(glass)');
     $query= $this->db->get('tbl_add_details');

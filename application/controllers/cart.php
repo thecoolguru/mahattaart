@@ -576,6 +576,7 @@ invoice_id,customer_type,price,total_paid_with_tax )
 		$this->email->from('info@mahattaart.com', 'MahattaArt');
 		$this->email->to($billing_email);
 		//$this->email->cc('operations@mahattaart.com');
+		$this->email->cc('info@mahattaart.com');
 		$this->email->subject('Welcome to Mahatta Art');
 		$this->email->message($messages);
 		$send=$this->email->send();

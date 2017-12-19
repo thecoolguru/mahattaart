@@ -62,6 +62,15 @@
  </ul>
 </li>
 
+<li><a href="<?=base_url()?>index.php/backend/inventory">Query Form</a>
+  <ul>
+ <li> <a href="<?=base_url()?>index.php/backend/add_query_form">Add Query</a></li>
+ <li> <a href="<?=base_url()?>index.php/backend/show_query">List Of Query</a></li>
+      
+     
+ </ul>
+</li>
+
 
 </ul>
 </div>

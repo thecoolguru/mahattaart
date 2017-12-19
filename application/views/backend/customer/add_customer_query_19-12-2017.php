@@ -10,6 +10,11 @@
 <link href="<?=base_url()?>assets/css2/bootstrap-quirk.css" rel="stylesheet">
 <link href="<?=base_url()?>assets/css2/wallsnart1.0.css" rel="stylesheet" type="text/css" />
 
+<?php  
+
+
+
+?>
 <style>
 body{background-color:#fff}
 #login-page-wrapper {
@@ -50,7 +55,7 @@ body{background-color:#fff}
       <label class="col-sm-3 control-label">Name<span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="name" value="<?php if(isset($customer_details[0]->customer_name)){echo $customer_details[0]->customer_name;} else {echo set_value('name');} ?>"  class="form-control" required aria-required="true">
-      
+      <em style="color:red"><?php // echo form_error('name'); ?></em>
 	  </div>
     </div>
 
@@ -58,7 +63,7 @@ body{background-color:#fff}
       <label class="col-sm-3 control-label">Email ID <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="email" name="email" value="<?php if(isset($customer_details[0]->customer_name)){echo $customer_details[0]->customer_email;} else {echo set_value('email');} ?>" class="form-control" required aria-required="true">
-        
+        <em style="color:red"><?php // echo form_error('email'); ?></em>
 	  </div>
     </div>
     
@@ -66,7 +71,7 @@ body{background-color:#fff}
       <label class="col-sm-3 control-label">Mobile Number<span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="mobile" value="<?php if(isset($customer_details[0]->customer_name)){echo $customer_details[0]->customer_mobile;} else {echo set_value('mobile');} ?>" class="form-control" required aria-required="true">
-		
+		<em style="color:red"><?php // echo form_error('mobile'); ?></em>
       </div>
     </div>
     
@@ -80,7 +85,7 @@ body{background-color:#fff}
                 <option value="Female" <?php if($customer_details[0]->gender=="Female"){ echo 'selected'; }else{ if($this->input->post('gender')=="Female"){ echo 'selected'; }  } ?>>Female</option>
             </select>
         </div>
-		
+		<em style="color:red"><?php // echo form_error('gender'); ?></em>
       </div>
     </div>
     
@@ -94,7 +99,7 @@ body{background-color:#fff}
                 <option value="Wall Art" <?php if($customer_details[0]->cutomer_interest=="Wall Art"){ echo 'selected'; } else{  if($this->input->post('pinterest')=="Wall Art"){ echo 'selected'; }     } ?>>Wall Art</option>
             </select>
         </div>
-		
+		<em style="color:red"><?php // echo form_error('pinterest'); ?></em>
       </div>
     </div>
     
@@ -102,16 +107,19 @@ body{background-color:#fff}
       <label class="col-sm-3 control-label">Add location<span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="added_locaion" value="<?php if(isset($customer_details[0]->customer_name)){echo $customer_details[0]->cutomer_location;} else {echo set_value('added_locaion');} ?>" class="form-control">
-        
+        <em style="color:red"><?php // echo form_error('added_locaion'); ?></em>
 	  </div>
     </div>
     
     <div class="form-group">
       <label class="col-sm-3 control-label">Any Feedback <span class="text-danger">*</span></label>
       <div class="col-sm-9">
-        <textarea  class="form-control" rows="10" name="feadback" ><?php if(isset($customer_details[0]->cutomer_feadback)){echo $customer_details[0]->cutomer_feadback;} else {echo set_value('feadback');} ?></textarea>
-        
-         </div>
+      <textarea name="feadback"  class="form-control" rows="10">
+      <?php if(isset($customer_details[0]->cutomer_feadback)){echo $customer_details[0]->cutomer_feadback;} else {echo set_value('feadback');} ?>
+      </textarea>
+      
+        <em style="color:red"><?php // echo form_error('feadback'); ?></em>
+	  </div>
     </div>
 
     <div class="row">
@@ -121,7 +129,7 @@ body{background-color:#fff}
     </div>
 </form>
 
-<p>To Display Customer Wuer<a href="<?php  echo base_url('index.php/customer/view_cutomer_query');?>">Click Here</a></p>
+
 </div>
 
 <p>&nbsp;</p>

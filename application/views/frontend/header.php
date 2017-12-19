@@ -868,7 +868,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <nav id="menu">
 <ul>
 <li> <a href="<?php echo base_url();?>">HOME </a> </li>
-<li><a href="" onclick="return false;" id="H2"> SUBJECTS </a>
+<li><a href="" onClick="return false;" id="H2"> SUBJECTS </a>
 <ul class="H2" style="display: none">
 <div id="mouse-over">
 <?php $sub_val=$this->frontend_model->get_header_images(1); ?>
@@ -936,7 +936,7 @@ for($i=38;$i<=45;$i++){ ?>
 </ul>
 </li>
 <li>
-<a href="" onclick="return false;" id="H3"> ARTISTS </a>
+<a href="" onClick="return false;" id="H3"> ARTISTS </a>
 <ul class="H3" style="display: none">
 <div id="mouse-over">
 <?php $drop2=$this->frontend_model->get_header_images(2);
@@ -990,7 +990,7 @@ for($i=38;$i<=45;$i++){ ?>
 </div>
 </ul>
 </li>
-<li> <a href="" onclick="return false;" id="H4">ART STYLES </a>
+<li> <a href="" onClick="return false;" id="H4">ART STYLES </a>
 <ul class="H4" style="display: none">
 <div id="mouse-over">
 <?php $drop3=$this->frontend_model->get_header_images(3);
@@ -1113,7 +1113,7 @@ for($i=38;$i<=45;$i++){ ?>
 </div>
 </ul>
 </li>-->
-<li><a href="" onclick="return false;" id="H5">COLLECTIONS</a>
+<li><a href="" onClick="return false;" id="H5">COLLECTIONS</a>
 <ul class="H5" style="display: none">
 <div id="mouse-over">
 <?php $drop4=$this->frontend_model->get_header_images(5);
@@ -1195,7 +1195,7 @@ for($i=38;$i<=45;$i++){ ?>
 </ul>
 </li>
 <li>
-<a href="" onclick="return false;" id="H6">ROOMS</a>
+<a href="" onClick="return false;" id="H6">ROOMS</a>
 <ul class="H6" style="display: none">
 <div id="mouse-over">
 <?php 
@@ -1303,7 +1303,7 @@ for($i=23;$i<=29;$i++){ ?>
 </div>
 </ul>
 </li>
-<li> <a href="" onclick="return false;" id="H7">PLACES</a>
+<li> <a href="" onClick="return false;" id="H7">PLACES</a>
 <ul class="H7" style="display: none">
 <div id="mouse-over">
 <?php $drop7=$this->frontend_model->get_header_images(7);
@@ -1381,7 +1381,7 @@ for($i=23;$i<=29;$i++){ ?>
 </div>
 </ul>
 </li>
-<li> <a href="" onclick="return false;" id="H8">THEMES</a>
+<li> <a href="" onClick="return false;" id="H8">THEMES</a>
 <ul class="H8" style="display: none">
 <div id="mouse-over">
 <?php $drop8=$this->frontend_model->get_header_images(8);
@@ -1404,10 +1404,17 @@ for($i=23;$i<=29;$i++){ ?>
 <div class="n-layer artstyle2">
 <ul class="menu2">
 <?php for($i=6;$i<=10;$i++){
-			//echo $drop8[$i]->keyword;
+	
 ?>
 <li>
+<?php if($drop8[$i]->keyword==27){?>
+<a href="<?=base_url()?>frontend/themes_lightbox/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
+<?php }else{?>
+
 <a href="<?=base_url()?>frontend/themes_view/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
+<?php } ?>
+
+
 </li>
 <?php } ?>
 </ul>
