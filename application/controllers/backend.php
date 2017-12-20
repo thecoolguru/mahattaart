@@ -19,6 +19,431 @@ class Backend extends CI_Controller
 		$this->load->database();
 
 	}
+	
+	
+	
+	/*Functio To Add Query*/
+	public function add_query_form()
+	{
+	 $this->form_validation->set_rules('name','Name','required');
+	 $this->form_validation->set_rules('mobile','Mobile','required');
+	 $this->form_validation->set_rules('landline','Landline Number','required');
+	 $this->form_validation->set_rules('email','Email','required|valid_email');
+	 $this->form_validation->set_rules('comp_name','Compny Name','required');
+	 $this->form_validation->set_rules('address','Address','required');
+	 $this->form_validation->set_rules('state_city','State/City','required');
+	 $this->form_validation->set_rules('region','Region','required');
+	 $this->form_validation->set_rules('relat_manager','Relationship Manager','required');
+	 $this->form_validation->set_rules('art_researcher','Art Researcher','required');
+	 $this->form_validation->set_rules('proto_type','Proto Types','required');
+	 $this->form_validation->set_rules('place_of_display','Name','required');
+	 $this->form_validation->set_rules('size_of_wall','Size Of Wall','required');
+	 $this->form_validation->set_rules('color_of_wall','Wall Color','required');
+	 $this->form_validation->set_rules('display_place','This','required');
+	 $this->form_validation->set_rules('total_arts','Total Arts','required');
+	 $this->form_validation->set_rules('orientation','Orientation','required');
+	 $this->form_validation->set_rules('bud_per_work','This','required');
+	 $this->form_validation->set_rules('total_budget','Total Budget','required');
+	 $this->form_validation->set_rules('creative_details','Creative Details','required');
+	 $this->form_validation->set_rules('general_theme','This','required');
+	 $this->form_validation->set_rules('source_type','Source Type','required');	 
+	 $this->form_validation->set_rules('date_of_submission','Submission Date','required');
+	 //$this->form_validation->set_rules('feadback_submission','Feadback','required');
+	 /*Image*/
+	 //$this->form_validation->set_rules('mode_submission','Submission Mode','required');
+	 
+	
+	 $name=trim($this->input->post('name'));
+	 $alternate_name=trim($this->input->post('alternate_name'));
+	 $alternate_mobile=trim($this->input->post('alternate_mobile'));
+	 $mobile=trim($this->input->post('mobile'));
+	 $landline=trim($this->input->post('landline'));
+	 $email=trim($this->input->post('email'));
+	 $alternate_email=trim($this->input->post('alternate_email'));
+	 $comp_name=trim($this->input->post('comp_name'));
+	 $address=trim($this->input->post('address'));
+	 $state_city=trim($this->input->post('state_city'));
+	 $region=trim($this->input->post('region'));
+	 $relat_manager=trim($this->input->post('relat_manager'));
+	 $art_researcher=trim($this->input->post('art_researcher'));
+	 $propert_types=implode(',',$this->input->post('property_type'));
+	
+ 	 //Remove emprt array key
+	 $remove_key=array_filter($this->input->post('place_of_display'));
+	 $place_of_display=implode(',',$remove_key);
+	
+	 $size_of_wall=trim($this->input->post('size_of_wall'));
+	 $color_of_wall=trim($this->input->post('color_of_wall'));
+	 $size_of_art=trim($this->input->post('size_of_art'));
+	 $display_place=trim($this->input->post('display_place'));
+	 //REMOVE KEYS
+	 $remove_key2=array_filter($this->input->post('other_value'));
+	 $all_other_value=implode('|',$remove_key2);
+	 $total_arts_products=trim($this->input->post('total_arts'));
+	 $orientation=trim($this->input->post('orientation'));
+	 $bud_per_work=trim($this->input->post('bud_per_work'));
+	 $total_budget=trim($this->input->post('total_budget'));
+	 $creative_details=trim($this->input->post('creative_details'));
+	 $general_theme=trim($this->input->post('general_theme'));
+	 $source_type=trim($this->input->post('source_type'));
+	 $source_type=trim($this->input->post('source_type'));
+	 $date_of_submission=trim($this->input->post('date_of_submission'));
+	 $feadback_submission=trim($this->input->post('feadback_submission'));
+	 $mode_submission=trim($this->input->post('mode_submission'));
+	 
+	 $current_date=date('d-m-Y');
+	 $originalDate = $date_of_submission;
+     $newDate = date("d-m-Y", strtotime($originalDate));
+  
+	  
+	  if($newDate<$current_date){$date['error_date']="Submission Date must be greater than or Equal to current date.";}
+	 $data=array(
+			      
+			  'contact_person'=>$name,
+			  'alternate_name'=>$alternate_name,
+			  'contact_number'=>$mobile,
+			  'alternate_contact'=>$alternate_mobile,
+			  'landline_number'=>$landline,
+			  'email'=>$email,
+			  'alternate_email'=>$alternate_email,
+			  'company_name'=>trim($comp_name),
+			  'address'=>$address,
+			  'state_city'=>$state_city,
+			  'region'=>$region,
+			  'relationship_manager'=>$relat_manager,
+			  'art_researcher'=>$art_researcher,
+			  'property_types'=>$propert_types,	
+			  'place_of_display'=>$place_of_display,
+			  'all_other_value'=>$all_other_value,
+			  'wall_size'=>$size_of_wall,
+			  'wall_color'=>$color_of_wall,
+			  'art_size'=>$size_of_art,
+			  'total_art_products'=>$total_arts_products,
+			  'orientation'=>$orientation,
+			  'budget_per_work'=>$bud_per_work,
+			  'total_budget'=>$total_budget,
+			  'creative_details'=>$creative_details,
+			  'general_theme'=>$general_theme,
+			  'source_types'=>$source_type,
+			  'date_1st_submission'=>$newDate,
+			  			  
+			  
+			  
+			  //'submission_date'=>$newDate,
+			  //'feadback'=>$feadback_submission,
+			  //'image'=>$mode_submission,
+			    
+				  );
+				  	
+				  
+	     if($this->form_validation->run()==true)
+		 {
+					$this->load->view('backend/query_form/form'); 
+		 }
+         else{
+			
+			     
+				 
+				 $this->load->model('form_model'); 
+				 $data['added_form']=$this->form_model->add_form($data);
+				 $data['added_success']="Record Successfully Added.";
+				 $this->load->view('backend/dashboard_header');
+			     $this->load->view('backend/query_form/form',$data);
+				 $this->load->view('backend/footer');
+			 }
+		
+	
+	  
+	
+	}//End addd query from
+	
+	
+   
+   /*Functio To Display Query List*/
+	public function edit_query_form($id)
+	{
+        $this->load->model('form_model');
+	    $select=$this->form_model->edit_model($id);
+	   $this->load->model('form_model');
+	   $data['result']=$this->form_model->edit_model($id,$select);
+      //Send Data
+		$this->load->view('backend/dashboard_header');
+		$this->load->view('backend/query_form/form_edit',$data);
+	    $this->load->view('backend/footer');
+	}
+	
+	/*Functio To Update Query List*/
+  public function edit_record($id)
+  {
+     
+	 
+	 $this->form_validation->set_rules('mobile','Mobile','required');
+	 $this->form_validation->set_rules('landline','Landline Number','required');
+	 $this->form_validation->set_rules('email','Email','required|valid_email');
+	 $this->form_validation->set_rules('comp_name','Compny Name','required');
+	 $this->form_validation->set_rules('address','Address','required');
+	 $this->form_validation->set_rules('state_city','State/City','required');
+	 $this->form_validation->set_rules('region','Region','required');
+	 $this->form_validation->set_rules('relat_manager','Relationship Manager','required');
+	 $this->form_validation->set_rules('art_researcher','Art Researcher','required');
+	 $this->form_validation->set_rules('proto_type','Proto Types','required');
+	 $this->form_validation->set_rules('place_of_display','Name','required');
+	 $this->form_validation->set_rules('size_of_wall','Size Of Wall','required');
+	 $this->form_validation->set_rules('color_of_wall','Wall Color','required');
+	 $this->form_validation->set_rules('display_place','This','required');
+	 $this->form_validation->set_rules('total_arts','Total Arts','required');
+	 $this->form_validation->set_rules('orientation','Orientation','required');
+	 $this->form_validation->set_rules('bud_per_work','This','required');
+	 $this->form_validation->set_rules('total_budget','Total Budget','required');
+	 $this->form_validation->set_rules('creative_details','Creative Details','required');
+	 $this->form_validation->set_rules('general_theme','This','required');
+	 $this->form_validation->set_rules('source_type','Source Type','required');	 
+	 $this->form_validation->set_rules('date_of_submission','Submission Date','required');
+	 //$this->form_validation->set_rules('feadback_submission','Feadback','required');
+	 /*Image*/
+	 //$this->form_validation->set_rules('mode_submission','Submission Mode','required');
+	 
+	 
+	 
+	/*  
+	 $this->load->model('form_model');
+	 $select=$this->form_model->edit_model($id);
+	*/
+	 
+	 
+	
+	 	 
+	 $person_name=trim($this->input->post('name'));
+	
+	 $alternate_name=trim($this->input->post('alternate_name'));
+	 $alternate_mobile=trim($this->input->post('alternate_mobile'));
+	 $mobile=trim($this->input->post('mobile'));
+	 
+	 $landline=trim($this->input->post('landline'));
+	 $email=trim($this->input->post('email'));
+	 $alternate_email=trim($this->input->post('alternate_email'));
+	 $comp_name=trim($this->input->post('comp_name'));
+	 $address=trim($this->input->post('address'));
+	 $state_city=trim($this->input->post('state_city'));
+	 $region=trim($this->input->post('region'));
+	 $relat_manager=trim($this->input->post('relat_manager'));
+	 $art_researcher=trim($this->input->post('art_researcher'));
+	 $propert_types=implode(',',$this->input->post('property_type'));
+	
+	
+	 //Remove emprt array key
+	 $remove_key=array_filter($this->input->post('place_of_display'));
+	 $place_of_display=implode(',',$remove_key);
+	 $size_of_wall=trim($this->input->post('size_of_wall'));
+	 $color_of_wall=trim($this->input->post('color_of_wall'));
+	 $size_of_art=trim($this->input->post('size_of_art'));
+	 $display_place=trim($this->input->post('display_place'));
+	 //REMOVE KEYS
+	 $remove_key2=array_filter($this->input->post('other_value'));
+	 $all_other_value=implode('|',$remove_key2);
+	 $total_arts_products=trim($this->input->post('total_arts'));
+	 $orientation=trim($this->input->post('orientation'));
+	 $bud_per_work=trim($this->input->post('bud_per_work'));
+	 $total_budget=trim($this->input->post('total_budget'));
+	 $creative_details=trim($this->input->post('creative_details'));
+	 $general_theme=trim($this->input->post('general_theme'));
+	 $source_type=trim($this->input->post('source_type'));
+	 $source_type=trim($this->input->post('source_type'));
+	 
+	 
+	 
+	 //Date
+	 $date_of_1st_submission=trim($this->input->post('date_1st_sub'));
+	 $date_fisrt= date("d-m-Y", strtotime($date_of_1st_submission));
+	 
+	 $date_of_2nd_submission=trim($this->input->post('date_2nd_sub'));
+	 $date_second= date("d-m-Y", strtotime($date_of_2nd_submission));
+	
+	 
+	 $date_of_3rd_submission=trim($this->input->post('date_3nd_sub'));
+	 $date_third= date("d-m-Y", strtotime($date_of_3rd_submission));
+	 
+	 $date_of_4th_submission=trim($this->input->post('date_4th_sub'));
+	 $date_four= date("d-m-Y", strtotime($date_of_4th_submission));
+      
+      //FEADBACK
+     $feadback_1st_sub=trim($this->input->post('feadback_1st_sub'));
+     $feadback_2nd_sub=trim($this->input->post('feadback_2nd_sub'));
+     $feadback_3rd_sub=trim($this->input->post('feadbacb_3rd_sub'));
+     $feadback_4th_sub=trim($this->input->post('feadback_4th_sub'));
+	 
+	/*
+	 //Submission Files
+	 $first_sub_file=trim($this->input->post('first_sub_file'));
+	 $second_sub_file=trim($this->input->post('second_sub_file'));
+	 $third_sub_file=trim($this->input->post('third_sub_file'));
+	 $fourth_sub_file=trim($this->input->post('fourth_sub_file'));*/
+      
+	     $first_sub_file=trim($this->input->post('first_sub_file'));
+
+		 $location1="D:/xampp/htdocs/current_mirror/images/Upload_Files/";
+		 $upload1=move_uploaded_file($first_sub_file,$location1);
+	 
+	 //UPDATED BY
+	 $update_1st_sub=trim($this->input->post('update_1st_sub'));
+	 $update_2nd_sub=trim($this->input->post('update_2nd_sub'));
+	 $update_3rd_sub=trim($this->input->post('update_3rd_sub'));
+	 $update_4th_sub=trim($this->input->post('update_4th_sub'));
+	 
+	 
+	      //edi files
+	   
+	 
+	 
+  
+  
+  
+  /*
+         $config['upload_path']= './Upload_Files/'; 
+         $config['allowed_types']= 'php|xlsl'; 
+         $config['max_size']= 1000000000; 
+         $config['max_width']= 102400000; 
+         $config['max_height']= 76800000;  
+         $this->load->library('upload', $config);
+			
+         if ( ! $this->upload->do_upload($first_sub_file)) {
+            $error = array('error' => $this->upload->display_errors()); 
+            $this->load->view('backend/form/form_edit', $error); 
+         }
+			
+         else { 
+            $data = array('upload_data' => $this->upload->data()); 
+            $this->load->view('backend/form/form_edit',$data); 
+         } 
+  
+	  */
+	  
+	  
+	  
+if($date_of_1st_submission<$current_date){$date['error_date']="Submission Date must be greater than or Equal to current date.";}
+if($date_of_2nd_submission<$current_date){$date['error_date']="Submission Date must be greater than or Equal to current date.";}
+if($date_of_3rd_submission<$current_date){$date['error_date']="Submission Date must be greater than or Equal to current date.";}
+if($date_of_4th_submission<$current_date){$date['error_date']="Submission Date must be greater than or Equal to current date.";}
+
+	 	     
+
+
+$updated_date=date('d-m-Y');
+	 
+	 $data=array(
+			      
+			  'contact_person'=>$person_name,
+			  'alternate_name'=>$alternate_name,
+			  'contact_number'=>$mobile,
+			  'alternate_contact'=>$alternate_mobile,
+			  'landline_number'=>$landline,
+			  'email'=>$email,
+			  'alternate_email'=>$alternate_email,
+			  'company_name'=>trim($comp_name),
+			  'address'=>$address,
+			  'state_city'=>$state_city,
+			  'region'=>$region,
+			  'relationship_manager'=>$relat_manager,
+			  'art_researcher'=>$art_researcher,
+			  'property_types'=>$propert_types,	
+			  'place_of_display'=>$place_of_display,
+			  'all_other_value'=>$all_other_value,
+			  'wall_size'=>$size_of_wall,
+			  'wall_color'=>$color_of_wall,
+			  'art_size'=>$size_of_art,
+			  'total_art_products'=>$total_arts_products,
+			  'orientation'=>$orientation,
+			  'budget_per_work'=>$bud_per_work,
+			  'total_budget'=>$total_budget,
+			  'creative_details'=>$creative_details,
+			  'general_theme'=>$general_theme,
+			  'source_types'=>$source_type,
+			 
+			  
+			  'date_1st_submission'=>$date_fisrt,
+			  'date_2nd_submission'=>$date_second,
+			  'date_3rd_submission'=>$date_third,
+			  'date_4th_submission'=>$date_four,
+			  
+			  'feadback_1st_submission'=>$feadback_1st_sub,
+              'feadback_2nd_submission'=>$feadback_2nd_sub,
+			  'feadback_3rd_submission'=>$feadback_3rd_sub,
+			  'feadback_4th_submission'=>$feadback_4th_sub,
+			  
+			  'form_submission1'=>$first_sub_file,
+			  'form_submission2'=>$second_sub_file,
+			  'form_submission3'=>$third_sub_file,
+			  'form_submission4'=>$fourth_sub_file,
+			  
+			 
+			  
+              'updated_by_1st_submission'=>$update_1st_sub,
+			  'updated_by_2nd_submission'=>$update_2nd_sub,
+			  'updated_by_3rd_submission'=>$update_3rd_sub,
+			  'updated_by_4th_submission'=>$update_4th_sub,
+			  'last_update_date'=>$updated_date,  
+			 
+			
+			    
+				  );
+				  	
+		
+		if($this->form_validation->run()==true)
+		{
+		  $this->load->view('backend/query_form/form_edit');
+		}else{
+	    		
+	 $this->load->model('form_model');
+	 $this->form_model->edit_record($id,$data);
+	 $data['form_model']="Record Successfully Updated.";
+	 $message="Data Succcess fully pdated";
+	 redirect('backend/show_query',$message);
+
+			
+			 }
+		
+  }	
+	
+	/*Functio To show query  List*/
+	public function show_query()
+	{
+	
+	  $this->load->model('form_model');
+	  $data['get_data']=$this->form_model->get_record();  
+	  $this->load->view('backend/dashboard_header');
+	  $this->load->view('backend/query_form/View_form',$data);
+	  $this->load->view('backend/footer');	
+	
+	
+	}
+	
+	public function delete_query_form($id)
+	{
+	
+	   $this->load->model('form_model');
+	   $this->form_model->delete_form_model($id);
+	   redirect('backend/show_query');
+
+	}
+	
+	public function view_query_details($id)
+	{
+		
+		 
+	 $this->load->model('form_model');
+	 $data['details']=$this->form_model->view_details_model($id);
+	 $this->load->view('backend/query_form/form_details',$data);
+
+	
+	
+	}
+	
+	
+	
+	
+	
+		
+	
 
 
 
@@ -33,11 +458,6 @@ class Backend extends CI_Controller
   
 
 public function web_pricing(){
-      
-
-       
-        $data['roll']= $this->backend_model->get_roll_size();
-        $data['frame_category']= $this->backend_model->get_frame_category();
         $this->load->view('backend/dashboard_header');
         $this->load->view('backend/add_category_details',$data);
         $this->load->view('backend/footer');
@@ -283,15 +703,206 @@ public function get_add_details(){$category=$this->input->post('values');
 
 
 
+public function get_order_printer_status(){
 
-public function save_category_details(){
-      $category=$this->input->post('category');
+ $roll_width=$this->input->post('roll_width');
+$roll_height_inch=$this->input->post('roll_height_inch');
+$sql="SELECT * FROM `order_printer_status`
+where completion_date BETWEEN '2017-04-01 00:00:00' and '2017-05-10 00:00:00' and actual_size='".round($roll_width)."x".round($roll_height_inch)."'";
+//echo $sql;
+$query=mysql_query($sql);
+$x=$sum=0;
+
+while($result=mysql_fetch_assoc($query)){
+//print_r($result);
+//echo $x;
+$actual_size=$result['actual_size'];
+$total_print=$result['total_print'];
+$actual_size1=split('x',$actual_size);
+//print_r($actual_size1[0]);
+$final_size=$actual_size1[0]*$actual_size1[1];
+$total_print_size=$final_size*$total_print;
+$sum=$sum+$total_print_size;
+
+
+$x++;}
+echo $sum;
+}
+public function get_frame_vendor_details(){
+$value=$this->input->post('value');
+//echo $value;
+if($value=='1'){
+$tbl='tbl_web_price';
+$tbl_details='tbl_web_price_final';
+
+}else if($value=='2'){
+$tbl='tbl_frame_details';
+}else if($value=='3'){
+$tbl='tbl_glass_details';
+}else if($value=='4'){
+$tbl='tbl_mount_details';
+}else if($value=='5'){
+$tbl='tbl_ink_details';
+}else if($value=='6'){
+$tbl='tbl_framing_raw_meterails';
+}else if($value=='a'){
+$tbl='tbl_packeging_details';
+}else if($value=='b'){
+$tbl='tbl_corrugated_5ply';
+}else if($value=='c'){
+$tbl='tbl_corrugated_3ply';
+}else if($value=='d'){
+$tbl='tbl_brown_tape_5ply';
+}
+/*$this->db->select('*');
+$this->db->group_by('vendor_name');
+$query=$this->db->get($tbl);*/
+if($value=='1'){
+$query=$this->db->query("SELECT vendor_name FROM $tbl UNION SELECT vendor_name FROM tbl_web_price_final group by vendor_name");
+}else{
+$query=$this->db->query("SELECT vendor_name FROM $tbl group by vendor_name");
+}
+$result=$query->result();
+echo '<option value="">----select vendor----</option>';
+foreach($result as $res){
+ echo '<option value="'.$res->vendor_name.'">'.$res->vendor_name.'</option>';
+ }
+}
+ public function get_paper_name_details(){
+    $paper_type=$this->input->post('values');
+	
+    $sql="select * from tbl_web_price where paper_type_name='".$paper_type."' group by paper";
+    $rows=  mysql_query($sql);
+	echo '<option value="">--Select Paper--</option>';
+    while($result=  mysql_fetch_assoc($rows)){
+      $frame_cat=  $result['paper'];
+	  
+	  
+        echo "<option value='".$frame_cat."'>$frame_cat</option>";
+     
+    } 
+ }   
+public function update_paper_of_vendor(){
+    $vendor_name=$this->input->post('vendor_name');
+   $row_id_sec=$this->input->post('row_id_sec');
+   $tbl_to_update=$this->input->post('tbl_to_update');
+  $this->db->select('*');
+  $this->db->where('vendor_name',$vendor_name);
+  if($tbl_to_update=='tbl_web_price'){
+  $this->db->where('id',$row_id_sec);
+  }else{
+  $this->db->where('sr_id',$row_id_sec);
+  }
+  $query=$this->db->get($tbl_to_update);
+ $vandor_paper_d=$query->result();
+ if($tbl_to_update=='tbl_web_price'){
+ //print_r($vandor_paper_d[0]->quality);
+ $new_result[]=$vandor_paper_d[0]->paper_type.','.$vandor_paper_d[0]->paper.','.$vandor_paper_d[0]->display_p_name.','.$vandor_paper_d[0]->rate.','.$vandor_paper_d[0]->unit_price.','.$vandor_paper_d[0]->roll_width.','.$vandor_paper_d[0]->roll_height_inch.','.$vandor_paper_d[0]->cost_per_inch.','.$vandor_paper_d[0]->only_print_price.','.$vandor_paper_d[0]->gsm.','.$vandor_paper_d[0]->current_qty.','.$vandor_paper_d[0]->vendor_lead_time.','.$vandor_paper_d[0]->total_roll.','.$vandor_paper_d[0]->paper_type_name.','.$vandor_paper_d[0]->paper.','.$vandor_paper_d[0]->web_print_price.','.$vandor_paper_d[0]->paper_type_only.','.$vandor_paper_d[0]->create_date;
+ 
+ 
+ 
+  }else if($tbl_to_update=='tbl_frame_details'){
+  $new_result[]=$vandor_paper_d[0]->frame_type.','.$vandor_paper_d[0]->frame_category.','.$vandor_paper_d[0]->frame.','.$vandor_paper_d[0]->frame_color.','.$vandor_paper_d[0]->frame_rate.','.$vandor_paper_d[0]->frame_size.','.$vandor_paper_d[0]->unit_price.','.$vandor_paper_d[0]->running_cost.','.$vandor_paper_d[0]->thresold_qty.','.$vandor_paper_d[0]->used_qty.','.$vandor_paper_d[0]->current_qty.','.$vandor_paper_d[0]->frame_code.','.$vandor_paper_d[0]->create_date;
+  
+  }else if($tbl_to_update=='tbl_mount_details'){
+  $new_result[]=$vandor_paper_d[0]->mount.','.$vandor_paper_d[0]->mount_code.','.$vandor_paper_d[0]->mount_height.','.$vandor_paper_d[0]->mount_width.','.$vandor_paper_d[0]->mount_rate.','.$vandor_paper_d[0]->unit_price.','.$vandor_paper_d[0]->used_qty.','.$vandor_paper_d[0]->current_qty.','.$vandor_paper_d[0]->create_date;
+  
+  
+  }else if($tbl_to_update=='tbl_glass_details'){
+  $new_result[]=$vandor_paper_d[0]->glass.','.$vandor_paper_d[0]->glass_rate.','.$vandor_paper_d[0]->unit_price.','.$vandor_paper_d[0]->thresold_qty.','.$vandor_paper_d[0]->used_qty.','.$vandor_paper_d[0]->reorder_qty.','.$vandor_paper_d[0]->current_qty.','.$vandor_paper_d[0]->create_date;
+  
+  
+  }else if($tbl_to_update=='tbl_ink_details'){
+  $new_result[]=$vandor_paper_d[0]->ink.','.$vandor_paper_d[0]->ink_rate.','.$vandor_paper_d[0]->unit_price.','.$vandor_paper_d[0]->thresold_qty.','.$vandor_paper_d[0]->used_qty.','.$vandor_paper_d[0]->reorder_qty.','.$vandor_paper_d[0]->current_qty.','.$vandor_paper_d[0]->create_date;
+  
+  
+  }else if($tbl_to_update=='tbl_framing_raw_meterails'){
+  $new_result[]=$vandor_paper_d[0]->meterails_name.','.$vandor_paper_d[0]->unit_price.','.$vandor_paper_d[0]->thresold_qty.','.$vandor_paper_d[0]->used_qty.','.$vandor_paper_d[0]->reorder_qty.','.$vandor_paper_d[0]->current_qty.','.$vandor_paper_d[0]->create_date;
+  
+  
+  }else if($tbl_to_update=='tbl_packeging_details'){
+  $new_result[]=$vandor_paper_d[0]->meterails_name.','.$vandor_paper_d[0]->roll_width.','.$vandor_paper_d[0]->roll_height_m.','.$vandor_paper_d[0]->roll_height_inch.','.$vandor_paper_d[0]->unit_price.','.$vandor_paper_d[0]->thresold_qty.','.$vandor_paper_d[0]->used_qty.','.$vandor_paper_d[0]->reorder_qty.','.$vandor_paper_d[0]->current_qty.','.$vandor_paper_d[0]->create_date;
+  
+  
+  }else if($tbl_to_update=='tbl_corrugated_5ply'){
+  $new_result[]=$vandor_paper_d[0]->box_size.','.$vandor_paper_d[0]->box_qty.','.$vandor_paper_d[0]->unit_price.','.$vandor_paper_d[0]->thresold_qty.','.$vandor_paper_d[0]->used_qty.','.$vandor_paper_d[0]->reorder_qty.','.$vandor_paper_d[0]->current_qty.','.$vandor_paper_d[0]->create_date;
+  
+  
+  }else if($tbl_to_update=='tbl_corrugated_3ply'){
+ $new_result[]=$vandor_paper_d[0]->box_size.','.$vandor_paper_d[0]->box_qty.','.$vandor_paper_d[0]->unit_price.','.$vandor_paper_d[0]->thresold_qty.','.$vandor_paper_d[0]->used_qty.','.$vandor_paper_d[0]->reorder_qty.','.$vandor_paper_d[0]->current_qty.','.$vandor_paper_d[0]->create_date;
+  
+  }else if($tbl_to_update=='tbl_brown_tape_5ply'){
+ $new_result[]=$vandor_paper_d[0]->box_size.','.$vandor_paper_d[0]->box_qty.','.$vandor_paper_d[0]->unit_price.','.$vandor_paper_d[0]->thresold_qty.','.$vandor_paper_d[0]->used_qty.','.$vandor_paper_d[0]->reorder_qty.','.$vandor_paper_d[0]->current_qty.','.$vandor_paper_d[0]->create_date;
+  
+  }
+  echo $vendor_all_paper_dets=json_encode($new_result);
+  
+}
+public function get_vendor_name_of_frame(){
+    // echo "sajid";
+	$value=$this->input->post('value');
+	$cat_type=$this->input->post('cat_type');
+	if($cat_type=='2'){
+	$tbl='tbl_frame_details';
+	}else if($cat_type=='4'){
+	$tbl='tbl_mount_details';
+	}else if($cat_type==3){
+	$tbl='tbl_glass_details';
+	}else if($cat_type==5){
+	$tbl='tbl_ink_details';
+	}else if($cat_type==6 ){
+	$tbl='tbl_framing_raw_meterails';
+	}else if($cat_type=='a'){
+	$tbl='tbl_packeging_details';
+	}else if($cat_type=='b'){
+	$tbl='tbl_corrugated_5ply';
+	}else if($cat_type=='c'){
+	$tbl='tbl_corrugated_3ply';
+	}else if($cat_type=='d'){
+	$tbl='tbl_brown_tape_5ply';
+	}
+	 $this->db->select('*');
+    $this->db->where('vendor_name',$value);
+	$query=$this->db->get($tbl);
+	$result=$query->row();
+	$new_result[]=$result->unique_ven_id.','.$result->vendor_name.','.$result->vendor_contact.','.$result->vendor_dtls.','.$result->vendor_contact_2.','.$result->vendor_dtls_2.','.$result->vendor_lead_time;
+	//print_r($result);
+	echo $json_enc=json_encode($new_result);
+	
+	
+	}
+ public function get_vendor_name_details(){
+      $vendor_name=$this->input->post('value');
+   $this->backend_model->get_vendor_name_tbl_web_price($vendor_name);
+      }
+public function save_category_details(){ $category=$this->input->post('category');
 	  $paper_type_name=$this->input->post('paper_type');
 	  $dis_name=$this->input->post('dis_name');
       $name=$this->input->post('name');
-      $rate=$this->input->post('rate');
+      
       $quality=$this->input->post('quality');
       $roll=$this->input->post('roll');
+	  
+	  //print_r($mul_rate);
+	  
+	   
+	   $unique_inv_id=$this->input->post('unique_inv_id');
+	   $vendor_name=$this->input->post('vendor_name');
+      $unique_ven_id=$this->input->post('unique_ven_id');
+	  $vendor_contact=$this->input->post('vendor_contact');
+	  $vendor_dtls=$this->input->post('vendor_dtls');
+	  $unit_price=$this->input->post('unit_price');
+	  $roll_width=$this->input->post('roll_width');
+	  $roll_height_m=$this->input->post('roll_height');
+	   $roll_height_inch=$this->input->post('roll_height_inch');
+      $cost_per_inch=$this->input->post('cost_per_inch');
+	  $only_print_price=$this->input->post('only_print_price');
+	  $gsm=$this->input->post('gsm');
+	  $thresold_qty=$this->input->post('thresold_qty');
+	  $current_qty=$this->input->post('current_qty');
+	  $tbl_update=$this->input->post('tbl_update');
+	  $row_id_sec=$this->input->post('row_id_sec');
+	  
 	   $frame=$this->input->post('frame');
       $frame_category=$this->input->post('frame_category');
       $frame_type=$this->input->post('frame_type');
@@ -300,9 +911,16 @@ public function save_category_details(){
 	  $frame_color=$this->input->post('frame_color');
 	  $frame_size=$this->input->post('frame_size');
 	  $frame_size_inch=$this->input->post('frame_size_inch');
+	  $frame_running_cost=$this->input->post('cost_running_fir');
+	  $used_qty=$this->input->post('used_qty');
+	  $total_roll=$this->input->post('total_roll');
+	  $vendor_lead_time=$this->input->post('vendor_lead_time');
      $mount_code=$this->input->post('mount_code');
 	  $mount_height=$this->input->post('mount_height');
 	  $mount_width=$this->input->post('mount_width');
+	  $paper_type_only=$this->input->post('paper_type_only');
+	  $vendor_contact_2=$this->input->post('vendor_c');
+		$vendor_dtls_2=$this->input->post('vendor_d');
       $no_space= preg_match('/\s/',$quality);
             if($no_space!=0){
               $qualitys=$quality.'+';  
@@ -312,25 +930,158 @@ public function save_category_details(){
              }
              date_default_timezone_set('Asia/Kolkata');
 	    	 $date=date('Y-m-d H:i:s');
+			 $rate=$this->input->post('rate');
         if($category==1){
-       $query="paper_type='".$category."',paper='".$name."', quality='".str_replace(' ','',$qualitys)."', paper_type_name='".$paper_type_name."',display_p_name='".$dis_name."',roll_size='".$roll."',rate='".$rate."'";      
+		//echo "yes";
+		
+		//print($mul_rate);
+		//echo $unit_price.'ss';
+		$tbl_save_data="tbl_web_price";
+		//$mul_quality=array('Star','Platinum','Gold','Silver');
+		$mul_quality="star,platinum,gold,silver";
+		
+		$web_print_price=$this->input->post('web_print_price');
+		$total_roll_hand=$this->input->post('total_roll_hand');
+		$stock_order=$this->input->post('stock_order');
+		$tbl_edit=$this->input->post('tbl_edit');
+		
+		
+		//print_r($mul_quality);
+		
+		if($tbl_update==""){
+		 
+		//  $mul_rate=explode(" ",$rate);
+		//for($i=0;$i<count($mul_quality);$i++){
+		$query="paper_type='".$category."',paper='".$name."', quality='".$mul_quality."', paper_type_name='".$paper_type_name."',display_p_name='".$dis_name."',roll_size='".$roll."',rate='".$rate."', unique_inv_id='".$unique_inv_id."',unique_ven_id='".$unique_ven_id."',vendor_name='".$vendor_name."',vendor_contact='".$vendor_contact."',vendor_dtls='".$vendor_dtls."',unit_price='".$unit_price."',roll_width='".$roll_width."',roll_height_m='".$roll_height_m."',roll_height_inch='".$roll_height_inch."',cost_per_inch='".$cost_per_inch."',only_print_price='".$only_print_price."',gsm='".$gsm."',thresold_qty='".$thresold_qty."',current_qty='".$current_qty."',total_roll='".$total_roll."',vendor_lead_time='".$vendor_lead_time."',vendor_contact_2='".$vendor_contact_2."',vendor_dtls_2='".$vendor_dtls_2."',web_print_price='".$web_print_price."',total_roll_hand='".$total_roll_hand."',stock_order='".$stock_order."',paper_type_only='".$paper_type_only."'";
+	  $sql="insert into $tbl_save_data set $query , create_date='".$date."'";
+	  $insert=  mysql_query($sql);
+	         }else{
+			 
+	   $query="paper_type='".$category."',paper='".$name."', quality='".$mul_quality."', paper_type_name='".$paper_type_name."',display_p_name='".$dis_name."',roll_size='".$roll."',rate='".$rate."', unique_inv_id='".$unique_inv_id."',unique_ven_id='".$unique_ven_id."',vendor_name='".$vendor_name."',vendor_contact='".$vendor_contact."',vendor_dtls='".$vendor_dtls."',unit_price='".$unit_price."',roll_width='".$roll_width."',roll_height_m='".$roll_height_m."',roll_height_inch='".$roll_height_inch."',cost_per_inch='".$cost_per_inch."',only_print_price='".$only_print_price."',gsm='".$gsm."',thresold_qty='".$thresold_qty."',current_qty='".$current_qty."',total_roll='".$total_roll."',vendor_lead_time='".$vendor_lead_time."',vendor_contact_2='".$vendor_contact_2."',vendor_dtls_2='".$vendor_dtls_2."',web_print_price='".$web_print_price."',total_roll_hand='".$total_roll_hand."',paper_type_only='".$paper_type_only."',update_date='".$date."'";
+	   if($tbl_edit==''){
+	   $query_copy="insert into tbl_web_price_final(paper_type,paper,quality,paper_type_name,display_p_name,roll_size,rate,unique_inv_id,unique_ven_id,vendor_name,vendor_contact,vendor_dtls,unit_price,roll_width,roll_height_m,roll_height_inch,only_print_price,gsm,thresold_qty,current_qty,total_roll,vendor_lead_time,stock_order)
+	   select paper_type,paper,quality,paper_type_name,display_p_name,roll_size,rate,unique_inv_id,unique_ven_id,vendor_name,vendor_contact,vendor_dtls,unit_price,roll_width,roll_height_m,roll_height_inch,only_print_price,gsm,thresold_qty,current_qty,total_roll,vendor_lead_time,stock_order from tbl_web_price where id='".$row_id_sec."'";
+	   $insert1=  mysql_query($query_copy);
+	   }
+	  $sql="update tbl_web_price set $query , create_date='".$date."' where id='".$row_id_sec."'"; 
+	  //echo $sql;
+	  
+	      $insert=mysql_query($sql);
+		  if($insert){
+		echo "updated1";
+		  }
+	   }
        }else if($category==2){
-        $query="paper_type='".$category."',frame_type='".$frame."',  frame_category='".$name."',  frame='".$frame_name."',  frame_rate='".$rate."',frame_code='".$frame_code."',frame_color='".$frame_color."',frame_size='".$frame_size."',frame_size_inch='".$frame_size_inch."'";      
+	   $tbl_save_data="tbl_frame_details";
+	    echo $query="unique_inv_id='".$unique_inv_id."',unique_ven_id='".$unique_ven_id."',vendor_name='".$vendor_name."',vendor_contact='".$vendor_contact."',vendor_dtls='".$vendor_dtls."',vendor_lead_time='".$vendor_lead_time."',vendor_contact_2='".$vendor_contact_2."',vendor_dtls_2='".$vendor_dtls_2."',frame_type='".$frame."',  frame_category='".$name."',  frame='".$frame_name."',  frame_rate='".$rate."',frame_code='".$frame_code."',frame_color='".$frame_color."',frame_size='".$frame_size."',frame_size_inch='".$frame_size_inch."',unit_price='".$unit_price."',running_cost='".$frame_running_cost."',thresold_qty='".$thresold_qty."',used_qty='".$used_qty."',current_qty='".$current_qty."'";  
+	   if($tbl_update==""){
+        $tbl_update.$sql="insert into $tbl_save_data set $query , create_date='".$date."'";
+		}else{
+		 $sql="update $tbl_save_data set $query ,update_date='".$date."' where sr_id='".$row_id_sec."'";
+		 echo "updated2";
+		}  
+		 $insert=mysql_query($sql);  
        }else if($category==4){
-        $query="paper_type='".$category."',  mount='".$name."', mount_rate='".$rate."',mount_code='".$mount_code."',mount_height='".$mount_height."',mount_width='".$mount_width."'";      
+	   $tbl_save_data="tbl_mount_details";
+       echo $query="unique_inv_id='".$unique_inv_id."',unique_ven_id='".$unique_ven_id."',vendor_name='".$vendor_name."',vendor_contact='".$vendor_contact."',vendor_dtls='".$vendor_dtls."',vendor_lead_time='".$vendor_lead_time."',vendor_contact_2='".$vendor_contact_2."',vendor_dtls_2='".$vendor_dtls_2."',mount='".$name."', mount_rate='".$rate."',mount_code='".$mount_code."',mount_height='".$mount_height."',mount_width='".$mount_width."',unit_price='".$unit_price."',thresold_qty='".$thresold_qty."',used_qty='".$used_qty."',current_qty='".$current_qty."'"; 
+		 if($tbl_update==""){
+        $tbl_update.$sql="insert into $tbl_save_data set $query , create_date='".$date."'";
+		}else{
+		 $sql="update $tbl_save_data set $query , update_date='".$date."' where sr_id='".$row_id_sec."'"; 
+		 echo "updated4";
+		}  
+		 $insert=mysql_query($sql);  
+     
        }else if($category==3){
-       $query="paper_type='".$category."',  glass='".$name."', glass_rate='".$rate."'";      
+	   $tbl_save_data="tbl_glass_details";
+       $query= "unique_inv_id='".$unique_inv_id."',unique_ven_id='".$unique_ven_id."',vendor_name='".$vendor_name."',vendor_contact='".$vendor_contact."',vendor_dtls='".$vendor_dtls."',vendor_lead_time='".$vendor_lead_time."',vendor_contact_2='".$vendor_contact_2."',vendor_dtls_2='".$vendor_dtls_2."',glass='".$name."', glass_rate='".$rate."',unit_price='".$unit_price."',thresold_qty='".$thresold_qty."',used_qty='".$used_qty."',current_qty='".$current_qty."'"; 
+	    if($tbl_update==""){
+        $tbl_update.$sql="insert into $tbl_save_data set $query , create_date='".$date."'";
+		}else{
+		 $sql="update $tbl_save_data set $query , update_date='".$date."' where sr_id='".$row_id_sec."'"; 
+		 echo "updated3";
+		}  
+		 $insert=mysql_query($sql);  
+     
+       }else if($category==5){
+	   $tbl_save_data="tbl_ink_details";
+       $query= "unique_inv_id='".$unique_inv_id."',unique_ven_id='".$unique_ven_id."',vendor_name='".$vendor_name."',vendor_contact='".$vendor_contact."',vendor_dtls='".$vendor_dtls."',ink='".$name."', ink_rate='".$rate."',unit_price='".$unit_price."',thresold_qty='".$thresold_qty."',used_qty='".$used_qty."',current_qty='".$current_qty."'"; 
+	    if($tbl_update==""){
+        $tbl_update.$sql="insert into $tbl_save_data set $query , create_date='".$date."'";
+		}else{
+		 $sql="update $tbl_save_data set $query , create_date='".$date."' where sr_id='".$row_id_sec."'"; 
+		 echo "updated5";
+		}  
+		 $insert=mysql_query($sql);  
+     
+       }else if($category==6){
+	   $tbl_save_data="tbl_framing_raw_meterails";
+       $query= "unique_inv_id='".$unique_inv_id."',unique_ven_id='".$unique_ven_id."',vendor_name='".$vendor_name."',vendor_contact='".$vendor_contact."',vendor_dtls='".$vendor_dtls."',meterails_name='".$name."',unit_price='".$unit_price."',thresold_qty='".$thresold_qty."',used_qty='".$used_qty."',current_qty='".$current_qty."'"; 
+	    if($tbl_update==""){
+        $tbl_update.$sql="insert into $tbl_save_data set $query , create_date='".$date."'";
+		}else{
+		 $sql="update $tbl_save_data set $query , create_date='".$date."' where sr_id='".$row_id_sec."'"; 
+		 echo "updated6";
+		}  
+		 $insert=mysql_query($sql);  
+     
+       }else if($category=='a'){
+	   $tbl_save_data="tbl_packeging_details";
+       $query= "unique_inv_id='".$unique_inv_id."',unique_ven_id='".$unique_ven_id."',vendor_name='".$vendor_name."',vendor_contact='".$vendor_contact."',vendor_dtls='".$vendor_dtls."',meterails_name='".$name."', roll_width='".$roll_width."',roll_height_m='".$roll_height_inch."',roll_height_inch='".$roll_height_inch."',unit_price='".$unit_price."',thresold_qty='".$thresold_qty."',used_qty='".$used_qty."',current_qty='".$current_qty."'"; 
+	    if($tbl_update==""){
+        $tbl_update.$sql="insert into $tbl_save_data set $query , create_date='".$date."'";
+		}else{
+		 $sql="update $tbl_save_data set $query , create_date='".$date."' where sr_id='".$row_id_sec."'"; 
+		 echo "updateda";
+		}  
+		 $insert=mysql_query($sql);  
+     
+       }else if($category=='b'){
+	   $tbl_save_data="tbl_corrugated_5ply";
+       $query= "unique_inv_id='".$unique_inv_id."',unique_ven_id='".$unique_ven_id."',vendor_name='".$vendor_name."',vendor_contact='".$vendor_contact."',vendor_dtls='".$vendor_dtls."',box_size='".$name."', box_qty='".$rate."',unit_price='".$unit_price."',thresold_qty='".$thresold_qty."',used_qty='".$used_qty."',current_qty='".$current_qty."'"; 
+	    if($tbl_update==""){
+        $tbl_update.$sql="insert into $tbl_save_data set $query , create_date='".$date."'";
+		}else{
+		 $sql="update $tbl_save_data set $query , create_date='".$date."' where sr_id='".$row_id_sec."'"; 
+		 echo "updatedb";
+		}  
+		 $insert=mysql_query($sql);  
+     
+       }else if($category=='c'){
+	   $tbl_save_data="tbl_corrugated_3ply";
+       $query= "unique_inv_id='".$unique_inv_id."',unique_ven_id='".$unique_ven_id."',vendor_name='".$vendor_name."',vendor_contact='".$vendor_contact."',vendor_dtls='".$vendor_dtls."',box_size='".$name."', box_qty='".$rate."',unit_price='".$unit_price."',thresold_qty='".$thresold_qty."',used_qty='".$used_qty."',current_qty='".$current_qty."'"; 
+	    if($tbl_update==""){
+        $tbl_update.$sql="insert into $tbl_save_data set $query , create_date='".$date."'";
+		}else{
+		 $sql="update $tbl_save_data set $query , create_date='".$date."' where sr_id='".$row_id_sec."'"; 
+		 echo "updatedc";
+		}  
+		 $insert=mysql_query($sql);  
+     
+       }else if($category=='d'){
+	   $tbl_save_data="tbl_brown_tape_5ply";
+       $query= "unique_inv_id='".$unique_inv_id."',unique_ven_id='".$unique_ven_id."',vendor_name='".$vendor_name."',vendor_contact='".$vendor_contact."',vendor_dtls='".$vendor_dtls."',box_size='".$name."', box_qty='".$rate."',unit_price='".$unit_price."',thresold_qty='".$thresold_qty."',used_qty='".$used_qty."',current_qty='".$current_qty."'"; 
+	    if($tbl_update==""){
+        $tbl_update.$sql="insert into $tbl_save_data set $query , create_date='".$date."'";
+		}else{
+		 $sql="update $tbl_save_data set $query , create_date='".$date."' where sr_id='".$row_id_sec."'"; 
+		 echo "updatedd";
+		}  
+		 $insert=mysql_query($sql);  
+     
        }
-       
-         $sql="insert into tbl_web_price set $query , status='1', create_date='".$date."'";
-      $insert=  mysql_query($sql);
+	   /*
+	   if($category!=1){
+	  
+       $sql="insert into $tbl_save_data set $query , create_date='".$date."'";
+   $insert=  mysql_query($sql);
+	 }*/
         if($insert){
             echo 1;
         }else{
             echo 0;
         }
-        
-  }
+        }
 
 
 
@@ -940,19 +1691,39 @@ public function save_packager_order_details()
               }
 }
 //starts shortlist method from dev to mahattaart by sajid this is already was given in mahattaart main (04-05-17)
-public function manage_web_price(){
+public function manage_web_price($auto_click){
+//echo $auto_click;
+$data['auto_click']=$auto_click;
 $data['web_price_tbl']=$this->backend_model->get_all_tbl_web_price();
+$data['tbl_frame_details']=$this->backend_model->get_tbl_frame_details();
+$data['tbl_mount_details']=$this->backend_model->tbl_mount_details();
+$data['tbl_glass_details']=$this->backend_model->get_tbl_glass_details();
+$data['tbl_ink_details']=$this->backend_model->get_tbl_ink_details();
+$data['tbl_framing_raw_meterails']=$this->backend_model->get_tbl_framing_raw_meterails();
+$data['tbl_packeging_details']=$this->backend_model->get_tbl_packeging_details();
+
+$data['tbl_corrugated_5ply']=$this->backend_model->get_tbl_corrugated_5ply();
+$data['tbl_corrugated_3ply']=$this->backend_model->get_tbl_corrugated_3ply();
+$data['tbl_brown_tape_5ply']=$this->backend_model->get_tbl_brown_tape_5ply();
+
                 $this->load->view('backend/dashboard_header');
 		$this->load->view('backend/manage_web_price',$data);
 		$this->load->view('backend/footer');
 
 
 }
-public function update_web_price($row_id){
-	
-	$data['row_id']=$this->backend_model->update_web_price($row_id);
+public function update_web_price($row_id,$tbl,$vendor_name,$edit){
+	//echo $edit;die;
+	$data['row_id']=$this->backend_model->update_web_price($row_id,$tbl);
+	$data_sec['edit_table']=$edit;
+	$data_sec['tbl']=$tbl;
+	$data_sec['vendor_name']=$vendor_name;
+	$data_sec['row_id_sec']=$row_id;
 	$this->load->view('backend/dashboard_header');
-		$this->load->view('backend/update_web_price',$data);
+	
+		$this->load->view('backend/add_category_details',$data_sec);
+		
+		
 		$this->load->view('backend/footer');
 	
 	}
@@ -982,13 +1753,38 @@ public function update_web_price($row_id){
 	 redirect(base_url().'index.php/backend/manage_web_price');
 	
 	}
-public function delete_web_price($row_id){
+public function delete_web_price($row_id,$tbl){
 
 //error_reporting(E_ALL | E_WARNING | E_NOTICE);
 //ini_set('display_errors', TRUE);
- 
+if($tbl=='paper'){
+  $update_tbl="tbl_web_price";
+  }
+  else if($tbl=='frame'){
+  $update_tbl="tbl_frame_details";
+  }else if($tbl=='mount'){
+  $update_tbl="tbl_mount_details";
+  }else if($tbl=='glass'){
+  $update_tbl="tbl_glass_details";
+  }else if($tbl=='ink'){
+  $update_tbl="tbl_ink_details";
+  }else if($tbl=='row_meterails'){
+  $update_tbl="tbl_framing_raw_meterails";
+  }else if($tbl=='packeging'){
+  $update_tbl="tbl_packeging_details";
+  }else if($tbl=='corrugated_5ply'){
+  $update_tbl="tbl_corrugated_5ply";
+  }else if($tbl=='corrugated_3ply'){
+  $update_tbl="tbl_corrugated_3ply";
+  }else if($tbl=='b_t_5ply'){
+  $update_tbl="tbl_brown_tape_5ply";
+  }
+ if($tbl=='paper'){
 	$this->db->where('id',$row_id);
-	$this->db->delete('tbl_web_price');
+	}else{
+	$this->db->where('sr_id',$row_id);
+	}
+	$this->db->delete($update_tbl);
         redirect(base_url().'index.php/backend/manage_web_price');
       
 	}

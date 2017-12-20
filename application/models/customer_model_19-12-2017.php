@@ -451,7 +451,12 @@ public function get_customers_type()
     return $query->result_array();
 }  
  
-  
+  public function add_customer_query_mod($data)
+    {
+	
+	 $query=$this->db->insert('tbl_customer_query',$data);
+	 	  
+	} 
 	public function view_cutomer_query_mod()
 	{
 	  $this->db->order_by("id", "DESC");

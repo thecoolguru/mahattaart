@@ -237,9 +237,7 @@ class Customer extends CI_Controller
         $this->load->view('backend/footer');
 		}
     public function add_customer_final()
-    {
-		
-		  
+    {  
 	//$customer_type=$this->input->post('customer_type');
 	//print_r($customer_type);die;
         if($this->session->userdata('userid'))
@@ -247,7 +245,7 @@ class Customer extends CI_Controller
 	
         $data['msg']="";
 		//print_r($data);die;
-        $this->form_validation->set_rules('email','Email','required');
+         $this->form_validation->set_rules('email','Email','required');
         $this->form_validation->set_rules('fname','Name','required');
         $this->form_validation->set_rules('lname','Last Name','required');
         $this->form_validation->set_rules('address','Address','required');
@@ -257,19 +255,6 @@ class Customer extends CI_Controller
         $this->form_validation->set_rules('pincode','Pincode','required');
         $this->form_validation->set_rules('region','Region','required');
         $this->form_validation->set_rules('contact','Contact','required');
-		
-		
-		//echo $this->input->post('iama')." ".$this->input->post('job_description');
-		//die();
-		
-		
-		/*Mailing Variable*/
-		
-		
-		
-		
-		/*--End Mailing--*/
-		
         
   
 //echo $this->input->post('customer_type');
@@ -319,8 +304,7 @@ class Customer extends CI_Controller
 
     if($this->input->post('occupation')=='Other')
     {
-         $ocupation=$this->input->post('occupation');
-		 $Indusry = $this->input->post('otherIndusry');   
+         $Indusry = $this->input->post('otherIndusry');   
     }
     
     
@@ -345,18 +329,10 @@ elseif($selecthospitality<>'')
          $b2cp=$this->input->post('customer_type');
 		 
 		 
-         if($this->input->post('customer_type')=='RETAIL')
+         if($this->input->post('customer_type')=='B2CP')
         {
-		    
-		   
-		   if($this->input->post('occupationb2cp')=='Other_b2cp')
-                   {
-                          $ocupation=$this->input->post('occupationb2cp');
-						  $Indusry = $this->input->post('otherb2cp');
-						    
-                   }
-		
-		
+		//echo "yes b2cp";die;
+//die('mohan');
           if($this->form_validation->run()==false){
             $data=array(
                     'customer_id'=>$this->input->post('customer_id'),
@@ -364,15 +340,15 @@ elseif($selecthospitality<>'')
                     'last_name'=>$this->input->post('lname'),
                     'email_id'=>$this->input->post('email'),
                     'customer_type'=>$this->input->post('customer_type'),
-					'industry'=>$ocupation,
+                    'industry'=>$this->input->post('occupation'),
                     'selected_industry'=>$Indusry,
                     'relation_manager'=>$this->input->post('relationshipmanage'),
                     'account_type'=>$this->input->post('account_type'),
                     'registered_from'=>$this->input->post('Registered_from'),
                     'vender_contract'=>$this->input->post('vender_contract'),
-                    'password'=>$this->input->post('password'),
-                    'gender'=>$this->input->post('gender'),
-                    'address'=>$this->input->post('address'),
+                     'password'=>$this->input->post('password'),
+                     'gender'=>$this->input->post('gender'),
+                     'address'=>$this->input->post('address'),
                     'country'=>$this->input->post('country'),
                     'state'=>$this->input->post('state'),
                     'city'=>$this->input->post('city'),
@@ -380,72 +356,10 @@ elseif($selecthospitality<>'')
                     'company_name'=>$this->input->post('company_name'),
                     'contact'=>$this->input->post('contact'),
                     'purpose'=>$this->input->post('purpose'),
-					'i_am_a'=>$this->input->post('iama'),
-					'job_description'=>$this->input->post('job_description'),
                     'zip_code'=>$this->input->post('pincode'),
                     'customer_created_by'=>'admin','date_account_create'=>date('y:m:d h:m:s'),
                     /*'company_type'=>$this->input->post('company_type')*/ 
-                     'status'=>'1',
-					 
-					 /*Mailing Infomation*/
-					 
-					'mailing_street_address'=>$this->input->post('mailstreetaddress'),
-                    'mailing_city'=>$this->input->post('mainlingcity'),
-                    'mailing_state'=>$this->input->post('mailingstate'),
-                    'mailing_postal_code'=>$this->input->post('mailposatcode'),
-                    'mailing_country'=>$this->input->post('mailingcountry'),
-                    'mailing_telephone'=>$this->input->post('mailingphone'),
-                    'mailing_mobile'=>$this->input->post('mailingmobile'), 
-					 
-					 
-					 /*End Mailing*/
-					 
-					 /* Billing Infomation */
-					 
-					'billing_company_name'=>$this->input->post('billingcomname'),
-                    'billing_region'=>$this->input->post('billingregion'),
-                    'billing_city'=>$this->input->post('billingcity'),
-                    'billing_cus_ac_type'=>$this->input->post('bactype'),
-                    'billing_cus_busi_type'=>$this->input->post('cbtype'),
-                    'billing_contact_person'=>$this->input->post('billing_con_person'),
-                    'billing_comp_address'=>$this->input->post('billing_comp_address'),
-					'billing_ac_sale_person'=>$this->input->post('billing_sale_person'),
-					'billing_cus_gst_num'=>$this->input->post('billing_gst_number'),
-					'billing_pan_number'=>$this->input->post('billing_pan_number'),
-					'billing_place_supply'=>$this->input->post('billing_place_supply'),
-					 
-					 
-					 /*End Billig*/
-					 
-					 
-					 /* Shipping Infomation */
-					 
-					'shipping_company_name'=>$this->input->post('shipping_comp_name'),
-                    'shipping_region'=>$this->input->post('shipping_comp_region'),
-                    'shipping_city'=>$this->input->post('shipping_city	'),
-                    'shipping_cus_ac_type'=>$this->input->post('shipping_cus_ac_type'),
-                    'shipping_cus_busi_type'=>$this->input->post('shipping_cus_busi_type'),
-                    'shipping_contact_person'=>$this->input->post('shipping_com_con_person'),
-                    'shipping_com-address'=>$this->input->post('shipping_comp_address'),
-				'shipping_ac_sale_person'=>$this->input->post('shipping_ac_sales_person'),
-					'shipping_gst_number'=>$this->input->post('shipping_gst_num'),
-					'shipping_pan_number'=>$this->input->post('shipping_pan_num'),
-					'shipping_place_supply'=>$this->input->post('shipping_place_supply'),
-					'shipping_perpose'=>$this->input->post('shipping_purpose'),
-					 
-					 
-					 /*End Billig*/
-					 
-					 
-	/* THIS IS EXECUTED IF ANY ERROR OCCURCE */
-					 
-					 );
-					 
-					 /*
-					 echo "<pre>".var_dump($data)."</pre>";
-					 die();  */
-					 
-					 
+                     'status'=>'1');
 					 $this->customer_model->insert_customer($data);
                 $data['msg']="Customer Has Been Successfully Added.";
 				$data['msg_for_b2cp']="b2cp";
@@ -467,8 +381,8 @@ elseif($selecthospitality<>'')
                     'first_name'=>$this->input->post('fname'),
                     'last_name'=>$this->input->post('lname'),
                     'email_id'=>$this->input->post('email'),
-                    'customer_type'=>$this->input->post('customer_type'),				
-                    'industry'=>$ocupation,
+                    'customer_type'=>$this->input->post('customer_type'),
+                    'industry'=>$this->input->post('occupation'),
                     'selected_industry'=>$Indusry,
                     'relation_manager'=>$this->input->post('relationshipmanage'),
                     'account_type'=>$this->input->post('account_type'),
@@ -484,70 +398,11 @@ elseif($selecthospitality<>'')
                     'company_name'=>$this->input->post('company_name'),
                     'contact'=>$this->input->post('contact'),
                     'purpose'=>$this->input->post('purpose'),
-					'i_am_a'=>$this->input->post('iama'),
-					'job_description'=>$this->input->post('job_description'),
                     'zip_code'=>$this->input->post('pincode'),
                     'customer_created_by'=>'admin','date_account_create'=>date('y:m:d h:m:s'),
                     /*'company_type'=>$this->input->post('company_type')*/ 
-                     'status'=>'1',
-					 
-					 /*Mailing Infomation*/
-					 
-					'mailing_street_address'=>$this->input->post('mailstreetaddress'),
-                    'mailing_city'=>$this->input->post('mainlingcity'),
-                    'mailing_state'=>$this->input->post('mailingstate'),
-                    'mailing_postal_code'=>$this->input->post('mailposatcode'),
-                    'mailing_country'=>$this->input->post('mailingcountry'),
-                    'mailing_telephone'=>$this->input->post('mailingphone'),
-                    'mailing_mobile'=>$this->input->post('mailingmobile'), 
-					 
-					 
-					 /*End Mailing*/
-					 
-					 /* Billing Infomation */
-					 
-					'billing_company_name'=>$this->input->post('billingcomname'),
-                    'billing_region'=>$this->input->post('billingregion'),
-                    'billing_city'=>$this->input->post('billingcity'),
-                    'billing_cus_ac_type'=>$this->input->post('bactype'),
-                    'billing_cus_busi_type'=>$this->input->post('cbtype'),
-                    'billing_contact_person'=>$this->input->post('billing_con_person'),
-                    'billing_comp_address'=>$this->input->post('billing_comp_address'),
-					'billing_ac_sale_person'=>$this->input->post('billing_sale_person'),
-					'billing_cus_gst_num'=>$this->input->post('billing_gst_number'),
-					'billing_pan_number'=>$this->input->post('billing_pan_number'),
-					'billing_place_supply'=>$this->input->post('billing_place_supply'),
-					 
-					 
-					 /*End Billig*/
-					 
-					 
-					 /* Shipping Infomation */
-					 
-					'shipping_company_name'=>$this->input->post('shipping_comp_name'),
-                    'shipping_region'=>$this->input->post('shipping_comp_region'),
-                    'shipping_city'=>$this->input->post('shipping_city	'),
-                    'shipping_cus_ac_type'=>$this->input->post('shipping_cus_ac_type'),
-                    'shipping_cus_busi_type'=>$this->input->post('shipping_cus_busi_type'),
-                    'shipping_contact_person'=>$this->input->post('shipping_com_con_person'),
-                    'shipping_com-address'=>$this->input->post('shipping_comp_address'),
-				'shipping_ac_sale_person'=>$this->input->post('shipping_ac_sales_person'),
-					'shipping_gst_number'=>$this->input->post('shipping_gst_num'),
-					'shipping_pan_number'=>$this->input->post('shipping_pan_num'),
-					'shipping_place_supply'=>$this->input->post('shipping_place_supply'),
-					'shipping_perpose'=>$this->input->post('shipping_purpose'),
-					 
-					 
-					 /*End Billig*/
+                     'status'=>'1');
 
-					 
-					 
-					 
-					 );
-					 //echo "<pre>", var_dump($data), "</pre>";				 
-										 
-					 
-			
            // print_r($data);die;
 		   //start by saji
 		      $name_valid=$this->customer_model->check_existing_name($this->input->post('company_name'));
@@ -593,8 +448,6 @@ elseif($selecthospitality<>'')
     {
         header('location:index');
     }
-    
-		
     }
 
 
