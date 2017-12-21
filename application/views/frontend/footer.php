@@ -49,24 +49,6 @@
                 <h1> <a href="<?php echo base_url()?>frontend/msg91">send msg</a></h1>
             </div>
 		</div>
-
-            
-            <!--<div>
-            	<h1>Newsletter <span></span></h1>
-                <span>
-				
-                    <form name="newsletter" id="other" method="post" action="<?php echo base_url()?>frontend/submit_email()">
-                    <input name="email_newsletter" type="text"  class="news-input" id="email_newsletter" value="Your Email Address"  onFocus="if(this.value == 'Your Email Address') {this.value = '';}" onBlur="if (this.value == '') {this.value = 'Your Email Address';}"/>
-					<div class="clear"></div>
-					<span id="err"></span>
-                                        <input type="submit" name="s" onclick="return checjNewsletter();" id="s" value="Subscribe" class="news-input">
-                                       
-                                        
-                  </form>
-                    <span class="speaker"><img src="<?php echo base_url()?>assets/img/news.png" width="52" height="31" border="0"></span>
-                </span>
-            </div>-->
-            
         </div>
        
        <p class="copyright"><a href="<?php echo base_url()?>frontend/terms_of_use">Terms  of Use  </a> &nbsp; © Copyright &nbsp;2017 | Mahatta Art</p>
@@ -74,13 +56,6 @@
     </footer>
     <!-- footer -->
 
-
-
-
-
-
-
-   
     <div class="signup" id="signpop" style="display:none;" >
         <div style="float: right" ><a href="" onClick="allclose('');return false;" >Close</a></div>
         
@@ -131,7 +106,7 @@
 
                 <p>
                     <span> I'm a</span>
-                    <select style="width:120px" name="ima" id="ima">
+                    <select style="width:200px;border: solid 1px #ccc;" name="ima" id="ima">
                         <option value="hotelier"> Hotelier </option>
                         <option value="interior designer"> Interior Designer </option>
                         <option value="architects"> Architects </option>
@@ -141,9 +116,10 @@
                         <option value="other"> Other </option>
                     </select>
                 </p>
+
                 <p>
                     <span> Job Description  </span>
-                    <select style="width:120px" name="job_dec" id="job_dec">
+                    <select style="width:200px;border: solid 1px #ccc;" name="job_dec" id="job_dec">
                         <option value="purchase manager"> Purchase Manager </option>
                         <option value="owner"> Owner </option>
                         <option value="ceo"> CEO </option>
@@ -157,19 +133,37 @@
                     </select>
                 </p>
                 
+                <p style="display:none" class="demo_bx">
+                    <span> Vendor Type  </span>
+                    <select style="width:200px;border: solid 1px #ccc;">
+                        <option> Purchase Manager </option>
+                    </select>
+                </p>
+                
+                <p style="display:none" class="demo_bx">
+                    <span> Location</span>
+                    <select style="width:200px;border: solid 1px #ccc;">
+                        <option> Purchase Manager </option>
+                    </select>
+                    <a href="" onclick="demo_fn2('');return false;"> <span style="width:auto">x</span></a>
+                </p>
+                
+                <p style="display:none" class="demo_bx">
+                    <span>Id</span>
+                    <select style="width:200px;border: solid 1px #ccc;">
+                        <option> Purchase Manager </option>
+                    </select>
+                </p>
+                
                 <p class="tar">
+                    <input style="background: #0C6;    padding: 6px 12px;    font-size: 14px;    color: #fff;    text-decoration: none;    border: none;    border-radius: 2px; width: 120px; margin-right: 20px;" type="button" name="sign_id" onclick="checkRegisterValidation();" id="sign_id" value="SIGNUP NOW" />
+                </p>
                     
-                    <input style="background: #0C6;
-    padding: 6px 12px;
-    font-size: 14px;
-    color: #fff;
-    text-decoration: none;
-    border: none;
-    border-radius: 2px; width: 120px; margin-right: 20px;
-" type="button" name="sign_id" onclick="checkRegisterValidation();" id="sign_id" value="SIGNUP NOW">
-
-                   
-                <div> Already have an account?<a href="#" class="none" onClick="login('')">Login!</a></div>
+                <div> 
+	                <span style="display:inline-block">Already have an account?</span>
+	                <span style="display:inline-block"><a href="#" class="none" onClick="login('')">Login!</a></span>
+	                <span style="display:inline-block"><a href="#" class="none" onClick="demo_fn('')" style="color:#F00">Demo</a></span>
+                </div>
             </form>
         </div>
         <div class="signup-r-c">
@@ -485,16 +479,7 @@ $result=$this->frontend_model->get_all_lightboxes2($user_id);
      
       <!-- Modal content-->
       
-<script>
-     $(document).ready(function(){
-    $("#send_mail_btn").click(function(){
-   $("#signppp").show();
-   $("#loginpop").hide();
-        //alert('');
-    });
-    
-});
-  </script>
+
         <!-- BEGIN JIVOSITE CODE {literal} -->
 <script type='text/javascript'>
     (function(){ var widget_id = 'wAZSuUVEkD';var d=document;var w=window;function l(){
@@ -747,12 +732,13 @@ function checkRegisterValidation(){
             return false;
         }
 }	// end registration function	
+
+
      $(document).ready(function(){
     $("#send_mail_btn").click(function(){
    $("#signppp").show();
    $("#loginpop").hide();
         //alert('');
     });
-    
 });
   </script>

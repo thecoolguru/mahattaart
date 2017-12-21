@@ -206,7 +206,46 @@ class Frontend extends CI_Controller
 		$this->load->view('frontend/footer');
 	}
 
-
+public function themes_lightbox($lightbox_id,$page_no,$offset=0)	{
+		if($page_no=='')	{
+			$page_no=1;
+		}
+		$per_page=20;
+		$search_file="http://api.indiapicture.in/wallsnart/search_catagory.php?q=$lightbox_id&page=$page_no&per_page=$per_page";
+		//print_r($search_file);
+		$opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
+		$context = stream_context_create($opts);
+		$search_data_file = file_get_contents($search_file, false, $context);
+		$search_data_r = json_decode($search_data_file,TRUE);
+		//print_r($search_data_r);die;
+		$data['search_cat']=$search_data_r['data'];
+		//$per_page = 5;  
+		//$per_page = 10;  
+		$offset = ($this->uri->segment(4) != '' ? $this->uri->segment(4):0);
+		$config["total_rows"] = $search_data_r['total'];
+		$config['per_page']= $per_page;
+		$config['use_page_numbers'] = TRUE;
+		$config['first_link'] = 'First';
+		$config['last_link'] = '';
+		$config['uri_segment'] = 4;
+		$data['page_no']=$page_no;
+		$config['base_url']= base_url()."/index.php/frontend/themes_lightbox/$lightbox_id"; 
+		$config['suffix'] = ''.http_build_query($_GET, '', "&"); 
+		$this->pagination->initialize($config);
+		$this->data['paginglinks'] = $this->pagination->create_links();    
+		$this->data['per_page'] = $this->uri->segment(4);      
+		$this->data['offset'] = $offset ;
+		if($this->data['paginglinks']!= '') {
+			$this->data['pagermessage'] = 'Showing '.((($this->pagination->cur_page-1)*$this->pagination->per_page)+1).' to '.($this->pagination->cur_page*$this->pagination->per_page).' of '.$this->pagination->total_rows;
+		}
+		$qry .= " limit {$per_page} offset {$offset} ";
+		//$data["image"] = $this->frontend_model->get_images_lightbox_gallery($lightbox_id,$config["per_page"], $offset); 
+		$data['lightbox_id']=$lightbox_id;				
+		$user_id=$this->session->userdata('userid');
+		$this->load->view('frontend/header');
+		$this->load->view('frontend/themes_lightbox',$data);
+		$this->load->view('frontend/footer');
+	}
 	public function get_web_frame_rate()	{
 		$frame=$this->input->post('frame');
 		$sql="select frame_rate from tbl_frame_details where frame like '%".$frame."%'";
