@@ -29,12 +29,16 @@ function dropdownout(allid){
 	$("#blank").hide()
 }
 
-
+function demo_fn()
+{
+	$(".demo_bx").css("display","block");
+}
+function demo_fn2()
+{
+	$(".demo_bx").css("display","none");
+}
         
 function login(){
-    
-    
-    
 	if( (document.getElementById("back").style.display=="none")||(document.getElementById("loginpop").style.display=="none"))
 
 		{
@@ -44,9 +48,6 @@ function login(){
                       
 			
 		}
-                
-                
-
 	}
         
         

@@ -501,8 +501,8 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 		$('#print_price').html(Math.round(cost,2));
 		$('#print_sizes').html(dimen[0]+'"X'+dimen[1]+'"');
 		$('#frame_type').html('Streched Canvas Gallary Wrap');
-		var newwidth1 = parseInt(c_width)+(1*2);
-		var	newlenght1 = parseInt(c_height)+(1*2);
+		var newwidth1 = parseInt(dimen[0])+(1*2);
+		var	newlenght1 = parseInt(dimen[1])+(1*2);
 		var CanvasFrameCost = parseInt((parseInt(parseInt(newwidth1)*parseInt(2)) + parseInt(parseInt(newlenght1)*parseInt(2)))*75)/12;
 		CanvasFrameCost = Math.round(parseInt(CanvasFrameCost),2);
 		$('#CanvasCost').html("Rs."+ CanvasFrameCost);	

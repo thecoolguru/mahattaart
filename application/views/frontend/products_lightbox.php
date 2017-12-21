@@ -10,6 +10,7 @@
 <script src="<?php echo base_url();?>assets/js/sweetalert-dev.js" type="text/javascript" ></script>
 <script src="<?php print base_url();?>assets/js/zoom-image.js"></script>
 <?php 
+
  	if($this->session->userdata('userid')){
 	 	$Obj = new Search();
 	 	$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
@@ -225,7 +226,7 @@ if($image_type[0]=='BRID'){
   	$image_path = "http://images2.bridgemanart.com/cgi-bin/bridgemanImage.cgi/600.XIR.".$bride_id.".7055475/".$bridege_image_id.".JPG";
 	$image_data = getimagesize($image_path);
 	}else{
-	$image_path="http://static.mahattaart.com/400x400/media/".$image_detail[0]['image_filename'];
+	$image_path="http://static.mahattaart.com/400x400/media/".$image_name;
 	$image_data = getimagesize($image_path);
 }
 

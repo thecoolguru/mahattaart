@@ -693,6 +693,7 @@ footer {
 	border:solid 1px #ccc;
 	padding:2px;
 	line-height:16px;
+	margin-right:10px
 }
 .signup-r-c {
 	float:right;
@@ -717,17 +718,7 @@ footer {
 .signup-l-c p a.none {
 	background-color:none;
 }
-.signup-l-c p a {
-	background:#0C6;
-	padding:6px 12px;
-	font-size:14px;
-	color:#fff;
-	text-decoration:none;
-	border-radius:2px;
-}
-.signup-l-c p a:hover {
-	background:#009966;
-}
+
 .signup-r-c .fb {
 	margin:20px 0 0 0;
 	padding:0;
