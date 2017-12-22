@@ -1710,7 +1710,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 
 <!-- pricing Details -->
 <div class="lightbox-target" id="price_detail">
-  <div id="uploader_popup_goofy_a" style="width:500px;height:400px;margin-left:-250px;margin-top:-200px;left:50%;top:50%"  >
+  <div id="uploader_popup_goofy_a" style="width:500px;"  >
       <div class="uploader_popup_header">
           <h2 class="text-center">Pricing Details</h2>
           <a class="lightbox-close"  href="" onclick="remove_pricing(); return false;"></a>
@@ -1857,9 +1857,11 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
               </div>
           </div>
           <div class="row">
-              <div class="frame-it-button">
+              <div class="col-md-12">
+              	<div class="frame-it-button">
                   <button <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> type="button" class="btn social_icon" style="background-color:#d3131b; color:#fff;"> Add to cart </button>
-                  <button onclick="remove_pricing(); return false;" type="button" class="btn social_icon" style="background-color:#555; color:#fff; margin-right:10px"> Cancel </button>
+                  <button onclick="remove_pricing(); return false;" type="button" class="btn social_icon" style="background-color:#555; color:#fff"> Cancel </button>
+              </div>
               </div>
           </div>            
       </div>
@@ -2920,10 +2922,7 @@ width: 12px;
 	font-family: inherit;
 }
 .frame-it-button {
-	position: absolute;
-	bottom: 0;
-	height: 40px;
-	right: 5px;
+	float:right
 }
 a.lightbox-close {
 	background: transparent;

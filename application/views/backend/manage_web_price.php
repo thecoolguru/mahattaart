@@ -84,7 +84,7 @@ Brown Tape 5ply:<span style="padding-left:15%"><input type="checkbox" onClick="c
 			<td>Cost/Inch</td>
 			<td>Only Print/Inch</td>
 			<td>GSM</td>
-			<td>Thresold Qty</td>
+			<td>Web Print Price</td>
 			<td>Stock in Hand</td>
 		
 		  <td> Avalibility</td>
@@ -139,7 +139,7 @@ function newPopup(url) {
 		<td><?php echo $web_tbl->cost_per_inch ;?></td> 
 		<td><?php echo $web_tbl->only_print_price ;?></td> 
 		<td><?php echo $web_tbl->gsm ;?></td> 
-		<td><?php echo $web_tbl->thresold_qty ;?></td> 
+		<td><?php echo $web_tbl->web_print_price ;?></td> 
 		<td><?php echo $web_tbl->current_qty ;?></td> 
 	
 		  
