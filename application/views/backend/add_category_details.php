@@ -552,13 +552,13 @@ $.ajax({
 		  url:'<?=base_url()?>index.php/backend/update_paper_of_vendor',
 		  data:'vendor_name='+vendor_name_to_update+'&row_id_sec='+row_id_sec+'&tbl_to_update='+tbl,
 		  success: function(response){
-		 alert(response)
+		// alert(response)
 		
 		$('#sel_ven_name').val(vendor_name_to_update).trigger('change');
 		
 				  var array=$.parseJSON(response);
 		  //alert(array[1]);
-		alert('sss')
+		//alert('sss')
 		
 		  var string_array='"'+array+'"';
 		  var explode=string_array.split(",");

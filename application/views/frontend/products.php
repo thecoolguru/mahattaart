@@ -1585,7 +1585,7 @@ function right(width,height,x){
                             <div class="frame-it-content col-md-12">
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12" style="color:#888">
-                                    	<p>We offer two style of canvas wrap. Museum wrap stops the imahe at the front edge, has hand painted
+                                    	<p>We offer two style of canvas wrap. Museum wrap stops the image at the front edge, has hand painted
 black sides and is ideal for portraits or when you want to emphasize the photo. Gallery wrap
 extends the image around the sides and is more informal Choose the style that suits your decor</p>
 										<h4 style="font-size: 11px;font-weight: bold;">Museum Wrap</h4>

@@ -196,7 +196,8 @@
         text-decoration: line-through
     }
     .wrap-inner {
-        height: 150px
+        height: 150px;
+		cursor:pointer
     }
     .wrap-inner img {
         max-width: 100%;
@@ -249,6 +250,15 @@
 	.pagination_2 p {
 	padding: 10px 0;
 }
+
+	.wrap:hover {
+		display: block;
+		position: absolute;
+		transform: scale(1.1);
+		z-index:1;
+		background-color:#FFF;
+		right:0
+	}
 </style>
 <script type="text/javascript">/*<![CDATA[*/function toTitleCase(a){return a.replace(/\w\S*/g,function(b){return b.charAt(0).toUpperCase()+b.substr(1).toLowerCase()})}function show_status(p,h){var o="<?php echo $this->input->get('txt');?>";var f=$("#total_cost").html();var g=$("#c_sizes").html();var e=$("#print_type_for_image").html();var c=document.getElementById("print_sizes").value;var b=document.getElementById("sizes").value;if(c==1){var d="Canvas"}else{if(c==3){var d="Photographic print"}else{if(c==4){var d="Premium photographic print"}else{if(c==7){var d="Translite"}else{if(c==8){var d="Poster"}}}}}var i="image_id="+p+"&price="+f+"&size="+b+"&print_type="+d;$.ajax({type:"POST",url:"<?php print base_url() ?>cart/check_image_exist_status",data:i,success:function(j){if(j=="2"){alert("This Image has already been added to cart.")}else{var a="<?=base_url()?>cart/cart_view?img_id="+p+"&search_text="+o+"&price="+f+"&size="+b+"&print_type="+d+"&cat_id="+h;window.location.assign(a)}}})};/*]]>*/
 
@@ -265,28 +275,15 @@ function call_remove_lightBox(imageid,lightbox_id,page_no)
 
 ?>
 <div class="container" style="margin-top:5px">
-<div class="row"><div class="art-style col-md-12">
 <div class="row">
-<aside class="left-panel-page col-md-2 col-xs-3">
-
-
-</aside>
-<div class="right-panel-page col-md-10 col-xs-9">
-<div class="">
-<div class="row">
-<div class="col-md-4">
-
-</div>
-<div class="col-md-8">
-	<div style="text-align:right; margin:7px auto">
+<div class="col-md-12 col-sm-12">
+<span class="pagination pull-right">
 		<?php   echo $this->pagination->create_links(); ?>
-	</div>
+</span>	</div>
 </div>
-<div class="col-md-12"><hr style="margin: 10px 0;" /></div>
-
-</div>
-<div class="gallery-img row">
+<div class="gallery-img">
 <ul>
+<div class="row">
 <?php 
  $user_id=$this->session->userdata('userid');
 //print_r($search_cat);
@@ -327,20 +324,20 @@ foreach($search_cat as $cat_dets){
 <?php } }else {?>
 <span style="margin-top:150px;margin-left:300px;color:red"> No result found.</span>
 <?php }?>
+</div>
 </ul>
 </div>
 <script>function call_gallery(){$("#tgl-bx").show(400);$("#overlay-bx").show();$("#tgl-bx select option:eq(0)").prop("selected",true);document.getElementById("tgl-bx").style.display="block";document.getElementById("fade").style.display="block"}$("#overlay-bx").click(function(){$("#tgl-bx").hide(400);$("#size_print_type").hide(400);$("#overlay-bx").hide(400)});$("#toggle-btn").click(function(){$("#toggle-data").toggle(400)});</script>
-<div class="row pagination_2" style="background-color:#f7f7f7; min-height:30px;margin-bottom: 10px;">
-<span class="pagination" style="padding:0;margin:0">
-<?php   echo $this->pagination->create_links(); ?>
-</span>
+<div class="pagination_2" style="min-height:30px;margin-bottom: 10px;">
+<div class="row" style="background-color:#f7f7f7; ">
 <div class="col-md-4 col-sm-4">
 <p>Back To Top</p>
 </div>
+<div class="col-md-8 col-sm-8">
+<span class="pagination pull-right">
+<?php   echo $this->pagination->create_links(); ?>
+</span>
 </div>
 </div>
 </div>
-
-</div>
-</div></div>
 </div>
