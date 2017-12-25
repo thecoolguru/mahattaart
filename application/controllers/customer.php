@@ -17,6 +17,198 @@ class Customer extends CI_Controller
         $this->load->database();
     }
 	
+	  //22-12-2017
+	  
+	  public function get_kiosk_id()
+	{
+	  $verdor_types=$this->input->post($verdor_types);
+	  $this->load->model('customer_model');
+	  $result['success']=$this->customer_model->get_vendor_types_model($verdor_types);
+
+	}
+public function get_kiosk_users_details()
+	{
+		$location=$this->input->post('location');
+		
+		if($location!='location'){
+		$vendor_id=$this->input->post('verdor_id');
+        $re= $this->customer_model->get_vendor_location_model($vendor_id);
+		
+		for($i=0;$i<count($re);$i++){
+		echo '<option value="'.$re[$i]->id.'">'.$re[$i]->location_name.'</option>';
+		}
+		
+		
+		}else{
+		
+		$vendor_id=$this->input->post('verdor_id');
+        $re2= $this->customer_model->get_vendor_location_model2($vendor_id);
+		//print_r($re2);
+		for($i=0;$i<count($re2);$i++){
+		echo '<option value="'.$re2[$i]->id.'">'.$re2[$i]->location_key.'</option>';
+		}
+		}
+		
+		
+		
+	}
+	
+	public function get_peromotion_codes()
+	{
+		
+		$experience_value=$this->input->post('value');
+		
+		$get_promo=$this->customer_model->get_promo_details($experience_value);
+		foreach($get_promo as $r2){
+			?>
+       <option value="<?php  echo $r2->promo_name_code;?>"><?php  echo$r2->promo_name_code; ;?></option>
+            
+            <?php
+		}
+		
+	}
+	
+	public function add_kiosk_users()
+	{
+	   $verdor_types=$this->input->post('verdor_types');
+	   $this->form_validation->set_rules('person_name','Person Name','required');
+
+	   $this->form_validation->set_rules('person_mobile','Person Mobile','required');
+       $this->form_validation->set_rules('person_email','Person Email','required|valid_email');
+	   $this->form_validation->set_rules('sales_person','Sales Person','required');
+	   $this->form_validation->set_rules('location','Person Name','required');
+	   $verdor_types_id=$this->input->post('verdor_types');
+	   $verdor_id=$this->input->post('verdor_id');
+	   $person_name=$this->input->post('person_name');
+	   $person_mobile=$this->input->post('person_mobile');
+	   $person_email=$this->input->post('person_email');
+	   $sales_person=$this->input->post('sales_person');
+	   $location_name_id=$this->input->post('location');
+	   $transact_offline=$this->input->post('transact_offline');  
+	   $location_key_id=$this->input->post('verdor_id2'); 
+	   $experience=$this->input->post('experience');
+	   
+	   $active_coupon=$this->input->post('active_coupon');
+	   $register=$this->input->post('register');
+	   
+        $customer_type="Retail";
+	  
+	    $data=array(
+	               'vendor_types_id'=>$verdor_types_id,
+				   'person_name'=>$person_name,
+				   'person_mobile'=>$person_mobile,
+				   'person_email'=>$person_email,
+				   'sales_person'=>$sales_person,		   
+				   'location_name_id'=>$location_name_id,
+				   'location_key_id'=>$location_key_id,
+				   'experience'=>$experience,			   
+				   'transact_offline'=>$transact_offline,
+				   'coupon_codes'=>$active_coupon,
+				   'register_customer'=>$register
+		
+	  
+	         );
+			 
+			$customer_data=array(
+	              
+				   'customer_type'=>$customer_type,
+				   'first_name'=>$person_name,
+				   'contact'=>$person_mobile,
+				   'email_id'=>$person_email,
+				   'sales_person'=>$sales_person,
+				   'experience'=>$experience,
+				   'active_coupon'=>$active_coupon,	 
+				   'user_registered'=>$register
+		
+	  
+	         ); 
+	  
+	  if($this->form_validation->run()==FALSE)
+	  {
+		  $experience_value=$this->input->post('value');
+		   //print_r($experience_value); die();
+		   
+		   $result['get_vendor']=$this->customer_model->get_vendor_types_model();
+		   $this->load->view('backend/dashboard_header');
+           $this->load->view('backend/customer/kiosk_register',$result);     
+           $this->load->view('backend/footer');
+	  }else{
+		  
+		  $result['get_vendor']=$this->customer_model->get_vendor_types_model(); 
+		  
+		  
+		  //Send Email 
+		  $message="message";
+		  $subject="Mail from Mahataart.com";
+		  $this->email->from('Mahataart.com');//your mail address and name
+          $this->email->to($person_email); //receiver mail
+          $this->email->subject($subject);
+          $this->email->message($message);
+          $this->email->send(); //sending mail
+		  
+		  $this->customer_model->add_to_customer_model($customer_data);
+		  $result['record_added']=$this->customer_model->add_kiosk_users_model($data);
+		  $result['record_message']="Record Successfully Added";
+	      $result['record_failed']="Record Not Added,Please Check";
+		  $this->load->view('backend/dashboard_header');
+		  $this->load->view('backend/customer/kiosk_register',$result);     
+          $this->load->view('backend/footer');
+   }
+	  
+	  
+	  
+	 
+	
+	}
+	
+	
+	public function view_kiosk_users()
+	{
+		$result=array();
+		$this->load->model('customer_model');
+		$result['success']=$this->customer_model->view_kiosk_users_model();
+	    $this->load->view('backend/dashboard_header');
+        $this->load->view('backend/customer/view_kiosk_list',$result);     
+        $this->load->view('backend/footer');
+	}
+	
+	public function update_kiosk_users($id)
+	{
+	  echo "EWecleme";  
+	}
+	
+	public function delete_kiosk_users($id)
+	{
+		$this->load->model('customer_model');
+		$result['deleted']=$this->customer_model->delete_kiosk_users_model($id);
+		redirect('index.php/customer/view_kiosk_users');
+	}
+	
+
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  //22-12-2017
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 	  public function add_customer_query($id)
      {
 		 

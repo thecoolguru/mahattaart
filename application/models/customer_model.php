@@ -12,6 +12,98 @@ class Customer_model extends CI_Model
 
     }
 	
+	
+	//22-12-2017
+	
+	
+	
+	public function add_to_customer_model($data2)
+	{
+	  $this->db->insert('tbl_customer',$data2);
+	}
+	
+	
+	public function get_promo_details($experience_value)
+	{
+		$this->db->select('*');
+		$this->db->where('promo_name',$experience_value);
+		$this->db->where('active','1');
+		$query=$this->db->get('tbl_promo_code');
+		return $query->result();
+	
+	}
+	
+	public function get_vendor_location_model($vendor_id)
+	{
+		//echo $vendor_id;
+	  $this->db->select('*');
+	  $this->db->where('vendor_id',$vendor_id);
+	  $query=$this->db->get('tbl_vendor_location');
+	  return $query->result();
+	}
+	
+
+	
+	  public function get_vendor_location_model2($location_id)
+	   {
+      $this->db->select('*');
+	  $this->db->where('vendor_location_id',$location_id);   
+	  $query=$this->db->get('tbl_locations_id');
+	  return $query->result();
+	  }
+	
+	
+	
+	public function get_vendor_types_model()
+	{
+	  $get_vendor=$this->db->get('vendor_types');  
+	  //print_r($get_vendor->result()); die();
+	  return $get_vendor->result();
+	}
+	
+	public  function add_kiosk_users_model($data)
+	{
+		
+		$this->db->insert('kiosk_users',$data);
+	
+	}
+	public function view_kiosk_users_model()
+	{
+	 
+	  $query=$this->db->get('kiosk_users');
+	  return $query->result();
+	}
+	public function delete_kiosk_users_model($id)
+	{
+	  $this->db->where('id',$id);
+	  $this->db->delete('kiosk_users');
+	  
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	//22-12-2017
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public function add_customer_query_mod($data)
     {
 	
