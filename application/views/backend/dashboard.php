@@ -72,6 +72,9 @@
 </li>
 
 
+
+
+
 </ul>
 </div>
 
@@ -111,6 +114,12 @@
 <li><a href="<?=base_url();?>index.php/backend/pricing">Pricing</a></li>
 
 <li><a href="<?=base_url();?>index.php/backend/web_pricing">Add Web Pricing</a>
+<ul>
+<li><a href="<?=base_url();?>index.php/backend/manage_web_price">View Web Pricing</a></li>
+</ul>
+</li>
+
+<li><a href="<?=base_url();?>index.php/customer/add_kiosk_users">Add Vendor Types</a>
 <ul>
 <li><a href="<?=base_url();?>index.php/backend/manage_web_price">View Web Pricing</a></li>
 </ul>

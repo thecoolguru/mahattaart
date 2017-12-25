@@ -1408,7 +1408,7 @@ for($i=23;$i<=29;$i++){ ?>
 ?>
 <li>
 <?php if($drop8[$i]->keyword==27){?>
-<a href="<?=base_url()?>frontend/themes_lightbox/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
+<!--<a href="<?=base_url()?>frontend/themes_lightbox/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>-->
 <?php }else{?>
 
 <a href="<?=base_url()?>frontend/themes_view/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
