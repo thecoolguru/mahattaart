@@ -319,28 +319,28 @@ $txt=$search_text;
 <p>Refine Filter</p>
 <div class="list">
 <ul>
-<li><a <?php if($category_id=="all"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:call_filter2('all')">All art</a>
+<li><a <?php if($category_id=="all"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:filter_shape_minus('all')">All art</a>
 <label></label></li>
-<li><a <?php if($category_id=="2"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:call_filter2('2')">Photography</a>
+<li><a <?php if($category_id=="2"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:filter_shape_minus('2')">Photography</a>
 <label></label></li>
-<li><a <?php if($category_id=="1"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:call_filter2('1')">Paintings</a>
+<li><a <?php if($category_id=="1"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:filter_shape_minus('1')">Paintings</a>
 <label></label></li>
-<li><a <?php if($category_id=="3"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:call_filter2('3')">Poster</a>
+<li><a <?php if($category_id=="3"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:filter_shape_minus('3')">Poster</a>
 <label></label></li>
-<li><a <?php if($category_id=="4"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:call_filter2('4')">Illustration</a>
+<li><a <?php if($category_id=="4"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:filter_shape_minus('4')">Illustration</a>
 <label></label></li>
 </ul>
 </div>
 <p>SHAPE</p>
 <div class="list">
 <ul>
-<li><a <?php if($shape=="Horizontal"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('Horizontal')">Horizontal</a>
+<li><a <?php if($shape=="Horizontal"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('h')">Horizontal</a>
 <label></label>
 </li>
-<li><a <?php if($shape=="Vertical"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('Vertical')">Vertical</a><label></label></li>
-<li><a <?php if($shape=="Square"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('Square')">Square</a><label></label></li>
-<li><a <?php if($shape=="Slim"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('Slim')">Slim</a><label></label></li>
-<li><a <?php if($shape=="Panoramic"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('Panoramic')">Panoramic</a><label></label></li>
+<li><a <?php if($shape=="Vertical"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('v')">Vertical</a><label></label></li>
+<li><a <?php if($shape=="Square"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('sq')">Square</a><label></label></li>
+<li><a <?php if($shape=="Slim"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('s')">Slim</a><label></label></li>
+<li><a <?php if($shape=="Panoramic"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('p')">Panoramic</a><label></label></li>
 </ul>
 </div>
 
