@@ -540,7 +540,7 @@ $search_data = json_decode($search_data_raw,TRUE);
 	
 	
 	
-	  public function dosearch_cat($page="none",$limit="none",$search_text="none",$category_id="none",$shap="?#!",$color="%@$#")
+	  public function dosearch_cat($page="none",$limit="none",$search_text="none",$category_id="none",$shap="none",$color="%@$#")
 	{
 	// echo $category_id;
 	  $page_no=1;
@@ -561,66 +561,37 @@ $search_data = json_decode($search_data_raw,TRUE);
 	   }else{
 	   	$key='*';
 	   }
-		if(is_numeric($search_text)==true){ 
-		
-		
-		if($category_id=='1' || $category_id=='2' || $category_id=='3' || $category_id=='4' || $category_id=='all' ){
-		 if($shap!="?#!"){
-			$shapes='-'.$shap;
-		  }if($color!="%@$#"){
-			$colors='-'.$color;
-		  }
-		  $search_keys=$srch_trm_raw.$shapes.$colors;
-		}elseif($category_id!='none'){
-		  $search_keys=$srch_trm_raw.'-'.$category_id;
-		}
-   
-		if($category_id=='all' && $shap!='?#!'){
-$search_api="http://api.indiapicture.in/wallsnart/live.collection_filter.php?key=$search_keys&collection_id=$search_text&page=$page_no&per_page=$limit";
-		}
-		elseif($category_id=='all' && $shap=='?#!'){
-$search_api = "http://api.indiapicture.in/wallsnart/collection.php?collection_id=$srch_trm_raw&page=$page_no&per_page=$limit";
-		}
-		 elseif(($category_id!='all') && ($category_id=='1' || $category_id=='2' || $category_id=='3' || $category_id=='4')){
-	$search_api="http://api.indiapicture.in/wallsnart/live.collection_filter.php?key=$search_keys&category=$category_id&collection_id=$search_text&page=$page_no&per_page=$limit";
-	 }
-	 elseif($category_id!='1' || $category_id!='2' || $category_id!='3' || $category_id!='4' &&  $shap!='?#!'){
-	 $search_ap="http://api.indiapicture.in/wallsnart/live.collection_filter.php?key=$search_keys&collection_id=$search_text&page=$page_no&per_page=$limit";
-	 }elseif($category_id=='1' || $category_id=='2' || $category_id=='3' || $category_id=='4' ){
-	   
-	  $search_api="http://api.indiapicture.in/wallsnart/live.collection_filter.php?key=$key&category=$category_id&collection_id=$search_text&page=$page_no&per_page=$limit";
-	}
-	  
-	 
-		}else
+		if(is_numeric($search_text)==true){}else
 		{ 
 		if($category_id=='1' || $category_id=='2' || $category_id=='3' || $category_id=='4' || $category_id=='all' ){
-		 if($shap!="?#!"){
-			$shapes='-'.$shap;
-		  }if($color!="%@$#"){
+		 if($shap=="none"){
+			$shapes='';
+		  }else{
+		  $shapes=$shap;
+		  }
+		  if($color!="%@$#"){
 			$colors='-'.$color;
 		  }
-		  $search_keys=$srch_trm_raw.$shapes.$colors;
+		  $search_keys=$srch_trm_raw;
 		}elseif($category_id!='none'){
-		  $search_keys=$srch_trm_raw.'-'.$category_id;
+		  $search_keys=$srch_trm_raw;
 		}
-		
-			if($category_id=='1' || $category_id=='2' || $category_id=='3' || $category_id=='4' ){
-	 $search_api = "http://api.indiapicture.in/wallsnart/search_filter.php?q=$search_keys&page=$page&category=$category_id&per_page=$limit";
-	}else{
-	$result_header_image=$this->search_model->get_header_images($search_keys);
-//print_r($result_header_image[0]->minus_keyword);
-//Abstract(-(Jim+Zuckerman+PLANTS%20Anna%20Miller%20FULL%20FRAME))
-//$result_header_image[0]->minus_keyword
+		$result_header_image=$this->search_model->get_header_images($search_keys);
 if($result_header_image[0]->minus_logic==1){
 $minus_keyword=$search_keys.'(-('.$result_header_image[0]->minus_keyword.'))';
 }else{
 $minus_keyword=$search_keys;
 }
-	$search_api = "http://api.indiapicture.in/wallsnart/search.php?q=$minus_keyword&page=$page&per_page=$limit";
+
+		
+			if($category_id=='1' || $category_id=='2' || $category_id=='3' || $category_id=='4' ){
+	 $search_api = "http://api.indiapicture.in/wallsnart/search.php?q=$minus_keyword&page=$page&category_id=$category_id&per_page=$limit&orientation=$shapes";
+	}else{
+	
+	$search_api = "http://api.indiapicture.in/wallsnart/search.php?q=$minus_keyword&page=$page&per_page=$limit&orientation=$shapes";
 	}
 		}
-//echo $search_api;
+ //echo $search_api;
 //echo $minus_keyword;
 $opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
 $context = stream_context_create($opts);
@@ -663,7 +634,7 @@ $data['search_data']=$search_data['results'];
         
 	
 	
-	   public function dosearch($page="none",$limit="none",$search_text="none",$category_id="none",$shap="?#!",$color="%@$#")
+	   public function dosearch($page="none",$limit="none",$search_text="none",$category_id="none",$shape="none",$color="%@$#")
 	{
 	// echo $category_id;
 	  $page_no=1;
@@ -688,33 +659,34 @@ $data['search_data']=$search_data['results'];
 		
 		
 		if($category_id=='1' || $category_id=='2' || $category_id=='3' || $category_id=='4' || $category_id=='all' ){
-		 if($shap!="?#!"){
-			$shapes='-'.$shap;
-		  }if($color!="%@$#"){
-			$colors='-'.$color;
-		  }
+		 
 		  $search_keys=$srch_trm_raw.$shapes.$colors;
 		}elseif($category_id!='none'){
 		  $search_keys=$srch_trm_raw.'-'.$category_id;
 		}
    
-		if($category_id=='all' && $shap!='?#!'){
+		/*if($category_id=='all' && $shap!='?#!'){
 $search_api="http://api.indiapicture.in/wallsnart/live.collection_filter.php?key=$search_keys&collection_id=$search_text&page=$page_no&per_page=$limit";
+		}*/
+		if($category_id=='all'){
+		if($shape=='none'){
+		$shape='';
+		}else if($shape!='none'){
+		$shape=$shape;
 		}
-		elseif($category_id=='all' && $shap=='?#!'){
-$search_api = "http://api.indiapicture.in/wallsnart/collection.php?collection_id=$srch_trm_raw&page=$page_no&per_page=$limit";
+$search_api = "http://api.indiapicture.in/wallsnart/collection.php?collection_id=$srch_trm_raw&page=$page_no&per_page=$limit&shape=$shape";
 		}
 		 elseif(($category_id!='all') && ($category_id=='1' || $category_id=='2' || $category_id=='3' || $category_id=='4')){
 	$search_api="http://api.indiapicture.in/wallsnart/live.collection_filter.php?key=$search_keys&category=$category_id&collection_id=$search_text&page=$page_no&per_page=$limit";
 	 }
 	 elseif($category_id!='1' || $category_id!='2' || $category_id!='3' || $category_id!='4' &&  $shap!='?#!'){
-	 $search_ap="http://api.indiapicture.in/wallsnart/live.collection_filter.php?key=$search_keys&collection_id=$search_text&page=$page_no&per_page=$limit";
+	 $search_api="http://api.indiapicture.in/wallsnart/live.collection_filter.php?key=$search_keys&collection_id=$search_text&page=$page_no&per_page=$limit";
 	 }elseif($category_id=='1' || $category_id=='2' || $category_id=='3' || $category_id=='4' ){
 	   
 	  $search_api="http://api.indiapicture.in/wallsnart/live.collection_filter.php?key=$key&category=$category_id&collection_id=$search_text&page=$page_no&per_page=$limit";
 	}
 	  
-	 
+	// echo $search_api;
 		}else
 		{ 
 		if($category_id=='1' || $category_id=='2' || $category_id=='3' || $category_id=='4' || $category_id=='all' ){
@@ -727,11 +699,11 @@ $search_api = "http://api.indiapicture.in/wallsnart/collection.php?collection_id
 		}elseif($category_id!='none'){
 		  $search_keys=$srch_trm_raw.'-'.$category_id;
 		}
-		
+		$data['searches_key']="string";
 			if($category_id=='1' || $category_id=='2' || $category_id=='3' || $category_id=='4' ){
-	 $search_api = "http://api.indiapicture.in/wallsnart/search_filter.php?q=$search_keys&page=$page&category=$category_id&per_page=$limit";
+	 $search_api = "http://api.indiapicture.in/wallsnart/search.php?q=$search_keys&page=$page&per_page=$limit&category_id=$category_id&orientation=$shape";
 	}else{
-	$search_api = "http://api.indiapicture.in/wallsnart/search.php?q=$search_keys&page=$page&per_page=$limit";
+	$search_api ="http://api.indiapicture.in/wallsnart/search.php?q=$search_keys&page=$page&per_page=$limit&orientation=$shape";
 	}
 		}
 //echo $search_api;

@@ -321,6 +321,7 @@ $txt=$search_text;
 <div class="row">
 <aside class="left-panel-page col-md-2 col-xs-3">
 <p>Refine Filter</p>
+<?php if($searches_key=='string'){?>
 <div class="list">
 <ul>
 <li><a <?php if($category_id=="all"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:call_filter2('all')">All art</a>
@@ -335,16 +336,18 @@ $txt=$search_text;
 <label></label></li>
 </ul>
 </div>
+
+<?php } ?>
 <p>SHAPE</p>
 <div class="list">
 <ul>
-<li><a <?php if($shape=="Horizontal"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('Horizontal')">Horizontal</a>
+<li><a <?php if($shape=="h"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('h')">Horizontal</a>
 <label></label>
 </li>
-<li><a <?php if($shape=="Vertical"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('Vertical')">Vertical</a><label></label></li>
-<li><a <?php if($shape=="Square"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('Square')">Square</a><label></label></li>
-<li><a <?php if($shape=="Slim"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('Slim')">Slim</a><label></label></li>
-<li><a <?php if($shape=="Panoramic"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('Panoramic')">Panoramic</a><label></label></li>
+<li><a <?php if($shape=="v"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('v')">Vertical</a><label></label></li>
+<li><a <?php if($shape=="sq"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('sq')">Square</a><label></label></li>
+<li><a <?php if($shape=="s"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('s')">Slim</a><label></label></li>
+<li><a <?php if($shape=="p"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('p')">Panoramic</a><label></label></li>
 </ul>
 </div>
 

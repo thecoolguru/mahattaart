@@ -267,6 +267,10 @@
                   <tr class="hdrs">
                     <td width="136">Customer ID</td>
 					 <td width="196">Customer Type </td>
+                      <td width="136">Vendor Type</td>
+                      <td width="136">Vendor Location</td>
+                      <td width="136">Location Key</td>
+                    
                     <td width="196">Name </td>
                     <td width="281">Email ID</td>
                     <td width="193">Password</td>

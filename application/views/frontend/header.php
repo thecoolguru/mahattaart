@@ -1499,11 +1499,10 @@ for($i=23;$i<=29;$i++){ ?>
 
 function refine_shape(events)
 {
- <? if($shape=='Horizontal' || $shape=='Vertical' || $shape=='Square' || $shape=='Slim' || $shape=='Panoramic'){?>
-	var url="<?php print base_url(); ?>search/<?=$action?>/<?=$page?>/<?=$limit?>/<?=$search_text;?><?php if($category_id<>'none'){ echo '/'.$category_id;}?>/"+events+"<?php if($color<>'%@$#'){ echo '/'.$color;}?>";
-<? }else{?>
-var url="<?php print base_url(); ?>search/<?=$action?>/<?=$page?>/<?=$limit?>/<?=$search_text;?><?php if($category_id<>'none' || $category_id=='all'){ echo '/'.$category_id;}?><?php if($shape<>'?#!'){ echo '/'.$shape;}?>/"+events+"";
-<?php }?>
+//alert(events)
+ if(events=='h' || events=='v' || events=='sq' ||events=='s' || events=='p'){
+	var url="<?php print base_url(); ?>search/<?=$action?>/<?=$page?>/<?=$limit?>/<?=$search_text;?><?php if($category_id<>'none' || $category_id=='all'){ echo '/'.$category_id;}?>/"+events+"";
+}
     location.replace(url);
 }
 
@@ -1552,13 +1551,21 @@ function color_undo(){
 
 
 
+function filter_shape_minus(id)
+{
+
+
+	  var url='<?=base_url()?>search/dosearch_cat/1/<?=$limit;?>/<?=$search_text?>/'+id+'<? if($shape!='none'){ echo '/'.$shape;}?>';
+	 
+    window.location.assign(url);
+}
 
 
 function call_filter2(id)
 {
 
 
-	  var url='<?=base_url()?>search/dosearch/1/<?=$limit;?>/<?=$search_text?>/'+id+'<? if($shape!='?#!' && $shape!='all'){ echo '/'.$shape;}?><? if($color!='%@$#'  && $color!='all'){ echo '/'.$color;}?>';
+	  var url='<?=base_url()?>search/dosearch/1/<?=$limit;?>/<?=$search_text?>/'+id+'<? if($shape!='none'){ echo '/'.$shape;}?>';
 	 
     window.location.assign(url);
 }
