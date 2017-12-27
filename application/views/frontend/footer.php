@@ -149,7 +149,7 @@
                 </p>
                 
                 <p style="display:none" class="demo_bx">
-                    <span>Id</span>
+                    <span>Location Id</span>
                     <select style="width:200px;border: solid 1px #ccc;">
                         <option> Purchase Manager </option>
                     </select>
@@ -162,7 +162,7 @@
                 <div> 
 	                <span style="display:inline-block">Already have an account?</span>
 	                <span style="display:inline-block"><a href="#" class="none" onClick="login('')">Login!</a></span>
-	                <span style="display:inline-block"><a href="#" class="none" onClick="demo_fn('')" style="color:#F00">Demo</a></span>
+	                <span style="display:inline-block"><a href="#" class="none" onClick="demo_fn('')" style="color:#F00">Merchant Registration</a></span>
                 </div>
             </form>
         </div>

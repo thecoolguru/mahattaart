@@ -67,7 +67,7 @@ body{background-color:#fff}
 			data:"vendor_loca_id="+vendor_loca_id,
 			success:function(response)
 			 {
-             //alert(response)
+             alert(response)
 				$("#vendor_location").html(response);
 			 }	 
 		    })	

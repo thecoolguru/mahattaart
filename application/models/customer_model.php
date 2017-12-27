@@ -12,6 +12,51 @@ class Customer_model extends CI_Model
 
     }
 	
+	//27-12-2017
+	
+	
+	
+	public function get_query_data($vendor_loca_id)
+	{
+	   
+	  //$this->db->where('vend_loc_id',$vendor_loca_id);
+	   $query=$this->db->get('tbl_customer_query_data');
+	   //print_r($query->result());
+	   return $query->result();
+	   
+	}
+	
+	public  function get_query_location_key($vendor_location_key)
+	{
+		
+		  $this->db->where('vend_loc_key_id',$vendor_location_key);
+	      $query=$this->db->get('tbl_customer_query_data');
+	      return $query->result();
+	  
+		
+	
+	
+	}
+	
+	
+	
+	
+	
+	//27-12-2017
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//22-12-2017
 	

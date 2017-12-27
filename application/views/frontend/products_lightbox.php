@@ -10,14 +10,15 @@
 <script src="<?php echo base_url();?>assets/js/sweetalert-dev.js" type="text/javascript" ></script>
 <script src="<?php print base_url();?>assets/js/zoom-image.js"></script>
 <?php 
-
- 	if($this->session->userdata('userid')){
+$userid=$this->session->userdata('userid');
+ 	if($userid){
 	 	$Obj = new Search();
 	 	$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 	 	$splitUrl=split('/', $_SERVER['REQUEST_URI']);
 	 	$ipaddress = getenv('HTTP_CLIENT_IP');
 	 	$Obj->Search_save_user_login_details($this->session->userdata('userid'),$url,$ipaddress);
  	}
+	 	
 ?>
 <script>
    $(document).ready(function(){
@@ -38,57 +39,13 @@
 			$('#large_img2,#22').hide();
 		});
 		
-		$('.item_click').click(function(){
-			var type = $(this).attr('id');
-			$('#paper_type').val(type);
-			if(type==3){
-			//alert(type)
-			$('#paper_type').val(4);
-			}
-			var image_size=$( "#sizes" ).val();
-			var print_sizes=$( "#surfaces").val();
-			var quality_rate=$('#quality_rate').val();
-			var split = image_size.split('X');
-		  	var width=parseInt(split[0]);
-		  	var height=parseInt(split[1]);
-			var orig_image_size = width + '" X '+ height +'"';
-			if(type == '1'){
-				paper_surface(1);
-				$('#22,#frame_show,#zoom_image,#frame-it,#large_img3,#19,#12,#large_img6,#large_img5,#large_img7,#12,.bshow').hide();
-				$('#large_img2,.wrapped,#11,#15,#20,#canvas_show,#canvas3D').show();
-				$("#museum").prop('checked', true);
-				$('#18').html('Types Of Wrap');
-				$('#print_type').val('canvas_only');
-      			$('#type').val('1');
-      			$('#print_sizes').html(orig_image_size);
-      			get_quality('');
-				}else if(type == '2'){
-				paper_surface(2);	
-				$('#frame-it,#19,#12,#frame_show,.bshow').show();
-				$('#22,#12,#15,#large_img2,#zoom_image,.wrapped,#myCanvas,#myCanvas2,#myCanvas3,#large_img3,#20,#large_img5,#large_img6,#large_img7,#canvas_show,#canvas3D').hide();
-				$('#18').html('');
-				$('#print_type').val('');
-    			$('#type').val('2');
-    			$('#print_sizes').html(orig_image_size);
-    			get_quality('');
-			}else if(type == '3'){
-				paper_surface(4);	
-				$('#22,#12,#large_img2,#frame-it,.wrapped,#myCanvas,#myCanvas2,#myCanvas3,#12,#15,#19,#20,#large_img5,#large_img6,#large_img7,#canvas_show,#frame_show,#canvas3D').hide();
-				$('#18').html('');
-				$('#large_img3,.bshow').show();
-				$('#print_type').val('only_print');
-				$('#17').html(orig_image_size+'Print Only');
-				$('#type').val('3');
-				$('#print_sizes').html(orig_image_size);
-				get_quality('');
-			}
-		});
+		$('.item_click').click(function(){});
 		
 		get_quality('');
-		$('#f_name').html('Absolute Black');
+		//$('#f_name').html('Absolute Black');
 		$('#check0').prop('checked',true);
-		$('#glass_type').val('Regular');
-		$('#frame_sized').html('26');
+		//$('#glass_type').val('Regular');
+		//$('#frame_sized').html('26');
 		$('#mount_width').val('1');
 		$('#mount_state').val(1);
 		$('#sizes').click();
@@ -189,226 +146,13 @@
 	bottom: auto;
 }
 </style>
-<script>
 
-function paper_surface(type){
-		//var print_type= '';
-		//alert('should first')
-		if(!type){
-		type=$('#paper_type').val()
-		}
-		var print_type_main=$('#print_type_main').val();
-		//alert(print_type_main+','+type)
-		
-			$.ajax({
-	            type: "POST",
-	            url: "<?=base_url();?>index.php/frontend/get_surface_tbl_web_price",
-	            data:'print_type='+type+'&print_type_main='+print_type_main,
-				async:false,
-				success: function(data)
-	            {
-				//alert(data)
-				//alert('jjjj')
-				$('#surfaces').html(data);
-				}
-			});
-	}
-</script>
 <?php 
-$image_data = '';
-$image_type=split('_',$image_name);
-if($image_type[0]=='BRID'){
-  $bridege_image_id=substr($image_detail[0]['image_filename'],8,-4);
-	$add_imgid= $bridege_image_id+3179;
-	$reverse_val=strrev($add_imgid);
-	$append_zero=$reverse_val.'0';
-	$bride_id=$append_zero;
-  	$image_path = "http://images2.bridgemanart.com/cgi-bin/bridgemanImage.cgi/600.XIR.".$bride_id.".7055475/".$bridege_image_id.".JPG";
-	$image_data = getimagesize($image_path);
-	}else{
+//print_r($image_details);
 	$image_path="http://static.mahattaart.com/400x400/media/".$image_name;
 	$image_data = getimagesize($image_path);
-}
-
-$collection_name;
 $continue_shopping_redirect=$this->session->userdata('continue_shopping');
-$this->load->library('multipledb'); // loading library.
-// Loading second db and running query.
-$CI = &get_instance();
-//setting the second parameter to TRUE (Boolean) the function will return the database object.
-$this->indiapicture = $CI->load->database('indiapicture', TRUE);
-$sql_query="SELECT collection_range FROM tbl_category where portal='2' and collections like '%".trim($collection_name)."%'";
-$qry = $this->indiapicture->query($sql_query);
-$collection=$qry->result();
-$collection_range=$collection[0]->collection_range;
-$collection[0]->collection_range;
-$result_rate=$this->frontend_model->get_web_price($collection[0]->collection_range);
-$rate= $result_rate[0]->rate;
-$this->load->model('cart_model');
-$userid=$this->session->userdata('userid');
-$image_id=$image_detail[0]['image_id'];
-$lightbox= $this->frontend_model->get_light_boxName($images_id,$userid); 
-$max_w=$image_detail[0]['image_original_width'];
-$max_h=$image_detail[0]['image_original_height'];
-$s_height=$max_h;
-$s_width=$s_height*2;
-$v_height=2*$max_w;
-if($max_w>$max_h){
-  if($max_w<$s_width){
-     $f_shape="Horizontal";
-  }else{
-	 $f_shape="Panoramic";
-	}
-}else if($max_w<$max_h){
-  if($max_h>$v_height){
-	 $f_shape="Slim";
-	}else{
-	 $f_shape="Vertical";
-	}
-}else if($max_h==$max_w){
-  $f_shape="Square";
-}
-$click_to_enlarge = "http://api.indiapicture.in/wallsnart/function.php?param=click_to_enlarge&images_id=$api_image_id";
-$opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
-$context = stream_context_create($opts);
-$search_data_raw = file_get_contents($click_to_enlarge, false, $context);
-$search_data = json_decode($search_data_raw,TRUE);
-$collection_id=$this->search_model->get_image_collection($images_id);
-$pricing_ran=$this->search_model->get_range($images_id);
-$pricing_range=$pricing_ran->pricing_range;
-$max_size=$this->search_model->get_max_size($images_id);
-$max_width_allowed=$max_w/150;
-$max_height_allowed=$max_h/150;
-// calcuulate image ratio
-$size_data = getimagesize($image_path);
-$image_alignment="";
-$image_width=$size_data[0];
-$image_height=$size_data[1];
-
-$size_data1 = getimagesize($image_path);
-$image_width1=$size_data1[0];
-$image_height1=$size_data1[1];
-
-$image_ratio=$image_width/$image_height;
-$size_array=array();
-$role_size = 64;
-$lower_value = 0;
-//print_r($size_data);
-if($size_data[0]>=$size_data[1])
-{ 
-    $size_array[0]['height']=10/$image_ratio;
-    $size_array[0]['width']=10;
-    $size_array[1]['height']=12/$image_ratio;
-    $size_array[1]['width']=12;
-    $size_array[2]['height']=18/$image_ratio;
-    $size_array[2]['width']=18;
-    $size_array[3]['height']=24/$image_ratio;
-    $size_array[3]['width']=24;
-    $size_array[4]['height']=30/$image_ratio;
-    $size_array[4]['width']=30;
-    $size_array[5]['height']=36/$image_ratio;
-    $size_array[5]['width']=36;
-    $size_array[6]['height']=44/$image_ratio;
-    $size_array[6]['width']=44;
-    $size_array[7]['height']=48/$image_ratio;
-    $size_array[7]['width']=48;
-    $size_array[8]['height']=50/$image_ratio;
-    $size_array[8]['width']=50;
-    $size_array[9]['height']=56/$image_ratio;
-    $size_array[9]['width']=56;
-    $size_array[10]['height']=60/$image_ratio;
-    $size_array[10]['width']=60;
-		$xx=in_array(round($max_width_allowed), array(10,12,18,24,30,36,44,48,50,56,60));
-		if($xx==''){
-		$size_array[11]['height']=round($max_width_allowed/$image_ratio);
-        $size_array[11]['width']=round($max_width_allowed);
-      }
-    $rollSize= choose_role_size($size_array[0]['width'],$size_array[0]['height']);
-    $actual_price=$size_array[0]['width']*$rollSize*$rate;
-    $size_array[0]['width'].'_'.$rollSize.'_'.$rate;
-    }else if($size_data[0]<=$size_data[1]){ 
-    $size_array[0]['width']=10*$image_ratio;
-    $size_array[0]['height']=10;
-    $size_array[1]['width']=12*$image_ratio;
-    $size_array[1]['height']=12;
-    $size_array[2]['width']=18*$image_ratio;
-    $size_array[2]['height']=18;
-    $size_array[3]['width']=24*$image_ratio;
-    $size_array[3]['height']=24;
-    $size_array[4]['width']=30*$image_ratio;
-    $size_array[4]['height']=30;
-    $size_array[5]['width']=36*$image_ratio;
-    $size_array[5]['height']=36;
-    $size_array[6]['width']=44*$image_ratio;
-    $size_array[6]['height']=44;
-    $size_array[7]['width']=48*$image_ratio;
-    $size_array[7]['height']=48;
-    $size_array[8]['width']=50*$image_ratio;
-    $size_array[8]['height']=50;
-    $size_array[9]['width']=56*$image_ratio;
-    $size_array[9]['height']=56;
-    $size_array[10]['width']=60*$image_ratio;
-    $size_array[10]['height']=60;
-		$yy=in_array(round($max_height_allowed),array(10,12,18,24,30,36,44,48,50,56,60));
-		if($yy==''){
-		 $size_array[11]['width']=round($max_height_allowed*$image_ratio);
-        $size_array[11]['height']=round($max_height_allowed);
-		}
-  $rollSize= choose_role_size($size_array[0]['width'],$size_array[0]['height']);
-  $size_array[0]['height'].'*'.$rollSize.'*'.$rate;
-}
-  $actual_price;
-  $size_array[0]['height'];
-  $size_array[0]['width'];
-
-function choose_role_size($width,$height){
-	if($width>$height){
-		$fix_val = $height;	
-	}else{
-		$fix_val = $width;
-
-	}
-      if($fix_val<=17){
-           return 17;
-        }else
-        if($fix_val<=24 && $fix_val>17){
-           return 24;
-        }else if($fix_val<=44 && $fix_val>24){
-           return 44;
-        }else if($fix_val<=50 && $fix_val>44){
-           return  50;
-        }else if($fix_val<=64 && $fix_val>50){
-           return  64;
-        }
-}/// end function
-
-function give_licence_price($pricing_range){
-    if($pricing_range=='mid'){
-      $tolalLic= $image_width*$image_height*2;  
-      return $totalPriceLic=$tolalLic*50/100;
-    }elseif($pricing_range=='low'){
-      $tolalLic=  $image_width*$image_height*2;  
-      return $totalPriceLic=$tolalLic*50/100;
-    }elseif($pricing_range=='high'){
-      $tolalLic=  $image_width*$image_height*2;  
-      return $totalPriceLic=$tolalLic*50/100;
-    }
-}
-// wastage calculation
-$lower_value = 12;
-$size_with_wastage = $role_size*$lower_value;
-$licence_base_price=give_licence_price($collection_id);
-if( $size_array[0]['width']> $size_array[0]['height'])
-{
-    $low_val=round($size_array[0]['height']);
-    $high_val=round($size_array[0]['width']);
-}else{
-    $low_val=round($size_array[0]['width']);
-    $high_val=round($size_array[0]['height']);
-}
-$s=round($size_array[0]['height']).'X'.round($size_array[0]['width']);
-$price=(round($size_array[0]['width'])*round($size_array[0]['height'])*2)+$wastage_cost+give_licence_price($pricing_range);
-$size_array[$i]['width'];
+//echo $continue_shopping_redirect
 ?>
 
 <?php //$continue_shopping_redirect=$this->session->userdata('continue_shopping');?>
@@ -417,7 +161,7 @@ $size_array[$i]['width'];
 				<div class="frame-step-header-text"></div>
 				<div class="frame-step-button-wrapper">
 					<div class="frame-step-continue-shopping-button">
-						<a style="color:white" href="<?=base_url()?>">CONTINUE SHOPPING</a>
+						<a style="color:white" href="<?=base_url().$continue_shopping_redirect?>">CONTINUE SHOPPING</a>
 					</div>
 					<div class="frame-step-proceed-to-cart-button">
 						<a style="color:white" href="<?=base_url().'cart/cart_view'?>">  PROCEED TO CART</a>
@@ -479,191 +223,13 @@ $size_array[$i]['width'];
 </style>
 
 <script type="text/javascript">
-	function get_quality(value){
-	    var quality=$('#quality').val();
-		var paper = $('#surfaces').val();
-		//alert(quality+','+paper);
-		$.ajax({
-      		type: 'post',
-      		url: '<?=base_url()?>frontend/get_web_price_detials',
-      		data:'print_paper='+paper+'&quality='+quality,
-      		success: function(response){
-			//alert(response)
-			var obj=JSON.parse(response);
-			var res=obj.split(',');
-        		$('#quality_rate').val(res[0]);
-      	   			throw_price(res[0],res[1]);
-           	}
-    	});
-  	}
+	function get_quality(value){}
     
-function throw_price(rate,surface_type){
-	var image_size=$( "#sizes option:selected" ).val();
-	var split = image_size.split('X');
-	var width = parseInt(split[0]);
-	var height = parseInt(split[1]);
-	var surface = $('#surfaces').val();
-	var ratesof = rate;
-	if(surface_type=='1'){
-	//alert('canvas')
-	///$('#test').val('canvas');
-    var c_height=parseInt(height)+parseInt(4);
-    var c_width=parseInt(width)+parseInt(4);
-  	}else{
-	//alert('paper')
-	//$('#test').val('frame');
-  	var c_width=width+parseInt(1);
-  	var c_height=height+parseInt(1);
-  	} 
-  	var role_size;
-  if(Number(c_width)<=17 && Number(c_height)<=17){
-    var role_size = 17;
-	}else if(c_width==c_height){
-    if(c_width<=17){
-      var role_size = 17;
-    }else if(c_width<=24 && c_width>17){
-      var role_size = 24;
-    }else if(c_width<=44 && c_width>24){
-      var role_size = 44;
-    }else if(c_width<=64 && c_width>44){
-      var role_size = 64;
-    }
-  }else if((Number(c_width)<=24 && Number(c_width)>17 ) && (Number(c_height) <=24 && Number(c_height) >17)){
-		var role_size = 24;
-	 }else if((Number(c_width)>17 && Number(c_width)<24 && Number(c_height)>24) || (Number(c_height)>17 && Number(c_height)<24 && Number(c_width)>24)){
-		var role_size = 24;
-	}else if((Number(c_width)>17 && Number(c_width)<24) || (Number(c_height)>17 && Number(c_height)<24)){
-	  var role_size = 17;
-	}else if(Number(c_width)<=44 && Number(c_width) >24 && (Number(c_height) >24 && Number(c_height)<=44 ))
-        {
-    var role_size = 44;
-  }else if((Number(c_width)>24 && Number(c_width)<44)|| (Number(c_height)>24 && Number(c_height)<44)){
-		 var role_size = 24;
-	}else if((Number(c_width)>44 && Number(c_width)<64) || (Number(c_height)>44 && Number(c_height)<64))
-   {
-    var role_size = 44;
-  }
-  
-  if((Number(c_width) && Number(c_height))<=(role_size)){
-		  if(c_width < c_height){
-		 // alert(c_width+'*'+role_size+'*'+ratesof)
-	     var cost=c_width*role_size*ratesof;
-		  }else if(c_width > c_height){
-		    var cost=c_height*role_size*ratesof;
-		  }
-	}
-	if(Number(c_width)>Number(role_size)|| Number(c_height)>Number(role_size)){
-    if(c_width>role_size){
-      var cost=(c_width*parseInt(role_size)*ratesof);
-    }else if(c_height>role_size){
-    var cost=(c_height*parseInt(role_size)*ratesof);
-    }
-  }
-  if(c_height==c_width){
- // alert(c_height+','+role_size+','+ratesof)
-    var cost=(c_height*parseInt(role_size)*ratesof);
-  }
-	$('#print_price').html('Rs.'+ Math.round(parseInt(cost),2));
-	calculate_cost($('#type').val());
-}
+function throw_price(rate,surface_type){}
 
-function calculate_cost(value){
-		var image_size=$( "#sizes option:selected" ).val();
- 		var print_sizes=$('#surfaces').val();
- 		var ratesof=$('#quality_rate').val();
-	    var split = image_size.split('X');
-  		$('#image_size').val(print_sizes);
-    	var role_size,cost;
-		var width=parseInt(split[0]);
-		var height=parseInt(split[1]); 
-		var orig_image_size = width +'" X '+ height +'"';
-		var c_height=parseInt(height)+parseInt(4);
-		var c_width=parseInt(width)+parseInt(4);	
-		var image_size_final=c_width+'" X '+c_height+'"';
-		$('#print_sizes').html(orig_image_size);
-		var price = $('#print_price').html().split('.');
-		var type = value; 
- 		if( type == 1){
-			if( $("input[id='museum']:checked").val()){
-	 			$('#17').html(image_size_final+'Canvas Print without border');
-	 		}else if( $("input[id='gallery']:checked").val()){
-	 			$('#17').html(image_size_final+' Canvas Print');
-			}
-		$('#print_h_w').val(c_width+'X'+c_height);
-		var newwidth1 = parseInt(width)+(1*2);
-		var	newlenght1 = parseInt(height)+(1*2);
-		var CanvasFrameCost = parseInt( (parseInt((parseInt(newwidth1)+(1*2))*parseInt(2)) + parseInt((parseInt(newlenght1)+(1*2))*parseInt(2)))*75)/12;
-		CanvasFrameCost = Math.round(parseInt(CanvasFrameCost),2);
-		var total_cost = CanvasFrameCost + parseInt(price[1]); 
-		$('.framing,.print').hide();
-		$('.canvas').show();
-		$('#print_paper').html($('#surfaces').val());
-		$('#frame_type').html('Streched Canvas Gallary Wrap');
-		$('#CanvasCost').html('Rs.'+ Math.round(CanvasFrameCost,2));
-		$('#sub_total_price').html('Rs.' + Math.round(total_cost,2) );
- 		apply_promo_code(Math.round(total_cost));
- 		}else if(type == 2){
- 		var c_height=parseInt(height)+parseInt(1);
- 		var c_width=parseInt(width)+parseInt(1);
- 		$('#print_h_w').val(c_width+'X'+c_height);
- 		var image_size_final=c_width+'" X '+c_height+'"';
- 		$('#17').html(image_size_final+' Giclee Print |'+ orig_image_size +' Giclee Print without border');
- 		var mount = $('#mount_width').val();
- 		var newmountheight = parseInt(split[0])+ mount * parseInt(2);
-    	var newmountwidth = parseInt(split[1])+ mount * parseInt(2);
-		var mount_rate = $('#mount_rate').val();
-		var m_cost=parseFloat(newmountheight)*parseFloat(newmountwidth)*parseFloat(mount_rate);
-		var MountCost=m_cost.toFixed(2);
-		var size = $('#frame_size').val();
- 		var frame_rate = $('#frame_rate').val();
- 		var OrgFrametRuningArea = ((parseFloat(newmountheight)+parseFloat(size)*2)*2) + ((parseFloat(newmountwidth)+ parseFloat(size*2))*2);
- 		var OrgFramCost=((OrgFrametRuningArea)/(12)*frame_rate);
- 		OrgFramCost = Math.round(OrgFramCost,2);
- 		$('#FrameCost').html('Rs.'+OrgFramCost);
- 		$('#mount_size').html($('#mount_width').val()+'"');
- 		$('#MountCost').html('Rs.'+MountCost);
- 		var glass_type = $('#glass_type').val();
-	 		$.ajax({
-				type:'post',
-	            url:'<?=base_url()?>index.php/frontend/get_web_price_detail',
-				data: {type: glass_type},
-				success:function(data){
-				glass_rate = data;
-				var glass_cost = newmountheight * newmountwidth * glass_rate;	
-					glass_cost = Math.round(glass_cost,2); 
-				$('#glass_cost').val(glass_cost);			
-				if($('#mount_state').val() == 0){
-					MountCost = 0;		
-				}
-				var total_cost = parseFloat(MountCost) + parseFloat(OrgFramCost) + glass_cost + parseInt(price[1]);
-				$('#sub_total_price').html('Rs.' + Math.round(total_cost,2) );
-				$('#glass_price').html('Rs.'+ glass_cost);
-				apply_promo_code(total_cost);				
-				}
-			})
-		$('.canvas,.print').hide();
-		$('.framing').show();
-		$('#print_paper').html($('#surfaces').val());
-		}else{
- 			$('#17').html(orig_image_size+' Print Only');
- 			$('.canvas,.framing').hide();
-			$('.print').show();
- 			$('#print_h_w').val(width+'X'+height);
- 			$('#print_paper').html($('#surfaces').val());
- 			$('#sub_total_price').html('Rs.' + Math.round(price[1],2) );
- 			apply_promo_code(Math.round(price[1],2));
- 		}
-	}
+function calculate_cost(value){}
 
-	function apply_promo_code(total_amount){
-		$('#sub_total_price,.old_price').html('Rs.' + total_amount);
-		var promo_precentage=$('#promo_precentage').html();
-		promo_precentage = promo_precentage.split('%');
-		var promo_amount_final=parseFloat(Math.round((total_amount*parseFloat(promo_precentage))/100).toFixed(2));
-		$('#promo_amount').html('Rs.' + Math.round(promo_amount_final,2));
-		var total_amount_after_gst = parseFloat(total_amount)-parseFloat(promo_amount_final);
-		$('.total_cost,.actual_price').html('Rs.'+ Math.round(total_amount_after_gst,2));
-	}
+	function apply_promo_code(total_amount){}
 	// end function
 </script>
 <script>
@@ -689,7 +255,7 @@ function calculate_cost(value){
                     	<strong> Print Price</strong>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> <span id="print_price" class='canvas framing print'></span></strong>
+                    	<strong> <span id="print_price" class='canvas framing print'><?=$image_details[0]->unit_price?></span></strong>
                     </div>
                 </div>
             </div>
@@ -753,6 +319,7 @@ function calculate_cost(value){
                     </div>
                 </div>
             </div>
+			<!--
             <div class="row framing">
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
@@ -763,6 +330,7 @@ function calculate_cost(value){
                     </div>
                 </div>
             </div>
+			
             <div class="row framing mount">
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left mount">
@@ -779,7 +347,7 @@ function calculate_cost(value){
                     	<strong> Mount Color: </strong>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right mount">
-                    	<strong><span class='framing' id="mount_color">Ice White</span></strong>
+                    	<strong><span class='framing' id="mount_color"></span></strong>
                     </div>
                 </div>
             </div>
@@ -803,21 +371,21 @@ function calculate_cost(value){
             <div class="row framing" >
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong id="glass_type"> Regular </strong>
+                    	<strong id="glass_type"></strong>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right framing">
                     	<strong> <span id="glass_price"> </span></strong>
                     </div>
                 </div>
-            </div>
-            <div class="row">
+            </div>-->
+            <!--<div class="row">
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
                     	<strong style="color:#d3131b">Discount:</strong>
                     </div>
                 </div>
-            </div>  
-            <div class="row" >
+            </div>-->  
+            <!--<div class="row" >
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
                     	<strong style="color:#d3131b">FLAT<span id="promo_precentage" style="color:#d3131b">20%</strong>
@@ -827,8 +395,8 @@ function calculate_cost(value){
                     	<strong> <span id="promo_amount" style="color:#d3131b"></span></strong>
                     </div>
                 </div>
-            </div>
-            <div class="row" >
+            </div>-->
+            <!--<div class="row" >
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Sub-Total  </strong>
@@ -837,7 +405,7 @@ function calculate_cost(value){
                     	<strong> <span id="sub_total_price"> </span></strong>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <div class="row">
             	<div class="frame-it-content col-md-12">
                 <hr/>
@@ -846,7 +414,7 @@ function calculate_cost(value){
                             <strong style="color:#d3131b"> Total Price </strong>
                         </div>
                         <div class="col-md-6 col-sm-6 text-right">
-                            <strong> <span class='actual_price' style="color:#d3131b"></span></strong>
+                            <strong> <span class='actual_price' style="color:#d3131b"><?=$image_details[0]->unit_price?></span></strong>
                         </div>
                     </div>
                 </div>
@@ -992,6 +560,7 @@ function calculate_cost(value){
                                   <td><a href="javascript:;" class="color14" onclick="javascript:change_wallcolor(this);"></a></td>
                                   <td><a href="javascript:;" class="color15" onclick="javascript:change_wallcolor(this);"></a></td>
                                   <td><a href="javascript:;" class="color16" onclick="javascript:change_wallcolor(this);"></a></td>
+
                                   
                                 </tr>
                                 <tr>
@@ -1473,32 +1042,32 @@ function right(width,height,x){
             <div class="row">
             <div class="col-md-9">
             	<form class="form-horizontal">
-                        <div class="form-group">
+                        <!--<div class="form-group">
                         	<label for="country" class="col-sm-4"><h4>Print Surface</h4></label>
                             <div class="col-sm-8">
-	                            <select class="form-control input_control" id='surfaces' onclick="   get_functions();return false;">
-						<?php
-						foreach($display_p_name as $d_p_name){
-	echo "<option value='".$d_p_name->paper."'>".$d_p_name->display_p_name."</option>";
-	//print_r($res->paper);
-	}
+	                            <select class="form-control input_control" id='surfaces'>
 						
-						?>
 	                    </select>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                         	<label for="country" class="col-sm-4">
                             	<h4> Size<span class="menu-selection-text">(In Inches)</span></h4>
                             </label>
                             <div class="col-sm-8">
-	                            <select name="print_sizes" id="sizes" class="form-control input_control" onclick=" get_quality('');return false;">
-                    <?php for($i=0;$i<=count($size_array)-1;$i++){
-              			if($size_array[$i]['width']<=round($max_width_allowed) && $size_array[$i]['height']<= round($max_height_allowed)){ ?>
-          			<option value="<?php print round(number_format($size_array[$i]['width'],1,'.','')).'X'.round(number_format($size_array[$i]['height'],1,'.',''));?>" ><?php print round(number_format($size_array[$i]['width'],1,'.','')).'" X '. round(number_format($size_array[$i]['height'])).'"';?></option>
-          			<?php }} ?>
-                    <!-- <option value="Own Size">Choose Your Own Size</option> -->
-          			</select>
+	                        <!--    <select name="print_sizes" id="sizes" class="form-control input_control" onclick=" get_quality('');return false;">
+                   
+               
+          			</select>-->
+					<input type="text" name="print_sizes" id="sizes"  style="border:none"class="form-control input_control"  value="<?php echo $image_details[0]->width.'X'.$image_details[0]->height;?>" />
+                            </div>
+                        </div>
+						<div class="form-group">
+                        	<label for="country" class="col-sm-4">
+                            	<h4> Dimension<span class="">(In Inches)</span></h4>
+                            </label>
+                            <div class="col-sm-8">
+					<span name="print_dimension" id="dimension" class="form-control"><?php echo $image_details[0]->dimension;?></span>
                             </div>
                         </div>
                     	
@@ -1658,25 +1227,24 @@ display: none;
 </style>
 <script>
 $(document).ready(function(){
-    $("#img_hover").hover(function(){
+        $("#img_hover").hover(function(){
         $("#uploader_popup_goofy_b").css("display", "block");
-        }, function(){
+        },function(){
         $("#uploader_popup_goofy_b").css("display", "none");
-    });
-});
+        });
+        });
 </script>
-                
-            </div>
+                </div>
             	<div class="col-md-9" id="selector-step">
-                    <p class="price" style="display: block;"><span class="old_price" style="font-size: 15px;color:Tomato;"></span><span class="total_cost"></span> </p>
+                    <p class="price" style="display: block;"><span class="old_price" style="font-size: 15px;color:Tomato;"></span><span class="total_cost"><?=$image_details[0]->unit_price?></span> </p>
                     <p class="bottom-bar-crop" style="display: block;" id="17"></p>
                     <p class="shipping-note">Ships in 1-2 days</p>
-                   	<h5><a href='' onclick=" get_functions(''); price_details();return false;">Price Details</a> </h5>
-                    <p><input type="button" class="call-to-action-1-button btn btn-default" <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> value="ADD TO CART" ></p>
+                   	<h5><a href='' onclick="get_functions(''); price_details();return false;">Price Details</a> </h5>
+                    <p><input type="button" class="call-to-action-1-button btn btn-default"<?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> value="ADD TO CART" ></p>
                 </div>
                 <div id="save-to-gallery-text" class="col-md-9">
                 	<span> <i class="fa fa-heart-o" aria-hidden="true"></i>
-                		<a <?php   if($this->session->userdata('userid')){?>
+                		<a <?php  if($this->session->userdata('userid')){?>
 href="" onclick="addtogallery('<?=$api_image_id?>','<?=$image_id?>');return false;" id="tgl" style="color:#ef9223;" <?php }
 else {?> href="" onclick="login('');return false;" style="color:#ef9223;"<?php }?> >Add to Gallery </a>
                 	</span>
@@ -1771,9 +1339,9 @@ else {?> href="" onclick="login('');return false;" style="color:#ef9223;"<?php }
 	            <div class="tab-content">
 	                <!-- Tab Content 1 -->
 	                <div class="tab-pane fade active in" id="tab-7">
-	                	<h3>Portrait of&nbsp;<?php echo $image_detail[0]['image_photographer'];?></h3>
-	                	<p><strong>Item # :<?php print $image_detail[0]['image_filename'];?></strong></p>
-	      				<p><?php print $image_detail[0]['image_description'];?></p>
+	                	<h3>Portrait of&nbsp;<?php // echo $image_detail[0]['image_photographer'];?></h3>
+	                	<p><strong>Item # :<?php //print $image_detail[0]->image_id;?></strong></p>
+	      				<p><?php //print $image_detail[0]['image_description'];?></p>
 	     				<!--<h4> KEYWORDS:-</h4>
 				     	<p><?php //print $image_detail[0]['image_keywords'];?></p> -->
 	                </div>
@@ -2140,339 +1708,33 @@ background: #ddd;
 	});	
 </script>
 
-<input type="hidden" name="image_id" id="image_id" value="<?=$image_id?>">
-<input type="hidden" name="image_filename" id="image_filename" value="<?=$image_detail[0]['image_filename']?>">
+<input type="hidden" name="image_id" id="image_id" value="<?=$image_details[0]->image_id?>">
+<input type="hidden" name="image_filename" id="image_filename" value="<?=$image_details[0]->image_id?>">
 <input type="hidden" name="user_id" id="user_id" value="<?=$userid?>">
 <input type="hidden" name="api_image_id" id="api_image_id" >
 <input type="hidden" name="quality_rate" id="quality_rate" value="">
 <input type="hidden" name="image_size" id="image_size" value="">
 <input type="hidden" name="quality" id="quality" value="<?=$collection_range;?>">
-<input type="hidden" name="img_id" id="img_id" value="<?php echo $images_id;?>" />
-<input type="hidden" name="img_id" id="gallery_img_id" value="<?=$image_detail[0]['images_id'];?>" />
+<input type="hidden" name="img_id" id="img_id" value="<?=$image_details[0]->image_id?>" />
+<input type="hidden" name="img_id" id="gallery_img_id" value="<?=$image_details[0]->image_id?>" />
 <input type="hidden" name="paper_type" id="paper_type" value="1">
 
 <script type="text/javascript">
 		function showTable(frame_cat){
-			$.ajax({
-	            type: "POST",
-	            url: "<?=base_url();?>index.php/frontend/get_frame_code_web_price",
-	            data:'frame_cat='+frame_cat,
-				beforeSend: function(){
-				},
-				success: function(data)
-	            {
-				var obj=JSON.parse(data);
-				var total_items = obj.length; 
-				var i,j,toal_slide,total_s,rem_slide,req_slide,td_inner="";
-				total_s = (obj.length/6);
-				rem_slide = (obj.length%6);
-				total_s = Math.round(total_s);			
-				if(rem_slide){
-				req_slide = total_s +1;	
-				}else{
-				req_slide = total_s;	
-				}
-				var image = 0;	
-				td_inner += '<div class="product-detail-content col-md-10 col-sm-10">';
-	            td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider1">';
-	            td_inner += '<div class="carousel-inner">'; 
-				for(j=0;j<=req_slide-1;j++){
-					if(j==0){
-						td_inner += '<div class="item active">';
-					}else{
-						td_inner += '<div class="item">';
-					}
-					for(i=0;i<=5;i++){
-				if(image < total_items){
-				var val=obj[image];
-				var explode=val.split(',');
-				var f_code=explode[0];
-				var explode1=explode[1];
-				var f_name="'"+explode1+"'";
-				var explode2=explode[2];
-				var f_size="'"+explode2+"'";
-				var explode3=explode[3];
-				var f_color="'"+explode3+"'";
-				var explode4=explode[4];
-				var f_rate="'"+explode4+"'";
-				var explode5=explode[5];
-				var f_name="'"+explode5+"'";
-				var explode6=explode[6];
-				var f_name_mm="'"+explode6+"'";
-				if(explode[7]=='0'){
-				mount_avail='Out of stock';
-				}else{
-				mount_avail='';
-				}
-				var f_shape=$('#frame_shape').val();
-				var frame_shape="'"+f_shape+"'";
-				td_inner += '<div class="col-xs-12 col-sm-2 col-md-2 frame" id="frame'+image+'" onclick=" myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block img3"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
-					image++;
-				}
-				} td_inner +='</div>';
-			    }
-				if(total_items>4){
-				td_inner += '<div id="slider-control">';
-		        td_inner += '<a class="left carousel-control arrowclick" id="frame_left" href="#itemslider1" data-slide="prev">';
-		        td_inner += '<i class="fa fa-angle-left" style="font-size:3em"></i></a>';
-		        td_inner += '<a class="right carousel-control arrowclick" id="frame_right" href="#itemslider1" data-slide="next">';
-		        td_inner += '<i class="fa fa-angle-right" style="font-size:3em"></i></a>';
-		        td_inner += '</div>';
-				}
-				td_inner += '</div></div></div>';	
-				$('#frame_slider').html(td_inner);
-				}
-			});
+			$.ajax({});
     	}
 
     	function show_mat(obj){
-			$.ajax({
-			    type:"post",
-				url:"<?=base_url()?>index.php/frontend/get_all_mount_for_slide",
-				data:'mount='+obj,
-				beforeSend: function(){
-				},
-				success: function(success){
-				var array=JSON.parse(success);
-				var total_s,total_slide="";
-				total_s=(array.length)/6;
-				rem_slide = (array.length)%6;
-				total_slide=Math.round(total_s);
-				if(rem_slide){
-					total_slide = total_slide+1; 
-				}else{
-				total_slide = total_slide;
-				}
-				var breaks,mount_code,mount_rate,mount_name,mount_avail,td_inner='';
-				var image=0;	
-				td_inner += '<div class="product-detail-content col-md-10 col-sm-10">';
-		        td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider4">';
-		        td_inner += '<div class="carousel-inner">';
-				for(var i=0;i<total_slide;i++){
-					if(i==0){
-							td_inner += '<div class="item active">';
-						}else{
-							td_inner += '<div class="item">';
-						}
-				for(var j=0;j<=5;j++){
-					if(image<array.length){
-				breaks=array[image].split(',');
-				mount_rate="'"+breaks[1]+"'";
-				mount_code="'"+breaks[0]+"'";
-				mount_name="'"+breaks[2]+"'";
-				if(breaks[3]=='0'){
-				mount_avail='Out of stock';
-				}else{
-				mount_avail='';
-				}
-				td_inner +='<div class="col-xs-12 col-sm-2 col-md-2 mount_data" id="mount'+image+'" onclick=" state_change(); return mount_select('+mount_rate+','+mount_code+','+mount_name+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
-				image++;
-					}
-						}td_inner +='</div>';
-					}	
-				td_inner += '<div id="slider-control">';
-		        td_inner += '<a class="left carousel-control arrowclick"  href="#itemslider4" data-slide="prev">';
-		        td_inner += '<i class="fa fa-angle-left" style="font-size:3em"></i></a>';
-		        td_inner += '<a class="right carousel-control arrowclick"  href="#itemslider4" data-slide="next">';
-		        td_inner += '<i class="fa fa-angle-right" style="font-size:3em"></i></a>';
-		        td_inner += '</div>';
-				td_inner += '</div></div></div>';	
-				$('#mount_slider').html(td_inner);
-				}
-			});
+			$.ajax({});
    		}
 
-   		function state_change(){
-   			$('#mount_state').val(1);
-   			var mount = $('#mount_sized').val();  
-   			$('#mount_width').val(mount);
-   			var change_mount = mount*10;
-			$('#abc').css({'width':'auto','padding':change_mount,'background-attachment':'scroll','position': 'relative','z-index':'1'});
-   			$('#mount_state').val(1);
-   			$('.mount').show();
-   		}
+   		function state_change(){}
 
-   		function Frame_Size(FrameSize,frame_size_mm){
-			$.ajax({
-		      type:'post',
-			  url:'<?=base_url()?>index.php/frontend/get_frame_by_frame_color',
-			  data:'FrameSize='+frame_size_mm,
-			  beforeSend: function(){
-				$('#load_buffer').show();
-				},
-			  success:function(response){
-			  var array= JSON.parse(response);
-			  var td_inner = '';
-			  var total_s,total_slide="";
-			  total_s=(array.length)/4;
-			  rem_slide = (array.length)%4;
-			  total_slide=Math.round(total_s);
-			if(rem_slide){
-				total_slide = total_slide+1; 
-			}else{
-			total_slide = total_slide;
-			}
-			var breaks,mount_code,mount_rate,mount_name,mount_avail,td_inner='';
-			var image=0;	
-			td_inner += '<div class="product-detail-content col-md-10 col-sm-10">';
-	        td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider6">';
-	        td_inner += '<div class="carousel-inner">';
-			 	for(var j=0;j<total_slide;j++){
-					if(j==0){
-						td_inner += '<div class="item active">';
-					}else{
-						td_inner += '<div class="item">';
-					}
-			    for(var i=0;i<=3;i++){
-				if(image<array.length){
-					var val = array[image];
-					var explode = val.split(',');
-					var f_code=explode[0];
-					var explode1=explode[1];
-					var f_name="'"+explode1+"'";
-					var explode2=explode[2];
-					var f_size="'"+explode2+"'";
-					var explode3=explode[3];
-					var f_color="'"+explode3+"'";
-					var explode4=explode[4];
-					var f_rate="'"+explode4+"'";
-					var explode5=explode[5];
-					var f_name="'"+explode5+"'";
-					var explode6=explode[6];
-					var f_name_mm="'"+explode6+"'";
-						if(explode[7]=='0'){
-						mount_avail='Out of stock';
-						}else{
-						mount_avail='';
-						}
-						var f_shape=$('#frame_shape').val();
-						var frame_shape="'"+f_shape+"'";	
-				td_inner += '<div class="col-xs-12 col-sm-2 col-md-2 frame" id="frame'+image+'" onClick=" myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
-				}
-					image++;
-					}td_inner +='</div>';
-				}	
-				if(array.length>4){
-			td_inner += '<div id="slider-control">';
-	        td_inner += '<a class="left carousel-control arrowclick"  href="#itemslider2" data-slide="prev">';
-	        td_inner += '<i class="fa fa-angle-left" style="font-size:3em"></i></a>';
-	        td_inner += '<a class="right carousel-control arrowclick"  href="#itemslider2" data-slide="next">';
-	        td_inner += '<i class="fa fa-angle-right" style="font-size:3em"></i></a>';
-	        td_inner += '</div>';
-			}
-			td_inner += '</div></div></div>';	
-			$('#frame_slider').html(td_inner);
-				    $('#load_buffer').hide();
-	 			}
-			});
-		}	
+   		function Frame_Size(FrameSize,frame_size_mm){}	
 		
-		function get_frame_color(frame_color){
-			var total_slide,total_s="";
-			$.ajax({
-            type:"post",
-			url:"<?=base_url()?>index.php/frontend/get_frame_by_frame_color",
-			data:'frame_color='+frame_color,
-			beforeSend: function(){
-			$('#load_buffer').show();
-			},
-			success: function(response){
-			var array= JSON.parse(response);
-		  	var td_inner = '';
-		  	var total_s,total_slide="";
-		  	total_s=(array.length)/4;
-		  	rem_slide = (array.length)%4;
-		  	total_slide=Math.round(total_s);
-		  	if(rem_slide){
-			total_slide = total_slide+1; 
-		  	}else{
-		  	total_slide = total_slide;
-		  	}
-		  	var breaks,mount_code,mount_rate,mount_name,mount_avail,td_inner='';
-		 	 var image=0;	
-			td_inner += '<div class="product-detail-content col-md-10 col-sm-10">';
-            td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider5">';
-            td_inner += '<div class="carousel-inner">';
-		    for(var j=0;j<total_slide;j++){
-				if(j==0){
-					td_inner += '<div class="item active">';
-				}else{
-					td_inner += '<div class="item">';
-				}
-		  	for(var i=0;i<=3;i++){
-				if(image<array.length){
-				var val = array[image];
-				var explode = val.split(',');
-				var f_code=explode[0];
-				var explode1=explode[1];
-				var f_name="'"+explode1+"'";
-				var explode2=explode[2];
-				var f_size="'"+explode2+"'";
-				var explode3=explode[3];
-				var f_color="'"+explode3+"'";
-				var explode4=explode[4];
-				var f_rate="'"+explode4+"'";
-				var explode5=explode[5];
-				var f_name="'"+explode5+"'";
-				var explode6=explode[6];
-				var f_name_mm="'"+explode6+"'";
-					if(explode[7]=='0'){
-					mount_avail='Out of stock';
-					}else{
-					mount_avail='';
-					}
-				var f_shape=$('#frame_shape').val();
-				var frame_shape="'"+f_shape+"'";	
-				td_inner += '<div class="col-xs-12 col-sm-2 col-md-2 frame" id="frame'+image+'" onClick="myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
-				}
-					image++;
-				}td_inner +='</div>';
-			}	
-			if(array.length>4){
-				td_inner += '<div id="slider-control">';
-        		td_inner += '<a class="left carousel-control arrowclick"  href="#itemslider3" data-slide="prev">';
-        		td_inner += '<i class="fa fa-angle-left" style="font-size:3em"></i></a>';
-        		td_inner += '<a class="right carousel-control arrowclick"  href="#itemslider3" data-slide="next">';
-        		td_inner += '<i class="fa fa-angle-right" style="font-size:3em"></i></a>';
-        		td_inner += '</div>';
-			}
-				td_inner += '</div></div></div>';	
-				$('#frame_slider').html(td_inner);
-				    $('#load_buffer').hide();
- 				}
-			});
-		}
+		function get_frame_color(frame_color){}
 
-		function myfun(color,size,shape,f_code,f_rate,f_size_mm){
-			$('#frame_name').val(f_code);
-			$('#frame_size').val(size);
-			$('#frame_rate').val(f_rate);
-			$('#frame_sized').html(f_size_mm);
-			$('#f_name').html(f_code);
-
-			if(f_code){
-		       var dert= "<?php echo base_url()?>images/uploaded_pdf/frames/horizontal/";
-			   var border_width="";
-			   var border_width2="";
-			   if(f_size_mm<=40){
-			   border_width=20;
-			   border_width2=10;
-			   }else if(f_size_mm>40 && f_size_mm<=50){
-			   border_width=30;
-			   border_width2=15;
-			   }else if(f_size_mm>50 && f_size_mm<=66){
-			   border_width=40;
-			   border_width2=20;
-			   }else if(f_size_mm>66){
-			   border_width=55;
-			   border_width2=25;
-			   }
-			   $('div.mainhor').css({'border-image':'url("'+dert+f_code+'.jpg") 58 58 58 58 round round','border-style':'solid','border-width':''+ border_width+'px'});
-			   $('div.mainhor2').css({'border-image':'url("'+dert+f_code+'.jpg") 58 58 58 58 round round','border-style':'solid','border-width':''+ border_width2+'px'});
-			   $('#frame_name').val(f_code);
-			}
-			get_quality('');
-		}
+		function myfun(color,size,shape,f_code,f_rate,f_size_mm){}
 	$(document).ready(function(){
 		$('#hover2').click(function(){
 			show_mat('');			
@@ -2534,7 +1796,7 @@ function addToCart()
   if(only_print == ''){
   	frame_name = $('#frame_name').val();
   }else{
-  	frame_name = 'Streched Canvas Gallary Wrap';	
+  //	frame_name = 'Streched Canvas Gallary Wrap';	
   }
   var mount_name,mount_color,mat1_size;
   if($('#mount_state').val() == 0 ){
@@ -2548,35 +1810,37 @@ function addToCart()
   }
   var glasses= $('#glass_type').html();
   var glasses_coste= $('#glass_price').html();
-      glasses_coste = glasses_coste.split('.');		
-      glasses_coste = glasses_coste[1];
+      //glasses_coste = glasses_coste.split('.');		
+     // glasses_coste = glasses_coste[1];
   var total_price=$('.total_cost').html();
-      total_price = total_price.split('.');
-  	  total_price = total_price[1];	
+ // alert(total_price)
+     // total_price = total_price.split('.');
+  	  //total_price = total_price[1];	
   var MountCost=$('#MountCost').html();
-      MountCost = MountCost.split('.');
-  	  MountCost = MountCost[1];
+    //  MountCost = MountCost.split('.');
+  	 // MountCost = MountCost[1];
   var FrameCost=$('#FrameCost').html();
-  	  FrameCost = FrameCost.split('.');		
-  	  FrameCost = FrameCost[1];
+  	  //FrameCost = FrameCost.split('.');		
+  	 // FrameCost = FrameCost[1];
   var price=$('#print_price').html();
-      price = price.split('.');
-  	  price = price[1];
+     // price = price.split('.');
+  	 // price = price[1];
   var print_size=$('#print_h_w').val();
   var image_id=$('#image_id').val();
   var image_type= $('#surfaces').val();
   var user_id=$('#user_id').val();
+  //alert(user_id)
   var mat1_color=$('#mount_color').html();
   var image_namee=$('#image_filename').val();
   var frameSize=$('#frame_sized').html();
-
-  //alert(paper_surface+','+framed_art+','+print_width+','+print_height+','+final_frame_size+','+only_print+','+frame_name+','+mount_name+','+mount_color+','+glasses+','+glasses_coste+','+total_price+','+MountCost+','+FrameCost+','+price+','+image_id+','+user_id+','+mat1_size+','+mat1_color+','+image_namee+','+frameSize+','+image_type+','+print_size);
+var url="glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print;
     $.ajax({
         type: "POST",
 	    url: "<?=base_url()?>frontend/frameit_addtocart",
-        data: "glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print,
+        data: url,
 		success:function(data)  
     	{   
+		//alert(data)
     		swal({
 				  title: 'CART STATUS',
 				  text: 'Item Added Successfully',

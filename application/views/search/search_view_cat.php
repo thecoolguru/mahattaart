@@ -294,7 +294,7 @@ $txt=$search_text;
 <?=ucwords($medium);?>
 </a>
 <?php }
-      if($shape<>'?#!' && $shape!='')
+      if($shape<>'none' && $shape!='')
             {
      ?>
 &rarr;<a href="javascript:shape_undo('<?=$category_id?>','<?=$shape;?>')"><img src="<?php echo base_url()?>assets/images/delete.png" width="10" height="10"/>&nbsp;
@@ -439,9 +439,9 @@ if($bride[0]=='BRID'){
 
  if($bride[0]=='BRID'){
  $img_src= "http://images2.bridgemanart.com/cgi-bin/bridgemanImage.cgi/150.XIR.".$bride_id.".7055475/".$bridege_image_id.".JPG";
-	$image_filename=$item['results'][$x]['image_filename'];
-	$image_id=$item['results'][$x]['image_id'];
-	$image_collection_id=$item['results'][$x]['image_collection_id'];
+	$image_filename=$item['image_filename'];
+	$image_id=$item['image_id'];
+	$image_collection_id=$item['image_collection_id'];
 	$link='products';
 	
  }else{

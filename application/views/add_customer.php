@@ -209,7 +209,6 @@ document.getElementById('vender_contracttxt').style.display="block";
     }else if(customer_type=='ONLINE'){
        // alert(customer_type);
 	    $(".mndaty_aptrp").show();
-		 $('.retails_kiosk').hide();
 document.getElementById('Industry_text').style.display="none";
 document.getElementById('occupation').style.display="none";
 document.getElementById('relationshipmanagelbl').style.display="none";
@@ -227,16 +226,12 @@ document.getElementById('b2b_choice_Restaurant').style.display="none";
         }else if(customer_type=='RETAIL'){
        // alert(customer_type); 
 	   $(".mndaty_aptrp").hide();
-	   $('.retails_kiosk').show();
 	   //document.getElementById('mndaty_aptrp').style.display="none";
 document.getElementById('Industry_text').style.display="block";
-
-//document.getElementById('vendotrer').style.display="block";
-
 document.getElementById('occupationb2cp').style.display="block";
 document.getElementById('occupation').style.display="none";
 document.getElementById('relationshipmanagelbl').style.display="block";
-document.getElementById('relationshipmanagetxt').style.display="block";
+ document.getElementById('relationshipmanagetxt').style.display="block";
 document.getElementById('account_typelbl').style.display="block";
 document.getElementById('account_type').style.display="block";
 document.getElementById('Registered_fromlbl').style.display="none";
@@ -246,7 +241,6 @@ document.getElementById('vender_contracttxt').style.display="block";
 document.getElementById('b2b_choice_hotel').style.display="none";
 document.getElementById('b2b_choice').style.display="none";
 document.getElementById('b2b_choice_Restaurant').style.display="none";
-
 
         }else if(customer_type==0){
 document.getElementById('occupationb2cp').style.display="none";
@@ -417,26 +411,6 @@ String.prototype.killWhiteSpace = function() {
     return this.replace(/\s/g, '');
 
 }; */</script>
-
-
-
-    
-
-    
-     
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!--MIDDLE PAGE WRAPPER STARTS-->
 <div id="middle-wrapper">
   <div id="middle-container">
@@ -514,173 +488,11 @@ String.prototype.killWhiteSpace = function() {
                    
 			  </td>
           </tr>
-     
-     
-  <!---------------------------26-12-2017----------------------->   
-     
-  
-  <script type ="text/javascript">
-    $(document).ready(function(){
-        $('#verdor_types').change(function(){
-       var verdor_id = $('#verdor_types').val();
-	  // alert(verdor_id);
-          	
-			$.ajax({
-		   type:"POST",
-		    url:"<?php  echo base_url('index.php/customer/get_kiosk_users_details'); ?>",
-			data:"verdor_id="+verdor_id,
-			success:function(response)
-			 {
-             ///alert(response)
-				$("#location").html(response);
-			 }	 
-		    })	
-       });
-    });
-    </script>
-    
-    
-    <script type ="text/javascript">
-    $(document).ready(function(){
-        $('#location').change(function(){
-       var verdor_id = $('#location').val();
-	  // alert(verdor_id);
-          	
-			$.ajax({
-		   type:"POST",
-		    url:"<?php  echo base_url('index.php/customer/get_kiosk_users_details'); ?>",
-			data:"verdor_id="+verdor_id+'&location=location',
-			success:function(response)
-			 {
-             //alert(response)
-				$("#verdor_id2").html(response);
-			 }	 
-		    })	
-       });
-    });
-    </script>
-    
-    <script type ="text/javascript">
- 	  $(document).ready(function()
-		   {
-			   	   
-			   
-	       $('input[name=experience]').change(function(){
-           var value = $( 'input[name=experience]:checked' ).val();
-            //alert(value);
-			
-			 $.ajax({
-		     type:"POST",
-		     url:"<?php  echo base_url('index.php/customer/get_peromotion_codes'); ?>",
-			 data:"value="+value,
-			 success:function(response)
-			 {
-             //alert(response)
-				$("#active_coupon").html(response);
-			 }	 
-		    })	
-			
-			
-			
-			
-            });
-          	
-		
-       });
-		
-	</script>
- <div class="" >
-
-<tr   style="display:none" class="retails_kiosk" >
- <td width="12%">Vendor Types<span class="" style="color:#FF0000;">*</span></td>
- <td width="37%">
- <div class="form-group">
-    <?php $id=$this->uri->segment(3); ?>
-      <div class="col-sm-9">
-      	<div class="btn-group">
-         <select name="verdor_types"class="inputbxs" required="required" id="verdor_types">
-           <option value="">Select</option>
- 		<?php	foreach($get_vendor as $get){ ?>
-            <option value="<?php  echo $get->id; ?>" ><?php echo $get->vendor_types; ?></option>
-       
-        <?php }?> 
-  
-            </select>
-        </div>
-	
-      </div>
-    </div>
- 
- </td>
- 
- 
- <td width="18%">Vendor Location<span class="" style="color:#FF0000;">*</span></td>
- <td width="33%">
-   <div class="form-group">
-      <div class="col-sm-9">
-      	<div class="btn-group">
-            <select name="location" id="location" class="inputbxs">
-                <option  value="" selected >Select Location </option>
-                <?php  if(!empty($id)){
-					foreach($vlocation as $locations){
-						?>
-                        
-<option value="<?php echo $locations->vendor_id; ?>" <?php if($get_details[0]->location_name_id==$location->id){echo 'selected';}?> >
-<?php echo $locations->location_name; ?></option>    
-                        <?php
-						
-			}
-					
-					}else{
-						
-						foreach($get_location as $re2){ ?>
-                     <option value="<?php echo $re2->id; ?>"><?php echo $re2->location_id; ?></option>
-
-
-<?php }}?>		 
-					 
-					 
-				
-				
-                
-            </select>
-        </div>
-		
-      </div>
-    </div>
- </td>
-</tr>
-
-
-<tr style="display:none" class="retails_kiosk">
- <td width="12%">Location ID<span class="" style="color:#FF0000;">*</span></td>
- <td>
- <div class="form-group">
-      <div class="col-sm-9">
-      	<div class="btn-group">
-            <select name="verdor_id2" class="inputbxs" required="required" id="verdor_id2">
-            <option  value="" selected>Select Location Id</option>
-            
-            </select>
-        </div>
-		
-      </div>
-    </div>
- </td>
- 
- 
- 
-</tr>
-
-
-</div>  
-  
-  
-         
-
-      
           
-<!------------------------------End 26-12-------------------------------->          
+          
+          
+        
+          
           <tr>
             <td>Email ID<span style="color:#FF0000;">*</span></td>
             <td><input type="text" name="email" id="email" class="inputbxs" value="<?php echo set_value('email');?>"/></td>
@@ -1235,7 +1047,7 @@ $(document).ready(function(){
 	{
 	      var occupationb2cp=$("#occupationb2cp").val();
 		  
-				//alert(occupationb2cp);
+				alert(occupationb2cp);
 				 if(occupationb2cp=='Other'){
 						 $("#otherb2cp").css("display", "block");
 					 }else{

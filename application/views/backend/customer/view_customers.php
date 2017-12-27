@@ -283,6 +283,12 @@
                   <tr>
                     <td><?=$customer_data['customer_id'];?></td>
 					<td><?=$customer_data['customer_type'];?></td>
+                    
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    
+                    
                     <td><?=$customer_data['first_name'];?></td>
                     <td><?=$customer_data['email_id'];?></td>
                     <td><?=$customer_data['password'];?></td>

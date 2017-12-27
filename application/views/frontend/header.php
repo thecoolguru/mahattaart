@@ -872,10 +872,10 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <ul class="H2" style="display: none">
 <div id="mouse-over">
 <?php $sub_val=$this->frontend_model->get_header_images(1); ?>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/11/<?=$sub_val[0]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[0]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[0]->title)?> </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/11/<?=$sub_val[1]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[1]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[1]->title)?> </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/11/<?=$sub_val[2]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[2]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[2]->title)?> </span></a></div>
-<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/11/<?=$sub_val[3]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[3]->menu_image?>" border="0" class="img-responsive" /> <span class="dblock1"> <?php echo ucwords($sub_val[3]->title)?> </span></a></div>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/64/<?=$sub_val[0]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[0]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[0]->title)?> </span></a></div>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/64/<?=$sub_val[1]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[1]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[1]->title)?> </span></a></div>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/64/<?=$sub_val[2]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[2]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[2]->title)?> </span></a></div>
+<div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/64/<?=$sub_val[3]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[3]->menu_image?>" border="0" class="img-responsive" /> <span class="dblock1"> <?php echo ucwords($sub_val[3]->title)?> </span></a></div>
 <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[4]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[4]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"><?php echo ucwords($sub_val[4]->title)?> </span></a></div>
 <div id="sub-pic"><a href="<?php print base_url(); ?>search/dosearch_cat/1/32/<?=$sub_val[5]->title?>/all"><img src="<?php print base_url();?><?=$sub_val[5]->menu_image?>" border="0" class="img-responsive" /><span class="dblock1"> <?php echo ucwords($sub_val[5]->title)?> </span></a></div>
 <div style="clear:both"></div>
@@ -1408,7 +1408,7 @@ for($i=23;$i<=29;$i++){ ?>
 ?>
 <li>
 <?php if($drop8[$i]->keyword==27){?>
-<!--<a href="<?=base_url()?>frontend/themes_lightbox/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>-->
+<a href="<?=base_url()?>frontend/themes_lightbox/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
 <?php }else{?>
 
 <a href="<?=base_url()?>frontend/themes_view/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
