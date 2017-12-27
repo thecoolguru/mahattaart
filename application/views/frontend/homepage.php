@@ -19,21 +19,9 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div class="row">
 <div id="myCarousel" class="carousel slide col-md-12" data-ride="carousel" style="margin-top:2px">
 <div class="carousel-inner" role="listbox">
-    
+
     <div class="item active">
-        <img src="<?php echo base_url();?>assets/img/slider/homepage style n space-02.jpg" border="0" />
-        <div class="Map_area">
-                <a href="<?=base_url()?>frontend/themes_view/13" id="map_area_03"></a>
-                <a href="<?=base_url()?>frontend/themes_view/15" id="map_area_04"></a>
-                <a href="<?=base_url()?>search/dosearch/1/32/27/all" id="map_area_05"></a>
-                <a href="<?=base_url()?>frontend/themes_view/12	" id="map_area_06"></a>
-        </div>
-        <style>
-                #map_area_03, #map_area_04, #map_area_05, #map_area_06 {
-                    position: absolute;
-                    bottom:0;
-                }
-            </style>
+        <a href="<?=base_url()?>frontend/themes_lightbox/27"><img src="<?php echo base_url();?>assets/img/slider/home_slider12.jpg" border="0" /></a>
     </div>
     <div class="item">
         <a href="<?=base_url()?>frontend/photostoframe"><img src="<?php echo base_url();?>assets/img/slider/unlock_slider4.jpg" border="0" /></a>
@@ -42,28 +30,11 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
         <a href="<?=base_url()?>frontend/contact"><img src="<?php echo base_url();?>assets/img/slider/unlock_slider6.jpg" border="0" /></a>
     </div>
     <div class="item">
-        <img src="<?php echo base_url();?>assets/img/slider/homepage style n space-01.jpg" border="0" />
-            <div class="Map_area">
-                <a href="<?=base_url()?>frontend/themes_view/22" id="map_area_01"></a>
-                <a href="<?=base_url()?>frontend/themes_view/21" id="map_area_02"></a>
-            </div>
-            <style>
-                #map_area_01 {
-                    position: absolute;
-                    left: 0;
-                }
-                #map_area_02 {
-                    position: absolute;
-                    right: 0;
-                }
-            </style>
-    </div>
-    <div class="item">
         <a href="<?=base_url()?>frontend/clearance"><img src="<?php echo base_url();?>assets/img/slider/unlock_slider8.jpg" border="0" /></a>
     </div>
 </div>
-<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev" style="width:20px"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> 
-<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next" style="width:20px"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
+<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> 
+<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
 
 <div class="top-cate col-md-12">
 <h1 class="ttto"> What's Trending </h1>
@@ -244,6 +215,20 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 	width:5%
 }
 
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+}
+
+.left.carousel-control {
+	left:2%
+}
+.right.carousel-control {
+	right:2%
+}
 </style>
 <script>
 $(document).ready(function () {

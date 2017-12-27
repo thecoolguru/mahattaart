@@ -386,13 +386,13 @@ $search_data_r = json_decode($search_data_file,TRUE);
 		$this->load->view('frontend/footer');
 	}
 	public function products_lightbox($filename="",$images_id="",$collection_id=""){
-	  
-		$data['api_image_id']=$images_id;
-		$data['images_id']=$images_id;
+	    
+		//$data['api_image_id']=$images_id;
+	//	$data['images_id']=$images_id;
 		$data['image_name']=$filename;
-	   // $data['image_detail']=$this->search_model->get_tbl_art_print($filename);
+	 $data['image_details']=$this->search_model->get_tbl_art_print($filename);
 
-		$this->load->view('frontend/header',$data);
+		$this->load->view('frontend/header');
 		$this->load->view('frontend/products_lightbox',$data);
 		$this->load->view('frontend/footer');
 	}

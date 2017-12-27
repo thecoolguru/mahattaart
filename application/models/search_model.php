@@ -248,6 +248,12 @@ public function get_paper_type_name(){
 		return $query->result();
 
 	}
+	public function get_tbl_art_print($image_id){
+  $this->db->select('*');
+  $this->db->where('image_id',$image_id);
+  $query=$this->db->get('tbl_art_print');
+  return $query->result();
+  }
 	
 	public function search_allany($page_no,$no_of_res,$search_keys){
 	//$array_cat=array("cat","lion","bird");

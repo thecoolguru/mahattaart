@@ -196,8 +196,7 @@
         text-decoration: line-through
     }
     .wrap-inner {
-        height: 150px;
-		cursor:pointer
+        height: 150px
     }
     .wrap-inner img {
         max-width: 100%;
@@ -250,15 +249,6 @@
 	.pagination_2 p {
 	padding: 10px 0;
 }
-
-	.wrap:hover {
-		display: block;
-		position: absolute;
-		transform: scale(1.1);
-		z-index:1;
-		background-color:#FFF;
-		right:0
-	}
 </style>
 <script type="text/javascript">/*<![CDATA[*/function toTitleCase(a){return a.replace(/\w\S*/g,function(b){return b.charAt(0).toUpperCase()+b.substr(1).toLowerCase()})}function show_status(p,h){var o="<?php echo $this->input->get('txt');?>";var f=$("#total_cost").html();var g=$("#c_sizes").html();var e=$("#print_type_for_image").html();var c=document.getElementById("print_sizes").value;var b=document.getElementById("sizes").value;if(c==1){var d="Canvas"}else{if(c==3){var d="Photographic print"}else{if(c==4){var d="Premium photographic print"}else{if(c==7){var d="Translite"}else{if(c==8){var d="Poster"}}}}}var i="image_id="+p+"&price="+f+"&size="+b+"&print_type="+d;$.ajax({type:"POST",url:"<?php print base_url() ?>cart/check_image_exist_status",data:i,success:function(j){if(j=="2"){alert("This Image has already been added to cart.")}else{var a="<?=base_url()?>cart/cart_view?img_id="+p+"&search_text="+o+"&price="+f+"&size="+b+"&print_type="+d+"&cat_id="+h;window.location.assign(a)}}})};/*]]>*/
 
@@ -275,29 +265,80 @@ function call_remove_lightBox(imageid,lightbox_id,page_no)
 
 ?>
 <div class="container" style="margin-top:5px">
+<div class="row"><div class="art-style col-md-12">
 <div class="row">
-<div class="col-md-12 col-sm-12">
-<span class="pagination pull-right">
-		<?php   echo $this->pagination->create_links(); ?>
-</span>	</div>
-</div>
-<div class="gallery-img">
+
+<aside class="left-panel-page col-md-2 col-xs-3">
+<p>Refine Filter</p>
+<div class="list">
 <ul>
+<li><a <?php if($category_id=="all"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:filter_shape_minus('all')">All art</a>
+<label></label></li>
+<li><a <?php if($category_id=="2"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:filter_shape_minus('2')">Photography</a>
+<label></label></li>
+<li><a <?php if($category_id=="1"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:filter_shape_minus('1')">Paintings</a>
+<label></label></li>
+<li><a <?php if($category_id=="3"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:filter_shape_minus('3')">Poster</a>
+<label></label></li>
+<li><a <?php if($category_id=="4"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:filter_shape_minus('4')">Illustration</a>
+<label></label></li>
+</ul>
+</div>
+<p>SHAPE</p>
+<div class="list">
+<ul>
+<li><a <?php if($shape=="Horizontal"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('h')">Horizontal</a>
+<label></label>
+</li>
+<li><a <?php if($shape=="Vertical"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('v')">Vertical</a><label></label></li>
+<li><a <?php if($shape=="Square"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('sq')">Square</a><label></label></li>
+<li><a <?php if($shape=="Slim"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('s')">Slim</a><label></label></li>
+<li><a <?php if($shape=="Panoramic"){print "style='color:orange;margin-left:10px'";} ?> href="javascript:refine_shape('p')">Panoramic</a><label></label></li>
+</ul>
+</div>
+</aside>
+<div class="right-panel-page col-md-10 col-xs-9">
+<div class="">
 <div class="row">
+
+
+
+
+
+<div class="col-md-4">
+
+</div>
+<div class="col-md-8">
+	<div style="text-align:right; margin:7px auto">
+		<?php   echo $this->pagination->create_links(); ?>
+	</div>
+</div>
+<div class="col-md-12"><hr style="margin: 10px 0;" /></div>
+
+</div>
+<div class="gallery-img row">
+<ul>
 <?php 
  $user_id=$this->session->userdata('userid');
 //print_r($search_cat);
-$link = 'products';//'image_detail';
+//'image_detail';
 if(isset($search_cat)){
 foreach($search_cat as $cat_dets){
 	//$result=  $this->frontend_model->get_imagesFilename_details($images->images_filename);
-	$image_filename=$cat_dets['image_filename'];
+	$image_file=$cat_dets['image_filename'];
+	$image_filename=substr($image_file,0,4);
+	if($image_filename=='PART'){
+	$link = 'products_lightbox';
+	}else{
+	$link = 'products';
+	}
+	
 	$image_id=$cat_dets['image_id'];
 	$image_collection_id=$cat_dets['image_collection_id'];
   ?>
 
 <li class="col-md-2 col-sm-2">
-<a href="<?php echo base_url();?>search/products_lightbox/<?=$cat_dets['image_filename'];?>/<?=$cat_dets['image_id']?>/<?=$cat_dets['image_collection_id']?>">
+<a href="<?php echo base_url();?>search/<?=$link?>/<?=$cat_dets['image_filename'];?>/<?=$cat_dets['image_id']?>/<?=$cat_dets['image_collection_id']?>">
 <input type="hidden" name="img_id" id="img_id<?php print $images_id; ?>" value="<?php echo $cat_dets['image_id']; ?>" />
 <div class="wrap">
 <div class="wrap-inner"><img class="galImage" src="http://static.mahattaart.com/130x150/media/<?=$cat_dets['image_filename']?>" alt="<?php print substr($cat_dets['image_caption'],0,10); ?>" title="<?=substr($cat_dets['images_caption'],0,10); ?>" border="0"></div>
@@ -324,20 +365,20 @@ foreach($search_cat as $cat_dets){
 <?php } }else {?>
 <span style="margin-top:150px;margin-left:300px;color:red"> No result found.</span>
 <?php }?>
-</div>
 </ul>
 </div>
 <script>function call_gallery(){$("#tgl-bx").show(400);$("#overlay-bx").show();$("#tgl-bx select option:eq(0)").prop("selected",true);document.getElementById("tgl-bx").style.display="block";document.getElementById("fade").style.display="block"}$("#overlay-bx").click(function(){$("#tgl-bx").hide(400);$("#size_print_type").hide(400);$("#overlay-bx").hide(400)});$("#toggle-btn").click(function(){$("#toggle-data").toggle(400)});</script>
-<div class="pagination_2" style="min-height:30px;margin-bottom: 10px;">
-<div class="row" style="background-color:#f7f7f7; ">
+<div class="row pagination_2" style="background-color:#f7f7f7; min-height:30px;margin-bottom: 10px;">
+<span class="pagination" style="padding:0;margin:0">
+<?php   echo $this->pagination->create_links(); ?>
+</span>
 <div class="col-md-4 col-sm-4">
 <p>Back To Top</p>
 </div>
-<div class="col-md-8 col-sm-8">
-<span class="pagination pull-right">
-<?php   echo $this->pagination->create_links(); ?>
-</span>
 </div>
 </div>
 </div>
+
+</div>
+</div></div>
 </div>
