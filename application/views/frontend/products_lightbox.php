@@ -126,6 +126,8 @@ $userid=$this->session->userdata('userid');
 <script>
    $(document).ready(function(){
 	   $(window).bind('scroll', function(){
+		    //console.log($(window).scrollTop());
+			
 			 if(parseInt($(window).scrollTop()) >= 0 && parseInt($(window).scrollTop()) <= 120){
 				$('.product-tabs').css({'position':'absolute','top':'20px','bottom':'auto'});
 			  }
@@ -516,8 +518,8 @@ function calculate_cost(value){}
 	<div id="22" style="position: relative;background-color: #888;">
 		
 
-		<div id="canvas_show" style="  padding-top: 78px; width: 300px;transform: translate(-50%, 0);left: 50%;position: absolute;">
-		    <img id="canvas_show_bs" style="box-shadow: -11px 4px 25px #555;" src="<?php echo $image_path; ?>" class="img-responsive">
+		<div id="canvas_show" style="width:120px;position: absolute;transform: translate(-50%, 0%);left: 50%;top: 5%;">
+		    <img id="canvas_show_bs" src="<?php echo $image_path; ?>" class="img-responsive">
 		</div>
         
 		
@@ -874,14 +876,14 @@ function calculate_cost(value){}
         </div>
                 </div>
 	<div id="large_img7"  class="3dwrap" style="transform: perspective(1001px) rotateY(22deg) translate(49px, 10px); width: 300px; position: relative; display: block;">
-		<div class="3dwrap_front" >
+		<div class="3dwrap_front" style="background-color: #fff;border: 1px solid #ddd;border-left-style: none;">
 			<img src="<?php echo $image_path; ?>" style=" max-height: 400px;" class="img-responsive">
 			<div class="3dwrap_left" style="transform: perspective(1001px) rotateY(-40deg) translate(-20px, 0px);width: 40px;left: -20px;position: absolute;height: 100%;top: 0; background-color: #000"></div>
 			<div class="3dwrap_shadow" style="transform: perspective(1001px) rotateX(-65deg) translate(-55px, 85px);width: 100%;position: absolute;height: 120px;bottom: 0;z-index: -1; background-color: #ddd; box-shadow: 0 15px 20px rgba(0,0,0,0.3)"></div>
 		</div>
 	</div>
 
-	<section  id="canvas3D" class="container3D">
+	<section  id="canvas3D" class="container3D" style="border: 1px solid #ddd;border-right-style: none;">
         <div id="cube">
             <figure class="front">
   		<img id="large_img2"  style="max-height: 400px" src="<?php echo $image_path; ?>" class="img-responsive">	
@@ -1051,26 +1053,14 @@ function right(width,height,x){
                             </div>
                         </div>-->
                         <div class="form-group">
-                        	<label for="country" class="col-sm-4">
-                            	<h4> Size<span class="menu-selection-text">(In Inches)</span></h4>
+                        	<label for="country" class="control-label col-sm-6" style="font-size:15px">
+                            	Overall Size<span style="font-size: 10px;margin-left: 2px; color:#888">(In Inches)</span>
                             </label>
-                            <div class="col-sm-8">
-	                        <!--    <select name="print_sizes" id="sizes" class="form-control input_control" onclick=" get_quality('');return false;">
-                   
-               
-          			</select>-->
-					<input type="text" name="print_sizes" id="sizes"  style="border:none"class="form-control input_control"  value="<?php echo $image_details[0]->width.'X'.$image_details[0]->height;?>" />
+                            <div class="col-sm-6">
+	                       	<p class="form-control-static" name="print_sizes" id="sizes"><?php echo $image_details[0]->width.'X'.$image_details[0]->height;?></p>
+					<!--<input type="text" name="print_sizes" id="sizes"  style="border:none"class="form-control input_control"  value="<?php echo $image_details[0]->width.'X'.$image_details[0]->height;?>" />-->
                             </div>
                         </div>
-						<div class="form-group">
-                        	<label for="country" class="col-sm-4">
-                            	<h4> Dimension<span class="">(In Inches)</span></h4>
-                            </label>
-                            <div class="col-sm-8">
-					<span name="print_dimension" id="dimension" class="form-control"><?php echo $image_details[0]->dimension;?></span>
-                            </div>
-                        </div>
-                    	
 				</form>
 <style>
 a.lightbox-close {
@@ -1339,11 +1329,10 @@ else {?> href="" onclick="login('');return false;" style="color:#ef9223;"<?php }
 	            <div class="tab-content">
 	                <!-- Tab Content 1 -->
 	                <div class="tab-pane fade active in" id="tab-7">
-	                	<h3>Portrait of&nbsp;<?php // echo $image_detail[0]['image_photographer'];?></h3>
-	                	<p><strong>Item # :<?php //print $image_detail[0]->image_id;?></strong></p>
-	      				<p><?php //print $image_detail[0]['image_description'];?></p>
-	     				<!--<h4> KEYWORDS:-</h4>
-				     	<p><?php //print $image_detail[0]['image_keywords'];?></p> -->
+	                	<h3>3 Panel Canvas Art Set of&nbsp;<?php // echo $image_detail[0]['image_photographer'];?></h3>
+						<p name="print_dimension" id="dimension" class="form-control-static">
+							<?php echo $image_details[0]->dimension;?>
+                        </p>
 	                </div>
 	            </div>
               <!-- End Tab Panels -->

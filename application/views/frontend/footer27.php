@@ -70,28 +70,29 @@
         <div class="signup-l-c">
             <form action="#" id="signup_form" name="sign_id" method="post">
                 <p>
-                    <span>First Name<span style="color:#F00; width: auto;">*</span></span>
-                    <input type="text" name="first_name" id="first_name" placeholder="First Name" >
+                    <span>First Name</span>
+                    <input type="text" name="first_name" 
+                    id="first_name" placeholder="First Name" >
                 </p>
                 <p>
-                    <span>Last Name<span style="color:#F00; width: auto;">*</span></span>
+                    <span>Last Name</span>
                     <input type="text" name="last_name" 
                     id="last_name" placeholder="Last Name" >
                 </p>
             	<p>
-                	<span>Email Address<span style="color:#F00; width: auto;">*</span></span>
+                	<span>Email Address</span>
                     <input type="text" name="email_reg" 
 					id="email_reg" placeholder="Email Address" >
                 </p>
                 
                 <p>
-                	<span>Password<span style="color:#F00; width: auto;">*</span></span>
+                	<span>Password</span>
                     <input  name="passwordd" type="password" id="password"
 					placeholder="Password">
                 </p>
                 
                 <p>
-                	<span>Re-Password<span style="color:#F00; width: auto;">*</span></span>
+                	<span>Repeat</span>
                     <input name="cpassword" type="password"
 					id="cpassword" placeholder="Confirm Password">
                 </p>

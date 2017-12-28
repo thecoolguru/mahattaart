@@ -34,6 +34,7 @@ public function get_kiosk_users_details()
 		$vendor_id=$this->input->post('verdor_id');
         $re= $this->customer_model->get_vendor_location_model($vendor_id);
 		
+		echo '<option value="">'.'Select Location'.'</option>';
 		for($i=0;$i<count($re);$i++){
 		echo '<option value="'.$re[$i]->id.'">'.$re[$i]->location_name.'</option>';
 		}
@@ -44,6 +45,7 @@ public function get_kiosk_users_details()
 		$vendor_id=$this->input->post('verdor_id');
         $re2= $this->customer_model->get_vendor_location_model2($vendor_id);
 		//print_r($re2);
+		echo '<option value="">'.'Select Location Key Id'.'</option>';
 		for($i=0;$i<count($re2);$i++){
 		echo '<option value="'.$re2[$i]->id.'">'.$re2[$i]->location_key.'</option>';
 		}
@@ -59,6 +61,8 @@ public function get_kiosk_users_details()
 		$experience_value=$this->input->post('value');
 		
 		$get_promo=$this->customer_model->get_promo_details($experience_value);
+		
+		echo '<option>'.'Select Coupon code.'.'</option>';
 		foreach($get_promo as $r2){
 			?>
        <option value="<?php  echo $r2->promo_name_code;?>"><?php  echo$r2->promo_name_code; ;?></option>
@@ -77,6 +81,10 @@ public function get_kiosk_users_details()
        $this->form_validation->set_rules('person_email','Person Email','required|valid_email');
 	   $this->form_validation->set_rules('sales_person','Sales Person','required');
 	   $this->form_validation->set_rules('location','Person Name','required');
+	   $this->form_validation->set_rules('experience','Experience','required');
+	   
+	   
+	   
 	   $verdor_types_id=$this->input->post('verdor_types');
 	   $verdor_id=$this->input->post('verdor_id');
 	   $person_name=$this->input->post('person_name');
@@ -91,7 +99,9 @@ public function get_kiosk_users_details()
 	   $active_coupon=$this->input->post('active_coupon');
 	   $register=$this->input->post('register');
 	   
+	   	   
         $customer_type="Retail";
+		$submit_from="k_q_f";
 	  
 	    $data=array(
 	               'vendor_types_id'=>$verdor_types_id,
@@ -109,19 +119,27 @@ public function get_kiosk_users_details()
 	  
 	         );
 			 
+			 
 			$customer_data=array(
 	              
-				   'customer_type'=>$customer_type,
-				   'first_name'=>$person_name,
-				   'contact'=>$person_mobile,
-				   'email_id'=>$person_email,
-				   'sales_person'=>$sales_person,
-				   'experience'=>$experience,
-				   'active_coupon'=>$active_coupon,	 
-				   'user_registered'=>$register
+				    'submit_from'=>$submit_from,
+					'vendor_types_id'=>$verdor_types_id,
+					'vendor_location_id'=>$location_name_id,
+					'vendor_location_key_id'=>$location_key_id,
+				    'customer_type'=>$customer_type,
+				    'first_name'=>$person_name,
+				    'contact'=>$person_mobile,
+				    'email_id'=>$person_email,
+				    'sales_person'=>$sales_person,
+				    'experience'=>$experience,
+				    'active_coupon'=>$active_coupon,	 
+				    'user_registered'=>$register
 		
 	  
 	         ); 
+			 
+			 
+			 
 	  
 	  if($this->form_validation->run()==FALSE)
 	  {
@@ -146,8 +164,24 @@ public function get_kiosk_users_details()
           $this->email->message($message);
           $this->email->send(); //sending mail
 		  
-		  $this->customer_model->add_to_customer_model($customer_data);
+		  
+		  //If user registered.
+		  
+		 // echo $experience; die();
+		  
+		    if($register=='yes'){
+			  
+			  $this->customer_model->add_to_customer_model($customer_data);
+		      $result['record_added']=$this->customer_model->add_kiosk_users_model($data);
+			  
+			  
+			  }else
+			  {
+				  
 		  $result['record_added']=$this->customer_model->add_kiosk_users_model($data);
+			  
+			  }
+		  
 		  $result['record_message']="Record Successfully Added";
 	      $result['record_failed']="Record Not Added,Please Check";
 		  $this->load->view('backend/dashboard_header');
@@ -256,7 +290,9 @@ public function get_kiosk_users_details()
 	              
 				   'submit_from'=>$submit_from,
 				   'customer_type'=>$customer_type,
-				   'customer_type'=>$customer_type,
+				   'vendor_types_id'=>$vendor_types,
+				   'vendor_location_id'=>$vendor_location,
+				   'vendor_location_key_id'=>$vendor_location_id,
 				   'first_name'=>$name,
 				   'contact'=>$mobile,
 				   'email_id'=>$email,
@@ -273,9 +309,27 @@ public function get_kiosk_users_details()
 		$x=$this->customer_model->update_customer_details($id,$data);
 		redirect('index.php/customer/view_cutomer_query');
 		 }else{
+			 
+			//echo $customer_register; die();
+			
+			
+			if($customer_register=='yes')
+			{
+				
+			$query['add_customer']=$this->customer_model->add_customer_query_mod($data);
+	        $this->customer_model->add_to_customer_model($customer_data);	
+				
+				
+				
+			}else{
+			
+			$query['add_customer']=$this->customer_model->add_customer_query_mod($data);	
+				
+				}
+			 
+			 
 	$query['add_success']="Customer Query Added Success Fully,";
-	$query['add_customer']=$this->customer_model->add_customer_query_mod($data);
-	$this->customer_model->add_to_customer_model($customer_data);
+	
 	
 			 }
 	 }
@@ -294,6 +348,7 @@ public function get_kiosk_users_details()
 	   
 	   $get_ven_location=$this->customer_model->get_query_data();
 	 
+		echo '<option>'.'Select Location'.'</option>';
 		foreach($get_ven_location as $r2){
 			?>
        <option value="<?php  echo $r2->vend_loc_key_id ;?>"><?php  echo $r2->vendor_location; ;?></option>
@@ -312,6 +367,7 @@ public function get_kiosk_users_details()
 	   $vendor_location_key=$this->input->post('vendor_location_key');
 	   $get_ven_location_key=$this->customer_model->get_query_location_key($vendor_location_key);
 	 
+		echo '<option>'.'Select Location Key Id'.'</option>';
 		foreach($get_ven_location_key as $r){
 			?>
        <option value="<?php  echo $r->vend_loc_key_id ;?>"><?php  echo $r->vendor_location_key; ;?></option>
@@ -481,8 +537,8 @@ public function get_kiosk_users_details()
 		
      
 			
-			//$verdor_types_id=$this->input->post('verdor_types');
-		    //$result['vlocation']=$this->customer_model->edit_location($verdor_types_id);
+			$verdor_types_id=$this->input->post('verdor_types');
+		    $result['vlocation']=$this->customer_model->edit_location($verdor_types_id);
 	   
 	    if($this->session->userdata('userid'))
     {

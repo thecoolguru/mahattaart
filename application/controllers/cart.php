@@ -209,6 +209,7 @@ class Cart extends CI_Controller{
 	     foreach ($_POST as $key => $value){
 		 $merchant_data.=$key.'='.urlencode($value).'&';
 		}
+		echo $merchant_data;
         $merchant_id=$ccavenue_data[0];
 		$working_key=$ccavenue_data[2];//Shared by CCAVENUES
 		$access_code=$ccavenue_data[1];//Shared by CCAVENUES
