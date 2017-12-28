@@ -54,7 +54,7 @@ body{background-color:#fff}
     
     <div class="form-group">
     <?php $id=$this->uri->segment(3); ?>
-      <label class="col-sm-3 control-label">Vendor types<span class="text-danger">*</span></label>
+      <label class="col-sm-3 control-label">Vendor types<span class="text-danger"></span></label>
       <script type ="text/javascript">
     $(document).ready(function(){
         $('#vendor_types').change(function(){						
@@ -107,6 +107,7 @@ body{background-color:#fff}
 				 var email=$('#email').val();
 				 var mobile=$('#mobile').val();
 				 var pinterest=$('#pinterest').val();
+				 var added_locaion=$('#added_locaion').val();
 			 
 				 var email_check=/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 				 var mob_check=/^\d{10}$/;
@@ -154,14 +155,30 @@ body{background-color:#fff}
 				 {
 					$(".errormobile").hide(); 
 				 }
-				 
-				 if(pinterest=='')
-				 {
+				   added_locaion
+				   
+				   
+				if(pinterest=='')  				 {
 					 $(".errorpinterest").show().html("Product Interest is required.");
 					 return false;
 				 }else{
 					   $(".errorsub").hide();
 					 }
+				
+				
+				
+				  if(added_locaion=='')  
+				 {
+					 $(".errorlocation").show().html("Location  is required.");
+					 return false;
+				 }else{
+					   $(".errorlocation").hide();
+					 }
+
+				   
+				
+				
+				 
 				  
 			
 				 
@@ -265,7 +282,7 @@ body{background-color:#fff}
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Location<span class="text-danger">*</span></label>
+      <label class="col-sm-3 control-label">Location<span class="text-danger"></span></label>
       <div class="col-sm-9">
       	<div class="btn-group">
             <select name="vendor_location" id="vendor_location" class="form-control">
@@ -279,7 +296,7 @@ body{background-color:#fff}
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Location ID<span class="text-danger">*</span></label>
+      <label class="col-sm-3 control-label">Location ID<span class="text-danger"></span></label>
       <div class="col-sm-9">
       	<div class="btn-group">
             <select name="vendor_location_id"class="form-control" required="required" id="vendor_location_id">
@@ -317,7 +334,7 @@ body{background-color:#fff}
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Gender<span class="text-danger">*</span></label>
+      <label class="col-sm-3 control-label">Gender<span class="text-danger"></span></label>
       <div class="col-sm-9">
       	<div class="btn-group">
             <select  name="gender"class="form-control">
@@ -339,22 +356,27 @@ body{background-color:#fff}
                 <option value="Photos To Frame"<?php if($customer_details[0]->cutomer_interest=="Photos To Frame"){ echo 'selected'; } else {  if($this->input->post('pinterest')=="Photos To Frame"){ echo 'selected'; }    }?>>Photos To Frame</option>
                 <option value="Wall Art" <?php if($customer_details[0]->cutomer_interest=="Wall Art"){ echo 'selected'; } else{  if($this->input->post('pinterest')=="Wall Art"){ echo 'selected'; }     } ?>>Wall Art</option>
             </select>
+            <em class="errorpinterest" style="color:red;font-size:red"></em>
+            
+            
+            
         </div>
 		
       </div>
-      <em class="errorpinterest" style="color:red;font-size:red"></em>
+      
     </div>
     
     <div class="form-group">
       <label class="col-sm-3 control-label">Add location<span class="text-danger">*</span></label>
       <div class="col-sm-9">
-        <input type="text" name="added_locaion" value="<?php if(isset($customer_details[0]->customer_name)){echo $customer_details[0]->cutomer_location;} else {echo set_value('added_locaion');} ?>" class="form-control">
-        
+        <input type="text" name="added_locaion" id="added_locaion"  value="<?php if(isset($customer_details[0]->customer_name)){echo $customer_details[0]->cutomer_location;} else {echo set_value('added_locaion');} ?>" class="form-control">
+   <em class="errorlocation" style="color:red;font-size:red"></em>      
 	  </div>
+      
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Any Feedback <span class="text-danger">*</span></label>
+      <label class="col-sm-3 control-label">Any Feedback <span class="text-danger"></span></label>
       <div class="col-sm-9">
         <textarea  class="form-control" rows="10" name="feadback" ><?php if(isset($customer_details[0]->cutomer_feadback)){echo $customer_details[0]->cutomer_feadback;} else {echo set_value('feadback');} ?></textarea>
         
@@ -373,7 +395,7 @@ body{background-color:#fff}
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Active Coupon<span class="text-danger">*</span></label>
+      <label class="col-sm-3 control-label">Active Coupon<span class="text-danger"></span></label>
       <div class="col-sm-9">
       	<div class="btn-group">          
             <select name="active_coupon"class="form-control" required="required" id="active_coupon">
@@ -387,7 +409,7 @@ body{background-color:#fff}
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Register Customer<span class="text-danger">*</span></label>
+      <label class="col-sm-3 control-label">Register Customer<span class="text-danger"></span></label>
       <div class="col-sm-9">
          
      <input type="radio" name="customer_register" id="n" value="yes" class="" required aria-required="true" >Yes

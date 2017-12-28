@@ -153,7 +153,7 @@ body{background-color:#fff}
 	
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">Vendor types<span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Vendor types<span class="text-danger">*</span></label>
       <div class="col-sm-9">
       	<div class="btn-group">
            
@@ -169,7 +169,7 @@ body{background-color:#fff}
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Location<span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Location<span class="text-danger">*</span></label>
       <div class="col-sm-9">
       	<div class="btn-group">
             <select name="location" id="location" class="form-control">
@@ -180,12 +180,12 @@ body{background-color:#fff}
                 
             </select>
         </div>
-	
+	<em style="color:red;font-size:11px"><?php echo form_error('location'); ?></em>	
       </div>
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Location ID<span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Location ID<span class="text-danger">*</span></label>
       <div class="col-sm-9">
       	<div class="btn-group">
             <select name="verdor_id2"class="form-control" required="required" id="verdor_id2">
@@ -208,7 +208,6 @@ body{background-color:#fff}
       <label class="col-sm-3 control-label">Mobile Number<span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="person_mobile" id="person_mobile" onkeypress='return event.charCode >=48 && event.charCode <=57' maxlength="10"   value="<?php echo set_value('person_mobile') ?>" class="form-control" required aria-required="true">
-        <em style="color:red;font-size:11px"><?php echo form_error('person_mobile'); ?></em>
 		
       </div>
     </div>
@@ -220,7 +219,7 @@ body{background-color:#fff}
 	  </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Sale Person<span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Sale Person<span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="sales_person" id="sales_person" value="<?php echo set_value('sales_person') ?>" class="form-control" required aria-required="true">
         
@@ -233,15 +232,14 @@ body{background-color:#fff}
       <label class="col-sm-3 control-label">Experience<span class="text-danger">*</span></label>
       <div class="col-sm-9">
          
-<input type="radio" name="experience"  id="experience1" value="home" class="" required aria-required="true">Home
+<input type="radio" name="experience"  id="experience1" value="home" class="" required aria-required="true" checked>Home
 <input type="radio" name="experience"  id="experience2" value="asa_guest" class="" required aria-required="true">ASA Guest 
 <input type="radio" name="experience"  id="experience3" value="create_login" class="" required aria-required="true">Create User Login
 <input type="radio" name="experience"  id="experience4" value="only_verval" class="" required aria-required="true">Only Verbal
-</div>
-   <em style="color:red;font-size:11px"><?php echo form_error('experience'); ?></em>
-   
+	  </div>
       
-  </div>
+      <em style="color:red;font-size:11px"><?php echo form_error('experience'); ?></em>
+    </div>
     
     
     <div class="form-group">
@@ -253,7 +251,7 @@ body{background-color:#fff}
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Active Coupon<span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Active Coupon<span class="text-danger">*</span></label>
       <div class="col-sm-9">
       	<div class="btn-group">          
             <select name="active_coupon"class="form-control" required="required" id="active_coupon">
@@ -267,14 +265,13 @@ body{background-color:#fff}
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Register Customer<span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Register Customer<span class="text-danger">*</span></label>
       <div class="col-sm-9">
          
      <input type="radio" name="register" id="n" value="yes" class="" required aria-required="true" >Yes
-     <input type="radio" name="register" id="experience" value="no" class="" required aria-required="true">No
+     <input type="radio" name="register" id="experience" value="no" class="" required aria-required="true"  checked>No
             
 	  </div>
-     
     </div>
     <div class="row">
         <div class="col-sm-9 col-sm-offset-3">
