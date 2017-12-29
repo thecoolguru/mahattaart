@@ -22,7 +22,6 @@ class Customer extends CI_Controller
 	  public function get_kiosk_id()
 	{
 	  $verdor_types=$this->input->post($verdor_types);
-	  $this->load->model('customer_model');
 	  $result['success']=$this->customer_model->get_vendor_types_model($verdor_types);
 
 	}
@@ -199,7 +198,6 @@ public function get_kiosk_users_details()
 	public function view_kiosk_users()
 	{
 		$result=array();
-		$this->load->model('customer_model');
 		$result['success']=$this->customer_model->view_kiosk_users_model();
 	    $this->load->view('backend/dashboard_header');
         $this->load->view('backend/customer/view_kiosk_list',$result);     
@@ -213,7 +211,6 @@ public function get_kiosk_users_details()
 	
 	public function delete_kiosk_users($id)
 	{
-		$this->load->model('customer_model');
 		$result['deleted']=$this->customer_model->delete_kiosk_users_model($id);
 		redirect('index.php/customer/view_kiosk_users');
 	}
@@ -383,7 +380,6 @@ public function get_kiosk_users_details()
 	 
 	  public function view_cutomer_query()
 	   {
-	   $this->load->model('customer_model');
 	   $query['sucess']=$this->customer_model->view_cutomer_query_mod();
 	   $this->load->view('backend/customer/view_cutomer_query',$query);
 	   
@@ -395,7 +391,6 @@ public function get_kiosk_users_details()
 	 // echo $id;die;
 	  //$id=$this->uri->segment(3);
 
-	  $this->load->model('customer_model');
 	  $select['select_success']=$this->customer_model->get_customer_details($id);
 	  $this->load->view('backend/customer/add_customer_query',$select);
 	 }
@@ -453,7 +448,6 @@ public function get_kiosk_users_details()
 				   );
 				 
 				   
-		$this->load->model('customer_model');
 		$success['query']=$this->customer_model->edit_customer_query_mod($id,$data);	   
 		$query['message_success']="Customer Record successfully Updated";
 		$query['message_Failed']="Something is Rong,Please Check?";
@@ -477,7 +471,6 @@ public function get_kiosk_users_details()
 	   
 	   $id=$this->uri->segment(3);
 	 
-	   $this->load->model('customer_model');
 	   $delete['success_delete']=$this->customer_model->delete_cutomer_query_mod($id);
 	   redirect('index.php/customer/view_cutomer_query'); 
 	   

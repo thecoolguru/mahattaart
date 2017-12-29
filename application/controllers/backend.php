@@ -794,13 +794,12 @@ public function update_paper_of_vendor(){
   $this->db->where('sr_id',$row_id_sec);
   }
   $query=$this->db->get($tbl_to_update);
- $vandor_paper_d=$query->result();
+ $vandor_paper=$query->result();
  if($tbl_to_update=='tbl_web_price'){
  //print_r($vandor_paper_d[0]->quality);
- $new_result[]=$vandor_paper_d[0]->paper_type.','.$vandor_paper_d[0]->paper.','.$vandor_paper_d[0]->display_p_name.','.$vandor_paper_d[0]->rate.','.$vandor_paper_d[0]->unit_price.','.$vandor_paper_d[0]->roll_width.','.$vandor_paper_d[0]->roll_height_inch.','.$vandor_paper_d[0]->cost_per_inch.','.$vandor_paper_d[0]->only_print_price.','.$vandor_paper_d[0]->gsm.','.$vandor_paper_d[0]->current_qty.','.$vandor_paper_d[0]->vendor_lead_time.','.$vandor_paper_d[0]->total_roll.','.$vandor_paper_d[0]->paper_type_name.','.$vandor_paper_d[0]->paper.','.$vandor_paper_d[0]->web_print_price.','.$vandor_paper_d[0]->paper_type_only.','.$vandor_paper_d[0]->create_date;
- 
- 
- 
+ foreach($vandor_paper as $vandor_paper_d){
+ $new_result=array($vandor_paper_d->paper_type.','.$vandor_paper_d->paper.','.$vandor_paper_d->display_p_name.','.$vandor_paper_d->rate.','.$vandor_paper_d->unit_price.','.$vandor_paper_d->roll_width.','.$vandor_paper_d->roll_height_inch.','.$vandor_paper_d->cost_per_inch.','.$vandor_paper_d->only_print_price.','.$vandor_paper_d->gsm.','.$vandor_paper_d->current_qty.','.$vandor_paper_d->vendor_lead_time.','.$vandor_paper_d->total_roll.','.$vandor_paper_d->paper_type_name.','.$vandor_paper_d->paper.','.$vandor_paper_d->web_print_price.','.$vandor_paper_d->paper_type_only.','.$vandor_paper_d->create_date);
+  }
   }else if($tbl_to_update=='tbl_frame_details'){
   $new_result[]=$vandor_paper_d[0]->frame_type.','.$vandor_paper_d[0]->frame_category.','.$vandor_paper_d[0]->frame.','.$vandor_paper_d[0]->frame_color.','.$vandor_paper_d[0]->frame_rate.','.$vandor_paper_d[0]->frame_size.','.$vandor_paper_d[0]->unit_price.','.$vandor_paper_d[0]->running_cost.','.$vandor_paper_d[0]->thresold_qty.','.$vandor_paper_d[0]->used_qty.','.$vandor_paper_d[0]->current_qty.','.$vandor_paper_d[0]->frame_code.','.$vandor_paper_d[0]->create_date;
   

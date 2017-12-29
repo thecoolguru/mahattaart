@@ -435,73 +435,13 @@ function calculate_cost(value){}
 
 <div class="container">
    <div class="row">
-      <div class="col-md-7 col-sm-12 col-sm-12">
+      <div class="col-md-6 col-sm-12 col-sm-12">
          <div class="single-product-image">
          	<div class="single-product-image-inner" style="margin-top: 20px">
   <ul class="product-tabs" role="tablist">
                <li role="presentation" id="11"><img src="<?php echo $image_path;?>" class="img-responsive"></li>
-               <li role="presentation" id="15">
-                   <img src="<?php echo $image_path;?>" style="transform: perspective( 900px ) rotateY( 15deg );  /*!width: 50px;*/padding-left: 5px;padding-right: 5px;" class="img-responsive">
-                    <figure style="background: linear-gradient(to right, rgba(227,227,227,0.4) 0%, rgba(255,255,255,1) 100%);position: absolute;height: 10px;width: 40px;transform: skewX(20deg) skewY(-3deg) translate(3px,-1px);bottom: 0;z-index: -1;">
-                    </figure>
-               </li>
-               <li role="presentation" id="19">
-               	<style>
-					.mainhor {
-						-moz-border-bottom-colors: none;
-						-moz-border-left-colors: none;
-						-moz-border-right-colors: none;
-						-moz-border-top-colors: none;
-						border-color: transparent;
-						border-style: solid;
-						border-width: 8px;
-						padding: 5px;
-					}
-					.close {
-						position: absolute;
-						right: 5px;
-						top: 4px;
-						width: 32px;
-						height: 32px;
-						opacity: 1;
-					}
-										.close::before {
-						transform: rotate(45deg);
-					}
-					.close::before, .close::after {
-						position: absolute;
-						left: 15px;
-						content: ' ';
-						height: 33px;
-						width: 2px;
-						background-color: #333;
-					}
-					.close::after {
-						transform: rotate(-45deg);
-					}
-					.edit_btn.active, .edit_btn:active {
-						-webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,0);
-						box-shadow: inset 0 3px 5px rgba(0,0,0,0);
-					}
-				</style>
-                <img src="<?php echo $image_path;?>" class="img-responsive mainhor" style="border-image: url('http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg') 30 30 30 30 round round;background:url('http://mahattaart.com/images/uploaded_pdf/mount/DR 2091.jpg') no-repeat scroll 0 0 / contain;">
-               </li>
-               <li role="presentation" id="12"><img src="<?= base_url() ?>assets/img/product/frame_left.jpg" class="img-responsive" ></li>
-                <li role="presentation" id="20" style="border:0px;">
-        			<section class="container3D">
-        				<div id="cube">
-	            			<figure class="front">
-	  					<img id="large_img4" src="<?php echo $image_path;?>" class="img-responsive">	
-							<figure class="right" style="transform: skewY(45deg) translate(7px,-3px);
-    					width: 7px;height: 100%;right: 0px;top: 0; position: absolute;"></figure>
-	    					<figure class="bottom" style="transform: skewX(45deg) translate(-5px,8px);
-    					height: 7px;width: 100%;bottom: 1px; position: absolute;"></figure>
-	    					</figure>
-						</div>
-					</section>
-   				 </li>
-    		<li role="presentation" id="13"><img src="<?= base_url() ?>assets/img/product/stock1.png" class="img-responsive" style="background-color: rgb(136, 136, 136);"></li>
-            <li role="presentation" id="14"><img src="<?= base_url() ?>assets/img/product/stock2.png" class="img-responsive" style="background-color: rgb(136, 136, 136);"></li>
+	    		<li role="presentation" id="13"><img src="<?= base_url() ?>assets/img/product/stock1.png" class="img-responsive" style="background-color: rgb(136, 136, 136);"></li>
+	            <li role="presentation" id="14"><img src="<?= base_url() ?>assets/img/product/stock2.png" class="img-responsive" style="background-color: rgb(136, 136, 136);"></li>
 </ul>  
 <!-- Tab panes -->
 <div  style="margin-left: 90px;">
@@ -993,10 +933,7 @@ function right(width,height,x){
    });
 });
 </script>
-      <div class="col-md-5 col-sm-12 col-xs-12">
-         <div class="single-product-details">
-         	
-            <style>
+<style>
 				   	.input_control {
 						height: 35px;
 						padding: 4px 2px;
@@ -1040,25 +977,55 @@ function right(width,height,x){
 						margin-top: -32px;
 					}
 				   </style>
+      <div class="col-md-6 col-sm-12 col-xs-12">
+         <div class="single-product-details">
+         	
+            
             
             <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-12">
+            <h3 style="margin-top:0;border-bottom: 1px solid #eee;padding-bottom: 5px;">5 Panel Wall Art Set</h3>
             	<form class="form-horizontal">
-                        <!--<div class="form-group">
-                        	<label for="country" class="col-sm-4"><h4>Print Surface</h4></label>
-                            <div class="col-sm-8">
-	                            <select class="form-control input_control" id='surfaces'>
-						
-	                    </select>
-                            </div>
-                        </div>-->
                         <div class="form-group">
-                        	<label for="country" class="control-label col-sm-6" style="font-size:15px">
-                            	Overall Size<span style="font-size: 10px;margin-left: 2px; color:#888">(In Inches)</span>
+                        	<label for="country" class="col-sm-4" style="font-size:15px">
+                            	Panel Size<span style="font-size: 10px;margin-left: 2px; color:#888">(In Inches)</span>
                             </label>
                             <div class="col-sm-6">
-	                       	<p class="form-control-static" name="print_sizes" id="sizes"><?php echo $image_details[0]->width.'X'.$image_details[0]->height;?></p>
-					<!--<input type="text" name="print_sizes" id="sizes"  style="border:none"class="form-control input_control"  value="<?php echo $image_details[0]->width.'X'.$image_details[0]->height;?>" />-->
+	                       	<p name="print_dimension" id="dimension" class="form-control-static">
+							<?php echo $image_details[0]->dimension;?>
+                        </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        	<label for="country" class="col-sm-4" style="font-size:15px">
+                            	Total Size<span style="font-size: 10px;margin-left: 2px; color:#888">(In Inches)</span>
+                            </label>
+                            <div class="col-sm-6">
+	                       	<p class="form-control-static" name="print_sizes" id="sizes"><?php echo $image_details[0]->width.'x'.$image_details[0]->height;?> inches</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        	<label for="country" class="col-sm-4" style="font-size:15px">
+                            	Price
+                            </label>
+                            <div class="col-sm-6">
+	                       	<p class="price" style="display: block;"><span class="old_price" style="font-size: 15px;color:Tomato;"></span><span class="total_cost"><?=$image_details[0]->unit_price?></span> </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        	<label for="country" class="col-sm-4" style="font-size:15px"> </label>
+                            <div class="col-sm-6">                    
+                                <p class="bottom-bar-crop" style="display: block;" id="17"></p>
+                                <p class="shipping-note">Ships in 1-2 days</p>
+                                <h5><a href='' onclick="get_functions(''); price_details();return false;">Price Details</a> </h5>
+                                <p><input type="button" class="call-to-action-1-button btn btn-default"<?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> value="ADD TO CART" ></p>
+                                <div id="save-to-gallery-text">
+                	<span> <i class="fa fa-heart-o" aria-hidden="true"></i>
+                		<a <?php  if($this->session->userdata('userid')){?>
+href="" onclick="addtogallery('<?=$api_image_id?>','<?=$image_id?>');return false;" id="tgl" style="color:#ef9223;" <?php }
+else {?> href="" onclick="login('');return false;" style="color:#ef9223;"<?php }?> >Add to Gallery </a>
+                	</span>
+                </div>
                             </div>
                         </div>
 				</form>
@@ -1214,6 +1181,13 @@ display: none;
 	clear: both;
 	margin: 10px;
 }
+#save-to-gallery-text > span {
+	margin: 5px 0;
+	text-align: left;
+}
+.single-product-details {
+	margin-top: 20px;
+}
 </style>
 <script>
 $(document).ready(function(){
@@ -1225,20 +1199,8 @@ $(document).ready(function(){
         });
 </script>
                 </div>
-            	<div class="col-md-9" id="selector-step">
-                    <p class="price" style="display: block;"><span class="old_price" style="font-size: 15px;color:Tomato;"></span><span class="total_cost"><?=$image_details[0]->unit_price?></span> </p>
-                    <p class="bottom-bar-crop" style="display: block;" id="17"></p>
-                    <p class="shipping-note">Ships in 1-2 days</p>
-                   	<h5><a href='' onclick="get_functions(''); price_details();return false;">Price Details</a> </h5>
-                    <p><input type="button" class="call-to-action-1-button btn btn-default"<?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> value="ADD TO CART" ></p>
-                </div>
-                <div id="save-to-gallery-text" class="col-md-9">
-                	<span> <i class="fa fa-heart-o" aria-hidden="true"></i>
-                		<a <?php  if($this->session->userdata('userid')){?>
-href="" onclick="addtogallery('<?=$api_image_id?>','<?=$image_id?>');return false;" id="tgl" style="color:#ef9223;" <?php }
-else {?> href="" onclick="login('');return false;" style="color:#ef9223;"<?php }?> >Add to Gallery </a>
-                	</span>
-                </div>
+            	
+                
                 
                 <div class="col-md-9" id="9">
                   <div class="col-md-6"><a target="_self" class="btn btn-default edit_btn" href="">Edit This Frame</a></div>
@@ -1318,28 +1280,6 @@ else {?> href="" onclick="login('');return false;" style="color:#ef9223;"<?php }
 <section>
 	<div class="container">
     	<div class="row">
-        	<div class="col-md-6">
-            	<div class="product-detail-wrapper">
-				<div class="tabs-section" id="tabs-section2">
-              <!-- Nav Tabs -->
-	              <ul class="nav nav-tabs">
-	                <li class="active"><a href="#tab-7" data-toggle="tab" aria-expanded="true">About This Piece</a></li>
-	              </ul>
-              <!-- Tab panels -->
-	            <div class="tab-content">
-	                <!-- Tab Content 1 -->
-	                <div class="tab-pane fade active in" id="tab-7">
-	                	<h3>3 Panel Canvas Art Set of&nbsp;<?php // echo $image_detail[0]['image_photographer'];?></h3>
-						<p name="print_dimension" id="dimension" class="form-control-static">
-							<?php echo $image_details[0]->dimension;?>
-                        </p>
-	                </div>
-	            </div>
-              <!-- End Tab Panels -->
-        	</div>
-    	</div>
-	</div>
-        	
         	<div class="col-md-6">
             	<div class="product-detail-wrapper">
 				<div class="tabs-section" id="tabs-section3">
