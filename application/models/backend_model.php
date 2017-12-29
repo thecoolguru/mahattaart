@@ -288,8 +288,10 @@ public function get_vendor_name_tbl_web_price($vendor_name){
 		 if($vendor_name==''){
         return $query->result();
 		}else{
-		$ven_details=$query->result();
-		$new_result[]=$ven_details[0]->unique_ven_id.','.$ven_details[0]->vendor_name.','.$ven_details[0]->vendor_contact.','.$ven_details[0]->vendor_lead_time.','.$ven_details[0]->vendor_dtls;
+		$ven=$query->result();
+		foreach($ven as $ven_details){
+		$new_result[]=$ven_details->unique_ven_id.','.$ven_details->vendor_name.','.$ven_details->vendor_contact.','.$ven_details->vendor_lead_time.','.$ven_details->vendor_dtls;
+		}
 		//$ven_id=
 		echo json_encode($new_result);
 		}

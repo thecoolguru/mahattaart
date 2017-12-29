@@ -199,17 +199,18 @@ class Cart extends CI_Controller{
 	protected function CCAVENUE_DETAILTS()  {
             $marchent_id="64544";
             $auth_code="AVIZ70ED05AF29ZIFA";
-            $working_key="2A428B0140B214C429873D2057713571";
+            $working_key="759A2FF4378D5CB2F8818E28CBCD2DDF";
             return array($marchent_id,$auth_code,$working_key);
     } 
 	public function CCAvenue_check_out(){
+	error_reporting(0);
            $result= $this->cart_model->get_cart_user_details($this->session->userdata('userid'));
 	       $billerName= $result[0]->first_name.' '.$result[0]->last_name;
            $ccavenue_data= $this->CCAVENUE_DETAILTS();
 	     foreach ($_POST as $key => $value){
 		 $merchant_data.=$key.'='.urlencode($value).'&';
 		}
-		echo $merchant_data;
+		
         $merchant_id=$ccavenue_data[0];
 		$working_key=$ccavenue_data[2];//Shared by CCAVENUES
 		$access_code=$ccavenue_data[1];//Shared by CCAVENUES

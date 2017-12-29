@@ -578,9 +578,6 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
         left: 0px;
         box-shadow: 0 0 8px gray
     }
-    h3 {
-        font-family: 'Roboto Slab', serif
-    }
     .formtex {
         margin-top: 10px;
         padding: 6px;

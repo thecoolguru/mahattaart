@@ -445,12 +445,12 @@ $.ajax({
     type:'post',
 	url:'<?=base_url()?>index.php/backend/'+methode,
 	data:'value='+value+'&cat_type='+cat_type,
-	//dataType :'json',
+	dataType :'json',
 
 	success:function(response){
-//	alert(response)
-	var array=$.parseJSON(response);
-	//alert(array);
+alert(response)
+	var array=JSON.parse(response);
+	alert(array);
 	$('.add_more').trigger('click');
 	var string_array='"'+array+'"';
    var explode=string_array.split(",");
@@ -558,7 +558,7 @@ $.ajax({
 		
 				  var array=$.parseJSON(response);
 		  //alert(array[1]);
-		//alert('sss')
+		//alert(array)
 		
 		  var string_array='"'+array+'"';
 		  var explode=string_array.split(",");
