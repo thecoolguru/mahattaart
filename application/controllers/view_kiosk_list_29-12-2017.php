@@ -32,6 +32,7 @@ function del()
 
  
  
+  <p><a href="<?php echo base_url('Form_Controller/form_submit'); ?>">Add New</a></p>            
   <table class="table table-bordered">
     <thead>
       <tr class="danger">
@@ -39,8 +40,7 @@ function del()
 		<th>Person</th>
         <th>Mobile</th>
 		<th>Email</th>
-        <th>Location</th>
-        <th>Location ID</th>
+        <th>Sales Person</th>
         <th>Created Date</th>
 		<th>Edit</th>
 		<th>Delete</th>
@@ -59,11 +59,11 @@ function del()
                      <td><?php echo $i; ?></td>
 					 <td><?php echo $rowa->person_name; ?></td>
                      <td><?php echo $rowa->person_mobile; ?></td>
-                     <td><?php echo $rowa->person_email; ?></td>
-                     <td><?php echo $rowa->location; ?></td>
-                     <td><?php echo $rowa->location_id; ?></td>
+                     <td><?php echo $rowa->person_email; ?></td>index.php/customer/update_kiosk_users
+					 <td><?php echo $rowa->sales_person; ?></td>
+      
                      <td><?php echo $rowa->created_date; ?></td>
-<td><a href="<?php echo base_url('index.php/customer/add_kiosk_users/'.$rowa->id);?>">Edit</a></td>
+<td><a href="<?php echo base_url('index.php/customer/update_kiosk_users/'.$rowa->id);?>">Edit</a></td>
 <td><a href="<?php echo base_url('index.php/customer/delete_kiosk_users/'.$rowa->id);?>"onClick="return del()" >Delete</a></td>
 
                  </tr>

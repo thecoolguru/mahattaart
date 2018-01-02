@@ -73,12 +73,10 @@ public function get_kiosk_users_details()
 	
 	public function add_kiosk_users()
 	{
-	   
-	   
-	  
+	
+	    
 		$id=$this->uri->segment(3);
-		//echo $id; die();
-		//$result['get_details']=$this->customer_model->get_kiosk_details($id);
+		$result['get_details']=$this->customer_model->get_kiosk_details($id);
 		
 		//print_r($result['get_details']);
 	   
@@ -99,15 +97,9 @@ public function get_kiosk_users_details()
 	   
 	   
 	   
-	  //get Last id of table 
 	   $result=$this->customer_model->create_location_id($verdor_types);
 	  // print_r($result);
        
-	  
-	   
-	   
-	  $result=$this->customer_model->create_location_id($verdor_types); 
-	 /// echo count($result); die();
 	      
 		  
 		  $ki='ki00';
@@ -122,9 +114,11 @@ public function get_kiosk_users_details()
 					  }else{ 
 					   $location_id=$ki.$uid;
 				     }
-		  }else
+		  }
+		  
+		  if($verdor_types=='sis')
 		  {
-		      //echo "Welcome"; die();
+			  
 			  $uid=$result[0]->id+1;
 			  if(empty($result[0]->id)){
 				      $sis1='sis001';
@@ -134,9 +128,9 @@ public function get_kiosk_users_details()
 					   $location_id=$sis.$uid;
 		       }
 		  
+		  
+		  
 		  }
-		  
-		  
 			 
 	   
 	    $data=array(
@@ -154,11 +148,8 @@ public function get_kiosk_users_details()
 	  
 	  if($this->form_validation->run()==FALSE)
 	  {
-		   $experience_value=$this->input->post('value');
-		   $result['get_details']=$this->customer_model->get_kiosk_details($id);
-		   
-		   
-		   
+		  $experience_value=$this->input->post('value');
+
 		   
 		   $result['get_vendor']=$this->customer_model->get_vendor_types_model();
 		   $this->load->view('backend/dashboard_header');
@@ -166,47 +157,24 @@ public function get_kiosk_users_details()
            $this->load->view('backend/footer');
 	  }else{
 		  
-		  $result['get_vendor']=$this->customer_model->get_vendor_types_model();
-		
-		  
-		  
-		 //UPDATE
-		  if($id!='')
-		  {
+		  $result['get_vendor']=$this->customer_model->get_vendor_types_model(); 
+		 $result['record_added']=$this->customer_model->add_kiosk_users_model($data);
+		 
+		 //print_r($result['record_added']); die();
 			  
-			  	    $data2=array(
-	               'vendor_types'=>$verdor_types,
-				   'location'=>$location,
-				   'person_name'=>$person_name,
-				   'person_mobile'=>$person_mobile,
-				   'person_email'=>$person_email,
-				   
-	  
-	                 );
-			
-            
-			$this->customer_model->update_kiosk($id,$data2);
-			 redirect('index.php/customer/view_kiosk_users');
 			  
-		  }else{
 			  
-		  $result['record_added']=$this->customer_model->add_kiosk_users_model($data);	  
 		  $result['record_message']="Record Successfully Added";
 	      $result['record_failed']="Record Not Added,Please Check";
 		  $this->load->view('backend/dashboard_header');
 		  $this->load->view('backend/customer/kiosk_register',$result);     
           $this->load->view('backend/footer');
-			   
-		  }
-	
+		  
+		  
+		  
    }
-	
-	
-	
-	
-	   	
 		
-    }
+	}
 	
 	
 	public function view_kiosk_users()
@@ -241,23 +209,21 @@ public function get_kiosk_users_details()
 	  
 	  public function add_customer_query($id)
        {
-		   
-		   
-		
-		$query['get_vendor']=$this->customer_model->get_vendor_types_model();
-		//$query['query_data']=$this->customer_model->get_query_data();
+		$query['query_data']=$this->customer_model->get_query_data();
 	    //print_r($get_data['query_data']);
 		$this->form_validation->set_rules('name','Name','required');
 		$this->form_validation->set_rules('email','Email','required|valid_email');
 		$this->form_validation->set_rules('mobile','Mobile','required|numeric|exact_length[10]');
+		$this->form_validation->set_rules('gender','Gender','required');
 		$this->form_validation->set_rules('pinterest','Product Interest','required');
+		$this->form_validation->set_rules('feadback','Feadback','required');
+		$this->form_validation->set_rules('experience','experience','required');
 		
 		
 		
 		$vendor_types=$this->input->post('vendor_types');
 		$vendor_location=$this->input->post('vendor_location');
 		$vendor_location_id=$this->input->post('vendor_location_id');
-		//$vendor_location_id_hidden=$this->input->post('vendor_location_id_hidden');
 			
 		$name=$this->input->post('name');
 		$email=$this->input->post('email');
@@ -281,15 +247,15 @@ public function get_kiosk_users_details()
 	       if($this->form_validation->run()==true)
 		   {
 			  $data=array(
-		                'vendor_types'=>$vendor_types,
-						'location'=>$vendor_location,
-						'vendor_location_key_id'=>$vendor_location_id,   
-						//'vendor_location_key_id'=>$vendor_location_id_hidden,
+		                'vendor_types_id'=>$vendor_types,
+						'location_id'=>$vendor_location,
+						'vendor_location_key_id'=>$vendor_location_id,
 					    'customer_name'=>$name,
 	                    'customer_email'=>$email,
 	                    'customer_mobile'=>$mobile,
 						'gender'=>$gender,
 	                    'cutomer_interest'=>$pinterest,
+	                    'cutomer_location'=>$addlocation,
 	                    'cutomer_feadback'=>$feadback,
 						'experience'=>$experience,
 						'active_coupon'=>$active_coupon,
@@ -303,8 +269,8 @@ public function get_kiosk_users_details()
 	              
 				   'submit_from'=>$submit_from,
 				   'customer_type'=>$customer_type,
-				   'vendor_types'=>$vendor_types,
-				   'vendor_location'=>$vendor_location,
+				   'vendor_types_id'=>$vendor_types,
+				   'vendor_location_id'=>$vendor_location,
 				   'vendor_location_key_id'=>$vendor_location_id,
 				   'first_name'=>$name,
 				   'contact'=>$mobile,
@@ -350,23 +316,21 @@ public function get_kiosk_users_details()
 	  $this->load->view('backend/dashboard_header');
       $this->load->view('backend/customer/add_customer_query',$query);     
       $this->load->view('backend/footer');
-    
-		   
-		
-	  }
+    }
 
 
 
    public function get_query_details()
    {
-	   $vendor_types=$this->input->post('vendor_types');
+	   $vendor_loca_id=$this->input->post('vendor_loca_id');
 	   
-	   $get_ven_location=$this->customer_model->get_query_data($vendor_types);
+	   
+	   $get_ven_location=$this->customer_model->get_query_data();
 	 
 		echo '<option>'.'Select Location'.'</option>';
 		foreach($get_ven_location as $r2){
 			?>
-       <option value="<?php  echo $r2->location;?>"><?php  echo $r2->location;?></option>
+       <option value="<?php  echo $r2->vend_loc_key_id ;?>"><?php  echo $r2->vendor_location; ;?></option>
             
             <?php
 		}
@@ -377,37 +341,15 @@ public function get_kiosk_users_details()
    
    
    
-   
-  public function get_query_location_keys()
+   public function get_query_location_keys()
       {
-	   $vendor_location=$this->input->post('vendor_location');
-	   $get_ven_location_key=$this->customer_model->get_query_location_key($vendor_location);
+	   $vendor_location_key=$this->input->post('vendor_location_key');
+	   $get_ven_location_key=$this->customer_model->get_query_location_key($vendor_location_key);
 	 
 		echo '<option>'.'Select Location Key Id'.'</option>';
 		foreach($get_ven_location_key as $r){
-			//$location_id=$r->location_id;			
 			?>
-       <option value="<?php  echo $r->location_id; ;?>"><?php  echo $r->location_id ;?></option>
-            
-            <?php
-		}
-	   
-	   
-   }
-   
-   
-   public function get_location_keys()
-   {
-	   $location=$this->input->post('location');
-	  // print_r($vendor_types); die();
-	   
-	   
-	   $get_ven_location=$this->customer_model->get_vendor_location_keys($$location);
-	 
-		echo '<option>'.'Select Location'.'</option>';
-		foreach($get_ven_location as $r2){
-			?>
-       <option value="<?php  echo $r2->location;?>"><?php  echo $r2->location;?></option>
+       <option value="<?php  echo $r->vend_loc_key_id ;?>"><?php  echo $r->vendor_location_key; ;?></option>
             
             <?php
 		}
@@ -415,7 +357,6 @@ public function get_kiosk_users_details()
 	   
    }
 
-  
 	 
 //enn 27-12-2017	 
 	 

@@ -445,13 +445,14 @@ $.ajax({
     type:'post',
 	url:'<?=base_url()?>index.php/backend/'+methode,
 	data:'value='+value+'&cat_type='+cat_type,
-	dataType :'json',
-
+	//dataType :'html',
+	//Content-type: application/json,
 	success:function(response){
-alert(response)
+	alert(response)
+	console.log(response.canApprove);
 	var array=JSON.parse(response);
 	alert(array);
-	$('.add_more').trigger('click');
+	//$('.add_more').trigger('click');
 	var string_array='"'+array+'"';
    var explode=string_array.split(",");
 	$('#unique_ven_id').val(explode[0].replace(/"/g, "")).css("text-align","center");

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Customer Query</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
@@ -46,6 +46,7 @@ function del()
 		<th>Mobile Number</th>
 		<th>Gender</th>
 		<th>Interested in Product</th>
+		<th>Location</th>
 		<th>Feadback</th>
 		<th>Cerated Date</th>
 		<th>Edit</th>
@@ -70,10 +71,11 @@ function del()
 		<td><?php echo $rows->customer_mobile;?></td>
 		<td><?php echo $rows->gender;?></td>
 		<td><?php echo $rows->cutomer_interest;?></td>
+		<td><?php echo $rows->cutomer_location;?></td>
 		<td><?php echo $rows->cutomer_feadback;?></td>
 		<td><?php echo $rows->apply_date;?></td>
-		<th><a href="<?php  echo base_url('index.php/customer/add_customer_query/'.$rows->id);?>/experience/<?php echo $rows->experience;?>">Edit</a></th>
-		<th><a href="<?php echo base_url('index.php/customer/delete_cutomer_query/'.$rows->id);?>"  onClick="return del()">Delete</a></th>
+		<th><a href="<?php  echo base_url('index.php/customer/add_customer_query/'.$rows->id);?>">Edit</a></th>
+		<th><a href="<?php echo base_url('index.php/customer/delete_cutomer_query/'.$rows->id); ?>"  onClick="return del()">Delete</a></th>
       </tr>
 	  <?php
 	  $i++;

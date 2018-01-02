@@ -195,6 +195,7 @@ function ChangeCustomerType()
    {
     $(".mndaty_aptrp").show();
 	$('#occupationb2cp').hide();
+	$('.retails_kiosk').hide();
 document.getElementById('Industry_text').style.display="block";
 document.getElementById('occupation').style.display="block";
 document.getElementById('relationshipmanagelbl').style.display="block";
@@ -521,17 +522,17 @@ String.prototype.killWhiteSpace = function() {
   
   <script type ="text/javascript">
     $(document).ready(function(){
-        $('#verdor_types').change(function(){
-       var verdor_id = $('#verdor_types').val();
-	  // alert(verdor_id);
+        $('#vendor_types').change(function(){
+       var vendor_types = $('#vendor_types').val();
+	  //alert(vendor_types);
           	
 			$.ajax({
 		   type:"POST",
-		    url:"<?php  echo base_url('index.php/customer/get_kiosk_users_details'); ?>",
-			data:"verdor_id="+verdor_id,
+		    url:"<?php  echo base_url('index.php/customer/get_query_details'); ?>",
+			data:"vendor_types="+vendor_types,
 			success:function(response)
 			 {
-             ///alert(response)
+            //alert(response)
 				$("#location").html(response);
 			 }	 
 		    })	
@@ -543,13 +544,13 @@ String.prototype.killWhiteSpace = function() {
     <script type ="text/javascript">
     $(document).ready(function(){
         $('#location').change(function(){
-       var verdor_id = $('#location').val();
-	  // alert(verdor_id);
+       var vendor_location = $('#location').val();
+	  //alert(vendor_location);
           	
 			$.ajax({
 		   type:"POST",
-		    url:"<?php  echo base_url('index.php/customer/get_kiosk_users_details'); ?>",
-			data:"verdor_id="+verdor_id+'&location=location',
+		    url:"<?php  echo base_url('index.php/customer/get_query_location_keys'); ?>",
+			data:"vendor_location="+vendor_location,
 			success:function(response)
 			 {
              //alert(response)
@@ -592,16 +593,16 @@ String.prototype.killWhiteSpace = function() {
  <div class="" >
 
 <tr   style="display:none" class="retails_kiosk" >
- <td width="12%">Vendor Types<span class="" style="color:#FF0000;">*</span></td>
+ <td width="12%">Vendor Types<span class="" style="color:#FF0000;"></span></td>
  <td width="37%">
  <div class="form-group">
     <?php $id=$this->uri->segment(3); ?>
       <div class="col-sm-9">
       	<div class="btn-group">
-         <select name="verdor_types"class="inputbxs" required="required" id="verdor_types">
+         <select name="vendor_types"class="inputbxs"id="vendor_types">
            <option value="">Select</option>
  		<?php	foreach($get_vendor as $get){ ?>
-            <option value="<?php  echo $get->id; ?>" ><?php echo $get->vendor_types; ?></option>
+            <option value="<?php echo $get->vendor_types; ?>" ><?php echo $get->vendor_types; ?></option>
        
         <?php }?> 
   
@@ -614,7 +615,7 @@ String.prototype.killWhiteSpace = function() {
  </td>
  
  
- <td width="18%">Vendor Location<span class="" style="color:#FF0000;">*</span></td>
+ <td width="18%">Vendor Location<span class="" style="color:#FF0000;"></span></td>
  <td width="33%">
    <div class="form-group">
       <div class="col-sm-9">
@@ -652,23 +653,20 @@ String.prototype.killWhiteSpace = function() {
 </tr>
 
 
-<tr style="display:none" class="retails_kiosk">
- <td width="12%">Location ID<span class="" style="color:#FF0000;">*</span></td>
+<tr style="display:none" class="retails_kiosk" >
  <td>
  <div class="form-group">
       <div class="col-sm-9">
-      	<div class="btn-group">
-            <select name="verdor_id2" class="inputbxs" required="required" id="verdor_id2">
-            <option  value="" selected>Select Location Id</option>
-            
-            </select>
+      	<div class="btn-group" id="verdor_id2"  >
+        
+        
         </div>
 		
       </div>
     </div>
  </td>
  
- 
+
  
 </tr>
 
@@ -799,8 +797,8 @@ String.prototype.killWhiteSpace = function() {
                 <option value="Male"<?php if($this->input->post('gender')=="Male"){ echo 'selected'; } ?>>Male</option>
                 <option value="Female" <?php if($this->input->post('gender')=="Female"){ echo 'selected'; } ?>>Female</option>
               </select></td>
-            <td></td>
-            <td></td>
+            </td>
+           <td>Client Service:</td> <td><input type="text"  name="client_service" id="client_service" class="inputbxs"  placeholder="Client Service"value="<?php echo $this->input->post('client_service');?>"   /></td>
           </tr>
           <tr>
             <td>Address<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
@@ -936,29 +934,29 @@ String.prototype.killWhiteSpace = function() {
         </tr>
           
           <tr>     
-<td width="12%">Mail Address<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+<td width="12%">Mail Address<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
 <td width="37%"><input type="text" name="mailstreetaddress" id="mailstreetaddress" class="inputbxs" value="<?php if($this->input->post('mailstreetaddress')){echo $this->input->post('mailstreetaddress') ;}?>" /></td>
             
-            <td>City<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+            <td>City<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
             <td><input  type="text" name="mainlingcity" value="<?php if($this->input->post('mainlingcity')){echo $this->input->post('mainlingcity') ;}?>"  id="mainlingcity" class="inputbxs" /></td>
           </tr>
           <tr>     
-<td width="12%">State<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+<td width="12%">State<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
 <td width="37%"><input type="text" name="mailingstate" id="mailingstate" class="inputbxs" value="<?php if($this->input->post('mailingstate')){echo $this->input->post('mailingstate') ;}?>" /></td>
             
-            <td>Postal Code<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+            <td>Postal Code<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
             <td><input  type="text" name="mailposatcode"  onkeypress='return event.charCode >=48 && event.charCode <=57' value="<?php if($this->input->post('mailposatcode')){echo $this->input->post('mailposatcode') ;}?>"  id="mailposatcode" class="inputbxs" /></td>
           </tr>
           <tr>     
-<td width="12%">Country<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+<td width="12%">Country<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
 <td width="37%"><input type="text" name="mailingcountry" id="mailingcountry" class="inputbxs" value="<?php if($this->input->post('mailingcountry')){echo $this->input->post('mailingcountry') ;}?>" /></td>
             
-            <td>Telephone Number<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+            <td>Telephone Number<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
             <td><input  type="text" onkeypress='return event.charCode >=48 && event.charCode <=57' name="mailingphone" value="<?php if($this->input->post('mailingphone')){echo $this->input->post('mailingphone') ;}?>"  id="mailingphone" class="inputbxs" /></td>
           </tr>
           
           <tr>     
-<td width="12%">Mobile Number<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+<td width="12%">Mobile Number<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
 <td width="37%"><input type="text" onkeypress='return event.charCode >=48 && event.charCode <=57' name="mailingmobile" id="mailingmobile" class="inputbxs" value="<?php if($this->input->post('mailingmobile')){echo $this->input->post('mailingmobile') ;}?>" /></td>
           
           </tr>
@@ -975,10 +973,10 @@ String.prototype.killWhiteSpace = function() {
         </tr>
           
           <tr>     
-<td width="12%">Company Name<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+<td width="12%">Company Name<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
 <td width="37%"><input type="text" name="billingcomname" id="billingcomname" class="inputbxs" value="<?php if($this->input->post('billingcomname')){echo $this->input->post('billingcomname') ;}?>" /></td>
             
-            <td>Region<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+            <td>Region<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
             <td>
             <select name="billingregion" id="billingregion" class="inputbxs" >
                 <option value="0"selected="selected">Select</option>
@@ -995,47 +993,18 @@ String.prototype.killWhiteSpace = function() {
           </tr>
 		  
 		  <tr>     
-<td width="12%">Billing City<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+<td width="12%">Billing City<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
 <td width="37%"><input type="text" name="billingcity" id="billingcity" class="inputbxs" value="<?php if($this->input->post('billingcity')){echo $this->input->post('billingcity') ;}?>" /></td>
             
                       </tr>
 		  
             
-   <!--         
-            <tr>     
-<td width="12%">Cutomer Acount Type<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
-<td width="37%">
-<select name="bactype" id="bactype" class="inputbxs" >
-                <option value="0"selected="selected">Select</option>
-                <option value="Key"<?php if($this->input->post('bactype')=="Key"){ echo 'selected'; } ?>>Key</option>
-                <option value="Potencial"<?php if($this->input->post('Potencial')=="Potencial"){ echo 'selected'; } ?>>Potencial</option>
-                <option value="Normal"<?php if($this->input->post('Normal')=="Normal"){ echo 'selected'; } ?>>Normal</option>               
-                </select>
-
-
-</td>
-            
-            <td>Customer Business Type<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
-            <td>
-               <select name="cbtype" id="cbtype" class="inputbxs" >
-                <option value="0"selected="selected">Select</option>
-                <option value="B2B"<?php if($this->input->post('cbtype')=="B2B"){ echo 'selected'; } ?>>B2B</option>
-                
-               <option value="Online"<?php if($this->input->post('Online')=="Online"){ echo 'selected'; } ?>>Online</option>
-               <option value="Retail"<?php if($this->input->post('Retail')=="Reatil"){ echo 'selected'; } ?>>Retail</option>
-
-                
-                </select>
-           
-            
-            </td>
-          </tr>
-          --->
+ 
           <tr>     
-<td width="12%">Contact Person<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+<td width="12%">Contact Person<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
 <td width="37%"><input type="text" name="billing_con_person" id="billing_con_person" class="inputbxs" value="<?php if($this->input->post('billing_con_person')){echo $this->input->post('billing_con_person') ;}?>" /></td>
             
-            <td>Company Address<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+            <td>Company Address<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
             <td><input  type="text" name="billing_comp_address" value="<?php if($this->input->post('billing_comp_address')){echo $this->input->post('billing_comp_address') ;}?>"  id="compaddress" class="inputbxs" /></td>
           </tr>
 
@@ -1043,17 +1012,15 @@ String.prototype.killWhiteSpace = function() {
             </tr>
           
           <tr>     
-<td width="12%">Account Sales Person<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
-<td width="37%"><input type="text" name="billing_sale_person" id="billing_sale_person" class="inputbxs" value="<?php if($this->input->post('billing_sale_person')){echo $this->input->post('billing_sale_person') ;}?>" /></td>
             
-            <td>Customer GSTIN Number<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+            <td>Customer GSTIN Number<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
             <td><input  type="text" name="billing_gst_number" value="<?php if($this->input->post('billing_gst_number')){echo $this->input->post('billing_gst_number') ;}?>"  id="billing_gst_number" class="inputbxs" /></td>
           </tr>
             <tr>     
-<td width="12%">Pan Number<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+<td width="12%">Pan Number<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
 <td width="37%"><input type="text" name="billing_pan_number" id="billing_pan_number" class="inputbxs" value="<?php if($this->input->post('billing_pan_number')){echo $this->input->post('billing_pan_number') ;}?>" /></td>
             
-            <td>Place Of Supply<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+            <td>Place Of Supply<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
             <td>
             <input  type="text" name="billing_place_supply" value="<?php if($this->input->post('billing_place_supply')){echo $this->input->post('billing_place_supply') ;}?>"  id="billing_place_supply" class="inputbxs" /></td>
           </tr>
@@ -1071,10 +1038,10 @@ String.prototype.killWhiteSpace = function() {
         </tr>
           
           <tr>     
-<td width="12%">Company Name<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+<td width="12%">Company Name<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
 <td width="37%"><input type="text" name="shipping_comp_name" id="shipping_comp_name" class="inputbxs" value="<?php if($this->input->post('shipping_comp_name')){echo $this->input->post('shipping_comp_name') ;}?>" /></td>
             
-            <td>Region<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+            <td>Region<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
             <td>
             <select name="shipping_comp_region" id="shipping_comp_region" class="inputbxs" >
                 <option value="0"selected="selected">Select</option>
@@ -1095,41 +1062,14 @@ String.prototype.killWhiteSpace = function() {
 
 		
            <tr>     
-<td width="12%">City<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+<td width="12%">City<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
 <td width="37%"><input type="text" name="shipping_city" id="shipping_city" class="inputbxs" value="<?php if($this->input->post('shipping_city')){echo $this->input->post('shipping_city') ;}?>" /></td>
-            <!--
-            <td>Customer Account Type<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
-            <td>
-            <select name="shipping_cus_ac_type" id="shipping_cus_ac_type" class="inputbxs" >
-                <option value="0"selected="selected">Select</option>
-                <option value="Key"<?php if($this->input->post('shipping_cus_ac_type')=="Key"){ echo 'selected'; } ?>>Key</option>
-                <option value="Potencial"<?php if($this->input->post('shipping_cus_ac_type')=="Potencial"){ echo 'selected'; } ?>>Potencial</option>
-                <option value="Normal"<?php if($this->input->post('shipping_cus_ac_type')=="Normal"){ echo 'selected'; } ?>>Normal</option>               
-                </select>
-
             
-            </td>
-			
-			--->
-          </tr>
           
           
           <tr> 
-<!--- 		  
-<td width="12%">Customer Business Type<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
-<td width="37%">
-<select name="shipping_cus_busi_type" id="shipping_cus_busi_type" class="inputbxs" >
-                <option value="0"selected="selected">Select</option>
-               <option value="B2B"<?php if($this->input->post('shipping_cus_busi_type')=="B2B"){ echo 'selected'; } ?>>B2B</option>
-               <option value="Online"<?php if($this->input->post('shipping_cus_busi_type')=="Online"){ echo 'selected'; } ?>>Online</option>
-               <option value="Retail"<?php if($this->input->post('shipping_cus_busi_type')=="Retail"){ echo 'selected'; } ?>>Retail</option>
-
-                
-                </select>
-
-</td>
-  -->          
-            <td>Contact Person<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+      
+            <td>Contact Person<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
             <td>
              <input  type="text" name="shipping_com_con_person" value="<?php if($this->input->post('shipping_com_con_person')){echo $this->input->post('shipping_com_con_person') ;}?>"  id="shipping_com_con_person" class="inputbxs" />
             
@@ -1137,26 +1077,23 @@ String.prototype.killWhiteSpace = function() {
           </tr>
            
            <tr>     
-<td width="12%">Company Address<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+<td width="12%">Company Address<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
 <td width="37%">
 <input  type="text" name="shipping_comp_address" value="<?php if($this->input->post('shipping_comp_address')){echo $this->input->post('shipping_comp_address') ;}?>"  id="shipping_comp_address" class="inputbxs" />
 </td>
             
-            <td>Account Sales Person<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
-            <td>
-             <input  type="text" name="shipping_ac_sales_person" value="<?php if($this->input->post('shipping_ac_sales_person')){echo $this->input->post('shipping_ac_sales_person') ;}?>"  id="shipping_ac_sales_person" class="inputbxs" />
             
-            </td>
+            
           </tr>
           
           
           <tr>     
-<td width="12%">Customer GSTIN Number<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+<td width="12%">Customer GSTIN Number<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
 <td width="37%">
 <input  type="text" name="shipping_gst_num" value="<?php if($this->input->post('shipping_gst_num')){echo $this->input->post('shipping_gst_num') ;}?>"  id="shipping_gst_num" class="inputbxs" />
 </td>
             
-            <td>PAN Number<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+            <td>PAN Number<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
             <td>
              <input  type="text" name="shipping_pan_num" value="<?php if($this->input->post('shipping_pan_num')){echo $this->input->post('shipping_pan_num') ;}?>"  id="supplyplace" class="inputbxs" />
             
@@ -1164,7 +1101,7 @@ String.prototype.killWhiteSpace = function() {
           </tr>
           
           <tr>     
-<td width="12%">Place Off Supply<span class="mndaty_aptrp" style="color:#FF0000;">*</span></td>
+<td width="12%">Place Off Supply<span class="mndaty_aptrp" style="color:#FF0000;"></span></td>
 <td width="37%">
 <input  type="text" name="shipping_place_supply" value="<?php if($this->input->post('shipping_place_supply')){echo $this->input->post('shipping_place_supply') ;}?>"  id="shipping_place_supply" class="inputbxs" />
 </td>

@@ -244,6 +244,16 @@ function calculate_cost(value){}
 	}
 </script>
 <!-- pricing Details -->
+<?php
+/*$CanvasFrameCost = parseInt( (parseInt((parseInt(width)+(1*2))*parseInt(2)) + parseInt((parseInt(height)+(1*2))*parseInt(2)))*75)/12;*/
+/*$width=$image_details[0]->width;
+$height=$image_details[0]->height;
+echo $CanvasFrameCost=((($width+(1*2))*2)+(($height+(1*2))*2))*75/12;*/
+$unit_price=$image_details[0]->unit_price;
+$promo_amount=round($image_details[0]->unit_price*20/100);
+
+?>
+
 <div class="lightbox-target" id="price_detail">
     <div id="uploader_popup_goofy_a">
         <div class="uploader_popup_header">
@@ -257,7 +267,7 @@ function calculate_cost(value){}
                     	<strong> Print Price</strong>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> <span id="print_price" class='canvas framing print'><?=$image_details[0]->unit_price?></span></strong>
+                    	<strong> Rs. <span id="print_price" class='canvas framing print'><?=($image_details[0]->unit_price)-275?></span></strong>
                     </div>
                 </div>
             </div>
@@ -267,11 +277,11 @@ function calculate_cost(value){}
                     	<strong> Print Size: </strong>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> <span id="print_sizes" class='canvas framing print'></span></strong>
+                    	<strong> <span id="print_sizes" class='canvas framing print'><?php echo $image_details[0]->width.'x'.$image_details[0]->height;?> inches</span></strong>
                     </div>
                 </div>
             </div>
-            <div class="row canvas framing print">
+            <!--<div class="row canvas framing print">
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Paper Print: </strong>
@@ -290,18 +300,18 @@ function calculate_cost(value){}
                     	<strong> <span id="frame_sized" class='framing'></span></strong>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <div class="row canvas">
             	<div class="frame-it-content ">
                 	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Frame Type: </strong>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong><span class='canvas' id="frame_type"></span></strong>
+                    	<strong><span class='canvas' id="frame_type">Streched Canvas Gallary Wrap</span></strong>
                     </div>
                 </div>
             </div>
-            <div class="row framing">
+            <!--<div class="row framing">
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Frame Name: </strong>
@@ -310,14 +320,14 @@ function calculate_cost(value){}
                     	<strong><span class='framing' id="f_name"></span></strong>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <div class="row canvas ">
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Frame Cost: </strong>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right canvas ">
-                    	<strong><img src="" align="absmiddle" /><span id="CanvasCost"></span></strong>
+                    	<strong>Rs. <span id="CanvasCost">275</span></strong>
                     </div>
                 </div>
             </div>
@@ -380,34 +390,34 @@ function calculate_cost(value){}
                     </div>
                 </div>
             </div>-->
-            <!--<div class="row">
+            <div class="row">
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
                     	<strong style="color:#d3131b">Discount:</strong>
                     </div>
                 </div>
-            </div>-->  
-            <!--<div class="row" >
+            </div> 
+            <div class="row" >
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
                     	<strong style="color:#d3131b">FLAT<span id="promo_precentage" style="color:#d3131b">20%</strong>
                     	<span style="color:#d3131b">Promo Code Applied</span> 	
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> <span id="promo_amount" style="color:#d3131b"></span></strong>
+                    	<strong style="color:#d3131b">Rs. <span id="promo_amount" ><?=$promo_amount?></span></strong>
                     </div>
                 </div>
-            </div>-->
-            <!--<div class="row" >
+            </div>
+           <div class="row" >
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
                     	<strong> Sub-Total  </strong>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> <span id="sub_total_price"> </span></strong>
+                    	<strong> <span id="sub_total_p<?php echo $unit_price;?>rice"></span></strong>
                     </div>
                 </div>
-            </div>-->
+            </div>
             <div class="row">
             	<div class="frame-it-content col-md-12">
                 <hr/>
@@ -416,7 +426,7 @@ function calculate_cost(value){}
                             <strong style="color:#d3131b"> Total Price </strong>
                         </div>
                         <div class="col-md-6 col-sm-6 text-right">
-                            <strong> <span class='actual_price' style="color:#d3131b"><?=$image_details[0]->unit_price?></span></strong>
+                            <strong> <span class='actual_price' style="color:#d3131b">Rs. <?php echo ($unit_price)-$promo_amount;?></span></strong>
                         </div>
                     </div>
                 </div>
@@ -979,12 +989,15 @@ function right(width,height,x){
 				   </style>
       <div class="col-md-6 col-sm-12 col-xs-12">
          <div class="single-product-details">
-         	
+         	<?php
+			$panel=substr($image_details[0]->image_id,8,-7);
+			
+			?>
             
             
             <div class="row">
             <div class="col-md-12">
-            <h3 style="margin-top:0;border-bottom: 1px solid #eee;padding-bottom: 5px;">5 Panel Wall Art Set</h3>
+            <h3 style="margin-top:0;border-bottom: 1px solid #eee;padding-bottom: 5px;"><?=$panel?> Panel Wall Art Set</h3>
             	<form class="form-horizontal">
                         <div class="form-group">
                         	<label for="country" class="col-sm-4" style="font-size:15px">
@@ -1001,7 +1014,7 @@ function right(width,height,x){
                             	Total Size<span style="font-size: 10px;margin-left: 2px; color:#888">(In Inches)</span>
                             </label>
                             <div class="col-sm-6">
-	                       	<p class="form-control-static" name="print_sizes" id="sizes"><?php echo $image_details[0]->width.'x'.$image_details[0]->height;?> inches</p>
+	                       	<span class="form-control-static" name="print_sizes" id="sizes"><?php echo $image_details[0]->width.'x'.$image_details[0]->height;?></span><span> inches</span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -1009,7 +1022,9 @@ function right(width,height,x){
                             	Price
                             </label>
                             <div class="col-sm-6">
-	                       	<p class="price" style="display: block;"><span class="old_price" style="font-size: 15px;color:Tomato;"></span><span class="total_cost"><?=$image_details[0]->unit_price?></span> </p>
+	                       	<p class="price" style="display: block;">
+                            <span class="old_price" style="font-size: 15px;color:Tomato;"></span>Rs. 
+                            <span class="total_cost"><?=$unit_price-275?></span> </p>
                             </div>
                         </div>
                         <div class="form-group">
@@ -1268,7 +1283,7 @@ $(document).ready(function(){
 <input type="hidden" id="frame_name" value="Absolute Black">
 <input type="hidden" id="frame_size" value="1">
 <input type="hidden" id="frame_rate" value="66">
-<input type="hidden" id="mount_name" value="DR 2091">
+<input type="hidden" id="mount_name" value="">
 <input type="hidden" id="mount_sized" value="1">
 <input type="hidden" id="mount_rate" value="">
 <input type="hidden" id="type" value="1">
@@ -1630,6 +1645,7 @@ background: #ddd;
 			var bottom_height = height*0.22779;
 			var sourceY = Math.round(height*0.77220);
 			bottom(bottom_width,bottom_height,sourceY); 
+
 			$('#myCanvas3').attr('width',bottom_width+'px');
 			$('#myCanvas3').attr('height',bottom_height+'px'); 
 			$('#myCanvas3').css('height','20px');
@@ -1763,6 +1779,7 @@ function addToCart()
   var image_namee=$('#image_filename').val();
   var frameSize=$('#frame_sized').html();
 var url="glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print;
+//alert(url)
     $.ajax({
         type: "POST",
 	    url: "<?=base_url()?>frontend/frameit_addtocart",
