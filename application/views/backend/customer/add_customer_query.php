@@ -4,12 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Backend Form</title>
-
 <link href="<?=base_url()?>assets/css2/fonts.css" rel="stylesheet" type="text/css" />
 <link href="<?=base_url()?>assets/css2/bootstrap.min.css" rel="stylesheet">
 <link href="<?=base_url()?>assets/css2/bootstrap-quirk.css" rel="stylesheet">
 <link href="<?=base_url()?>assets/css2/wallsnart1.0.css" rel="stylesheet" type="text/css" />
-
 <style>
 body{background-color:#fff}
 #login-page-wrapper {
@@ -28,14 +26,7 @@ body{background-color:#fff}
     margin: 0 2px 5px 0;
 }
 </style>
-
-
-
-
 </head>
-<?php  // print_r($query_data);// die();?>
-
-
 <body> 
 <div class="container" style="margin-top:40px;">
 <center>
@@ -48,42 +39,65 @@ body{background-color:#fff}
 	 <p>&nbsp;</p>
 	 
 </center>
+
 <?php //echo form_oepn('index.php/customer/add_customer_query');  ?>
 <form action="<?php  echo base_url('index.php/customer/add_customer_query');?>/<?=$customer_details[0]->id;?>" method="post" class="form-horizontal" novalidate >
-    
-    
     <div class="form-group">
-    <?php $id=$this->uri->segment(3); ?>
+    <?php $id=$this->uri->segment(3);	 ?>
       <label class="col-sm-3 control-label">Vendor types<span class="text-danger"></span></label>
-      <script type ="text/javascript">
+   
+   <!-------------LOAD PROMO CODE WHEN PAGE IS LOADED----------->
+   <script type ="text/javascript">
+    $(document).ready(function(){
+    
+	   
+	    $('#vendor_location').change(function(){						
+       var vendor_location = $('#vendor_location').val();
+	   //alert("VENDOR Location="+vendor_location);
+          	
+			$.ajax({
+		   type:"POST",
+		    url:"<?php  echo base_url('index.php/customer/get_query_location_keys'); ?>",
+			data:"vendor_location="+vendor_location,
+			success:function(response2)
+			 {
+            //alert(response2)
+				$("#vendor_location_id").html(response2);
+			 }	 
+		    })	
+       });
+	});
+    </script>
+   
+   
+   
+   
+    <script type ="text/javascript">
     $(document).ready(function(){
         $('#vendor_types').change(function(){						
-       var vendor_loca_id = $('#vendor_types').val();
-	   //alert(vendor_loca_id);
+       var vendor_types= $('#vendor_types').val();
+	   //alert("ajax alert="+vendor_types);
           	
 			$.ajax({
 		   type:"POST",
 		    url:"<?php  echo base_url('index.php/customer/get_query_details'); ?>",
-			data:"vendor_loca_id="+vendor_loca_id,
+			data:"vendor_types="+vendor_types,
 			success:function(response)
 			 {
-             //alert(response)
+            // alert("Response="+response)
 				$("#vendor_location").html(response);
 			 }	 
 		    })	
        });
 	   
-	   
-	   
-	   
 	    $('#vendor_location').change(function(){						
-       var vendor_location_key = $('#vendor_location').val();
-	   //alert("Location key id="+vendor_location_key);
+       var vendor_location = $('#vendor_location').val();
+	   //alert("VENDOR Location="+vendor_location);
           	
 			$.ajax({
 		   type:"POST",
 		    url:"<?php  echo base_url('index.php/customer/get_query_location_keys'); ?>",
-			data:"vendor_location_key="+vendor_location_key,
+			data:"vendor_location="+vendor_location,
 			success:function(response2)
 			 {
             //alert(response2)
@@ -174,25 +188,12 @@ body{background-color:#fff}
 				 }else{
 					   $(".errorlocation").hide();
 					 }
-
-				   
-				
-				
-				 
-				  
-			
-				 
 				
 				});
 				
 				});
 			
-
          </script>
-         
-         
-         
-         
          <script type ="text/javascript">
  	  $(document).ready(function()
 		   {
@@ -213,99 +214,67 @@ body{background-color:#fff}
 			 }	 
 		    })	
 			
-			
-			
-			
             });
-          	
-		
        });
-		
-	
-       
-
-	   
-	
     </script>
-  
-    
-    
-    
-    
-    
-    
-    <script type ="text/javascript">
-	/*
-    $(document).ready(function(){
-        $('#vendor_types').change(function(){
-			
-			
-       var vendor_types_id = $('#vendor_types').val();
-	   	alert(vendor_types_id);
-          	
-			$.ajax({
-		   type:"POST",
-		    url:"<?php // echo base_url('index.php/customer/get_query_details'); ?>",
-			data:"vendor_types_id="+vendor_types_id,
-			success:function(response)
-			 {
-             //alert(response)
-				$("#vendor_location").html(response);
-			 }	 
-		    })	
-       });
-	   
-	   
-	   
-    });
-	*/
-    </script>
-    
-    
-    
-    
-
-      
       <div class="col-sm-9">
       	<div class="btn-group">
          <select name="vendor_types"class="form-control" required="required" id="vendor_types">
            <option value="">Select</option>
-           <?php  foreach($query_data as $vtypes){ ?>
-           
-           <option value="<?php echo $vtypes->vend_loc_id ?>"><?php  echo $vtypes->vendor_types ?></option>
+           <?php  foreach($get_vendor as $vtypes){ ?>
+<option value="<?php  echo $vtypes->vendor_types; ?>" <?php if($customer_details[0]->vendor_types==$vtypes->vendor_types){ echo 'selected'; } ?>><?php  echo $vtypes->vendor_types ?></option>
            <?php }?>
             
             </select>
+                     
         </div>
 	
-      </div>
+      </div> 
     </div>
     
+    <?php  // print_r($kiosk_location); ?>
+ 
     <div class="form-group">
       <label class="col-sm-3 control-label">Location<span class="text-danger"></span></label>
       <div class="col-sm-9">
       	<div class="btn-group">
-            <select name="vendor_location" id="vendor_location" class="form-control">
-                <option  value="" selected >Select Location </option>
+        <select name="vendor_location" id="vendor_location" class="form-control">
+          <?php  if(!empty($id)){?>
+<option  value="<?php echo $customer_details[0]->location;?>"<?php if($customer_details[0]->location==$kiosk_location[0]->location){echo 'selected';} ?>><?php echo $customer_details[0]->location;?> </option>
+          
+          <?php } else {?>
+          <option  value="" selected >Select Location </option>
+        
+           <?php }?>
+            
                 
-                
-                </select>
+             </select>
         </div>
 		
       </div>
     </div>
     
-    <div class="form-group">
+    
+<input type="hidden" name="vendor_location_id" value="<?php echo $customer_details[0]->vendor_location_key_id;  ?>">
+    
+    
+    
+    <!------------Pass Location keys--------------->
+    
+    <div class="form-group"  style="display:none">
       <label class="col-sm-3 control-label">Location ID<span class="text-danger"></span></label>
       <div class="col-sm-9">
       	<div class="btn-group">
-            <select name="vendor_location_id"class="form-control" required="required" id="vendor_location_id">
-           <option value="">Select Key </option>
-            </select>
+          <div id="vendor_location_id" name="vendor_location_id">
+
+          </div>            
         </div>
 		
       </div>
     </div>
+    
+    
+ <!--------------------------->   
     
     
     
@@ -366,42 +335,41 @@ body{background-color:#fff}
       
     </div>
     
-    <div class="form-group">
-      <label class="col-sm-3 control-label">Add location<span class="text-danger">*</span></label>
-      <div class="col-sm-9">
-        <input type="text" name="added_locaion" id="added_locaion"  value="<?php if(isset($customer_details[0]->customer_name)){echo $customer_details[0]->cutomer_location;} else {echo set_value('added_locaion');} ?>" class="form-control">
-   <em class="errorlocation" style="color:red;font-size:red"></em>      
-	  </div>
-      
-    </div>
     
     <div class="form-group">
       <label class="col-sm-3 control-label">Any Feedback <span class="text-danger"></span></label>
       <div class="col-sm-9">
-        <textarea  class="form-control" rows="10" name="feadback" ><?php if(isset($customer_details[0]->cutomer_feadback)){echo $customer_details[0]->cutomer_feadback;} else {echo set_value('feadback');} ?></textarea>
+        <textarea  class="form-control" rows="10" name="feadback" ><?php if(isset($customer_details[0]->cutomer_feadback)){echo $customer_details[0]->cutomer_feadback;} else {echo $this->input->post('feadback');} ?></textarea>
         
          </div>
     </div>
 
     <div class="form-group">
       <label class="col-sm-3 control-label">Experience<span class="text-danger">*</span></label>
-      <div class="col-sm-9">
- <?php if($get_details[0]->experience=='home'){ echo 'checked';}  ?>        
-<input type="radio" name="experience"  id="experience1" value="home" <?php if($get_details[0]->experience=='home'){ echo 'checked';}  ?> class="" required aria-required="true">Home
-<input type="radio" name="experience" <?php if($get_details[0]->experience=='asa_guest'){ echo 'checked';}  ?>  id="experience2" value="asa_guest" class="" required aria-required="true">ASA Guest 
-<input type="radio" name="experience"  id="experience3" value="create_login" <?php if($get_details[0]->experience=='create_login'){ echo 'checked';}  ?> class="" required aria-required="true">Create User Login
-<input type="radio" name="experience"  id="experience4" value="only_verval" <?php if($get_details[0]->experience=='only_verval'){ echo 'checked';}  ?> class="" required aria-required="true">Only Verbal
+      <div class="col-sm-9">      
+<input type="radio" name="experience"id="experience1"value="home" class="" required aria-required="true"
+<?php if($customer_details[0]->experience=='home'){ echo 'checked';}?>>Home
+
+<input type="radio" name="experience"  id="experience2" value="asa_guest" class="" required aria-required="true"
+<?php if($customer_details[0]->experience=='asa_guest'){ echo 'checked';}?>>ASA Guest 
+
+<input type="radio" name="experience"  id="experience3" value="create_login" <?php if($customer_details[0]->experience=='create_login'){ echo 'checked';}?> class="" required aria-required="true">Create User Login
+
+<input type="radio" name="experience"  id="experience4" value="only_verval" <?php if($customer_details[0]->experience=='only_verval'){ echo 'checked';}?> class="" required aria-required="true">Only Verbal
 	  </div>
     </div>
     
     <div class="form-group">
       <label class="col-sm-3 control-label">Active Coupon<span class="text-danger"></span></label>
       <div class="col-sm-9">
-      	<div class="btn-group">          
-            <select name="active_coupon"class="form-control" required="required" id="active_coupon">
-             
-			 <option  value=""selected>Select Coupon Code</option>
-<option value="" <?php if($get_details[0]->experience!=''){ echo  'selected';}?>><?php echo $get_details[0]->coupon_codes;?></option>
+     
+      	<div class="btn-group">      
+            <select name="active_coupon"class="form-control" required="required" id="active_coupon">  
+             <?php if(!empty($id)){ foreach($promo_codes as $romo){ ?>
+             <option value="<?php  echo $romo->promo_name_code;?>" <?php if($customer_details[0]->active_coupon==$romo->promo_name_code){echo 'selected';} ?>  ><?php  echo $romo->promo_name_code;?></option>
+             <?php } }else{?>
+             <option  value=""selected>Select Coupon Code</option>
+             <?php }?>
             </select>
         </div>
 	
@@ -411,9 +379,10 @@ body{background-color:#fff}
     <div class="form-group">
       <label class="col-sm-3 control-label">Register Customer<span class="text-danger"></span></label>
       <div class="col-sm-9">
-         
-     <input type="radio" name="customer_register" id="n" value="yes" class="" required aria-required="true" >Yes
-     <input type="radio" name="customer_register" id="experience" value="no" class="" required aria-required="true">No
+ <input type="radio" name="customer_register" id="n" value="yes" class="" required aria-required="true" 
+ <?php if($customer_details[0]->customer_register=='yes'){ echo 'checked';}?>>Yes
+     <input type="radio" name="customer_register" id="experience" value="no" class="" required aria-required="true"
+     <?php if($customer_details[0]->customer_register=='no'){ echo 'checked';}?>>No
             
 	  </div>
     </div>

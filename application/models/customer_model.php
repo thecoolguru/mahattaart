@@ -12,25 +12,109 @@ class Customer_model extends CI_Model
 
     }
 	
+
+
+/************************2-1-2018*********************************/
+
+public function create_location_id($verdor_types)
+	{
+	  $this->db->select_max('id');
+      $this->db->where('vendor_types',$verdor_types);
+      $query= $this->db->get('kiosk_users');
+	 // print_r($query->result());
+	  return $query->result();
+	
+	}
+	
+	
+public function get_kiosk_details($id)
+	{
+	    $this->db->where('id',$id);
+	    $query=$this->db->get('kiosk_users');
+	   //print_r($query->result());
+	   return $query->result();
+	}
+
+public function get_vendor_types_model()
+	{
+	  $get_vendor=$this->db->get('vendor_types');  
+	  //print_r($get_vendor->result()); die();
+	  return $get_vendor->result();
+	}	
+		
+
+
+public function update_kiosk($id,$data2)
+	{
+
+	  
+	     $this->db->set($data2);
+         $this->db->where('id', $id);
+         $this->db->update('kiosk_users');
+	  
+	   
+    }
+
+
+public  function add_kiosk_users_model($data)
+	{
+		
+		$this->db->insert('kiosk_users',$data);
+	
+	}	
+			
+
+
+
+
+
+
+
+/************************ end 2-1-2018*********************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+		
 	//27-12-2017
 	
 	
 	
-	public function get_query_data($vendor_loca_id)
+	public function get_query_data($vendor_types)
 	{
+		//echo $vendor_types;
+		
+		$this->db->distinct();
+		$this->db->select('location');
+		$this->db->where('vendor_types',$vendor_types);
+		$query=$this->db->get('kiosk_users');
 	   
-	  //$this->db->where('vend_loc_id',$vendor_loca_id);
-	   $query=$this->db->get('tbl_customer_query_data');
-	   //print_r($query->result());
 	   return $query->result();
 	   
 	}
 	
-	public  function get_query_location_key($vendor_location_key)
+	
+	public  function get_query_location_key($vendor_location)
 	{
 		
-		  $this->db->where('vend_loc_key_id',$vendor_location_key);
-	      $query=$this->db->get('tbl_customer_query_data');
+		  $this->db->select('*');
+		  $this->db->where('location',$vendor_location);
+	      $query=$this->db->get('kiosk_users');
 	      return $query->result();
 	  
 		
@@ -99,19 +183,9 @@ class Customer_model extends CI_Model
 	
 	
 	
-	public function get_vendor_types_model()
-	{
-	  $get_vendor=$this->db->get('vendor_types');  
-	  //print_r($get_vendor->result()); die();
-	  return $get_vendor->result();
-	}
 	
-	public  function add_kiosk_users_model($data)
-	{
-		
-		$this->db->insert('kiosk_users',$data);
 	
-	}
+	
 	public function view_kiosk_users_model()
 	{
 	 

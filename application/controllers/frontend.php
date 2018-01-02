@@ -1713,12 +1713,29 @@ public function themes_lightbox($lightbox_id,$page_no,$offset=0)	{
 		$this->load->view('frontend/footer');
 	}
 
-	public function themes_view($lightbox_id,$page_no,$offset=0)	{
-		if($page_no=='')	{
+	public function themes_view($lightbox_id,$page_no,$category="none",$shape="none",$offset=0)	{
+		if($page_no==''){
 			$page_no=1;
 		}
+		
+		$data['shape']=$shape;
+		if($category=='none' || $category=='all'){
+		$category='';
+		}else{
+		$category=$category;
+		}
+		if($shape=='none'){
+		$shape='';
+		}else{
+		$shape=$shape;
+		}
+		$data['category_themes']=$category;
+		//echo $category;
 		$per_page=20;
-		$search_file="http://api.indiapicture.in/wallsnart/search_catagory.php?q=$lightbox_id&page=$page_no&per_page=$per_page";
+		$data['lightbox_id']=$lightbox_id;
+		$data['page_no']=$page_no;
+		
+		$search_file="http://api.indiapicture.in/wallsnart/search_catagory.php?q=$lightbox_id&page=$page_no&per_page=$per_page&category=$category&shape=$shape";
 		//print_r($search_file);
 		$opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
 		$context = stream_context_create($opts);
@@ -1730,6 +1747,7 @@ public function themes_lightbox($lightbox_id,$page_no,$offset=0)	{
 		//$per_page = 10;  
 		$offset = ($this->uri->segment(4) != '' ? $this->uri->segment(4):0);
 		$config["total_rows"] = $search_data_r['total'];
+		$data["total_rows"] = $search_data_r['total'];
 		$config['per_page']= $per_page;
 		$config['use_page_numbers'] = TRUE;
 		$config['first_link'] = 'First';
@@ -1749,7 +1767,7 @@ public function themes_lightbox($lightbox_id,$page_no,$offset=0)	{
 		//$data["image"] = $this->frontend_model->get_images_lightbox_gallery($lightbox_id,$config["per_page"], $offset); 
 		$data['lightbox_id']=$lightbox_id;				
 		$user_id=$this->session->userdata('userid');
-		$this->load->view('frontend/header');
+		$this->load->view('frontend/header',$data);
 		$this->load->view('frontend/themes_view',$data);
 		$this->load->view('frontend/footer');
 	}

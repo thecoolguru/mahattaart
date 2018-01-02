@@ -1405,7 +1405,7 @@ for($i=23;$i<=29;$i++){ ?>
 ?>
 <li>
 <?php if($drop8[$i]->keyword==27){?>
-<!--<a href="<?=base_url()?>frontend/themes_lightbox/<?php //echo $drop8[$i]->keyword;?>"><?php //print ucwords($drop8[$i]->title); ?></a>-->
+<a href="<?=base_url()?>frontend/themes_lightbox/<?php //echo $drop8[$i]->keyword;?>"><?php //print ucwords($drop8[$i]->title); ?></a>
 <?php }else{?>
 
 <a href="<?=base_url()?>frontend/themes_view/<?php echo $drop8[$i]->keyword;?>"><?php print ucwords($drop8[$i]->title); ?></a>
@@ -1461,7 +1461,7 @@ for($i=23;$i<=29;$i++){ ?>
 </li>
 <li> <a href="<?php print base_url(); ?>frontend/photostoframe" style="color:#ff9800">PHOTOS TO FRAME </a> </li>
 <li> <a href="<?php print base_url(); ?>frontend/clearance" style="color:#f1464f">CLEARANCE</a></li>
-<li> <a href="<?php print base_url(); ?>frontend/promooffer"> PROMOTIONAL OFFER </a></li>
+<li> <a href="<?php print base_url(); ?>frontend/promooffer" id="H9"> PROMOTIONAL OFFER </a></li>
 <!--<li> <a href="#">Frame your art </a>
 <li> <a href="#">Product Page</a>-->
 
@@ -1567,7 +1567,21 @@ function call_filter2(id)
     window.location.assign(url);
 }
 
+function themes_filter(id)
+{
 
+
+	  var url='<?=base_url()?>frontend/themes_view/<?=$lightbox_id?>/<? if($page_no!=''){ echo $page_no;}?>/'+id+'<? if($shape!='none'){ echo '/'.$shape;}?>';
+	 
+    window.location.assign(url);
+}
+
+function themes_filter_shape(shape)
+{
+	  var url='<?=base_url()?>frontend/themes_view/<?=$lightbox_id?>/<? if($page_no!=''){ echo $page_no;}?>/<? if($category_themes!=''){ echo $category_themes;}else{ echo "all";} ?>/'+shape+'';
+	 
+    window.location.assign(url);
+}
 
 
 
@@ -1928,43 +1942,66 @@ $('#dsend').click(function(){
 		
 	});
 </script>
+  <style>
+  	.mcolor{color:#ff9800 !important}
+  </style>
 <script>
     $(document).ready(function(){
       $('.H2,.H3,.H4,.H5,.H6,.H7,.H8').hide();
       
       $('#H2').click(function(){
         $('.H2').toggle();  
+        $('#H2').toggleClass('mcolor');  
+        $('#H3,#H4,#H5,#H6,#H7,#H8,#H9').removeClass('mcolor');
         $('.H3,.H4,.H5,.H6,.H7,.H8').hide();
       })
       
       $('#H3').click(function(){
         $('.H3').toggle();  
+        $('#H3').toggleClass('mcolor');  
+        $('#H2,#H4,#H5,#H6,#H7,#H8,#H9').removeClass('mcolor');
         $('.H2,.H4,.H5,.H6,.H7,.H8').hide();
       })
       
       $('#H4').click(function(){
         $('.H4').toggle();  
+        $('#H4').toggleClass('mcolor');  
+        $('#H2,#H3,#H5,#H6,#H7,#H8,#H9').removeClass('mcolor');
         $('.H2,.H3,.H5,.H6,.H7,.H8').hide();
       })
       
       $('#H5').click(function(){
         $('.H5').toggle();  
+        $('#H5').toggleClass('mcolor');  
+        $('#H2,#H4,#H3,#H6,#H7,#H8,#H9').removeClass('mcolor');
         $('.H2,.H3,.H4,.H6,.H7,.H8').hide();
       })
       
       $('#H6').click(function(){
         $('.H6').toggle();  
+        $('#H6').toggleClass('mcolor');  
+        $('#H2,#H4,#H5,#H3,#H7,#H8,#H9').removeClass('mcolor');
         $('.H2,.H3,.H4,.H5,.H7,.H8').hide();
       })
       
       $('#H7').click(function(){
         $('.H7').toggle();  
+        $('#H7').toggleClass('mcolor');  
+        $('#H2,#H4,#H5,#H6,#H2,#H8,#H9').removeClass('mcolor');
         $('.H2,.H3,.H4,.H5,.H6,.H8').hide();
       })
       
       $('#H8').click(function(){
         $('.H8').toggle();  
+        $('#H8').toggleClass('mcolor');  
+        $('#H2,#H4,#H5,#H6,#H7,#H3,#H9').removeClass('mcolor');
         $('.H2,.H3,.H4,.H5,.H6,.H7').hide();
       })
+
+
+      $('#H9').click(function(){
+        $('#H9').toggleClass('mcolor');  
+        $('#H2,#H4,#H5,#H6,#H7,#H3,#H8').removeClass('mcolor');
+      })
     });
-</script>
+</script>  
