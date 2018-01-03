@@ -199,6 +199,7 @@ h2.product-detail{
 
 #selector-step{text-align:center}
 .panel.single-accordion {
+
   margin-bottom: 5px;
   box-shadow: 0 0px 0px rgba(0,0,0,0);
 }
@@ -378,11 +379,7 @@ ul.social-network li {
   background-color:transparent;
   border-color:transparent
 }
-#tabs-section2 p, #tabs-section3 p {
-  font-size: 15px;
-  line-height: 1.2em;
-  word-spacing: 2px;
-}
+
 #tabs-section3 #tab-4 > h3 h4 {
   text-decoration: underline;
 }
