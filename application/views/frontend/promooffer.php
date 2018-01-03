@@ -9,7 +9,7 @@
         	<img src="<?php echo base_url()?>assets/images/offer.jpg" class="img-responsive" />
         </div>
     	<div class="col-md-6">
-        	<img src="<?php echo base_url()?>assets/images/offer4.jpg" class="img-responsive" />
+        	
         </div>
     </div>
 	

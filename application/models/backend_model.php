@@ -842,13 +842,13 @@ public function get_all_invoice_details($invoice_id)
 	{
 
 		$this->db->select('*');
-		$this->db->where('email_id',$email);
-		$this->db->where('password',$password);
-		$query=$this->db->get('tbl_customer');
-
+		$this->db->where('email_id',trim($email));
+		$this->db->where('password',trim($password));
+	    $query=$this->db->get('tbl_customer');
+        //echo 'from'.$query->num_rows().'num';die;
 		if($query->num_rows()>0)
 		{
-
+//echo 'from'.$query->num_rows().'num';die;
 
 			return $query->row();
 		}

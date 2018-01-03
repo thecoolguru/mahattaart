@@ -212,41 +212,40 @@
         //customer_type
         if($_REQUEST['city']<>'')
         {
-         $query1="city like '%".$_REQUEST['city']."%'";   
+         $query1=" and city like '%".$_REQUEST['city']."%'";   
         }else
         if($_REQUEST['mail'])
         {
-         $query2=" email_id like '%".$_REQUEST['mail']."%'";   
+         $query2=" and email_id like '%".$_REQUEST['mail']."%'";   
         }
 		
 		else
         if($_REQUEST['customer_type'])
         {
-          $query9=" customer_type like '%".$_REQUEST['customer_type']."%'";  
+          $query9=" and customer_type like '%".$_REQUEST['customer_type']."%'";  
         }
 		
 		elseif($_REQUEST['cust_id'])
         {
-          $query3=" customer_id like '%".$_REQUEST['cust_id']."%'";  
+          $query3=" and customer_id like '%".$_REQUEST['cust_id']."%'";  
         }
 		elseif($_REQUEST['region'])
         {
-         $query4=" region = '".$_REQUEST['region']."'";   
+         $query4=" and  region = '".$_REQUEST['region']."'";   
           
         }
 		
 	elseif($_REQUEST['cust_name'])
         {
-         $query5="  first_name like '%".$_REQUEST['cust_name']."%'";   
+         $query5=" and   first_name like '%".$_REQUEST['cust_name']."%'";   
         }elseif($_REQUEST['company'])
         {
-         $query6="  company_name like '%".$_REQUEST['company']."%'";   
+         $query6=" and  company_name like '%".$_REQUEST['company']."%'";   
         }
         
-         $Query_1="select * from tbl_customer where status='1' and $query1 $query2 $query3 $query4 $query5 $query6 $query9 ";
+         $Query_1="select * from tbl_customer where status='1' and not region='' $query1 $query2 $query3 $query4 $query5 $query6 $query9 ";
         $selectQuery=  mysql_query($Query_1);
-       $numrows=  mysql_num_rows($selectQuery);
-          
+       $numrows=  mysql_num_rows($selectQuery);          
         if($numrows==0) {
           $selectQuery=  $rows_data;
         }else if($numrows>0){ 
