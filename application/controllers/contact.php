@@ -4,7 +4,7 @@ class Contact extends CI_Controller {
 
  function process()
  { 
-  $demail=$this->input->post('demail');
+  /*$demail=$this->input->post('demail');
   $this->load->library('email');
               //grab the post data
 $this->email->from($this->input->post('demail'), $this->input->post('dname'));
@@ -26,7 +26,7 @@ $this->email->from($this->input->post('demail'), $this->input->post('dname'));
 					.'Company:  '.$this->input->post('dcompany')
 					."\n"."\n"
 					.'City    :  '.$this->input->post('dcity')
-			);
+			);*/
 
 
    
@@ -85,8 +85,20 @@ $this->email->from($this->input->post('demail'), $this->input->post('dname'));
 
 ';
          
-        
-      $to=$demail;   
+        $this->email->clear(TRUE);
+      $this->email->from('info@mahattaart.com', 'MahattaArt');
+      //$this->email->to($demail);
+      $this->email->to('shiv@mahattamultimedia.com');
+      //$this->email->cc('operations@mahattaart.com');
+      $this->email->subject('Welcome to Mahatta Art');
+      $this->email->message($frntfrgtpwd);
+      $send=$this->email->send();
+      if($send) {
+         echo json_encode(array("result"=>"1"));
+      } else{
+        echo json_encode(array("result"=>"0"));
+      }
+      /*$to=$demail;   
 $headers  = 'MIME-Version: 1.0' . "\r\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 $headers .= 'From:MahattaArt<info@mahattaart.com>' . "\r\n";
@@ -106,7 +118,7 @@ $subject = 'Welcome to Mahatta Art';
   else
   {
    echo "Some problem occurred.";
-  }   
+  }*/   
  }
  
  

@@ -73,8 +73,8 @@ public function get_kiosk_users_details()
 	
 	public function add_kiosk_users()
 	{
-	   
-	   
+		
+	 
 	  
 		$id=$this->uri->segment(3);
 		//echo $id; die();
@@ -204,9 +204,7 @@ public function get_kiosk_users_details()
 	
 	
 	
-	   	
-		
-    }
+	}
 	
 	
 	public function view_kiosk_users()
@@ -241,10 +239,15 @@ public function get_kiosk_users_details()
 	  
 	  public function add_customer_query($id)
        {
-		   
+		
 		   
 		
+
+		
 		$query['get_vendor']=$this->customer_model->get_vendor_types_model();
+		 $experience=$this->uri->segment(5);
+		 $query['promo_codes']=$this->customer_model->get_promo_details($experience); 
+		 
 		//$query['query_data']=$this->customer_model->get_query_data();
 	    //print_r($get_data['query_data']);
 		$this->form_validation->set_rules('name','Name','required');
@@ -272,14 +275,16 @@ public function get_kiosk_users_details()
 		
 	if($id!='')
 		  {
+			  
 		 
-		
-		$query['customer_details']=$this->customer_model->get_customer_details($id);
+		 $query['kiosk_location']=$this->customer_model->get_kiosk_location($id);
+		 $query['customer_details']=$this->customer_model->get_customer_details($id);
 		
 		  }
 	
 	       if($this->form_validation->run()==true)
 		   {
+			
 			  $data=array(
 		                'vendor_types'=>$vendor_types,
 						'location'=>$vendor_location,
@@ -296,6 +301,7 @@ public function get_kiosk_users_details()
 						'customer_register'=>$customer_register
 				  
 				   );
+				   
 				   
 				   $submit_from="c_q_f"; 
 				   $customer_type="Retail";
@@ -319,32 +325,46 @@ public function get_kiosk_users_details()
 		$query['message_Failed']="Customer Query Not Submit,Please Check?";
 		if($id!='')
 		  {
-		$x=$this->customer_model->update_customer_details($id,$data);
-		redirect('index.php/customer/view_cutomer_query');
+	       		  
+		   
+		   $x=$this->customer_model->update_customer_details($id,$data);
+		   redirect('index.php/customer/view_cutomer_query');
 		 }else{
-			 
-			//echo $customer_register; die();
-			
 			
 			if($customer_register=='yes')
 			{
 				
-			$query['add_customer']=$this->customer_model->add_customer_query_mod($data);
-	        $this->customer_model->add_to_customer_model($customer_data);	
-				
+			  //$query['add_customer']=$this->customer_model->add_customer_query_mod($data);
+	          $this->customer_model->add_to_customer_model($customer_data);
+			
+			 //Send Email 
+			$to2="shahabalam78@gmail.com"; 			
+		    $this->email->from('info@mahattart.com', 'MahattaArt');
+			$this->email->to($to2);
+			$this->email->subject('Welcome to Mahatta Art');
+			$this->email->message("Welcome in Mahata Art");
+			$send=$this->email->send();		
 				
 				
 			}else{
 			
-			$query['add_customer']=$this->customer_model->add_customer_query_mod($data);	
+			$query['add_customer']=$this->customer_model->add_customer_query_mod($data);
+			  //Send Email 
+			$to2="shahabalam78@gmail.com"; 			
+		    $this->email->from('info@mahattart.com', 'MahattaArt');
+			$this->email->to($to2);
+			$this->email->subject('Welcome to Mahatta Art');
+			$this->email->message("Welcome in Mahata Art");
+			$send=$this->email->send();		
+				
+				
 				
 				}
-			 
-			 
 	$query['add_success']="Customer Query Added Success Fully,";
-	
-	
 			 }
+			
+			 
+			 
 	 }
 	 
 	  $this->load->view('backend/dashboard_header');
@@ -353,11 +373,13 @@ public function get_kiosk_users_details()
     
 		   
 		
-	  }
+	  
+		
+		}
 
 
 
-   public function get_query_details()
+  public function get_query_details()
    {
 	   $vendor_types=$this->input->post('vendor_types');
 	   
@@ -377,26 +399,18 @@ public function get_kiosk_users_details()
    
    
    
-   
-  public function get_query_location_keys()
+ public function get_query_location_keys()
       {
 	   $vendor_location=$this->input->post('vendor_location');
-	   $get_ven_location_key=$this->customer_model->get_query_location_key($vendor_location);
-	 
-		echo '<option>'.'Select Location Key Id'.'</option>';
-		foreach($get_ven_location_key as $r){
-			//$location_id=$r->location_id;			
-			?>
-       <option value="<?php  echo $r->location_id; ;?>"><?php  echo $r->location_id ;?></option>
-            
-            <?php
-		}
-	   
-	   
+	   $get=$this->customer_model->get_query_location_key($vendor_location);
+	  
+	 ?>
+     <input type="hidden" name="vendor_location_id" class="form-control"  value="<?php  echo $get[0]->location_id; ;?>">
+     <?php
    }
    
    
-   public function get_location_keys()
+     public function get_location_keys()
    {
 	   $location=$this->input->post('location');
 	  // print_r($vendor_types); die();
@@ -557,7 +571,8 @@ public function get_kiosk_users_details()
         
     }
 	public function add_customer()
-    { 
+    {
+	   
 	    $data['get_vendor']=$this->customer_model->get_vendor_types_model(); 
 		//$data['get_details']=$this->customer_model->get_kiosk_details($id);
         //$data['vtypes']=$this->customer_model->get_vendor_types_model(); 
@@ -565,21 +580,25 @@ public function get_kiosk_users_details()
 		$this->load->view('backend/dashboard_header');
         $this->load->view('backend/customer/add_customer',$data);
         $this->load->view('backend/footer');
-    }
+    	
+	}
     public function add_customer_final()
     {
+	  
+	
+	
 		
      
-			
+			$data['get_vendor']=$this->customer_model->get_vendor_types_model();
 			$verdor_types_id=$this->input->post('verdor_types');
-		    $result['vlocation']=$this->customer_model->edit_location($verdor_types_id);
-	   
+		   
 	    if($this->session->userdata('userid'))
     {
 	
         $data['msg']="";
 		//print_r($data);die;
-        $this->form_validation->set_rules('email','Email','required');
+        $this->input->post('customer_type');
+		$this->form_validation->set_rules('email','Email','required');
         $this->form_validation->set_rules('fname','Name','required');
         $this->form_validation->set_rules('lname','Last Name','required');
         $this->form_validation->set_rules('address','Address','required');
@@ -591,24 +610,15 @@ public function get_kiosk_users_details()
         $this->form_validation->set_rules('contact','Contact','required');
 		
 		
-		//echo $this->input->post('iama')." ".$this->input->post('job_description');
-		//die();
-		
-		
-		/*Mailing Variable*/
-		
-		
-		
-		
-		/*--End Mailing--*/
-		
         
   
-//echo $this->input->post('customer_type');
+ 
  if($this->input->post('customer_type')=='B2B')
  {
-      
-    if($this->input->post('occupation')=='Hospitality')
+	 
+    
+	
+	if($this->input->post('occupation')=='Hospitality')
     {
         
      ////// Hospitality//////////
@@ -673,7 +683,7 @@ elseif($selecthospitality<>'')
 }
  $Indusry;
 
-         //die;
+        
          $b2cp=$this->input->post('customer_type');
 		 
 		 
@@ -692,12 +702,12 @@ elseif($selecthospitality<>'')
           if($this->form_validation->run()==false){
 			  
 			  
-			  $data['get_vendor']=$this->customer_model->get_vendor_types_model();
+			  //$data['get_vendor']=$this->customer_model->get_vendor_types_model();
 			  
-			$verdor_types=$this->input->post('verdor_types');			
-$data['vtypes']=$this->customer_model->get_vendor_types_model();
-$data['get_details']=$this->customer_model->get_kiosk_details($id);
-$data['vtypes']=$this->customer_model->get_vendor_types_model(); 
+$verdor_types=$this->input->post('verdor_types');			
+//$data['vtypes']=$this->customer_model->get_vendor_types_model();
+//$data['get_details']=$this->customer_model->get_kiosk_details($id);
+//$data['vtypes']=$this->customer_model->get_vendor_types_model(); 
 
 			  
 			  
@@ -705,9 +715,10 @@ $data['vtypes']=$this->customer_model->get_vendor_types_model();
             $data=array(
                     'customer_id'=>$this->input->post('customer_id'),
                     
-					'vendor_types_id'=>$this->input->post('vendor_types_id'),
-					'vendor_location_id'=>$this->input->post('vendor_location_id'),
-					'vendor_location_key_id'=>$this->input->post('vendor_location_key_id'),
+					'vendor_types'=>$this->input->post('verdor_types'),
+					'vendor_location'=>$this->input->post('location'),
+					'vendor_location_key_id'=>$this->input->post('vendor_location_id'),
+					'client_service'=>$this->input->post('client_service'),	
 					
 					'first_name'=>$this->input->post('fname'),
                     'last_name'=>$this->input->post('lname'),
@@ -755,10 +766,8 @@ $data['vtypes']=$this->customer_model->get_vendor_types_model();
                     'billing_region'=>$this->input->post('billingregion'),
                     'billing_city'=>$this->input->post('billingcity'),
                     'billing_cus_ac_type'=>$this->input->post('bactype'),
-                    'billing_cus_busi_type'=>$this->input->post('cbtype'),
                     'billing_contact_person'=>$this->input->post('billing_con_person'),
                     'billing_comp_address'=>$this->input->post('billing_comp_address'),
-					'billing_ac_sale_person'=>$this->input->post('billing_sale_person'),
 					'billing_cus_gst_num'=>$this->input->post('billing_gst_number'),
 					'billing_pan_number'=>$this->input->post('billing_pan_number'),
 					'billing_place_supply'=>$this->input->post('billing_place_supply'),
@@ -772,11 +781,8 @@ $data['vtypes']=$this->customer_model->get_vendor_types_model();
 					'shipping_company_name'=>$this->input->post('shipping_comp_name'),
                     'shipping_region'=>$this->input->post('shipping_comp_region'),
                     'shipping_city'=>$this->input->post('shipping_city'),
-                    'shipping_cus_ac_type'=>$this->input->post('shipping_cus_ac_type'),
-                    'shipping_cus_busi_type'=>$this->input->post('shipping_cus_busi_type'),
                     'shipping_contact_person'=>$this->input->post('shipping_com_con_person'),
                     'shipping_com-address'=>$this->input->post('shipping_comp_address'),
-				'shipping_ac_sale_person'=>$this->input->post('shipping_ac_sales_person'),
 					'shipping_gst_number'=>$this->input->post('shipping_gst_num'),
 					'shipping_pan_number'=>$this->input->post('shipping_pan_num'),
 					'shipping_place_supply'=>$this->input->post('shipping_place_supply'),
@@ -786,16 +792,14 @@ $data['vtypes']=$this->customer_model->get_vendor_types_model();
 					 /*End Billig*/
 					 
 					 
-	/* THIS IS EXECUTED IF ANY ERROR OCCURCE */
+	
 					 
 					 );
 					 
-					 /*
-					 echo "<pre>".var_dump($data)."</pre>";
-					 die();  */
 					 
 					 
-					 $this->customer_model->insert_customer($data);
+					 
+				$this->customer_model->insert_customer($data);
                 $data['msg']="Customer Has Been Successfully Added.";
 				$data['msg_for_b2cp']="b2cp";
 				}
@@ -813,10 +817,10 @@ $data['vtypes']=$this->customer_model->get_vendor_types_model();
 
             $data=array(
                     'customer_id'=>$this->input->post('customer_id'),
-					'vendor_types_id'=>$this->input->post('verdor_types'),
-					'vendor_location_id'=>$this->input->post('location'),
-					'vendor_location_key_id'=>$this->input->post('verdor_id2'),
-					
+					'vendor_types'=>$this->input->post('verdor_types'),
+					'vendor_location'=>$this->input->post('location'), 
+					'vendor_location_key_id'=>$this->input->post('vendor_location_id'),
+                    'client_service'=>$this->input->post('client_service'),					
                     'first_name'=>$this->input->post('fname'),
                     'last_name'=>$this->input->post('lname'),
                     'email_id'=>$this->input->post('email'),
@@ -863,10 +867,8 @@ $data['vtypes']=$this->customer_model->get_vendor_types_model();
                     'billing_region'=>$this->input->post('billingregion'),
                     'billing_city'=>$this->input->post('billingcity'),
                     'billing_cus_ac_type'=>$this->input->post('bactype'),
-                    'billing_cus_busi_type'=>$this->input->post('cbtype'),
                     'billing_contact_person'=>$this->input->post('billing_con_person'),
                     'billing_comp_address'=>$this->input->post('billing_comp_address'),
-					'billing_ac_sale_person'=>$this->input->post('billing_sale_person'),
 					'billing_cus_gst_num'=>$this->input->post('billing_gst_number'),
 					'billing_pan_number'=>$this->input->post('billing_pan_number'),
 					'billing_place_supply'=>$this->input->post('billing_place_supply'),
@@ -880,11 +882,9 @@ $data['vtypes']=$this->customer_model->get_vendor_types_model();
 					'shipping_company_name'=>$this->input->post('shipping_comp_name'),
                     'shipping_region'=>$this->input->post('shipping_comp_region'),
                     'shipping_city'=>$this->input->post('shipping_city'),
-                    'shipping_cus_ac_type'=>$this->input->post('shipping_cus_ac_type'),
                     'shipping_cus_busi_type'=>$this->input->post('shipping_cus_busi_type'),
                     'shipping_contact_person'=>$this->input->post('shipping_com_con_person'),
                     'shipping_com-address'=>$this->input->post('shipping_comp_address'),
-				'shipping_ac_sale_person'=>$this->input->post('shipping_ac_sales_person'),
 					'shipping_gst_number'=>$this->input->post('shipping_gst_num'),
 					'shipping_pan_number'=>$this->input->post('shipping_pan_num'),
 					'shipping_place_supply'=>$this->input->post('shipping_place_supply'),
@@ -897,7 +897,7 @@ $data['vtypes']=$this->customer_model->get_vendor_types_model();
 					 
 					 
 					 );
-					 //echo "<pre>", var_dump($data), "</pre>";				 
+					
 										 
 					 
 			
@@ -948,6 +948,11 @@ $data['vtypes']=$this->customer_model->get_vendor_types_model();
     }
     		
 		
+		
+	
+	
+	
+	
 		
 	}
 

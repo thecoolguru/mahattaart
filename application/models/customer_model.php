@@ -11,6 +11,13 @@ class Customer_model extends CI_Model
         $this->load->database();
 
     }
+
+public function get_vendor_types_model()
+	{
+	  $get_vendor=$this->db->get('vendor_types');  
+	  //print_r($get_vendor->result()); die();
+	  return $get_vendor->result();
+	}	
 	
 
 
@@ -35,12 +42,7 @@ public function get_kiosk_details($id)
 	   return $query->result();
 	}
 
-public function get_vendor_types_model()
-	{
-	  $get_vendor=$this->db->get('vendor_types');  
-	  //print_r($get_vendor->result()); die();
-	  return $get_vendor->result();
-	}	
+
 		
 
 
@@ -61,8 +63,53 @@ public  function add_kiosk_users_model($data)
 		
 		$this->db->insert('kiosk_users',$data);
 	
-	}	
-			
+	}
+	
+public function get_promo_details($experience_value)
+	{
+		$this->db->select('*');
+		$this->db->where('promo_name',$experience_value);
+		$this->db->where('active','1');
+		$query=$this->db->get('tbl_promo_code');
+		return $query->result();
+	
+	}		
+		
+		
+public function get_kiosk_location($id)
+	{
+	  $this->db->where('id',$id);
+	  $query=$this->db->get('kiosk_users');
+	  //print_r($query->result());
+	  return $query->result();
+	}
+	
+public function get_customer_details($id)
+      {
+        $this->db->where('id',$id);
+	    $query=$this->db->get('tbl_customer_query');
+	    return $query->result();
+      }
+	  	
+public function update_customer_details($id,$data)
+	  {
+	 
+	   $this->db->where('id',$id);
+	   $result=$this->db->update('tbl_customer_query',$data);
+        	  
+	  }
+	  
+
+	public function add_customer_query_mod($data)
+    {
+	
+	 $this->db->insert('tbl_customer_query',$data);
+	 $las_id=$this->db->insert_id();
+	  return $last_id;	  
+	} 
+		  
+	  
+  				
 
 
 
@@ -152,15 +199,7 @@ public  function add_kiosk_users_model($data)
 	}
 	
 	
-	public function get_promo_details($experience_value)
-	{
-		$this->db->select('*');
-		$this->db->where('promo_name',$experience_value);
-		$this->db->where('active','1');
-		$query=$this->db->get('tbl_promo_code');
-		return $query->result();
-	
-	}
+
 	
 	public function get_vendor_location_model($vendor_id)
 	{
@@ -223,12 +262,7 @@ public  function add_kiosk_users_model($data)
 	
 	
 	
-	public function add_customer_query_mod($data)
-    {
 	
-	 $query=$this->db->insert('tbl_customer_query',$data);
-	 	  
-	} 
 	
 
     public function get_parent_customers()
@@ -677,20 +711,7 @@ public function get_customers_type()
 	 
 	}
 	
-	public function get_customer_details($id)
-      {
-        $this->db->where('id',$id);
-	    $query=$this->db->get('tbl_customer_query');
-	    return $query->result();
-      }
-	  
-	  public function update_customer_details($id,$data)
-	  {
 	 
-	   $this->db->where('id',$id);
-	   $result=$this->db->update('tbl_customer_query',$data);
-        	  
-	  }
   
     public function edit_customer_query_mode($id,$data)
       {

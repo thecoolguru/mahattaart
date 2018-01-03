@@ -12,8 +12,14 @@
         <ul>
           <?php  
   
-		    foreach($sub_val as $values){?>
-          <li><a href="<?php print base_url(); ?>frontend/themes_view/<?php echo  $values->keyword ;?>"><?php echo $values->title;?></a></li>
+		    foreach($sub_val as $values){
+			if($values->keyword=='27'){
+			$link='themes_lightbox/';
+			}else{
+			$link='themes_view/';
+			}
+			?>
+          <li><a href="<?php print base_url(); ?>frontend/<?=$link?><?php echo  $values->keyword ;?>"><?php echo $values->title;?></a></li>
           <?php }?>
         </ul>
       </div>
@@ -113,9 +119,15 @@
     <div class="row">
             <?php 
 		    foreach($sub_val as $values){
+			//print_r($values);
+			if($values->keyword=='27'){
+			$link='themes_lightbox/';
+			}else{
+			$link='themes_view/';
+			}
          ?>
             <div class="artist_Photo col-md-2 col-sm-3 col-xs-6">
-              <div class="thumbnail"> <a href="<?php print base_url(); ?>frontend/themes_view/<?=$values->keyword?>"> <img src="<?php print base_url();?><?=$values->image?>" class="img-responsive" /> </a>
+              <div class="thumbnail"> <a href="<?php print base_url(); ?>frontend/<?=$link?><?=$values->keyword?>"> <img src="<?php print base_url();?><?=$values->image?>" class="img-responsive" /> </a>
                 <div class="artist_tag">
                   <?=$values->title?>
                 </div>
