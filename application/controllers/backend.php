@@ -1196,13 +1196,13 @@ public function invoice_view($invoice_id)
 		$this->form_validation->set_rules('cname','Name','required');
 		if($this->form_validation->run()==true)
 		{ 
-            echo  $login_user=$this->input->post('login_user');
+             $login_user=$this->input->post('login_user');
 			  
 			  $email=$this->input->post('cname');
 		     $password=$this->input->post('pwdfg');
 			  if($login_user==1){
 		     $admin=$this->backend_model->login_verification($email,$password);
-			   
+			   //echo $admin.'lev';die;
             if($admin)
 			{
 			 $level=$admin->access_level;
@@ -1214,6 +1214,7 @@ public function invoice_view($invoice_id)
 
 			if($level==1)
 			{
+			//echo "sajid";die;
 				$this->session->set_userdata('userid',$admin->channel_partner_id);
 				$this->session->set_userdata('userid',$admin->email_id);
                           $this->session->set_userdata('first_name',$admin->first_name);

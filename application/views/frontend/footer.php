@@ -477,7 +477,15 @@ $result=$this->frontend_model->get_all_lightboxes2($user_id);
 	 
      
       <!-- Modal content-->
-      
+<script>
+    $(document).ready(function(){
+        $("#send_mail_btn").click(function(){
+            $("#signppp").show();
+            $("#loginpop").hide();
+            //alert('');
+        });
+    });
+</script> 
 
         <!-- BEGIN JIVOSITE CODE {literal} -->
 <script type='text/javascript'>
