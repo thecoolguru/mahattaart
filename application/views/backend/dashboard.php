@@ -53,19 +53,19 @@
  </ul>
 </li>
 
-<li><a href="<?=base_url()?>index.php/backend/inventory">Customer Query</a>
+<li><a href="#">Customer Query</a>
   <ul>
-      <li> <a href="<?=base_url()?>index.php/customer/add_customer_query">Add Query</a></li>
-      <li> <a href="<?=base_url()?>index.php/customer/view_cutomer_query">List Of Query</a></li>
+      <li> <a href="<?=base_url()?>index.php/customer/add_customer_query">Add Customer Query</a></li>
+      <li> <a href="<?=base_url()?>index.php/customer/view_cutomer_query">View Customer Query</a></li>
       
      
  </ul>
 </li>
 
-<li><a href="<?=base_url()?>index.php/backend/inventory">Query Form</a>
+<li><a href="#">Query Form Online</a>
   <ul>
- <li> <a href="<?=base_url()?>index.php/backend/add_query_form">Add Query</a></li>
- <li> <a href="<?=base_url()?>index.php/backend/show_query">List Of Query</a></li>
+ <li> <a href="<?=base_url()?>index.php/backend/add_query_form">Add Query Online</a></li>
+ <li> <a href="<?=base_url()?>index.php/backend/show_query">View Query Online</a></li>
       
      
  </ul>
@@ -119,9 +119,9 @@
 </ul>
 </li>
 
-<li><a href="<?=base_url();?>index.php/customer/add_kiosk_users">Add Vendor Types</a>
+<li><a href="<?=base_url();?>index.php/customer/add_kiosk_users">Add  kiosk Vendor Types</a>
 <ul>
-<li><a href="<?=base_url();?>index.php/backend/manage_web_price">View Web Pricing</a></li>
+<li><a href="<?=base_url();?>index.php/customer/view_kiosk_users">View Kiosk Vendor Types</a></li>
 </ul>
 </li>
 </ul>

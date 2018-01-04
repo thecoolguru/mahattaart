@@ -6,6 +6,120 @@ class Backend_model extends CI_Model
 	{
 		$this->load->database();
 	}
+	
+/*************Query Form**************/
+ public function add_form($data)
+  { 
+	  
+	  $this->db->insert('tbl_query_form',$data);
+  }
+  
+   public function get_record()
+  {
+   
+   $this->db->order_by('id', 'DESC');
+   $query=$this->db->get('tbl_query_form');
+   return $query->result();
+  
+  }
+  
+   public function edit_model($id,$select)
+  {
+	 $this->db->where('id',$id);
+	 $query=$this->db->get('tbl_query_form',$id);
+	 return $query->result();
+  }
+  
+  
+   public function edit_record($id,$data)
+  {
+    $this->db->where('id',$id);
+	$this->db->update('tbl_query_form',$data);
+  }
+  
+  
+    public function delete_form_model($id)
+  {
+   
+   $this->db->where('id',$id);
+   $this->db->delete('tbl_query_form');
+  } 
+  
+  
+   public function view_details_model($id)
+  {
+   
+   $this->db->where('id',$id);
+   $quuery=$this->db->get('tbl_query_form');
+   return $quuery->result();
+    
+  }
+  
+  
+  
+//Submisssion
+
+
+public function  add_submission_model($data)
+ {
+  //$this->db->set('added_date',now());
+  $this->db->insert('tbl_form_submission',$data);
+  
+ }
+ 
+ public function view_submission_model($query_form_id)
+ {
+	 
+	 $this->db->where('query_form_id',$query_form_id);
+	 $this->db->order_by('id','DESC');
+	 $query=$this->db->get('tbl_form_submission');
+    // print_r($query->result());
+	 return $query->result();
+ }
+ 
+ public function delete_submission_model($id)
+ {
+   $this->db->where('id',$id);
+   $this->db->delete('tbl_form_submission');
+ }
+ 
+ public function show_in_edit($sub_id)
+ {
+  $this->db->where('id',$sub_id);
+  $query=$this->db->get('tbl_form_submission');
+  return $query->result();
+ }
+ 
+ public function get_query_id_model($id)
+ {
+	 $this->db->where('id',$id);
+	 $this->db->select('query_form_id');
+	 $query=$this->db->get('tbl_form_submission');
+	 return $query->result();
+ 
+ }
+ public function edit_submission_record_model($sub_id,$data)
+ {
+  
+  $this->db->where('id',$sub_id);
+  $this->db->update('tbl_form_submission',$data);
+ 
+ }  
+   
+
+
+
+
+
+
+
+
+/************End Query Form****************/
+	
+	
+	
+	
+	
 
 	public function insert_channel_partner($data)
 	{

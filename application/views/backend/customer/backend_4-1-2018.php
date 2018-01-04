@@ -20,16 +20,38 @@ class Backend extends CI_Controller
 
 	}
 	
-/*****************************************Query form***************************************************/
+	
+	
+	/*Functio To Add Query*/
 	public function add_query_form()
 	{
-	    
-	
-	  $this->form_validation->set_rules('name','Name','required');
-	  $this->form_validation->set_rules('mobile','Mobile','required');
-	  $this->form_validation->set_rules('email','Email','required|valid_email');
-	  $this->form_validation->set_rules('address','Address','required');
-	  $this->form_validation->set_rules('state_city','State City','required');
+	 $this->form_validation->set_rules('name','Name','required');
+	 $this->form_validation->set_rules('mobile','Mobile','required');
+	 $this->form_validation->set_rules('landline','Landline Number','required');
+	 $this->form_validation->set_rules('email','Email','required|valid_email');
+	 $this->form_validation->set_rules('comp_name','Compny Name','required');
+	 $this->form_validation->set_rules('address','Address','required');
+	 $this->form_validation->set_rules('state_city','State/City','required');
+	 $this->form_validation->set_rules('region','Region','required');
+	 $this->form_validation->set_rules('relat_manager','Relationship Manager','required');
+	 $this->form_validation->set_rules('art_researcher','Art Researcher','required');
+	 $this->form_validation->set_rules('proto_type','Proto Types','required');
+	 $this->form_validation->set_rules('place_of_display','Name','required');
+	 $this->form_validation->set_rules('size_of_wall','Size Of Wall','required');
+	 $this->form_validation->set_rules('color_of_wall','Wall Color','required');
+	 $this->form_validation->set_rules('display_place','This','required');
+	 $this->form_validation->set_rules('total_arts','Total Arts','required');
+	 $this->form_validation->set_rules('orientation','Orientation','required');
+	 $this->form_validation->set_rules('bud_per_work','This','required');
+	 $this->form_validation->set_rules('total_budget','Total Budget','required');
+	 $this->form_validation->set_rules('creative_details','Creative Details','required');
+	 $this->form_validation->set_rules('general_theme','This','required');
+	 $this->form_validation->set_rules('source_type','Source Type','required');	 
+	 $this->form_validation->set_rules('date_of_submission','Submission Date','required');
+	 //$this->form_validation->set_rules('feadback_submission','Feadback','required');
+	 /*Image*/
+	 //$this->form_validation->set_rules('mode_submission','Submission Mode','required');
+	 
 	
 	 $name=trim($this->input->post('name'));
 	 $alternate_name=trim($this->input->post('alternate_name'));
@@ -46,7 +68,7 @@ class Backend extends CI_Controller
 	 $art_researcher=trim($this->input->post('art_researcher'));
 	 $propert_types=implode(',',$this->input->post('property_type'));
 	
- 	 //Remove emptY array key
+ 	 //Remove emprt array key
 	 $remove_key=array_filter($this->input->post('place_of_display'));
 	 $place_of_display=implode(',',$remove_key);
 	
@@ -64,18 +86,18 @@ class Backend extends CI_Controller
 	 $creative_details=trim($this->input->post('creative_details'));
 	 $general_theme=trim($this->input->post('general_theme'));
 	 $source_type=trim($this->input->post('source_type'));
+	 $source_type=trim($this->input->post('source_type'));
 	 $date_of_submission=trim($this->input->post('date_of_submission'));
-	 $first_sub_updated_by=trim($this->input->post('first_sub_updated_by'));
-	
+	 $feadback_submission=trim($this->input->post('feadback_submission'));
+	 $mode_submission=trim($this->input->post('mode_submission'));
 	 
-	 
+	 $current_date=date('d-m-Y');
+	 $originalDate = $date_of_submission;
+     $newDate = date("d-m-Y", strtotime($originalDate));
   
 	  
 	  if($newDate<$current_date){$date['error_date']="Submission Date must be greater than or Equal to current date.";}
-	  
-	  
-	  
-	  $data=array(
+	 $data=array(
 			      
 			  'contact_person'=>$name,
 			  'alternate_name'=>$alternate_name,
@@ -102,64 +124,58 @@ class Backend extends CI_Controller
 			  'total_budget'=>$total_budget,
 			  'creative_details'=>$creative_details,
 			  'general_theme'=>$general_theme,
-			  'source_types'=>$source_type 			  
+			  'source_types'=>$source_type,
+			  'date_1st_submission'=>$newDate,
+			  			  
 			  
-		
+			  
+			  //'submission_date'=>$newDate,
+			  //'feadback'=>$feadback_submission,
+			  //'image'=>$mode_submission,
+			    
 				  );
-		
-	 
+				  	
 				  
-	     if($this->form_validation->run()==FALSE)
+	     if($this->form_validation->run()==true)
 		 {
-					$this->load->view('backend/dashboard_header');
 					$this->load->view('backend/query_form/form'); 
-					$this->load->view('backend/footer');
 		 }
          else{
-				 $data['added_form']=$this->backend_model->add_form($data);
+			
+			     
+				 
+				 $this->load->model('form_model'); 
+				 $data['added_form']=$this->form_model->add_form($data);
 				 $data['added_success']="Record Successfully Added.";
 				 $this->load->view('backend/dashboard_header');
 			     $this->load->view('backend/query_form/form',$data);
 				 $this->load->view('backend/footer');
 			 }
 		
-		
-		
+	
+	  
+	
 	}//End addd query from
 	
 	
-	public function show_record()
+   
+   /*Functio To Display Query List*/
+	public function edit_query_form($id)
 	{
-	  $data['get_data']=$this->backend_model->get_record();
-	  $this->load->view('backend/dashboard_header');
-	  $this->load->view('backend/query_form/View_form',$data);
-	   $this->load->view('backend/footer');	
-	}
-	
-	
-	public function delete_record($id)
-	{	 
-	 $this->backend_model->delete_form_model($id);
-	 redirect('backend/show_record');
-	}
-	
-	
-	
-	
-		public function edit($id)
-	     {
-	 
-	   $select=$this->backend_model->edit_model($id);
-	   $data['result']=$this->backend_model->edit_model($id,$select);
+        $this->load->model('form_model');
+	    $select=$this->form_model->edit_model($id);
+	   $this->load->model('form_model');
+	   $data['result']=$this->form_model->edit_model($id,$select);
       //Send Data
-	    $this->load->view('backend/dashboard_header');
+		$this->load->view('backend/dashboard_header');
 		$this->load->view('backend/query_form/form_edit',$data);
 	    $this->load->view('backend/footer');
-	   
 	}
 	
-	public function edit_record($id)
-	{
+	/*Functio To Update Query List*/
+  public function edit_record($id)
+  {
+     
 	 
 	 $this->form_validation->set_rules('mobile','Mobile','required');
 	 $this->form_validation->set_rules('landline','Landline Number','required');
@@ -183,7 +199,16 @@ class Backend extends CI_Controller
 	 $this->form_validation->set_rules('general_theme','This','required');
 	 $this->form_validation->set_rules('source_type','Source Type','required');	 
 	 $this->form_validation->set_rules('date_of_submission','Submission Date','required');
-	
+	 //$this->form_validation->set_rules('feadback_submission','Feadback','required');
+	 /*Image*/
+	 //$this->form_validation->set_rules('mode_submission','Submission Mode','required');
+	 
+	 
+	 
+	/*  
+	 $this->load->model('form_model');
+	 $select=$this->form_model->edit_model($id);
+	*/
 	 
 	 
 	
@@ -204,11 +229,6 @@ class Backend extends CI_Controller
 	 $relat_manager=trim($this->input->post('relat_manager'));
 	 $art_researcher=trim($this->input->post('art_researcher'));
 	 $propert_types=implode(',',$this->input->post('property_type'));
-	 
-	 
-	 //meeting
-	  $update_1st_sub_sec_time=trim($this->input->post('update_1st_sub_sec_time'));
-	 
 	
 	
 	 //Remove emprt array key
@@ -226,15 +246,90 @@ class Backend extends CI_Controller
 	 $bud_per_work=trim($this->input->post('bud_per_work'));
 	 $total_budget=trim($this->input->post('total_budget'));
 	 $creative_details=trim($this->input->post('creative_details'));
-	 $current_date=date('d-m-Y');
-	 $originalDate = $date_of_submission;
-     $newDate = date("d-m-Y", strtotime($originalDate));
 	 $general_theme=trim($this->input->post('general_theme'));
-	 $any_specific=trim($this->input->post('any_specific'));
-	 $art_form=trim($this->input->post('art_form'));
-	 $artts=trim($this->input->post('artts'));
 	 $source_type=trim($this->input->post('source_type'));
-	 $updated_date=date('d-m-Y');
+	 $source_type=trim($this->input->post('source_type'));
+	 
+	 
+	 
+	 //Date
+	 $date_of_1st_submission=trim($this->input->post('date_1st_sub'));
+	 $date_fisrt= date("d-m-Y", strtotime($date_of_1st_submission));
+	 
+	 $date_of_2nd_submission=trim($this->input->post('date_2nd_sub'));
+	 $date_second= date("d-m-Y", strtotime($date_of_2nd_submission));
+	
+	 
+	 $date_of_3rd_submission=trim($this->input->post('date_3nd_sub'));
+	 $date_third= date("d-m-Y", strtotime($date_of_3rd_submission));
+	 
+	 $date_of_4th_submission=trim($this->input->post('date_4th_sub'));
+	 $date_four= date("d-m-Y", strtotime($date_of_4th_submission));
+      
+      //FEADBACK
+     $feadback_1st_sub=trim($this->input->post('feadback_1st_sub'));
+     $feadback_2nd_sub=trim($this->input->post('feadback_2nd_sub'));
+     $feadback_3rd_sub=trim($this->input->post('feadbacb_3rd_sub'));
+     $feadback_4th_sub=trim($this->input->post('feadback_4th_sub'));
+	 
+	/*
+	 //Submission Files
+	 $first_sub_file=trim($this->input->post('first_sub_file'));
+	 $second_sub_file=trim($this->input->post('second_sub_file'));
+	 $third_sub_file=trim($this->input->post('third_sub_file'));
+	 $fourth_sub_file=trim($this->input->post('fourth_sub_file'));*/
+      
+	     $first_sub_file=trim($this->input->post('first_sub_file'));
+
+		 $location1="D:/xampp/htdocs/current_mirror/images/Upload_Files/";
+		 $upload1=move_uploaded_file($first_sub_file,$location1);
+	 
+	 //UPDATED BY
+	 $update_1st_sub=trim($this->input->post('update_1st_sub'));
+	 $update_2nd_sub=trim($this->input->post('update_2nd_sub'));
+	 $update_3rd_sub=trim($this->input->post('update_3rd_sub'));
+	 $update_4th_sub=trim($this->input->post('update_4th_sub'));
+	 
+	 
+	      //edi files
+	   
+	 
+	 
+  
+  
+  
+  /*
+         $config['upload_path']= './Upload_Files/'; 
+         $config['allowed_types']= 'php|xlsl'; 
+         $config['max_size']= 1000000000; 
+         $config['max_width']= 102400000; 
+         $config['max_height']= 76800000;  
+         $this->load->library('upload', $config);
+			
+         if ( ! $this->upload->do_upload($first_sub_file)) {
+            $error = array('error' => $this->upload->display_errors()); 
+            $this->load->view('backend/form/form_edit', $error); 
+         }
+			
+         else { 
+            $data = array('upload_data' => $this->upload->data()); 
+            $this->load->view('backend/form/form_edit',$data); 
+         } 
+  
+	  */
+	  
+	  
+	  
+if($date_of_1st_submission<$current_date){$date['error_date']="Submission Date must be greater than or Equal to current date.";}
+if($date_of_2nd_submission<$current_date){$date['error_date']="Submission Date must be greater than or Equal to current date.";}
+if($date_of_3rd_submission<$current_date){$date['error_date']="Submission Date must be greater than or Equal to current date.";}
+if($date_of_4th_submission<$current_date){$date['error_date']="Submission Date must be greater than or Equal to current date.";}
+
+	 	     
+
+
+$updated_date=date('d-m-Y');
+	 
 	 $data=array(
 			      
 			  'contact_person'=>$person_name,
@@ -262,232 +357,59 @@ class Backend extends CI_Controller
 			  'total_budget'=>$total_budget,
 			  'creative_details'=>$creative_details,
 			  'general_theme'=>$general_theme,
-			  'any_specific'=>$any_specific,
-			  'art_form'=>$art_form,
-			  'artitst'=>$artts,
 			  'source_types'=>$source_type,
-			  'last_update_date'=>$updated_date,
+			 
+			  
+			  'date_1st_submission'=>$date_fisrt,
+			  'date_2nd_submission'=>$date_second,
+			  'date_3rd_submission'=>$date_third,
+			  'date_4th_submission'=>$date_four,
+			  
+			  'feadback_1st_submission'=>$feadback_1st_sub,
+              'feadback_2nd_submission'=>$feadback_2nd_sub,
+			  'feadback_3rd_submission'=>$feadback_3rd_sub,
+			  'feadback_4th_submission'=>$feadback_4th_sub,
+			  
+			  'form_submission1'=>$first_sub_file,
+			  'form_submission2'=>$second_sub_file,
+			  'form_submission3'=>$third_sub_file,
+			  'form_submission4'=>$fourth_sub_file,
+			  
+			 
+			  
+              'updated_by_1st_submission'=>$update_1st_sub,
+			  'updated_by_2nd_submission'=>$update_2nd_sub,
+			  'updated_by_3rd_submission'=>$update_3rd_sub,
+			  'updated_by_4th_submission'=>$update_4th_sub,
+			  'last_update_date'=>$updated_date,  
+			 
+			
+			    
 				  );
 				  	
 		
 		if($this->form_validation->run()==true)
 		{
-		  $this->load->view('backend/form/form_edit');
+		  $this->load->view('backend/query_form/form_edit');
 		}else{
 	    		
-		
-				 $this->backend_model->edit_record($id,$data);
-				 $data['form_model']="Record Successfully Updated.";
-				 redirect('backend/show_record');
+	 $this->load->model('form_model');
+	 $this->form_model->edit_record($id,$data);
+	 $data['form_model']="Record Successfully Updated.";
+	 $message="Data Succcess fully pdated";
+	 redirect('backend/show_query',$message);
+
+			
 			 }
 		
-	 	  
-	}
-	
-	
-	
-	public function view_form_query_details($id)
-	{
-	 
-	 
-	 $data['details']=$this->backend_model->view_details_model($id);
-	 $this->load->view('backend/query_form/form_details',$data);
-	 
-	}
-	
-	
-	
-	
-	///Submission
-	
-	public function form_submission()
-	{
-	  $id=$this->uri->segment(3);
-	  $this->form_validation->set_rules('subm_date','Submission Date','required');  
-	  $subm_date=$this->input->post('subm_date');
-	  $date_updated_by=$this->input->post('date_updated_by');
-	  $files_upload_by=$this->input->post('files_upload_by');
-	  $subm_feadback=$this->input->post('subm_feadback');
-	  $feadback_update_by=$this->input->post('feadback_update_by');
-	  $sub_files=$this->input->post('sub_files');
-	  
-	  
-	     $config['upload_path']   = './Upload_Files/'; 
-         $config['allowed_types'] = 'php|doc|xlsx'; 
-         $config['max_size']      = 100; 
-         $config['max_width']     = 1024; 
-         $config['max_height']    = 768;  
-         $this->load->library('upload', $config);
-			
-      		
-	  
-	  $data=array(
-	               'submission_date'=>$subm_date,
-				   'query_form_id'=>$id,
-				   'date_updated_by'=>$date_updated_by,
-				   'submission-files'=>$sub_files,
-				   'file_updated_by'=>$files_upload_by,
-				   'submission_feadback'=>$subm_feadback,
-				   'feadback_update_by'=>$feadback_update_by,
-	  );
-	  
-	  
-	  if($this->form_validation->run()==FALSE)
-	  {
-		  
-		$this->load->view('backend/dashboard_header');
-		$this->load->view('backend/query_form/add_submission');
-	    $this->load->view('backend/footer');	
-		
-		  
-		  
-	  }else
-	  {
-	  
-		$query_data=$this->backend_model->add_submission_model($data);
-		$query_data['record_added']="Submission Successfully Added.";
-	   
-	    $this->load->view('backend/dashboard_header');
-		$this->load->view('backend/query_form/add_submission',$query_data);
-	    $this->load->view('backend/footer');	
-	  
-	  }
-
-	}
-	
-	
-	
-	
-	
-	
-	public function view_submissions()
-	{
-	  
-	  $query_form_id=$this->uri->segment(3);
-	
-	  $query['view_data']=$this->backend_model->view_submission_model($query_form_id);
-	  
-	   $this->load->view('backend/dashboard_header');
-	  $this->load->view('backend/query_form/view_submission',$query);
-	  $this->load->view('backend/footer');	
-	
-	}
-
-
-
-	public function delete_submission()
-	{
-		$id=$this->uri->segment(3);	
-			
-		
-		$fom_query_id=$this->backend_model->get_query_id_model($id);
-		//print_r($fom_query_id); die();
-		
-	    $query['delete_data']=$this->backend_model->delete_submission_model($id);
-		redirect('backend/view_submissions/'.$fom_query_id[0]->query_form_id);
-	
-	}
-	
-	
-		
-	public function edit_submission()
-	{
-		$sub_id=$this->uri->segment(5);
-		$form_queru_id=$this->uri->segment(6);
-		$query_data['edit_data']=$this->backend_model->show_in_edit($sub_id);
-		
-		$this->load->view('backend/dashboard_header');
-		$this->load->view('backend/query_form/edit_submission',$query_data);
-		 $this->load->view('backend/footer');	
-	   
-	}
-	
-	
-	
-	
-public function edit_submission_record()
-{
-	
-	$sub_id=$this->uri->segment(5);
-	$form_id=$this->uri->segment(6);
-	
-	
-	
-	
-	  $this->form_validation->set_rules('subm_date','Submission Date','required');  
-	  
-	  
-	  $subm_date=$this->input->post('subm_date');
-	  $date_updated_by=$this->input->post('date_updated_by');
-	  $files_upload_by=$this->input->post('files_upload_by');
-	  $subm_feadback=$this->input->post('subm_feadback');
-	  $feadback_update_by=$this->input->post('feadback_update_by');
-	  $sub_files=$this->input->post('sub_files');
-	   
-	        	
-				
-				
-				
-	  
-	  $data=array(
-	               'submission_date'=>$subm_date,
-				   'query_form_id'=>$form_id,
-				   'date_updated_by'=>$date_updated_by,
-				   'submission-files'=>$sub_files,
-				   'file_updated_by'=>$files_upload_by,
-				   'submission_feadback'=>$subm_feadback,
-				   'feadback_update_by'=>$feadback_update_by,
-	  );
-	  
-	  if($this->form_validation->run()==false)
-	  {
-	 
-		$this->load->view('backend/dashboard_header');	
-		$this->load->view('backend/query_form/edit_submission');
-		$this->load->view('backend/footer');	
-	  }else
-	  {
-		
-		$query_data['edit_record']=$this->backend_model->edit_submission_record_model($sub_id,$data);
-		
-		redirect('backend/view_submissions/'.$form_id);
-		
-		
-	  }
-	  
-	  
-	
-
-
-    
-
-
-}		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
-/***************************************************************************************************************************/	
-   
- 
-	
-	
+  }	
 	
 	/*Functio To show query  List*/
 	public function show_query()
 	{
 	
-	  
-	  $data['get_data']=$this->backend_model->get_record();  
+	  $this->load->model('form_model');
+	  $data['get_data']=$this->form_model->get_record();  
 	  $this->load->view('backend/dashboard_header');
 	  $this->load->view('backend/query_form/View_form',$data);
 	  $this->load->view('backend/footer');	
@@ -498,16 +420,21 @@ public function edit_submission_record()
 	public function delete_query_form($id)
 	{
 	
-	   
-	   $this->backened_model->delete_form_model($id);
+	   $this->load->model('form_model');
+	   $this->form_model->delete_form_model($id);
 	   redirect('backend/show_query');
 
 	}
 	
 	public function view_query_details($id)
 	{
+		
+		 
+	 $this->load->model('form_model');
 	 $data['details']=$this->form_model->view_details_model($id);
 	 $this->load->view('backend/query_form/form_details',$data);
+
+	
 	
 	}
 	

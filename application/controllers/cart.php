@@ -210,8 +210,6 @@ class Cart extends CI_Controller{
 	     foreach ($_POST as $key => $value){
 		$merchant_data.=$key.'='.urlencode($value).'&amp;';
 		}
-		/*$merchant_data="merchant_id=64544&amp;currency=INR&amount=8850.24&order_id=MA453511&redirect_url=http%3A%2F%2F52.74.175.72%2Fcart%2Fresponse&cancel_url=http%3A%2F%2F52.74.175.72%2Fcart%2Fcancel_url&language=en&billing_name=Deeksha+Sharmss&billing_address=143%2C+Amar+Jyoti+Knuj+appts%2C%2C+Mayur+Vihar%2C+Phase+1%2C+Delhi&billing_city=okhlaiia&billing_state=West+Bengal&billing_zip=110091&billing_country=India&billing_tel=9654819777&billing_email=shalini%40wallsnart.com&delivery_name=Deeksha&delivery_address=143%2C+Amar+Jyoti+Knuj+appts%2C%2C+Mayur+Vihar%2C+Phase+1%2C+Delhi&delivery_city=okhlaiia&delivery_state=West+Bengal&delivery_zip=110091&delivery_country=&delivery_tel=9654819777&merchant_param1=29&merchant_param2=MAI4665568&merchant_param3=mahatta+multimedia1aa&merchant_param4=gst_no&merchant_param5=pan+no&promo_code=&tid=123";*/
-		//echo $merchant_data;
         $merchant_id=$ccavenue_data[0];
 	   $working_key=$ccavenue_data[2];//Shared by CCAVENUES
 		$access_code=$ccavenue_data[1];//Shared by CCAVENUES

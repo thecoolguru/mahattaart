@@ -27,15 +27,11 @@ function del()
 
 
 <body>
-
+<center><p style="color:green"><?php if(isset($message)){echo $messaage;}{echo '';} ?></p></center>
 <div class="container-full">
  
+  <p><a href="<?php echo base_url('Form_Controller/form_submit'); ?>">Add New</a></p>            
   <table class="table table-bordered">
-    <tr>
-   <td><a href="<?php echo base_url('backend/add_query_form'); ?>">Add New</a></td>  
-   
-    </tr>
-    
     <thead>
       <tr class="danger">
         <th>Sno</th>
@@ -63,11 +59,9 @@ function del()
                      <td><?php echo $rowa->contact_number; ?></td>
                      <td><?php echo $rowa->landline_number; ?></td>
 					 <td><?php echo $rowa->email; ?></td>
-<td><a href="<?php echo base_url('backend/edit/'.$rowa->id); ?>">Edit</a></td>
-<td><a href="<?php echo base_url('backend/delete_record/'.$rowa->id);?>"   onClick="return del()" >Delete</a></td>
-<td><a href="<?php echo base_url('backend/view_submissions/'.$rowa->id);?>">Add Submission</a></td>
-
-<td><a href="<?php echo base_url('backend/view_form_query_details/'.$rowa->id); ?>">View Details</a></td>
+<td><a href="<?php echo base_url('backend/edit_query_form/'.$rowa->id); ?>">Edit</a></td>
+<td><a href="<?php echo base_url('backend/delete_query_form/'.$rowa->id);?>"   onClick="return del()" >Delete</a></td>
+<td><a href="<?php echo base_url('backend/view_query_details/'.$rowa->id); ?>">View Details</a></td>
                  </tr>
 				  
 				  <?php

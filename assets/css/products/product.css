@@ -178,12 +178,7 @@ h2.product-detail{
   margin: 20px 0;
 }
 .shipping-note {
-  clear: both;
   color: #888;
-  display: block;
-  font-family: "Helvetica Neue Regular",Helvetica,Arial,sans-serif;
-  font-weight: normal;
-  min-height: 13px;
 }
 .bottom-bar-crop{
   color: #444;
