@@ -1697,10 +1697,6 @@ function checkSubmit(e)
     .product-up2 p {
         text-align: center!important
     }
-    p {
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        margin: inherit;
-    }
     div#overlay {
         display: none
     }

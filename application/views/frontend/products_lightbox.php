@@ -468,7 +468,7 @@ $promo_amount=round($image_details[0]->unit_price*20/100);
 	<div id="22" style="position: relative;background-color: #888;">
 		
 
-		<div id="canvas_show" style="width:190px;position: absolute;transform: translate(-50%, 0%);left: 50%;top: 5%;">
+		<div id="canvas_show" style="width:120px;position: absolute;transform: translate(-50%, 0%);left: 50%;top: 5%;">
 		    <img id="canvas_show_bs" src="<?php echo $image_path; ?>" class="img-responsive">
 		</div>
         
@@ -1000,36 +1000,36 @@ function right(width,height,x){
             <h3 style="margin-top:0;border-bottom: 1px solid #eee;padding-bottom: 5px;"><?=$panel?> Panel Wall Art Set</h3>
             	<form class="form-horizontal">
                         <div class="form-group">
-                        	<label for="country" class="col-sm-4 menu-heading-text">
-                            	Panel Size<span class="menu-selection-text">(In Inches)</span>
+                        	<label for="country" class="col-sm-4" style="font-size:15px">
+                            	Panel Size<span style="font-size: 10px;margin-left: 2px; color:#888">(In Inches)</span>
                             </label>
-                            <div class="col-sm-8">
-	                       	<span name="print_dimension" id="dimension" class="form-control-static">
+                            <div class="col-sm-6">
+	                       	<p name="print_dimension" id="dimension" class="form-control-static">
 							<?php echo $image_details[0]->dimension;?>
-                        </span>
+                        </p>
                             </div>
                         </div>
                         <div class="form-group">
-                        	<label for="country" class="col-sm-4 menu-heading-text">
-                            	Total Size<span class="menu-selection-text">(In Inches)</span>
+                        	<label for="country" class="col-sm-4" style="font-size:15px">
+                            	Total Size<span style="font-size: 10px;margin-left: 2px; color:#888">(In Inches)</span>
                             </label>
-                            <div class="col-sm-8">
+                            <div class="col-sm-6">
 	                       	<span class="form-control-static" name="print_sizes" id="sizes"><?php echo $image_details[0]->width.'x'.$image_details[0]->height;?></span><span> inches</span>
                             </div>
                         </div>
                         <div class="form-group">
-                        	<label for="country" class="col-sm-4 menu-heading-text">
+                        	<label for="country" class="col-sm-4" style="font-size:15px">
                             	Price
                             </label>
-                            <div class="col-sm-8">
+                            <div class="col-sm-6">
 	                       	<p class="price" style="display: block;">
-                            <span class="old_price" style="font-size: 15px;color:Tomato;"></span> 
-                            <span class="total_cost">Rs.<?=$unit_price-275?></span> </p>
+                            <span class="old_price" style="font-size: 15px;color:Tomato;"></span>Rs. 
+                            <span class="total_cost"><?=$unit_price-275?></span> </p>
                             </div>
                         </div>
                         <div class="form-group">
                         	<label for="country" class="col-sm-4" style="font-size:15px"> </label>
-                            <div class="col-sm-8">                    
+                            <div class="col-sm-6">                    
                                 <p class="bottom-bar-crop" style="display: block;" id="17"></p>
                                 <p class="shipping-note">Ships in 1-2 days</p>
                                 <h5><a href='' onclick="get_functions(''); price_details();return false;">Price Details</a> </h5>
@@ -1203,11 +1203,6 @@ display: none;
 .single-product-details {
 	margin-top: 20px;
 }
-h3 {
-	font-family: 'BebasNeueRegular';
-	font-size: 26px;
-}
-label.menu-heading-text{font-size:15px;font-weight: 500;}
 </style>
 <script>
 $(document).ready(function(){

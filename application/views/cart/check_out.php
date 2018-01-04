@@ -773,7 +773,7 @@ function price_details(){
 							
 							}
 							</script>
-				        <form  id="payment_action" method="post" action="#" name="payment_ccavenue">
+				        <form  method="post" action="http://52.74.175.72/index.php/cart/CCAvenue_check_out" name="payment_ccavenue">
                          
 						 <?php
 						 //http://mahattaart.com/index.php/cart/CCAvenue_check_out
@@ -784,8 +784,8 @@ function price_details(){
 	 $result= $this->cart_model->get_cart_user_details($this->session->userdata('userid'));
               
                 $billerName= $result[0]->first_name.' '.$result[0]->last_name;
-	$redirect_url='http://mahattaart.com/index.php/cart/response';
-       $cancel_url='http://mahattaart.com/index.php/cart/cancel_url';  
+	$redirect_url='http://52.74.175.72/index.php/cart/response';
+       $cancel_url='http://52.74.175.72/index.php/cart/cancel_url';  
 	?>
 	
 	<?php

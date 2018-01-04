@@ -14,7 +14,238 @@
 
 
 
+<script>
 
+			
+			  $(document).ready(function(e) {
+				
+				$('#submit').click(function(e) {
+				 
+				 var name=$('#name').val();
+				 var mobile=$('#mobile').val();
+				 var landline=$('#landline').val();
+				 var email=$('#email').val();
+				 var comp_name=$('#comp_name').val();
+				 var address=$('#address').val();
+				 var state_city=$('#state_city').val();
+				 var region=$('#region').val();
+				 var relat_manager=$('#relat_manager').val(); 
+				 var art_researcher=$('#art_researcher').val();
+				 var size_of_wall=$('#size_of_wall').val();
+				 var color_of_wall=$('#color_of_wall').val();
+				 var size_of_art=$('#size_of_art').val();
+				 var display_place=$('#display_place').val();
+				 var total_arts=$('#total_arts').val();
+				 var orientation=$('#orientation').val();
+				 var bud_per_work=$('#bud_per_work').val();
+				 var total_budget=$('#total_budget').val();
+				 var creative_details=$('#creative_details').val();
+				 var general_theme=$('#general_theme').val();
+				 var date_of_submission=$('#date_of_submission').val();
+				 var feadback_submission=$('#feadback_submission').val();
+				 var mode_submission=$('#mode_submission').val();
+				 		
+				 		 
+				 var email_check=/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+				 var mob_check=/^\d{10}$/;
+				 
+				 
+				 if(name=='')
+				 {
+					  $(".errorname").show().html("Person Name is required.");
+					  return false;
+			
+				 }else{
+					 $(".errorname").hide();
+					 } 
+					 
+				if(mobile=='')
+				 {
+					 $(".errormobile").show().html("Mobile Number is required.");
+					 return false;
+				 }else{
+					   $(".errormobile").hide();
+					 }
+				if(!mob_check.test(mobile))
+				 {
+					 $(".errormobile").show().html('Enter a 10 Digit Mobile Number');
+					 return false;
+				 }else
+				 {
+					$(".errormobile").hide(); 
+				 }	 
+					 
+                if(landline=='')
+				 {
+					 $(".errorlandline").show().html("landline Number is required.");
+					 return false;
+				 }else{
+					   $(".errorlandline").hide();
+					 }					 
+				 
+				 
+				 if(email=='')
+				 {
+					$(".erroremail").show().html("Email is required.");
+					return false;
+				 }else{
+					   $(".erroremail").hide();
+					  } 
+					  
+				  
+				 if(!email_check.test(email))
+				  {
+					  $(".erroremail").show().html("Please input a valid email.");
+					  return false;
+				  }else{
+						 $(".erroremail").hide();                                                                                       
+					  }
+					  
+				 
+				
+				 
+				 if(comp_name=='')
+				 {
+					 $(".errorcompany").show().html("Company Name is required.");
+					 return false;
+				 }else{
+					   $(".errorcompany").hide();
+					 }
+				  
+				  if(address=='')
+				 {
+					 $(".erroraddress").show().html("Message is required.");
+					 return false;
+				 }else{
+					   $(".erroraddress").hide();
+					 }
+				if(state_city=='')
+				 {
+					 $(".errorstatecity").show().html("State/city  is required.");
+					 return false;
+				 }else{
+					   $(".errorstatecity").hide();
+					 }
+				if(region=='')
+				 {
+					 $(".errorregion").show().html("Region is required.");
+					 return false;
+				 }else{
+					   $(".errorregion").hide();
+					 }	 
+					 
+				if(relat_manager=='')
+				 {
+					 $(".errorrelatmanager").show().html("Relationship Manager is required.");
+					 return false;
+				 }else{
+					   $(".errorrelatmanager").hide();
+					 }	
+
+                if(art_researcher=='')
+				 {
+					 $(".errorartresearcher").show().html("Art Researcher is required.");
+					 return false;
+				 }else{
+					   $(".errorartresearcher").hide();
+					 }	
+                if(size_of_wall=='')
+				 {
+					 $(".errorsizeofwall").show().html("Siz of Wall is required.");
+					 return false;
+				 }else{
+					   $(".errorsizeofwall").hide();
+					 }	
+               if(color_of_wall=='')
+				 {
+					 $(".errorcolorofwall").show().html("Color of Wall is required.");
+					 return false;
+				 }else{
+					   $(".errorcolorofwall").hide();
+					 }
+                if(size_of_art=='')
+				 {
+					 $(".errorsizeofart").show().html("Size Of Art is required.");
+					 return false;
+				 }else{
+					   $(".errorsizeofart").hide();
+					 }		
+                if(total_arts=='')
+				 {
+					 $(".errortotalarts").show().html("Total Art is required.");
+					 return false;
+				 }else{
+					   $(".errortotalarts").hide();
+					 }
+                if(orientation=='')
+				 {
+					 $(".errororientation").show().html("Orientation is required.");
+					 return false;
+				 }else{
+					   $(".errororientation").hide();
+					 }					 
+				 
+				if(bud_per_work=='')
+				 {
+					 $(".errorbudperwork").show().html("Budget Per Work is required.");
+					 return false;
+				 }else{
+					   $(".errorbudperwork").hide();
+					 }	
+                 if(total_budget=='')
+				 {
+					 $(".errortotalbudget").show().html("Total Budget is required.");
+					 return false;
+				 }else{
+					   $(".errortotalbudget").hide();
+					 }	
+                if(creative_details=='')
+				 {
+					 $(".errorcreativedetails").show().html("Creative Details is required.");
+					 return false;
+				 }else{
+					   $(".errorcreativedetails").hide();
+					 }						 
+				if(general_theme=='')
+				 {
+					 $(".errorgeneraltheme").show().html("General Theme is required.");
+					 return false;
+				 }else{
+					   $(".errorgeneraltheme").hide();
+					 }
+                if(date_of_submission=='')
+				 {
+					 $(".errordateofsubmission").show().html("Date Submission is required.");
+					 return false;
+				 }else{
+					   $(".errordateofsubmission").hide();
+					 }	
+              if(feadback_submission=='')
+				 {
+					 $(".errorfeadbacksubmission").show().html("Feedback Submission is required.");
+					 return false;
+				 }else{
+					   $(".errorfeadbacksubmission").hide();
+					 }	
+             if(mode_submission=='')
+				 {
+					 $(".errormodesubmission").show().html("Mode Submission  is required.");
+					 return false;
+				 }else{
+					   $(".errormodesubmission").hide();
+					 }						 
+ 
+				 
+				
+			 
+				 
+				
+				});
+				
+				});
+			
+
+         </script>
 		 
 		 
 		 
@@ -31,7 +262,7 @@ $(document).ready(function()
     });
 	
 	$("#cafe").click(function(){
-        $("#cafe_drop").toggle();
+        $("#").toggle();
     });
 	
 	
@@ -192,12 +423,6 @@ $(document).ready(function(){
 	{ 
       $("#restaurant_drop").css("display", "block") ;
 	}
-	
-	if ($("#cafe").prop('checked')==true)
-	{ 
-      $("#cafe_drop").css("display", "block") ;
-	}
-	
 	if ($("#house").prop('checked')==true)
 	{ 
       $("#house_drop").css("display", "block") ;
@@ -269,7 +494,7 @@ $(document).ready(function(){
 	
   
   <div class="form-group"  id="alternate_person">
-      <label class="col-sm-3 control-label">Alternate Contact Person <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Alternate Contact Person <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text"  name="alternate_name" id="alternate_name" value="<?php echo $result[0]->alternate_name;?>"   class="form-control" required aria-required="true"></span>
         	  </div>
@@ -287,7 +512,7 @@ $(document).ready(function(){
     </div>
 	
 	<div class="form-group"  id="alternate_mobile">
-      <label class="col-sm-3 control-label">Alternate Contact<span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Alternate Contact<span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="alternate_mobile"  id="mobile" value="<?php echo $result[0]->alternate_contact;?>" onkeypress='return event.charCode >=48 && event.charCode <=57' class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('alternate_mobile'); ?></em> 
@@ -300,7 +525,7 @@ $(document).ready(function(){
    
    
     <div class="form-group">
-      <label class="col-sm-3 control-label">Contact Number(Landline) <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Contact Number(Landline) <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text"  name="landline" id="landline" value="<?php echo $result[0]->landline_number;?>" onkeypress='return event.charCode >=48 && event.charCode <=57' class="form-control" required aria-required="true" maxlength="10">
        <em style="color:red;font-size:12px"><?php  echo form_error('mobile'); ?></em>
@@ -317,7 +542,7 @@ $(document).ready(function(){
 	  </div>
     </div>
 	<div class="form-group" id="alternate_email">
-      <label class="col-sm-3 control-label">Alternate Email<span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Alternate Email<span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="email" name="alternate_email"  id="alternate_email" value="<?php echo $result[0]->alternate_email;?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('alternate_email'); ?></em>
@@ -327,7 +552,7 @@ $(document).ready(function(){
 	
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Company Name<span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Company Name<span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="comp_name" id="comp_name" value="<?php echo $result[0]->company_name;?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('comp_name'); ?></em>
@@ -336,7 +561,7 @@ $(document).ready(function(){
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label nopaddingtop">Address <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label nopaddingtop">Address <span class="text-danger">*</span></label>
       <div class="col-sm-9">
 		<textarea rows="5" class="form-control" name="address" id="address"  required="" style="resize:none" aria-required="true">
 		<?php echo $result[0]->address;?>
@@ -348,7 +573,7 @@ $(document).ready(function(){
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">State/city <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">State/city <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="state_city" id="state_city" value="<?php echo $result[0]->state_city;?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('state_city'); ?></em>
@@ -357,7 +582,7 @@ $(document).ready(function(){
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Region<span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Region<span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="region" id="region" value="<?php echo $result[0]->region;?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('region'); ?></em>
@@ -366,7 +591,7 @@ $(document).ready(function(){
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Relationship Manager<span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Relationship Manager<span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="relat_manager"id="relat_manager" value="<?php echo $result[0]->relationship_manager;?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('relat_manager'); ?></em>
@@ -375,7 +600,7 @@ $(document).ready(function(){
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Client Servicing <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Art Researcher <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="art_researcher" id="art_researcher" value="<?php echo $result[0]->art_researcher;?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('art_researcher'); ?></em>
@@ -387,7 +612,7 @@ $(document).ready(function(){
 	  $val=explode(',',$result[0]->Property_types);
 	  $val2=explode(',',$result[0]->place_of_display);
 	
-	  print_r($val2);
+	  
 	 
 	  for($i=0;$i<count($val);$i++)
 	  {
@@ -433,48 +658,69 @@ $(document).ready(function(){
 	?>
     
     <div class="form-group">
-        <label class="col-sm-3 control-label nopaddingtop">Property type <span class="text-danger"></span></label>
+        <label class="col-sm-3 control-label nopaddingtop">Property type <span class="text-danger">*</span></label>
         
        
          <div class="col-sm-9">
                 <label class="ckbox ckbox-inline mr20">
-<input type="checkbox"  value="Hotel" id="hotal" name="property_type[]"<?php if($ds=='Hotel'){echo 'checked';}?>>
+<input type="checkbox"  value="Hotel" id="hotal" name="property_type[]"
+ <?php if($ds=='Hotel'){echo 'checked';}?>>
                     <span>Hotel</span>
                 </label>
                   <label class="ckbox ckbox-inline mr20">
-<input type="checkbox"  value="Restaurant" id="restaurant" name="property_type[]"<?php if($Restaurant=='Restaurant'){echo 'checked';}?>>
+                    <input type="checkbox"  value="Restaurant" id="restaurant" name="property_type[]"
+     <?php if($Restaurant=='Restaurant'){echo 'checked';}?>                  >
                     <span>Restaurant</span>
                 </label>
                 <label class="ckbox ckbox-inline mr20">
-<input type="checkbox"  value="Cafe"  id="cafe" name="property_type[]"<?php if($Cafe=='cafe'){echo 'checked';}?>>
+                    <input type="checkbox"  value="Cafe"  id="cafe" name="property_type[]"
+                     <?php if($Cafe=='cafe'){echo 'checked';}?>
+                     >
+                   
+                   
                     <span>Cafe</span>
                 </label>
                 <label class="ckbox ckbox-inline mr20">
-<input type="checkbox" value="House" id="house" name="property_type[]"<?php if($House=='House'){echo 'checked';}?>>
+                    <input type="checkbox" value="House" id="house" name="property_type[]"
+                    <?php if($House=='House'){echo 'checked';}?>
+                     >
                     <span>House</span>
                 </label>
                 <label class="ckbox ckbox-inline mr20">
-<input type="checkbox"  value="Hospital" id="hospital" name="property_type[]"<?php if($Hospital=='Hospital'){echo 'checked';}?>>
+                    <input type="checkbox"  value="Hospital" id="hospital" name="property_type[]"
+                    <?php if($Hospital=='Hospital'){echo 'checked';}?>
+                    
+                     >
                     <span>Hospital</span>
                 </label>
                 <label class="ckbox ckbox-inline mr20">
-<input type="checkbox" value="Mall"  id="mall" name="property_type[]"<?php if($Mall=='Mall'){echo 'checked';}?>>
+                    <input type="checkbox" value="Mall"  id="mall" name="property_type[]"
+                    <?php if($Mall=='Mall'){echo 'checked';}?>
+                     >
                     <span>Mall</span>
                 </label>
                 <label class="ckbox ckbox-inline mr20">
-<input type="checkbox" value="Office"  id="office" name="property_type[]"<?php if($Office=='Office'){echo 'checked';}?>>
+                    <input type="checkbox" value="Office"  id="office" name="property_type[]"
+                    <?php if($Office=='Office'){echo 'checked';}?>
+                     >
                     <span>Office</span>
                 </label>
                 <label class="ckbox ckbox-inline mr20">
-<input type="checkbox"value="Club"  id="club" name="property_type[]"<?php if($Club=='Club'){echo 'checked';}?>>
+                    <input type="checkbox"value="Club"  id="club" name="property_type[]"
+                    <?php if($Club=='Club'){echo 'checked';}?>
+                     >
                     <span>Club</span>
                 </label>
                 <label class="ckbox ckbox-inline mr20">
-<input type="checkbox" value="Retail Outlet" id="retail" name="property_type[]"<?php if($Retail_Outlet=='Retail Outlet'){echo 'checked';}?>>
+                    <input type="checkbox" value="Retail Outlet" id="retail" name="property_type[]"
+                    <?php if($Retail_Outlet=='Retail Outlet'){echo 'checked';}?>
+                     >
                     <span>Retail Outlet</span>
                 </label>
                 <label class="ckbox ckbox-inline mr20">
- <input type="checkbox" value="Other"	 id="other" name="property_type[]"<?php if($Other=='Other'){echo 'checked';}?>>
+                    <input type="checkbox" value="Other"	 id="other" name="property_type[]"
+                    <?php if($Other=='Other'){echo 'checked';}?>
+                     >
                     <span>Other</span>
                 </label>
         </div>
@@ -482,35 +728,20 @@ $(document).ready(function(){
 
      
   <div class="form-group">
-<label class="col-sm-3 control-label">Place of display <span class="text-danger"></span></label>
+<label class="col-sm-3 control-label">Place of display <span class="text-danger">*</span></label>
    <div class="col-sm-9">
 
       <div class="btn-group" id="hotal_drop" style="display:none" >
-      <?php
- for($i=0;$i<count($val2);$i++)
-	  {
-if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='Reception'||$val2[$i]=='Roof'||$val2[$i]=='Waiting_Area'||$val2[$i]=='Other')  
-	          {
-	             $selectted_hotal_value='selected';
-				  
-			  }
-	
-	  
-	  }
-	  ?>
- 
-
-      
         <select name="place_of_display[]" id="hotal_value" class="form-control" required="required">
-  <option value="" >Select Hotal</option>
-  <option value="Bedroom" <?php  echo $selectted_hotal_value; ?>>Bedroom</option>
-  <option value="Bath" <?php  echo $selectted_hotal_value;?>>Bath</option>
-  <option value="Lobby" <?php  echo $selectted_hotal_value;;?>>Lobby</option>
-  <option value="Corridor"<?php  echo $selectted_hotal_value;?>>Corridor</option>
-  <option value="Reception"<?php  echo $selectted_hotal_value;?>>Reception</option>
-  <option value="Roof" <?php  echo $selectted_hotal_value;?> >Roof</option>
-  <option value="Waiting_Area"<?php  echo $selectted_hotal_value;?>>Waiting Area</option>
-  <option value="Other"<?php  echo $selectted_hotal_value;?>>Other</option>
+ <option value="" >Select Hotal</option>
+  <option value="Bedroom" <?php  echo $selected;?>>Bedroom</option>
+  <option value="Bath" <?php  echo $selected;?>>Bath</option>
+  <option value="Lobby" <?php  echo $selected;?>>Lobby</option>
+  <option value="Corridor"<?php  echo $selected;?>>Corridor</option>
+  <option value="Reception"<?php  echo $selected;?>>Reception</option>
+  <option value="Roof" <?php  echo $selected;?> >Roof</option>
+  <option value="Waiting Area" >Waiting Area</option>
+  <option value="Other"<?php  echo $selected;?>>Other</option>
        
 
          
@@ -520,17 +751,17 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
         <div class="btn-group" id="restaurant_drop" style="display:none">
             <select  name="place_of_display[]"  id="interior_value" class="form-control" required="required">
                 <option value="">Select Resturant</option>
-                <option value="Interior">Interior</option>
-                <option value="Exterior">Exterior</option>
-                <option value="Washroom">Washroom</option>
-                <option value="Kitchen" >Kitchen</option>
-                <option value="Other" >Other</option>
+                <option value="Interior" <?php echo $selectd; ?>>Interior</option>
+                <option value="Exterior" <?php echo $selectd; ?>>Exterior</option>
+                <option value="Washroom" <?php echo $selectd; ?>>Washroom</option>
+                <option value="Kitchen"  <?php echo $selectd; ?>>Kitchen</option>
+                <option value="Other"    <?php echo $selectd; ?>>Other</option>
                
             </select>
         </div>
         
         <div class="btn-group" id="cafe_drop" style="display:none">
-            <select  name="place_of_display[]" id="cafe_value" class="form-control" required="required">
+            <select  name="place_of_display[]" id="cafe_value" class="form-control" required="required"  style="display:none">
                 <option value="">Select Cafe</option>
                 <option value="Interior">Interior</option>
                 <option value="Exterior">Exterior</option>
@@ -557,13 +788,13 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
             <select  name="place_of_display[]" id="hospital_value" class="form-control" required="required">
                 <option value="" >Select Hosptal</option>
 
-                <option value="Bedroom">Rooms</option>
-                <option value="Corridor" >Corridor</option>
-                <option value="Lift Lobby">Lift Lobby</option>
-                <option value="Waiting Area">Waiting Area</option>
-                <option value="Reception">Reception</option>
-                <option value="Canteen">Canteen</option>
-                <option value="Other">Other</option>
+                <option value="Bedroom"     <?php echo $selectd2; ?>>Rooms</option>
+                <option value="Corridor"    <?php echo $selectd2; ?>>Corridor</option>
+                <option value="Lift Lobby"  <?php echo $selectd2; ?>>Lift Lobby</option>
+                <option value="Waiting Area"<?php echo $selectd2; ?>>Waiting Area</option>
+                <option value="Reception"   <?php echo $selectd2; ?>>Reception</option>
+                <option value="Canteen"     <?php echo $selectd2; ?>>Canteen</option>
+                <option value="Other"       <?php echo $selectd2; ?>>Other</option>
             </select>
         </div>
         
@@ -677,7 +908,7 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
     </div>
     
 
-<!-----------------------Hided Section----------------------->
+
 <div class="form-group" id="club_hide" style="display:none">
       <label class="col-sm-3 control-label"><span class="text-danger"></span></label>
       <div class="col-sm-9">
@@ -720,7 +951,7 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
    
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Size Of Wall <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Size Of Wall <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="size_of_wall" id="size_of_wall" value="<?php echo $result[0]->wall_size;?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('size_of_wall'); ?></em>
@@ -729,7 +960,7 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
     </div>
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">Color of Wall <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Color of Wall <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="color_of_wall" id="color_of_wall" value="<?php echo $result[0]->wall_color;?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('color_of_wall'); ?></em>
@@ -737,7 +968,7 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
 	  </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Size of Art <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Size of Art <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="size_of_art" id="size_of_art" value="<?php echo $result[0]->art_size;?>" class="form-control" required aria-required="true">
        <em style="color:red;font-size:12px"><?php  echo form_error('size_of_art'); ?></em>
@@ -745,7 +976,7 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
 	  </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Number of Place of display <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Number of Place of display <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="display_place" id="display_place" value="<?php echo $result[0]->state_city;?>" class="form-control"  required="" aria-required="true">
         <em style="color:red;font-size:12px"><?php // echo form_error('display_place'); ?></em>
@@ -753,7 +984,7 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
 	  </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Total Number of Art Products <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Total Number of Art Products <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text"  name="total_arts" id="total_arts" value="<?php echo $result[0]->total_art_products;?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('total_arts'); ?></em>
@@ -761,7 +992,7 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
 	  </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Orientation <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Orientation <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text"  name="orientation"id="orientation" value="<?php echo $result[0]->orientation;?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('orientation'); ?></em>
@@ -769,7 +1000,7 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
 	  </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Budget per artwork <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Budget per artwork <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="bud_per_work" id="bud_per_work" value="<?php echo $result[0]->budget_per_work;?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('bud_per_work'); ?></em>
@@ -778,7 +1009,7 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Total Budget <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Total Budget <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text"  name="total_budget" id="total_budget" value="<?php echo $result[0]->total_budget;?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('total_budget'); ?></em>
@@ -787,7 +1018,7 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Creative Details <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Creative Details <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="creative_details" id="creative_details" value="<?php echo $result[0]->creative_details;?>" id="creative_details" class="form-control" required="" aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('creative_details'); ?></em>
@@ -796,7 +1027,7 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">General theme <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">General theme <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="general_theme" id="general_theme" value="<?php echo $result[0]->general_theme;?>" class="form-control" required aria-required="true">
        <em style="color:red;font-size:12px"><?php  echo form_error('general_theme'); ?></em>
@@ -805,79 +1036,7 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Any Specific for general theme <span class="text-danger"></span></label>
-      <div class="col-sm-9">
-      	<div class="btn-group">
-  <select  class="form-control"  name="any_specific"  id="any_specific"required="required">
-       <option valu="">Choose One:</option>
-       <option value="Futurism"<?php if($result[0]->any_specific=='Futurism'){echo 'selected';} ?>>Futurism</option>
-       <option value="Art_Nouveau"<?php if($result[0]->any_specific=='Art_Nouveau'){echo 'selected';} ?>>Art Nouveau</option>
-       <option value="classicism"<?php if($result[0]->any_specific=='Art_Nouveau'){echo 'selected';} ?>>classicism</option> 
-       <option value="cubism"<?php if($result[0]->any_specific=='cubism'){echo 'selected';} ?>>cubism</option>
-       <option value="Expressionism"<?php if($result[0]->any_specific=='Expressionism'){echo 'selected';} ?>>Expressionism</option>
-       <option value="Renaissance"<?php if($result[0]->any_specific=='Renaissance'){echo 'selected';} ?>>Renaissance</option>
-       <option value="Baroque"<?php if($result[0]->any_specific=='Baroque'){echo 'selected';} ?>>Baroque</option>
-       <option value="Beaux_Arts"<?php if($result[0]->any_specific=='Painting'){echo 'selected';} ?>>Beaux  Arts</option>
-       <option value="Naturalism"<?php if($result[0]->any_specific=='Beaux_Arts'){echo 'selected';} ?>>Naturalism</option>
-	   <option value="Mannerism"<?php if($result[0]->any_specific=='Mannerism'){echo 'selected';} ?>>Mannerism</option>
-       <option value="Realism"<?php if($result[0]->any_specific=='Realism'){echo 'selected';} ?>>Realism</option>
-       <option value="Rococo"<?php if($result[0]->any_specific=='Rococo'){echo 'selected';} ?>>Rococo</option>
-       <option value="Symbolism"<?php if($result[0]->any_specific=='Symbolism'){echo 'selected';} ?>>Symbolism</option>
-       <option value="Verism"<?php if($result[0]->any_specific=='Verism'){echo 'selected';} ?>>Verism</option>
-       <option value="Romanticism"<?php if($result[0]->any_specific=='Romanticism'){echo 'selected';} ?>>Romanticism</option>
-       <option value="Avant_Garde"<?php if($result[0]->any_specific=='Avant_Garde'){echo 'selected';} ?>>Avant Garde</option>
-
-
-              </select>
-        </div>
-        
-
-      </div>
-    </div>
-    
-    
-    <div class="form-group">
-      <label class="col-sm-3 control-label">Art Form<span class="text-danger"></span></label>
-      <div class="col-sm-9">
-      	<div class="btn-group">
-  <select  class="form-control"  name="art_form"  id="art_form"required="required">
-  <option valu="">Choose One:</option>
-  <option value="Florals"<?php if($result[0]->art_form=='Florals'){echo 'selected';} ?>>Florals</option>
-  <option value="Birds"<?php if($result[0]->art_form=='Birds'){echo 'selected';} ?>>Birds</option>
-  <option value="Birds"<?php if($result[0]->art_form=='Scenic'){echo 'selected';} ?>>Scenic</option>
-  <option value="Mannerism"<?php if($result[0]->art_form=='Nature'){echo 'selected';} ?>>Nature</option>
-  <option value="Botanical"<?php if($result[0]->art_form=='Botanical'){echo 'selected';} ?>>Botanical</option>
-  <option value="Ocean"<?php if($result[0]->art_form=='Ocean'){echo 'selected';} ?>>Ocean</option>
-  <option value="Any"<?php if($result[0]->art_form=='Any'){echo 'selected';} ?>>Any</option>
-     
-
-              </select>
-        </div>
-        
-
-      </div>
-    </div>
-    
-    
-    <div class="form-group">
-      <label class="col-sm-3 control-label">Artist<span class="text-danger"></span></label>
-      <div class="col-sm-9">
-      	<div class="btn-group">
-  <select  class="form-control"  name="artts"  id="artts"required="required">
-  <option valu="">Choose One:</option>
-  <option value="Photographer" <?php if($result[0]->artitst=='Photographer'){echo 'selected';} ?>>Photographer</option>
-  <option value="color" <?php if($result[0]->artitst=='color'){echo 'selected';} ?>>color</option>
-  <option value="Other" <?php if($result[0]->artitst=='Other'){echo 'selected';} ?>>Other</option>
-       </select>
-        </div>
-        
-
-      </div>
-    </div>
-    
-    
-    <div class="form-group">
-      <label class="col-sm-3 control-label">Source type <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Source type <span class="text-danger">*</span></label>
       <div class="col-sm-9">
       	<div class="btn-group">
             <select  class="form-control"  name="source_type"  id="source_type"required="required">
@@ -896,17 +1055,139 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
       </div>
     </div>
     
+ <script>
+$(document).ready(function(){
+    $('#date_1st_sub').dblclick(function(){
+    $('#date_1st_sub').datepicker('show');
+});
+});
+ 
+</script>
+    
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Date of 1st submission <span class="text-danger">*</span></label>
+      <div class="col-sm-9"><input type="text" name="date_1st_sub" id="date_1st_sub" 
+      value="<?php echo $result[0]->date_1st_submission;?>" class="form-control" required aria-required="true"
       
+      >
+ 		<em class="errordateofsubmission" style="color:red;font-size:12px"></em>
+	  </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label nopaddingtop">Feedback on 1st Submission <span class="text-danger">*</span></label>
+      <div class="col-sm-9">
+		<textarea rows="3"  name="feadback_1st_sub" id="feadback_1st_sub"  class="form-control" required style="resize:none" aria-required="true"><?php echo $result[0]->feadback_1st_submission;?></textarea>
+		<em style="color:red;font-size:12px"></em>
+		<em class="errorfeadbacksubmission" style="color:red;font-size:12px"></em>
+      </div>
+    </div>
     
-
-
     
-     
+    <div class="form-group">
+      <label class="col-sm-3 control-label">form Submission1<span class="text-danger">*</span></label>
+      <div class="col-sm-9">
+        <input type="file" name="first_sub_file" id="first_sub_file" class="form-control" required aria-required="true">
+        <?php  print_r($error);?>
+       
+       </div>
+    </div>
+    <?php  echo $error;?>
+    
+    
+    
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Updated By <span class="text-danger">*</span></label>
+      <div class="col-sm-9">
+        <input type="text"  name="update_1st_sub" id="update_1st_sub" value="<?php echo $result[0]->updated_by_1st_submission;?>"   class="form-control" required aria-required="true">
+       
+	  </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Date of 2nd submission <span class="text-danger">*</span></label>
+      <div class="col-sm-9">
+        <input type="text" name="date_2nd_sub"  id="date_2nd_sub"  value="<?php echo $result[0]->date_2nd_submission;?>" class="form-control" required aria-required="true">
+        	  </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="col-sm-3 control-label nopaddingtop">Feedback on 2nd Submission <span class="text-danger">*</span></label>
+      <div class="col-sm-9">
+		<textarea rows="3"  name="feadback_2nd_sub" id="feadback_2nd_sub"  class="form-control" required style="resize:none" aria-required="true"><?php echo $result[0]->feadback_2nd_submission;?></textarea>
+		      </div>	
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">form Submission2<span class="text-danger">*</span></label>
+      <div class="col-sm-9">
+        <input type="file" name="second_sub_file" id="second_sub_file" class="form-control" required aria-required="true">
+       </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Updated By <span class="text-danger">*</span></label>
+      <div class="col-sm-9">
+        <input type="text"  name="update_2nd_sub" id="update_2nd_sub" value="<?php echo $result[0]->updated_by_2nd_submission;?>"    class="form-control" required aria-required="true">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Date of 3rd submission <span class="text-danger">*</span></label>
+      <div class="col-sm-9">
+        <input type="text" name="date_3nd_sub" id="date_3nd_sub" value="<?php echo $result[0]->date_3rd_submission;?>" class="form-control" required aria-required="true">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label nopaddingtop">Feedback on 3rd Submission <span class="text-danger">*</span></label>
+      <div class="col-sm-9">
+		<textarea rows="3"  name="feadbacb_3rd_sub" id="feadbacb_3rd_sub"  class="form-control" required style="resize:none" aria-required="true"><?php echo $result[0]->feadback_3rd_submission;?></textarea>
+		      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">form Submission3<span class="text-danger">*</span></label>
+      <div class="col-sm-9">
+        <input type="file" name="third_sub_file" id="third_sub_file" class="form-control" required aria-required="true">
+       </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Updated By <span class="text-danger">*</span></label>
+      <div class="col-sm-9">
+        <input type="text"  name="third_sub_file" id="third_sub_file" value="<?php echo $result[0]->updated_by_3rd_submission;?>"   class="form-control" required aria-required="true">
+    	  </div>
+    </div>
+    
+  <div class="form-group">
+      <label class="col-sm-3 control-label">Date of 4th submission <span class="text-danger">*</span></label>
+      <div class="col-sm-9">
+        <input type="text" name="date_4th_sub" id="date_4th_sub" value="<?php echo $result[0]->date_4th_submission;?>" class="form-control" required aria-required="true">
+                	  </div>
+    </div>    
+    <div class="form-group">
+      <label class="col-sm-3 control-label nopaddingtop">Feedback on 4th Submission <span class="text-danger">*</span></label>
+      <div class="col-sm-9">
+		<textarea rows="3"  name="feadback_4th_sub" id="feadback_4th_sub"  class="form-control" required style="resize:none" aria-required="true"><?php echo $result[0]->feadback_4th_submission;?></textarea>
+		      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">form Submission4<span class="text-danger">*</span></label>
+      <div class="col-sm-9">
+        <input type="file" name="fourth_sub_file" id="fourth_sub_file" class="form-control" required aria-required="true">
+       </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Updated By <span class="text-danger">*</span></label>
+      <div class="col-sm-9">
+        <input type="text"  name="update_4th_sub" id="update_3rd_sub" value="<?php echo $result[0]->updated_by_4th_submission;?>"   class="form-control" required aria-required="true">
+      	</div>
+    </div>
+    
+    
+    
+    
+    <hr>
+    
     <div class="row">
         <div class="col-sm-9 col-sm-offset-3">
           <button class="btn btn-success btn-quirk btn-wide mr5" name="submit" id="submit">Submit</button>
-          
-		  <a href="<?php   echo base_url('backend/show_record');?>">View List</a>
+          <button type="reset" class="btn btn-quirk btn-wide btn-default">Reset</button>
+		  <a href="<?php   echo base_url('backend/show_query');?>">View List</a>
 		  
         </div>
     </div>

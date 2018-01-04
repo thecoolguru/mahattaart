@@ -21,7 +21,7 @@ th, td {
  
 </head>
 <body>
-<center><h2>User Contact Detals</h2><a href="<?php  echo base_url('Form_Controller/show_record');?>">Back</a></center>
+<center><h2>Query form Details</h2><a href="<?php  echo base_url('backend/show_query');?>">Back</a></center>
 
 <table style="width:100%">
   <tr>
@@ -112,6 +112,68 @@ th, td {
     <th>Source Types</th>
     <td><?php  echo $details[0]->source_types;?></td>
   </tr>
+   <tr>
+    <th>Date Of First Submission </th>
+    <td><?php  echo $details[0]->date_1st_submission;?></td>
+  </tr>
+  <tr>
+    <th>Feadback Of First Submission</th>
+    <td><?php  echo $details[0]->feadback_1st_submission;?></td>
+  </tr>
+  <tr>
+    <th>Updated By First Submission</th>
+    <td><?php  echo $details[0]->updated_by_1st_submission;?></td>
+  </tr>
+  <tr>
+  
+  <tr>
+    <th>Date Of Second Submission </th>
+    <td><?php  echo $details[0]->date_2nd_submission;?></td>
+  </tr>
+  <tr>
+    <th>Feadback Of Second Submission</th>
+    <td><?php  echo $details[0]->feadback_2nd_submission;?></td>
+  </tr>
+  <tr>
+    <th>Updated By Second Submission</th>
+    <td><?php  echo $details[0]->updated_by_2nd_submission;?></td>
+  </tr>
+  <tr>
+  <tr>
+    <th>Date Of Third Submission </th>
+    <td><?php  echo $details[0]->date_3rd_submission;?></td>
+  </tr>
+  <tr>
+    <th>Feadback Third Submission</th>
+    <td><?php  echo $details[0]->feadback_3rd_submission;?></td>
+  </tr>
+  <tr>
+    <th>Updated By Third Submission</th>
+    <td><?php  echo $details[0]->date_3rd_submission;;?></td>
+  </tr>
+  <tr>
+  <tr>
+    <th>Date Of Fourth Submission </th>
+    <td><?php  echo $details[0]->date_4th_submission;?></td>
+  </tr>
+  <tr>
+    <th>Feadback Of Fourth Submission</th>
+    <td><?php  echo $details[0]->feadback_4th_submission;?></td>
+  </tr>
+  <tr>
+    <th>Updated By Fourth Submission</th>
+    <td><?php  echo $details[0]->updated_by_4th_submission;?></td>
+  </tr>
+  <tr>
+     <th>File</th>
+    <td><?php  echo $details[0]->art_researcher;?></td>
+  </tr>
+  <tr>
+    <th>Last Updated Date</th>
+    <td><?php  echo $details[0]->last_update_date;?></td>
+  </tr>
+  <tr>
+
   
   <tr>
     <th>Create Date</th>

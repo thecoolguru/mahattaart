@@ -12,47 +12,266 @@
 <script src="<?=base_url()?>assets/js/jquery.js"></script>
 <script src="<?=base_url()?>assets/js/bootstrap.min.js"></script>
 
+<script>
 
-<!--------Client site validation -------------------->		
+			
+			  $(document).ready(function(e) {
+				
+				$('#submit').click(function(e) {
+				 
+				 var name=$('#name').val();
+				 var mobile=$('#mobile').val();
+				 var landline=$('#landline').val();
+				 var email=$('#email').val();
+				 var comp_name=$('#comp_name').val();
+				 var address=$('#address').val();
+				 var state_city=$('#state_city').val();
+				 var region=$('#region').val();
+				 var relat_manager=$('#relat_manager').val(); 
+				 var art_researcher=$('#art_researcher').val();
+				 var size_of_wall=$('#size_of_wall').val();
+				 var color_of_wall=$('#color_of_wall').val();
+				 var size_of_art=$('#size_of_art').val();
+				 var display_place=$('#display_place').val();
+				 var total_arts=$('#total_arts').val();
+				 var orientation=$('#orientation').val();
+				 var bud_per_work=$('#bud_per_work').val();
+				 var total_budget=$('#total_budget').val();
+				 var creative_details=$('#creative_details').val();
+				 var general_theme=$('#general_theme').val();
+				 var date_of_submission=$('#date_of_submission').val();
+				 var feadback_submission=$('#feadback_submission').val();
+				 var mode_submission=$('#mode_submission').val();
+				 		
+				 		 
+				 var email_check=/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+				 var mob_check=/^\d{10}$/;
+				 
+				 
+				 if(name=='')
+				 {
+					  $(".errorname").show().html("Person Name is required.");
+					  return false;
+			
+				 }else{
+					 $(".errorname").hide();
+					 } 
+					 
+				if(mobile=='')
+				 {
+					 $(".errormobile").show().html("Mobile Number is required.");
+					 return false;
+				 }else{
+					   $(".errormobile").hide();
+					 }
+				if(!mob_check.test(mobile))
+				 {
+					 $(".errormobile").show().html('Enter a 10 Digit Mobile Number');
+					 return false;
+				 }else
+				 {
+					$(".errormobile").hide(); 
+				 }	 
+					 
+                if(landline=='')
+				 {
+					 $(".errorlandline").show().html("landline Number is required.");
+					 return false;
+				 }else{
+					   $(".errorlandline").hide();
+					 }					 
+				 
+				 
+				 if(email=='')
+				 {
+					$(".erroremail").show().html("Email is required.");
+					return false;
+				 }else{
+					   $(".erroremail").hide();
+					  } 
+					  
+				  
+				 if(!email_check.test(email))
+				  {
+					  $(".erroremail").show().html("Please input a valid email.");
+					  return false;
+				  }else{
+						 $(".erroremail").hide();                                                                                       
+					  }
+					  
+				 
+				
+				 
+				 if(comp_name=='')
+				 {
+					 $(".errorcompany").show().html("Company Name is required.");
+					 return false;
+				 }else{
+					   $(".errorcompany").hide();
+					 }
+				  
+				  if(address=='')
+				 {
+					 $(".erroraddress").show().html("Message is required.");
+					 return false;
+				 }else{
+					   $(".erroraddress").hide();
+					 }
+				if(state_city=='')
+				 {
+					 $(".errorstatecity").show().html("State/city  is required.");
+					 return false;
+				 }else{
+					   $(".errorstatecity").hide();
+					 }
+				if(region=='')
+				 {
+					 $(".errorregion").show().html("Region is required.");
+					 return false;
+				 }else{
+					   $(".errorregion").hide();
+					 }	 
+					 
+				if(relat_manager=='')
+				 {
+					 $(".errorrelatmanager").show().html("Relationship Manager is required.");
+					 return false;
+				 }else{
+					   $(".errorrelatmanager").hide();
+					 }	
 
+                if(art_researcher=='')
+				 {
+					 $(".errorartresearcher").show().html("Art Researcher is required.");
+					 return false;
+				 }else{
+					   $(".errorartresearcher").hide();
+					 }	
+                if(size_of_wall=='')
+				 {
+					 $(".errorsizeofwall").show().html("Siz of Wall is required.");
+					 return false;
+				 }else{
+					   $(".errorsizeofwall").hide();
+					 }	
+               if(color_of_wall=='')
+				 {
+					 $(".errorcolorofwall").show().html("Color of Wall is required.");
+					 return false;
+				 }else{
+					   $(".errorcolorofwall").hide();
+					 }
+                if(size_of_art=='')
+				 {
+					 $(".errorsizeofart").show().html("Size Of Art is required.");
+					 return false;
+				 }else{
+					   $(".errorsizeofart").hide();
+					 }		
+                if(total_arts=='')
+				 {
+					 $(".errortotalarts").show().html("Total Art is required.");
+					 return false;
+				 }else{
+					   $(".errortotalarts").hide();
+					 }
+                if(orientation=='')
+				 {
+					 $(".errororientation").show().html("Orientation is required.");
+					 return false;
+				 }else{
+					   $(".errororientation").hide();
+					 }					 
+				 
+				if(bud_per_work=='')
+				 {
+					 $(".errorbudperwork").show().html("Budget Per Work is required.");
+					 return false;
+				 }else{
+					   $(".errorbudperwork").hide();
+					 }	
+                 if(total_budget=='')
+				 {
+					 $(".errortotalbudget").show().html("Total Budget is required.");
+					 return false;
+				 }else{
+					   $(".errortotalbudget").hide();
+					 }	
+                if(creative_details=='')
+				 {
+					 $(".errorcreativedetails").show().html("Creative Details is required.");
+					 return false;
+				 }else{
+					   $(".errorcreativedetails").hide();
+					 }						 
+				if(general_theme=='')
+				 {
+					 $(".errorgeneraltheme").show().html("General Theme is required.");
+					 return false;
+				 }else{
+					   $(".errorgeneraltheme").hide();
+					 }
+                if(date_of_submission=='')
+				 {
+					 $(".errordateofsubmission").show().html("Date Submission is required.");
+					 return false;
+				 }else{
+					   $(".errordateofsubmission").hide();
+					 }	
+              if(feadback_submission=='')
+				 {
+					 $(".errorfeadbacksubmission").show().html("Feedback Submission is required.");
+					 return false;
+				 }else{
+					   $(".errorfeadbacksubmission").hide();
+					 }	
+             if(mode_submission=='')
+				 {
+					 $(".errormodesubmission").show().html("Mode Submission  is required.");
+					 return false;
+				 }else{
+					   $(".errormodesubmission").hide();
+					 }						 
+ 
+				 
+				
+			 
+				 
+				
+				});
+				
+				});
+			
 
-<!----------End Validation-----------------------------------------> 
+         </script>
 		 
-
-
-
-
-
-
-
-
+		 
 		 
 
 <script>
-
-/*DISPLAY SPACIFIED SECTION WHEN CHECKBOX IS CHEKED*/
-
-
-
-
-
-
-
 $(document).ready(function()
 {
     $("#hotal").click(function()
 	{
-       if ($("#hotal").prop('checked')==true){ 
+       if ($("#hotal").prop('checked')==true)
+	        { 
                $("#hotal_drop").css("display","block") ;
 	        }
 	   if ($("#hotal").prop('checked')==false)
 	        {
 		       $("#hotal_drop").css("display","none") ;
 	        }
+	   
+	   
+
     });
+	
+	
+	
 	$("#restaurant").click(function()
 	{
-       if ($("#restaurant").prop('checked')==true){ 
+       if ($("#restaurant").prop('checked')==true)
+	        { 
                $("#restaurant_drop").css("display","block") ;
 	        }
 	   if ($("#restaurant").prop('checked')==false)
@@ -331,7 +550,7 @@ $("#add_mobile").click(function(){
 </head>
 
 <body style="background:white"> 
-<center><p style="color:green"><?php  if(isset($added_success)) echo $added_success;?></p></center> 
+<center><p style="color:green"><?php  if(isset($upload_success)) echo $upload_success;else{ echo $upload_error;}?></p></center> 
 <div class="container" style="margin-top:40px">
 <form action="<?php echo base_url('backend/add_query_form'); ?>" class="form-horizontal" novalidate enctype="multipart/formdata" method="post" >
 
@@ -348,10 +567,11 @@ $("#add_mobile").click(function(){
     </div>
   
   <div class="form-group" style="display:none" id="alternate_person">
-      <label class="col-sm-3 control-label">Alternate Contact Person <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Alternate Contact Person <span class="text-danger">*</span></label>
       <div class="col-sm-9">
-        <input type="text"  name="alternate_name"  id="alternate_name" value="<?php if($this->input->post('alternate_name')){echo $this->input->post('alternate_name') ;}?>"   class="form-control" required aria-required="true"></span>
-     
+        <input type="text"  name="alternate_name" id="alternate_name" value="<?php if($this->input->post('alternate_name')){echo $this->input->post('alternate_name') ;}?>"   class="form-control" required aria-required="true"></span>
+        <em style="color:red;font-size:12px"><?php  echo form_error('alternate_name'); ?></em>
+		<em class="errorname" style="color:red;font-size:12px"></em>
 	  </div>
     </div>
 	
@@ -367,10 +587,11 @@ $("#add_mobile").click(function(){
     </div>
 	
 	<div class="form-group" style="display:none" id="alternate_mobile">
-      <label class="col-sm-3 control-label">Alternate Contact<span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Alternate Contact<span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="alternate_mobile"  maxlength="10" id="mobile" value="<?php if($this->input->post('mobile')){echo $this->input->post('mobile') ;}?>" onkeypress='return event.charCode >=48 && event.charCode <=57' class="form-control" required aria-required="true">
-        
+        <em style="color:red;font-size:12px"><?php  echo form_error('alternate_mobile'); ?></em> 
+	   <em class="errormobile" style="color:red;font-size:12px"></em>
 	   </div>
     </div>
 	
@@ -379,10 +600,11 @@ $("#add_mobile").click(function(){
    
    
     <div class="form-group">
-      <label class="col-sm-3 control-label">Contact number(Landline) <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Contact number(Landline) <span class="text-danger">*</span></label>
       <div class="col-sm-9">
-        <input type="text" name="landline" id="landline" onkeypress='return event.charCode >=48 && event.charCode <=57' maxlegth="10"  value="<?php if($this->input->post('landline')){echo $this->input->post('landline') ;}?>" class="form-control" required aria-required="true">
-       
+        <input type="text" name="landline" id="landline" value="<?php if($this->input->post('landline')){echo $this->input->post('landline') ;}?>" class="form-control" required aria-required="true">
+       <em style="color:red;font-size:12px"><?php  echo form_error('mobile'); ?></em>
+	   <em class="errorlandline" style="color:red;font-size:12px"></em>
 	  </div>
     </div>
    
@@ -405,7 +627,7 @@ $("#add_mobile").click(function(){
 	
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Company Name<span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Company Name<span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="comp_name" id="comp_name" value="<?php if($this->input->post('comp_name')){echo $this->input->post('comp_name') ;}?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('comp_name'); ?></em>
@@ -435,7 +657,7 @@ $("#add_mobile").click(function(){
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Region<span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Region<span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="region" id="region" value="<?php if($this->input->post('region')){echo $this->input->post('region') ;}?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('region'); ?></em>
@@ -444,7 +666,7 @@ $("#add_mobile").click(function(){
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Relationship Manager<span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Relationship Manager<span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="relat_manager"id="relat_manager" value="<?php if($this->input->post('relat_manager')){echo $this->input->post('relat_manager') ;}?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('relat_manager'); ?></em>
@@ -453,7 +675,7 @@ $("#add_mobile").click(function(){
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Client Servicing<span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Art Researcher <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="art_researcher" id="art_researcher" value="<?php if($this->input->post('art_researcher')){echo $this->input->post('art_researcher') ;}?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('art_researcher'); ?></em>
@@ -462,7 +684,7 @@ $("#add_mobile").click(function(){
     </div>
     
     <div class="form-group">
-        <label class="col-sm-3 control-label nopaddingtop">Property type <span class="text-danger"></span></label>
+        <label class="col-sm-3 control-label nopaddingtop">Property type <span class="text-danger">*</span></label>
         <div class="col-sm-9">
                 <label class="ckbox ckbox-inline mr20">
 <input type="checkbox"  value="Hotel"  id="hotal" name="property_type[]"  <?php if($this->input->post('property_type')=='Restaurant'){echo 'checked';}?>>
@@ -510,7 +732,7 @@ $("#add_mobile").click(function(){
     </div> 
     
  <div class="form-group">
-<label class="col-sm-3 control-label">Place of display <span class="text-danger"></span></label>
+<label class="col-sm-3 control-label">Place of display <span class="text-danger">*</span></label>
    <div class="col-sm-9">
       <div class="btn-group" id="hotal_drop" style="display:none" >
         <select name="place_of_display[]" id="hotal_value" class="form-control" required="required">
@@ -542,7 +764,7 @@ $("#add_mobile").click(function(){
         </div>
         
         <div class="btn-group" id="cafe_drop" style="display:none">
-            <select  name="place_of_display[]" id="cafe_value" class="form-control" required="required">
+            <select  name="place_of_display[]" id="cafe_value" class="form-control" required="required"  style="display:none">
                 <option value="">Select Cafe</option>
                 <option value="Interior">Interior</option>
                 <option value="Exterior">Exterior</option>
@@ -743,7 +965,7 @@ $("#add_mobile").click(function(){
     
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Size Of Wall <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Size Of Wall <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="size_of_wall" id="size_of_wall" value="<?php if($this->input->post('size_of_wall')){echo $this->input->post('size_of_wall') ;}?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('size_of_wall'); ?></em>
@@ -752,7 +974,7 @@ $("#add_mobile").click(function(){
     </div>
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">Color of Wall <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Color of Wall <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="color_of_wall" id="color_of_wall" value="<?php if($this->input->post('color_of_wall')){echo $this->input->post('color_of_wall') ;}?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('color_of_wall'); ?></em>
@@ -760,7 +982,7 @@ $("#add_mobile").click(function(){
 	  </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Size of Art <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Size of Art <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="size_of_art" id="size_of_art" value="<?php if($this->input->post('size_of_art')){echo $this->input->post('size_of_art') ;}?>" class="form-control" required aria-required="true">
        <em style="color:red;font-size:12px"><?php  echo form_error('size_of_art'); ?></em>
@@ -768,7 +990,7 @@ $("#add_mobile").click(function(){
 	  </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Number of Place of display <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Number of Place of display <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="display_place" id="display_place" value="<?php if($this->input->post('display_place')){echo $this->input->post('display_place') ;}?>" class="form-control"  required="" aria-required="true">
         <em style="color:red;font-size:12px"><?php // echo form_error('display_place'); ?></em>
@@ -776,7 +998,7 @@ $("#add_mobile").click(function(){
 	  </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Total Number of Art Products <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Total Number of Art Products <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text"  name="total_arts" id="total_arts" value="<?php if($this->input->post('total_arts')){echo $this->input->post('total_arts') ;}?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('total_arts'); ?></em>
@@ -784,7 +1006,7 @@ $("#add_mobile").click(function(){
 	  </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Orientation <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Orientation <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text"  name="orientation"id="orientation" value="<?php if($this->input->post('orientation')){echo $this->input->post('orientation') ;}?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('orientation'); ?></em>
@@ -792,7 +1014,7 @@ $("#add_mobile").click(function(){
 	  </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">Budget per artwork <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Budget per artwork <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="bud_per_work" id="bud_per_work" value="<?php if($this->input->post('bud_per_work')){echo $this->input->post('bud_per_work') ;}?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('bud_per_work'); ?></em>
@@ -801,7 +1023,7 @@ $("#add_mobile").click(function(){
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Total Budget <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Total Budget <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text"  name="total_budget" id="total_budget" value="<?php if($this->input->post('total_budget')){echo $this->input->post('total_budget') ;}?>" class="form-control" required aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('total_budget'); ?></em>
@@ -810,7 +1032,7 @@ $("#add_mobile").click(function(){
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Creative Details <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Creative Details <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="creative_details" id="creative_details" value="<?php if($this->input->post('creative_details')){echo $this->input->post('creative_details') ;}?>" id="creative_details" class="form-control" required="" aria-required="true">
         <em style="color:red;font-size:12px"><?php  echo form_error('creative_details'); ?></em>
@@ -819,7 +1041,7 @@ $("#add_mobile").click(function(){
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">General theme <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">General theme <span class="text-danger">*</span></label>
       <div class="col-sm-9">
         <input type="text" name="general_theme" id="general_theme" value="<?php if($this->input->post('general_theme')){echo $this->input->post('general_theme') ;}?>" class="form-control" required aria-required="true">
        <em style="color:red;font-size:12px"><?php  echo form_error('general_theme'); ?></em>
@@ -828,7 +1050,7 @@ $("#add_mobile").click(function(){
     </div>
     
     <div class="form-group">
-      <label class="col-sm-3 control-label">Source type <span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Source type <span class="text-danger">*</span></label>
       <div class="col-sm-9">
       	<div class="btn-group">
             <select  class="form-control"  name="source_type"  id="source_type"required="required">
@@ -847,11 +1069,29 @@ $("#add_mobile").click(function(){
       </div>
     </div>
     
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Date of 1st submission <span class="text-danger">*</span></label>
+      <div class="col-sm-9">
+        <input type="date" name="date_of_submission" id="date_of_submission" value="<?php if($this->input->post('date_of_submission')){echo $this->input->post('date_of_submission') ;}?>" class="form-control" required aria-required="true">
+        <em style="color:red;font-size:12px"><?php  echo form_error('date_of_submission'); ?></em>
+        <em style="color:red;font-size:12px"><?php if(isset($error_date)) echo $error_date;?></em>
+        
+
+		<em class="errordateofsubmission" style="color:red;font-size:12px"></em>
+	  </div>
+    </div>
+    
+    
+    
+    
+    
+    <hr>
     
     <div class="row">
         <div class="col-sm-9 col-sm-offset-3">
           <button class="btn btn-success btn-quirk btn-wide mr5" name="submit" id="submit">Submit</button>
-          		  <a href="<?php   echo base_url('backend/show_record');?>">View List</a>
+          <button type="reset" class="btn btn-quirk btn-wide btn-default">Reset</button>
+		  <a href="<?php   echo base_url('backend/show_query');?>">View List</a>
 		  
         </div>
     </div>
