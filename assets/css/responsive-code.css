@@ -32,6 +32,30 @@ a:focus,
 a:hover {
     text-decoration: none  !important;;
 }
+h1.ttto::before {
+	background: #000 none repeat scroll 0 0;
+	content: "";
+	height: 1px;
+	left: 0;
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	transform: translate(0%, -50%);
+	z-index:-1;
+}
+
+.margn h4 {
+	margin: 0 !important;
+}
+.bg_content {
+	background-color: #eee;
+	padding: 5px 10px;
+	position:relative;
+}
+.bg {
+	overflow: hidden;
+	padding-right: 0;
+}
 
 /* XS Portrait */
 @media(max-width:479px) {
@@ -61,22 +85,14 @@ a:hover {
 		font-size: ;
 	}
 	.bg {
-			height: 210px;
-			overflow: hidden;
-			padding-right: 0;
+			height: 240px !important;
 		}
 
 	.bg_content{
-	  background-color: #eee;
-	  font-size: 14px;
 	  height: 210px;
 	}
 	.margn{margin:2px 0;}
 
-	.margn h4 {
-		font-size: 20px !important;
-		margin: 5px 0 0;
-	}
 	.bg_content p {
 	font-size: 12px;
 	font-weight: normal;
@@ -115,12 +131,8 @@ a:hover {
 	.news {
 		text-align: center !important;
 	}
-	.bg {
- 	    height: 176px !important;
-	}
-
 	.bg_content{
-	  height: 176px !important;
+	  height: 245px !important;
 	}
 	.sicon {
 		font-size: 20px !important;
@@ -180,9 +192,12 @@ a:hover {
 	  width: auto;
 	  float: none;
 	}
+	.bg_content {
+	height: 176px !important;
+}
 }
 
-/* xs */
+/* xs landscape*/
 @media(max-width:767px) {
     #menu {
         display: none
@@ -193,29 +208,7 @@ a:hover {
     .search-input {
         padding: 10px 10px 0
     }
-    .top-cate h1 {
-        background: rgba(0, 0, 0, 0) url("../img/icon_category.jpg") no-repeat scroll 35% 0 / 21px auto
-    }
-    h1.ttto::before {
-        background: #000 none repeat scroll 0 0;
-        border-radius: 42px;
-        content: "";
-        height: 1px;
-        left: 0;
-        position: absolute;
-        top: 15px;
-        width: 30%
-    }
-    h1.ttto::after {
-        background: #000 none repeat scroll 0 0;
-        border-radius: 42px;
-        content: "";
-        height: 1px;
-        position: absolute;
-        right: 0;
-        top: 15px;
-        width: 28% !important;
-    }
+
     .buttonslide {
         font-size: 11px !important;
     }
@@ -290,15 +283,11 @@ a:hover {
     }
 	#slide{display:none}
 	.bg {
-		height: 210px;
-		overflow: hidden;
-		padding-right: 0;
+		height: 240px;
 	}
 
 	.bg_content{
-	  background-color: #eee;
-	  font-size: 14px;
-	  height: 210px;
+	  height: 240px !important;
 	}
 	.margn{margin:2px 0;}
 	.artist_Photo {
@@ -504,6 +493,9 @@ a:hover {
 		max-width: 140px !important;
 		font-weight:normal !important
 	}
+	.top-cate h1 {
+		font-size: 25px;
+	}
 }
 
 
@@ -558,26 +550,6 @@ a:hover {
         margin: 115px 0 21px;
         width: 100%
     }
-    h1.ttto::before {
-        background: #000 none repeat scroll 0 0;
-        border-radius: 42px;
-        content: "";
-        height: 1px;
-        left: 0;
-        position: absolute;
-        top: 15px;
-        width: 36%
-    }
-    h1.ttto::after {
-        background: #000 none repeat scroll 0 0;
-        border-radius: 42px;
-        content: "";
-        height: 1px;
-        position: absolute;
-        right: 0;
-        top: 15px;
-        width: 30%
-    }
     .ourr-room>div {
         bottom: 5px;
         left: 0;
@@ -588,9 +560,6 @@ a:hover {
     .our-room {
         height: 158px !important;;
         margin-bottom: 13px
-    }
-    .margn.box {
-        height: 212px
     }
     .search-input {
         padding: 10px
@@ -744,14 +713,10 @@ a:hover {
     }
 	.bg {
 	height: 210px;
-	overflow: hidden;
-	padding-right: 0;
 }
 
 	.bg_content{
-	  background-color: #eee;
-	  font-size: 14px;
-	  height: 210px;
+	  height: 240px !important;
 	}
 	.margn{margin:2px 0;}
 	.margn h5 {
@@ -878,27 +843,6 @@ a:hover {
 
 /* md */
 @media(min-width:992px) and (max-width:1199px) {
-    h1.ttto::before {
-        background: #000 none repeat scroll 0 0;
-        border-radius: 42px;
-        content: "";
-        height: 1px;
-        left: 0;
-        position: absolute;
-        top: 15px;
-        width: 38%
-    }
-    h1.ttto::after {
-        background: #000 none repeat scroll 0 0;
-        border-radius: 42px;
-        content: "";
-        height: 1px;
-        position: absolute;
-        right: 0;
-        top: 15px;
-        width: 34%
-    }
-
     .margn h5 {
         font-family: "BebasNeueRegular" !important;;
         font-size: 20px !important;;
@@ -1032,14 +976,10 @@ a:hover {
     }
 	.bg {
 	height: 210px;
-	overflow: hidden;
-	padding-right: 0;
 }
 
 	.bg_content{
-	  background-color: #eee;
-	  font-size: 14px;
-	  height: 210px;
+	  height: 210px !important;
 	}
 	.margn{margin:2px 0;}
 
@@ -1144,26 +1084,6 @@ a:hover {
 }
 /* lg */
 @media(min-width:1200px) {
-    h1.ttto::before {
-        background: #000 none repeat scroll 0 0;
-        border-radius: 42px;
-        content: "";
-        height: 1px;
-        left: 0;
-        position: absolute;
-        top: 15px;
-        width: 38%
-    }
-    h1.ttto::after {
-        background: #000 none repeat scroll 0 0;
-        border-radius: 42px;
-        content: "";
-        height: 1px;
-        position: absolute;
-        right: 0;
-        top: 15px;
-        width: 34%
-    }
     .search-input {
         padding: 10px;
     }
@@ -1266,14 +1186,10 @@ a:hover {
     }
 		.bg {
 		height: 210px;
-		overflow: hidden;
-		padding-right: 0;
 	}
 	
 	.bg_content{
-	  background-color: #eee;
-	  font-size: 14px;
-	  height: 210px;
+	  height: 210px !important;
 	}
 	.margn{margin:2px 0;}
 

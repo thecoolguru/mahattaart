@@ -35,6 +35,29 @@ class Frontend extends CI_Controller
 		parse_str( $_SERVER['QUERY_STRING'], $_REQUEST );
 		$this->user = $this->facebook->getUser();
 	}
+
+	public function vendor_type() {
+    	$result=$this->frontend_model->get_vender_detail();
+    	foreach ($result as $data) {
+    		echo '<option>'.$data->vendor_types.'</option>';
+    	}
+	}
+
+	public function vendor_location() {
+		$vendor_type=$this->input->post('vendor_type');
+		$result=$this->frontend_model->get_kiosk_location($vendor_type);
+    	foreach ($result as $data) {
+    		echo '<option>'.$data->location.'</option>';
+    	}
+	}
+
+	public function vendor_location_id() {
+		$vendor_location=$this->input->post('vendor_location');
+		$result=$this->frontend_model->get_kiosk_locationid($vendor_location);
+    	foreach ($result as $data) {
+    		echo '<option>'.$data->location_id.'</option>';
+    	}
+	}
 	
 	public function frameit_myupload()	{
 		$print_size=$this->input->post('images_size');
@@ -206,13 +229,26 @@ class Frontend extends CI_Controller
 		$this->load->view('frontend/footer');
 	}
 
-public function themes_lightbox($lightbox_id,$page_no,$offset=0)	{
+public function themes_lightbox($lightbox_id,$page_no,$category="none",$shape="none",$offset=0)	{
 		if($page_no=='')	{
 			$page_no=1;
 		}
+		$data['shape']=$shape;
+		if($category=='none' || $category=='all'){
+		$category='';
+		}else{
+		$category=$category;
+		}
+		if($shape=='none'){
+		$shape='';
+		}else{
+		$shape=$shape;
+		}
+		$data['category_themes']=$category;
 		$per_page=20;
-		$search_file="http://api.indiapicture.in/wallsnart/search_catagory.php?q=$lightbox_id&page=$page_no&per_page=$per_page";
+		//$search_file="http://api.indiapicture.in/wallsnart/search_catagory.php?q=$lightbox_id&page=$page_no&per_page=$per_page";
 		//print_r($search_file);
+		$search_file="http://api.indiapicture.in/wallsnart/search_catagory.php?q=$lightbox_id&page=$page_no&per_page=$per_page&category=$category&shape=$shape";
 		$opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
 		$context = stream_context_create($opts);
 		$search_data_file = file_get_contents($search_file, false, $context);
@@ -221,6 +257,7 @@ public function themes_lightbox($lightbox_id,$page_no,$offset=0)	{
 		$data['search_cat']=$search_data_r['data'];
 		//$per_page = 5;  
 		//$per_page = 10;  
+		$data["total_rows"] = $search_data_r['total'];
 		$offset = ($this->uri->segment(4) != '' ? $this->uri->segment(4):0);
 		$config["total_rows"] = $search_data_r['total'];
 		$config['per_page']= $per_page;
@@ -242,7 +279,7 @@ public function themes_lightbox($lightbox_id,$page_no,$offset=0)	{
 		//$data["image"] = $this->frontend_model->get_images_lightbox_gallery($lightbox_id,$config["per_page"], $offset); 
 		$data['lightbox_id']=$lightbox_id;				
 		$user_id=$this->session->userdata('userid');
-		$this->load->view('frontend/header');
+		$this->load->view('frontend/header',$data);
 		$this->load->view('frontend/themes_lightbox',$data);
 		$this->load->view('frontend/footer');
 	}
@@ -923,9 +960,18 @@ public function themes_lightbox($lightbox_id,$page_no,$offset=0)	{
 			$email=$this->input->post('email_reg');
 			$password=$this->input->post('passwordd');
 			$ima=$this->input->post('ima');
+			$job_dec_detail=$this->input->post('job_dec_detail');
+			if($job_dec_detail==''){
+				$job_dec_details	=	0;
+			}else{
+				$job_dec_details	=	$job_dec_detail;
+			}
 			$job_dec=$this->input->post('job_dec');
+			$vendor_type=$this->input->post('vendor_type');
+			$vendor_location=$this->input->post('vendor_location');
+			$vendor_location_id=$this->input->post('vendor_location_id');
 			$quote="'";
-			$this->frontend_model->insert_registeration($first_name,$last_name,$email,$password,$ima,$job_dec);
+			$this->frontend_model->insert_registeration($vendor_type,$vendor_location,$vendor_location_id,$first_name,$last_name,$email,$password,$ima,$job_dec_details,$job_dec);
 			//$this->frontend_model->update_user_status($user_id);
 			//sent email to Admin
 			$messages='<!DOCTYPE HTML>
@@ -1845,9 +1891,12 @@ public function themes_lightbox($lightbox_id,$page_no,$offset=0)	{
 		$lightbox_id=$this->frontend_model->insert_get_lightbox_id($user_id,$light_name,$des,$date);
 		//$this->frontend_model->insert_light_box_images($lightbox_id,$img_id);
 		$result=$this->frontend_model->get_only_last_lightbox($user_id,$lightbox_id);
-		$data=array();
-		$data['data1']=array($result->lightbox_name);
-		$data['data2']=array($result->lightbox_id);
+		//$data=array();
+		///$data['data1']=array($result->lightbox_name);
+		//$data['data2']=array($result->lightbox_id);
+		$data=[$result->lightbox_name,$result->lightbox_id];
+		//print_r($data);
+		//$data['data2']=array("sayeedi");
 		echo json_encode($data);
 	}
         

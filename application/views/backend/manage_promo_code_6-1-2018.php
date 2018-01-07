@@ -33,13 +33,20 @@
       <td><div class="viewcplist-inner">
 	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr class="hdrs">
-		       <td>Promo Code</td>
-               <td>Offer (%)</td>
-		       <td>Valid Days</td>
-		       <td> Active</td>
-		       <td> Update</td>
-		       <td> Delete</td>
+		     <td>Promo Code</td>
+			 
+              <td>Offer (%)</td>
+			 
+		  <td>Valid Days</td>
+		  <td> Active</td>
+		 <td> Update</td>
+		  <td> Delete</td>
                                
+
+                                                     
+							   
+          
+          
           <script type="text/javascript">
 // Popup window code
 function newPopup(url) {
@@ -48,25 +55,11 @@ function newPopup(url) {
 
        
 }
+
+
+
+
 </script>
-
-
-<script>
-function del()
-  {
- var r=confirm("Are You Sure to Delete");
-  if(r==true)
-     {
-	  return true;
-	 }	
-	 else
-	  {
-	  return false;
-	  }
- }
-  </script>
-
-
          
           </tr>
    
@@ -97,27 +90,28 @@ function del()
    ?>
              
    <tr>
+		<input type="hidden" name="tbl_id[]" value="<?php echo $web_tbl->sr_no ;?>">
 		
-             <td><?php echo $web_tbl->promo_name_code ;?></td> 
-             <td><?php echo $web_tbl->offer_precentage;?><span>%<span></td>
-             <td><?php echo $valid_days;?></td>
-	     	 <td ><?php $active=$web_tbl->active ;
-				   if($active=='0')
-				   {
-				    echo "<span style='color:red'>Deactive</span>";
-				   }else if($active=='1')
-				   {
-				    echo "<span>Active</span>";
+   <td><?php echo $web_tbl->offer_code ;?></td> 
+         <td><?php echo $web_tbl->offer_precentage;?></td>
+  <td><?php echo $valid_days;?></td>
+	
+		 
+				  <td ><?php $active=$web_tbl->active ;
+				   if($active=='0'){
+				   echo "<span style='color:red'>No</span>";
 				   }else{
-					  echo "<span>Exp</span>";   
-					    }
+				   echo "Yes";
+				   }
 				  ?></td>
+				 
+				  
 			 <td>
-		           <a href="<?=base_url()?>index.php/backend/create_promo_code/<?=$web_tbl->sr_no;?>">Edit</a>
-             </td>
-             <td>
-		          <a href="<?=base_url()?>index.php/backend/delete_promo_code/<?=$web_tbl->sr_no;?>" onClick="return del()" >Delete</a>
-             </td>
+		     <a href="<?=base_url()?>index.php/backend/create_promo_code/<?=$web_tbl->sr_no;?>">Edit</a>
+</td>
+ <td>
+		     <a href="<?=base_url()?>index.php/backend/delete_promo_code/<?=$web_tbl->sr_no;?>">Delete</a>
+</td>
 
 
 	  </tr>
@@ -133,8 +127,16 @@ function del()
   </table>
 </div>
 </div>
+
+
+
+
 </div>
 <div style="margin:100px 0 25px 40px"><a href="javascript:window.history.back()" class="bt-back"> Back </a></div></div>
+
+
+
+
 <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">

@@ -39,6 +39,7 @@ function del()
 		<th>Person</th>
         <th>Mobile</th>
 		<th>Email</th>
+        <th>Vendor Types</th>
         <th>Location</th>
         <th>Location ID</th>
         <th>Created Date</th>
@@ -60,6 +61,7 @@ function del()
 					 <td><?php echo $rowa->person_name; ?></td>
                      <td><?php echo $rowa->person_mobile; ?></td>
                      <td><?php echo $rowa->person_email; ?></td>
+                     <td><?php echo $rowa->vendor_types; ?></td>
                      <td><?php echo $rowa->location; ?></td>
                      <td><?php echo $rowa->location_id; ?></td>
                      <td><?php echo $rowa->created_date; ?></td>

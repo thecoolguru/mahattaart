@@ -554,7 +554,7 @@ $search_data = json_decode($search_data_raw,TRUE);
 			$no_of_res=$limit;
 		}
 		$data['action']='dosearch_cat';
-           $srch_trm_raw = str_replace("%20"," ",$search_text);
+           $srch_trm_raw = str_replace("%20",",",$search_text);
 
 	   if($shap!="?#!" ||  $color!="%@$#"){
 	   	$key=$search_keys;

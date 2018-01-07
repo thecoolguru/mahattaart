@@ -6,7 +6,29 @@ class Frontend_model extends CI_Model
 		$this->load->database();
 	}
 		//main frontend of beta.mahattaart by mohan
-	
+	public function get_kiosk_location($id)
+	{
+	  $this->db->where('vendor_types',$id);
+	  $query=$this->db->get('kiosk_users');
+	  //print_r($query->result());
+	  return $query->result();
+	}
+	public function get_kiosk_locationid($id)
+	{
+	  $this->db->where('location',$id);
+	  $query=$this->db->get('kiosk_users');
+	  //print_r($query->result());
+	  return $query->result();
+	}
+	public function get_vender_detail()	{
+		$this->db->select('vendor_types');
+		//$this->db->from('kiosk_users');
+		$this->db->group_by('vendor_types');
+		$query = $this->db->get('kiosk_users');
+        //return $query;
+          return $query->result();
+    }
+    
 	public  function insert_into_myupload($user_id,$mat_color,$frameSize,$paper_surface,$final_frame_size,$frame_name,$image_namee)	{
 		$this->db->where('user_id',$user_id);
 		$this->db->where('image_id',$image_id);
@@ -240,13 +262,17 @@ return $query->result();
 		return $query->result();
 	}
 
-	public function insert_registeration($first_name,$last_name,$email,$password,$ima,$job_dec)	{
+	public function insert_registeration($vendor_type,$vendor_location,$vendor_location_id,$first_name,$last_name,$email,$password,$ima,$job_dec_details,$job_dec)	{
 		$data=array(
+		'vendor_types'=>$vendor_type,
+		'vendor_location'=>$vendor_location,
+		'vendor_location_key_id'=>$vendor_location_id,
 		'first_name'=>$first_name,
 		'last_name'=>$last_name,
 		'email_id'=>$email,
 		'password'=>$password,
 		'customer_designation'=>$ima,
+		'desig_other'=>$job_dec_details,
 		'customer_position'=>$job_dec
 		);
 		//print_r($data);die;

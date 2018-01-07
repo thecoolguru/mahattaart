@@ -1,15 +1,9 @@
 <?php  $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>
 <script defer src="<?php echo base_url()?>assets/js/jquery.flexslider.js"></script>   
-<script type="text/javascript">
-    function ShowHideDiv() {
-        var ima = document.getElementById("ima");
-        var c_job_dec_detail = document.getElementById("c_job_dec_detail");
-        c_job_dec_detail.style.display = ima.value == "other" ? "block" : "none";
-    }
-</script>
+
 <!-- footer -->
     <footer class="container-fluid">
-        <div class="footer-content container">
+		<div class="footer-content container">
             <div class="col-xs-6 col-sm-2 col-md-2" style="padding-right:0">
                 <h1>Quick  <span>Links</span></h1>
                 <ul>
@@ -44,9 +38,9 @@
             </div>
             <?php }?>
              <div class="col-xs-6 col-sm-2 col-md-2">
-                <h1>Term &  <span>Policies </span></h1>
+            	<h1>Term &  <span>Policies </span></h1>
                 <ul>
-                    <li><a href="<?php echo base_url()?>frontend/terms_of_use">Terms of Use </a></li>
+                	<li><a href="<?php echo base_url()?>frontend/terms_of_use">Terms of Use </a></li>
                     <li><a href="<?php echo base_url()?>frontend/privacy_policy">Privacy Policy</a></li>
                 </ul>
             </div>
@@ -54,7 +48,7 @@
                 <h1> <a href="https://msg91.com/startups/?utm_source=startup-banner"><img src="https://msg91.com/images/startups/msg91Badge.png" width="120" height="90" title="MSG91 - SMS for Startups" alt="Bulk SMS - MSG91"></a> </h1>
                 <h1> <a href="<?php echo base_url()?>frontend/msg91">send msg</a></h1>
             </div>
-        </div>
+		</div>
         </div>
        
        <p class="copyright"><a href="<?php echo base_url()?>frontend/terms_of_use">Terms  of Use  </a> &nbsp; © Copyright &nbsp;2017 | Mahatta Art</p>
@@ -63,16 +57,16 @@
     <!-- footer -->
 
     <div class="signup" id="signpop" style="display:none;" >
-        <div style="position: absolute;right: 10px;top: 0;"><a href="" onClick="allclose('');return false;" >Close</a></div>
+        <div style="float: right" ><a href="" onClick="allclose('');return false;" >Close</a></div>
         
         <h1>New User? Sign Up</h1>
-        <p>
-        <span></span><span></span>
-         <b style="color: red" id="email_error"></b>
-        <b style="color: red" id="password_error"></b> 
-        <b style="color: red" id="cpassword_error"></b>
+		<p>
+		<span></span><span></span>
+		 <b style="color: red" id="email_error"></b>
+		<b style="color: red" id="password_error"></b> 
+		<b style="color: red" id="cpassword_error"></b>
                 <b style="color: green" id="success_result"></b>
-        </p>
+		</p>
         <div class="signup-l-c">
             <form action="#" id="signup_form" name="sign_id" method="post">
                 <p>
@@ -84,34 +78,34 @@
                     <input type="text" name="last_name" 
                     id="last_name" placeholder="Last Name" >
                 </p>
-                <p>
-                    <span>Email Address<span style="color:#F00; width: auto;">*</span></span>
+            	<p>
+                	<span>Email Address<span style="color:#F00; width: auto;">*</span></span>
                     <input type="text" name="email_reg" 
-                    id="email_reg" placeholder="Email Address" >
+					id="email_reg" placeholder="Email Address" >
                 </p>
                 
                 <p>
-                    <span>Password<span style="color:#F00; width: auto;">*</span></span>
+                	<span>Password<span style="color:#F00; width: auto;">*</span></span>
                     <input  name="passwordd" type="password" id="password"
-                    placeholder="Password">
+					placeholder="Password">
                 </p>
                 
                 <p>
-                    <span>Re-Password<span style="color:#F00; width: auto;">*</span></span>
+                	<span>Re-Password<span style="color:#F00; width: auto;">*</span></span>
                     <input name="cpassword" type="password"
-                    id="cpassword" placeholder="Confirm Password">
+					id="cpassword" placeholder="Confirm Password">
                 </p>
 
 
                 <p>
-                    <span>Company Name </span>
+                	<span>Company Name </span>
                     <input name="company_name" type="text"
-                    id="company_name" placeholder="company name">
+					id="company_name" placeholder="company name">
                 </p>
 
                 <p>
                     <span> I'm a</span>
-                    <select style="width:200px;border: solid 1px #ccc;" name="ima" id="ima" onchange = "ShowHideDiv()">
+                    <select style="width:200px;border: solid 1px #ccc;" name="ima" id="ima">
                         <option value="hotelier"> Hotelier </option>
                         <option value="interior designer"> Interior Designer </option>
                         <option value="architects"> Architects </option>
@@ -121,10 +115,7 @@
                         <option value="other"> Other </option>
                     </select>
                 </p>
-                <p style="display: none;" id="c_job_dec_detail" class="optional other">
-                    <span>Details </span>
-                    <input name="job_dec_detail" type="text" id="job_dec_detail" placeholder="Enter Details">
-                </p>
+
                 <p>
                     <span> Job Description  </span>
                     <select style="width:200px;border: solid 1px #ccc;" name="job_dec" id="job_dec">
@@ -141,82 +132,69 @@
                     </select>
                 </p>
                 
-                <p class="demo_bx">
+                <p style="display:none" class="demo_bx">
                     <span> Vendor Type  </span>
-                    <select style="width:200px;border: solid 1px #ccc;" onchange="showlocation(this.value)" name="vendor_type" id="vendor_type">
-                        <?php
-                            foreach($data as $vendor) {
-                        ?>
-                        <option value="<?php echo $vendor["vendor_types"]; ?>"><?php echo $vendor["vendor_types"]; ?></option>
-                        <?php
-                            }
-                        ?>
+                    <select style="width:200px;border: solid 1px #ccc;">
+                        <option> Purchase Manager </option>
                     </select>
                 </p>
                 
-                <p class="demo_bx">
+                <p style="display:none" class="demo_bx">
                     <span> Location</span>
-                    <select style="width:200px;border: solid 1px #ccc;" onchange="showlocation_id(this.value)" name="vendor_location" id="vendor_location">
-                        <?php
-                            foreach($data as $location) {
-                        ?>
-                        <option value="<?php echo $location["location"]; ?>"><?php echo $location["location"]; ?></option>
-                        <?php
-                            }
-                        ?>
+                    <select style="width:200px;border: solid 1px #ccc;">
+                        <option> Purchase Manager </option>
                     </select>
                     <a href="" onclick="demo_fn2('');return false;"> <span style="width:auto">x</span></a>
                 </p>
-                <p class="demo_bx">
+                
+                <p style="display:none" class="demo_bx">
                     <span>Location Id</span>
-                    <select style="width:200px;border: solid 1px #ccc;" name="vendor_location_id" id="vendor_location_id">
-                        <?php
-                            foreach($data as $loc_id) {
-                        ?>
-                        <option value="<?php echo $loc_id["location_id"]; ?>"><?php echo $loc_id["location_id"]; ?></option>
-                        <?php
-                            }
-                        ?>
+                    <select style="width:200px;border: solid 1px #ccc;">
+                        <option> Purchase Manager </option>
                     </select>
                 </p>
+                
                 <p class="tar">
                     <input style="background: #0C6;    padding: 6px 12px;    font-size: 14px;    color: #fff;    text-decoration: none;    border: none;    border-radius: 2px; width: 120px; margin-right: 20px;" type="button" name="sign_id" onclick="checkRegisterValidation();" id="sign_id" value="SIGNUP NOW" />
                 </p>
                     
                 <div> 
-                    <span style="display:inline-block">Already have an account?</span>
-                    <span style="display:inline-block"><a href="#" class="none" onClick="login('')">Login!</a></span>
-                    <span style="display:inline-block"><a href="#" class="none" onClick="demo_fn('')" style="color:#F00">Merchant Registration</a></span>
+	                <span style="display:inline-block">Already have an account?</span>
+	                <span style="display:inline-block"><a href="#" class="none" onClick="login('')">Login!</a></span>
+	                <span style="display:inline-block"><a href="#" class="none" onClick="demo_fn('')" style="color:#F00">Merchant Registration</a></span>
                 </div>
             </form>
         </div>
         <div class="signup-r-c">
-            <h2> Sign in with </h2>
+        	<h2> Sign in with </h2>
             <div class="fb">
-            
-            <span> <a href="#">  <i class="fb-ii"></i></a>  <a href="#">  <i class="goo-ii"></i> </a> </span>
-                <!--<span><a href="#">  <img src="images/" /> <i class="fb-i"></i></a>  </span>
+			
+			<span> <a href="#">  <i class="fb-ii"></i></a>  <a href="#">  <i class="goo-ii"></i> </a> </span>
+            	<!--<span><a href="#">  <img src="images/" /> <i class="fb-i"></i></a>  </span>
                 <span><a href="#"><i class="goo-i"></i></a></span>-->
             </div>
         </div>
     </div>
+
+
+
+
     <div class="signup" id="signppp" style="display:none" >
-        <div style="position: absolute;right: 10px;top: 0;">
-        <a href="" onclick="allclose('');return false;" >Close</a></div>
+        <div style="float: right" ><a href="" onclick="allclose('');return false;" >Close</a></div>
         
          <h1>Forget Password ?</h1>
-        <p>
+		<p>
                <span id="error_msg" style="font-size:14px; color:red;"></span>
-        <span></span><span></span>
-         <b style="color: red" id="email_error"></b>
-        <b style="color: red" id="password_error"></b> 
-        <b style="color: red" id="cpassword_error"></b>
+		<span></span><span></span>
+		 <b style="color: red" id="email_error"></b>
+		<b style="color: red" id="password_error"></b> 
+		<b style="color: red" id="cpassword_error"></b>
                 <b style="color: green" id="success_result"></b>
-        </p>
+		</p>
         <div class="signup-l-c">
             <form action="#" id="" name="sign_id" method="post">
-                <p>
-                    <span>Email Address</span>
+            	<p>
+                	<span>Email Address</span>
                     <input type="text" id="email_regd" name="email_regd" value="<?php echo $forget_emlid;?>" >
                 </p>
 
@@ -236,38 +214,40 @@
             </form>
         </div>
         <div class="signup-r-c">
-            <h2> Sign in with </h2>
+        	<h2> Sign in with </h2>
             <div class="fb">
-            
-            <span> <a href="#">  <i class="fb-ii"></i></a>  <a href="#">  <i class="goo-ii"></i> </a> </span>
-                <!--<span><a href="#">  <img src="images/" /> <i class="fb-i"></i></a>  </span>
+			
+			<span> <a href="#">  <i class="fb-ii"></i></a>  <a href="#">  <i class="goo-ii"></i> </a> </span>
+            	<!--<span><a href="#">  <img src="images/" /> <i class="fb-i"></i></a>  </span>
                 <span><a href="#"><i class="goo-i"></i></a></span>-->
             </div>
         </div>
     </div>
-	<!--End sign up-->
+
+<!--End sign up-->
+
     <!-- login -->
     
     <div class="signup" id="loginpop" style="display:none;">
-        <div style="position: absolute;right: 10px;top: 0;"><a href="" onClick="allclose('');return false;" >Close</a></div>
+        <div style="float: right" ><a href="" onClick="allclose('');return false;" >Close</a></div>
 
         <div class="signup-l-c">
-         <h1>User Sign In </h1>
-        <p> <span></span><b style="color: red; " id="password_login_error"></b>
-         <b style="color: red;  " id="email_login_error"></b>
-         <b style="color: red;  " id="login_error"></b> </p>
+		 <h1>User Sign In </h1>
+		<p> <span></span><b style="color: red; " id="password_login_error"></b>
+		 <b style="color: red;  " id="email_login_error"></b>
+		 <b style="color: red;  " id="login_error"></b> </p>
                 <form action="#" id="login_id" name="login_id" method="post">
 
-                <p>
-                    <span>Email Address</span>
+            	<p>
+                	<span>Email Address</span>
                    <input name="email" type="text" id="email_login" placeholder="Email Address"  /><br>
-                  
+				  
                 </p>
                 
                 <p>
-                    <span>Password</span>
+                	<span>Password</span>
                     <input type="password" id="password_login" name="password_login" placeholder="Password"><br>
-                    
+					
                 </p>
  
                 <p class="tar">
@@ -288,39 +268,39 @@
 " type="button" name="login" onclick="return login_verification();" value="Login">
                  
                      </p>
-                     
-                     
-                      <div style="display:none">
-                     
-                
+					 
+					 
+					  <div>
+					 
+				
                 
         <h2 style="font-size: 18px; margin:inherit; color:#000000;"> Sign In with </h2>
         <br />
             <div class="fb">
-            <div style="float:left; width:150px;">
+			<div style="float:left; width:150px;">
            <!-- <div style="float:left; width:170px;">-->
-           
-            
-                     <div>
+		   
+		    
+					 <div>
                 <div style="float:left; width:90px;"> 
-                <a href="#"> <img style="padding:0px 5px 0px 0px;" src="<?php echo base_url()?>assets/img/facbook.png" /> </a> 
-                <a href="#"> <img style="padding:0px 5px 0px 0px;" src="<?php echo base_url()?>assets/img/google.png" /> </a> 
-                </div> 
+				<a href="#"> <img style="padding:0px 5px 0px 0px;" src="<?php echo base_url()?>assets/img/facbook.png" /> </a> 
+				<a href="#"> <img style="padding:0px 5px 0px 0px;" src="<?php echo base_url()?>assets/img/google.png" /> </a> 
+				</div> 
+				
+				</div>
+		   
+		   
+		   
+		   
+			
+			<!--<span> <a href="#">   <i class="fb-ii"></i></a> <span><a href="#"> <i class="goo-ii"></i> </a></span>  </span>
+			
+            	<span><a href="#"><i class="fb-i"></i></a></span>-->
                 
                 </div>
-           
-           
-           
-           
-            
-            <!--<span> <a href="#">   <i class="fb-ii"></i></a> <span><a href="#"> <i class="goo-ii"></i> </a></span>  </span>
-            
-                <span><a href="#"><i class="fb-i"></i></a></span>-->
-                
-                </div>
-                
+				
                 <div style="float:right;">
-                
+				
                <!-- <span><a href="#"><i class="goo-i"></i></a></span>-->
                  
                 </div>
@@ -331,14 +311,12 @@
             <div style="clear:both;"></div>
             <br />
            
+                    <span> User </span> <a style="color:#23527c;" href="#" class="none"  onClick="signup('')">SignUp!</a>
                  
                  
                  
                  </div>
             </form>
-                    <span> User </span>
-                    <a style="color:#23527c;" href="#" class="none"  onClick="signup('')">SignUp!</a>
-            <br />
               <span> User </span> <a style="color:#23527c;" href="#" class="none"  id="send_mail_btn">Forget Password!?</a>
         </div>
        
@@ -349,22 +327,22 @@
         
             <h2>Contributor Sign In</h2>
         <div class="signup-l-c" style="border-right:none;">
-        
-        <p> <span></span><b style="color: red; " id="password_login_error"></b>
-         <b style="color: red;  " id="email_login_error"></b>
-         <b style="color: red;  " id="login_error"></b> </p>
+		
+		<p> <span></span><b style="color: red; " id="password_login_error"></b>
+		 <b style="color: red;  " id="email_login_error"></b>
+		 <b style="color: red;  " id="login_error"></b> </p>
                 <form action="#" id="login_id" name="login_id" method="post">
-            
-                <p>
-                    <span>Email Address</span>
+			
+            	<p>
+                	<span>Email Address</span>
                    <input name="email" type="text" id="email_login" placeholder="Email Address"  /><br>
-                  
+				  
                 </p>
                 
                 <p>
-                    <span> Password </span>
+                	<span> Password </span>
                     <input type="password" id="password_login2" name="password_login2" placeholder="Password"><br>
-                    
+					
                 </p>
 
                 <p class="tar">
@@ -385,22 +363,22 @@
         
         
         
-        <h2 style="display:none"> Sign in with </h2>
-             <div class="fb" style="display:none">
+        <h2> Sign in with </h2>
+             <div class="fb">
             <div style="float:left; width:170px;">
-            
-            
-            <div style="float:left; width:90px;"> 
-                <a href="#"> <img style="padding:0px 5px 0px 0px;" src="<?php echo base_url()?>assets/img/facbook.png" /> </a> 
-                <a href="#"> <img style="padding:0px 5px 0px 0px;" src="<?php echo base_url()?>assets/img/google.png" /> </a> 
-                </div> 
-            
-            
-            
-            
-            
-            
-                <!--<span><a href="#"><i class="fb-ii"></i></a></span>-->
+			
+			
+			<div style="float:left; width:90px;"> 
+				<a href="#"> <img style="padding:0px 5px 0px 0px;" src="<?php echo base_url()?>assets/img/facbook.png" /> </a> 
+				<a href="#"> <img style="padding:0px 5px 0px 0px;" src="<?php echo base_url()?>assets/img/google.png" /> </a> 
+				</div> 
+			
+			
+			
+			
+			
+			
+            	<!--<span><a href="#"><i class="fb-ii"></i></a></span>-->
                 
                 </div>
                <!-- <div style="float:right;">
@@ -416,11 +394,31 @@
            
                    <span> Contributor </span> <a  style="color: #23527c;" href="http://www.mahatta.com/submission"> SignUp! </a>
                  
-            
+        	
         </div>
     </div>
-     <div class="signup gall-w" id="addtointrestedgallery" style="display:none;">
-         <div style="position: absolute;right: 10px;top: 0;"><a href="" onClick="allclose('');return false;" >Close</a></div><br>
+
+     <!-- create model of image details for intres by sajid-->
+
+	<!-- <div class="backblack" id="back" onClick="allclose('')" style="display:none;">&nbsp;</div>
+    <div class="signup gall-w" id="addtodetail" style="display:none;">
+         <div style="float: right" ><a href="#" onClick="allclose('')" >Close</a></div>
+        <h2>Please Fill below For gallary to help</h2>
+        
+         <form name="" id="">
+             <input type="hdden" id="image_id_details" name="image_id_details">
+        <p><input type="text" name="" id="" placeholder="Email to"></p>
+        <p><input type="text" name="" id="" placeholder="Subject"></p>
+        <p><textarea name="lightbox_des" id="" rows="5" cols="34" style="border-radius: 15px;" placeholder="Gallery Description"></textarea></p>
+        <p> <input type="button" name="create_lightbox"  onclick="" id="" value="Submit"> </p>
+        </form>
+        
+        
+    </div>-->
+
+
+	 <div class="signup gall-w" id="addtointrestedgallery" style="display:none;">
+         <div style="float: right" ><a href="" onClick="allclose('');return false;" >Close</a></div><br>
         <p>Submit the details below and our client executive will get in touch with you.</p>
         <span id="lightbox_error_image" style="color: red;margin-left: 48px;"></span><br>
          <form name="lightbox_submit" id="intrested_image_submit">
@@ -440,10 +438,11 @@
          
         
     </div>
-     <!-- close image details -->
+	 
+	 <!-- close image details -->
      <div class="backblack" id="back" onClick="allclose('')" style="display:none;">&nbsp;</div>
     <div class="signup gall-w" id="addtogallery" style="display:none;">
-         <div style="position: absolute;right: 10px;top: 0;"><a href="#" onClick="allclose('')" >Close</a></div>
+         <div style="float: right" ><a href="#" onClick="allclose('')" >Close</a></div>
         <h2>Create a new Gallery</h2>
         <span id="lightbox_error" style="color: red;margin-left: 48px;"></span><br>
          <form name="lightbox_submit" id="lightbox_submit">
@@ -456,23 +455,28 @@
         <h2>Choose existing Gallery</h2>
         
         <p>
-            <select id="lightbox_list_dropdown"
-                                    style="width: 140px;" onchange="check_exist_img(this.value);"><option
-                                        value="0" selected="selected">Select Gallery</option>
-                                    <?php 
-                                    $user_id=$this->session->userdata('userid');
+        	<select id="lightbox_list_dropdown"
+									style="width: 140px;" onchange="check_exist_img(this.value);"><option
+										value="0" selected="selected">Select Gallery</option>
+									<?php 
+									$user_id=$this->session->userdata('userid');
 $result=$this->frontend_model->get_all_lightboxes2($user_id);
 
  foreach($result as $results){?>
-                                    <option value="<?php echo $results->lightbox_id;?>">
-                                        <?php echo $results->lightbox_name;?>
-                                    </option>
-                                    <?php  }?>
-                                </select>   
+									<option value="<?php echo $results->lightbox_id;?>">
+										<?php echo $results->lightbox_name;?>
+									</option>
+									<?php  }?>
+								</select>	
         </p>
         
     </div>
      
+
+
+	 
+     
+      <!-- Modal content-->
 <script>
     $(document).ready(function(){
         $("#send_mail_btn").click(function(){
@@ -481,12 +485,7 @@ $result=$this->frontend_model->get_all_lightboxes2($user_id);
             //alert('');
         });
     });
-</script>
-
-     
-     
-      <!-- Modal content-->
-      
+</script> 
 
         <!-- BEGIN JIVOSITE CODE {literal} -->
 <script type='text/javascript'>
@@ -534,14 +533,14 @@ $result=$this->frontend_model->get_all_lightboxes2($user_id);
         }
         else
         {
-         $('#email_login_error').html("");
-        $('#password_login_error').html("");
+		 $('#email_login_error').html("");
+		$('#password_login_error').html("");
             var email= $('#email_login').val();
 
             var password= $('#password_login').val();
      //alert('yess')
            var datastring='email='+ email + ' &password=' + password;
-        
+		
             $.ajax({
                type:"POST",
                url:"<?=base_url()?>frontend/login",
@@ -549,9 +548,9 @@ $result=$this->frontend_model->get_all_lightboxes2($user_id);
               
                 success: function(response)
                 { 
-                //alert(response)
+				//alert(response)
                 var obj=JSON.parse(response);
-        
+		
           // alert(obj.result);
             if(obj.result=='1')
                     {
@@ -576,32 +575,32 @@ $result=$this->frontend_model->get_all_lightboxes2($user_id);
     }// end login function
 
 
-    function checjNewsletter(){
-        $("#other").submit(function(){
-            var email = $('#email_newsletter').val();
-            var email_check = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{2,3})$/;
-            
-            if(email=='' || email=='Your Email Address'){
-                $('#err').text('Please enter emailid');
-                $('#err').css({'color':'red'});
-                $('#email_newsletter').focus();
-                return false;
-            }
-            else if(email_check.test(email)==''){
-                $('#err').text('Please enter valid email');
-                $('#email_newsletter').focus();
-                return false;
-            }
-            else{
-                return;
-            }
-        });
-    }// end function
-    
-    
-    $('#password').live("keyup", function(event) {
+	function checjNewsletter(){
+		$("#other").submit(function(){
+			var email = $('#email_newsletter').val();
+			var email_check = /^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{2,3})$/;
+			
+			if(email=='' || email=='Your Email Address'){
+				$('#err').text('Please enter emailid');
+				$('#err').css({'color':'red'});
+				$('#email_newsletter').focus();
+				return false;
+			}
+			else if(email_check.test(email)==''){
+				$('#err').text('Please enter valid email');
+				$('#email_newsletter').focus();
+				return false;
+			}
+			else{
+				return;
+			}
+		});
+	}// end function
+	
+	
+	$('#password').live("keyup", function(event) {
    if(event.keyCode == '13'){
-    checkRegisterValidation();
+   	checkRegisterValidation();
    }
 });
 function mail_registration_confirm(){
@@ -631,7 +630,7 @@ function mail_registration_confirm(){
     
 
 }
-    function updateforpaswd(){
+	function updateforpaswd(){
 
       
        var email_regd= $('#email_regd').val();
@@ -648,7 +647,7 @@ function mail_registration_confirm(){
            url:"<?=base_url()?>frontend/updateforpassword",
              data:"email_regd="+email_regd,
              success:function(response){
-             
+			 
                 $('#error_msg').html(response); 
              }
          });
@@ -657,7 +656,7 @@ function mail_registration_confirm(){
 }
 
 
-    document.getElementById('password_login').onkeydown = function(event) {
+	document.getElementById('password_login').onkeydown = function(event) {
     if (event.keyCode == 13) {
       login_verification();
     }
@@ -716,9 +715,9 @@ function checkRegisterValidation(){
         }
         else
         {      
-        $('#email_error').html("");
-        $('#cpassword_error').html("");
-        $('#email_error').html("");
+		$('#email_error').html("");
+		$('#cpassword_error').html("");
+		$('#email_error').html("");
             $('#cpassword_error').html("");
             $.ajax({
                 type: "POST",
@@ -736,44 +735,11 @@ function checkRegisterValidation(){
                     }
                 }
             });
-            $('#signup_form')[0].reset();
+			$('#signup_form')[0].reset();
             return false;
         }
-}   // end registration function    
-    function demo_fn(){
-        $.ajax({
-            url:"<?php print base_url() ?>frontend/vendor_type",
-            data:"value='value'",
-            success :function(data){
-                //alert(data)
-                $("#vendor_type").html(data);
-            }
-        })
-    }
+}	// end registration function	
 
-    function showlocation(){
-        $.ajax({
-            type: "POST",
-            url:"<?php print base_url() ?>frontend/vendor_location",
-            data:$("#vendor_type").serialize(),
-            success :function(data){
-                alert(data)
-                $("#vendor_location").html(data);
-            }
-        })
-    }
-
-    function showlocation_id(){
-        $.ajax({
-            type: "POST",
-            url:"<?php print base_url() ?>frontend/vendor_location_id",
-            data:$("#vendor_location").serialize(),
-            success :function(data){
-                //alert(data)
-                $("#vendor_location_id").html(data);
-            }
-        })
-    }
 
      $(document).ready(function(){
     $("#send_mail_btn").click(function(){
@@ -783,3 +749,13 @@ function checkRegisterValidation(){
     });
 });
   </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111865142-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111865142-1');
+</script>
+

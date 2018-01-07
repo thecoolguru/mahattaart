@@ -37,7 +37,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
 
 <div class="top-cate col-md-12">
-<h1 class="ttto"> What's Trending </h1>
+<h1 class="ttto"> <span style="background-color: #fff;padding-left: 10px;padding-right: 10px;"><img src="<?php echo base_url();?>assets/img/icon_category.jpg" /> What's Trending</span> </h1>
 </div>
 
 <div id="myCarousel2" class="carousel slide col-md-12" data-ride="carousel" style="margin-top:2px">
@@ -98,7 +98,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <a href="<?php print base_url(); ?>frontend/themes_view/13">
 <img src="<?php echo base_url();?><?=$bottom_top[0]->image?>" class="img-responsive" width="100%" /> </a>
 </div>
-<div class="col-xs-6 col-md-6 col-sm-6 bg_content">
+<div class="col-xs-6 col-md-6 col-sm-6" style="padding-left:0"><div class="bg_content">
 <h4>
 <?=$bottom_top[0]->field1?>
 </h4>
@@ -108,14 +108,14 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <p>
 <?=$bottom_top[0]->description?>
 </p>
-<div style="text-align:right;padding:5px 0"> <a style="color:#6699FF" href="<?php print base_url(); ?>frontend/themes_view/13"> Read More. </a> </div>
-</div>
+<div class="text-right"> <a style="color:#6699FF;position: absolute;bottom: 10px;right: 20px;" href="<?php print base_url(); ?>frontend/themes_view/13"> Read More. </a> </div>
+</div></div>
 </div>
 </div>
 <div class="col-md-6 col-sm-6 margn box">
 <div class="row">
 <div class="col-xs-6 col-md-6 col-sm-6  bg"> <a href="<?php echo base_url();?><?=$url1?>"> <img src="<?php echo base_url();?><?=$bottom_top[1]->image?>" class="img-resonsive" width="100%"> </a> </div>
-<div class="col-xs-6 col-md-6 col-sm-6 bg_content ">
+<div class="col-xs-6 col-md-6 col-sm-6 " style="padding-left:0"><div class="bg_content ">
 <h4>
 <?=$bottom_top[1]->field1?>
 </h4>
@@ -125,8 +125,8 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <p>
 <?=$bottom_top[1]->description?>
 </p>
-<div style="text-align:right;padding:5px 0"> <a style="color:#6699FF" href="<?php echo base_url();?><?=$url1?>"> Read More. </a> </div>
-</div>
+<div class="text-right"> <a style="color:#6699FF;position: absolute;bottom: 10px;right: 20px;" href="<?php echo base_url();?><?=$url1?>"> Read More. </a> </div>
+</div></div>
 </div>
 </div>
 </div>
@@ -134,7 +134,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div class="col-md-6 col-sm-6 margn box">
 <div class="row">
 <div class="col-xs-6 col-md-6 col-sm-6  bg "> <a href="javascript:call_collection(3)"> <img src="<?php echo base_url();?><?=$bottom_top[2]->image?>" class="img-responsive" width="100%"> </a> </div>
-<div class="col-xs-6 col-md-6 col-sm-6 bg_content ">
+<div class="col-xs-6 col-md-6 col-sm-6 " style="padding-left:0"><div class="bg_content ">
 <h4>
 <?=$bottom_top[2]->field1?>
 </h4>
@@ -144,14 +144,14 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <p>
 <?=ucfirst(strtolower($bottom_top[2]->description))?>
 </p>
-<div style="text-align:right;"> <a style="color:#6699FF" href="javascript:call_collection(3)"> Read More. </a> </div>
-</div>
+<div class="text-right"> <a style="color:#6699FF;position: absolute;bottom: 10px;right: 20px;" href="javascript:call_collection(3)"> Read More. </a> </div>
+</div></div>
 </div>
 </div>
 <div class="col-md-6 col-sm-6 margn box">
 <div class="row">
 <div class="col-xs-6 col-md-6 col-sm-6  bg"> <a href="<?php print base_url(); ?><?=$url3;?>"> <img src="<?php echo base_url();?><?=$bottom_top[3]->image?>" class="img-responsive" width="100%"></a> </div>
-<div class="col-xs-6 col-md-6 col-sm-6 bg_content">
+<div class="col-xs-6 col-md-6 col-sm-6 " style="padding-left:0"><div class="bg_content">
 <h4>
 <?=$bottom_top[3]->field1?>
 </h4>
@@ -161,8 +161,8 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <p>
 <?=$bottom_top[3]->description?>
 </p>
-<div style="text-align:right;padding:5px 0"> <a style="color:#6699FF" href="<?php print base_url(); ?><?=$url3;?>"> Read More. </a> </div>
-</div>
+<div class="text-right"> <a style="color:#6699FF;position: absolute;bottom: 10px;right: 20px;" href="<?php print base_url(); ?><?=$url3;?>"> Read More. </a> </div>
+</div></div>
 </div>
 </div>
 </div>
@@ -211,16 +211,13 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
   margin-right: 10px;
 }
 
-#myCarousel2 .left.carousel-control, #myCarousel2 .right.carousel-control {
-	width:5%
-}
-
 .carousel-control {
-    position: absolute;
-    top: 50%;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
+	position: absolute;
+	top: 50%;
+	cursor: pointer;
+	width: 40px;
+	height: 40px;
+	transform: translate(0, -50%);
 }
 
 .left.carousel-control {
