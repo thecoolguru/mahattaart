@@ -345,7 +345,7 @@ body{background-color:#fff}
     </div>
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">Experience<span class="text-danger">*</span></label>
+      <label class="col-sm-3 control-label">Experience<span class="text-danger"></span></label>
       <div class="col-sm-9">      
 <input type="radio" name="experience"id="experience1"value="home" class="" required aria-required="true"
 <?php if($customer_details[0]->experience=='home'){ echo 'checked';}?>>Home
@@ -356,6 +356,14 @@ body{background-color:#fff}
 <input type="radio" name="experience"  id="experience3" value="create_login" <?php if($customer_details[0]->experience=='create_login'){ echo 'checked';}?> class="" required aria-required="true">Create User Login
 
 <input type="radio" name="experience"  id="experience4" value="only_verval" <?php if($customer_details[0]->experience=='only_verval'){ echo 'checked';}?> class="" required aria-required="true">Only Verbal
+	  </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Bill No<span class="text-danger"></span></label>
+      <div class="col-sm-9">
+        <input type="text" name="bill_no" value="<?php if(isset($customer_details[0]->customer_name)){echo $customer_details[0]->bill_no;} else {echo set_value('name');} ?>"  class="form-control" id="bill_no">
+
 	  </div>
     </div>
     

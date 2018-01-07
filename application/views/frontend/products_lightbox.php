@@ -264,20 +264,20 @@ $promo_amount=round($image_details[0]->unit_price*20/100);
         	<div class="row canvas framing print">
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Print Price</strong>
+                    	<p> Print Price</p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> Rs. <span id="print_price" class='canvas framing print'><?=($image_details[0]->unit_price)-275?></span></strong>
+                    	<p> Rs. <span id="print_price" class='canvas framing print'><?=($image_details[0]->unit_price)-275?></span></p>
                     </div>
                 </div>
             </div>
             <div class="row canvas framing print">
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Print Size: </strong>
+                    	<p> Print Size: </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> <span id="print_sizes" class='canvas framing print'><?php echo $image_details[0]->width.'x'.$image_details[0]->height;?> inches</span></strong>
+                    	<p> <span id="print_sizes" class='canvas framing print'><?php echo $image_details[0]->width.'x'.$image_details[0]->height;?> inches</span></p>
                     </div>
                 </div>
             </div>
@@ -304,10 +304,10 @@ $promo_amount=round($image_details[0]->unit_price*20/100);
             <div class="row canvas">
             	<div class="frame-it-content ">
                 	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Frame Type: </strong>
+                    	<p> Frame Type: </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong><span class='canvas' id="frame_type">Streched Canvas Gallary Wrap</span></strong>
+                    	<p><span class='canvas' id="frame_type">Streched Canvas Gallary Wrap</span></p>
                     </div>
                 </div>
             </div>
@@ -324,10 +324,10 @@ $promo_amount=round($image_details[0]->unit_price*20/100);
             <div class="row canvas ">
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Frame Cost: </strong>
+                    	<p> Frame Cost: </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right canvas ">
-                    	<strong>Rs. <span id="CanvasCost">275</span></strong>
+                    	<p>Rs. <span id="CanvasCost">275</span></p>
                     </div>
                 </div>
             </div>
@@ -393,40 +393,40 @@ $promo_amount=round($image_details[0]->unit_price*20/100);
             <div class="row">
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong style="color:#d3131b">Discount:</strong>
+                    	<p style="color:#d3131b">Discount:</p>
                     </div>
                 </div>
             </div> 
             <div class="row" >
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong style="color:#d3131b">FLAT<span id="promo_precentage" style="color:#d3131b">20%</strong>
-                    	<span style="color:#d3131b">Promo Code Applied</span> 	
+                    	<p style="color:#d3131b">Flat <span id="promo_precentage" style="color:#d3131b; vertical-align:top">20%</span></p>
+                    	<p style="color:#d3131b">Promo Code Applied</p> 	
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong style="color:#d3131b">Rs. <span id="promo_amount" ><?=$promo_amount?></span></strong>
+                    	<p style="color:#d3131b">Rs. <span id="promo_amount" ><?=$promo_amount?></span></p>
                     </div>
                 </div>
             </div>
            <div class="row" >
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Sub-Total  </strong>
+                    	<p> Sub-Total  </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> <span id="sub_total_p<?php echo $unit_price;?>rice"></span></strong>
+                    	<p> <span id="sub_total_p<?php echo $unit_price;?>rice"></span></p>
                     </div>
                 </div>
             </div>
             <div class="row">
             	<div class="frame-it-content col-md-12">
-                <hr/>
+                <hr style="border-color:#ddd"/>
                 	<div class="row">
                         <div class="col-md-6 col-sm-6 text-left">
-                            <strong style="color:#d3131b"> Total Price </strong>
+                            <p style="color:#d3131b"> Total Price </p>
                         </div>
                         <div class="col-md-6 col-sm-6 text-right">
-                            <strong> <span class='actual_price' style="color:#d3131b">Rs. <?php echo ($unit_price)-$promo_amount;?></span></strong>
+                            <p> <span class='actual_price' style="color:#d3131b">Rs. <?php echo ($unit_price)-$promo_amount;?></span></p>
                         </div>
                     </div>
                 </div>
@@ -468,7 +468,7 @@ $promo_amount=round($image_details[0]->unit_price*20/100);
 	<div id="22" style="position: relative;background-color: #888;">
 		
 
-		<div id="canvas_show" style="width:120px;position: absolute;transform: translate(-50%, 0%);left: 50%;top: 5%;">
+		<div id="canvas_show" style="width:190px;position: absolute;transform: translate(-50%, 0%);left: 50%;top: 5%;">
 		    <img id="canvas_show_bs" src="<?php echo $image_path; ?>" class="img-responsive">
 		</div>
         
@@ -997,42 +997,44 @@ function right(width,height,x){
             
             <div class="row">
             <div class="col-md-12">
-            <h3 style="margin-top:0;border-bottom: 1px solid #eee;padding-bottom: 5px;"><?=$panel?> Panel Wall Art Set</h3>
+            <h2 style="margin-top:0"><?=$panel?> Panel Wall Art Set</h2>
+            <hr style="margin-top:0" />
             	<form class="form-horizontal">
                         <div class="form-group">
-                        	<label for="country" class="col-sm-4" style="font-size:15px">
-                            	Panel Size<span style="font-size: 10px;margin-left: 2px; color:#888">(In Inches)</span>
+                        	<label for="country" class="col-sm-4 menu-heading-text">
+                            	Panel Size
+                                <span class="menu-selection-text">(In Inches)</span>
                             </label>
-                            <div class="col-sm-6">
-	                       	<p name="print_dimension" id="dimension" class="form-control-static">
+                            <div class="col-sm-8">
+	                       	<span name="print_dimension" id="dimension" class="form-control-static">
 							<?php echo $image_details[0]->dimension;?>
-                        </p>
+                        </span>
                             </div>
                         </div>
                         <div class="form-group">
-                        	<label for="country" class="col-sm-4" style="font-size:15px">
-                            	Total Size<span style="font-size: 10px;margin-left: 2px; color:#888">(In Inches)</span>
+                        	<label for="country" class="col-sm-4 menu-heading-text">
+                            	Total Size<span class="menu-selection-text">(In Inches)</span>
                             </label>
-                            <div class="col-sm-6">
+                            <div class="col-sm-8">
 	                       	<span class="form-control-static" name="print_sizes" id="sizes"><?php echo $image_details[0]->width.'x'.$image_details[0]->height;?></span><span> inches</span>
                             </div>
                         </div>
                         <div class="form-group">
-                        	<label for="country" class="col-sm-4" style="font-size:15px">
+                        	<label for="country" class="col-sm-4 menu-heading-text">
                             	Price
                             </label>
-                            <div class="col-sm-6">
+                            <div class="col-sm-8">
 	                       	<p class="price" style="display: block;">
-                            <span class="old_price" style="font-size: 15px;color:Tomato;"></span>Rs. 
-                            <span class="total_cost"><?=$unit_price-275?></span> </p>
+                            <span class="old_price" style="font-size: 15px;color:Tomato;"></span> 
+                            <span class="total_cost">Rs. <?=$unit_price-275?></span> </p>
                             </div>
                         </div>
                         <div class="form-group">
                         	<label for="country" class="col-sm-4" style="font-size:15px"> </label>
-                            <div class="col-sm-6">                    
+                            <div class="col-sm-8">                    
                                 <p class="bottom-bar-crop" style="display: block;" id="17"></p>
-                                <p class="shipping-note">Ships in 1-2 days</p>
-                                <h5><a href='' onclick="get_functions(''); price_details();return false;">Price Details</a> </h5>
+                                <p class="shipping-note" style="margin-bottom:0">Ships in 1-2 days</p>
+                                <p><a href='' onclick="get_functions(''); price_details();return false;">Price Details</a> </p>
                                 <p><input type="button" class="call-to-action-1-button btn btn-default"<?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> value="ADD TO CART" ></p>
                                 <div id="save-to-gallery-text">
                 	<span> <i class="fa fa-heart-o" aria-hidden="true"></i>
@@ -1083,10 +1085,8 @@ a.lightbox-close::after {
 .frame-it-pricing {
 	padding: 10px;
 }
-.frame-it-content strong {
-	margin: 5px 0;
-	display: block;
-	font-family: inherit;
+.frame-it-content span {
+	vertical-align:top
 }
 .frame-it-button {
 	float:right
@@ -1108,7 +1108,6 @@ a.lightbox-close::after {
 #uploader_popup_goofy_a {
 	background: white none repeat scroll 0 0;
 	display: block;
-	font-family: Arial;
 	left: 50%;
 	position: absolute;
 	top: 50%;
@@ -1202,6 +1201,13 @@ display: none;
 }
 .single-product-details {
 	margin-top: 20px;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'BebasNeueRegular';
+}
+label.menu-heading-text {
+	font-size: 15px;
+	font-weight: 500;
 }
 </style>
 <script>

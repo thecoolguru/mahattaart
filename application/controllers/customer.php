@@ -269,7 +269,8 @@ public function get_kiosk_users_details()
 		$pinterest=$this->input->post('pinterest');
 		$addlocation=$this->input->post('added_locaion');
 		$feadback=$this->input->post('feadback');
-		$experience=$this->input->post('experience');
+		$experience=$this->input->post('experience');		
+		$bill_no=$this->input->post('bill_no');
 		$active_coupon=$this->input->post('active_coupon');
 		$customer_register=$this->input->post('customer_register');
 		
@@ -297,6 +298,7 @@ public function get_kiosk_users_details()
 	                    'cutomer_interest'=>$pinterest,
 	                    'cutomer_feadback'=>$feadback,
 						'experience'=>$experience,
+						'bill_no'=>$bill_no,
 						'active_coupon'=>$active_coupon,
 						'customer_register'=>$customer_register
 				  
@@ -699,8 +701,9 @@ elseif($selecthospitality<>'')
                    }
 		
 		
-          if($this->form_validation->run()==false){
-			  
+          if($this->form_validation->run()==false)
+		  {
+            //echo $this->input->post('vendor_types'); die();			  
 			  
 			  //$data['get_vendor']=$this->customer_model->get_vendor_types_model();
 			  
@@ -715,7 +718,7 @@ $verdor_types=$this->input->post('verdor_types');
             $data=array(
                     'customer_id'=>$this->input->post('customer_id'),
                     
-					'vendor_types'=>$this->input->post('verdor_types'),
+					'vendor_types'=>$this->input->post('vendor_types'),
 					'vendor_location'=>$this->input->post('location'),
 					'vendor_location_key_id'=>$this->input->post('vendor_location_id'),
 					'client_service'=>$this->input->post('client_service'),	
@@ -817,7 +820,7 @@ $verdor_types=$this->input->post('verdor_types');
 
             $data=array(
                     'customer_id'=>$this->input->post('customer_id'),
-					'vendor_types'=>$this->input->post('verdor_types'),
+					'vendor_types'=>$this->input->post('vendor_types'),
 					'vendor_location'=>$this->input->post('location'), 
 					'vendor_location_key_id'=>$this->input->post('vendor_location_id'),
                     'client_service'=>$this->input->post('client_service'),					

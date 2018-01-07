@@ -1571,6 +1571,21 @@ function themes_filter(id)
 	 
     window.location.assign(url);
 }
+function themes_lightbox_filter_shape(shape)
+{
+	  var url='<?=base_url()?>frontend/themes_lightbox/<?=$lightbox_id?>/<? if($page_no!=''){ echo $page_no;}?>/<? if($category_themes!=''){ echo $category_themes;}else{ echo "all";} ?>/'+shape+'';
+	 
+    window.location.assign(url);
+}
+function themes_lightbox_filter(id)
+{
+
+
+	  var url='<?=base_url()?>frontend/themes_lightbox/<?=$lightbox_id?>/<? if($page_no!=''){ echo $page_no;}?>/'+id+'<? if($shape!='none'){ echo '/'.$shape;}?>';
+	 
+    window.location.assign(url);
+}
+
 
 function themes_filter_shape(shape)
 {
@@ -1649,6 +1664,7 @@ function check_exist_img(a,cat_id)
         function call_create_lightbox()
 {
     
+	//alert('jjjj')
 	if($('#lightbox_name').val()=="")
 	 {
 	 	$("#lightbox_error").html("Enter Gallery Name.");
@@ -1669,14 +1685,22 @@ function check_exist_img(a,cat_id)
 		      data: $("#lightbox_submit").serialize(),
 		      success: function(response)
 		      {    
-                              
-	                    var data = $.parseJSON(response);
-			   var str= toTitleCase(data.data1[0]);
+			 // alert(response)
+			 // var obj = { "name":"John", "age":30, "city":"New York"};
+              //  var myJSON = JSON.stringify(response);
+                 //alert(myJSON)
+	                //  var data = JSON.stringify(response);
+					//salert(data);
+						var result=$.parseJSON(response);
+						
+			  // var str= toTitleCase(result[0]);
+			 // alert(result);
+			   var str=result[0];
 	                    $("#lightbox_des").val("");
 	                    $('#lightbox_name').val("");
 	                    alert("Gallery has been created.");
 			   alert('Please select "'+str+'" from "My Gallery" option mentioned below to add this image');
-	                    $("#lightbox_list_dropdown").append('<option value='+data.data2[0]+'>'+data.data1[0]+'</option>');
+	                    $("#lightbox_list_dropdown").append('<option value='+result[1]+'>'+str+'</option>');
 	          }
 	          });
 	  }

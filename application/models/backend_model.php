@@ -7,6 +7,59 @@ class Backend_model extends CI_Model
 		$this->load->database();
 	}
 	
+/*******************promo code*********************/
+
+
+public function add_promo_code_model($data)
+{
+$this->db->insert('tbl_promo_code',$data);
+
+}
+
+
+public function get_all_tbl_promo_code_details()
+{
+	$query=$this->db->get('tbl_promo_code');
+	return $query->result();
+}
+
+
+public function get_all_tbl_promo_code()
+	{
+		$this->db->select('promo_name');
+		$this->db->distinct();
+	    $query=$this->db->get('tbl_promo_code');
+		return $query->result();
+    }
+	
+	
+public function delete_prormo_code($promo_code_id)
+{
+  
+  //echo "In Model=".$promo_code_id; die();
+  $this->db->where('sr_no',$promo_code_id);
+  $this->db->delete('tbl_promo_code');
+}	
+
+
+
+
+
+/******************End Prormo Code**********************/	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 /*************Query Form**************/
  public function add_form($data)
   { 
@@ -652,14 +705,6 @@ public function get_all_lightboxes()
 
 	}
 	
-	public function get_all_tbl_promo_code($sr_no){
-        $this->db->select('*');
-		if($sr_no!=''){
-		$this->db->where('sr_no',$sr_no);
-		}
-        $query=$this->db->get('tbl_promo_code');
-        return $query->result();
-       }
 	public function get_tbl_inventory($itemid)
 
     {   

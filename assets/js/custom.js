@@ -42,6 +42,7 @@ function login(){
 	if( (document.getElementById("back").style.display=="none")||(document.getElementById("loginpop").style.display=="none"))
 
 		{
+			$("body").css("position","fixed")
 			$("#back").fadeIn(300)
 			$("#loginpop").fadeIn(300)
 			$("#signpop").hide()
@@ -92,6 +93,7 @@ function login(){
 function signup(){
 	if( (document.getElementById("back").style.display=="none") || document.getElementById("signpop").style.display=="none")
 		{
+			$("body").css("position","fixed")
 		  $("#back").fadeIn(300)	
 		  $("#signpop").fadeIn(300)
 		  $("#loginpop").hide()
@@ -118,6 +120,7 @@ function frameit(){
 
 
 function allclose(){
+	    $("body").css("position","relative")
 		$("#back").fadeOut(300)
 		$("#signpop").fadeOut(300)  
 		$("#loginpop").fadeOut(300)  

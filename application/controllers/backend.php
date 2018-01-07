@@ -20,6 +20,109 @@ class Backend extends CI_Controller
 
 	}
 	
+	
+	/*************************create prorm cod***********************************/
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*************************end create promo code************************************/
+	
+	
+	
+	
+	public function create_promo_code()
+{
+	$query['promo_detials']=$this->backend_model->get_all_tbl_promo_code();
+	//print_r($query['promo_detials']);
+	$this->form_validation->set_rules('promo_for','PromoFor','required');
+	$this->form_validation->set_rules('promo_code','promocode','required');
+
+    $prom_for        = $this->input->post('promo_for');
+	$promo_name      = $this->input->post('promo_name');
+	$new_promo_name  = $this->input->post('new_promo_name');
+	if(!empty($promo_name)){$exact_name=$promo_name;}else{$exact_name=$new_promo_name;}
+	
+	$date_from= date("d-m-Y", strtotime($this->input->post('date_from')));
+    $date_to=date("d-m-Y", strtotime($this->input->post('date_to')));
+    $promo_code      = $this->input->post('promo_code');
+	$valid_days      = $this->input->post('valid_days');	
+	$offer_precentage= $this->input->post('offer_precentage');
+	$valid_days      = $this->input->post('valid_days');
+	$status=0;
+	$data=array(
+	            'prom_for'=>$prom_for,
+				'promo_name'=>$exact_name,
+				'promo_name_code'=>$promo_code,
+				'offer_precentage'=>$offer_precentage,
+				'valid_from_date'=>$date_from,
+				'valid_end_date'=>$date_to,
+				'valid_days'=>$valid_days,
+				'active'=>$status
+	           );   	 
+	if($this->form_validation->run()==false)
+	{
+		 $this->load->view('backend/dashboard_header');
+		 $this->load->view('backend/create_promo_code',$query);
+		 $this->load->view('backend/footer');
+		
+	}else{
+		 
+		 
+		 $query['record_added']=$this->backend_model->add_promo_code_model($data);
+		 $query['query_message']="Promo Code Successfully Created.";
+		 $this->load->view('backend/dashboard_header');
+		 $this->load->view('backend/create_promo_code',$query);
+		 $this->load->view('backend/footer');
+			
+		 }		   
+	
+	
+	}
+	
+	
+	
+public function manage_promo_offer()
+{
+        $data['web_price_tbl']=$this->backend_model->get_all_tbl_promo_code_details();
+		//echo "<pre>",var_dump($data),"</pre>";
+        $this->load->view('backend/dashboard_header');
+		$this->load->view('backend/manage_promo_code',$data);
+		$this->load->view('backend/footer');
+
+
+}
+
+public function delete_promo_code()
+{
+	
+	$promo_code_id=$this->uri->segment(3);
+	$this->backend_model->delete_prormo_code($promo_code_id);
+	redirect('backend/manage_promo_offer');
+
+}
+	
+	
+
+	
+	
 /*****************************************Query form***************************************************/
 	public function add_query_form()
 	{
@@ -1343,25 +1446,9 @@ public function invoice_view($invoice_id)
 
 
 	}
-public function create_promo_code($promo_id){
-	//$data['row_id']=$this->backend_model->update_web_price();
-	if($promo_id!=''){
 	
-	$data['promo_detials']=$this->backend_model->get_all_tbl_promo_code($promo_id);
-	}
-	$this->load->view('backend/dashboard_header');
-		$this->load->view('backend/create_promo_code',$data);
-		$this->load->view('backend/footer');
+
 	
-	}
-public function manage_promo_offer(){
-$data['web_price_tbl']=$this->backend_model->get_all_tbl_promo_code();
-        $this->load->view('backend/dashboard_header');
-		$this->load->view('backend/manage_promo_code',$data);
-		$this->load->view('backend/footer');
-
-
-}
 
       public function edit_packager_order($order_id="")
       {

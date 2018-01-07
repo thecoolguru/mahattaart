@@ -45,6 +45,7 @@ function del()
 		<th>Email</th>
 		<th>Edit</th>
 		<th>Delete</th>
+        <th>Add Submission</th>
 		<th>More Details</th>
       </tr>
     </thead>

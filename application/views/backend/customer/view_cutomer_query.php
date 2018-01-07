@@ -44,10 +44,12 @@ function del()
         <th>Cutomer Name</th>
         <th>Customer Email</th>
 		<th>Mobile Number</th>
-		<th>Gender</th>
+		<th>Vendor Type</th>
+        <th>Vendor Location</th>
+        <th>Location ID</th>
 		<th>Interested in Product</th>
+        <th>Bill No</th>
 		<th>Feadback</th>
-		<th>Cerated Date</th>
 		<th>Edit</th>
 		<th>Delete</th>
 		<!----
@@ -68,10 +70,12 @@ function del()
         <td><?php echo $rows->customer_name;?></td>
         <td><?php echo $rows->customer_email;?></td>
 		<td><?php echo $rows->customer_mobile;?></td>
-		<td><?php echo $rows->gender;?></td>
+		<td><?php echo $rows->vendor_types;?></td>
+        <td><?php echo $rows->location;?></td>
+        <td><?php echo $rows->vendor_location_key_id;?></td>
 		<td><?php echo $rows->cutomer_interest;?></td>
+        <td><?php echo $rows->bill_no;?></td>
 		<td><?php echo $rows->cutomer_feadback;?></td>
-		<td><?php echo $rows->apply_date;?></td>
 		<th><a href="<?php  echo base_url('index.php/customer/add_customer_query/'.$rows->id);?>/experience/<?php echo $rows->experience;?>">Edit</a></th>
 		<th><a href="<?php echo base_url('index.php/customer/delete_cutomer_query/'.$rows->id);?>"  onClick="return del()">Delete</a></th>
       </tr>

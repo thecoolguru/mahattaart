@@ -267,9 +267,8 @@
                     <td width="136">Customer ID</td>
 					 <td width="196">Customer Type </td>
                       <td width="136">Vendor Type</td>
-                      <td width="136">Vendor Location</td>
-                      <td width="136">Location Key</td>
-                    
+                      <td width="136">Location</td>
+                      <td width="136">Location ID</td>
                     <td width="196">Name </td>
                     <td width="281">Email ID</td>
                     <td width="193">Password</td>
@@ -278,14 +277,15 @@
                     <td width="178">Registration Date</td>
                     <td width="110">Action</td>
                   </tr>
-                  <?php while( $customer_data=  mysql_fetch_assoc($selectQuery)){ ?>
+        <?php while( $customer_data=  mysql_fetch_assoc($selectQuery)){ ?>
                   <tr>
                     <td><?=$customer_data['customer_id'];?></td>
 					<td><?=$customer_data['customer_type'];?></td>
                     
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td><?=$customer_data['vendor_types'];?></td>
+                    <td><?=$customer_data['vendor_location'];?></td>
+                     <td><?=$customer_data['vendor_location_key_id'];?></td>
+                 
                     
                     
                     <td><?=$customer_data['first_name'];?></td>
