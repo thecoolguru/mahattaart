@@ -155,7 +155,7 @@ body{background-color:#fff}
 	
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">Vendor types<span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Vendor types<span class="text-danger">*</span></label>
       <div class="col-sm-9">
       	<div class="btn-group">
            
@@ -168,7 +168,7 @@ body{background-color:#fff}
             
             </select>
         </div> 
-	
+<em style="color:red;font-size:11px"><?php  echo form_error('verdor_types'); ?></em>	
       </div>
     </div>
     <div class="form-group">

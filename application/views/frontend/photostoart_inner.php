@@ -2559,9 +2559,9 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
             <div class="addtocartcontainer_footer">
 	            <p>Already have an account?</p>
                 <p><a href="" onclick="login('');return false;">Login here</a></p>
-                <p class="text-center">or</p>
-            </div>
-            <p class="text-center"><a href="#"><img src="../../../assets/img/photostoart_inner/facbook.jpg" style="margin-bottom:10px"></a></p>
+<!--                <p class="text-center">or</p>
+-->            </div>
+            <!--<p class="text-center"><a href="#"><img src="../../../assets/img/photostoart_inner/facbook.jpg" style="margin-bottom:10px"></a></p>-->
         </div>
         
         <div class="addtocartcontainer_page2">

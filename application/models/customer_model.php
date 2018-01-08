@@ -25,10 +25,15 @@ public function get_vendor_types_model()
 
 public function create_location_id($verdor_types)
 	{
-	  $this->db->select_max('id');
+	  $this->db->select('location_id');
       $this->db->where('vendor_types',$verdor_types);
+	  $this->db->order_by("id", "desc");
+	  $this->db->limit(1,0);
       $query= $this->db->get('kiosk_users');
-	 // print_r($query->result());
+	  //$sql = $this->db->last_query();
+	  #var_dump($sql); die;
+	  //echo "<pre>";
+	  //print_r($query->result()); die;
 	  return $query->result();
 	
 	}

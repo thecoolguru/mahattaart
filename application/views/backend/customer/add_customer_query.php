@@ -92,7 +92,7 @@ body{background-color:#fff}
 	   
 	    $('#vendor_location').change(function(){						
        var vendor_location = $('#vendor_location').val();
-	   //alert("VENDOR Location="+vendor_location);
+	  // alert("VENDOR Location="+vendor_location);
           	
 			$.ajax({
 		   type:"POST",
@@ -100,8 +100,8 @@ body{background-color:#fff}
 			data:"vendor_location="+vendor_location,
 			success:function(response2)
 			 {
-            //alert(response2)
-				$("#vendor_location_id").html(response2);
+           // alert(response2)
+				 $("#vendor_location_id").val(response2);
 			 }	 
 		    })	
        });
@@ -201,7 +201,7 @@ body{background-color:#fff}
 			   
 	       $('input[name=experience]').change(function(){
            var value = $( 'input[name=experience]:checked' ).val();
-            //alert(value);
+           // alert(value);
 			
 			 $.ajax({
 		     type:"POST",
@@ -255,22 +255,20 @@ body{background-color:#fff}
     </div>
     
     
-<input type="hidden" name="vendor_location_id" value="<?php echo $customer_details[0]->vendor_location_key_id;  ?>">
+<!--<input type="text" name="vendor_location_id" value="<?php  // echo $customer_details[0]->vendor_location_key_id;  ?>">--->
     
     
     
     <!------------Pass Location keys--------------->
     
-    <div class="form-group"  style="display:none">
+    <div class="form-group">
       <label class="col-sm-3 control-label">Location ID<span class="text-danger"></span></label>
-      <div class="col-sm-9">
-      	<div class="btn-group">
-          <div id="vendor_location_id" name="vendor_location_id">
-
-          </div>            
-        </div>
-		
-      </div>
+       <div id="key_id">
+          <div class="col-sm-9">
+             <input type="text" name="vendor_location_id" id="vendor_location_id"   class="form-control" disabled value="<?php if(isset($customer_details[0]->vendor_location_key_id)){echo $customer_details[0]->vendor_location_key_id;} else {echo set_value('vendor_location_id');} ?>"  >
+          </div>
+        </div>  
+      
     </div>
     
     
@@ -345,7 +343,7 @@ body{background-color:#fff}
     </div>
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">Experience<span class="text-danger"></span></label>
+      <label class="col-sm-3 control-label">Experience<span class="text-danger">*</span></label>
       <div class="col-sm-9">      
 <input type="radio" name="experience"id="experience1"value="home" class="" required aria-required="true"
 <?php if($customer_details[0]->experience=='home'){ echo 'checked';}?>>Home
@@ -356,14 +354,6 @@ body{background-color:#fff}
 <input type="radio" name="experience"  id="experience3" value="create_login" <?php if($customer_details[0]->experience=='create_login'){ echo 'checked';}?> class="" required aria-required="true">Create User Login
 
 <input type="radio" name="experience"  id="experience4" value="only_verval" <?php if($customer_details[0]->experience=='only_verval'){ echo 'checked';}?> class="" required aria-required="true">Only Verbal
-	  </div>
-    </div>
-    
-    <div class="form-group">
-      <label class="col-sm-3 control-label">Bill No<span class="text-danger"></span></label>
-      <div class="col-sm-9">
-        <input type="text" name="bill_no" value="<?php if(isset($customer_details[0]->customer_name)){echo $customer_details[0]->bill_no;} else {echo set_value('name');} ?>"  class="form-control" id="bill_no">
-
 	  </div>
     </div>
     
@@ -382,6 +372,15 @@ body{background-color:#fff}
         </div>
 	
       </div>
+    </div>
+    
+    
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Bill No<span class="text-danger"></span></label>
+      <div class="col-sm-9">
+        <input name="bill_no" value="" class="form-control" id="bill_no" type="text">
+
+	  </div>
     </div>
     
     <div class="form-group">

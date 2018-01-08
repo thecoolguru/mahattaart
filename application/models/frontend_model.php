@@ -15,6 +15,7 @@ class Frontend_model extends CI_Model
 	}
 	public function get_kiosk_locationid($id)
 	{
+	
 	  $this->db->where('location',$id);
 	  $query=$this->db->get('kiosk_users');
 	  //print_r($query->result());
@@ -26,7 +27,7 @@ class Frontend_model extends CI_Model
 		$this->db->group_by('vendor_types');
 		$query = $this->db->get('kiosk_users');
         //return $query;
-          return $query->result();
+        return $query->result();
     }
     
 	public  function insert_into_myupload($user_id,$mat_color,$frameSize,$paper_surface,$final_frame_size,$frame_name,$image_namee)	{
