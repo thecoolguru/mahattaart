@@ -52,13 +52,13 @@ class Frontend extends CI_Controller
 	}
 
 	public function vendor_location_id() {
-		$vendor_location=$this->input->post('vendor_location');
+		echo $vendor_location=$this->input->post('vendor_location');
 		$result=$this->frontend_model->get_kiosk_locationid($vendor_location);
     	foreach ($result as $data) {
     		echo '<option>'.$data->location_id.'</option>';
     	}
 	}
-	
+
 	public function frameit_myupload()	{
 		$print_size=$this->input->post('images_size');
 		$images_price=$this->input->post('images_price');

@@ -74,92 +74,73 @@ public function get_kiosk_users_details()
 	public function add_kiosk_users()
 	{
 		
-	 
+		
 	  
 		$id=$this->uri->segment(3);
-		//echo $id; die();
-		//$result['get_details']=$this->customer_model->get_kiosk_details($id);
 		
-		//print_r($result['get_details']);
+		
+		//print_r($result);
 	   
-	   
-	   
-	   $verdor_types=$this->input->post('verdor_types');
+	   //echo $verdor_types; die();
+	   $this->form_validation->set_rules('verdor_types','Vendor Types','required');
 	   $this->form_validation->set_rules('person_name','Person Name','required');
        $this->form_validation->set_rules('person_mobile','Person Mobile','required');
        $this->form_validation->set_rules('person_email','Person Email','required|valid_email');
-	   
-	   
-	   
 	   $verdor_types=$this->input->post('verdor_types');
 	   $location=$this->input->post('location');
 	   $person_name=$this->input->post('person_name');
 	   $person_mobile=$this->input->post('person_mobile');
 	   $person_email=$this->input->post('person_email');
-	   
-	   
-	   
 	  //get Last id of table 
 	   $result=$this->customer_model->create_location_id($verdor_types);
-	  // print_r($result);
-       
-	  
-	   
-	   
-	  $result=$this->customer_model->create_location_id($verdor_types); 
-	 /// echo count($result); die();
+	//  print_r($result); die();
+	
+		  
 	      
+		  //$ki1='ki001';
 		  
-		  $ki='ki00';
-	      $sis='sis00';
 		  
-		if($verdor_types=='kiosk')
-	      {
-				 $uid=$result[0]->id+1;
-				  if(empty($result[0]->id)){
-				      $ki1='ki001';
-				      $location_id=$ki1;
-					  }else{ 
-					   $location_id=$ki.$uid;
-				     }
-		  }else
+		  $lastInsertedUId=$result[0]->location_id;		  
+		  #$location_id2=$ki.$uid;
+		  if($verdor_types=='kiosk')
 		  {
-		      //echo "Welcome"; die();
-			  $uid=$result[0]->id+1;
-			  if(empty($result[0]->id)){
-				      $sis1='sis001';
-				      $location_id=$sis1;
-			       }else{ 
-					   
-					   $location_id=$sis.$uid;
-		       }
-		  
+			  if($lastInsertedUId == null) {
+				  $currentLocationId = "ki0001";
+			  } else {
+				  $ki='ki0000';
+				  $lastUId = intval(str_replace("ki","", $lastInsertedUId));
+				  $currentUId = $lastUId + 1;
+				  $length = strlen($currentUId);
+				  $subKi = substr($ki,0,-$length);
+				  $currentLocationId = $subKi.$currentUId;
+			  }
 		  }
-		  
-		  
-			 
-	   
+		  if($verdor_types=='sis')
+		  {
+			  if($lastInsertedUId == null) {
+				  $currentLocationId = "sis0001";				  
+			  } else {
+				  $sis='sis0000';
+				  $lastUId = intval(str_replace("sis","", $lastInsertedUId));
+				  $currentUId = $lastUId + 1;
+				  $length = strlen($currentUId);
+				  $subKi = substr($sis,0,-$length);
+				  $currentLocationId = $subKi.$currentUId;
+			  }
+		  }	  
+	
 	    $data=array(
 	               'vendor_types'=>$verdor_types,
 				   'location'=>$location,
-				   'location_id'=>$location_id,
+				   'location_id'=>$currentLocationId,
 				   'person_name'=>$person_name,
 				   'person_mobile'=>$person_mobile,
 				   'person_email'=>$person_email,
-				   
-	  
 	         );
-			 
-			 
-	  
 	  if($this->form_validation->run()==FALSE)
 	  {
 		   $experience_value=$this->input->post('value');
 		   $result['get_details']=$this->customer_model->get_kiosk_details($id);
-		   
-		   
-		   
-		   
 		   $result['get_vendor']=$this->customer_model->get_vendor_types_model();
 		   $this->load->view('backend/dashboard_header');
            $this->load->view('backend/customer/kiosk_register',$result);     
@@ -167,9 +148,6 @@ public function get_kiosk_users_details()
 	  }else{
 		  
 		  $result['get_vendor']=$this->customer_model->get_vendor_types_model();
-		
-		  
-		  
 		 //UPDATE
 		  if($id!='')
 		  {
@@ -180,30 +158,23 @@ public function get_kiosk_users_details()
 				   'person_name'=>$person_name,
 				   'person_mobile'=>$person_mobile,
 				   'person_email'=>$person_email,
-				   
-	  
 	                 );
-			
-            
 			$this->customer_model->update_kiosk($id,$data2);
 			 redirect('index.php/customer/view_kiosk_users');
-			  
 		  }else{
-			  
 		  $result['record_added']=$this->customer_model->add_kiosk_users_model($data);	  
 		  $result['record_message']="Record Successfully Added";
 	      $result['record_failed']="Record Not Added,Please Check";
 		  $this->load->view('backend/dashboard_header');
 		  $this->load->view('backend/customer/kiosk_register',$result);     
           $this->load->view('backend/footer');
-			   
 		  }
-	
    }
 	
 	
 	
 	
+		
 	}
 	
 	
@@ -239,12 +210,8 @@ public function get_kiosk_users_details()
 	  
 	  public function add_customer_query($id)
        {
-		
-		   
-		
-
-		
-		$query['get_vendor']=$this->customer_model->get_vendor_types_model();
+		  
+    	 $query['get_vendor']=$this->customer_model->get_vendor_types_model();
 		 $experience=$this->uri->segment(5);
 		 $query['promo_codes']=$this->customer_model->get_promo_details($experience); 
 		 
@@ -260,6 +227,7 @@ public function get_kiosk_users_details()
 		$vendor_types=$this->input->post('vendor_types');
 		$vendor_location=$this->input->post('vendor_location');
 		$vendor_location_id=$this->input->post('vendor_location_id');
+		echo $vendor_location_id; die();
 		//$vendor_location_id_hidden=$this->input->post('vendor_location_id_hidden');
 			
 		$name=$this->input->post('name');
@@ -269,9 +237,10 @@ public function get_kiosk_users_details()
 		$pinterest=$this->input->post('pinterest');
 		$addlocation=$this->input->post('added_locaion');
 		$feadback=$this->input->post('feadback');
-		$experience=$this->input->post('experience');		
-		$bill_no=$this->input->post('bill_no');
+		$experience=$this->input->post('experience');
 		$active_coupon=$this->input->post('active_coupon');
+		$bill_no=$this->input->post('bill_no');
+     		
 		$customer_register=$this->input->post('customer_register');
 		
 	if($id!='')
@@ -298,8 +267,8 @@ public function get_kiosk_users_details()
 	                    'cutomer_interest'=>$pinterest,
 	                    'cutomer_feadback'=>$feadback,
 						'experience'=>$experience,
-						'bill_no'=>$bill_no,
 						'active_coupon'=>$active_coupon,
+						'bill_no'=>$bill_no,
 						'customer_register'=>$customer_register
 				  
 				   );
@@ -336,37 +305,16 @@ public function get_kiosk_users_details()
 			if($customer_register=='yes')
 			{
 				
-			  //$query['add_customer']=$this->customer_model->add_customer_query_mod($data);
-	          $this->customer_model->add_to_customer_model($customer_data);
-			
-			 //Send Email 
-			$to2="shahabalam78@gmail.com"; 			
-		    $this->email->from('info@mahattart.com', 'MahattaArt');
-			$this->email->to($to2);
-			$this->email->subject('Welcome to Mahatta Art');
-			$this->email->message("Welcome in Mahata Art");
-			$send=$this->email->send();		
-				
-				
+			$query['add_customer']=$this->customer_model->add_customer_query_mod($data);
+	        $this->customer_model->add_to_customer_model($customer_data);	
 			}else{
 			
 			$query['add_customer']=$this->customer_model->add_customer_query_mod($data);
-			  //Send Email 
-			$to2="shahabalam78@gmail.com"; 			
-		    $this->email->from('info@mahattart.com', 'MahattaArt');
-			$this->email->to($to2);
-			$this->email->subject('Welcome to Mahatta Art');
-			$this->email->message("Welcome in Mahata Art");
-			$send=$this->email->send();		
-				
-				
+			//SEND EMAILS HERE	
 				
 				}
 	$query['add_success']="Customer Query Added Success Fully,";
 			 }
-			
-			 
-			 
 	 }
 	 
 	  $this->load->view('backend/dashboard_header');
@@ -375,9 +323,8 @@ public function get_kiosk_users_details()
     
 		   
 		
-	  
-		
-		}
+	     
+	   }
 
 
 
@@ -405,11 +352,9 @@ public function get_kiosk_users_details()
       {
 	   $vendor_location=$this->input->post('vendor_location');
 	   $get=$this->customer_model->get_query_location_key($vendor_location);
+	   echo $get[0]->location_id;	  
 	  
-	 ?>
-     <input type="hidden" name="vendor_location_id" class="form-control"  value="<?php  echo $get[0]->location_id; ;?>">
-     <?php
-   }
+      }
    
    
      public function get_location_keys()

@@ -62,7 +62,7 @@
     </footer>
     <!-- footer -->
 
-    <div class="signup" id="signpop" style="display:none;" >
+    <div class="signup" id="signpop" style="display:none; width:auto" >
         <div style="position: absolute;right: 10px;top: 0;"><a href="" onClick="allclose('');return false;" >Close</a></div>
         
         <h1>New User? Sign Up</h1>
@@ -73,7 +73,7 @@
         <b style="color: red" id="cpassword_error"></b>
                 <b style="color: green" id="success_result"></b>
         </p>
-        <div class="signup-l-c">
+        <div class="signup-l-c" style="padding:0; border-right-style:none">
             <form action="#" id="signup_form" name="sign_id" method="post">
                 <p>
                     <span>First Name<span style="color:#F00; width: auto;">*</span></span>
@@ -115,8 +115,8 @@
                         <option value="hotelier"> Hotelier </option>
                         <option value="interior designer"> Interior Designer </option>
                         <option value="architects"> Architects </option>
-                        <option value="b2c customer"> B2C Customer </option>
-                        <option value="corporate"> Corporate </option>
+<!--                        <option value="b2c customer"> B2C Customer </option>
+-->                        <option value="corporate"> Corporate </option>
                         <option value="design house"> Design House </option>
                         <option value="other"> Other </option>
                     </select>
@@ -128,6 +128,7 @@
                 <p>
                     <span> Job Description  </span>
                     <select style="width:200px;border: solid 1px #ccc;" name="job_dec" id="job_dec">
+                        <option> Select </option>
                         <option value="purchase manager"> Purchase Manager </option>
                         <option value="owner"> Owner </option>
                         <option value="ceo"> CEO </option>
@@ -141,22 +142,19 @@
                     </select>
                 </p>
                 
-                <p class="demo_bx">
+                <p style="display: none;" class="demo_bx">
                     <span> Vendor Type  </span>
                     <select style="width:200px;border: solid 1px #ccc;" onchange="showlocation(this.value)" name="vendor_type" id="vendor_type">
-                        <?php
-                            foreach($data as $vendor) {
-                        ?>
-                        <option value="<?php echo $vendor["vendor_types"]; ?>"><?php echo $vendor["vendor_types"]; ?></option>
-                        <?php
-                            }
-                        ?>
+                        <option>--Select--</option>
+                       
                     </select>
                 </p>
                 
-                <p class="demo_bx">
+                <p style="display: none;" class="demo_bx">
                     <span> Location</span>
-                    <select style="width:200px;border: solid 1px #ccc;" onchange="showlocation_id(this.value)" name="vendor_location" id="vendor_location">
+                    
+                    <select style="width:200px;border: solid 1px #ccc;" onclick="showlocation_id(this.value)" name="vendor_location" id="vendor_location">
+                        <option>--Select--</option>
                         <?php
                             foreach($data as $location) {
                         ?>
@@ -167,9 +165,11 @@
                     </select>
                     <a href="" onclick="demo_fn2('');return false;"> <span style="width:auto">x</span></a>
                 </p>
-                <p class="demo_bx">
+                <p style="display: none;" class="demo_bx">
                     <span>Location Id</span>
+                    
                     <select style="width:200px;border: solid 1px #ccc;" name="vendor_location_id" id="vendor_location_id">
+                        <option>--Select--</option>
                         <?php
                             foreach($data as $loc_id) {
                         ?>
@@ -179,8 +179,8 @@
                         ?>
                     </select>
                 </p>
-                <p class="tar">
-                    <input style="background: #0C6;    padding: 6px 12px;    font-size: 14px;    color: #fff;    text-decoration: none;    border: none;    border-radius: 2px; width: 120px; margin-right: 20px;" type="button" name="sign_id" onclick="checkRegisterValidation();" id="sign_id" value="SIGNUP NOW" />
+                <p class="text-right">
+                    <input style="background: #0C6;    padding: 6px 12px;    font-size: 14px;    color: #fff;    text-decoration: none;    border: none;    border-radius: 2px; width: 120px;" type="button" name="sign_id" onclick="checkRegisterValidation();" id="sign_id" value="SIGNUP NOW" />
                 </p>
                     
                 <div> 
@@ -190,15 +190,7 @@
                 </div>
             </form>
         </div>
-        <div class="signup-r-c">
-            <h2> Sign in with </h2>
-            <div class="fb">
-            
-            <span> <a href="#">  <i class="fb-ii"></i></a>  <a href="#">  <i class="goo-ii"></i> </a> </span>
-                <!--<span><a href="#">  <img src="images/" /> <i class="fb-i"></i></a>  </span>
-                <span><a href="#"><i class="goo-i"></i></a></span>-->
-            </div>
-        </div>
+        
     </div>
     <div class="signup" id="signppp" style="display:none" >
         <div style="position: absolute;right: 10px;top: 0;">
@@ -755,9 +747,9 @@ function checkRegisterValidation(){
         $.ajax({
             type: "POST",
             url:"<?php print base_url() ?>frontend/vendor_location",
-            data:$("#vendor_type").serialize(),
+            data:'"vendor_type="$("#vendor_type").val()',
             success :function(data){
-                alert(data)
+                //alert(data)
                 $("#vendor_location").html(data);
             }
         })
@@ -767,7 +759,7 @@ function checkRegisterValidation(){
         $.ajax({
             type: "POST",
             url:"<?php print base_url() ?>frontend/vendor_location_id",
-            data:$("#vendor_location").serialize(),
+            data:'"vendor_location="$("#vendor_location").val()',
             success :function(data){
                 //alert(data)
                 $("#vendor_location_id").html(data);
@@ -775,7 +767,7 @@ function checkRegisterValidation(){
         })
     }
 
-     $(document).ready(function(){
+    $(document).ready(function(){
     $("#send_mail_btn").click(function(){
    $("#signppp").show();
    $("#loginpop").hide();
@@ -783,3 +775,12 @@ function checkRegisterValidation(){
     });
 });
   </script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111865142-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-111865142-1');
+</script>
