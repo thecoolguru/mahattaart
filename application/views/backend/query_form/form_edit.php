@@ -12,13 +12,6 @@
 <script src="<?=base_url()?>assets/js/jquery.js"></script>
 <script src="<?=base_url()?>assets/js/bootstrap.min.js"></script>
 
-
-
-
-		 
-		 
-		 
-
 <script>
 $(document).ready(function()
 {
@@ -69,18 +62,13 @@ $(document).ready(function(){
 	$("#hotal_drop").change(function()
 	{
 	      var hotal_value=$("#hotal_value").val();
-		  
-				
 				 if(hotal_value=='Other'){
 						 $("#hotal_hide").css("display", "block");
 					 }else{
 						 $("#hotal_hide").css("display", "none");
 						 
 						 }
-				
-				
-				
-    });
+});
 	$("#restaurant_drop").change(function(){
 		  var resturant_value=$("#interior_value").val();
 		  if(resturant_value=='Other'){
@@ -90,6 +78,18 @@ $(document).ready(function(){
 						 
 						 }
     });	
+	
+	$("#cafe_drop").change(function(){
+		  var cafe_value=$("#cafe_value").val();
+		  if(cafe_value=='Other'){
+						 $("#cafe_hide").css("display", "block");
+					 }else{
+						 $("#cafe_hide").css("display", "none").hide();
+						 
+						 }
+
+    });
+	
 	$("#house_drop").change(function(){
 		var house_value=$("#house_value").val();
 		  
@@ -99,21 +99,15 @@ $(document).ready(function(){
 						 $("#house_hide").css("display", "none");
 						 
 						 }
-		  
-		  
     });	
 	$("#hospital_drop").change(function(){
 		var hospital_value=$("#hospital_value").val();
-	
-		  
 		  if(hospital_value=='Other'){
 						 $("#hospital_hide").css("display", "block");
 					 }else{
 						 $("#hospital_hide").css("display", "none");
 						 
 						 }
-
-		  
     });
     $("#mall_drop").change(function(){
 		  var mall_value=$("#mall_value").val();
@@ -124,8 +118,6 @@ $(document).ready(function(){
 						 $("#mall_hide").css("display", "none");
 						 
 						 }
-
-		  
     });
 	$("#office_drop").change(function(){
 		var office_value=$("#office_value").val();
@@ -136,8 +128,6 @@ $(document).ready(function(){
 						 $("#office_hide").css("display", "none");
 						 
 						 }
-
-		  
     });
 	$("#club_drop").change(function(){
 		var club_value=$("#club_value").val();
@@ -148,8 +138,6 @@ $(document).ready(function(){
 						 $("#club_hide").css("display", "none");
 						 
 						 }
-
-		  
     });
   $("#retail_drop").change(function(){
 		var retail_value=$("#retail_value").val();
@@ -160,8 +148,6 @@ $(document).ready(function(){
 						 $("#retail_hide").css("display", "none");
 						 
 						 }
-
-			  
     });
   $("#add_name").click(function(){
 		  $("#alternate_person").css("display", "block");
@@ -172,9 +158,6 @@ $("#add_mobile").click(function(){
 	$("#add_email").click(function(){
 		  $("#alternate_email").css("display", "block");
     });
-	
-	
-	
 });
 </script>
 
@@ -386,8 +369,13 @@ $(document).ready(function(){
 	  
 	  $val=explode(',',$result[0]->Property_types);
 	  $val2=explode(',',$result[0]->place_of_display);
-	
-	  print_r($val2);
+	  $properties = array();
+	  if(count($val) == count($val2)) {
+		  for($i = 0; $i < count($val); $i++) {
+			  $properties[$val[$i]] = $val2[$i];		  	
+		  }
+	  }
+
 	 
 	  for($i=0;$i<count($val);$i++)
 	  {
@@ -405,7 +393,7 @@ $(document).ready(function(){
 		 
       }
 	  if(array_search('Cafe',$val)){
-		  $Cafe="cafe";
+		  $Cafe="Cafe";
 	  }
 	   if(array_search('House',$val)){
 		  $House="House";
@@ -446,7 +434,7 @@ $(document).ready(function(){
                     <span>Restaurant</span>
                 </label>
                 <label class="ckbox ckbox-inline mr20">
-<input type="checkbox"  value="Cafe"  id="cafe" name="property_type[]"<?php if($Cafe=='cafe'){echo 'checked';}?>>
+<input type="checkbox"  value="Cafe"  id="cafe" name="property_type[]"<?php if($Cafe=='Cafe'){echo 'checked';}?>>
                     <span>Cafe</span>
                 </label>
                 <label class="ckbox ckbox-inline mr20">
@@ -487,30 +475,21 @@ $(document).ready(function(){
 
       <div class="btn-group" id="hotal_drop" style="display:none" >
       <?php
- for($i=0;$i<count($val2);$i++)
-	  {
-if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='Reception'||$val2[$i]=='Roof'||$val2[$i]=='Waiting_Area'||$val2[$i]=='Other')  
-	          {
-	             $selectted_hotal_value='selected';
-				  
-			  }
-	
-	  
-	  }
+ 		//var_dump($properties);
 	  ?>
  
 
       
         <select name="place_of_display[]" id="hotal_value" class="form-control" required="required">
   <option value="" >Select Hotal</option>
-  <option value="Bedroom" <?php  echo $selectted_hotal_value; ?>>Bedroom</option>
-  <option value="Bath" <?php  echo $selectted_hotal_value;?>>Bath</option>
-  <option value="Lobby" <?php  echo $selectted_hotal_value;;?>>Lobby</option>
-  <option value="Corridor"<?php  echo $selectted_hotal_value;?>>Corridor</option>
-  <option value="Reception"<?php  echo $selectted_hotal_value;?>>Reception</option>
-  <option value="Roof" <?php  echo $selectted_hotal_value;?> >Roof</option>
-  <option value="Waiting_Area"<?php  echo $selectted_hotal_value;?>>Waiting Area</option>
-  <option value="Other"<?php  echo $selectted_hotal_value;?>>Other</option>
+  <option value="Bedroom" <?php  if(isset($properties['Hotel']) && $properties['Hotel'] == "Bedroom") echo "selected"; ?>>Bedroom</option>
+  <option value="Bath" <?php  if(isset($properties['Hotel']) && $properties['Hotel'] == "Bath") echo "selected"; ?>>Bath</option>
+  <option value="Lobby" <?php  if(isset($properties['Hotel']) && $properties['Hotel'] == "Lobby") echo "selected"; ?>>Lobby</option>
+  <option value="Corridor"<?php  if(isset($properties['Hotel']) && $properties['Hotel'] == "Corridor") echo "selected"; ?>>Corridor</option>
+  <option value="Reception"<?php  if(isset($properties['Hotel']) && $properties['Hotel'] == "Reception") echo "selected"; ?>>Reception</option>
+  <option value="Roof" <?php  if(isset($properties['Hotel']) && $properties['Hotel'] == "Roof") echo "selected"; ?> >Roof</option>
+  <option value="Waiting_Area"<?php  if(isset($properties['Hotel']) && $properties['Hotel'] == "Waiting Area") echo "selected"; ?>>Waiting Area</option>
+  <option value="Other"<?php  if(isset($properties['Hotel']) && $properties['Hotel'] == "Other") echo "selected"; ?>>Other</option>
        
 
          
@@ -520,11 +499,11 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
         <div class="btn-group" id="restaurant_drop" style="display:none">
             <select  name="place_of_display[]"  id="interior_value" class="form-control" required="required">
                 <option value="">Select Resturant</option>
-                <option value="Interior">Interior</option>
-                <option value="Exterior">Exterior</option>
-                <option value="Washroom">Washroom</option>
-                <option value="Kitchen" >Kitchen</option>
-                <option value="Other" >Other</option>
+                <option value="Interior" <?php  if(isset($properties['Restaurant']) && $properties['Restaurant'] == "Interior") echo "selected"; ?>>Interior</option>
+                <option value="Exterior" <?php  if(isset($properties['Restaurant']) && $properties['Restaurant'] == "Exterior") echo "selected"; ?>>Exterior</option>
+                <option value="Washroom" <?php  if(isset($properties['Restaurant']) && $properties['Restaurant'] == "Washroom") echo "selected"; ?>>Washroom</option>
+                <option value="Kitchen" <?php  if(isset($properties['Restaurant']) && $properties['Restaurant'] == "Kitchen") echo "selected"; ?>>Kitchen</option>
+                <option value="Other" <?php  if(isset($properties['Restaurant']) && $properties['Restaurant'] == "Other") echo "selected"; ?>>Other</option>
                
             </select>
         </div>
@@ -532,11 +511,11 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
         <div class="btn-group" id="cafe_drop" style="display:none">
             <select  name="place_of_display[]" id="cafe_value" class="form-control" required="required">
                 <option value="">Select Cafe</option>
-                <option value="Interior">Interior</option>
-                <option value="Exterior">Exterior</option>
-                <option value="Washroom">Washroom</option>
-                <option value="Interior">Kitchen</option>
-                <option value="Other">Other</option>
+                <option value="Interior" <?php  if(isset($properties['Cafe']) && $properties['Cafe'] == "Interior") echo "selected"; ?>>Interior</option>
+                <option value="Exterior" <?php  if(isset($properties['Cafe']) && $properties['Cafe'] == "Exterior") echo "selected"; ?>>Exterior</option>
+                <option value="Washroom" <?php  if(isset($properties['Cafe']) && $properties['Cafe'] == "Washroom") echo "selected"; ?>>Washroom</option>
+                <option value="Interior" <?php  if(isset($properties['Cafe']) && $properties['Cafe'] == "Kitchen") echo "selected"; ?>>Kitchen</option>
+                <option value="Other" <?php  if(isset($properties['Cafe']) && $properties['Cafe'] == "Other") echo "selected"; ?>>Other</option>
                  
            </select>
         </div>
@@ -544,11 +523,11 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
         <div class="btn-group" id="house_drop" style="display:none">
             <select  name="place_of_display[]" id="house_value" class="form-control" required="required">
                 <option value="">Select House</option>
-                <option value="Bedroom" >Bedroom</option>
-                <option value="Bath">Bath</option>
-                <option value="Kitchen">Kitchen</option>
-                <option value="Drawing">Drawing</option>
-                <option value="Other">Other</option>
+                <option value="Bedroom" <?php  if(isset($properties['House']) && $properties['House'] == "Bedroom") echo "selected"; ?>>Bedroom</option>
+                <option value="Bath" <?php  if(isset($properties['House']) && $properties['House'] == "Bath") echo "selected"; ?>>Bath</option>
+                <option value="Kitchen" <?php  if(isset($properties['House']) && $properties['House'] == "Kitchen") echo "selected"; ?>>Kitchen</option>
+                <option value="Drawing" <?php  if(isset($properties['House']) && $properties['House'] == "Drawing") echo "selected"; ?>>Drawing</option>
+                <option value="Other" <?php  if(isset($properties['House']) && $properties['House'] == "Other") echo "selected"; ?>>Other</option>
 
             </select>
         </div>
@@ -557,50 +536,50 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
             <select  name="place_of_display[]" id="hospital_value" class="form-control" required="required">
                 <option value="" >Select Hosptal</option>
 
-                <option value="Bedroom">Rooms</option>
-                <option value="Corridor" >Corridor</option>
-                <option value="Lift Lobby">Lift Lobby</option>
-                <option value="Waiting Area">Waiting Area</option>
-                <option value="Reception">Reception</option>
-                <option value="Canteen">Canteen</option>
-                <option value="Other">Other</option>
+                <option value="Bedroom" <?php  if(isset($properties['Hospital']) && $properties['Hospital'] == "Rooms") echo "selected"; ?>>Rooms</option>
+                <option value="Corridor" <?php  if(isset($properties['Hospital']) && $properties['Hospital'] == "Corridor") echo "selected"; ?>>Corridor</option>
+                <option value="Lift Lobby" <?php  if(isset($properties['Hospital']) && $properties['Hospital'] == "Lift Lobby") echo "selected"; ?>>Lift Lobby</option>
+                <option value="Waiting Area" <?php  if(isset($properties['Hospital']) && $properties['Hospital'] == "Waiting Area") echo "selected"; ?>>Waiting Area</option>
+                <option value="Reception" <?php  if(isset($properties['Hospital']) && $properties['Hospital'] == "Reception") echo "selected"; ?>>Reception</option>
+                <option value="Canteen" <?php  if(isset($properties['Hospital']) && $properties['Hospital'] == "Canteen") echo "selected"; ?>>Canteen</option>
+                <option value="Other" <?php  if(isset($properties['Hospital']) && $properties['Hospital'] == "Other") echo "selected"; ?>>Other</option>
             </select>
         </div>
         
         <div class="btn-group" id="mall_drop" style="display:none">
             <select  name="place_of_display[]" class="form-control" id="mall_value" required="required">
                 <option value="">Select Mall</option>
-                <option value="Corridor">Corridor</option>
-                <option value="Parking">Parking</option>
-                <option value="Other">Other</option>
+                <option value="Corridor" <?php  if(isset($properties['Mall']) && $properties['Mall'] == "Corridor") echo "selected"; ?>>Corridor</option>
+                <option value="Parking" <?php  if(isset($properties['Mall']) && $properties['Mall'] == "Parking") echo "selected"; ?>>Parking</option>
+                <option value="Other" <?php  if(isset($properties['Mall']) && $properties['Mall'] == "Other") echo "selected"; ?>>Other</option>
             </select>
         </div>
         
         <div class="btn-group" id="office_drop" style="display:none">
             <select name="place_of_display[]" class="form-control"  id="office_value"required="required">
                 <option value="">Select Office</option>
-                <option value="Rooms" >Rooms</option>
-                <option value="Waiting Area">Waiting Area</option>
-                <option value="Kitchen">Kitchen</option>
-                <option value="Other">Other</option>
+                <option value="Rooms" <?php  if(isset($properties['Office']) && $properties['Office'] == "Rooms") echo "selected"; ?>>Rooms</option>
+                <option value="Waiting Area" <?php  if(isset($properties['Office']) && $properties['Office'] == "Waiting Area") echo "selected"; ?>>Waiting Area</option>
+                <option value="Kitchen" <?php  if(isset($properties['Office']) && $properties['Office'] == "Kitchen") echo "selected"; ?>>Kitchen</option>
+                <option value="Other" <?php  if(isset($properties['Office']) && $properties['Office'] == "Other") echo "selected"; ?>>Other</option>
             </select>
         </div>
         
         <div class="btn-group" id="club_drop" style="display:none">
             <select name="place_of_display[]" class="form-control" id="club_value" required="required">
                 <option value="">Select Club</option>
-                <option value="Bar Counter">Bar Counter</option>
-                <option value="Pillar">Pillar</option>
-                <option value="Interior Walls">Interior Walls</option>
-                <option value="Other">Other</option>
+                <option value="Bar Counter" <?php  if(isset($properties['Club']) && $properties['Club'] == "Bar Counter") echo "selected"; ?>>Bar Counter</option>
+                <option value="Pillar" <?php  if(isset($properties['Club']) && $properties['Club'] == "Pillar") echo "selected"; ?>>Pillar</option>
+                <option value="Interior Walls" <?php  if(isset($properties['Club']) && $properties['Club'] == "Interior Walls") echo "selected"; ?>>Interior Walls</option>
+                <option value="Other" <?php  if(isset($properties['Club']) && $properties['Club'] == "Other") echo "selected"; ?>>Other</option>
             </select>
         </div>
         
         <div class="btn-group" id="retail_drop" style="display:none">
             <select  name="place_of_display[]" class="form-control"  id="retail_value" required="required">
                 <option value="">Select Retail Outlet </option>
-                <option value="Interior">Interior</option>
-                <option value="Other">Other</option>
+                <option value="Interior" <?php  if(isset($properties['Retail Outlet']) && $properties['Retail Outlet'] == "Interior") echo "selected"; ?>>Interior</option>
+                <option value="Other" <?php  if(isset($properties['Retail Outlet']) && $properties['Retail Outlet'] == "Other") echo "selected"; ?>>Other</option>
             </select>
         </div>
         
@@ -609,15 +588,14 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
         <div class="btn-group" id="other_drop" style="display:none">
             <select name="place_of_display[]" class="form-control" required="required">
                 <option value="">SELECT</option>
-                <option value="Other">Other</option>
-                
+                <option value="Other" <?php  if(isset($properties['Other']) && $properties['Other'] == "Other") echo "selected"; ?>>Other</option>                
             </select>
         </div>
       </div>
       
     </div>
     
-        <div class="form-group" id="hotal_hide" style="display:none">
+        <div class="form-group" id="hotal_hide" style="display:none;">
       <label class="col-sm-3 control-label"><span class="text-danger"></span></label>
       <div class="col-sm-9">
         <input type="text" name="other_value[]" id="hotal_other_value" value="<?php if($this->input->post('hotal_other_value')){echo $this->input->post('hotal_other_value') ;}?>" class="form-control" required aria-required="true" placeholder="Enter Hotal Other Value">
@@ -630,6 +608,15 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
       <label class="col-sm-3 control-label"><span class="text-danger"></span></label>
       <div class="col-sm-9">
         <input type="text" name="other_value[]" id="resturant_other_value" value="" class="form-control" required aria-required="true" placeholder="Enter Resturant Other Value">
+        <em style="color:red;font-size:12px"></em>
+		<em class="errorsizeofwall" style="color:red;font-size:12px"></em>
+	  </div>
+    </div>
+    
+    <div class="form-group" id="cafe_hide" style="display:none">
+      <label class="col-sm-3 control-label"><span class="text-danger"></span></label>
+      <div class="col-sm-9">
+        <input type="text" name="other_value[]" id="cafe_other_value"  class="form-control" placeholder="Enter Cafe Other Value">
         <em style="color:red;font-size:12px"></em>
 		<em class="errorsizeofwall" style="color:red;font-size:12px"></em>
 	  </div>
@@ -841,7 +828,7 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
       <div class="col-sm-9">
       	<div class="btn-group">
   <select  class="form-control"  name="art_form"  id="art_form"required="required">
-  <option valu="">Choose One:</option>
+  <option value="">Choose One:</option>
   <option value="Florals"<?php if($result[0]->art_form=='Florals'){echo 'selected';} ?>>Florals</option>
   <option value="Birds"<?php if($result[0]->art_form=='Birds'){echo 'selected';} ?>>Birds</option>
   <option value="Birds"<?php if($result[0]->art_form=='Scenic'){echo 'selected';} ?>>Scenic</option>
@@ -864,7 +851,7 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
       <div class="col-sm-9">
       	<div class="btn-group">
   <select  class="form-control"  name="artts"  id="artts"required="required">
-  <option valu="">Choose One:</option>
+  <option value="">Choose One:</option>
   <option value="Photographer" <?php if($result[0]->artitst=='Photographer'){echo 'selected';} ?>>Photographer</option>
   <option value="color" <?php if($result[0]->artitst=='color'){echo 'selected';} ?>>color</option>
   <option value="Other" <?php if($result[0]->artitst=='Other'){echo 'selected';} ?>>Other</option>
@@ -881,7 +868,7 @@ if($val2[$i]=='Bedroom'||$val2[$i]=='Lobby'||$val2[$i]=='Corridor'||$val2[$i]=='
       <div class="col-sm-9">
       	<div class="btn-group">
             <select  class="form-control"  name="source_type"  id="source_type"required="required">
-                <option valu="">Choose One:</option>
+                <option value="">Choose One:</option>
 	 <option value="Photography"<?php if($result[0]->source_types=='Photography'){echo 'selected';} ?>>Photography</option>
 	 <option value="Painting"<?php if($result[0]->source_types=='Painting'){echo 'selected';} ?>>Painting</option>
 	 <option value="Illustration"<?php if($result[0]->source_types=='Illustration'){echo 'selected';} ?>>Illustration</option>

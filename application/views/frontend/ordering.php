@@ -95,60 +95,54 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
 <div class="faqquestion">
 <p><strong>  Can I cancel my order?  </strong></p>
-
-
 <div class="faq-content">
-<p>To cancel an order that has not yet shipped, have your order number available and contact our Customer Support Team at 011-41828972or by  emailing <a href="mailto:"> info@mahattaart.com. </a> We are unable to process cancellations for items that have already shipped. Please visit our returns page or contact us for alternate options.</p>
+<p>Typically, orders once placed cannot be cancelled. Please contact at the earliest and we will try to do whatever best we can. Your order starts processing within 4 to 6 hours of order placement. Once the order starts processing we are unable to cancel the order.</p>
+<p><a href="http://www.mahattaart.com/return">http://www.mahattaart.com/return</a></p>
 </div>
 </div>
 
+<div class="faqquestion">
+<p><strong> What if I want to return an order?  </strong></p>
+<div class="faq-content">
+<p>If you have received a damaged product, please refer to the process mentioned in above point of <strong>What if I receive damaged product?</strong></p>
+<p>If the product is not damaged then,</p>
+<p><strong>In case of Art:</strong></p>
+<p>Please send us a request of return with a brief description of the reason for the return at +91-8800639075, 011-41828972 or by emailing info@mahattaart.com</p>
+<p>After receiving the request, we will arrange a pick up from the shipping address. Please return the package in the original packing including invoice, price tags, labels, original packing, freebies and accessories.</p>
+<p>Once a return request is authorized from our end, refund will be processed within 7-10 business days of receipt of the returned product, provided goods are received in an acceptable condition. The mode of refund will be the same as the mode of payment chosen when placing the order.</p>
+</div>
+</div>
 
-
-
+<div class="faqquestion">
+<p><strong> In case of Photos To Frame:</strong></p>
+<div class="faq-content">
+<p>Since it's a customize product as per your specifications. We are really sorry we won't be able to process the return of it. If you're not sure of size, print surface or frame or facing any issue while placing the order you may contact us at  +91-8800639075, 011-41828972 or by emailing info@mahattaart.com our customer support executive will get in touch with you to help you with your order.</p>
+</div>
+</div>
 
 <div class="faqquestion">
 <div class="faq-content">
 <p>We are unable to add additional items to existing orders or substitute individual items. You will need to cancel your existing order and place a new one.</p>
 </div>
 </div>
-
-
-
-
 <div class="faqquestion">
 <p><strong>  How do I find a specific item from your catalog?   </strong></p>
-
-
 <div class="faq-content">
 <p> Enter the exact name of the artwork/ artist name or the SKU ID into the search box that appears at the top of each page. Or you can contact our Customer Support Team at 011-41828972 or by emailing  <a href="mailto:info@mahattaart.com">info@mahattaart.com</a>.</p>
 </div>
 </div>
-
-
-
 <div class="faqquestion">
 <p><strong> Does the image on your site accurately represent what I will be sent?   </strong></p>
-
-
 <div class="faq-content">
 <p>We strive for a high degree of image accuracy. However, in some cases, the color of prints may vary. If you are not satisfied with the product you receive, you may return it within 7 days for a refund.</p>
 </div>
 </div>
-
-
-
-
 <div class="faqquestion">
 <p><strong> How accurate are the item dimensions listed on your web pages?  </strong></p>
-
-
 <div class="faq-content">
 <p>We verifies the dimensions of all images on our site, but due to industry standards sizes can vary slightly up to (1½"). If you are not satisfied with the product you receive, you may return it within 7 days for a refund.</p>
 </div>
 </div>
-
-
-
     <p>&nbsp;</p> 
 
 </div>
@@ -176,14 +170,10 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
     }
 
 
-.faqquestion p { padding:0px 0px 2px 0px !important;}
-.faqquestion p strong{ /*font-family: "Times New Roman",Times,serif;*/    font-size: 14px;
-    font-weight: bold;
+.faqquestion p strong{ 
     color: #000;
-	margin: 0px 0 18px 0;
    }
 	
-.faq-content p {  padding:0px 0px 18px 0px !important;/*font-family: "Times New Roman",Times,serif;*/}
 
 .career-page ul { margin:4px 13px;}
 

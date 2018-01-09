@@ -13,108 +13,6 @@
 <script src="<?=base_url()?>assets/js/bootstrap.min.js"></script>
 
 
-<script type ="text/javascript">
-    $(document).ready(function(){
-        $('#verdor_types').change(function(){
-       var verdor_id = $('#verdor_types').val();
-	  // alert(verdor_id);
-          	
-			$.ajax({
-		   type:"POST",
-		    url:"<?php  echo base_url('index.php/customer/get_kiosk_users_details'); ?>",
-			data:"verdor_id="+verdor_id,
-			success:function(response)
-			 {
-             ///alert(response)
-				$("#location").html(response);
-			 }	 
-		    })	
-       });
-    });
-    </script>
-    
-    
-    <script type ="text/javascript">
-    $(document).ready(function(){
-        $('#location').change(function(){
-       var verdor_id = $('#location').val();
-	  // alert(verdor_id);
-          	
-			$.ajax({
-		   type:"POST",
-		    url:"<?php  echo base_url('index.php/customer/get_kiosk_users_details'); ?>",
-			data:"verdor_id="+verdor_id+'&location=location',
-			success:function(response)
-			 {
-             //alert(response)
-				$("#verdor_id2").html(response);
-			 }	 
-		    })	
-       });
-    });
-    </script>
-	
-	
-	
-	
-	 
-    <script type ="text/javascript">
- 	  $(document).ready(function()
-		   {
-			   	   
-			   
-	       $('input[name=experience]').change(function(){
-           var value = $( 'input[name=experience]:checked' ).val();
-            //alert(value);
-			
-			 $.ajax({
-		     type:"POST",
-		     url:"<?php  echo base_url('index.php/customer/get_peromotion_codes'); ?>",
-			 data:"value="+value,
-			 success:function(response)
-			 {
-             //alert(response)
-				$("#active_coupon").html(response);
-			 }	 
-		    })	
-			
-			
-			
-			
-            });
-          	
-		
-       });
-		
-	
-       
-	   
-	   
-	   
-	  
-			
-		
-	   
-	
-	
-	
-	
-	
-    </script>
-    
-	
-    
-    
-    
- 
-  
-    
-    
-   <?php  echo $errors;?>
-
-
-
-
 
 <style>
 body{background-color:#fff}
@@ -184,15 +82,15 @@ body{background-color:#fff}
       <label class="col-sm-3 control-label">Upload Files:<span class="text-danger"></span></label>
       <div class="col-sm-9">
         <input type="file" name="sub_files" id="sub_files" class="form-control" value="<?php if($this->input->post('sub_files')){ echo $this->input->post('sub_files'); }; ?>" >
+		
       </div>
-      <?php if(isset($error)){ echo $error;} ?>    
     </div>    
       <div class="form-group">
       <label class="col-sm-3 control-label">Upload Files By:<span class="text-danger"></span></label>
       <div class="col-sm-9">
         <input type="text" name="files_upload_by" id="files_upload_by" class="form-control" value="<?php if($this->input->post('files_upload_by')){ echo $this->input->post('files_upload_by'); }; ?>">    
 	  </div>
-   <?php if(isset($errors)) echo $errors; ?>   
+   <?php if(isset($error)) echo $error; ?>   
     </div>
       <div class="form-group">
       <label class="col-sm-3 control-label">Feadback:<span class="text-danger"></span></label>

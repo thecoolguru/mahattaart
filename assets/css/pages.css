@@ -97,7 +97,9 @@
 .centre{ margin:0 13px !important;}
 
 .career-page h2{margin-bottom:0; padding:0 0 8px 0; font-size:27px; /*color:#0e3e92;*/ color:#000; font-family: 'BebasNeueRegular',Arial,Helvetica,sans-serif;font-size:}
-.career-page p{margin:0; padding:0 0 10px 0; font-size:13px; color:#868686;line-height:20px;}
+.career-page p {
+	color: #868686;
+}
 .career-page span{font-style:normal; font-size:13px; color:#868686;}
 .career-page span a{color:#0e3e92;}
 

@@ -38,6 +38,7 @@ class Frontend extends CI_Controller
 
 	public function vendor_type() {
     	$result=$this->frontend_model->get_vender_detail();
+    	echo '<option>--select--</option>';
     	foreach ($result as $data) {
     		echo '<option>'.$data->vendor_types.'</option>';
     	}
@@ -46,6 +47,7 @@ class Frontend extends CI_Controller
 	public function vendor_location() {
 		$vendor_type=$this->input->post('vendor_type');
 		$result=$this->frontend_model->get_kiosk_location($vendor_type);
+		echo '<option>--select--</option>';
     	foreach ($result as $data) {
     		echo '<option>'.$data->location.'</option>';
     	}
@@ -54,6 +56,7 @@ class Frontend extends CI_Controller
 	public function vendor_location_id() {
 		echo $vendor_location=$this->input->post('vendor_location');
 		$result=$this->frontend_model->get_kiosk_locationid($vendor_location);
+		echo '<option>--select--</option>';
     	foreach ($result as $data) {
     		echo '<option>'.$data->location_id.'</option>';
     	}
@@ -1034,6 +1037,7 @@ public function themes_lightbox($lightbox_id,$page_no,$category="none",$shape="n
 			$send=$this->email->send();
 
 			if($send)	{
+				echo "welcome to mahattaart";
 				//print "1";
 				//echo  $email;
 				echo json_encode(array("result"=>"1"));

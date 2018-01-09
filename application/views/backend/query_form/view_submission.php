@@ -39,7 +39,6 @@ echo $query_form_id;
     <thead>
       <tr class="danger">
         <th>Submission Series</th>
-        <th>Query ID</th>
 		<th>Submissin Date</th>
         <th>Date Updated By</th>
 		<th>Submission File</th>
@@ -64,10 +63,10 @@ echo $query_form_id;
 				 ?>
 				 <tr style="font-size:13px" class="<?php echo $value; ?>">
                      <td><?php echo $i; ?></td>
-                     <td><?php echo $rowa->query_form_id; ?></td>
+               
                      <td><?php echo $rowa->submission_date; ?></td>
                      <td><?php echo $rowa->date_updated_by; ?></td>
-                     <td><?php echo $rowa->submission-files; ?></td>
+                     <td><?php echo $rowa->submission_files; ?></td>
                      <td><?php echo $rowa->file_updated_by; ?></td>
                      <td><?php echo $rowa->submission_feadback; ?></td>
                      <td><?php echo $rowa->feadback_update_by; ?></td>	

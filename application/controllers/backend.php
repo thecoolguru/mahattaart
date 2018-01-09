@@ -9,6 +9,7 @@ class Backend extends CI_Controller
 		$this->load->library('form_validation');
                 $this->load->library('session');
 		$this->load->library('email');
+		$this->load->library('upload');
                 $this->load->library('pagination');
 		$this->load->helper('form');
 		$this->load->helper('url');
@@ -20,30 +21,6 @@ class Backend extends CI_Controller
 
 	}
 	
-	
-	/*************************create prorm cod***********************************/
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*************************end create promo code************************************/
 	
 	
 	
@@ -126,15 +103,14 @@ public function delete_promo_code()
 /*****************************************Query form***************************************************/
 	public function add_query_form()
 	{
-	    
+	
 	
 	  $this->form_validation->set_rules('name','Name','required');
 	  $this->form_validation->set_rules('mobile','Mobile','required');
 	  $this->form_validation->set_rules('email','Email','required|valid_email');
 	  $this->form_validation->set_rules('address','Address','required');
 	  $this->form_validation->set_rules('state_city','State City','required');
-	
-	 $name=trim($this->input->post('name'));
+	  $name=trim($this->input->post('name'));
 	 $alternate_name=trim($this->input->post('alternate_name'));
 	 $alternate_mobile=trim($this->input->post('alternate_mobile'));
 	 $mobile=trim($this->input->post('mobile'));
@@ -167,19 +143,12 @@ public function delete_promo_code()
 	 $creative_details=trim($this->input->post('creative_details'));
 	 $general_theme=trim($this->input->post('general_theme'));
 	 $source_type=trim($this->input->post('source_type'));
+	 
 	 $date_of_submission=trim($this->input->post('date_of_submission'));
-	 $first_sub_updated_by=trim($this->input->post('first_sub_updated_by'));
-	
+	 $date_updated_by=trim($this->input->post('date_updated_by'));
 	 
-	 
-  
-	  
-	  if($newDate<$current_date){$date['error_date']="Submission Date must be greater than or Equal to current date.";}
-	  
-	  
-	  
+	 if($newDate<$current_date){$date['error_date']="Submission Date must be greater than or Equal to current date.";}
 	  $data=array(
-			      
 			  'contact_person'=>$name,
 			  'alternate_name'=>$alternate_name,
 			  'contact_number'=>$mobile,
@@ -206,12 +175,9 @@ public function delete_promo_code()
 			  'creative_details'=>$creative_details,
 			  'general_theme'=>$general_theme,
 			  'source_types'=>$source_type 			  
-			  
-		
 				  );
-		
-	 
 				  
+			  
 	     if($this->form_validation->run()==FALSE)
 		 {
 					$this->load->view('backend/dashboard_header');
@@ -219,12 +185,21 @@ public function delete_promo_code()
 					$this->load->view('backend/footer');
 		 }
          else{
+	 
 				 $data['added_form']=$this->backend_model->add_form($data);
+				 $last_inserted_id = $this->session->userdata('last_inserted_id');
+				 $data2=array(
+		               'submission_date'=>$date_of_submission,
+					   'date_updated_by'=>$date_updated_by,
+		               'query_form_id'=>$last_inserted_id,
+		          );	
+				 $this->backend_model->add_submission_model($data2);
 				 $data['added_success']="Record Successfully Added.";
 				 $this->load->view('backend/dashboard_header');
 			     $this->load->view('backend/query_form/form',$data);
 				 $this->load->view('backend/footer');
 			 }
+		
 		
 		
 		
@@ -413,22 +388,41 @@ public function delete_promo_code()
 	  $subm_feadback=$this->input->post('subm_feadback');
 	  $feadback_update_by=$this->input->post('feadback_update_by');
 	  $sub_files=$this->input->post('sub_files');
-	  
-	  
-	     $config['upload_path']   = './Upload_Files/'; 
-         $config['allowed_types'] = 'php|doc|xlsx'; 
+	   
+	    
+
+		
+		 $config['upload_path']= './images/sub_files/';
+         $config['allowed_types'] = 'pdf|doc|xlsx|txt'; 
          $config['max_size']      = 100; 
          $config['max_width']     = 1024; 
          $config['max_height']    = 768;  
          $this->load->library('upload', $config);
+		 $this->upload->initialize($config);
 			
-      		
-	  
+         if (!$this->upload->do_upload('sub_files'))
+		  {
+			
+			$query_data['errors'] = array("error" => $this->upload->display_errors());
+			
+			print_r($query_data['errors']);
+			//$this->load->view('backend/form/add_submission',$query_data);
+			
+         }
+			
+         else { 
+                 $data = array('upload_data' =>$this->upload->data());
+			     $upload_data = $this->upload->data(); 
+                 $file_name =   $upload_data['file_name'];		
+          } 
+		  print_r($file_name);
+		  
+		  
 	  $data=array(
 	               'submission_date'=>$subm_date,
 				   'query_form_id'=>$id,
 				   'date_updated_by'=>$date_updated_by,
-				   'submission-files'=>$sub_files,
+				   'submission_files'=>$file_name,
 				   'file_updated_by'=>$files_upload_by,
 				   'submission_feadback'=>$subm_feadback,
 				   'feadback_update_by'=>$feadback_update_by,
@@ -446,7 +440,7 @@ public function delete_promo_code()
 		  
 	  }else
 	  {
-	  
+	 
 		$query_data=$this->backend_model->add_submission_model($data);
 		$query_data['record_added']="Submission Successfully Added.";
 	   
@@ -456,7 +450,10 @@ public function delete_promo_code()
 	  
 	  }
 
-	}
+		
+		
+		
+   }
 	
 	
 	
