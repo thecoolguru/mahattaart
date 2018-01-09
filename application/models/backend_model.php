@@ -5,6 +5,7 @@ class Backend_model extends CI_Model
 	function __construct()
 	{
 		$this->load->database();
+		$this->load->library(array('session'));
 	}
 	
 /*******************promo code*********************/
@@ -65,6 +66,8 @@ public function delete_prormo_code($promo_code_id)
   { 
 	  
 	  $this->db->insert('tbl_query_form',$data);
+	  $inserted_id=$this->db->insert_id();
+	  $this->session->set_userdata('last_inserted_id', $inserted_id);
   }
   
    public function get_record()

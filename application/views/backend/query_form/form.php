@@ -40,7 +40,7 @@
 
 $(document).ready(function()
 {
-    $("#hotal").click(function()
+    /*$("#hotal").click(function()
 	{
        if ($("#hotal").prop('checked')==true){ 
                $("#hotal_drop").css("display","block") ;
@@ -187,10 +187,36 @@ $("#house").click(function()
 	   
 
     });
+	*/
 	
-	
-
-	
+	$("#shahab-ck-property").on("click", "input[type='checkbox']", function(){
+		if($(this).prop('checked') == true) {
+			var CkName = $(this).val();
+			CkName = CkName.toLowerCase();
+			switch(CkName) {
+				case 'hotel':
+					CkName = 'hotal';
+					break;
+				case 'retail outlet':
+					CkName = 'retail';
+					break;
+			}
+			$("#"+CkName+"_drop").css("display","block") ;
+		}
+		if($(this).prop('checked') == false) {
+			var CkName = $(this).val();
+			CkName = CkName.toLowerCase();
+			switch(CkName) {
+				case 'hotel':
+					CkName = 'hotal';
+					break;
+				case 'retail outlet':
+					CkName = 'retail';
+					break;
+			}
+			$("#"+CkName+"_drop").css("display","none") ;
+		}
+	});	
 });
 </script>
 
@@ -219,7 +245,20 @@ $(document).ready(function(){
 						 $("#resturant_hide").css("display", "none").hide();
 						 
 						 }
-    });	
+
+    });
+	
+	
+	$("#cafe_drop").change(function(){
+		  var cafe_value=$("#cafe_value").val();
+		  if(cafe_value=='Other'){
+						 $("#cafe_hide").css("display", "block");
+					 }else{
+						 $("#cafe_hide").css("display", "none").hide();
+						 
+						 }
+
+    });
 	$("#house_drop").change(function(){
 		var house_value=$("#house_value").val();
 		  
@@ -463,7 +502,7 @@ $("#add_mobile").click(function(){
     
     <div class="form-group">
         <label class="col-sm-3 control-label nopaddingtop">Property type <span class="text-danger"></span></label>
-        <div class="col-sm-9">
+        <div id="shahab-ck-property" class="col-sm-9">
                 <label class="ckbox ckbox-inline mr20">
 <input type="checkbox"  value="Hotel"  id="hotal" name="property_type[]"  <?php if($this->input->post('property_type')=='Restaurant'){echo 'checked';}?>>
                     <span>Hotel</span>
@@ -475,7 +514,7 @@ $("#add_mobile").click(function(){
                     <span>Restaurant</span>
                 </label>
                 <label class="ckbox ckbox-inline mr20">
-                    <input type="checkbox"  value="cafe"  id="cafe" name="property_type[]" >
+                    <input type="checkbox"  value="Cafe"  id="cafe" name="property_type[]" >
                     <span>Cafe</span>
                 </label>
                 <label class="ckbox ckbox-inline mr20">
@@ -514,19 +553,16 @@ $("#add_mobile").click(function(){
    <div class="col-sm-9">
       <div class="btn-group" id="hotal_drop" style="display:none" >
         <select name="place_of_display[]" id="hotal_value" class="form-control" required="required">
- <option value="">Select Hotal</option>
-  <option value="Bedroom">Bedroom</option>
-  <option value="Bath" >Bath</option>
-  <option value="Lobby">Lobby</option>
-  <option value="Corridor">Corridor</option>
-  <option value="Reception">Reception</option>
-  <option value="Roof" >Roof</option>
-  <option value="Waiting Area" >Waiting Area</option>
-  <option value="Other">Other</option>
-       
-
-         
-         </select>
+             <option value="">Select Hotal</option>
+              <option value="Bedroom">Bedroom</option>
+              <option value="Bath" >Bath</option>
+              <option value="Lobby">Lobby</option>
+              <option value="Corridor">Corridor</option>
+              <option value="Reception">Reception</option>
+              <option value="Roof" >Roof</option>
+              <option value="Waiting Area" >Waiting Area</option>
+              <option value="Other">Other</option>
+               </select>
         </div>
       
         <div class="btn-group" id="restaurant_drop" style="display:none">
@@ -590,7 +626,7 @@ $("#add_mobile").click(function(){
         
         <div class="btn-group" id="office_drop" style="display:none">
             <select name="place_of_display[]" class="form-control"  id="office_value"required="required">
-                <option value="">Select Room</option>
+                <option value="">Select Office</option>
                 <option value="Rooms" >Rooms</option>
                 <option value="Waiting Area">Waiting Area</option>
                 <option value="Kitchen">Kitchen</option>
@@ -652,7 +688,17 @@ $("#add_mobile").click(function(){
 <div class="form-group" id="resturant_hide" style="display:none">
       <label class="col-sm-3 control-label"><span class="text-danger"></span></label>
       <div class="col-sm-9">
-        <input type="text" name="other_value[]" id="resturant_other_value" value="" class="form-control" required aria-required="true" placeholder="Enter Resturant Other Value">
+        <input type="text" name="other_value[]" id="resturant_other_value"  class="form-control" required aria-required="true" placeholder="Enter Resturant Other Value">
+        <em style="color:red;font-size:12px"></em>
+		<em class="errorsizeofwall" style="color:red;font-size:12px"></em>
+	  </div>
+    </div>
+    
+    
+    <div class="form-group" id="cafe_hide" style="display:none">
+      <label class="col-sm-3 control-label"><span class="text-danger"></span></label>
+      <div class="col-sm-9">
+        <input type="text" name="other_value[]" id="cafe_other_value"  class="form-control" placeholder="Enter Cafe Other Value">
         <em style="color:red;font-size:12px"></em>
 		<em class="errorsizeofwall" style="color:red;font-size:12px"></em>
 	  </div>
@@ -662,7 +708,7 @@ $("#add_mobile").click(function(){
     <div class="form-group" id="house_hide" style="display:none">
       <label class="col-sm-3 control-label"><span class="text-danger"></span></label>
       <div class="col-sm-9">
-        <input type="text" name="other_value[]" id="resturant_other_value" value="" class="form-control" required aria-required="true" placeholder="Enter House Other Value">
+        <input type="text" name="other_value[]" id="house_other_value"  class="form-control" required aria-required="true" placeholder="Enter House Other Value">
         <em style="color:red;font-size:12px"></em>
 		<em class="errorsizeofwall" style="color:red;font-size:12px"></em>
 	  </div>
@@ -845,6 +891,19 @@ $("#add_mobile").click(function(){
         
 
       </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Date of 1st submission <span class="text-danger"></span></label>
+      <div class="col-sm-9">
+        <input type="date" name="date_of_submission" id="date_of_submission" value="<?php if($this->input->post('date_of_submission')){echo $this->input->post('date_of_submission') ;}?>" class="form-control">
+ 	  </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Updated By<span class="text-danger"></span></label>
+      <div class="col-sm-9">
+        <input type="text" name="date_updated_by" id="date_updated_by"class="form-control" value="<?php if($this->input->post('date_updated_by')){echo $this->input->post('date_updated_by') ;}?>">
+	  </div>
     </div>
     
     

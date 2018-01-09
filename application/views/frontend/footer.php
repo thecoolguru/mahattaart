@@ -240,7 +240,7 @@
 	<!--End sign up-->
     <!-- login -->
     
-    <div class="signup" id="loginpop" style="display:none;">
+    <div class="signup" id="loginpop" style="display:none; width:auto">
         <div style="position: absolute;right: 10px;top: 0;"><a href="" onClick="allclose('');return false;" >Close</a></div>
 
         <div class="signup-l-c">
@@ -337,7 +337,7 @@
        
         
             
-        <div class="signup-r-c">
+        <!--<div class="signup-r-c">
         
             <h2>Contributor Sign In</h2>
         <div class="signup-l-c" style="border-right:none;">
@@ -409,7 +409,7 @@
                    <span> Contributor </span> <a  style="color: #23527c;" href="http://www.mahatta.com/submission"> SignUp! </a>
                  
             
-        </div>
+        </div>-->
     </div>
      <div class="signup gall-w" id="addtointrestedgallery" style="display:none;">
          <div style="position: absolute;right: 10px;top: 0;"><a href="" onClick="allclose('');return false;" >Close</a></div><br>
@@ -723,6 +723,8 @@ function checkRegisterValidation(){
                       $('#cpassword_error').html(response);
                     
                     if(obj.result=='1'){
+                            $('#success_result').html(response);
+                            //window.setTimeout(function(){location.reload()},3000);
                            window.location.replace('<?php echo base_url()?>index.php');
                            allclose('');
                     }
@@ -733,6 +735,7 @@ function checkRegisterValidation(){
         }
 }   // end registration function    
     function demo_fn(){
+        $(".demo_bx").css("display","block");
         $.ajax({
             url:"<?php print base_url() ?>frontend/vendor_type",
             data:"value='value'",
@@ -747,7 +750,7 @@ function checkRegisterValidation(){
         $.ajax({
             type: "POST",
             url:"<?php print base_url() ?>frontend/vendor_location",
-            data:'"vendor_type="$("#vendor_type").val()',
+            data:"vendor_type="+$("#vendor_type").val(),
             success :function(data){
                 //alert(data)
                 $("#vendor_location").html(data);
@@ -759,7 +762,7 @@ function checkRegisterValidation(){
         $.ajax({
             type: "POST",
             url:"<?php print base_url() ?>frontend/vendor_location_id",
-            data:'"vendor_location="$("#vendor_location").val()',
+            data:'vendor_location='+$("#vendor_location").val(),
             success :function(data){
                 //alert(data)
                 $("#vendor_location_id").html(data);

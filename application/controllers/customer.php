@@ -227,7 +227,7 @@ public function get_kiosk_users_details()
 		$vendor_types=$this->input->post('vendor_types');
 		$vendor_location=$this->input->post('vendor_location');
 		$vendor_location_id=$this->input->post('vendor_location_id');
-		echo $vendor_location_id; die();
+		//echo $vendor_location_id; die();
 		//$vendor_location_id_hidden=$this->input->post('vendor_location_id_hidden');
 			
 		$name=$this->input->post('name');
@@ -245,13 +245,9 @@ public function get_kiosk_users_details()
 		
 	if($id!='')
 		  {
-			  
-		 
 		 $query['kiosk_location']=$this->customer_model->get_kiosk_location($id);
 		 $query['customer_details']=$this->customer_model->get_customer_details($id);
-		
 		  }
-	
 	       if($this->form_validation->run()==true)
 		   {
 			
@@ -259,7 +255,6 @@ public function get_kiosk_users_details()
 		                'vendor_types'=>$vendor_types,
 						'location'=>$vendor_location,
 						'vendor_location_key_id'=>$vendor_location_id,   
-						//'vendor_location_key_id'=>$vendor_location_id_hidden,
 					    'customer_name'=>$name,
 	                    'customer_email'=>$email,
 	                    'customer_mobile'=>$mobile,
@@ -292,6 +287,8 @@ public function get_kiosk_users_details()
 		
 	  
 	         ); 
+			 
+			 //print_r($customer_dat); die();
 		$query['message_success']="Customer Query successfully Submitted";
 		$query['message_Failed']="Customer Query Not Submit,Please Check?";
 		if($id!='')

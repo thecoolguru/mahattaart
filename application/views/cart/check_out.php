@@ -205,7 +205,7 @@ function price_details(){
                         <div class="row">
                             <div class="frame-it-content">
                                 <div class="col-md-6 col-sm-6 text-left">
-                                	<strong><?php echo $clearence_dets->offer_code; ?></strong>
+                                	<strong><?php echo $clearence_dets->promo_name_code; ?></strong>
                                 </div>
                                 <div class="col-md-6 col-sm-6 text-right">
                                 	<strong <?php if($validation=='Apply'){?>onclick="appply_promo_code('<?=$clearence_dets->sr_no?>','<?=$clearence_dets->offer_precentage?>','<?=$clearence_dets->offer_code?>')"<?php } ?> id="apply_text<?=$clearence_dets->sr_no?>"><?php echo $validation; ?> </strong>

@@ -514,13 +514,13 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 </div>
 </div>
 </div>
-<div id="socialleft">
+<!--<div id="socialleft">
 	<ul>
     	<li><a href="https://www.facebook.com/mahattaart" target="_blank"><i class="fa fa-facebook"> </i></a></li>
     	<li><a href="https://twitter.com/mahattaart" target="_blank"> <i class="fa fa-twitter"> </i></a></li>
     	<li><a href="https://www.instagram.com/mahattaart" target="_blank"><i class="fa fa-instagram"> </i></a></li>
     </ul>
-</div>
+</div>-->
 </div>
 <style>
 .header-content.container > div#socialleft{

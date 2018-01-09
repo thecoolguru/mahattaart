@@ -265,7 +265,7 @@ body{background-color:#fff}
       <label class="col-sm-3 control-label">Location ID<span class="text-danger"></span></label>
        <div id="key_id">
           <div class="col-sm-9">
-             <input type="text" name="vendor_location_id" id="vendor_location_id"   class="form-control" disabled value="<?php if(isset($customer_details[0]->vendor_location_key_id)){echo $customer_details[0]->vendor_location_key_id;} else {echo set_value('vendor_location_id');} ?>"  >
+             <input type="text" name="vendor_location_id" id="vendor_location_id"   class="form-control"  value="<?php if(isset($customer_details[0]->vendor_location_key_id)){echo $customer_details[0]->vendor_location_key_id;} else {echo set_value('vendor_location_id');} ?>"  >
           </div>
         </div>  
       
