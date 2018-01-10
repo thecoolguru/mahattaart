@@ -43,6 +43,7 @@ class Backend extends CI_Controller
 	$valid_days      = $this->input->post('valid_days');	
 	$offer_precentage= $this->input->post('offer_precentage');
 	$valid_days      = $this->input->post('valid_days');
+	$promo_condition = $this->input->post('promo_condition');
 	$status=0;
 	$data=array(
 	            'prom_for'=>$prom_for,
@@ -51,6 +52,7 @@ class Backend extends CI_Controller
 				'offer_precentage'=>$offer_precentage,
 				'valid_from_date'=>$date_from,
 				'valid_end_date'=>$date_to,
+				'promo_condition'=>$promo_condition,
 				'valid_days'=>$valid_days,
 				'active'=>$status
 	           );   	 
@@ -330,7 +332,7 @@ public function delete_promo_code()
 			  'art_researcher'=>$art_researcher,
 			  'property_types'=>$propert_types,	
 			  'place_of_display'=>$place_of_display,
-			  'all_other_value'=>$all_other_value,
+			  //'all_other_value'=>$all_other_value,
 			  'wall_size'=>$size_of_wall,
 			  'wall_color'=>$color_of_wall,
 			  'art_size'=>$size_of_art,
@@ -389,25 +391,17 @@ public function delete_promo_code()
 	  $feadback_update_by=$this->input->post('feadback_update_by');
 	  $sub_files=$this->input->post('sub_files');
 	   
-	    
-
-		
-		 $config['upload_path']= './images/sub_files/';
-         $config['allowed_types'] = 'pdf|doc|xlsx|txt'; 
+		 $config['upload_path']='./images/sub_files';
+         $config['allowed_types'] = 'pdf|doc|xlsx'; 
          $config['max_size']      = 100; 
          $config['max_width']     = 1024; 
          $config['max_height']    = 768;  
          $this->load->library('upload', $config);
 		 $this->upload->initialize($config);
-			
          if (!$this->upload->do_upload('sub_files'))
 		  {
-			
 			$query_data['errors'] = array("error" => $this->upload->display_errors());
-			
-			print_r($query_data['errors']);
-			//$this->load->view('backend/form/add_submission',$query_data);
-			
+			//print_r($query_data['errors']);
          }
 			
          else { 
@@ -415,9 +409,7 @@ public function delete_promo_code()
 			     $upload_data = $this->upload->data(); 
                  $file_name =   $upload_data['file_name'];		
           } 
-		  print_r($file_name);
-		  
-		  
+		 // print_r($file_name);
 	  $data=array(
 	               'submission_date'=>$subm_date,
 				   'query_form_id'=>$id,
@@ -427,32 +419,20 @@ public function delete_promo_code()
 				   'submission_feadback'=>$subm_feadback,
 				   'feadback_update_by'=>$feadback_update_by,
 	  );
-	  
-	  
 	  if($this->form_validation->run()==FALSE)
 	  {
-		  
 		$this->load->view('backend/dashboard_header');
 		$this->load->view('backend/query_form/add_submission');
 	    $this->load->view('backend/footer');	
-		
-		  
-		  
 	  }else
 	  {
-	 
 		$query_data=$this->backend_model->add_submission_model($data);
 		$query_data['record_added']="Submission Successfully Added.";
-	   
 	    $this->load->view('backend/dashboard_header');
 		$this->load->view('backend/query_form/add_submission',$query_data);
 	    $this->load->view('backend/footer');	
 	  
 	  }
-
-		
-		
-		
    }
 	
 	
@@ -507,33 +487,51 @@ public function delete_promo_code()
 	
 public function edit_submission_record()
 {
-	
 	$sub_id=$this->uri->segment(5);
 	$form_id=$this->uri->segment(6);
+	$this->load->model('form_model');
 	
-	
-	
-	
+	//Get uploaded file name
+      $file_name_db=$this->backend_model->get_file_name($sub_id);
+	 // echo $file_name_db[0]->submission_files ; die();	 
+	 
 	  $this->form_validation->set_rules('subm_date','Submission Date','required');  
-	  
-	  
 	  $subm_date=$this->input->post('subm_date');
 	  $date_updated_by=$this->input->post('date_updated_by');
 	  $files_upload_by=$this->input->post('files_upload_by');
 	  $subm_feadback=$this->input->post('subm_feadback');
 	  $feadback_update_by=$this->input->post('feadback_update_by');
-	  $sub_files=$this->input->post('sub_files');
-	   
-	        	
-				
-				
-				
+	 
+	     
+		 $config['upload_path']='./images/sub_files';
+         $config['allowed_types'] = 'pdf|doc|xlsx'; 
+         $config['max_size']      = 100; 
+         $config['max_width']     = 1024; 
+         $config['max_height']    = 768; 
+         $this->load->library('upload', $config);
+		 $this->upload->initialize($config);
+			
+         if (!$this->upload->do_upload('sub_files'))
+		  {
+            $error['dd']= $this->upload->display_errors(); 
+			//print_r($error['dd']); die();
+		 }
+			
+         else { 
+                 $data = array('upload_data' =>$this->upload->data());
+			     $upload_data = $this->upload->data(); 
+                 $file_name =   $upload_data['file_name'];		
+          } 
+		  //echo $file_name; die();
+		  
+		  if(!empty($file_name)){$fname=$file_name;}else{$fname=$file_name_db[0]->submission_files;}
 	  
+	    //  echo $fname; die();
 	  $data=array(
 	               'submission_date'=>$subm_date,
 				   'query_form_id'=>$form_id,
 				   'date_updated_by'=>$date_updated_by,
-				   'submission-files'=>$sub_files,
+				   'submission_files'=>$fname,
 				   'file_updated_by'=>$files_upload_by,
 				   'submission_feadback'=>$subm_feadback,
 				   'feadback_update_by'=>$feadback_update_by,
@@ -547,21 +545,13 @@ public function edit_submission_record()
 		$this->load->view('backend/footer');	
 	  }else
 	  {
-		
 		$query_data['edit_record']=$this->backend_model->edit_submission_record_model($sub_id,$data);
-		
 		redirect('backend/view_submissions/'.$form_id);
-		
-		
 	  }
-	  
-	  
+
+
 	
-
-
-    
-
-
+	
 }		
 	
 	

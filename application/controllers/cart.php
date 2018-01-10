@@ -252,7 +252,19 @@ class Cart extends CI_Controller{
 	 	mcrypt_generic_deinit($openMode);
 		return $decryptedText;
 	}
+	public function validate_apply_coupon(){
+	//echo "sajid";
+	$apply_coupon=$this->input->post('apply_coupon');
+	$xx=$this->cart_model->validate_apply_coupon($apply_coupon);
 	
+	//print_r($xx);
+	foreach($xx as $promo_res){
+	$result=[$promo_res->promo_name_code,$promo_res->offer_precentage,$promo_res->active,$promo_res->valid_end_date];
+	//print_r($promo_res);
+	}
+	echo json_encode($result);
+	
+	}
 	public function hextobin($hexString){ 
        	$length = strlen($hexString); 
        	$binString="";   

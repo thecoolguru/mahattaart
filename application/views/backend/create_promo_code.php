@@ -195,6 +195,34 @@ $(document).ready(function()
    
    
   </tr>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <tr >
+    <td width="444" class="bold">Condition:</td>
+    <td>
+    <textarea name="promo_condition"  id="promo_condition" rows="10" cols="40"><?php if($this->input->post('promo_condition')) echo $this->input->post('promo_condition'); ?></textarea  >
+ 
+    </td>
+    
+
+   
+   
+  </tr>
+  
+  
+  
+  
+  
+  
 </table>
 
 			 </div> </div>

@@ -674,192 +674,322 @@ function calculate_cost(value){
 	$('#price_detail').hide();	
 	}
 </script>
-<!-- pricing Details -->
-<div class="lightbox-target" id="price_detail">
-    <div id="uploader_popup_goofy_a">
-        <div class="uploader_popup_header">
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header uploader_popup_header">
             <h2 class="text-center">Pricing Details</h2>
-            <a class="lightbox-close"  href="" onclick="remove_pricing(); return false;"></a>
-        </div>
-		<div class="frame-it-pricing">
+            <a class="lightbox-close"  data-dismiss="modal" ></a>
+      </div>
+
+      <div class="modal-body">
+      <!-- pricing Details -->
+        <div class="frame-it-pricing">
         	<div class="row canvas framing print">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Print Price</strong>
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p> Print Price</p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> <span id="print_price" class='canvas framing print'></span></strong>
+                    	<p> <span id="print_price" class='canvas framing print'></span></p>
                     </div>
                 </div>
             </div>
             <div class="row canvas framing print">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Print Size: </strong>
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p> Print Size: </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> <span id="print_sizes" class='canvas framing print'></span></strong>
+                    	<p> <span id="print_sizes" class='canvas framing print'></span></p>
                     </div>
                 </div>
             </div>
             <div class="row canvas framing print">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Paper Print: </strong>
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p> Paper Print: </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> <span id="print_paper" class='canvas framing print'></span></strong>
+                    	<p> <span id="print_paper" class='canvas framing print'></span></p>
                     </div>
                 </div>
             </div>
             <div class="row framing">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Frame Size(mm): </strong>
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p> Frame Size(mm): </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> <span id="frame_sized" class='framing'></span></strong>
+                    	<p> <span id="frame_sized" class='framing'></span></p>
                     </div>
                 </div>
             </div>
             <div class="row canvas">
             	<div class="frame-it-content ">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Frame Type: </strong>
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p> Frame Type: </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong><span class='canvas' id="frame_type"></span></strong>
+                    	<p><span class='canvas' id="frame_type"></span></p>
                     </div>
                 </div>
             </div>
             <div class="row framing">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Frame Name: </strong>
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p> Frame Name: </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong><span class='framing' id="f_name"></span></strong>
+                    	<p><span class='framing' id="f_name"></span></p>
                     </div>
                 </div>
             </div>
             <div class="row canvas ">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Frame Cost: </strong>
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p> Frame Cost: </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right canvas ">
-                    	<strong><img src="" align="absmiddle" /><span id="CanvasCost"></span></strong>
+                    	<p><img src="" align="absmiddle" /><span id="CanvasCost"></span></p>
                     </div>
                 </div>
             </div>
             <div class="row framing">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Frame Cost: </strong>
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p> Frame Cost: </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right framing">
-                    	<strong><img src="" align="absmiddle" /><span id="FrameCost"></span></strong>
+                    	<p><img src="" align="absmiddle" /><span id="FrameCost"></span></p>
                     </div>
                 </div>
             </div>
             <div class="row framing mount">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left mount">
-                    	<strong> Mount Size: </strong>
+                	<div class="col-md-6 col-sm-6  mount">
+                    	<p> Mount Size: </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right mount">
-                    	<strong> <span class='framing' id="mount_size"></span></strong>
+                    	<p> <span class='framing' id="mount_size"></span></p>
                     </div>
                 </div>
             </div>
             <div class="row">
             	<div class="frame-it-content framing mount">
-                	<div class="col-md-6 col-sm-6 text-left mount">
-                    	<strong> Mount Color: </strong>
+                	<div class="col-md-6 col-sm-6  mount">
+                    	<p> Mount Color: </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right mount">
-                    	<strong><span class='framing' id="mount_color">Ice White</span></strong>
+                    	<p><span class='framing' id="mount_color">Ice White</span></p>
                     </div>
                 </div>
             </div>
             <div class="row framing">
             	<div class="frame-it-content mount">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Mount Cost: </strong>
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p> Mount Cost: </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong><img src="" align="absmiddle"/><span id="MountCost" class='framing mount'></span></strong>
+                    	<p><img src="" align="absmiddle"/><span id="MountCost" class='framing mount'></span></p>
                     </div>
                 </div>
             </div>
             <div class="row framing">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Glass Type: </strong>
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p> Glass Type: </p>
                     </div>
                 </div>
             </div>  
             <div class="row framing" >
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong id="glass_type"> Regular </strong>
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p id="glass_type"> Regular </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right framing">
-                    	<strong> <span id="glass_price"> </span></strong>
+                    	<p> <span id="glass_price"> </span></p>
                     </div>
                 </div>
             </div>
             <div class="row">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong style="color:#d3131b">Discount:</strong>
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p style="color:#d3131b">Discount:</p>
                     </div>
                 </div>
             </div>  
             <div class="row" >
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong style="color:#d3131b">FLAT<span id="promo_precentage" style="color:#d3131b">20%</strong>
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p style="color:#d3131b">FLAT<span id="promo_precentage" style="color:#d3131b">20% </span></p>
                     	<span style="color:#d3131b">Promo Code Applied</span> 	
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> <span id="promo_amount" style="color:#d3131b"></span></strong>
+                    	<p> <span id="promo_amount" style="color:#d3131b"></span></p>
                     </div>
                 </div>
             </div>
             <div class="row" >
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Sub-Total  </strong>
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p> Sub-Total  </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> <span id="sub_total_price"> </span></strong>
+                    	<p> <span id="sub_total_price"> </span></p>
                     </div>
                 </div>
             </div>
-            <div class="row">
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+      	<div class="row">
             	<div class="frame-it-content col-md-12">
-                <hr/>
                 	<div class="row">
-                        <div class="col-md-6 col-sm-6 text-left">
-                            <strong style="color:#d3131b"> Total Price </strong>
+                        <div class="col-md-6 col-sm-6 ">
+                            <p style="color:#d3131b" class="text-left"> Total Price </p>
                         </div>
                         <div class="col-md-6 col-sm-6 text-right">
-                            <strong> <span class='actual_price' style="color:#d3131b"></span></strong>
+                            <p> <span class='actual_price' style="color:#d3131b"></span></p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-            	<div class="frame-it-button">
-                	<button <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> type="button" class="btn social_icon" style="background-color:#d3131b; color:#fff;"> Add to cart </button>
-                	<button onclick="remove_pricing(); return false;" type="button" class="btn social_icon" style="background-color:#555; color:#fff; margin-right:10px"> Cancel </button>
-                </div>
-            </div>            
+      </div>
+
+      <div class="modal-footer">
+        <div class="frame-it-button">
+            <button <?php if(!$this->session->userdata('userid')){?> onclick="login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> type="button" class="btn social_icon" style="background-color:#d3131b;" data-dismiss="modal"> Add to cart </button>
+            <button type="button" class="btn social_icon" data-dismiss="modal" style="background-color:#555;"> Cancel </button>
         </div>
-	</div>
-</div>	
-<!-- end -->
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<!-- Modal2 -->
+<div class="modal fade" id="myModal2" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header uploader_popup_header">
+            <h2 class="text-center">Pricing Details</h2>
+            <a class="lightbox-close"  data-dismiss="modal" ></a>
+      </div>
+
+      <div class="modal-body">
+           <p>We offer two style of canvas wrap. Museum wrap stops the image at the front edge, has hand painted
+    black sides and is ideal for portraits or when you want to emphasize the photo. Gallery wrap
+    extends the image around the sides and is more informal Choose the style that suits your decor</p>
+			<div class="row">
+                <div class="col-sm-6 col-md-6 col-xs-6">
+                  <h4>Museum Wrap</h4>
+                  <img src="<?php print base_url();?>images/uploaded_pdf/canvas_img3.jpg" class="img-responsive" />
+                </div>    	 
+                <div class="col-sm-6 col-md-6 col-xs-6">
+                  <h4>Gallery Wrap</h4>
+                  <img src="<?php print base_url();?>images/uploaded_pdf/canvas_img2.jpg" class="img-responsive" />
+                </div>    	 
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal3 -->
+<div class="modal fade" id="myModal3" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header uploader_popup_header">
+            <h2 class="text-center">Pricing Details</h2>
+            <a class="lightbox-close"  data-dismiss="modal" ></a>
+      </div>
+
+      <div class="modal-body">
+			<p><strong>Archival Premium-</strong> Prints made on archival premium type paper are produced on the Hahnemühle print surfaces. All surfaces are made from alpha cell ulous wood pulp that is acid free. It shares the same vivid colors, accuracy, and exceptional resolution that makes giclee prints the standard for museums and galleries around the world. They are extremely age resistant – more than 100 years (highest life expectancy category). Premium archival ink in 8 colors (cyan, light cyan, magenta, light magenta, yellow, black, light black, light light black) are used to provide luxurious prints with wide color spectrum The smooth transitions of color gradients make giclee prints appear much more realistic than other prints. All giclee prints come with a 0.5" white border all around and are suitable for matting and framing if desired.</p>
+            <p><strong>Archival Standard-</strong> Prints made on archival standard type paper are produced on the archival surfaces from an imported brand. This high-quality reproduction represents the best of both worlds: quality and affordability. It shares the same vivid colors, accuracy, and exceptional resolution that makes giclee prints the standard for museums and galleries around the world. Premium archival ink in 8 colors (cyan, light cyan, magenta, light magenta, yellow, black, light black, light light black) are used to provide luxurious prints with wide color spectrum The smooth transitions of color gradients make giclee prints appear much more realistic than other prints. All giclee prints come with a 0.5" white border all around and are suitable for matting and framing if desired.</p>
+            
+            <div id="hahnemuhle_daguerre_canvas">
+                <p><strong>Hahnemuhle Daguerre Canvas</strong></p>
+                <p>GSM: 400 GSM</p>
+                <p>Description: Hahnemuhle's Daguerre Canvas offers a true canvas texture with a matte finish which can be stretched and varnished. It is particularly good for fine art photo printing. Its bright white point provides clear fresh colors and contrasts for black and white reproductions.</p>
+            </div>
+            
+            <div id="hahnemuhle_photo_canvas_320_gsm">
+            	<p><strong>Hahnemuhle Photo Canvas 320 GSM</strong> </p>
+                <p>GSM: 320 GSM </p>
+                <p>Description: Hahnemuhle's Photo Canvas is a bright poly-cotton canvas paper with a fine structure and matte surface, great for making large-format prints. The matt coating with its bright white point makes colors shine and provides high contrasts for black and white prints.</p>
+            </div>
+            
+            <div id="canvas_380_gsm">
+            	<p><strong>Canvas 380 GSM</strong></p>
+                <p>GSM: 380 GSM </p>
+                <p>Description: Bright white, cotton canvas with a smooth weave. It is best suited for highly detailed photographs and artwork, graphics and presentations, exhibition prints. It stretches easily for gallery wraps.</p>
+            </div>
+            
+            <div id="Hahnemuhle Matt Fine Art">
+            	<p><strong>Hahnemuhle Matt Fine Art</strong></p>
+                <p>GSM: 305 GSM </p>
+                <p>Description: A smooth 100% cotton white paper specifically designed for creative individuals using digital photographic output. It is one of Hahnemuhle's most popular papers and meets the highest industry standards regarding density, color gamut, color graduation and image sharpness. It is ideal for Photographic and Fine art reproduction.</p>
+            </div>
+            
+            <div id="Hahnemuhle Photo Luster">
+            	<p><strong>Hahnemuhle Photo Luster</strong></p>
+                <p>GSM: 260 GSM</p>
+                <p>Description: Hahnemuhle's Photo Luster is a microporous, resin coated photo paper with a beautiful luster surface, high opacity, excellent rigidity, bright with very consistent flatness. It guarantees a long-lasting fade resistant prints.</p>
+            </div>
+            
+            <div id="Hahnemuhle Photo Matt Fibre">
+            	<p><strong>Hahnemuhle Photo Matt Fibre</strong></p>
+                <p>GSM: 200 GSM</p>
+                <p>Description: Hahnemuhle's Photo Matt Fibre is a matt coated smooth InkJet paper with a warm tone paper shade, good opacity, a fine smooth surface, good rigidity and a consistent flatness. It provides an excellent fine art base to photograph and fine art reproductions.</p>
+            </div>
+            
+            <div id="Epson Enhanced Matt">
+                <p><strong>Epson Enhanced Matt</strong></p>
+                <p>GSM: 189 GSM</p>
+                <p>Description: A superior media that outputs images that are vivid and vibrant and accentuates shadowy areas, the enhanced matte paper is the perfect solution for museum quality photographic and fine art works. </p>
+            </div>
+            
+            <div id="Fine Art Luster">
+            	<p><strong>Fine Art Luster</strong></p>
+                <p>GSM: 315 GSM</p>
+                <p>Description: A natural white, softly textured, coated fine art luster paper ideal for fine art giclee reproduction. Archival - acid & lignin free, instant dry, aqueous pigment and dye ink compatible, excellent color gamut.</p>
+            </div>
+            
+            <div id="Fine Art Matt">
+            	<p><strong>Fine Art Matt</strong></p>
+                <p>GSM: 315 GSM</p>
+                <p>Description: A natural white, softly textured, coated fine art matt paper ideal for fine art giclee reproduction. Archival - acid & lignin free, instant dry, aqueous pigment and dye ink compatible, excellent color gamut.</p>
+            </div>
+            
+            <div id="RC Premium Luster Paper 255 GSM">
+            	<p><strong>RC Premium Luster Paper 255 GSM</strong></p>
+                <p>GSM: 255 GSM</p>
+                <p>Description: A natural white, softly textured, coated premium luster paper. Archival - acid & lignin free, instant dry, aqueous pigment and dye ink compatible, excellent color gamut.</p>
+            </div>
+            
+            <div id="Photographic Glossy Paper">
+            	<p><strong>Photographic Glossy Paper</strong></p>
+                <p>GSM: 260 GSM</p>
+                <p>Description: Water Resistant/Instant Dry. For TRUE Photographic feel, Ultimate versatility, Sharp image, Excellent Color rendition, Smooth feel, High speed and Reliability.</p>
+            </div>
+            
+            <div id="Vinyl">
+            	<p><strong>Vinyl</strong></p>
+                <p>GSM: 150 GSM</p>
+                <p>Description: Photo quality self-adhesive high gloss sticker paper. It is excellent for photo quality prints with an adhesive backing. Once printed the image is sealed on the paper and is water resistant and can be wiped clean with a wet cloth without harming the image.</p>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <div class="container">
@@ -1520,7 +1650,10 @@ function right(width,height,x){
             <div class="col-md-9">
             	<form class="form-horizontal">
 	                	<div class="form-group">
-                            <label for="country" class="col-sm-4"><h4>Print Type</h4></label>
+                            <label for="country" class="col-sm-4">
+                            	<a href="" data-toggle="modal" data-target="#myModal3" style="position: absolute;left: -5px;"><img id="img_hover" class="img-responsive" style="" src="http://cache1.artprintimages.com/images/photostoart/ART/info_off_v1.png"></a>
+                                <h4 style="margin:0">Print Type</h4>
+                            </label>
                             <div class="col-sm-8">
                                 <select class="form-control input_control" id='print_type_main' onchange="paper_surface();" onclick="get_functions();return false;">
                                 <?php 
@@ -1534,7 +1667,10 @@ function right(width,height,x){
                             </div>
 	                    </div>
                         <div class="form-group">
-                        	<label for="country" class="col-sm-4"><h4>Print Surface</h4></label>
+                        	<label for="country" class="col-sm-4">
+                                <a href="" data-toggle="modal" data-target="#myModal3" style="position: absolute;left: -5px;"><img id="img_hover" class="img-responsive" style="" src="http://cache1.artprintimages.com/images/photostoart/ART/info_off_v1.png"></a>
+                                <h4 style="margin:0">Print Surface</h4>
+                            </label>
                             <div class="col-sm-8">
 	                            <select class="form-control input_control" id='surfaces' onclick="   get_functions();return false;">
 						<?php
@@ -1572,32 +1708,9 @@ function right(width,height,x){
 	                        <div class="col-md-4 col-sm-3 col-xs-4 wrapped">
                         	<label class="checkbox-inline whiteTxt" onclick="get_quality('');"style="font-size: 14px;padding-left: 0;display: block;">
                                 <input name="canvas_type" type="radio" id="gallery"> Gallery
-                                	<img id="img_hover" class="img-responsive" style="margin-top: 5px;float: right;" src="http://cache1.artprintimages.com/images/photostoart/ART/info_off_v1.png">
+                                <a href="" data-toggle="modal" data-target="#myModal2"><img id="img_hover" class="img-responsive" style="margin-top: 5px;float: right;" src="http://cache1.artprintimages.com/images/photostoart/ART/info_off_v1.png"></a>
                             </label>
 	                            <img src="<?php print base_url();?>images/uploaded_pdf/canvas_img2.jpg" class="img-responsive" style="margin-top: 5px;">
-                                <div id="uploader_popup_goofy_b">
-                    <div class="uploader_popup_header">
-                    <h2 class="text-center">Types of Wrap</h2>
-                    <a class="lightbox-close" href=""></a>
-                    </div>
-                    <div class="frame-it-pricing" style="padding: 10px;">
-                        <div class="row">
-                            <div class="frame-it-content col-md-12">
-                                <div class="row">
-                                    <div class="col-md-12 col-sm-12" style="color:#888">
-                                    	<p>We offer two style of canvas wrap. Museum wrap stops the image at the front edge, has hand painted
-black sides and is ideal for portraits or when you want to emphasize the photo. Gallery wrap
-extends the image around the sides and is more informal Choose the style that suits your decor</p>
-										<h4 style="font-size: 11px;font-weight: bold;">Museum Wrap</h4>
-										<img src="<?php print base_url();?>images/uploaded_pdf/canvas_img3.jpg" class="img-responsive" style="margin-top: 5px;width: 170px;">
-                                        <h4 style="font-size: 11px;font-weight: bold;">Gallery Wrap</h4>
-                                        <img src="<?php print base_url();?>images/uploaded_pdf/canvas_img2.jpg" class="img-responsive" style="margin-top: 5px;width: 170px;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                         </div>
                     </div>
 				</form>
@@ -1637,29 +1750,17 @@ a.lightbox-close::after {
 	transform: rotate(-45deg);
 	width: 1px;
 }
-.frame-it-pricing {
-	padding: 10px;
-}
 .frame-it-content strong {
 	margin: 5px 0;
-	display: block;
 	font-family: inherit;
-}
-.frame-it-button {
-	float:right
 }
 .btn.social_icon {
 	border-radius: 0;
-	box-shadow: none;
-	padding: 2px 0;
-	position: relative;
-	min-width: 110px;
+	color:#fff
 }
 .uploader_popup_header{
 	background-color: #f1f1f1;
-	height: 30px;
-	position: relative;
-	padding: 0 10px;
+	position:relative
 }
 
 #uploader_popup_goofy_a {
@@ -1685,13 +1786,10 @@ a.lightbox-close::after {
 	top: 40px;
 	display:none
 }
-.uploader_popup_header > h2 {
-	font-size: 22px;
-	font-weight: bold;
+.uploader_popup_header h2 {
 	text-transform: uppercase;
 	margin: 0;
 	font-family: 'BebasNeueRegular' !important;
-	padding-top: 2px;
 }
 
 .uploader_popup_upload-icon > img {
@@ -1753,23 +1851,31 @@ display: none;
 	clear: both;
 	margin: 10px;
 }
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
 </style>
-<script>
-$(document).ready(function(){
-    $("#img_hover").hover(function(){
-        $("#uploader_popup_goofy_b").css("display", "block");
-        }, function(){
-        $("#uploader_popup_goofy_b").css("display", "none");
-    });
-});
-</script>
-                
             </div>
             	<div class="col-md-9" id="selector-step">
                     <p class="price" style="display: block;"><span class="old_price" style="font-size: 15px;color:Tomato;"></span><span class="total_cost"></span> </p>
                     <p class="bottom-bar-crop" style="display: block;" id="17"></p>
                     <p class="shipping-note">Ships in 1-2 days</p>
-                   	<h5><a href='' onclick=" get_functions(''); price_details();return false;">Price Details</a> </h5>
+                   	<h5><a href='' onclick=" get_functions(''); price_details();return false;" data-toggle="modal" data-target="#myModal">Price Details</a> </h5>
                     <p><input type="button" class="call-to-action-1-button btn btn-default" <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> value="ADD TO CART" ></p>
                 </div>
                 <div id="save-to-gallery-text" class="col-md-9">

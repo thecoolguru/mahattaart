@@ -150,6 +150,14 @@ class Cart_model extends CI_Model
 	
 	
 	}
+	function validate_apply_coupon($apply_coupon){
+		//echo $apply_coupon;
+		$this->db->select('*');
+	$this->db->where('promo_name_code',trim($apply_coupon));
+	$query=$this->db->get('tbl_promo_code');
+	return $query->result();
+		
+		}
 
 	public function get_cart($user_id){
         $this->db->select('*');

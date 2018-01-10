@@ -126,7 +126,13 @@ public function update_customer_details($id,$data)
 
 
 
-
+public function get_promo_code_validation($active_coupon)
+{
+  $this->db->where('promo_name_code',$active_coupon);
+  $query=$this->db->get('tbl_promo_code');
+  //print_r( $query->result()); die();
+  return $query->result();
+}
 
 
 

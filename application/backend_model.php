@@ -118,9 +118,10 @@ public function delete_prormo_code($promo_code_id)
 
 public function get_file_name($sub_id) 
 {
+	
 	$this->db->where('id',$sub_id);
 	$this->db->select('submission_files');
-	$query=$this->db->get('tbl_form_submission');
+	$query=$this->db->get('form_submission');
 	return $query->result();
    
 }

@@ -1037,7 +1037,7 @@ public function themes_lightbox($lightbox_id,$page_no,$category="none",$shape="n
 			$send=$this->email->send();
 
 			if($send)	{
-				echo "welcome to mahattaart";
+				//echo "welcome to mahattaart";
 				//print "1";
 				//echo  $email;
 				echo json_encode(array("result"=>"1"));

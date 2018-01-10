@@ -77,7 +77,7 @@ body{background-color:#fff}
       <div class="form-group">
       <label class="col-sm-3 control-label">Upload Files:<span class="text-danger"></span></label>
       <div class="col-sm-9">
-        <input type="file" name="sub_files" id="sub_files" class="form-control" value="<?php echo $edit_data[0]->submission_files;?>">
+        <input type="file" name="sub_files" id="sub_files" class="form-control" value="<?php echo $edit_data[0]->submission-files;?>" >
 		
       </div>
     </div>    
