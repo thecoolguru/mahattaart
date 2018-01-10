@@ -71,7 +71,7 @@
          <b style="color: red" id="email_error"></b>
         <b style="color: red" id="password_error"></b> 
         <b style="color: red" id="cpassword_error"></b>
-                <b style="color: green" id="success_result"></b>
+        <b style="color: green" id="success_result"></b>
         </p>
         <div class="signup-l-c" style="padding:0; border-right-style:none">
             <form action="#" id="signup_form" name="sign_id" method="post">
@@ -723,10 +723,11 @@ function checkRegisterValidation(){
                       $('#cpassword_error').html(response);
                     
                     if(obj.result=='1'){
-                            $('#success_result').html(response);
-                            //window.setTimeout(function(){location.reload()},3000);
-                           window.location.replace('<?php echo base_url()?>index.php');
-                           allclose('');
+                        //alert(response);
+                        $("#success_result").html("<p> Welcome to Mahattaart!</p>");
+                        window.setTimeout(function(){location.reload()},3000)
+                        window.location.replace('<?php echo base_url()?>index.php');
+                        allclose('');
                     }
                 }
             });

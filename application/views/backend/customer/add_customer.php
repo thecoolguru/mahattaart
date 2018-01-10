@@ -16,7 +16,7 @@ $rows = mysql_fetch_assoc($query);
 		 	$number=1;
 		}
  $str=str_pad($number, 5, "0", STR_PAD_LEFT);  //00002
- $customerid="WAL".$str;
+ $customerid="MA".$str;
 ?>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-1.6.1.min.js"></script>
 <script type="text/javascript">
@@ -554,7 +554,7 @@ String.prototype.killWhiteSpace = function() {
 			success:function(response)
 			 {
              //alert(response)
-				$("#verdor_id2").html(response);
+				$("#location_key_id").val(response);
 			 }	 
 		    })	
        });
@@ -653,7 +653,17 @@ String.prototype.killWhiteSpace = function() {
 </tr>
 
 
+
+
+
 <tr style="display:none" class="retails_kiosk" >
+
+<td>Location Id<span style="color:#FF0000;"></span></td>
+<td><input type="text" name="location_key_id" id="location_key_id" class="inputbxs"/></td>
+           
+
+
+<!-----
  <td>
  <div class="form-group">
       <div class="col-sm-9">
@@ -665,7 +675,7 @@ String.prototype.killWhiteSpace = function() {
       </div>
     </div>
  </td>
- 
+ --->
 
  
 </tr>

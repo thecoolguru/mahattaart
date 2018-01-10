@@ -302,9 +302,7 @@ public function get_kiosk_users_details()
 			if($customer_register=='yes')
 			{
 				
-             $get_promo_code_validation=$this->customer_model->get_promo_code_validation($active_coupon);	
-			 //print_r($get_promo_code_validation);	
-			 //echo $get_promo_code_validation[0]->valid_from_date.$get_promo_code_validation[0]->valid_end_date;		
+             $get_promo_code_validation=$this->customer_model->get_promo_code_validation($active_coupon);				
 				
 			$message='<html>
 <head>
@@ -333,7 +331,7 @@ table td a.a_link{font-size:3em; padding:0 20px}
 </tr>
 <tr>
 <td colspan="4">
-<p>Mahatta Art is an online art gallery having 5.5 Lakh Images including Photography, Paintings, Poster & Illustrations from world renowned Collections and Artists. The content ranges from Abstracts to Nature photography, Legendary to Amateur artists, Heritage to Modern Indian art, Modern to Contemporary art, Humorous quotes to Serious & Hollywood Vintage posters and so on.Your Coupon code:'.$active_coupon.' And Valid  From '.$get_promo_code_validation[0]->valid_from_date.' to '.$get_promo_code_validation[0]->valid_end_date.' </p>
+<p>Mahatta Art is an online art gallery having 5.5 Lakh Images including Photography, Paintings, Poster & Illustrations from world renowned Collections and Artists. The content ranges from Abstracts to Nature photography, Legendary to Amateur artists, Heritage to Modern Indian art, Modern to Contemporary art, Humorous quotes to Serious & Hollywood Vintage posters and so on.Your Coupon code:'.$active_coupon.' And Valid  From </p>
 </td>
 </tr>
 <tr>
@@ -361,7 +359,7 @@ table td a.a_link{font-size:3em; padding:0 20px}
 				
 		                $this->email->from('admin@wallsnart.com', 'Mahataart');
    					    //$this->email->to($email);
-						$this->email->to('info@mahataart.com');
+						$this->email->to('shahabalam78@gmail.com');
                         $this->email->subject('Test');
                         $this->email->message($message);
                         $this->email->send();

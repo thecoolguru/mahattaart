@@ -21,30 +21,26 @@
 		})
 		$(document).ready(function(){		
 				$('#width').keyup(function(){
-				//setTimeout(function(){
-				
 						var real_value = $(this).val().replace(/[^0-9]/g,'');
 						$(this).val(real_value);
 						var real_width = $('#w_value').val();
 						var real_height = $('#h_value').val();
-						if($('#type').html() == 'horizontal'){
+						if($('#type').html() == 'horizontal')
 						var ratio = real_height/real_width;
 						if($('#type').html() == 'vertical')
 						var ratio = real_width/real_height;
 						var max_width = real_width/150;
 					    var max_height = real_height/150;
 						var id = $(this).attr('id');
-						//setTimeout(function(){
+						// setInterval(function(){ alert("Hello");
 						var value = $(this).val();	
-						//}, 3000);
-						//alert(value)
+						
 						if(id == 'width'){
 							if(value == ''){
 							$('.actual_price').val('Rs.0');
 							$('#height').val('');	
 							}
 						 }	
-						// alert('sss');
 							if( (value <= max_width) && (value != 0) && (value != '') ){
 							var input_height = ratio*value;
 							$('#height').val(Math.round(input_height));
@@ -53,10 +49,9 @@
 							},200);
 						}else{
 						 $('#height').val('');
-						 $('#finished_size').html('<p style="color:red;">Choose Less than Max. Width ('+Math.round(max_width)+')</p>');		
+						 setTimeout(function(){
+						 $('#finished_size').html('<p style="color:red;">Choose Less than Max. Width ('+Math.round(max_width)+')</p>');	},200);
 						}
-						
-						
 				});
 				
 				$('#height').keyup(function(){
