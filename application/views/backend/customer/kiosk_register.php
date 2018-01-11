@@ -17,7 +17,7 @@
     $(document).ready(function(){
         $('#verdor_types').change(function(){
        var verdor_id = $('#verdor_types').val();
-	  // alert(verdor_id);
+	   // alert(verdor_id);
           	
 			$.ajax({
 		   type:"POST",

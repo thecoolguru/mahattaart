@@ -38,8 +38,8 @@
                 <h1>My  <span>Account</span></h1>
                 <ul>
                     <li><a href="<?php print base_url();?>user/profile">My Profile</a></li>
-                    <li><a href="#">Track My Order</a></li>
-                    <li><a href="#">Order History</a></li>
+                    <li><a href="javascript:">Track My Order</a></li>
+                    <li><a href="<?=base_url()?>user/order_history">Order History</a></li>
                 </ul>
             </div>
             <?php }?>

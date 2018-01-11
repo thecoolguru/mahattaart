@@ -10,6 +10,49 @@ class Backend_model extends CI_Model
 	
 /*******************promo code*********************/
 
+public function get_location_id_for_promo_code_model($location)
+{
+  $this->db->select('location_id');
+  $this->db->where('location',$location);
+  $query=$this->db->get('kiosk_users');
+  return $query->result();
+}
+
+public function get_location_for_promo_code_model($create_prom_for)
+{
+$this->db->select('location');
+$this->db->where('vendor_types',$create_prom_for);
+$query=$this->db->get('kiosk_users');
+return $query->result();
+}
+public function get_all_tbl_promo_code_details($search_for,$status)
+{
+	$this->db->where('prom_for',$search_for);
+	$this->db->where('active',$status);
+	$query=$this->db->get('tbl_promo_code');
+	//print_r($query->result()); die();
+	return $query->result();
+}
+
+
+
+
+public function get_all_kiosk_prormo_code_model()
+{
+$this->db->select('*');
+$this->db->where('prom_for','kiosk');
+$this->db->where('active','1');
+$query=$this->db->get('tbl_promo_code');
+
+//print_r($this->db->last_query()); die();
+
+//echo "<pre>",var_dump($query->result()),"</pre>";
+return $query->result();
+
+
+}
+
+
 
 public function add_promo_code_model($data)
 {
@@ -17,12 +60,6 @@ $this->db->insert('tbl_promo_code',$data);
 
 }
 
-
-public function get_all_tbl_promo_code_details()
-{
-	$query=$this->db->get('tbl_promo_code');
-	return $query->result();
-}
 
 
 public function get_all_tbl_promo_code()

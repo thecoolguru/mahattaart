@@ -75,17 +75,6 @@
     .sortours {
         float: left
     }
-    .main-title {
-        cursor: pointer;
-        margin-bottom: 2px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        color: #333;
-        font-size: 13px;
-        margin: 9px 0 4px 0;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
-    }
     .Next {
         background: url(http://dev.wallsnart.com/uploaded_pdf/Gallery_ImageSprite.png) no-repeat -49px -26px;
         width: 18px;
@@ -560,7 +549,7 @@ $search_data_file = file_get_contents($search_file, false, $context);
 	//echo "sajid";
       ?>
 	  
-<li class="col-md-3 col-sm-3 col-xs-6">
+<li class="col-md-3 col-sm-3">
 <a href="<?=base_url()."frontend/".$link."/".$image_filename."/".$size."/".$image_id ?>">
 <input type="hidden" name="avl_glass"  value="<?php echo $avl_glass ?>" />
 <div class="wrap">
@@ -588,22 +577,28 @@ $tax_prctg='18'
 <?php }?>
 </div>
 </a>
-<div class="main-title">
+<p class="main-title">
 <?= substr($search_data_r['results'][0]['image_caption'],0,20).".."; ?>
-</div>
+</p>
 
-<div class="main-title">
+<p class="main-title">
 <?=$width.' "X '.$height.' "'?>
-</div>
+</p>
 
-<div class="main-title">
+<p class="main-title">
 Framed Painting <?=$avl_glass?>
-</div>
+</p>
 
 <style>
 	.old_price {text-decoration:line-through}
 	.old_price,.new_price{font-size:14px}
 	.new_price {margin-left: 20px;}
+	.fa-heart-o {
+		color: #d31d25;
+		font-size: 20px;
+		padding: 10px 0;
+		float: right;
+	}
 </style>
 
 <div class="main-title">
@@ -617,15 +612,23 @@ Framed Painting <?=$avl_glass?>
 </div>
 
 <div class="product-details">
-		<a href="<?=base_url()."search/".$link."/".$image_filename."/".$image_id."/".$image_collection_id;  ?>" style="float:left"> 
-    <div class="icon-cart" style="clear: left; float: left">
-    <div class="cart-line-1" style="background-color: rgb(44, 195, 181);"></div>
-    <div class="cart-line-2" style="background-color: #2CC3B5"></div>
-    <div class="cart-line-3" style="background-color: #2CC3B5"></div>
-    <div class="cart-wheel" style="background-color: #2CC3B5"></div>
-  </div>
-    </a>
-    <a style="color:#999;font-size:20px; float:right" href="javascript:" <?php  if($this->session->userdata('userid')){?> onclick="addtogallery('<?=$image_id?>','<?=$image_filename?>')" <?php }else{?> onclick="login('')" <?php }?> id="tgl"><i class="fa fa-heart-o" style="color:#d31d25; font-size:20px; padding:10px"> </i> </a>
+	<div class="row">
+    	<div class="col-sm-6">
+            <a href="<?=base_url()."search/".$link."/".$image_filename."/".$image_id."/".$image_collection_id;  ?>"> 
+                <div class="icon-cart">
+                <div class="cart-line-1" style="background-color: rgb(44, 195, 181);"></div>
+                <div class="cart-line-2" style="background-color: #2CC3B5"></div>
+                <div class="cart-line-3" style="background-color: #2CC3B5"></div>
+                <div class="cart-wheel" style="background-color: #2CC3B5"></div>
+              </div>
+            </a>
+        </div>
+        <div class="col-sm-6">
+		    <a style="color:#999;font-size:20px;" href="javascript:" <?php  if($this->session->userdata('userid')){?> onclick="addtogallery('<?=$image_id?>','<?=$image_filename?>')" <?php }else{?> onclick="login('')" <?php }?> id="tgl">
+            	<i class="fa fa-heart-o"> </i>
+            </a>
+        </div>
+    </div>
 </div>
 
 </div>

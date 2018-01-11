@@ -12,8 +12,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 
 <!-- header -->
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/font-awesome.css" type="text/css">
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!--<link rel="stylesheet" href="<?php print base_url();?>assets/css/bootstrap.min.css">-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 <link rel="icon" href="<?php print base_url();?>assets/favicon.png" sizes="24x24" type="image/png">
 

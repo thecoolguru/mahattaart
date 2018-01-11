@@ -680,6 +680,8 @@ function price_details(){
 	$('#divfor_update'+x).show();
 
 
+
+
 	
 	}
 	function choose_qty(sn,filenam,imgsize,papersurface,imgprice,mainqty,frame_s,frame_name,mount_name,glass){
@@ -829,7 +831,7 @@ return false;
 							
 							}
 							</script>
-				        <form  method="post" action="http://52.74.175.72/index.php/cart/CCAvenue_check_out" name="payment_ccavenue">
+				        <form  method="post" id="payment_action" name="payment_ccavenue">
                          
 						 <?php
 						 //http://mahattaart.com/index.php/cart/CCAvenue_check_out
@@ -1056,12 +1058,12 @@ return false;
 <script>
 function save_order_id_to_cart(values){
 //alert(values)
-
+//alert(values)
 if(values=='cod'){
 //alert(values)
 $('#payment_action').attr('action','<?=base_url()?>cart/payment_by_cod');
 }else if(values=='online'){
-$('#payment_action').attr('action','http://mahattaart.com/index.php/cart/CCAvenue_check_out');
+$('#payment_action').attr('action','http://52.74.175.72/index.php/cart/CCAvenue_check_out');
 }}
 </script>
 

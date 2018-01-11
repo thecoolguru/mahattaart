@@ -8,13 +8,12 @@
   <script src="<?=base_url()?>assets/js/jquery.min2.js"></script>
   <script src="<?=base_url()?>assets/js/bootstrap.min.js"></script>
   <script src="<?=base_url()?>assets/js/bootstrap-select.js"></script>
+  
+  
 <div id="middle-wrapper">
 <div id="middle-container" style="width:96%"> 
 <span><div class="main-hdr"> View Promo Code</div><div style="text-align:right"><a href="<?=base_url()?>backend/create_promo_code"><button style="background:green">Add Promo Code</button></a></div></span>
-
-
 <div id="PhotographersListDiv" >
-
 <div class="view-cp-list">
 <?php if($msg<>'') {?>
           <script>
@@ -26,14 +25,44 @@
           <?php echo $msg;
 		  }?>
           
-           
-  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          
     <tr>
-	
-      <td><div class="viewcplist-inner">
-	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <?php echo form_open('index.php/backend/manage_promo_offer');?>
+
+  <td>
+    Search For:
+    <select name="search_for" id="search_for">
+    <option value="">---Select Promo For---</option>
+	<option value="kiosk">Kiosk</option>
+    <option value="sis">Sis</option>
+    <option value="web">Web</option>
+    </select> 
+</td>
+
+  <td>
+    Status:
+    <select name="status" id="status">
+    <option value="">---Select Status---</option>
+	<option value="1">Active</option>
+    <option value="0">Deactive</option>
+    <option value="2">Expired</option>
+    </select> 
+</td>
+<td>
+    <input type="submit" value="Show" name="search" id="search" >
+</td>
+<?php echo form_close();?>
+</form>
+<br><br>
+    </tr>
+<tr>
+   <td>
+      <div class="viewcplist-inner">
+      
+	    <table width="100%" border="0" cellspacing="0" cellpadding="0"  id="table_kiosk">
         <tr class="hdrs">
-		       <td>Promo Code</td>
+		       <td>List Of</td>
+               <td>Promo Code</td>
                <td>Offer (%)</td>
 		       <td>Valid Days</td>
 		       <td> Active</td>
@@ -93,15 +122,129 @@ function del()
    $valid_days="Saturday";
    }else if($web_tbl->valid_days==7){
    $valid_days="Sunday";
-   }
+   }}
    ?>
-             
-   <tr>
-		
-             <td><?php echo $web_tbl->promo_name_code ;?></td> 
-             <td><?php echo $web_tbl->offer_precentage;?><span>%<span></td>
-             <td><?php echo $valid_days;?></td>
-	     	 <td ><?php $active=$web_tbl->active ;
+   
+   
+   
+   <?php 
+   
+   if(!empty($kiosk_data[0]->prom_for))
+   {
+   foreach($kiosk_data as $data) 
+   {
+	 //echo $data->active; die();
+	 ?>
+   <tr style="display:show" id="defaul_record">
+		     <td>Kiosk</td>
+             <td><?php echo $data->promo_name_code ;?></td> 
+             <td><?php echo $data->offer_precentage;?><span>%<span></td>
+             <td><?php echo $data->valid_days;?></td>
+	     	 <td ><?php if($data->active=='0')
+				   {
+				    echo "<span style='color:red'>Deactive</span>";
+				   }else if($data->active=='1')
+				   {
+				    echo "<span>Active</span>";
+				   }else if($data->active=='2'){
+					  echo "<span>Exp</span>";   
+					    }
+						?>
+			 <?php echo $data->active;?></td>
+			 <td>
+		           <a href="<?=base_url()?>index.php/backend/create_promo_code/<?=$web_tbl->sr_no;?>">Edit</a>
+             </td>
+             <td>
+		          <a href="<?=base_url()?>index.php/backend/delete_promo_code/<?=$web_tbl->sr_no;?>" onClick="return del()" >Delete</a>
+             </td>
+
+
+	  </tr>
+     
+   <?php
+   }
+   }?>
+   
+   <?php 
+   
+          //print_r($promo_code_details);
+		  if($promo_code_details[0]->prom_for=='kiosk')
+		  {
+			  foreach($promo_code_details as $kiosk)
+			  {
+			 ?>
+             <tr id="kiosk_data">
+		     <td>Kiosk</td>
+             <td><?php echo $kiosk->promo_name_code ;?></td> 
+             <td><?php echo $kiosk->offer_precentage;?><span>%<span></td>
+             <td><?php echo $kiosk->valid_days;?></td>
+	     	 <td><?php
+				   if($kiosk->active=='0')
+				   {
+				    echo "<span style='color:red'>Deactive</span>";
+				   }else if($kiosk->active=='1')
+				   {
+				    echo "<span>Active</span>";
+				   }else if($kiosk->active=='2'){
+					  echo "<span>Exp</span>";   
+					    }
+				  ?></td>
+			 <td>
+		           <a href="<?=base_url()?>index.php/backend/create_promo_code/<?=$web_tbl->sr_no;?>">Edit</a>
+             </td>
+             <td>
+		          <a href="<?=base_url()?>index.php/backend/delete_promo_code/<?=$web_tbl->sr_no;?>" onClick="return del()" >Delete</a>
+             </td>
+
+
+	  </tr>
+             <?php	  
+			 }
+			 ?>
+			  <?php } else if($promo_code_details[0]->prom_for=='sis')
+			  {
+				   foreach($promo_code_details as $sis)
+			  {
+				 
+			  ?>
+              
+             <tr  id="sis_data">
+		     <td>Sis</td>
+             <td><?php echo $sis->promo_name_code ;?></td> 
+             <td><?php echo $sis->offer_precentage;?><span>%<span></td>
+             <td><?php echo $sis->valid_days;?></td>
+	     	 <td ><?php $active=$sis->active ;
+				   if($active=='0')
+				   {
+				    echo "<span style='color:red'>Deactive</span>";
+				   }else if($active=='1')
+				   {
+				    echo "<span>Active</span>";
+				   }else{
+					  echo "<span>Exp</span>";   
+					    }
+				  ?></td>
+			 <td>
+		           <a href="<?=base_url()?>index.php/backend/create_promo_code/<?=$web_tbl->sr_no;?>">Edit</a>
+             </td>
+             <td>
+		          <a href="<?=base_url()?>index.php/backend/delete_promo_code/<?=$web_tbl->sr_no;?>" onClick="return del()" >Delete</a>
+             </td>
+
+
+	  </tr> 
+			 
+   		  <?php }} else if($promo_code_details[0]->prom_for=='web')
+		  {
+		    foreach($promo_code_details as $web)
+			  {
+				 ?>
+                <tr  id="sis_data">
+		     <td>Web</td>
+             <td><?php echo $web->promo_name_code ;?></td> 
+             <td><?php echo $web->offer_precentage;?><span>%<span></td>
+             <td><?php echo $web->valid_days;?></td>
+	     	 <td ><?php $active=$web->active ;
 				   if($active=='0')
 				   {
 				    echo "<span style='color:red'>Deactive</span>";
@@ -121,15 +264,14 @@ function del()
 
 
 	  </tr>
-				<?php
-				}
-				?>
+				  
+				<?php  }
 				
-       
-      </table>
-               
-      </div></td>
-      </tr>
+				}?>
+     </table>
+      </div>
+      </td>
+</tr>
   </table>
 </div>
 </div>
