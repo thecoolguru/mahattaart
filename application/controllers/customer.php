@@ -73,15 +73,7 @@ public function get_kiosk_users_details()
 	
 	public function add_kiosk_users()
 	{
-		
-		
-	  
-		$id=$this->uri->segment(3);
-		
-		
-		//print_r($result);
-	   
-	   //echo $verdor_types; die();
+	   $id=$this->uri->segment(3);
 	   $this->form_validation->set_rules('verdor_types','Vendor Types','required');
 	   $this->form_validation->set_rules('person_name','Person Name','required');
        $this->form_validation->set_rules('person_mobile','Person Mobile','required');
@@ -93,14 +85,10 @@ public function get_kiosk_users_details()
 	   $person_email=$this->input->post('person_email');
 	  //get Last id of table 
 	   $result=$this->customer_model->create_location_id($verdor_types);
-	//  print_r($result); die();
 	
+		  $lastInsertedUId=$result[0]->location_id;
 		  
-	      
-		  //$ki1='ki001';
-		  
-		  
-		  $lastInsertedUId=$result[0]->location_id;		  
+		 // echo $lastInsertedUId; die();		  
 		  #$location_id2=$ki.$uid;
 		  if($verdor_types=='kiosk')
 		  {
@@ -115,7 +103,7 @@ public function get_kiosk_users_details()
 				  $currentLocationId = $subKi.$currentUId;
 			  }
 		  }
-		  if($verdor_types=='SIS')
+		  if($verdor_types=='sis')
 		  {
 			  if($lastInsertedUId == null) {
 				  $currentLocationId = "SIS0001";				  
@@ -269,6 +257,16 @@ public function get_kiosk_users_details()
 				   );
 				   
 				   
+				  /****Create seqence id**/   
+				  $get_customer_last_id=$this->customer_model->get_cutomer_last_id();
+				  $last_id=$get_customer_last_id[0]->customer_id;
+				  $ki='MA00';				  
+				  $lastUId = intval(str_replace("MA","",$last_id));
+				  $currentUId = $lastUId + 1;	
+				  $final_id=$ki.$currentUId;	
+				 // echo $final_id; die();	 
+				   
+				   
 				   $submit_from="c_q_f"; 
 				   $customer_type="Retail";
 				   $customer_data=array(
@@ -278,6 +276,7 @@ public function get_kiosk_users_details()
 				   'vendor_types'=>$vendor_types,
 				   'vendor_location'=>$vendor_location,
 				   'vendor_location_key_id'=>$vendor_location_id,
+				   'customer_id'=>$final_id,
 				   'first_name'=>$name,
 				   'contact'=>$mobile,
 				   'email_id'=>$email,
@@ -326,14 +325,14 @@ table td a.a_link{font-size:3em; padding:0 20px}
 </tr>
 <tr><td colspan="4"><p>Dear '.$name.'!</p></td></tr>
 <tr>
-<td colspan="4"><p>Thank you! For subscribing on <a href="'.base_url().'">MahattaArt.com</a></p></td>
+<td colspan="4"><p>Thank you! For subscribing to <a href="'.base_url().'">MahattaArt.com</a></p></td>
 </tr>
 <tr>
 <td colspan="4"><p>We will keep you updated on our exclusive and latest collections!</p></td>
 </tr>
 <tr>
 <td colspan="4">
-<p>Mahatta Art is an online art gallery having 5.5 Lakh Images including Photography, Paintings, Poster & Illustrations from world renowned Collections and Artists. The content ranges from Abstracts to Nature photography, Legendary to Amateur artists, Heritage to Modern Indian art, Modern to Contemporary art, Humorous quotes to Serious & Hollywood Vintage posters and so on.Your Coupon code:'.$active_coupon.' And Valid  From '.$get_promo_code_validation[0]->valid_from_date.' to '.$get_promo_code_validation[0]->valid_end_date.' </p>
+<p>Mahatta Art is an online art gallery having 5.5 Lakh Images including Photography, Paintings, Poster & Illustrations from world renowned Collections and Artists. The content ranges from Abstracts to Nature photography, Legendary to Amateur artists, Heritage to Modern Indian art, Modern to Contemporary art, Humorous quotes to Serious & Hollywood Vintage posters and so on.Your Coupon code:<strong>'.$active_coupon.'</strong> And Valid  From <strong>'.$get_promo_code_validation[0]->valid_from_date.' to '.$get_promo_code_validation[0]->valid_end_date.'</strong> </p>
 </td>
 </tr>
 <tr>
@@ -359,9 +358,9 @@ table td a.a_link{font-size:3em; padding:0 20px}
 				
 				
 				
-		                $this->email->from('admin@wallsnart.com', 'Mahataart');
+		                $this->email->from('info@mahataart.com', 'Mahattaart');
    					    //$this->email->to($email);
-						$this->email->to('info@mahataart.com');
+						$this->email->to($email);
                         $this->email->subject('Test');
                         $this->email->message($message);
                         $this->email->send();

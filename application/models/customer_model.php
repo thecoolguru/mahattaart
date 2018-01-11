@@ -11,6 +11,21 @@ class Customer_model extends CI_Model
         $this->load->database();
 
     }
+	
+	
+	
+public function get_cutomer_last_id()
+{
+      $this->db->select('customer_id');
+	  $this->db->order_by("id", "desc");
+	  $this->db->limit(1,0);
+      $query= $this->db->get('tbl_customer');
+	  //$sql = $this->db->last_query();
+	  #var_dump($sql); die;
+	  //echo "<pre>";
+	  return $query->result();
+}	
+	
 
 public function get_vendor_types_model()
 	{

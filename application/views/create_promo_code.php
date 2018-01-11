@@ -159,22 +159,22 @@ $(document).ready(function()
        });
 	   
 	   
-	 
+	   /*
 	    $('#location').change(function(){						
        var location = $('#location').val();
-	  // alert("location="+location);
+	   alert("location="+location);
           	
 			$.ajax({
 		   type:"POST",
-		    url:"<?php echo base_url('index.php/backend/get_location_id_for_promo_code'); ?>",
+		    url:"<?php // echo base_url('index.php/backend/get_location_id'); ?>",
 			data:"location="+location,
 			success:function(response2)
 			 {
-            //alert(response2)
+            alert(response2)
 				 $("#location_id").val(response2);  //
 			 }	 
 		    })	
-       });  
+       });  */
 	});
     </script>   
 
@@ -221,9 +221,20 @@ $(document).ready(function()
     </td>
     <td width="277" class="bold">Location ID:</td>
     <td>
-       <input type="text"  name="location_id"  class="printer" id="location_id">    
+       <input type="text" data-id="0" name="location_id"  class="printer" id="location_id" checked>    
     </td>
-  </tr>
+    
+    
+
+
+
+    
+ 
+    
+      
+    
+  
+ </tr>
   
   <tr class="darktr">
     <td class="bold">Promo Name:</td>

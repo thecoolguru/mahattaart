@@ -147,13 +147,6 @@ h1.ttto::before {
 	.popup-default-message > p, .popup-default-footer > p {
 		font-size: 11px !important;
 	}
-	.uploader_popup_header {
-		height: 25px !important;
-	}
-	.uploader_popup_header > h2 {
-		font-size: 18px !important;
-		letter-spacing: 1px;
-	}
 	a.lightbox-close::before {
 		height: 20px !important;
 	}
@@ -495,6 +488,9 @@ h1.ttto::before {
 	}
 	.top-cate h1 {
 		font-size: 25px;
+	}
+	.fa-heart-o {
+		float: left !important;
 	}
 }
 

@@ -22,8 +22,37 @@ class Backend extends CI_Controller
 	}
 	
 	
+public function get_location_for()
+{
+	
+	$create_prom_for=$this->input->post('promo_for');
+	$get_ven_location=$this->backend_model->get_location_for_promo_code_model($create_prom_for);
+	
+	//print_r($get_ven_location); die();
+	 
+		echo '<option>'.'Select Location'.'</option>';
+		foreach($get_ven_location as $r2){
+			?>
+       <option value="<?php  echo $r2->location;?>"><?php  echo $r2->location;?></option>
+            
+            <?php
+	
+		}	
 	
 	
+}
+
+
+public function get_location_id_for_promo_code()
+{
+	$location=$this->input->post('location');
+	$location_id=$this->backend_model->get_location_id_for_promo_code_model($location);
+	echo $location_id[0]->location_id;
+
+
+}
+
+		
 	
 	public function create_promo_code()
 {
@@ -33,6 +62,10 @@ class Backend extends CI_Controller
 	$this->form_validation->set_rules('promo_code','promocode','required');
 
     $prom_for        = $this->input->post('promo_for');
+	$location        = $this->input->post('location');
+	$location_id     = $this->input->post('location_id');
+	
+	
 	$promo_name      = $this->input->post('promo_name');
 	$new_promo_name  = $this->input->post('new_promo_name');
 	if(!empty($promo_name)){$exact_name=$promo_name;}else{$exact_name=$new_promo_name;}
@@ -47,6 +80,8 @@ class Backend extends CI_Controller
 	$status=0;
 	$data=array(
 	            'prom_for'=>$prom_for,
+				'location'=>$location,
+				'location_key_id'=>$location_id,
 				'promo_name'=>$exact_name,
 				'promo_name_code'=>$promo_code,
 				'offer_precentage'=>$offer_precentage,
@@ -55,7 +90,9 @@ class Backend extends CI_Controller
 				'promo_condition'=>$promo_condition,
 				'valid_days'=>$valid_days,
 				'active'=>$status
-	           );   	 
+	           ); 
+			   
+			print_r($data); die();     	 
 	if($this->form_validation->run()==false)
 	{
 		 $this->load->view('backend/dashboard_header');
@@ -77,10 +114,20 @@ class Backend extends CI_Controller
 	}
 	
 	
-	
 public function manage_promo_offer()
 {
-        $data['web_price_tbl']=$this->backend_model->get_all_tbl_promo_code_details();
+        
+		$search_for=$this->input->post('search_for');
+		$status=$this->input->post('status'); //die();
+		if(empty($search_for))
+		{
+		$data['kiosk_data']=$this->backend_model->get_all_kiosk_prormo_code_model();
+		}
+		
+		if($search_for=='kiosk'||$search_for=='sis'||$search_for=='web')
+		{
+		$data['promo_code_details']=$this->backend_model->get_all_tbl_promo_code_details($search_for,$status);
+		}
 		//echo "<pre>",var_dump($data),"</pre>";
         $this->load->view('backend/dashboard_header');
 		$this->load->view('backend/manage_promo_code',$data);

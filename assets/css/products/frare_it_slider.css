@@ -10,12 +10,12 @@
   font-family: "Helvetica Neue Regular",Helvetica,Arial,sans-serif;
   font-size: 14px;
 }
-.tabs-section1 .nav > li > a:hover, .tabs-section1 .nav > li > a:focus {
+.tabs-section1 .nav > li > a:focus, .tabs-section1 .nav > li > a:hover
+ {
   background-color: #7f7d7e;
-  border-left: 1px solid #6d6e6c;
-  border-radius: 0;
-  border-right: medium none transparent;
-  border-top: medium none transparent;
+}
+.tabs-section1 .nav-tabs > li.active > a, .tabs-section1 .nav-tabs > li.active > a:focus, .tabs-section1 .nav-tabs > li.active > a:hover {
+	background-color: #fff;
 }
 .tabs-section1 > ul a {
   color: #fff;

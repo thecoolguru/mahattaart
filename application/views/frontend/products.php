@@ -1760,7 +1760,8 @@ a.lightbox-close::after {
 }
 .uploader_popup_header{
 	background-color: #f1f1f1;
-	position:relative
+	position:relative;
+	border-bottom:none
 }
 
 #uploader_popup_goofy_a {
