@@ -171,11 +171,6 @@ h1.ttto::before {
 		width: auto !important;
 		height:auto !important
 	}
-	.imageBox {
-		height: 310px !important;
-		background-size: auto 310px !important;
-		background-position:0 0 !important
-	}
 }
 
 

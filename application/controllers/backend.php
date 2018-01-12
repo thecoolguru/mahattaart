@@ -57,7 +57,6 @@ public function get_location_id_for_promo_code()
 	public function create_promo_code()
 {
 	$query['promo_detials']=$this->backend_model->get_all_tbl_promo_code();
-	//print_r($query['promo_detials']);
 	$this->form_validation->set_rules('promo_for','PromoFor','required');
 	$this->form_validation->set_rules('promo_code','promocode','required');
 
@@ -92,7 +91,7 @@ public function get_location_id_for_promo_code()
 				'active'=>$status
 	           ); 
 			   
-			print_r($data); die();     	 
+			  	 
 	if($this->form_validation->run()==false)
 	{
 		 $this->load->view('backend/dashboard_header');

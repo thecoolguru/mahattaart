@@ -1246,8 +1246,8 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 		var vert_width = $('#vertical_width').html();	
 		vert_width = parseInt(vert_width);
 		var margin_left = parseInt(-(vert_width/2)); 
-		$('.uploader_popup_goofy_a').css({'width': vert_width,'height':'634px','margin-left': margin_left,'margin-top':'-317px','left':'50%','top':'50%'})//a
-		$('.imageBox').css({'width':'100%','height':'550px','border':'none'});    
+		//$('.uploader_popup_goofy_a').css({'width': 'auto'});
+		$('.imageBox').css({'width':'309px','height':'550px','border':'none'});    
 		$('.thumbBox').css({'width':'100%', 'height':'400px', 'margin-top':'-200px', 'margin-left':'-50%', 'border':'none'});
 	    $('#crop_image').show(); 
 		} else{
@@ -1255,7 +1255,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 		var horizon_height1 = parseInt(horizon_height);
 		var margin_top = parseInt(-(horizon_height/2));	
 		horizon_height = parseInt(horizon_height)+parseInt(75);
-		$('.uploader_popup_goofy_a').css({'top':'50%','width':'417px','margin-left':'-208px','height': horizon_height,'margin-top':margin_top,'left':'50%'})//a
+		$('.uploader_popup_goofy_a').css({'height': horizon_height})//a
 		$('.imageBox').css({'height':horizon_height1,'width':'100%','border':'none'});    
 		$('.thumbBox').css({'border': 'none','top':'50%','left':'50%','width':'300px','height':horizon_height1,'margin-top':margin_top,'margin-left':'-150px'});
 	     $('#crop_image').show();
@@ -1712,13 +1712,18 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 <!-- end -->
 
 <!-- pricing Details -->
-<div class="lightbox-target" id="price_detail">
-  <div id="uploader_popup_goofy_a" style="width:500px;"  >
-      <div class="uploader_popup_header">
-          <h2 class="text-center">Pricing Details</h2>
-          <a class="lightbox-close"  href="" onclick="remove_pricing(); return false;"></a>
+	
+<div class="modal fade" id="myModal3" role="dialog">
+  <div class="modal-dialog" style="width:auto">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header uploader_popup_header">
+            <h2 class="text-center">Pricing Details</h2>
+            <a class="lightbox-close"  data-dismiss="modal" ></a>
       </div>
-      <div class="frame-it-pricing">
+
+      <div class="modal-body">
+        <div class="frame-it-pricing">
           <div class="row canvas framing print">
               <div class="frame-it-content">
                   <div class="col-md-6 col-sm-6 text-left">
@@ -1846,9 +1851,12 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
                   </div>
               </div>
           </div>
-          <div class="row">
+      </div>
+      </div>
+      
+      <div class="modal-footer">
+        <div class="row">
               <div class="frame-it-content col-md-12">
-              <hr/>
                   <div class="row">
                       <div class="col-md-6 col-sm-6 text-left">
                           <strong> Total Price </strong>
@@ -1859,33 +1867,48 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
                   </div>
               </div>
           </div>
-          <div class="row">
-              <div class="col-md-12">
-              	<div class="frame-it-button">
+      </div>
+      
+      <div class="modal-footer">
+        <div class="frame-it-button">
                   <button <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> type="button" class="btn social_icon" style="background-color:#d3131b; color:#fff;"> Add to cart </button>
                   <button onclick="remove_pricing(); return false;" type="button" class="btn social_icon" style="background-color:#555; color:#fff"> Cancel </button>
               </div>
-              </div>
-          </div>            
       </div>
+    </div>
+    
   </div>
-</div>	
+</div>
 <!-- end -->
 
-<!-- Crop Image-->
-<div class="lightbox-target" id="crop_image">
-        <div id="uploader_popup_goofy_a" class="uploader_popup_goofy_a" style=""> 
-        <!--style="width:330px;height:580px;margin-left:-165px;margin-top:-290px;left:50%;top:50%"-->
-        <div class="uploader_popup_header">
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog" style="width:auto">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header uploader_popup_header">
             <h2 class="text-center">Select Print Area</h2>
-            <a class="lightbox-close"  href="" onclick="$('#crop_image').hide();return false;"></a>
+            <a class="lightbox-close"  data-dismiss="modal" ></a>
+      </div>
+
+      <div class="modal-body">
+        <div id='content'>
+            <div class="imageBox" style="">
+                <div class="thumbBox" style=""></div> 
+            </div>
         </div>
-            <div id='content'>
-                <div class="imageBox" style=""> <!-- style="width:100%;height:500px;border:none" -->
-                    <div class="thumbBox" style=""></div> <!-- style="width:100%; height:460px; margin-top:-230px; margin-left:-50%;border:none" -->
-                </div>
-                <div class="action">
-                <style>
+      </div>
+      
+      <div class="modal-footer">
+        <div class="frame-it-button text-center">
+            <button id="btnCrop" type="button" class="btn social_icon crop_btn" data-dismiss="modal" > APPLY </button>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+<style>
 				.crop_btn {
 					background: url(http://cache1.artprintimages.com/images/pub/productPage/secondaryBTN_large.png) repeat scroll 0 0 transparent !important;
 					border: 1px solid silver;
@@ -1897,13 +1920,30 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 					background: url(http://cache1.artprintimages.com/images/pub/productPage/primaryBTN_large_hover.png) repeat scroll 0 0 transparent !important;
 					color: #fff;
 				}
-				</style>
-                    <button id="btnCrop" type="button" class="btn social_icon crop_btn" > APPLY </button>
-            </div>
-            </div>
-     </div>       
-</div>
+				.modal {
+  text-align: center;
+  padding: 0!important;
+}
 
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.uploader_popup_goofy_a .modal-body {
+	position: relative;
+	padding: 0;
+}
+</style>
 <!--load_buffer-->
 <div class="lightbox-target" id="load_buffer">
     <div id="uploader_popup_goofy_a" style="height:180;width:80px;background-color:transparent;border:none;box-shadow:none;margin-left:-40px;margin-top:-90px;left:50%;top:50%">
@@ -1920,25 +1960,34 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 </div>
 
 <!-- dropzone_images-->
-<div class="lightbox-target" id="dropzone_images">
-<div id="uploader_popup_goofy_a">
-    <div class="uploader_popup_header">
-        <h2 class="text-left">  Upload Photos </h2>
-        <a class="lightbox-close" href="" onclick="$('#dropzone_images').hide(); return false;"></a>
-    </div>
-    <div class="uploader_popup_upload-icon">
+<!-- Modal -->
+<div class="modal fade" id="myModal2" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header uploader_popup_header">
+            <h2 class="text-center">Upload Photos</h2>
+            <a class="lightbox-close"  data-dismiss="modal" ></a>
+      </div>
+
+      <div class="modal-body">
+        <div class="uploader_popup_upload-icon">
     <form action="<?=base_url()?>index.php/frontend/dropzone" class="dropzone" id="my-dropzone">
          <div class="dz-default dz-message">
          <img src='<?=base_url()?>/images/upload_icon.svg'width='100px' height='100px'>
          </div>
     </form>
-        <div class="popup-default-message text-center dz-default dz-message" id='msg'>
+        
+         
+    </div>
+    	<div class="popup-default-message text-center dz-default dz-message" id='msg'>
             <h2>Drag and drop images here or click to browse</h2>
             <p>Each image must be a minimum of 500 KB to ensure a high quality print. Up to 10 images are allowed.</p>
         </div>
-         
-    </div> 
-    <div class="popup-default-footer col-md-12">
+      </div>
+      
+      <div class="modal-footer">
+      	<div class="popup-default-footer col-md-12">
         <p class="text-left pull-left">By uploading, I agree to the <span> <a href="#" id="termsofuselink" style="cursor: default; color: #ef9223">Terms of use</a> </span> </p>
         <div class="popup-default-button pull-right">
             <input id="submit-all" value="Upload" type="button" class="popup-button">
@@ -1946,7 +1995,10 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
             <!-- <a id="submit-all" class="popup-button" href="#" style="color:#337ab7"> UPLOAD</a> -->
         </div>
     </div>
-</div>       
+      </div>
+    </div>
+    
+  </div>
 </div>
 
 <div class="container">
@@ -1955,7 +2007,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         <div class="panel panel-primary h2a_ms_selector">
         <div class="panel-heading h2a_ms_photos">
         <h3 class="panel-title"> <i>  1 </i> Panel 1 </h3>
-        <span class="pull-right add_photo"><a href="" onclick="dropzone_call(); return false;"> + Add More Photos </a></span>
+        <span class="pull-right add_photo"><a href="" data-toggle="modal" data-target="#myModal2"> + Add More Photos </a></span>
         <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
         </div>
         
@@ -1970,28 +2022,28 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         <div class="carousel carousel-showmanymoveone slide" id="itemslider7">
         <div class="carousel-inner">
         <div class="item active">
-        <div class="col-xs-4 col-sm-4 col-md-2">
+        <div class="col-xs-4 col-sm-3 col-md-2">
         <div class="thumb_bg_hover">
         <a href="JavaScript:void(0);">
         <img id="canvas" src="<?php echo $path2 = base_url()."images/uploaded_pdf/canvas_img.jpg";?>" class="img2 img-responsive center-block"></a>
         <h5 class="text-center">Canvas</h5>
         </div>
         </div>
-        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-1">
+        <div class="col-xs-4 col-sm-3 col-md-2 cloneditem-1">
         <div class="thumb_bg_hover" >
         <a href="JavaScript:void(0);">
         <img id="framing" src="<?php echo $path1 = base_url()."images/uploaded_pdf/frame_img.jpg";?>" class="img2 img-responsive center-block"></a>
         <h5 class="text-center">Framing</h5>
         </div>
         </div>
-        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-4">
+        <div class="col-xs-4 col-sm-3 col-md-2 cloneditem-4">
         <div class="thumb_bg_hover" >
         <a href="JavaScript:void(0);">
         <img id="print_only" src="<?php echo $path3 = base_url()."images/uploaded_pdf/print_img.jpg";?>" class="img2 img-responsive center-block"></a>
         <h5 class="text-center">Print Only</h5>
         </div>
         </div>
-        <div class="col-xs-4 col-sm-4 col-md-2 cloneditem-4">
+        <div class="col-xs-4 col-sm-3 col-md-2 cloneditem-4">
         <div class="thumb_bg_hover" >
         <a href="JavaScript:void(0);">
         <img id="poster" src="<?php echo $path3 = base_url()."images/uploaded_pdf/print_img.jpg";?>" class="img2 img-responsive center-block"></a>
@@ -2120,12 +2172,10 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         </div>
         <div class="col-md-6 col-sm-12">
         <style>
-        .input_control{
-        height: 25px;
-        padding: 4px 2px;
-        border-radius: 0;
-        font-size: 10px;
-        }
+		.input_control {
+			border-radius: 0;
+			border-right-style: none;
+		}
         .form-modify .control-label {
         font-weight: normal;
         color: #888;
@@ -2211,7 +2261,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         <div class="form-group" id="options" >
         <label class="control-label col-sm-7">Options:</label>
         <div class="col-sm-5">
-        <button id="file1" onclick="cropImage();" type="button" class="btn social_icon crop"> Crop Image</button>
+        <button id="file1" onclick="cropImage();" type="button" class="btn social_icon crop" data-toggle="modal" data-target="#myModal"> Crop Image</button>
         </div>
         </div>
         
@@ -2226,7 +2276,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         <p>Your Price: <span class='actual_price'> </span></p>
         </div>
         <div class="page_price_label addtocartcontainer_popup_details" style="margin:10px auto;">
-        <a id='price_details' href='' onclick='price_details();return false;'>Price Details</a>
+        <a id='price_details' href='' data-toggle="modal" data-target="#myModal3">Price Details</a>
         </div>
         <div class="text-center addtocartcontainer_popup-button" style="margin-top: 20px;">
         <button <?php if(!$this->session->userdata('userid')){?> onclick="login('');return false;"<?php }else{?> onclick="addToCart();return false;"<?php }?> type="button" class="popup-button2"> Add To Cart</button>
@@ -2914,18 +2964,11 @@ width: 12px;
 }
 .btn.social_icon {
 	border-radius: 0;
-	box-shadow: none;
-	padding: 2px 0;
-	position: relative;
-	min-width: 110px;
 }
 .frame-it-content strong {
 	margin: 5px 0;
 	display: block;
 	font-family: inherit;
-}
-.frame-it-button {
-	float:right
 }
 a.lightbox-close {
 	background: transparent;
@@ -3003,9 +3046,7 @@ top: 0;
 <style>
 .uploader_popup_header{
 	background-color: #f1f1f1;
-	height: 30px;
 	position: relative;
-	padding: 0 10px;
 }
 
 #uploader_popup_goofy_a {
@@ -3059,12 +3100,14 @@ cursor:pointer
 padding: 10px;
 }
 .uploader_popup_upload-icon {
-	height: 260px;
-	margin-top: 10px;
-	overflow: auto;
+	max-height: 281px;
+	overflow-y: auto;
 	position: relative;
-	margin-bottom: 10px;
 }
+.modal-content {
+	border-radius: 0;
+}
+
 #imgInp {
 background: white none repeat scroll 0 0;
 cursor: inherit;
