@@ -30,7 +30,7 @@ public function get_all_tbl_promo_code_details($search_for,$status)
 	$this->db->where('prom_for',$search_for);
 	$this->db->where('active',$status);
 	$query=$this->db->get('tbl_promo_code');
-	//print_r($query->result()); die();
+	
 	return $query->result();
 }
 
@@ -45,8 +45,6 @@ $this->db->where('active','1');
 $query=$this->db->get('tbl_promo_code');
 
 //print_r($this->db->last_query()); die();
-
-//echo "<pre>",var_dump($query->result()),"</pre>";
 return $query->result();
 
 
@@ -56,6 +54,7 @@ return $query->result();
 
 public function add_promo_code_model($data)
 {
+//print_r($data); die();
 $this->db->insert('tbl_promo_code',$data);
 
 }
@@ -74,7 +73,7 @@ public function get_all_tbl_promo_code()
 public function delete_prormo_code($promo_code_id)
 {
   
-  //echo "In Model=".$promo_code_id; die();
+  
   $this->db->where('sr_no',$promo_code_id);
   $this->db->delete('tbl_promo_code');
 }	

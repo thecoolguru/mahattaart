@@ -150,7 +150,7 @@ function del()
 					  echo "<span>Exp</span>";   
 					    }
 						?>
-			 <?php echo $data->active;?></td>
+
 			 <td>
 		           <a href="<?=base_url()?>index.php/backend/create_promo_code/<?=$web_tbl->sr_no;?>">Edit</a>
              </td>
