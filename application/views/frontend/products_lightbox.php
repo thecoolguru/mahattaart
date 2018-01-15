@@ -160,22 +160,23 @@ $continue_shopping_redirect=$this->session->userdata('continue_shopping');
 <?php //$continue_shopping_redirect=$this->session->userdata('continue_shopping');?>
 		<div class="frame-step-header-container" style="display:none">
 			<div class="container frame-step-header-wrapper">
-				<div class="frame-step-header-text"></div>
-				<div class="frame-step-button-wrapper">
-					<div class="frame-step-continue-shopping-button">
-						<a style="color:white" href="<?=base_url().$continue_shopping_redirect?>">CONTINUE SHOPPING</a>
-					</div>
-					<div class="frame-step-proceed-to-cart-button">
-						<a style="color:white" href="<?=base_url().'cart/cart_view'?>">  PROCEED TO CART</a>
-					</div>
-				</div>
+            	<div class="row">
+                	<div class="col-sm-6">
+						<div class="frame-step-header-text"></div>
+                    </div>
+                	<div class="col-sm-6">
+                        <div class="text-right">
+                                <a class="frame-step-continue-shopping-button btn " style="color:white" href="<?=base_url().$continue_shopping_redirect?>">CONTINUE SHOPPING</a>
+                                <a class="frame-step-proceed-to-cart-button btn " style="color:white" href="<?=base_url().'cart/cart_view'?>">  PROCEED TO CART</a>
+                        </div>
+                    </div>
+                </div>
 			</div>
 		</div>
 <style>
 .frame-step-header-container {
   background-color: #ececec;
-  width: 100%;
-  padding: 10px 0;
+  padding:10px 0;
 }
 
 .frame-step-header-text {
@@ -193,34 +194,14 @@ $continue_shopping_redirect=$this->session->userdata('continue_shopping');
 }
 
 .frame-step-continue-shopping-button {
-  background-color: #888;
-  color: #fff;
-  cursor: pointer;
-  float: left;
-  font-size: 15px;
-  font-weight: bold;
-  margin-right: 14px;
-  min-width: 100px;
-  padding: 13px 16px;
-  position: relative;
-  text-align: center;
+	background-color: #888;
+	padding: 15px;
+	border-radius: 0;
 }
 .frame-step-proceed-to-cart-button {
-  background-color: #ed9134;
-  color: #fff;
-  cursor: pointer;
-  float: right;
-
-  font-size: 15px;
-  font-weight: bold;
-  min-width: 180px;
-  padding: 12px;
-  position: relative;
-  text-align: center;
-}
-.container.frame-step-header-wrapper {
-  border: medium none;
-  margin: 0 auto;
+	background-color: #ed9134;
+	padding: 15px;
+	border-radius: 0;
 }
 </style>
 
@@ -254,13 +235,17 @@ $promo_amount=round($image_details[0]->unit_price*20/100);
 
 ?>
 
-<div class="lightbox-target" id="price_detail">
-    <div id="uploader_popup_goofy_a">
-        <div class="uploader_popup_header">
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog" style="width:auto">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header uploader_popup_header">
             <h2 class="text-center">Pricing Details</h2>
-            <a class="lightbox-close"  href="" onclick="remove_pricing(); return false;"></a>
-        </div>
-		<div class="frame-it-pricing">
+            <a class="lightbox-close"  data-dismiss="modal" ></a>
+      </div>
+
+      <div class="modal-body">
+        <div class="frame-it-pricing">
         	<div class="row canvas framing print">
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
@@ -281,26 +266,6 @@ $promo_amount=round($image_details[0]->unit_price*20/100);
                     </div>
                 </div>
             </div>
-            <!--<div class="row canvas framing print">
-            	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Paper Print: </strong>
-                    </div>
-                	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> <span id="print_paper" class='canvas framing print'></span></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="row framing">
-            	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Frame Size(mm): </strong>
-                    </div>
-                	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong> <span id="frame_sized" class='framing'></span></strong>
-                    </div>
-                </div>
-            </div>-->
             <div class="row canvas">
             	<div class="frame-it-content ">
                 	<div class="col-md-6 col-sm-6 text-left">
@@ -311,16 +276,6 @@ $promo_amount=round($image_details[0]->unit_price*20/100);
                     </div>
                 </div>
             </div>
-            <!--<div class="row framing">
-            	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Frame Name: </strong>
-                    </div>
-                	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong><span class='framing' id="f_name"></span></strong>
-                    </div>
-                </div>
-            </div>-->
             <div class="row canvas ">
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
@@ -331,65 +286,6 @@ $promo_amount=round($image_details[0]->unit_price*20/100);
                     </div>
                 </div>
             </div>
-			<!--
-            <div class="row framing">
-            	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Frame Cost: </strong>
-                    </div>
-                	<div class="col-md-6 col-sm-6 text-right framing">
-                    	<strong><img src="" align="absmiddle" /><span id="FrameCost"></span></strong>
-                    </div>
-                </div>
-            </div>
-			
-            <div class="row framing mount">
-            	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left mount">
-                    	<strong> Mount Size: </strong>
-                    </div>
-                	<div class="col-md-6 col-sm-6 text-right mount">
-                    	<strong> <span class='framing' id="mount_size"></span></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-            	<div class="frame-it-content framing mount">
-                	<div class="col-md-6 col-sm-6 text-left mount">
-                    	<strong> Mount Color: </strong>
-                    </div>
-                	<div class="col-md-6 col-sm-6 text-right mount">
-                    	<strong><span class='framing' id="mount_color"></span></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="row framing">
-            	<div class="frame-it-content mount">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Mount Cost: </strong>
-                    </div>
-                	<div class="col-md-6 col-sm-6 text-right">
-                    	<strong><img src="" align="absmiddle"/><span id="MountCost" class='framing mount'></span></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="row framing">
-            	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong> Glass Type: </strong>
-                    </div>
-                </div>
-            </div>  
-            <div class="row framing" >
-            	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<strong id="glass_type"></strong>
-                    </div>
-                	<div class="col-md-6 col-sm-6 text-right framing">
-                    	<strong> <span id="glass_price"> </span></strong>
-                    </div>
-                </div>
-            </div>-->
             <div class="row">
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
@@ -418,9 +314,12 @@ $promo_amount=round($image_details[0]->unit_price*20/100);
                     </div>
                 </div>
             </div>
-            <div class="row">
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <div class="row">
             	<div class="frame-it-content col-md-12">
-                <hr style="border-color:#ddd"/>
                 	<div class="row">
                         <div class="col-md-6 col-sm-6 text-left">
                             <p style="color:#d3131b"> Total Price </p>
@@ -431,15 +330,20 @@ $promo_amount=round($image_details[0]->unit_price*20/100);
                     </div>
                 </div>
             </div>
-            <div class="row">
-            	<div class="frame-it-button">
-                	<button <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> type="button" class="btn social_icon" style="background-color:#d3131b; color:#fff;"> Add to cart </button>
-                	<button onclick="remove_pricing(); return false;" type="button" class="btn social_icon" style="background-color:#555; color:#fff; margin-right:10px"> Cancel </button>
+      </div>
+      
+      <div class="modal-footer">
+      <div class="frame-it-button">
+                	<button <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> type="button" class="btn social_icon" style="background-color:#d3131b; color:#fff;" data-dismiss="modal"> Add to cart </button>
+                	<button onclick="remove_pricing(); return false;" type="button" class="btn social_icon" style="background-color:#555; color:#fff; margin-right:10px" data-dismiss="modal"> Cancel </button>
                 </div>
-            </div>            
-        </div>
-	</div>
-</div>	
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+	
 <!-- end -->
 
 
@@ -923,6 +827,25 @@ function right(width,height,x){
     position: relative;
     z-index: -1;
 	}
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
     </style>
         </div>
          </div>
@@ -1034,7 +957,7 @@ function right(width,height,x){
                             <div class="col-sm-8">                    
                                 <p class="bottom-bar-crop" style="display: block;" id="17"></p>
                                 <p class="shipping-note" style="margin-bottom:0">Ships in 1-2 days</p>
-                                <p><a href='' onclick="get_functions(''); price_details();return false;">Price Details</a> </p>
+                                <p><a href='' onclick="get_functions(''); price_details();return false;" data-toggle="modal" data-target="#myModal">Price Details</a> </p>
                                 <p><input type="button" class="call-to-action-1-button btn btn-default"<?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> value="ADD TO CART" ></p>
                                 <div id="save-to-gallery-text">
                 	<span> <i class="fa fa-heart-o" aria-hidden="true"></i>
