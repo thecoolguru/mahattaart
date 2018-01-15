@@ -404,12 +404,7 @@
             </div>
             
             <div style="clear:both;"></div>
-            <br />
-           
-                   <span> Contributor </span> <a  style="color: #23527c;" href="http://www.mahatta.com/submission"> SignUp! </a>
-                 
-            
-        </div>-->
+        </div>
     </div>
      <div class="signup gall-w" id="addtointrestedgallery" style="display:none;">
          <div style="position: absolute;right: 10px;top: 0;"><a href="" onClick="allclose('');return false;" >Close</a></div><br>
@@ -482,8 +477,8 @@ $result=$this->frontend_model->get_all_lightboxes2($user_id);
 
         <!-- BEGIN JIVOSITE CODE {literal} -->
 <script type='text/javascript'>
-    (function(){ var widget_id = 'wAZSuUVEkD';var d=document;var w=window;function l(){
-    var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+    /*(function(){ var widget_id = 'wAZSuUVEkD';var d=document;var w=window;function l(){
+    var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();*/
 </script>
 <!-- {/literal} END JIVOSITE CODE -->
 

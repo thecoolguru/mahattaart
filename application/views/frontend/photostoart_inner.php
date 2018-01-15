@@ -33,12 +33,13 @@
 					    var max_height = real_height/150;
 						var id = $(this).attr('id');
 						// setInterval(function(){ alert("Hello");
-						var value = $(this).val();	
+						var value = $(this).val();
+						value=value.trim();
 						
 						if(id == 'width'){
 							if(value == ''){
 							$('.actual_price').val('Rs.0');
-							$('#height').val('');	
+							$('#height').val('');
 							}
 						 }	
 							if( (value <= max_width) && (value != 0) && (value != '') ){
@@ -50,7 +51,7 @@
 						}else{
 						 $('#height').val('');
 						 setTimeout(function(){
-						 $('#finished_size').html('<p style="color:red;">Choose Less than Max. Width ('+Math.round(max_width)+')</p>');	},200);
+						 $('#finished_size').html('<p style="color:red;">Choose Less than Max. Width ('+Math.round(max_width)+')</p>');	},300);
 						}
 				});
 				
@@ -172,7 +173,7 @@
     }
 </script>
 <script>
-var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6E\x73","\x23\x73\x75\x62\x6D\x69\x74\x2D\x61\x6C\x6C","\x71\x75\x65\x72\x79\x53\x65\x6C\x65\x63\x74\x6F\x72","\x63\x6C\x69\x63\x6B","\x70\x72\x6F\x63\x65\x73\x73\x51\x75\x65\x75\x65","\x61\x64\x64\x45\x76\x65\x6E\x74\x4C\x69\x73\x74\x65\x6E\x65\x72","\x71\x75\x65\x75\x65\x63\x6F\x6D\x70\x6C\x65\x74\x65","\x73\x68\x6F\x77","\x23\x6C\x6F\x61\x64\x5F\x62\x75\x66\x66\x65\x72","\x68\x69\x64\x65","\x23\x64\x72\x6F\x70\x7A\x6F\x6E\x65\x5F\x69\x6D\x61\x67\x65\x73","\x72\x65\x6D\x6F\x76\x65\x41\x6C\x6C\x46\x69\x6C\x65\x73","\x23\x6D\x79\x2D\x64\x72\x6F\x70\x7A\x6F\x6E\x65","\x66\x6F\x72\x45\x6C\x65\x6D\x65\x6E\x74","\x23\x73\x65\x73\x73\x69\x6F\x6E\x5F\x69\x6D\x61\x67\x65\x73","\x6C\x6F\x61\x64","\x6F\x6E","\x72\x65\x6D\x6F\x76\x65\x64\x66\x69\x6C\x65","\x6C\x65\x6E\x67\x74\x68","\x66\x69\x6C\x65\x73","\x23\x6D\x73\x67","\x61\x64\x64\x65\x64\x66\x69\x6C\x65","\x73\x69\x7A\x65","\x72\x65\x6D\x6F\x76\x65\x46\x69\x6C\x65","","\x50\x6C\x65\x61\x73\x65\x20\x55\x70\x6C\x6F\x61\x64\x20\x49\x6D\x61\x67\x65\x73\x20\x47\x72\x65\x61\x74\x65\x72\x20\x54\x68\x61\x6E\x20\x35\x30\x30\x6B\x42","\x65\x72\x72\x6F\x72"];Dropzone[_0xd968[1]][_0xd968[0]]= {autoProcessQueue:false,init:function(){var _0x9521x1=document[_0xd968[3]](_0xd968[2]);myDropzone= this;_0x9521x1[_0xd968[6]](_0xd968[4],function(){myDropzone[_0xd968[5]]()});this[_0xd968[17]](_0xd968[7],function(_0x9521x2){$(_0xd968[9])[_0xd968[8]]();$(_0xd968[11])[_0xd968[10]]();Dropzone[_0xd968[14]](_0xd968[13])[_0xd968[12]](true);$(_0xd968[15])[_0xd968[16]](_0xd968[15]);buffer_show();setTimeout(function(){$(_0xd968[9])[_0xd968[10]]()},3000)});this[_0xd968[17]](_0xd968[18],function(_0x9521x2){if((myDropzone[_0xd968[20]][_0xd968[19]])== 0){$(_0xd968[21])[_0xd968[8]]()}});this[_0xd968[17]](_0xd968[22],function(_0x9521x2){if((myDropzone[_0xd968[20]][_0xd968[19]]+ 1)> 0){$(_0xd968[21])[_0xd968[10]]()};if(_0x9521x2[_0xd968[23]]< 500000){$(_0xd968[11])[_0xd968[10]]();this[_0xd968[24]](_0x9521x2);swal({title:_0xd968[25],text:_0xd968[26],type:_0xd968[27],timer:1000});setTimeout(function(){dropzone_call()},1000)}})}}
+var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6E\x73","\x23\x73\x75\x62\x6D\x69\x74\x2D\x61\x6C\x6C","\x71\x75\x65\x72\x79\x53\x65\x6C\x65\x63\x74\x6F\x72","\x63\x6C\x69\x63\x6B","\x70\x72\x6F\x63\x65\x73\x73\x51\x75\x65\x75\x65","\x61\x64\x64\x45\x76\x65\x6E\x74\x4C\x69\x73\x74\x65\x6E\x65\x72","\x71\x75\x65\x75\x65\x63\x6F\x6D\x70\x6C\x65\x74\x65","\x73\x68\x6F\x77","\x23\x6C\x6F\x61\x64\x5F\x62\x75\x66\x66\x65\x72","\x68\x69\x64\x65","\x23\x64\x72\x6F\x70\x7A\x6F\x6E\x65\x5F\x69\x6D\x61\x67\x65\x73","\x72\x65\x6D\x6F\x76\x65\x41\x6C\x6C\x46\x69\x6C\x65\x73","\x23\x6D\x79\x2D\x64\x72\x6F\x70\x7A\x6F\x6E\x65","\x66\x6F\x72\x45\x6C\x65\x6D\x65\x6E\x74","\x23\x73\x65\x73\x73\x69\x6F\x6E\x5F\x69\x6D\x61\x67\x65\x73","\x6C\x6F\x61\x64","\x6F\x6E","\x72\x65\x6D\x6F\x76\x65\x64\x66\x69\x6C\x65","\x6C\x65\x6E\x67\x74\x68","\x66\x69\x6C\x65\x73","\x23\x6D\x73\x67","\x61\x64\x64\x65\x64\x66\x69\x6C\x65","\x73\x69\x7A\x65","\x72\x65\x6D\x6F\x76\x65\x46\x69\x6C\x65","","\x50\x6C\x65\x61\x73\x65\x20\x55\x70\x6C\x6F\x61\x64\x20\x49\x6D\x61\x67\x65\x73\x20\x47\x72\x65\x61\x74\x65\x72\x20\x54\x68\x61\x6E\x20\x35\x30\x30\x6B\x42","\x65\x72\x72\x6F\x72"];Dropzone[_0xd968[1]][_0xd968[0]]= {autoProcessQueue:false,init:function(){var _0x9521x1=document[_0xd968[3]](_0xd968[2]);myDropzone= this;_0x9521x1[_0xd968[6]](_0xd968[4],function(){myDropzone[_0xd968[5]]()});this[_0xd968[17]](_0xd968[7],function(_0x9521x2){$(_0xd968[9])[_0xd968[8]]();$(_0xd968[11])[_0xd968[10]]();Dropzone[_0xd968[14]](_0xd968[13])[_0xd968[12]](true);$(_0xd968[15])[_0xd968[16]](_0xd968[15]);buffer_show();setTimeout(function(){$(_0xd968[9])[_0xd968[10]]()},3000)});this[_0xd968[17]](_0xd968[18],function(_0x9521x2){if((myDropzone[_0xd968[20]][_0xd968[19]])== 0){$(_0xd968[21])[_0xd968[8]]()}});this[_0xd968[17]](_0xd968[22],function(_0x9521x2){if((myDropzone[_0xd968[20]][_0xd968[19]]+ 1)> 0){$(_0xd968[21])[_0xd968[10]]()};if(_0x9521x2[_0xd968[23]]< 1000){$(_0xd968[11])[_0xd968[10]]();this[_0xd968[24]](_0x9521x2);swal({title:_0xd968[25],text:_0xd968[26],type:_0xd968[27],timer:1000});setTimeout(function(){dropzone_call()},1000)}else if(_0x9521x2[_0xd968[23]]<500000){alert('The image Uploaded by you is of low resolution, please upload the High Resolution image if you have to get the better print quality and bigger print size.')}})}}
 </script>
 <script type="text/javascript">
 
@@ -925,7 +926,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 								new_width = 130;
 							} 
 				var img_src = "<?php echo base_url().'application/views/frontend/upload_images/';?>"+k[0];
-	 			td_inner += '<div class="col-xs-6 col-sm-3 col-md-3 thumb_img" id="div_img'+value+'"> <div class="thumb_bg"><img src="<?php echo base_url();?>application/views/frontend/upload_images/'+k[0]+'" class="img1" id="img'+value+'" width="'+new_width+'px" height="'+new_height+'px"onclick="change_image(this.src);"/></div><div class="thumb_toolboox"><div class="thumb_icon"><a><i class="glyphicon glyphicon-zoom-in"></i></a> <a class="remove_image" id="'+k[0]+'" onclick="remove_image(this.id );"><i class="glyphicon glyphicon-remove"></i></a></div></div></div>';			}
+	 			td_inner += '<div class="col-xs-12 col-sm-3 col-md-3 thumb_img" id="div_img'+value+'"> <div class="thumb_bg"><img src="<?php echo base_url();?>application/views/frontend/upload_images/'+k[0]+'" class="img1" id="img'+value+'" width="'+new_width+'px" height="'+new_height+'px"onclick="change_image(this.src);"/></div><div class="thumb_toolboox"><div class="thumb_icon"><a><i class="glyphicon glyphicon-zoom-in"></i></a> <a class="remove_image" id="'+k[0]+'" onclick="remove_image(this.id );"><i class="glyphicon glyphicon-remove"></i></a></div></div></div>';			}
 				value++;
 				}
 				td_inner += '</div>';
@@ -1256,7 +1257,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 		var margin_top = parseInt(-(horizon_height/2));	
 		horizon_height = parseInt(horizon_height)+parseInt(75);
 		$('.uploader_popup_goofy_a').css({'height': horizon_height})//a
-		$('.imageBox').css({'height':horizon_height1,'width':'100%','border':'none'});    
+		$('.imageBox').css({'height':horizon_height1,'width':'417px','border':'none'});    
 		$('.thumbBox').css({'border': 'none','top':'50%','left':'50%','width':'300px','height':horizon_height1,'margin-top':margin_top,'margin-left':'-150px'});
 	     $('#crop_image').show();
 		} 
@@ -1353,7 +1354,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         var large_img2 = $('#img0').attr('src');
 		$('#large_img').attr("src", large_img2);
 		$('#large_img2').attr("src", large_img2);
- 	}, 500);
+ 	}, 400);
 	$('#framingdiv1,#framingdiv2').hide();
 	var large_src = $("#large_img").attr("src"); 	
 	var style1 = $('#abc').attr('style');   	
@@ -1871,8 +1872,8 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
       
       <div class="modal-footer">
         <div class="frame-it-button">
-                  <button <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> type="button" class="btn social_icon" style="background-color:#d3131b; color:#fff;"> Add to cart </button>
-                  <button onclick="remove_pricing(); return false;" type="button" class="btn social_icon" style="background-color:#555; color:#fff"> Cancel </button>
+                  <button <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> type="button" class="btn social_icon" style="background-color:#d3131b; color:#fff;" data-dismiss="modal"> Add to cart </button>
+                  <button onclick="remove_pricing(); return false;" type="button" class="btn social_icon" style="background-color:#555; color:#fff" data-dismiss="modal"> Cancel </button>
               </div>
       </div>
     </div>
@@ -1891,7 +1892,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
             <a class="lightbox-close"  data-dismiss="modal" ></a>
       </div>
 
-      <div class="modal-body">
+      <div class="modal-body" style="padding:0">
         <div id='content'>
             <div class="imageBox" style="">
                 <div class="thumbBox" style=""></div> 
@@ -2271,7 +2272,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         <div id="imageDiv">
         </div>
         <!--Image End Div -->
-        <div class="addtocartcontainer_page text-center" style="float:right; width:340px;height: 200px;">
+        <div class="addtocartcontainer_page text-center" style="float:right; width:340px;">
         <div class="page_price_label">
         <p>Your Price: <span class='actual_price'> </span></p>
         </div>
@@ -2285,7 +2286,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         <button type="button" class="popup-button2"> Add To My Uploads</button>
         </div>
         <div class="addtocartcontainer_popup_details" style="margin-top: 20px;">
-        <a href="#">Usually ships in 2-3 days</a>
+        <span>Usually ships in 2-3 days</span>
         </div>
         </div>
         <div class="addtocartcontainer_page2" id="canvas_details" style="display: none; margin-bottom:40px; width:340px; float:right">
@@ -2875,7 +2876,7 @@ padding-left: 10px;
 	border:1px solid #d6d6d6;
 }
 
-.addtocartcontainer_popup_details > a {
+.addtocartcontainer_popup_details > span {
 color: #888;
 font-size: 12px;
 text-decoration: underline;
@@ -3198,29 +3199,33 @@ background: #ddd;
 </style>
 <style>
 .thumb_img {
-	text-align: center;
 	height: 180px;
 	padding: 0;
 	border-right: 1px solid #d6d6d6;
 	cursor: pointer;
-	margin-bottom:5px;
+	display: table;
+	position: relative;
 }
 .thumb_img:hover > .thumb_bg{ background-color:#f1f1f1}
 .thumb_img:hover .thumb_toolboox{ display:block}
 
 .thumb_bg {
 	text-align: center;
-	width: 187px;
-	height: 150px;
-	position: relative;
-	vertical-align: middle;
 	display: table-cell;
 }
+
 .thumb_toolboox {
 	background-color: #c1c1c1;
 	height: 30px;
 	line-height: 2;
 	display: none;
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	bottom: 0;
+	text-align: center;
+	opacity: 0.8;
+	right: 0;
 }
 
 .thumb_icon {
