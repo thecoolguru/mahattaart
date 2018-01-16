@@ -64,12 +64,7 @@ function login(){
                     document.getElementById('img_id').value=images_id;
                     document.getElementById('image_id').value=images_id;
                     document.getElementById('fileName').value=fileName;
-                  
-					$("#addtogallery").fadeIn(300);
-					$("#back").fadeIn(300);
-					$("#loginpop").hide(300);
-					$("#signpop").hide();
-			
+                  			
 		}
  
 	}

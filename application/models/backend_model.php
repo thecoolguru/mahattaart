@@ -12,6 +12,7 @@ class Backend_model extends CI_Model
 
 public function auto_expired_promo_code($sr_no)
 {
+	//echo $sr_no; die();
 	$this->db->where('sr_no',$sr_no);
 	$this->db->set('active','2');
 	$this->db->update('tbl_promo_code');
@@ -21,7 +22,14 @@ public function get_all_promo_code_active_date()
 {
 	
 	$this->db->select('*');
+	$this->db->where('active',1);
+	$this->db->order_by('sr_no','DESC');
 	$query=$this->db->get('tbl_promo_code');
+	/*
+	$affrected=$this->db->affected_rows();
+	print_r($affrected); die();
+	//print_r($query->result()); die();
+	*/
 	return $query->result();
 
 }

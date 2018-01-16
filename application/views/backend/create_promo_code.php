@@ -1,54 +1,18 @@
-
-
-
 <html>
-
    <head>
-
 <title>Create Quotation</title>
-
-<link href="<?php echo base_url()?>assets/css/jquery-ui-1.10.4.custom.css" rel="stylesheet">
-
-<script src="<?php echo base_url()?>assets/js/jquery-1.10.2.js"></script>
-
-<script src="<?php echo base_url()?>assets/js/jquery-ui-1.10.4.custom.js"></script>
-
-<script src="<?php echo base_url()?>assets/js/common.js"></script>
-
 <style>
-
 .txtbox_f {    width: 61px;    height: 30px;}
-
 .txtbox_f_offline{ width: 61px;    height: 30px;}
-
 .txtbox_f_online{ width: 61px;    height: 30px;}
-
 .s_custom{padding-left: 56px; }
-
 .s_list{padding-left: 56px; }
-
 </style>
 
 
 
 
-<link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap.min.css">
 
-<link rel="stylesheet" href="<?=base_url()?>assets/css/bootstrap-select.css">
-
-<link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/css/anylinkmenu.css" />
-
-<script type="text/javascript" src="<?=base_url()?>assets/js/menucontents.js"></script>
-
-<script type="text/javascript" src="<?=base_url()?>assets/js/anylinkmenu.js"></script>
-
-<script type="text/javascript" src="<?=base_url()?>assets/js/jquery-1.6.1.min.js"></script>
-
-<script src="<?=base_url()?>assets/js/jquery.min2.js"></script>
-
-<script src="<?=base_url()?>assets/js/bootstrap.min.js"></script>
-
-<script src="<?=base_url()?>assets/js/bootstrap-select.js"></script>
 
 </head>
 
@@ -304,6 +268,11 @@ $(document).ready(function()
 	</select>
 	</td>
   </tr>
+  
+  <script>
+  $( function() {$("#date_from_text" ).datepicker();} );
+  </script>
+  
   <tr class="darktr">
     <td width="277" class="bold">Valid From:</td>
   <td>
