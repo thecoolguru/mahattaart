@@ -16,6 +16,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <link rel="icon" href="<?php print base_url();?>assets/favicon.png" sizes="24x24" type="image/png">
 
 <!-- stylesheet css -->
+<link rel="stylesheet" href="<?php print base_url();?>assets/css/light-box-model.css" >
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/style.css"  />
 <link href="<?php print base_url();?>assets/css/nav.css" rel="stylesheet" />
 <link href="<?php print base_url();?>assets/css/wallsnart2.2.css" rel="stylesheet"  />
@@ -448,9 +449,9 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <div class="col-lg-5 col-md-6 col-sm-8 col-xs-12 help">
 <ul class="nav navbar-nav navbar-right menu-list text-center" style="margin-right:0">
 <li> <a href="<?php print base_url(); ?>frontend/contact"> <i class="glyphicon glyphicon-earphone"></i> Help </a> </li>
-<li> <a <?php if(!$this->session->userdata('userid')){?> href="javascript:void(0)" onclick="login('')" <?php }else{ ?> href="<?php echo base_url();?>frontend/myUpload" <?php }?>> <i class="glyphicon glyphicon-upload"></i> My Upload </a> </li>
+<li> <a <?php if(!$this->session->userdata('userid')){?> href="javascript:void(0)" data-toggle="modal" data-target="#login-modal" <?php }else{ ?> href="<?php echo base_url();?>frontend/myUpload" <?php }?>> <i class="glyphicon glyphicon-upload"></i> My Upload </a> </li>
 <!--<li> <a href="<?php print base_url(); ?>frontend/myUpload"> <i class="glyphicon glyphicon-upload"></i> My Upload </a> </li>-->
-<li> <a <?php if(!$this->session->userdata('userid')){?> href="javascript:void(0)" onclick="login('')" <?php  }else{ ?> href="<?php  echo base_url();?>frontend/lightbox" <?php }?>> <i class="glyphicon glyphicon-user"></i> My Gallery </a> </li>
+<li> <a <?php if(!$this->session->userdata('userid')){?> href="javascript:void(0)" data-toggle="modal" data-target="#login-modal" <?php  }else{ ?> href="<?php  echo base_url();?>frontend/lightbox" <?php }?>> <i class="glyphicon glyphicon-user"></i> My Gallery </a> </li>
 <?php if($this->session->userdata('userid')){
             $user_id=$this->session->userdata('userid');
             $user_data=$this->user_model->get_user_details($user_id);?>
@@ -466,8 +467,8 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
     </a>
 </li>
 <?php }else{?>
-<li> <a href="#" onClick="return signup('')"> <i class="glyphicon glyphicon-lock"></i> Sign up | </a> </li>
-<li> <a href="#" onClick="return login('')"> Log in </a> </li>
+<li> <a href="#" data-toggle="modal" data-target="#login-modal3"> <i class="glyphicon glyphicon-lock"></i> Sign up | </a> </li>
+<li> <a href="#" data-toggle="modal" data-target="#login-modal"> Log in </a> </li>
 <?php }
 			if($this->session->userdata('userid')){
 			?>

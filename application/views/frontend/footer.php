@@ -55,63 +55,238 @@
                 <h1> <a href="<?php echo base_url()?>frontend/msg91">send msg</a></h1>
             </div>
         </div>
-        </div>
-       
        <p class="copyright"><a href="<?php echo base_url()?>frontend/terms_of_use">Terms  of Use  </a> &nbsp; © Copyright &nbsp;2017 | Mahatta Art</p>
-       
     </footer>
     <!-- footer -->
+    <style>
+/****** LOGIN MODAL ******/
+/*.loginmodal-container {
+  padding: 20px;
+  background-color: #F7F7F7;
+  margin: 0 auto;
+  border-radius: 2px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  font-family: roboto;
+  padding-top:0
+}*/
 
-    <div class="signup" id="signpop" style="display:none; width:auto" >
-        <div style="position: absolute;right: 10px;top: 0;"><a href="" onClick="allclose('');return false;" >Close</a></div>
-        
-        <h1>New User? Sign Up</h1>
-        <p>
-        <span></span><span></span>
-         <b style="color: red" id="email_error"></b>
-        <b style="color: red" id="password_error"></b> 
-        <b style="color: red" id="cpassword_error"></b>
-        <b style="color: green" id="success_result"></b>
-        </p>
-        <div class="signup-l-c" style="padding:0; border-right-style:none">
-            <form action="#" id="signup_form" name="sign_id" method="post">
-                <p>
-                    <span>First Name<span style="color:#F00; width: auto;">*</span></span>
-                    <input type="text" name="first_name" id="first_name" placeholder="First Name" >
-                </p>
-                <p>
-                    <span>Last Name<span style="color:#F00; width: auto;">*</span></span>
-                    <input type="text" name="last_name" 
-                    id="last_name" placeholder="Last Name" >
-                </p>
-                <p>
-                    <span>Email Address<span style="color:#F00; width: auto;">*</span></span>
-                    <input type="text" name="email_reg" 
-                    id="email_reg" placeholder="Email Address" >
-                </p>
-                
-                <p>
-                    <span>Password<span style="color:#F00; width: auto;">*</span></span>
-                    <input  name="passwordd" type="password" id="password"
-                    placeholder="Password">
-                </p>
-                
-                <p>
-                    <span>Re-Password<span style="color:#F00; width: auto;">*</span></span>
-                    <input name="cpassword" type="password"
-                    id="cpassword" placeholder="Confirm Password">
-                </p>
+.loginmodal-container h1 {
+	font-size: 1.6em;
+	margin: 0;
+	position: relative;
+}
+.loginmodal-container input[type=submit], .loginmodal-container input[type=button] {
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.loginmodal-container input[type=text], input[type=password] {
+  height: 30px;
+  font-size: 12px;
+  width: 100%;
+  margin-bottom: 10px;
+  -webkit-appearance: none;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-top: 1px solid #c0c0c0;
+  /* border-radius: 2px; */
+  padding: 0 8px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.loginmodal-container input[type=text]:hover, input[type=password]:hover {
+  border: 1px solid #b9b9b9;
+  border-top: 1px solid #a0a0a0;
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.loginmodal {
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+  font-weight: 700;
+  height: 36px;
+  padding: 0 8px;
+/* border-radius: 3px; */
+/* -webkit-user-select: none;
+  user-select: none; */
+}
+
+.loginmodal-submit {
+  /* border: 1px solid #3079ed; */
+  border: 0px;
+  color: #fff;
+  text-shadow: 0 1px rgba(0,0,0,0.1); 
+  background-color: #4d90fe;
+  padding: 10px 0px;
+  font-family: roboto;
+  font-size: 14px;
+  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
+}
+
+.loginmodal-submit:hover {
+  /* border: 1px solid #2f5bb7; */
+  border: 0px;
+  text-shadow: 0 1px rgba(0,0,0,0.3);
+  background-color: #357ae8;
+  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
+}
 
 
-                <p>
-                    <span>Company Name </span>
-                    <input name="company_name" type="text"
-                    id="company_name" placeholder="company name">
-                </p>
+.login-help{
+  font-size: 12px;
+}
 
-                <p>
-                    <span> I'm a</span>
-                    <select style="width:200px;border: solid 1px #ccc;" name="ima" id="ima" onchange = "ShowHideDiv()">
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+	</style>
+	
+    <!-- login form -->    
+    <div class="modal fade" id="login-modal" role="dialog">
+    	  <div class="modal-dialog">
+          	<div class="modal-content" style="border-radius:0">
+            	<div class="modal-body">
+                    <!-- login form-->
+                    <div class="loginmodal-container" id="loginmodal-container-1">
+                      <h1>User Sign In <a class="lightbox-close" data-dismiss="modal"></a> </h1>
+                      <br>
+                      <p> </p>
+                      <div style="color: red;" id="password_login_error"></div>
+                      <div style="color: red;" id="email_login_error"></div>
+                      <div style="color: red;" id="login_error"></div> 
+                      <form action="#" id="login_id" name="login_id" method="post" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2" for="email">Email </label>
+                                <div class="col-sm-10">
+                                    <input name="email" type="text" id="email_login" placeholder="Email Address">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2" for="password">Password </label>
+                                <div class="col-sm-10">
+                                    <input type="password" id="password_login" name="password_login" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input type="button" name="login" class="login loginmodal-submit" value="Login" onclick="return login_verification();">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                     <p class="login-help">Don't have an account! <a href="#" style="color:#428bca" id="sign_up_btn2" data-dismiss="modal" data-toggle="modal" data-target="#login-modal3">Sign Up Here</a></p>
+                                     <p class="login-help">Forgot Password <a href="#" class="none" id="send_mail_btn2" style="color:#428bca" data-dismiss="modal" data-toggle="modal" data-target="#login-modal2">Click here</a></p>
+                                </div>
+                            </div>
+                      </form>
+                      <!--<div class="login-help">
+                          <h1>Sign In with</h1>
+                          <img src="http://www.mahattaart.com/assets/img/facbook.png">
+                          <img src="http://www.mahattaart.com/assets/img/google.png">
+                      </div>-->
+                    </div>
+                </div>
+            </div>
+			</div>
+		  </div>
+          
+    <!-- forget password -->
+    <div class="modal fade" id="login-modal2" role="dialog">
+    	  <div class="modal-dialog">
+          	<div class="modal-content" style="border-radius:0">
+            	<div class="modal-body">
+                    <!-- forget password-->
+                    <div class="loginmodal-container" id="loginmodal-container-2">
+                      <h1>Forget Password <a class="lightbox-close" data-dismiss="modal"></a></h1><br>
+                      <p></p>
+                      <div id="error_msg" style="color:red;"></div>
+                      <form action="#" id="" name="sign_id" method="post" class="form-horizontal">
+                        <input name="email_regd" type="text" id="email_regd" placeholder="Email Address" value="<?php echo $forget_emlid;?>">
+                        <input type="button" name="login" class="login loginmodal-submit" value="Update Password" onclick="updateforpaswd();">
+                      </form>
+                    </div>
+                </div>
+            </div>
+			</div>
+		  </div>
+
+    <!-- signup form -->          
+    <div class="modal fade" id="login-modal3" role="dialog">
+    	  <div class="modal-dialog">
+          	<div class="modal-content" style="border-radius:0">
+            	<div class="modal-body">
+                    <!-- signup form-->
+                    <div class="loginmodal-container" id="loginmodal-container-3">
+                      <h1>User Sign Up <a class="lightbox-close" data-dismiss="modal"></a></h1><br>
+                        <p></p>
+                        <div style="color: red" id="email_error"></div>
+                        <div style="color: red" id="password_error"></div> 
+                        <div style="color: red" id="cpassword_error"></div>
+                        <div style="color: green" id="success_result"></div>
+                      <form action="#" id="signup_form" name="sign_id" method="post" class="form-horizontal">
+                        <div class="form-group">
+                                <label class="col-sm-3" for="first_name">First Name </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="first_name" id="first_name" placeholder="First Name">
+                                </div>
+                            </div>
+                        <div class="form-group">
+                                <label class="col-sm-3" for="last_name">Last Name </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="last_name" id="last_name" placeholder="Last Name">
+                                </div>
+                            </div>
+                        <div class="form-group">
+                                <label class="col-sm-3" for="email_reg">Email </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="email_reg" id="email_reg" placeholder="Email Address">
+                                </div>
+                            </div>
+                        <div class="form-group">
+                                <label class="col-sm-3" for="passwordd">Password </label>
+                                <div class="col-sm-9">
+                                    <input name="passwordd" type="password" id="password" placeholder="Password">
+                                </div>
+                            </div>
+                        <div class="form-group">
+                                <label class="col-sm-3" for="cpassword">Re-Password </label>
+                                <div class="col-sm-9">
+                                    <input name="cpassword" type="password" id="cpassword" placeholder="Confirm Password">
+                                </div>
+                            </div>
+                        <div class="form-group">
+                                <label class="col-sm-3" for="password">Comapny Name </label>
+                                <div class="col-sm-9">
+                                    <input name="company_name" type="text" id="company_name" placeholder="company name">
+                                </div>
+                            </div>
+
+                        <div class="form-group">
+                                <label class="col-sm-3" for="">I'm a</label>
+                                <div class="col-sm-9">
+                                    <select name="ima" id="ima" onchange = "ShowHideDiv()" class="form-control">
                         <option value="hotelier"> Hotelier </option>
                         <option value="interior designer"> Interior Designer </option>
                         <option value="architects"> Architects </option>
@@ -120,292 +295,100 @@
                         <option value="design house"> Design House </option>
                         <option value="other"> Other </option>
                     </select>
-                </p>
-                <p style="display: none;" id="c_job_dec_detail" class="optional other">
-                    <span>Details </span>
-                    <input name="job_dec_detail" type="text" id="job_dec_detail" placeholder="Enter Details">
-                </p>
-                <p>
-                    <span> Job Description  </span>
-                    <select style="width:200px;border: solid 1px #ccc;" name="job_dec" id="job_dec">
-                        <option> Select </option>
-                        <option value="purchase manager"> Purchase Manager </option>
-                        <option value="owner"> Owner </option>
-                        <option value="ceo"> CEO </option>
-                        <option value="coo"> COO </option>
-                        <option value="interior designer"> Interior Designer </option>
-                        <option value="architects"> Architects </option>
-                        <option value="art buyer"> Art Buyer </option>
-                        <option value="art collector"> Art Collector </option>
-                        <option value="vice president"> Vice President </option>
-                        <option value="other"> Other </option>
-                    </select>
-                </p>
-                
-                <p style="display: none;" class="demo_bx">
-                    <span> Vendor Type  </span>
-                    <select style="width:200px;border: solid 1px #ccc;" onchange="showlocation(this.value)" name="vendor_type" id="vendor_type">
-                        <option>--Select--</option>
-                       
-                    </select>
-                </p>
-                
-                <p style="display: none;" class="demo_bx">
-                    <span> Location</span>
-                    
-                    <select style="width:200px;border: solid 1px #ccc;" onclick="showlocation_id(this.value)" name="vendor_location" id="vendor_location">
-                        <option>--Select--</option>
-                        <?php
-                            foreach($data as $location) {
-                        ?>
-                        <option value="<?php echo $location["location"]; ?>"><?php echo $location["location"]; ?></option>
-                        <?php
-                            }
-                        ?>
-                    </select>
-                    <a href="" onclick="demo_fn2('');return false;"> <span style="width:auto">x</span></a>
-                </p>
-                <p style="display: none;" class="demo_bx">
-                    <span>Location Id</span>
-                    
-                    <select style="width:200px;border: solid 1px #ccc;" name="vendor_location_id" id="vendor_location_id">
-                        <option>--Select--</option>
-                        <?php
-                            foreach($data as $loc_id) {
-                        ?>
-                        <option value="<?php echo $loc_id["location_id"]; ?>"><?php echo $loc_id["location_id"]; ?></option>
-                        <?php
-                            }
-                        ?>
-                    </select>
-                </p>
-                <p class="text-right">
-                    <input style="background: #0C6;    padding: 6px 12px;    font-size: 14px;    color: #fff;    text-decoration: none;    border: none;    border-radius: 2px; width: 120px;" type="button" name="sign_id" onclick="checkRegisterValidation();" id="sign_id" value="SIGNUP NOW" />
-                </p>
-                    
-                <div> 
-                    <span style="display:inline-block">Already have an account?</span>
-                    <span style="display:inline-block"><a href="#" class="none" onClick="login('')">Login!</a></span>
-                    <span style="display:inline-block"><a href="#" class="none" onClick="demo_fn('')" style="color:#F00">Merchant Registration</a></span>
+                                </div>
+                            </div>
+
+
+                        <div class="form-group" style="display: none;" id="c_job_dec_detail">
+                                <label class="col-sm-3 optional other" for="">Details </label>
+                                <div class="col-sm-9">
+                                    <input name="job_dec_detail" type="text" id="job_dec_detail" placeholder="Enter Details">
+                                </div>
+                            </div>
+
+
+                        <div class="form-group">
+                                <label class="col-sm-3" for="">Job Description </label>
+                                <div class="col-sm-9">
+                                    <select name="job_dec" id="job_dec" class="form-control">
+                                        <option> Select </option>
+                                        <option value="purchase manager"> Purchase Manager </option>
+                                        <option value="owner"> Owner </option>
+                                        <option value="ceo"> CEO </option>
+                                        <option value="coo"> COO </option>
+                                        <option value="interior designer"> Interior Designer </option>
+                                        <option value="architects"> Architects </option>
+                                        <option value="art buyer"> Art Buyer </option>
+                                        <option value="art collector"> Art Collector </option>
+                                        <option value="vice president"> Vice President </option>
+                                        <option value="other"> Other </option>
+                                    </select>
+                                </div>
+                            </div>
+                        <div class="form-group  demo_bx" style="display: none;">
+                                <label class="col-sm-3" for="">Vendor Type </label>
+                                <div class="col-sm-9">
+                                    <select onchange="showlocation(this.value)" name="vendor_type" id="vendor_type" class="form-control">
+                                        <option>--Select--</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        <div class="form-group  demo_bx" style="display: none;">
+                                <label class="col-sm-3" for="">Location</label>
+                                <div class="col-sm-9">
+                                    <select onclick="showlocation_id(this.value)" name="vendor_location" id="vendor_location" class="form-control">
+                                        <option>--Select--</option>
+                                        <?php
+                                            foreach($data as $location) {
+                                        ?>
+                                        <option value="<?php echo $location["location"]; ?>"><?php echo $location["location"]; ?></option>
+                                        <?php
+                                            }
+                                        ?>
+                                    </select>
+                                    <a href="" onclick="demo_fn2('');return false;" style="position: absolute;right: 5px;top: 5px;"> <span>x</span></a>
+                                </div>
+                            </div>
+
+                        <div class="form-group demo_bx" style="display: none;">
+                                <label class="col-sm-3" for="">Location ID</label>
+                                <div class="col-sm-9">
+                                    <select name="vendor_location_id" id="vendor_location_id" class="form-control">
+                                        <option>--Select--</option>
+                                        <?php
+                                            foreach($data as $loc_id) {
+                                        ?>
+                                        <option value="<?php echo $loc_id["location_id"]; ?>"><?php echo $loc_id["location_id"]; ?></option>
+                                        <?php
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                        <div class="form-group">
+                                <label class="col-sm-3" for="" style="visibility:hidden"></label>
+                                <div class="col-sm-9">
+                                	<input name="sign_id" id="sign_id" class="login loginmodal-submit" value="Signup Now" onclick="checkRegisterValidation();" type="button">
+                                </div>
+                            </div>
+                                
+                      </form>
+                         <p>
+                         	Already have an account?
+                         	<a href="#" style="color:#428bca" id="login-link2" data-dismiss="modal" data-toggle="modal" data-target="#login-modal"> &nbsp; Login Here</a>
+                            <a href="#" class="none" onClick="demo_fn('')" style="color:#F00">Merchant Registration</a>
+                         </p>
+                      <div class="login-help">
+                      </div>
+                    </div>
                 </div>
-            </form>
-        </div>
-        
-    </div>
-    <div class="signup" id="signppp" style="display:none" >
-        <div style="position: absolute;right: 10px;top: 0;">
-        <a href="" onclick="allclose('');return false;" >Close</a></div>
-        
-         <h1>Forget Password ?</h1>
-        <p>
-               <span id="error_msg" style="font-size:14px; color:red;"></span>
-        <span></span><span></span>
-         <b style="color: red" id="email_error"></b>
-        <b style="color: red" id="password_error"></b> 
-        <b style="color: red" id="cpassword_error"></b>
-                <b style="color: green" id="success_result"></b>
-        </p>
-        <div class="signup-l-c">
-            <form action="#" id="" name="sign_id" method="post">
-                <p>
-                    <span>Email Address</span>
-                    <input type="text" id="email_regd" name="email_regd" value="<?php echo $forget_emlid;?>" >
-                </p>
-
-                <p class="tar">
-                    
-                    <input style="background: #0C6;
-    padding: 6px 12px;
-    font-size: 14px;
-    color: #fff;
-    text-decoration: none;
-    border: none;
-    border-radius: 2px; width: 130px; margin-right: 10px;
-" type="button" name="" onclick="updateforpaswd();" value="Update Password">
-
-                   
-                
-            </form>
-        </div>
-        <div class="signup-r-c">
-            <h2> Sign in with </h2>
-            <div class="fb">
-            
-            <span> <a href="#">  <i class="fb-ii"></i></a>  <a href="#">  <i class="goo-ii"></i> </a> </span>
-                <!--<span><a href="#">  <img src="images/" /> <i class="fb-i"></i></a>  </span>
-                <span><a href="#"><i class="goo-i"></i></a></span>-->
             </div>
-        </div>
-    </div>
-	<!--End sign up-->
-    <!-- login -->
+			</div>
+		  </div>
     
-    <div class="signup" id="loginpop" style="display:none; width:auto">
-        <div style="position: absolute;right: 10px;top: 0;"><a href="" onClick="allclose('');return false;" >Close</a></div>
-
-        <div class="signup-l-c">
-         <h1>User Sign In </h1>
-        <p> <span></span><b style="color: red; " id="password_login_error"></b>
-         <b style="color: red;  " id="email_login_error"></b>
-         <b style="color: red;  " id="login_error"></b> </p>
-                <form action="#" id="login_id" name="login_id" method="post">
-
-                <p>
-                    <span>Email Address</span>
-                   <input name="email" type="text" id="email_login" placeholder="Email Address"  /><br>
-                  
-                </p>
-                
-                <p>
-                    <span>Password</span>
-                    <input type="password" id="password_login" name="password_login" placeholder="Password"><br>
-                    
-                </p>
- 
-                <p class="tar">
-         
-
-
-                     
-
-  
-
-                     <input style="background: #0C6;
-    padding: 6px 12px;
-    font-size: 14px;
-    color: #fff;
-    text-decoration: none;
-    border: none;
-    border-radius: 2px; width: 80px; margin-right: 20px;
-" type="button" name="login" onclick="return login_verification();" value="Login">
-                 
-                     </p>
-                     
-                     
-                      <div style="display:none">
-                     
-                
-                
-        <h2 style="font-size: 18px; margin:inherit; color:#000000;"> Sign In with </h2>
-        <br />
-            <div class="fb">
-            <div style="float:left; width:150px;">
-           <!-- <div style="float:left; width:170px;">-->
-           
-            
-                     <div>
-                <div style="float:left; width:90px;"> 
-                <a href="#"> <img style="padding:0px 5px 0px 0px;" src="<?php echo base_url()?>assets/img/facbook.png" /> </a> 
-                <a href="#"> <img style="padding:0px 5px 0px 0px;" src="<?php echo base_url()?>assets/img/google.png" /> </a> 
-                </div> 
-                
-                </div>
-           
-           
-           
-           
-            
-            <!--<span> <a href="#">   <i class="fb-ii"></i></a> <span><a href="#"> <i class="goo-ii"></i> </a></span>  </span>
-            
-                <span><a href="#"><i class="fb-i"></i></a></span>-->
-                
-                </div>
-                
-                <div style="float:right;">
-                
-               <!-- <span><a href="#"><i class="goo-i"></i></a></span>-->
-                 
-                </div>
-                
-                
-            </div>
-            
-            <div style="clear:both;"></div>
-            <br />
-           
-                 
-                 
-                 
-                 </div>
-            </form>
-                    <span> User </span>
-                    <a style="color:#23527c;" href="#" class="none"  onClick="signup('')">SignUp!</a>
-            <br />
-              <span> User </span> <a style="color:#23527c;" href="#" class="none"  id="send_mail_btn">Forget Password!?</a>
-        </div>
-       
-       
-        
-            
-        <!--<div class="signup-r-c">
-        
-            <h2>Contributor Sign In</h2>
-        <div class="signup-l-c" style="border-right:none;">
-        
-        <p> <span></span><b style="color: red; " id="password_login_error"></b>
-         <b style="color: red;  " id="email_login_error"></b>
-         <b style="color: red;  " id="login_error"></b> </p>
-                <form action="#" id="login_id" name="login_id" method="post">
-            
-                <p>
-                    <span>Email Address</span>
-                   <input name="email" type="text" id="email_login" placeholder="Email Address"  /><br>
-                  
-                </p>
-                
-                <p>
-                    <span> Password </span>
-                    <input type="password" id="password_login2" name="password_login2" placeholder="Password"><br>
-                    
-                </p>
-
-                <p class="tar">
-                    
-                     <input style="background: #0C6;
-    padding: 6px 12px;
-    font-size: 14px;
-    color: #fff;
-    text-decoration: none;
-    border: none;
-    border-radius: 2px; width: 80px; margin-right: 20px;
-" type="button" name="login" onclick="return ccccheckLoginValidation()" id="login_id" value="Login">
-                 
-                     </p>
-               
-            </form>
-        </div>
-        
-        
-        
-        <h2 style="display:none"> Sign in with </h2>
-             <div class="fb" style="display:none">
-            <div style="float:left; width:170px;">
-            
-            
-            <div style="float:left; width:90px;"> 
-                <a href="#"> <img style="padding:0px 5px 0px 0px;" src="<?php echo base_url()?>assets/img/facbook.png" /> </a> 
-                <a href="#"> <img style="padding:0px 5px 0px 0px;" src="<?php echo base_url()?>assets/img/google.png" /> </a> 
-                </div> 
-            
-            
-            
-            
-            
-            
-                <!--<span><a href="#"><i class="fb-ii"></i></a></span>-->
-                
-                </div>
-               <!-- <div style="float:right;">
-                <span><a href="#"><i class="goo-ii"></i></a></span>
-                 
-                </div>-->
-                
-                
-            </div>
-            
-            <div style="clear:both;"></div>
-        </div>
-    </div>
      <div class="signup gall-w" id="addtointrestedgallery" style="display:none;">
          <div style="position: absolute;right: 10px;top: 0;"><a href="" onClick="allclose('');return false;" >Close</a></div><br>
         <p>Submit the details below and our client executive will get in touch with you.</p>
@@ -429,6 +412,7 @@
     </div>
      <!-- close image details -->
      <div class="backblack" id="back" onClick="allclose('')" style="display:none;">&nbsp;</div>
+     
     <div class="signup gall-w" id="addtogallery" style="display:none;">
          <div style="position: absolute;right: 10px;top: 0;"><a href="#" onClick="allclose('')" >Close</a></div>
         <h2>Create a new Gallery</h2>
@@ -469,11 +453,7 @@ $result=$this->frontend_model->get_all_lightboxes2($user_id);
         });
     });
 </script>
-
-     
-     
       <!-- Modal content-->
-      
 
         <!-- BEGIN JIVOSITE CODE {literal} -->
 <script type='text/javascript'>
@@ -481,10 +461,6 @@ $result=$this->frontend_model->get_all_lightboxes2($user_id);
     var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();*/
 </script>
 <!-- {/literal} END JIVOSITE CODE -->
-
-
-</body>
-</html>
 <script type="text/javascript">
   $("#login_id").keyup(function(event){
     if(event.keyCode == 13){
@@ -751,6 +727,7 @@ function checkRegisterValidation(){
                 //alert(data)
                 $("#vendor_location").html(data);
             }
+
         })
     }
 
@@ -783,3 +760,6 @@ function checkRegisterValidation(){
 
   gtag('config', 'UA-111865142-1');
 </script>
+
+</body>
+</html>
