@@ -576,7 +576,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 					$('#finished_size').html(Math.round(dimen[0],2)+'"X'+Math.round(dimen[1],2)+'" Print Only ');
 				}
 			}else{ 
-			$('#finished_size').html(Math.round(dimen[0],2)+'"X'+Math.round(dimen[1],2)+'" Print Only ');
+			$('#finished_size').html(Math.round(dimen[0],2)+'"X'+Math.round(dimen[1],2)+'" Print Onlyy ');
 			}
 			apply_promo_code('Rs.'+Math.round(cost,2));
 			//$('.actual_price').html('Rs.'+Math.round(cost,2));
@@ -2044,7 +2044,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
     </div>
     	<div class="popup-default-message text-center dz-default dz-message" id='msg'>
             <h2>Drag and drop images here or click to browse</h2>
-            <p>Each image must be a minimum of 500 KB to ensure a high quality print. Up to 10 images are allowed.</p>
+            <p>Each image should be a minimum of 500 KB to ensure a high quality print. Up to 10 images are allowed.</p>
         </div>
       </div>
       
@@ -2052,7 +2052,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
       	<div class="popup-default-footer col-md-12">
         <p class="text-left pull-left">By uploading, I agree to the <span> <a href="#" id="termsofuselink" style="cursor: default; color: #ef9223">Terms of use</a> </span> </p>
         <div class="popup-default-button pull-right">
-            <input id="submit-all" value="Upload" type="button" class="popup-button">
+            <input id="submit-all" value="Upload" type="button" data-dismiss="modal" class="popup-button">
 
             <!-- <a id="submit-all" class="popup-button" href="#" style="color:#337ab7"> UPLOAD</a> -->
         </div>

@@ -169,7 +169,7 @@
           	<div class="modal-content" style="border-radius:0">
             	<div class="modal-body">
                     <!-- login form-->
-                    <div class="loginmodal-container" id="loginmodal-container-1">
+                    <div class="loginmodal-container">
                       <h1>User Sign In <a class="lightbox-close" data-dismiss="modal"></a> </h1>
                       <br>
                       <p> </p>
@@ -218,7 +218,7 @@
           	<div class="modal-content" style="border-radius:0">
             	<div class="modal-body">
                     <!-- forget password-->
-                    <div class="loginmodal-container" id="loginmodal-container-2">
+                    <div class="loginmodal-container">
                       <h1>Forget Password <a class="lightbox-close" data-dismiss="modal"></a></h1><br>
                       <p></p>
                       <div id="error_msg" style="color:red;"></div>
@@ -238,7 +238,7 @@
           	<div class="modal-content" style="border-radius:0">
             	<div class="modal-body">
                     <!-- signup form-->
-                    <div class="loginmodal-container" id="loginmodal-container-3">
+                    <div class="loginmodal-container">
                       <h1>User Sign Up <a class="lightbox-close" data-dismiss="modal"></a></h1><br>
                         <p></p>
                         <div style="color: red" id="email_error"></div>
@@ -389,6 +389,55 @@
 			</div>
 		  </div>
     
+    <!-- Add to gallery -->          
+    <div class="modal fade" id="login-modal4" role="dialog">
+    	  <div class="modal-dialog"  style="width:400px">
+          	<div class="modal-content" style="border-radius:0">
+            	<div class="modal-body">
+                    <!-- signup form-->
+                    <div class="loginmodal-container">
+                      <h1>Create a new Gallery <a class="lightbox-close" data-dismiss="modal"></a></h1>
+                      <br>
+                      <span id="lightbox_error" style="color: red;margin-left: 48px;"></span>
+                      <br>
+                      <form name="lightbox_submit" id="lightbox_submit">
+                          <input type="hidden" id="image_id" name="image_id">
+                          <div class="form-group">
+                            <input type="text" name="lightbox_name" id="lightbox_name" placeholder="Gallery name">
+                          </div>
+                          <div class="form-group">
+                            <textarea name="lightbox_des" id="lightbox_des" rows="5" placeholder="Gallery Description" class="form-control"></textarea>
+                          </div>
+                          <div class="form-group">
+                            <input type="button" name="create_lightbox"  id="create_lightbox" onclick="call_create_lightbox();" value="Create Gallery">
+                          </div>
+                      </form>
+					  <h1 style="margin-bottom:10px">Choose existing Gallery</h1>
+                      <form name="lightbox_submit" id="lightbox_submit">
+                          <div class="form-group">
+                            <select id="lightbox_list_dropdown" onchange="check_exist_img(this.value);" class="form-control">
+                            <option
+                            value="0" selected="selected">Select Gallery</option>
+                            <?php 
+                            $user_id=$this->session->userdata('userid');
+                            $result=$this->frontend_model->get_all_lightboxes2($user_id);
+                            
+                            foreach($result as $results){?>
+                            <option value="<?php echo $results->lightbox_id;?>">
+                            <?php echo $results->lightbox_name;?>
+                            </option>
+                            <?php  }?>
+                            </select>	   
+                          </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+			</div>
+		  </div>
+          
+    
+
      <div class="signup gall-w" id="addtointrestedgallery" style="display:none;">
          <div style="position: absolute;right: 10px;top: 0;"><a href="" onClick="allclose('');return false;" >Close</a></div><br>
         <p>Submit the details below and our client executive will get in touch with you.</p>
@@ -413,36 +462,7 @@
      <!-- close image details -->
      <div class="backblack" id="back" onClick="allclose('')" style="display:none;">&nbsp;</div>
      
-    <div class="signup gall-w" id="addtogallery" style="display:none;">
-         <div style="position: absolute;right: 10px;top: 0;"><a href="#" onClick="allclose('')" >Close</a></div>
-        <h2>Create a new Gallery</h2>
-        <span id="lightbox_error" style="color: red;margin-left: 48px;"></span><br>
-         <form name="lightbox_submit" id="lightbox_submit">
-             <input type="hidden" id="image_id" name="image_id">
-        <p><input type="text" name="lightbox_name" id="lightbox_name" placeholder="Gallery name"></p>
-        
-        <p><textarea name="lightbox_des" id="lightbox_des" rows="5" cols="34" style="border-radius: 15px;" placeholder="Gallery Description"></textarea></p>
-        <p> <input type="button" name="create_lightbox"  id="create_lightbox" onclick="call_create_lightbox();" value="Create Gallery"> </p>
-        </form>
-        <h2>Choose existing Gallery</h2>
-        
-        <p>
-            <select id="lightbox_list_dropdown"
-                                    style="width: 140px;" onchange="check_exist_img(this.value);"><option
-                                        value="0" selected="selected">Select Gallery</option>
-                                    <?php 
-                                    $user_id=$this->session->userdata('userid');
-$result=$this->frontend_model->get_all_lightboxes2($user_id);
-
- foreach($result as $results){?>
-                                    <option value="<?php echo $results->lightbox_id;?>">
-                                        <?php echo $results->lightbox_name;?>
-                                    </option>
-                                    <?php  }?>
-                                </select>   
-        </p>
-        
-    </div>
+    
      
 <script>
     $(document).ready(function(){

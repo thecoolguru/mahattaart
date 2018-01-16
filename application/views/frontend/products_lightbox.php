@@ -236,7 +236,7 @@ $promo_amount=round($image_details[0]->unit_price*20/100);
 ?>
 
 <div class="modal fade" id="myModal" role="dialog">
-  <div class="modal-dialog" style="width:auto">
+  <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header uploader_popup_header">
@@ -962,8 +962,8 @@ function right(width,height,x){
                                 <div id="save-to-gallery-text">
                 	<span> <i class="fa fa-heart-o" aria-hidden="true"></i>
                 		<a <?php  if($this->session->userdata('userid')){?>
-href="" onclick="addtogallery('<?=$api_image_id?>','<?=$image_id?>');return false;" id="tgl" style="color:#ef9223;" <?php }
-else {?> href="" onclick="login('');return false;" style="color:#ef9223;"<?php }?> >Add to Gallery </a>
+href="" data-toggle="modal" data-target="#login-modal4" onclick="addtogallery('<?=$api_image_id?>','<?=$image_id?>');return false;" id="tgl" style="color:#ef9223;" <?php }
+else {?> href="" data-toggle="modal" data-target="#login-modal" <?php }?> style="color:#ef9223;">Add to Gallery </a>
                 	</span>
                 </div>
                             </div>

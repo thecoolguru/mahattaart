@@ -1909,9 +1909,9 @@ display: none;
                 </div>
                 <div id="save-to-gallery-text" class="col-md-9">
                 	<span> <i class="fa fa-heart-o" aria-hidden="true"></i>
-                		<a <?php   if($this->session->userdata('userid')){?>
+                		<a <?php if($this->session->userdata('userid')){?>
 href="" onclick="addtogallery('<?=$api_image_id?>','<?=$image_id?>');return false;" id="tgl" style="color:#ef9223;" <?php }
-else {?> href="" onclick="login('');return false;" style="color:#ef9223;"<?php }?> >Add to Gallery </a>
+else {?> href="" data-toggle="modal" data-target="#login-modal" style="color:#ef9223;"<?php }?> >Add to Gallery </a>
                 	</span>
                 </div>
                 
