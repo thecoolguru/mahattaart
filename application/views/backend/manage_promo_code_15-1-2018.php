@@ -27,24 +27,15 @@
           
           
     <tr>
-    
-    <?php // print_r($vendor_types);?>
-    
-    <center><p style="color:red"><?php if(isset($delete_record)) echo $delete_record;  ?></p></center>
-    
     <?php echo form_open('index.php/backend/manage_promo_offer');?>
 
   <td>
     Search For:
     <select name="search_for" id="search_for">
     <option value="">---Select Promo For---</option>
-    <?php foreach($vendor_types as $vendor){ ?>
-	<option value="<?php echo $vendor->vendor_types;?>"><?php echo $vendor->vendor_types;?></option>
-    <?php }?>
-    <!---
+	<option value="kiosk">Kiosk</option>
     <option value="sis">Sis</option>
     <option value="web">Web</option>
-    ---->
     </select> 
 </td>
 
@@ -160,11 +151,11 @@ function del()
 					    }
 						?>
 
-	<td>
-	  <a href="<?php echo base_url('index.php/backend/create_promo_code/code_id/status/'.$data->sr_no.'/'.$data->active)?>">Edit</a>
-     </td>
+			 <td>
+		           <a href="<?=base_url()?>index.php/backend/create_promo_code/<?=$web_tbl->sr_no;?>">Edit</a>
+             </td>
              <td>
-		     <a href="<?php echo base_url('index.php/backend/promo_code_deletions/'.$data->sr_no)?>" onClick="return del()">Delete</a>
+		          <a href="<?=base_url()?>index.php/backend/delete_promo_code/<?=$web_tbl->sr_no;?>" onClick="return del()" >Delete</a>
              </td>
 
 
@@ -199,10 +190,10 @@ function del()
 					    }
 				  ?></td>
 			 <td>
-		<a href="<?php echo base_url('index.php/backend/create_promo_code/code_id/status/'.$kiosk->sr_no.'/'.$kiosk->active)?>">Edit</a>
+		           <a href="<?=base_url()?>index.php/backend/create_promo_code/<?=$web_tbl->sr_no;?>">Edit</a>
              </td>
              <td>
-		  <a href="<?php echo base_url('index.php/backend/promo_code_deletions/'.$kiosk->sr_no)?>" onClick="return del()" >Delete</a>
+		          <a href="<?=base_url()?>index.php/backend/delete_promo_code/<?=$web_tbl->sr_no;?>" onClick="return del()" >Delete</a>
              </td>
 
 
@@ -234,10 +225,10 @@ function del()
 					    }
 				  ?></td>
 			 <td>
-         <a href="<?php echo base_url('index.php/backend/create_promo_code/code_id/status/'.$sis->sr_no.'/'.$sis->active)?>">Edit</a>
+		           <a href="<?=base_url()?>index.php/backend/create_promo_code/<?=$web_tbl->sr_no;?>">Edit</a>
              </td>
              <td>
-		    <a href="<?php echo base_url('index.php/backend/promo_code_deletions/'.$sis->sr_no)?>" onClick="return del()" >Delete</a>
+		          <a href="<?=base_url()?>index.php/backend/delete_promo_code/<?=$web_tbl->sr_no;?>" onClick="return del()" >Delete</a>
              </td>
 
 
@@ -265,10 +256,10 @@ function del()
 					    }
 				  ?></td>
 			 <td>
-		<a href="<?php echo base_url('index.php/backend/create_promo_code/code_id/status/'.$web->sr_no.'/'.$web->active)?>">Edit</a>
+		           <a href="<?=base_url()?>index.php/backend/create_promo_code/<?=$web_tbl->sr_no;?>">Edit</a>
              </td>
              <td>
-		          <a href="<?php echo base_url('index.php/backend/promo_code_deletions/'.$web->sr_no)?>" onClick="return del()" >Delete</a>
+		          <a href="<?=base_url()?>index.php/backend/delete_promo_code/<?=$web_tbl->sr_no;?>" onClick="return del()" >Delete</a>
              </td>
 
 

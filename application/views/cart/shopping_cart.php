@@ -154,6 +154,8 @@
                                                                 <th>Detail</th>
                                                                 <th>Quantity</th>
 																<th>Price</th>
+																<th>Discount(%)</th>
+																<th>D Price</th>
 																<th>Tax(%)</th>
 																<th>Tax Amt.</th>
                                                                 <th >Total Price</th>
@@ -166,7 +168,7 @@
        
 		if($this->session->userdata('userid') ){ 
 		  $data=$this->cart_model->get_usercart($this->session->userdata('userid'));   
-		  $subtotal=0; $i=1;
+		  $subtotal=$dis_amt_total=$total_price_wo_tax=$total_price_tax=0; $i=1;
           $update_srno=$_REQUEST['search'];
 		  $qty_update_tbl=$_REQUEST['qty_update'];
 		  $sr_no = $data[0]['sr_no'];
@@ -214,7 +216,7 @@ $search_data_r=json_decode($search_data_file,TRUE);
 <?php if($image['size']!=''){
 	$redirect_details=base_url().'frontend/product_detail/'.$file_name.'/'.$image['size'].'/'.$image['image_id'];
 	 } else{ 
-	 $redirect_details=base_url().'search/image_detail/'.$file_name.'/'.$image['image_id'].'/'.$collection_id;
+	 $redirect_details=base_url().'search/products/'.$file_name.'/'.$image['image_id'].'/'.$collection_id;
 	 }?>
            <tr>
                 <td> 
@@ -269,6 +271,8 @@ $search_data_r=json_decode($search_data_file,TRUE);
 			Art Print:
 			<?php echo $image['image_size'].'(Inch)<br>w/0 Border:'.$image['borderd_image_size'].'<br>';
 				  if($image['frame_color']=='Streched Canvas Gallary Wrap'){
+				  $tax_prctg=18;
+				 $hsn_code='39203090';     //
 					echo 'Frame Type:  '.$image['frame_color'].'<br>';
 				  }
 				}
@@ -318,13 +322,23 @@ $search_data_r=json_decode($search_data_file,TRUE);
 					<input type="hidden" id="hidid<?=$i?>" value="<?= $image['cart_id'];?>" />
 						<input type="hidden" id="hidprice<?=$i?>" value="<?=$image['price'];?>" />
 							<input type="hidden" name="hsn_code" value="<?=$hsn_code?>" />
+							<?php
+							$updated_promo_price=$image['updated_promo_price'];
+							$dis_amt=round($image['promo_price']*$image['qty'],2);
+							?>
 				  </td>
-					<td><?=$tax_prctg?></td>
+				  <td><?php echo $promo_discount=$image['promo_discount']?></td>
+					<td><?php if($updated_promo_price=='' || $updated_promo_price=='0'){echo $promo_price=$image['promo_price'];}                  else{
+					echo $promo_price=round($image['promo_price']*$image['qty'],2);
+					}?></td>
+					 <td><?=$tax_prctg?></td>
 						<td><?php   
 								$tax_amt=(($wd_tax_price*$tax_prctg)/100);
 								echo $tax_amt_fnl=round($tax_amt,2);
+								
 						?></td>
 						<td><?php $total_amt_product=$wd_tax_price + $tax_amt ;
+						          $dis_amt_total=round($dis_amt_total + $dis_amt);
 							echo $total_amt_product_fnl=round($total_amt_product,2);?>
 						</td>
                        	<td class="text-center">
@@ -343,10 +357,13 @@ $search_data_r=json_decode($search_data_file,TRUE);
 							 $price=$image['price'];   
 							}
 							$subtotal=$subtotal+$total_amt_product_fnl; 
+							$total_price_wo_tax=$total_price_wo_tax+$price;
+							 $total_price_tax=$total_price_tax+$tax_amt_fnl;
 							//echo $total_amt_product_fnl;
 							//echo $i.'sss';
 							if($update_srno=='removed' || $image['tax_goods']=='' || $qty_update_tbl!=''){
-							   $this->cart_model->update_serail_noforcart($this->session->userdata('userid'),$i,$cart_id,$tax_prctg,$tax_amt_fnl,$total_amt_product_fnl,$hsn_code);
+							//echo "ssss";
+							   $this->cart_model->update_serail_noforcart($this->session->userdata('userid'),$i,$cart_id,$tax_prctg,$tax_amt_fnl,$total_amt_product_fnl,$hsn_code,$dis_amt);
 							  }
 							$i++; } ?>
 					</tbody>
@@ -388,30 +405,37 @@ $search_data_r=json_decode($search_data_file,TRUE);
 		 if(count($data)!='0'){ ?>
                <div id="total" class="margin-bottom">
                         <table width="30%" id="mobile-table" cellpadding="0" cellspacing="0">
-                          <tr>
-                            <td class="data1">Sub Total</td>
-                            <td class="data1"><img
-			src="<?=base_url()?>assets/images/rupee-img-price.gif" />  <?= $subtotal;?></td>
+						 <tr>
+                            <td class="data1">Amount before discount</td>
+                            <td class="data1"><?php echo $total_price_wo_tax + $dis_amt_total;?></td>
                           </tr>
-                            <tr>
-                            <td class="data2">Shipping Charges</td>
-                            <td class="data2">Rs. <?php if($subtotal>=1000){
+						  <tr>
+                            <td class="data2">Discount Amount</td>
+                            <td class="data2"><?php echo $dis_amt_total; ?></td>
+                          </tr>
+						  <tr>
+                            <td class="data1">Amount after discount</td>
+                            <td class="data1"><?php echo $total_price_wo_tax;?></td>
+                          </tr>
+                          <tr>
+						  <tr>
+                            <td class="data2">Tax amount</td>
+                            <td class="data2"><?php echo $total_price_tax;?></td>
+                          </tr>
+                       
+                            <td class="data1">Shipping Charges</td>
+                            <td class="data1">Rs. <?php if($subtotal>=1000){
 							$shppigCarge=0;
 							}else{
 							$shppigCarge=100;
 							}
                             echo $shppigCarge;?></td>
-                          </tr>
-						  <!-- <tr>
-                            <td class="data1">Gift Wrap Charges</td>
-                            <td class="data1">Rs. xxxx</td>
-                          </tr> -->
-                          
+                          </tr>                          
                           <tr>
                             <td class="data2">Payable Amount </td>
-                            <td class="data2">Rs. <?php  $TexTotal=$subtotal+$shppigCarge;
+                            <td class="data2">Rs. <?php  $TexTotal=$total_price_wo_tax+$total_price_tax+$shppigCarge;
                                
-                               echo round(($TexTotal),2);
+                               echo round(($TexTotal));
                                ?></td>
                           </tr>
                         </table>

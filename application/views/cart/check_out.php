@@ -187,7 +187,7 @@ function price_details(){
                     </div>
 					<?php
 					foreach($tbl_clearence as $clearence_dets){
-					print_r($clearence_dets);
+					//print_r($clearence_dets);
 
 
 

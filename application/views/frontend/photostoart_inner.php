@@ -1,3 +1,6 @@
+<?php
+$continue_shopping_redirect=$this->session->userdata('continue_shopping');
+?>
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/light-box-model.css" type="text/css"/>
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/wallcolor.css" type="text/css"/>
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/loader.css" type="text/css"/>
@@ -33,13 +36,12 @@
 					    var max_height = real_height/150;
 						var id = $(this).attr('id');
 						// setInterval(function(){ alert("Hello");
-						var value = $(this).val();
-						value=value.trim();
+						var value = $(this).val();	
 						
 						if(id == 'width'){
 							if(value == ''){
 							$('.actual_price').val('Rs.0');
-							$('#height').val('');
+							$('#height').val('');	
 							}
 						 }	
 							if( (value <= max_width) && (value != 0) && (value != '') ){
@@ -51,7 +53,8 @@
 						}else{
 						 $('#height').val('');
 						 setTimeout(function(){
-						 $('#finished_size').html('<p style="color:red;">Choose Less than Max. Width ('+Math.round(max_width)+')</p>');	},300);
+						 $('.actual_price').html('Rs.0');
+						 $('#finished_size').html('<p style="color:red;">Since the maximum printable width of your image is ('+Math.round(max_width)+') inch. Please enter value in width less than equal to ('+Math.round(max_width)+') inch. If you wish to print the image in high size, request you to please upload the hi-resolution image.</p>');},500);
 						}
 				});
 				
@@ -81,8 +84,9 @@
 								calculate_cost('Customize Size');
 								},200);
 							}else{
+							 setTimeout(function(){
 							$('#width').val('');
-							$('#finished_size').html('<p style="color:red;">Choose Less than Max. Height ('+Math.round(max_height)+')</p>');	
+							$('#finished_size').html('<p style="color:red;">Since the maximum printable height of your image is ('+Math.round(max_height)+') inch. Please enter value in height less than equal to ('+Math.round(max_height)+') inch. If you wish to print the image in high size, request you to please upload the hi-resolution image.)</p>');},500);	
 							}
 						});
 					})	
@@ -144,7 +148,7 @@
         <div class="frame-step-header-text"></div>
 			<div class="frame-step-button-wrapper">
 				<div class="frame-step-continue-shopping-button">
-					<a style="color:white" href="<?=base_url()?>">CONTINUE SHOPPING</a>
+					<a style="color:white" href="<?=base_url()?><?=$continue_shopping_redirect?>">CONTINUE SHOPPING</a>
 				</div>
             <div class="frame-step-proceed-to-cart-button">
               <a style="color:white" href="<?=base_url().'cart/cart_view'?>"> PROCEED TO CART</a>
@@ -173,7 +177,7 @@
     }
 </script>
 <script>
-var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6E\x73","\x23\x73\x75\x62\x6D\x69\x74\x2D\x61\x6C\x6C","\x71\x75\x65\x72\x79\x53\x65\x6C\x65\x63\x74\x6F\x72","\x63\x6C\x69\x63\x6B","\x70\x72\x6F\x63\x65\x73\x73\x51\x75\x65\x75\x65","\x61\x64\x64\x45\x76\x65\x6E\x74\x4C\x69\x73\x74\x65\x6E\x65\x72","\x71\x75\x65\x75\x65\x63\x6F\x6D\x70\x6C\x65\x74\x65","\x73\x68\x6F\x77","\x23\x6C\x6F\x61\x64\x5F\x62\x75\x66\x66\x65\x72","\x68\x69\x64\x65","\x23\x64\x72\x6F\x70\x7A\x6F\x6E\x65\x5F\x69\x6D\x61\x67\x65\x73","\x72\x65\x6D\x6F\x76\x65\x41\x6C\x6C\x46\x69\x6C\x65\x73","\x23\x6D\x79\x2D\x64\x72\x6F\x70\x7A\x6F\x6E\x65","\x66\x6F\x72\x45\x6C\x65\x6D\x65\x6E\x74","\x23\x73\x65\x73\x73\x69\x6F\x6E\x5F\x69\x6D\x61\x67\x65\x73","\x6C\x6F\x61\x64","\x6F\x6E","\x72\x65\x6D\x6F\x76\x65\x64\x66\x69\x6C\x65","\x6C\x65\x6E\x67\x74\x68","\x66\x69\x6C\x65\x73","\x23\x6D\x73\x67","\x61\x64\x64\x65\x64\x66\x69\x6C\x65","\x73\x69\x7A\x65","\x72\x65\x6D\x6F\x76\x65\x46\x69\x6C\x65","","\x50\x6C\x65\x61\x73\x65\x20\x55\x70\x6C\x6F\x61\x64\x20\x49\x6D\x61\x67\x65\x73\x20\x47\x72\x65\x61\x74\x65\x72\x20\x54\x68\x61\x6E\x20\x35\x30\x30\x6B\x42","\x65\x72\x72\x6F\x72"];Dropzone[_0xd968[1]][_0xd968[0]]= {autoProcessQueue:false,init:function(){var _0x9521x1=document[_0xd968[3]](_0xd968[2]);myDropzone= this;_0x9521x1[_0xd968[6]](_0xd968[4],function(){myDropzone[_0xd968[5]]()});this[_0xd968[17]](_0xd968[7],function(_0x9521x2){$(_0xd968[9])[_0xd968[8]]();$(_0xd968[11])[_0xd968[10]]();Dropzone[_0xd968[14]](_0xd968[13])[_0xd968[12]](true);$(_0xd968[15])[_0xd968[16]](_0xd968[15]);buffer_show();setTimeout(function(){$(_0xd968[9])[_0xd968[10]]()},3000)});this[_0xd968[17]](_0xd968[18],function(_0x9521x2){if((myDropzone[_0xd968[20]][_0xd968[19]])== 0){$(_0xd968[21])[_0xd968[8]]()}});this[_0xd968[17]](_0xd968[22],function(_0x9521x2){if((myDropzone[_0xd968[20]][_0xd968[19]]+ 1)> 0){$(_0xd968[21])[_0xd968[10]]()};if(_0x9521x2[_0xd968[23]]< 1000){$(_0xd968[11])[_0xd968[10]]();this[_0xd968[24]](_0x9521x2);swal({title:_0xd968[25],text:_0xd968[26],type:_0xd968[27],timer:1000});setTimeout(function(){dropzone_call()},1000)}else if(_0x9521x2[_0xd968[23]]<500000){alert('The image Uploaded by you is of low resolution, please upload the High Resolution image if you have to get the better print quality and bigger print size.')}})}}
+var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6E\x73","\x23\x73\x75\x62\x6D\x69\x74\x2D\x61\x6C\x6C","\x71\x75\x65\x72\x79\x53\x65\x6C\x65\x63\x74\x6F\x72","\x63\x6C\x69\x63\x6B","\x70\x72\x6F\x63\x65\x73\x73\x51\x75\x65\x75\x65","\x61\x64\x64\x45\x76\x65\x6E\x74\x4C\x69\x73\x74\x65\x6E\x65\x72","\x71\x75\x65\x75\x65\x63\x6F\x6D\x70\x6C\x65\x74\x65","\x73\x68\x6F\x77","\x23\x6C\x6F\x61\x64\x5F\x62\x75\x66\x66\x65\x72","\x68\x69\x64\x65","\x23\x64\x72\x6F\x70\x7A\x6F\x6E\x65\x5F\x69\x6D\x61\x67\x65\x73","\x72\x65\x6D\x6F\x76\x65\x41\x6C\x6C\x46\x69\x6C\x65\x73","\x23\x6D\x79\x2D\x64\x72\x6F\x70\x7A\x6F\x6E\x65","\x66\x6F\x72\x45\x6C\x65\x6D\x65\x6E\x74","\x23\x73\x65\x73\x73\x69\x6F\x6E\x5F\x69\x6D\x61\x67\x65\x73","\x6C\x6F\x61\x64","\x6F\x6E","\x72\x65\x6D\x6F\x76\x65\x64\x66\x69\x6C\x65","\x6C\x65\x6E\x67\x74\x68","\x66\x69\x6C\x65\x73","\x23\x6D\x73\x67","\x61\x64\x64\x65\x64\x66\x69\x6C\x65","\x73\x69\x7A\x65","\x72\x65\x6D\x6F\x76\x65\x46\x69\x6C\x65","","\x50\x6C\x65\x61\x73\x65\x20\x55\x70\x6C\x6F\x61\x64\x20\x49\x6D\x61\x67\x65\x73\x20\x47\x72\x65\x61\x74\x65\x72\x20\x54\x68\x61\x6E\x20\x35\x30\x30\x6B\x42","\x65\x72\x72\x6F\x72"];Dropzone[_0xd968[1]][_0xd968[0]]= {autoProcessQueue:false,init:function(){var _0x9521x1=document[_0xd968[3]](_0xd968[2]);myDropzone= this;_0x9521x1[_0xd968[6]](_0xd968[4],function(){myDropzone[_0xd968[5]]()});this[_0xd968[17]](_0xd968[7],function(_0x9521x2){$(_0xd968[9])[_0xd968[8]]();$(_0xd968[11])[_0xd968[10]]();Dropzone[_0xd968[14]](_0xd968[13])[_0xd968[12]](true);$(_0xd968[15])[_0xd968[16]](_0xd968[15]);buffer_show();setTimeout(function(){$(_0xd968[9])[_0xd968[10]]()},3000)});this[_0xd968[17]](_0xd968[18],function(_0x9521x2){if((myDropzone[_0xd968[20]][_0xd968[19]])== 0){$(_0xd968[21])[_0xd968[8]]()}});this[_0xd968[17]](_0xd968[22],function(_0x9521x2){if((myDropzone[_0xd968[20]][_0xd968[19]]+ 1)> 0){$(_0xd968[21])[_0xd968[10]]()};if(_0x9521x2[_0xd968[23]]< 10000){$(_0xd968[11])[_0xd968[10]]();this[_0xd968[24]](_0x9521x2);swal({title:_0xd968[25],text:_0xd968[26],type:_0xd968[27],timer:1000});setTimeout(function(){dropzone_call()},1000)}else if(_0x9521x2[_0xd968[23]]<500000){alert('The image Uploaded by you is of low resolution, please upload the High Resolution image if you have to get the better print quality and bigger print size.')}})}}
 </script>
 <script type="text/javascript">
 
@@ -213,7 +217,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 			data: "user_id="+user_id+"&mat_color="+mount_name+"&frameSize="+frameSize+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&frame_name="+frame_name+"&image_namee="+image_namee,
 			success:function(data)  
 			{
-				alert(data);
+				//alert(data);
 				swal({
 					title: 'My Upload STATUS',
 					text: 'Item Added Successfully',
@@ -226,6 +230,12 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 
 
     function addToCart(){
+	var actual_price=$('.actual_price').html();
+	actual_price=actual_price.split('.');
+	actual_price=actual_price[1];
+	if(actual_price=='0'){
+	return false;
+	}
 	var paper_surface = $('#paper_surface').val();
 	var final_frame_size  = '';
 	if($('#click').html() == 'canvas_click'){
@@ -298,11 +308,17 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 			var img_name = $('#get_img').val();
 			img_name = img_name.split('/');
 			var image_namee = img_name[7];//.split('.');
+			var promo_discount=$('#promo_discount').html();
+  var promo_name_code=$('.promo_name_code').val();
+  //alert(promo_name_code)
+  var promo_amount=$('#promo_amount').html();
+  promo_amount = promo_amount.split('.');		
+  	  promo_amount = promo_amount[1];
 			//alert(paper_surface+','+final_frame_size+','+mount_color+','+only_print+','+glasses+','+glasses_coste+','+total_price+','+MountCost+','+FrameCost+','+print_size+','+image_id+','+image_type+','+user_id+','+mat1_size+','+mat1_color+','+frame_color+','+frame_name+','+mount_name+','+frameSize+','+image_namee);
 			$.ajax({
 				 type: "POST",
 				 url: "<?=base_url()?>index.php/frontend/frameit_myupload",
-				 data: "glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_color+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print,
+				 data: "glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_color+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print+"&promo_code="+promo_name_code+"&promo_discount="+promo_discount+"&promo_price="+promo_amount,
 				 success:function(data)  
 				 {    
 					swal({
@@ -361,6 +377,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 
 	function calculate_cost(value){
 		$(document).ready(function(){
+		//alert(value)
 		if(value == 'Customize Size'){
 			$('.dimention').show();
 			 if( $('#width').val() != 0 && $('#height').val() != 0){
@@ -561,10 +578,11 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 			}else{ 
 			$('#finished_size').html(Math.round(dimen[0],2)+'"X'+Math.round(dimen[1],2)+'" Print Only ');
 			}
-			$('.actual_price').html('Rs.'+Math.round(cost,2));
+			apply_promo_code('Rs.'+Math.round(cost,2));
+			//$('.actual_price').html('Rs.'+Math.round(cost,2));
 		}else if($('#click').html() == 'canvas_click' ){
 			if($('#sizes').val() == 'Customize Size'){
-				if( ($('#width').val() == 0) && ($('#height').val()== 0) ){
+				if( ($('#width').val() == 0) && ($('#width').val() == '') && ($('#height').val()== 0) && ($('#height').val()== '') ){
 					$('.actual_price').html('Rs.0');
 					$('#finished_size').html('Choose Other Size');
 					$('#price_details').attr('onclick','');
@@ -572,12 +590,14 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 				}else{
 					$('#finished_size').html(Math.round(dimen[2],2)+'"X'+Math.round(dimen[3],2)+'" Canvas Print | '+Math.round(dimen[0],2)+'"X'+Math.round(dimen[1],2)+'" Canvas Print without border');
 					var actual_price = cost + CanvasFrameCost;
-					$('.actual_price').html("Rs."+ Math.round(actual_price,2));
+					apply_promo_code("Rs."+ Math.round(actual_price,2));
+					//$('.actual_price').html("Rs."+ Math.round(actual_price,2));
 				}
 			}else{ 
 				$('#finished_size').html(Math.round(dimen[2],2)+'"X'+Math.round(dimen[3],2)+'" Canvas Print | '+Math.round(dimen[0],2)+'"X'+Math.round(dimen[1],2)+'" Canvas Print without border');
 				var actual_price = cost + CanvasFrameCost;
-				$('.actual_price').html("Rs."+ Math.round(actual_price,2));
+				apply_promo_code("Rs."+ Math.round(actual_price,2));
+				//$('.actual_price').html("Rs."+ Math.round(actual_price,2));
 			}
 			
     	}else if($('#click').html() == 'frame_click'){
@@ -649,11 +669,13 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 				var print_price = $('#print_price').html();
 				if($('#remove-mount').prop('checked') == 'true'){
 						var actual_price = parseInt(print_price) + parseInt(framing_cost) + parseInt(glass_cost);
-						$('.actual_price').html("Rs."+Math.round(actual_price));
+						apply_promo_code("Rs."+Math.round(actual_price));
+						//$('.actual_price').html("Rs."+Math.round(actual_price));
 				}else{
 					var actual_price = parseInt(print_price) + parseInt(framing_cost) + parseInt(glass_cost) + parseInt(mount_cost);
 					setTimeout(function(){
-						$('.actual_price').html("Rs."+ Math.round(actual_price));
+					apply_promo_code("Rs."+ Math.round(actual_price));
+						//$('.actual_price').html("Rs."+ Math.round(actual_price));
 						},100);    
 				}
     		}else{
@@ -667,7 +689,8 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 			$('#glass_price').html(glass_cost);
 			$('#finished_size').html(framewidth+'"X'+frameheight+'" Framed Print');
             var actual_price = parseInt(framing_cost) + parseInt(glass_cost);
-			$('.actual_price').html('Rs.'+actual_price);			
+			apply_promo_code('Rs.'+actual_price);
+			//$('.actual_price').html('Rs.'+actual_price);			
 			}
 	}
 	
@@ -1354,7 +1377,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         var large_img2 = $('#img0').attr('src');
 		$('#large_img').attr("src", large_img2);
 		$('#large_img2').attr("src", large_img2);
- 	}, 400);
+ 	}, 500);
 	$('#framingdiv1,#framingdiv2').hide();
 	var large_src = $("#large_img").attr("src"); 	
 	var style1 = $('#abc').attr('style');   	
@@ -1581,6 +1604,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
  			$('.canvas').hide();
  			$('.framing').show();
         }else if(id == 'canvas'){
+		//alert(id)
 		$('#value_print_type').val(id);
 			$('#canvas_details').show();
 			$('#framingdiv1,#framingdiv2').hide();	 
@@ -1625,6 +1649,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 			$('#frame_color').val('');
 			$('#mount_code').val('');
 			paper_surface_fun(id);
+			
 			calculate_cost('');
 			var size = ''+$('#sizes').val();
 		    var dimen = size.split('X');
@@ -1635,7 +1660,8 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 			$('.framing').hide();
 			$('.print').show();
 		    setTimeout(function(){
-		      $('.actual_price').html('Rs.'+$('#print_price').html());
+			apply_promo_code('Rs.'+$('#print_price').html());
+		      //$('.actual_price').html('Rs.'+$('#print_price').html());
 		    },200);
 		    $('#click').html('print_only');
 		  }else{
@@ -1852,6 +1878,41 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
                   </div>
               </div>
           </div>
+		  <!--  Start for promo div -->
+		  <div class="row framing" >
+              <div class="frame-it-content">
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p style="color:#d3131b">Discount:</p>
+                    </div>
+					<div class="col-md-6 col-sm-6 text-right">
+                    	<p style="color:#d3131b"> <span id="promo_discount">20</span>%</p>
+                    </div>
+                </div>
+          </div>
+		  <div class="row framing" >
+              <div class="frame-it-content">
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p style="color:#d3131b">FLAT<span id="promo_precentage" style="color:#d3131b">20</span></p>
+						<input type="hidden" class="promo_name_code" value="FLAT20" />
+                    	<span style="color:#d3131b">Promo Code Applied</span> 	
+                    </div>
+                	<div class="col-md-6 col-sm-6 text-right">
+                    	<p> <span id="promo_amount" style="color:#d3131b"></span></p>
+                    </div>
+                </div>
+          </div>
+		  <div class="row framing" >
+              <div class="frame-it-content">
+                  <div class="col-md-6 col-sm-6 ">
+                    	<p> Sub-Total  </p>
+                    </div>
+                	<div class="col-md-6 col-sm-6 text-right">
+                    	<p> <span id="sub_total_price"> </span></p>
+                    </div>
+              </div>
+          </div>
+		  
+		  <!-- End promo -->
       </div>
       </div>
       
@@ -2141,6 +2202,18 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         <figure class="bottom">
         <canvas id="myCanvas3" height="301px" width="330px" style="width:100%;height:111px;"></canvas> 
         <script>
+		function apply_promo_code(total_amount){
+		total_amount=total_amount.split('.');
+		total_amount=total_amount[1];
+		//alert(total_amount)
+		//$('#sub_total_price,.old_price').html('Rs.' + total_amount);
+		var promo_precentage=$('#promo_precentage').html();
+		promo_precentage = promo_precentage.split('%');
+		var promo_amount_final=parseFloat(Math.round((total_amount*parseFloat(promo_precentage))/100).toFixed(2));
+		$('#promo_amount').html('Rs.' + Math.round(promo_amount_final,2));
+		var total_amount_after_gst = parseFloat(total_amount)-parseFloat(promo_amount_final);
+		$('.actual_price').html('Rs.'+ Math.round(total_amount_after_gst,2));
+	}
         function bottom(width,height,y){ 
         var canvas1 = document.getElementById('myCanvas3');
         var context1 = canvas1.getContext('2d');

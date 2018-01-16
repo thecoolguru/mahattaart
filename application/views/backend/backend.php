@@ -64,25 +64,8 @@ public function get_location_id_for_promo_code()
 	   //Get Record To display fields value.
 	$query['comman']=$this->backend_model->get_all_promo_code_details_model($promo_code_id,$status_id);
 	$query['promo_detials']=$this->backend_model->get_all_tbl_promo_code();
-	$get_active_date=$this->backend_model->get_all_promo_code_active_date();
-     //echo "<pre>",var_dump($get_active_date),"</pre>";
-	 $current_date=date("d/m/Y");
-	 $code_active_date=$get_active_date[0]->valid_end_date; 
-	 //echo $code_active_date; die();
-	 
-	 /**Execute query automatic**/
-	 echo "current Date=".$current_date."Active Date=".$code_active_date."<br>";
-	 
-	 if($code_active_date>$current_date )
-	 {
-		$sr_no=$get_active_date[0]->sr_no;
-		 
-		 if($get_active_date[0]->active==1)
-		 {
-		    $this->backend_model->auto_expired_promo_code($sr_no);
-		 }
-	 }
-	 
+	$query=$this->backend_model->get_all_promo_code_details_model($promo_code_id,$status_id);
+	print_r($query); die();
 	$this->form_validation->set_rules('promo_for','PromoFor','required');
 	$this->form_validation->set_rules('promo_code','promocode','required');
 

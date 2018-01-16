@@ -231,6 +231,7 @@ if($image_type[0]=='BRID'){
 
 $collection_name;
 $continue_shopping_redirect=$this->session->userdata('continue_shopping');
+//echo 'url'.$continue_shopping_redirect;
 $this->load->library('multipledb'); // loading library.
 // Loading second db and running query.
 $CI = &get_instance();
@@ -415,12 +416,12 @@ $size_array[$i]['width'];
 			<div class="container frame-step-header-wrapper">
 				<div class="frame-step-header-text"></div>
 				<div class="frame-step-button-wrapper">
-					<div class="frame-step-continue-shopping-button">
-						<a style="color:white" href="<?=base_url()?>">CONTINUE SHOPPING</a>
-					</div>
-					<div class="frame-step-proceed-to-cart-button">
-						<a style="color:white" href="<?=base_url().'cart/cart_view'?>">  PROCEED TO CART</a>
-					</div>
+					<a style="color:white" href="<?=base_url()?><?=$continue_shopping_redirect?>"><div class="frame-step-continue-shopping-button">
+						<span style="color:white" ">CONTINUE SHOPPING</span>
+					</div></a>
+					<a style="color:white" href="<?=base_url().'cart/cart_view'?>"><div class="frame-step-proceed-to-cart-button">
+						<span style="color:white">  PROCEED TO CART</span>
+					</div></a>
 				</div>
 			</div>
 		</div>
@@ -481,6 +482,7 @@ $size_array[$i]['width'];
 	function get_quality(value){
 	    var quality=$('#quality').val();
 		var paper = $('#surfaces').val();
+		//alert(value)
 		//alert(quality+','+paper);
 		$.ajax({
       		type: 'post',
@@ -502,18 +504,27 @@ function throw_price(rate,surface_type){
 	var width = parseInt(split[0]);
 	var height = parseInt(split[1]);
 	var surface = $('#surfaces').val();
+	var paper_type=$('#paper_type').val();
 	var ratesof = rate;
-	if(surface_type=='1'){
-	//alert('canvas')
-	///$('#test').val('canvas');
+	//alert(surface_type)
+	 if(surface_type=='1'){
+//alert('canvas')
+	//$('#test').val('canvas');
+	
     var c_height=parseInt(height)+parseInt(4);
     var c_width=parseInt(width)+parseInt(4);
-  	}else{
-	//alert('paper')
-	//$('#test').val('frame');
-  	var c_width=width+parseInt(1);
+  	}
+	else if(surface_type=='2'){
+	
+	var c_width=width+parseInt(1);
   	var c_height=height+parseInt(1);
-  	} 
+	}
+	/*if(surface_type=='1'){
+	//alert('jjj')
+	var image_size_final=c_width+'" X '+c_height+'"';
+	var orig_image_size=width+'" X '+height+'"';
+	$('#17').html(image_size_final+' Giclee Print |'+ orig_image_size +' Giclee Print without border');
+	}*/
   	var role_size;
   if(Number(c_width)<=17 && Number(c_height)<=17){
     var role_size = 17;
@@ -542,10 +553,11 @@ function throw_price(rate,surface_type){
    {
     var role_size = 44;
   }
-  
+  //$('#test').val(c_width+'and rsz'+role_size);
   if((Number(c_width) && Number(c_height))<=(role_size)){
 		  if(c_width < c_height){
-		 // alert(c_width+'*'+role_size+'*'+ratesof)
+		// alert(c_width+'*'+role_size+'*'+ratesof)
+		// $('.shipping-note').html(c_width+'*'+role_size+'*'+ratesof);
 	     var cost=c_width*role_size*ratesof;
 		  }else if(c_width > c_height){
 		    var cost=c_height*role_size*ratesof;
@@ -554,7 +566,9 @@ function throw_price(rate,surface_type){
 	if(Number(c_width)>Number(role_size)|| Number(c_height)>Number(role_size)){
     if(c_width>role_size){
       var cost=(c_width*parseInt(role_size)*ratesof);
+	  // $('.shipping-note').html(c_width+'*'+role_size+'*'+ratesof);
     }else if(c_height>role_size){
+	//$('.shipping-note').html(c_width+'*'+role_size+'*'+ratesof);
     var cost=(c_height*parseInt(role_size)*ratesof);
     }
   }
@@ -563,10 +577,10 @@ function throw_price(rate,surface_type){
     var cost=(c_height*parseInt(role_size)*ratesof);
   }
 	$('#print_price').html('Rs.'+ Math.round(parseInt(cost),2));
-	calculate_cost($('#type').val());
+	calculate_cost($('#type').val(),surface_type);
 }
 
-function calculate_cost(value){
+function calculate_cost(value,surface_type){
 		var image_size=$( "#sizes option:selected" ).val();
  		var print_sizes=$('#surfaces').val();
  		var ratesof=$('#quality_rate').val();
@@ -652,6 +666,16 @@ function calculate_cost(value){
  			$('#sub_total_price').html('Rs.' + Math.round(price[1],2) );
  			apply_promo_code(Math.round(price[1],2));
  		}
+		//$('#test').val(surface_type);
+		//var paper_type=$('#paper_type').val();
+		if(type=='3' && surface_type=='1'){
+		var image_size_final=c_width+'" X '+c_height+'"';
+	//var orig_image_size=width+'" X '+height+'"';
+	//image_size_final+' Giclee Print |'+ orig_image_size +' Giclee Print without border'
+	$('#17').html(orig_image_size+'Print without border |' +image_size_final+ 'Print with border' );
+		}else if(type=='3' && surface_type=='2'){
+		$('#17').html(orig_image_size+'Print Only');
+		}
 	}
 
 	function apply_promo_code(total_amount){
@@ -820,12 +844,16 @@ function calculate_cost(value){
                 	<div class="col-md-6 col-sm-6 ">
                     	<p style="color:#d3131b">Discount:</p>
                     </div>
+					<div class="col-md-6 col-sm-6 text-right">
+                    	<p style="color:#d3131b"> <span id="promo_discount">20</span>%</p>
+                    </div>
                 </div>
             </div>  
             <div class="row" >
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 ">
-                    	<p style="color:#d3131b">FLAT<span id="promo_precentage" style="color:#d3131b">20% </span></p>
+                    	<p style="color:#d3131b">FLAT<span id="promo_precentage" style="color:#d3131b">20</span></p>
+						<input type="hidden" class="promo_name_code" value="FLAT20" />
                     	<span style="color:#d3131b">Promo Code Applied</span> 	
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
@@ -2033,6 +2061,7 @@ else {?> href="" onclick="login('');return false;" style="color:#ef9223;"<?php }
             <h4 class="choose-colors regul-glass"> Acrylic Glass   </h4>
             <ul class="choose-colors-type">
             	<li> Lightweight, Transparent, Shatter- resistance
+				Recommended for frames more than 10"x12" in size.
                  <span class="pull-right"><input id="check1" name="acrylic" onclick="selectOnlyThis(this.id);" type="checkbox"> </span>
                 </li>
                 <li>Acrylic Glass  </li>
@@ -2054,6 +2083,7 @@ else {?> href="" onclick="login('');return false;" style="color:#ef9223;"<?php }
 <input type="hidden" id="mount_state" value="">
 <input type="hidden" id="mount_style" value="">
 <input type="hidden" id="mount_style2" value="3px">
+<input type="hidden" id="test" value="3px">
 </div>
 <section>
 	<div class="container">
@@ -2844,6 +2874,7 @@ function addToCart()
   	mount_color=$('#mount_color').html();
   	  mat1_size=$('#mount_width').val()+'"';
   }
+  //alert(mat1_size)
   var glasses= $('#glass_type').html();
   var glasses_coste= $('#glass_price').html();
       glasses_coste = glasses_coste.split('.');		
@@ -2851,12 +2882,15 @@ function addToCart()
   var total_price=$('.total_cost').html();
       total_price = total_price.split('.');
   	  total_price = total_price[1];	
+	  if(total_price=='' || total_price=='0'){
+	  return false;
+	  }
   var MountCost=$('#MountCost').html();
       MountCost = MountCost.split('.');
   	  MountCost = MountCost[1];
   var FrameCost=$('#FrameCost').html();
   	  FrameCost = FrameCost.split('.');		
-  	  FrameCost = FrameCost[1];
+  	  FrameCost = FrameCost[1]; // if streched canvas gallary wrap then we need to save frame cost is left
   var price=$('#print_price').html();
       price = price.split('.');
   	  price = price[1];
@@ -2867,12 +2901,18 @@ function addToCart()
   var mat1_color=$('#mount_color').html();
   var image_namee=$('#image_filename').val();
   var frameSize=$('#frame_sized').html();
+ // alert(frameSize+'')
+  var promo_discount=$('#promo_discount').html();
+  var promo_name_code=$('.promo_name_code').val();
+  //alert(promo_name_code)
+  var promo_amount=$('#promo_amount').html();
+  promo_amount = promo_amount.split('.');		
+  	  promo_amount = promo_amount[1];
 
-  //alert(paper_surface+','+framed_art+','+print_width+','+print_height+','+final_frame_size+','+only_print+','+frame_name+','+mount_name+','+mount_color+','+glasses+','+glasses_coste+','+total_price+','+MountCost+','+FrameCost+','+price+','+image_id+','+user_id+','+mat1_size+','+mat1_color+','+image_namee+','+frameSize+','+image_type+','+print_size);
     $.ajax({
         type: "POST",
 	    url: "<?=base_url()?>frontend/frameit_addtocart",
-        data: "glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print,
+        data:"glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print+"&promo_code="+promo_name_code+"&promo_discount="+promo_discount+"&promo_price="+promo_amount,
 		success:function(data)  
     	{   
     		swal({

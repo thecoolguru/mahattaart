@@ -10,42 +10,42 @@
   transition: opacity 0.5s ease-in-out 0s;
   width: 100%;
   z-index:99999;
- bottom:0;
+  bottom:0;
   }
 
 a.lightbox-close::before {
-  background: black none repeat scroll 0 0;
-  content: "";
-  display: block;
-  height: 50px;
-  left: 26px;
-  position: absolute;
-  top: 0;
-  transform: rotate(45deg);
-  width: 1px;
+	background: black none repeat scroll 0 0;
+	content: "";
+	display: block;
+	height: 30px;
+	left: 15px;
+	position: absolute;
+	top: 0;
+	transform: rotate(45deg);
+	width: 1px;
 }
 a.lightbox-close::after {
   background: black none repeat scroll 0 0;
   content: "";
   display: block;
-  height: 50px;
-  left: 26px;
+  height: 30px;
+  left: 15px;
   position: absolute;
   top: 0;
   transform: rotate(-45deg);
   width: 1px;
 }
 a.lightbox-close {
-  background: white none repeat scroll 0 0;
-  box-sizing: border-box;
-  color: black;
-  display: block;
-  height: 50px;
-  position: absolute;
-  right: 0;
-  text-decoration: none;
-  top: 0;
-  width: 50px;
+	background: white none repeat scroll 0 0;
+	box-sizing: border-box;
+	color: black;
+	display: block;
+	height: 30px;
+	position: absolute;
+	right: 0;
+	text-decoration: none;
+	top: 0;
+	width: 30px;
 }
 
 
