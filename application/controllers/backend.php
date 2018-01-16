@@ -56,7 +56,7 @@ public function get_location_id_for_promo_code()
 	
 	public function create_promo_code()
     {
-		
+	  
 		
 		
 	$promo_code_id=$this->uri->segment(5);
@@ -64,25 +64,6 @@ public function get_location_id_for_promo_code()
 	   //Get Record To display fields value.
 	$query['comman']=$this->backend_model->get_all_promo_code_details_model($promo_code_id,$status_id);
 	$query['promo_detials']=$this->backend_model->get_all_tbl_promo_code();
-	$get_active_date=$this->backend_model->get_all_promo_code_active_date();
-     //echo "<pre>",var_dump($get_active_date),"</pre>";
-	 $current_date=date("d/m/Y");
-	 $code_active_date=$get_active_date[0]->valid_end_date; 
-	 //echo $code_active_date; die();
-	 
-	 /**Execute query automatic**/
-	 echo "current Date=".$current_date."Active Date=".$code_active_date."<br>";
-	 
-	 if($code_active_date>$current_date )
-	 {
-		$sr_no=$get_active_date[0]->sr_no;
-		 
-		 if($get_active_date[0]->active==1)
-		 {
-		    $this->backend_model->auto_expired_promo_code($sr_no);
-		 }
-	 }
-	 
 	$this->form_validation->set_rules('promo_for','PromoFor','required');
 	$this->form_validation->set_rules('promo_code','promocode','required');
 
@@ -93,8 +74,12 @@ public function get_location_id_for_promo_code()
 	$promo_name      = $this->input->post('promo_name');
 	
 	 
-		  $date_from_text= $this->input->post('date_from_text');
-		  $date_to_text= $this->input->post('date_to_text');
+	$date_from_text= $this->input->post('date_from_text');
+	$date_to_text= $this->input->post('date_to_text');
+	
+	
+	
+	//echo $date_from_text; die();
 	
 	
 	$new_promo_name  = $this->input->post('new_promo_name');
@@ -223,9 +208,7 @@ public function get_location_id_for_promo_code()
  
 		 
 		 
-	 
-		
-		
+	 	
 		
 	}
 
@@ -241,10 +224,28 @@ public function promo_code_deletions()
 	
 public function manage_promo_offer()
 {
-        
-		$data['vendor_types']=$this->backend_model->get_vendor_types_model();
-		//print_r($data['vendor_types']); die();
-		
+	
+	
+    $data['vendor_types']=$this->backend_model->get_vendor_types_model();
+	$get_active_date=$this->backend_model->get_all_promo_code_active_date();
+	$affected_rows=count($get_active_date);
+	$current_date=date('d/m/Y');
+	echo "current Date=".$current_date;
+	
+	if($affected_rows>0)
+	{
+		for($i=0;$i<$affected_rows;$i++)
+	    {
+
+		   if($get_active_date[$i]->valid_end_date < $current_date)
+		    {
+		      //echo $get_active_date[$i]->valid_end_date; die();
+		       //echo $get_active_date[$i]->valid_end_date; die();
+		     $this->backend_model->auto_expired_promo_code($get_active_date[$i]->sr_no);
+		   }
+	   }
+	   
+	}	
 		$search_for=$this->input->post('search_for');
 		$status=$this->input->post('status'); //die();
 		if(empty($search_for))
@@ -260,6 +261,11 @@ public function manage_promo_offer()
         $this->load->view('backend/dashboard_header');
 		$this->load->view('backend/manage_promo_code',$data);
 		$this->load->view('backend/footer');
+
+
+
+
+
 
 
 }

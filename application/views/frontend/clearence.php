@@ -624,7 +624,7 @@ Framed Painting <?=$avl_glass?>
             </a>
         </div>
         <div class="col-sm-6">
-		    <a style="color:#999;font-size:20px;" href="javascript:" <?php  if($this->session->userdata('userid')){?> onclick="addtogallery('<?=$image_id?>','<?=$image_filename?>')" <?php }else{?> onclick="login('')" <?php }?> id="tgl">
+		    <a style="color:#999;font-size:20px;" href="javascript:" <?php  if($this->session->userdata('userid')){?> data-toggle="modal" data-target="#login-modal4" onclick="addtogallery('<?=$image_id?>','<?=$image_filename?>')" <?php }else{?> data-toggle="modal" data-target="#login-modal" <?php }?> id="tgl">
             	<i class="fa fa-heart-o"> </i>
             </a>
         </div>

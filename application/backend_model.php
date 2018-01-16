@@ -8,21 +8,149 @@ class Backend_model extends CI_Model
 		$this->load->library(array('session'));
 	}
 	
-/*******************promo code*********************/
+/*******************promo code*******************/
+
+public function auto_expired_promo_code($sr_no)
+{
+	//echo $sr_no; die();
+	$this->db->where('sr_no',$sr_no);
+	$this->db->set('active','2');
+	$this->db->update('tbl_promo_code');
+}
+
+public function get_all_promo_code_active_date()
+{
+	$this->db->select('*');
+	$this->db->where('active',1);
+	$this->db->order_by('sr_no','DESC');
+	$query=$this->db->get('tbl_promo_code');
+	/*
+	$affrected=$this->db->affected_rows();
+	print_r($affrected); die();
+	//print_r($query->result()); die();
+	*/
+	return $query->result();
+
+}
+
+public function get_vendor_types_model()
+{
+$this->db->select("*");
+$query=$this->db->get('kiosk_users');
+return $query->result();
+//print_r($query->result());die();
+}
+
+
+
+public function get_all_tbl_promo_code_details($search_for,$status)
+{
+	$this->db->where('prom_for',$search_for);
+	$this->db->where('active',$status);
+	$query=$this->db->get('tbl_promo_code');
+	
+	return $query->result();
+}
+
+
+public function update_active_prormo_code_model($promo_code_id,$status_id,$active)
+{
+$this->db->where('sr_no',$promo_code_id);
+$this->db->where('active',$status_id);
+$query=$this->db->update('tbl_promo_code',$active);
+}
+
+public function promo_code_deletions_model($promo_code_id)
+{
+ //echo "in Model".$promo_code_id; die();
+ $this->db->where('sr_no',$promo_code_id);
+ $this->db->delete('tbl_promo_code');
+
+}
+
+
+public function update_deactive_prormo_code_model($promo_code_id,$status_id,$deactive)
+{
+ 
+// print_r($deactive); die();
+
+	
+$this->db->where('sr_no',$promo_code_id);
+$this->db->where('active',$status_id);
+$query=$this->db->update('tbl_promo_code',$deactive);
+
+
+}
+
+public function update_expired_prormo_code_model($promo_code_id,$status_id,$expired)
+{
+	
+$this->db->where('sr_no',$promo_code_id);
+$this->db->where('active',$status_id);
+$query=$this->db->update('tbl_promo_code',$expired);
+
+//$this->db->last_query($query); die();
+}
+
+
+public function get_all_promo_code_details_model($promo_code_id,$status_id)
+{
+$this->db->select('*');
+$this->db->where('sr_no',$promo_code_id);
+$this->db->where('active',$status_id);
+$query=$this->db->get('tbl_promo_code');
+return $query->result();
+
+}
+
+
+
+
+
+
+
+
+
+public function get_location_id_for_promo_code_model($location)
+{
+  $this->db->select('location_id');
+  $this->db->where('location',$location);
+  $query=$this->db->get('kiosk_users');
+  return $query->result();
+}
+
+public function get_location_for_promo_code_model($create_prom_for)
+{
+$this->db->select('location');
+$this->db->where('vendor_types',$create_prom_for);
+$query=$this->db->get('kiosk_users');
+return $query->result();
+}
+
+
+
+public function get_all_kiosk_prormo_code_model()
+{
+$this->db->select('*');
+$this->db->where('prom_for','kiosk');
+$this->db->where('active','1');
+$query=$this->db->get('tbl_promo_code');
+
+//print_r($this->db->last_query()); die();
+return $query->result();
+
+
+}
+
 
 
 public function add_promo_code_model($data)
 {
+//print_r($data); die();
 $this->db->insert('tbl_promo_code',$data);
 
 }
 
-
-public function get_all_tbl_promo_code_details()
-{
-	$query=$this->db->get('tbl_promo_code');
-	return $query->result();
-}
 
 
 public function get_all_tbl_promo_code()
@@ -37,7 +165,7 @@ public function get_all_tbl_promo_code()
 public function delete_prormo_code($promo_code_id)
 {
   
-  //echo "In Model=".$promo_code_id; die();
+  
   $this->db->where('sr_no',$promo_code_id);
   $this->db->delete('tbl_promo_code');
 }	
@@ -118,10 +246,9 @@ public function delete_prormo_code($promo_code_id)
 
 public function get_file_name($sub_id) 
 {
-	
 	$this->db->where('id',$sub_id);
 	$this->db->select('submission_files');
-	$query=$this->db->get('form_submission');
+	$query=$this->db->get('tbl_form_submission');
 	return $query->result();
    
 }
