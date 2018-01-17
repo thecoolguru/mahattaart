@@ -221,15 +221,15 @@ $jump=$next+2;
  $user_id=$this->session->userdata('userid');
 
 if(isset($image)){
-
+ print_r($image);
 foreach($image as $images){
 	$result=  $this->frontend_model->get_imagesFilename_details($images->images_filename);
-       
+      print_r($result);
   ?>
 
 <li class="col-md-2 col-sm-2">
 <a href="<?php echo base_url();?>frontend/products/<?=$images->images_filename;?>">
-<input type="hidden" name="img_id" id="img_id<?php print $images_id; ?>" value="<?php print $images_id ?>" />
+<input type="hiden" name="img_id" id="img_id<?php print $images_id; ?>" value="<?php print $images_id ?>" />
 <div class="wrap">
 <div class="wrap-inner"><img class="galImage" src="http://static.mahattaart.com/158/<?=$images->images_filename;?>" alt="<?php print substr($result->images_caption,0,10); ?>" title="<?=substr($result[0]->images_caption,0,10); ?>" border="0"></div>
 <div class="main-title">

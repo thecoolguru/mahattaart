@@ -1944,7 +1944,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
       
       <div class="modal-footer">
         <div class="frame-it-button">
-                  <button <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> type="button" class="btn social_icon" style="background-color:#d3131b; color:#fff;" data-dismiss="modal"> Add to cart </button>
+                  <button <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> type="button" class="btn social_icon" style="background-color:#d3131b; color:#fff;"> Add to cart </button>
                   <button onclick="remove_pricing(); return false;" type="button" class="btn social_icon" style="background-color:#555; color:#fff" data-dismiss="modal"> Cancel </button>
               </div>
       </div>
@@ -2277,7 +2277,10 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         ?>
         
         <div class="form-group">
-        <label for="country" class="col-sm-4 control-label">Print Type:</label>
+        <label for="country" class="col-sm-4 control-label">
+        	<a href="" data-toggle="modal" data-target="#myModal4" style="position: absolute;left: -5px;"><img id="img_hover" class="img-responsive" style="" src="http://cache1.artprintimages.com/images/photostoart/ART/info_off_v1.png"></a>
+            Print Type:
+        </label>
         <div class="col-sm-8">
         <select id='print_type_main' class="form-control input_control input" onChange="paper_surface_fun();calculate_cost('');"> 
         <?php 
@@ -2291,7 +2294,10 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         </div>
         </div>
         <div class="form-group">
-        <label for="country" class="col-sm-4 control-label">Printing Surface:</label>
+        <label for="country" class="col-sm-4 control-label">
+              <a href="" data-toggle="modal" data-target="#myModal4" style="position: absolute;left: -5px;"><img id="img_hover" class="img-responsive" style="" src="http://cache1.artprintimages.com/images/photostoart/ART/info_off_v1.png"></a>
+			Printing Surface:
+        </label>
         <div class="col-sm-8">
         
         <select id='paper_surface' class="form-control input_control input" onchange="calculate_cost('')"> 
@@ -2365,10 +2371,10 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         <a id='price_details' href='' data-toggle="modal" data-target="#myModal3">Price Details</a>
         </div>
         <div class="text-center addtocartcontainer_popup-button" style="margin-top: 20px;">
-        <button <?php if(!$this->session->userdata('userid')){?> onclick="login('');return false;"<?php }else{?> onclick="addToCart();return false;"<?php }?> type="button" class="popup-button2"> Add To Cart</button>
+        <button <?php if(!$this->session->userdata('userid')){?> data-toggle="modal" data-target="#login-modal" <?php }else{?> onclick="addToCart();return false;"<?php }?> type="button" class="popup-button2"> Add To Cart</button>
         </div>
-        <div <?php if(!$this->session->userdata('userid')){?> onclick="login('');return false;"<?php }else{?> onclick="addTomyupload();return false;"<?php }?> class="text-center addtocartcontainer_popup-button" style="margin-top: 20px;">
-        <button type="button" class="popup-button2"> Add To My Uploads</button>
+        <div <?php if(!$this->session->userdata('userid')){?> data-toggle="modal" data-target="#login-modal" <?php }else{?> onclick="addTomyupload();return false;"<?php }?> class="text-center addtocartcontainer_popup-button" style="margin-top: 20px;">
+        <!--<button type="button" class="popup-button2"> Add To My Uploads</button>-->
         </div>
         <div class="addtocartcontainer_popup_details" style="margin-top: 20px;">
         <span>Usually ships in 2-3 days</span>
@@ -2493,6 +2499,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         <h4 class="choose-colors regul-glass"> Acrylic Glass   </h4>
         <ul class="choose-colors-type">
         <li> Lightweight, Transparent, Shatter- resistance
+        <br/>	Recommended for frames more than 10"x12" in size.
         <span class="pull-right"><input id="check1" name="re-mount" type="checkbox" onclick="selectOnlyThis(this.id);frame_pricing();"> </span>
         </li>
         <li>Acrylic Glass  </li>
@@ -2677,7 +2684,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 	        	<h2>Sign In</h2>
             </div>
             <div class="addtocartcontainer_header">
-              <a target="_self" class="popup-button3" href="#" onclick="return login('')"> Create New Account </a>
+              <a target="_self" class="popup-button3" href="#" data-toggle="modal" data-target="#login-modal3"> Create New Account </a>
             </div>
             <!--<style>
 			ul.checklist li::before {
@@ -2697,7 +2704,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
             </ul>
             <div class="addtocartcontainer_footer">
 	            <p>Already have an account?</p>
-                <p><a href="" onclick="login('');return false;">Login here</a></p>
+                <p><a href="" data-toggle="modal" data-target="#login-modal">Login here</a></p>
 <!--                <p class="text-center">or</p>
 -->            </div>
             <!--<p class="text-center"><a href="#"><img src="../../../assets/img/photostoart_inner/facbook.jpg" style="margin-bottom:10px"></a></p>-->
@@ -2718,6 +2725,97 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
       </div>
 </div>
 </div>
+
+<div class="modal fade" id="myModal4" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header uploader_popup_header">
+            <h2 class="text-center">Pricing Details</h2>
+            <a class="lightbox-close"  data-dismiss="modal" ></a>
+      </div>
+
+      <div class="modal-body">
+			<p><strong>Archival Premium-</strong> Prints made on archival premium type paper are produced on the Hahnemühle print surfaces. All surfaces are made from alpha cell ulous wood pulp that is acid free. It shares the same vivid colors, accuracy, and exceptional resolution that makes giclee prints the standard for museums and galleries around the world. They are extremely age resistant – more than 100 years (highest life expectancy category). Premium archival ink in 8 colors (cyan, light cyan, magenta, light magenta, yellow, black, light black, light light black) are used to provide luxurious prints with wide color spectrum The smooth transitions of color gradients make giclee prints appear much more realistic than other prints. All giclee prints come with a 0.5" white border all around and are suitable for matting and framing if desired.</p>
+            <p><strong>Archival Standard-</strong> Prints made on archival standard type paper are produced on the archival surfaces from an imported brand. This high-quality reproduction represents the best of both worlds: quality and affordability. It shares the same vivid colors, accuracy, and exceptional resolution that makes giclee prints the standard for museums and galleries around the world. Premium archival ink in 8 colors (cyan, light cyan, magenta, light magenta, yellow, black, light black, light light black) are used to provide luxurious prints with wide color spectrum The smooth transitions of color gradients make giclee prints appear much more realistic than other prints. All giclee prints come with a 0.5" white border all around and are suitable for matting and framing if desired.</p>
+            
+            <div id="hahnemuhle_daguerre_canvas">
+                <p><strong>Hahnemuhle Daguerre Canvas</strong></p>
+                <p>GSM: 400 GSM</p>
+                <p>Description: Hahnemuhle's Daguerre Canvas offers a true canvas texture with a matte finish which can be stretched and varnished. It is particularly good for fine art photo printing. Its bright white point provides clear fresh colors and contrasts for black and white reproductions.</p>
+            </div>
+            
+            <div id="hahnemuhle_photo_canvas_320_gsm">
+            	<p><strong>Hahnemuhle Photo Canvas 320 GSM</strong> </p>
+                <p>GSM: 320 GSM </p>
+                <p>Description: Hahnemuhle's Photo Canvas is a bright poly-cotton canvas paper with a fine structure and matte surface, great for making large-format prints. The matt coating with its bright white point makes colors shine and provides high contrasts for black and white prints.</p>
+            </div>
+            
+            <div id="canvas_380_gsm">
+            	<p><strong>Canvas 380 GSM</strong></p>
+                <p>GSM: 380 GSM </p>
+                <p>Description: Bright white, cotton canvas with a smooth weave. It is best suited for highly detailed photographs and artwork, graphics and presentations, exhibition prints. It stretches easily for gallery wraps.</p>
+            </div>
+            
+            <div id="Hahnemuhle Matt Fine Art">
+            	<p><strong>Hahnemuhle Matt Fine Art</strong></p>
+                <p>GSM: 305 GSM </p>
+                <p>Description: A smooth 100% cotton white paper specifically designed for creative individuals using digital photographic output. It is one of Hahnemuhle's most popular papers and meets the highest industry standards regarding density, color gamut, color graduation and image sharpness. It is ideal for Photographic and Fine art reproduction.</p>
+            </div>
+            
+            <div id="Hahnemuhle Photo Luster">
+            	<p><strong>Hahnemuhle Photo Luster</strong></p>
+                <p>GSM: 260 GSM</p>
+                <p>Description: Hahnemuhle's Photo Luster is a microporous, resin coated photo paper with a beautiful luster surface, high opacity, excellent rigidity, bright with very consistent flatness. It guarantees a long-lasting fade resistant prints.</p>
+            </div>
+            
+            <div id="Hahnemuhle Photo Matt Fibre">
+            	<p><strong>Hahnemuhle Photo Matt Fibre</strong></p>
+                <p>GSM: 200 GSM</p>
+                <p>Description: Hahnemuhle's Photo Matt Fibre is a matt coated smooth InkJet paper with a warm tone paper shade, good opacity, a fine smooth surface, good rigidity and a consistent flatness. It provides an excellent fine art base to photograph and fine art reproductions.</p>
+            </div>
+            
+            <div id="Epson Enhanced Matt">
+                <p><strong>Epson Enhanced Matt</strong></p>
+                <p>GSM: 189 GSM</p>
+                <p>Description: A superior media that outputs images that are vivid and vibrant and accentuates shadowy areas, the enhanced matte paper is the perfect solution for museum quality photographic and fine art works. </p>
+            </div>
+            
+            <div id="Fine Art Luster">
+            	<p><strong>Fine Art Luster</strong></p>
+                <p>GSM: 315 GSM</p>
+                <p>Description: A natural white, softly textured, coated fine art luster paper ideal for fine art giclee reproduction. Archival - acid & lignin free, instant dry, aqueous pigment and dye ink compatible, excellent color gamut.</p>
+            </div>
+            
+            <div id="Fine Art Matt">
+            	<p><strong>Fine Art Matt</strong></p>
+                <p>GSM: 315 GSM</p>
+                <p>Description: A natural white, softly textured, coated fine art matt paper ideal for fine art giclee reproduction. Archival - acid & lignin free, instant dry, aqueous pigment and dye ink compatible, excellent color gamut.</p>
+            </div>
+            
+            <div id="RC Premium Luster Paper 255 GSM">
+            	<p><strong>RC Premium Luster Paper 255 GSM</strong></p>
+                <p>GSM: 255 GSM</p>
+                <p>Description: A natural white, softly textured, coated premium luster paper. Archival - acid & lignin free, instant dry, aqueous pigment and dye ink compatible, excellent color gamut.</p>
+            </div>
+            
+            <div id="Photographic Glossy Paper">
+            	<p><strong>Photographic Glossy Paper</strong></p>
+                <p>GSM: 260 GSM</p>
+                <p>Description: Water Resistant/Instant Dry. For TRUE Photographic feel, Ultimate versatility, Sharp image, Excellent Color rendition, Smooth feel, High speed and Reliability.</p>
+            </div>
+            
+            <div id="Vinyl">
+            	<p><strong>Vinyl</strong></p>
+                <p>GSM: 150 GSM</p>
+                <p>Description: Photo quality self-adhesive high gloss sticker paper. It is excellent for photo quality prints with an adhesive backing. Once printed the image is sealed on the paper and is water resistant and can be wiped clean with a wet cloth without harming the image.</p>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script>
 // $(window).on('load',function(){
 // $(document).on('click', '.panel-heading span.clickable', function(e){

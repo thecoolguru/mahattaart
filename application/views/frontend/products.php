@@ -1678,9 +1678,9 @@ function right(width,height,x){
             <div class="col-md-9">
             	<form class="form-horizontal">
 	                	<div class="form-group">
-                            <label for="country" class="col-sm-4">
+                            <label for="country" class="col-sm-4 control-label">
                             	<a href="" data-toggle="modal" data-target="#myModal3" style="position: absolute;left: -5px;"><img id="img_hover" class="img-responsive" style="" src="http://cache1.artprintimages.com/images/photostoart/ART/info_off_v1.png"></a>
-                                <h4 style="margin:0">Print Type</h4>
+                                <h4 style="margin:0; font-family:'BebasNeueRegular';font-size:20px">Print Type</h4>
                             </label>
                             <div class="col-sm-8">
                                 <select class="form-control input_control" id='print_type_main' onchange="paper_surface();" onclick="get_functions();return false;">
@@ -1695,9 +1695,9 @@ function right(width,height,x){
                             </div>
 	                    </div>
                         <div class="form-group">
-                        	<label for="country" class="col-sm-4">
+                        	<label for="country" class="col-sm-4 control-label"">
                                 <a href="" data-toggle="modal" data-target="#myModal3" style="position: absolute;left: -5px;"><img id="img_hover" class="img-responsive" style="" src="http://cache1.artprintimages.com/images/photostoart/ART/info_off_v1.png"></a>
-                                <h4 style="margin:0">Print Surface</h4>
+                                <h4 style="margin:0; font-family:'BebasNeueRegular'; font-size:20px">Print Surface</h4>
                             </label>
                             <div class="col-sm-8">
 	                            <select class="form-control input_control" id='surfaces' onclick="   get_functions();return false;">
@@ -1712,8 +1712,8 @@ function right(width,height,x){
                             </div>
                         </div>
                         <div class="form-group">
-                        	<label for="country" class="col-sm-4">
-                            	<h4> Size<span class="menu-selection-text">(In Inches)</span></h4>
+                        	<label for="country" class="col-sm-4 control-label"">
+                            	<h4 style="margin:0; font-family:'BebasNeueRegular'; font-size:20px"> Size <span style="font-size: 12px;color: #888;"> (In Inches)</span></h4>
                             </label>
                             <div class="col-sm-8">
 	                            <select name="print_sizes" id="sizes" class="form-control input_control" onclick=" get_quality('');return false;">
@@ -1905,12 +1905,12 @@ display: none;
                     <p class="bottom-bar-crop" style="display: block;" id="17"></p>
                     <p class="shipping-note">Ships in 1-2 days</p>
                    	<h5><a href='' onclick=" get_functions(''); price_details();return false;" data-toggle="modal" data-target="#myModal">Price Details</a> </h5>
-                    <p><input type="button" class="call-to-action-1-button btn btn-default" <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> value="ADD TO CART" ></p>
+                    <p><input type="button" class="call-to-action-1-button btn btn-default" <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing();" data-toggle="modal" data-target="#login-modal"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> value="ADD TO CART" ></p>
                 </div>
                 <div id="save-to-gallery-text" class="col-md-9">
                 	<span> <i class="fa fa-heart-o" aria-hidden="true"></i>
                 		<a <?php if($this->session->userdata('userid')){?>
-href="" onclick="addtogallery('<?=$api_image_id?>','<?=$image_id?>');return false;" id="tgl" style="color:#ef9223;" <?php }
+href="" data-toggle="modal" data-target="#login-modal4" onclick="addtogallery('<?=$api_image_id?>','<?=$image_id?>');return false;" id="tgl" style="color:#ef9223;" <?php }
 else {?> href="" data-toggle="modal" data-target="#login-modal" style="color:#ef9223;"<?php }?> >Add to Gallery </a>
                 	</span>
                 </div>
@@ -1980,7 +1980,7 @@ else {?> href="" data-toggle="modal" data-target="#login-modal" style="color:#ef
 <div class="container bshow" style="display:none">
 <div class="row" style="background-color:#7f7d7e; margin-top:20px">
         <div class="col-md-10 col-md-offset-2">
-          <div class="tabs-section tabs-section1">
+          <div class="tabs-section tabs_section_header">
             <ul class="nav nav-tabs">
                 <li class="active"><a class="nav_hover" id="hover1" href="#tab-1" data-toggle="tab" aria-expanded="false"><img src="<?php print base_url();?>/assets/img/product/frame.jpg" style="margin-right:5px" /></i>Frames</a></li>
                 <li class=""><a class="nav_hover" id="hover2" href="#tab-2" data-toggle="tab" aria-expanded="false"><img id="hover2_img" src="<?php print base_url();?>/assets/img/product/mat.jpg" style="margin-right:5px"/>Add Mount</a></li>
@@ -2061,7 +2061,7 @@ else {?> href="" data-toggle="modal" data-target="#login-modal" style="color:#ef
             <h4 class="choose-colors regul-glass"> Acrylic Glass   </h4>
             <ul class="choose-colors-type">
             	<li> Lightweight, Transparent, Shatter- resistance
-				Recommended for frames more than 10"x12" in size.
+				<br/>Recommended for frames more than 10"x12" in size.
                  <span class="pull-right"><input id="check1" name="acrylic" onclick="selectOnlyThis(this.id);" type="checkbox"> </span>
                 </li>
                 <li>Acrylic Glass  </li>

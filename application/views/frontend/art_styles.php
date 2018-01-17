@@ -173,26 +173,20 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
                 
                 <div class="row">
 				
-<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" ><img src="<?php print base_url();?><?=$values->image?>" style="float: left; border: none; box-shadow: 2px 2px 5px <?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" class="col-xs-6 col-md-4 col-lg-6 col-sm-4"></a>
+<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" ><img src="<?php print base_url();?><?=$values->image?>" class="col-md-4 col-lg-6 col-sm-6 img-responsive"></a>
 
-<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image2?>" style=" margin-bottom:10px; padding-left:0;<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" class="col-xs-3 col-md-2 col-lg-3 col-sm-2"></a>
-
-
-
-<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image3;?>" style=" margin-bottom:10px ;padding-left:0;<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" class="col-xs-3 col-md-2 col-lg-3 col-sm-2"></a>
-
-<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image4;?>" style=" margin-bottom:10px; padding-left:0;<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" class="col-xs-3 col-md-2 col-lg-3 col-sm-2"></a>
-
-<a style="position:relative;"href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image5;?>" style=" margin-bottom:10px; padding-left:0; <?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" class="col-xs-3 col-md-2 col-lg-3 col-sm-2"></a>
+<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image2?>" class="col-xs-6 col-md-2 col-lg-3 col-sm-3 img-responsive" style="margin-top: 10px;"></a>
 
 
-<div style="display: inline-block; width: 100%; height: 0px; overflow: hidden; visibility: hidden;">
-&nbsp;
-</div>
 
+<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image3;?>" class="col-xs-6 col-md-2 col-lg-3 col-sm-3 img-responsive" style="margin-top: 10px;"></a>
 
-<div style="position:absolute;margin-left: 283px; text-align:center;"> 
-<a style="position:absolute; padding:5px 3px; background: rgba(0, 0, 0, .5); color:<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?> FFF;bottom:8px; width:62px; font-size:14px; color:#FFF;" href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"> + more </a> </div> 
+<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image4;?>" class="col-xs-6 col-md-2 col-lg-3 col-sm-3 img-responsive" style="margin-top: 10px;"></a>
+
+<a style="position:relative;"href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all"><img src="<?php print base_url();?><?=$values->image5;?>" class="col-xs-6 col-md-2 col-lg-3 col-sm-3 img-responsive" style="margin-top: 10px;"></a>
+
+<div style="position:absolute; right:15px; bottom:10px; background:rgba(0, 0, 0, .5);"> 
+<a href="<?php print base_url(); ?>search/dosearch/1/32/<?=$values->keyword?>/all" style="color:#fff" class="btn"> + more </a> </div> 
 
 </div>
                 </div>
