@@ -1,3 +1,6 @@
+<?php
+$continue_shopping_redirect=$this->session->userdata('continue_shopping');
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -66,7 +69,7 @@
         </div>
         <div class="frame-step-button-wrapper">
             <div class="frame-step-continue-shopping-button">
-                <a style="color:white" href="<?=base_url().''.$continue_shopping_redirect?>">CONTINUE SHOPPING</a>
+                <a style="color:white" href="<?=base_url().$continue_shopping_redirect?>">CONTINUE SHOPPING</a>
             </div>
             <div class="frame-step-proceed-to-cart-button">
               <a style="color:white" href="<?=base_url().'cart/cart_view'?>">  PROCEED TO CART</a>
@@ -340,8 +343,14 @@
 	.new_price {margin-left: 20px;}
 </style>
 							<div class="main-title">
+							<?php
+							$dis=round((((($prod_details[0]->mrp)-($prod_details[0]->s_p))/($prod_details[0]->mrp))*100));
+							 $promo_amount=round(($prod_details[0]->s_p*$dis)/100);
+							?>
+							<input type="hidden" id="promo_discount" value="<?php echo $dis; ?>">
+							<input type="hidden" id="promo_amount" value="Rs.<?php echo $promo_amount; ?>">
 <div>
-	<h4 style="font-weight:700">Save (<?php echo $dis=round((((($prod_details[0]->mrp)-($prod_details[0]->s_p))/($prod_details[0]->mrp))*100)); ?>%)</h4>
+	<h4 style="font-weight:700">Save (<?php echo $dis;  ?>%)</h4>
     <div>
 		<span class="old_price" id="old_price"><?=round($prod_details[0]->mrp-($prod_details[0]->mrp*$tax_prctg)/100)?> </span>
         <span id="selling_price" class="new_price" style="color:#d31d25"><?=$total_price?></span>
@@ -384,8 +393,15 @@ var image_namee=$('#filename').val()+'.JPG';
 //alert(frame_name+','+final_frame_size);
 var product_size=$('#product_size').val();
 var only_print='';
+ var promo_discount=$('#promo_discount').val();
+  var promo_name_code=$('.promo_name_code').val();
+  //alert(promo_name_code)
+  var promo_amount=$('#promo_amount').val();
+  promo_amount = promo_amount.split('.');		
+  	  promo_amount = promo_amount[1];
+	 // var path=2;
 //alert(image_namee);
-var url="glasses_coste"+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_color+"&mount_color="+mount_name+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print+'&product_size='+product_size;
+var url="glasses_coste"+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_color+"&mount_color="+mount_name+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print+'&product_size='+product_size+"&promo_code="+promo_name_code+"&promo_discount="+promo_discount+"&promo_price="+promo_amount+'&path=2';
 //alert(url)
  $.ajax({
 		//final_frame_size

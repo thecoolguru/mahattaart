@@ -479,7 +479,7 @@ if($bride[0]=='BRID'){
     <div class="cart-wheel" style="background-color: #2CC3B5"></div>
   </div>
     </a>
-    <a style="color:#999;font-size:20px; float:right" href="javascript:" <?php   if($this->session->userdata('userid')){?> onclick="addtogallery('<?=$item['image_id']?>','<?=$item['image_filename']?>')" <?php }else{?> onclick="login('')" <?php }?> id="tgl"><i class="fa fa-heart-o" style="color:#d31d25; font-size:20px; padding:10px"> </i> </a>
+    <a style="color:#999;font-size:20px; float:right" href="javascript:" <?php   if($this->session->userdata('userid')){?> data-toggle="modal" data-target="#login-modal4" onclick="addtogallery('<?=$item['image_id']?>','<?=$item['image_filename']?>')" <?php }else{?> data-toggle="modal" data-target="#login-modal" <?php }?> id="tgl"><i class="fa fa-heart-o" style="color:#d31d25; font-size:20px; padding:10px"> </i> </a>
 </div>
 
 </div>
