@@ -1,6 +1,7 @@
 <?php
 $continue_shopping_redirect=$this->session->userdata('continue_shopping');
 ?>
+<link href="<?php print base_url();?>assets/css/products/frare_it_slider.css" rel="stylesheet" />
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/light-box-model.css" type="text/css"/>
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/wallcolor.css" type="text/css"/>
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/loader.css" type="text/css"/>
@@ -426,9 +427,9 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
       		success: function(response){
 			//alert(response)
 			var obj=JSON.parse(response);
-			//	alert(obj)
-			$('#quality_rate').val(obj);
-			
+			var res=obj.split(',');
+			$('#quality_rate').val(res[0]);
+			$('#surface_type_code').val(res[1]);
            	}
     	});
 			rates=$('#quality_rate').val();
@@ -576,8 +577,17 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 					$('#finished_size').html(Math.round(dimen[0],2)+'"X'+Math.round(dimen[1],2)+'" Print Only ');
 				}
 			}else{ 
+			var surface_type_code=$('#surface_type_code').val();
+			//alert(surface_type_code)
 			
-			$('#finished_size').html(Math.round(dimen[0],2)+'"X'+Math.round(dimen[1],2)+'" Print Onlyy ');
+			if(surface_type_code=='1'){
+			var can_width=parseInt(dimen[0]) + parseInt(4);
+			var can_height=parseInt(dimen[1]) + parseInt(4);
+			//alert(parseInt(dimen[0]) + parseInt(4));
+			$('#finished_size').html(Math.round(dimen[0],2)+'"X'+Math.round(dimen[1],2)+'" Print without border |' +can_width+'"X'+can_height+ '" Print with border' );
+			}else{
+			$('#finished_size').html(Math.round(dimen[0],2)+'"X'+Math.round(dimen[1],2)+'" Print Only ');
+			}
 			}
 			apply_promo_code('Rs.'+Math.round(cost,2));
 			//$('.actual_price').html('Rs.'+Math.round(cost,2));
@@ -1248,7 +1258,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 		}else{
 		mount_avail='';
 		}
-		td_inner +='<div class="col-xs-12 col-sm-6 col-md-3 mount_data" id="mount'+image+'" onclick="mount_store(this.id);return mount_select('+mount_rate+','+mount_code+','+mount_name+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
+		td_inner +='<div class="col-xs-12 col-sm-3 col-md-3 mount_data" id="mount'+image+'" onclick="mount_store(this.id);return mount_select('+mount_rate+','+mount_code+','+mount_name+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
 		image++;
 			}
 				}td_inner +='</div>';
@@ -1349,7 +1359,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 		}
 			var f_shape=$('#frame_shape').val();
 			var frame_shape="'"+f_shape+"'";
-			td_inner += '<div class="col-xs-12 col-sm-6 col-md-3 frame" id="frame'+image+'" onclick="id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block img3"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
+			td_inner += '<div class="col-xs-12 col-sm-3 col-md-3 frame" id="frame'+image+'" onclick="id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block img3"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
 			image++;
 		}
 		 } td_inner +='</div>';
@@ -1880,7 +1890,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
               </div>
           </div>
 		  <!--  Start for promo div -->
-		  <div class="row framing" >
+		  <div class="row canvas framing print" >
               <div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 ">
                     	<p style="color:#d3131b">Discount:</p>
@@ -1890,7 +1900,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
                     </div>
                 </div>
           </div>
-		  <div class="row framing" >
+		  <div class="row canvas framing print" >
               <div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 ">
                     	<p style="color:#d3131b">FLAT<span id="promo_precentage" style="color:#d3131b">20</span></p>
@@ -1902,7 +1912,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
                     </div>
                 </div>
           </div>
-		  <div class="row framing" >
+		  <div class=row canvas framing print" >
               <div class="frame-it-content">
                   <div class="col-md-6 col-sm-6 ">
                     	<p> Sub-Total  </p>
@@ -2342,6 +2352,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         
         </form>
         <input type="hidden" name="quality_rate" id="quality_rate" value="">
+		<input type="hidden" name="surface_type_code" id="surface_type_code" value="">
         <!--Image Div --> 
         <div id="imageDiv">
         </div>
@@ -2384,7 +2395,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         <div class="row">
         <div style="background-color: rgb(127, 125, 126); margin-top: 20px; display: block;min-height: 41px;" id="framingdiv1">
         <div class="col-md-12 col-md-push-2">
-        <div class="tabs-section">
+        <div class="tabs-section tabs_section_header">
         <!-- Nav Tabs -->
         <ul class="nav nav-tabs" id="tabs">
         <li class="active"><a href="#tab-1" data-toggle="tab" aria-expanded="false" onclick="showTable('Basic');"><i class=""></i>Frames</a></li>
@@ -2750,19 +2761,6 @@ p.rmve-p2 {
     max-height: 100px;
     overflow-x: hidden;
 }
-.tabs-section > ul a{color:#fff}
-
-.tabs-section .nav-tabs > li > a {
-  border-left: 1px solid #6d6e6c;
-  border-radius: 0;
-  border-right: medium none transparent;
-  border-top: medium none transparent;
-  font-family: "Helvetica Neue Regular",Helvetica,Arial,sans-serif;
-  font-size: 14px;
-}
-.tabs-section .nav-tabs > li:last-child > a {
-  border-right: 1px solid #6d6e6c;
-}
 
 .frame-it-main {
 	float:left; 
@@ -2774,13 +2772,6 @@ p.rmve-p2 {
 	max-height:500px;
 }
 
-.tabs-section .nav > li > a:hover, .tabs-section .nav > li > a:focus {
-  background-color: #7f7d7e;
-  border-left: 1px solid #6d6e6c;
-  border-radius: 0;
-  border-right: medium none transparent;
-  border-top: medium none transparent;
-}
 .choose-colors {
   border-bottom: 1px solid #cecece;
   border-top: 1px solid #cecece;

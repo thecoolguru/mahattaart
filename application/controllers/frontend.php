@@ -634,7 +634,7 @@ public function themes_lightbox($lightbox_id,$page_no,$category="none",$shape="n
 		echo json_encode($rate[$index].','.$res[0]->paper_type_only);
 		}else{
 		
-		echo json_encode($res[0]->web_print_price);
+		echo json_encode($res[0]->web_print_price.','.$res[0]->paper_type_only);
 		}
 		
 	}
@@ -2467,6 +2467,8 @@ public function themes_lightbox($lightbox_id,$page_no,$category="none",$shape="n
 					echo $path = 1;
 				}	else{
 					echo $path = 0;
+				}if($this->input->post('path')==2){
+				$path=$this->input->post('path');
 				}
 				$data=array('cart_id'=>'','image_print_type'=>$paper_surface,'image_id'=>$img_id,'qty'=>1,'user_id'=>$user_id,'frame_size'=>'0','frame_color'=>$frame_c,'frame_cost'=>'0','mount_size'=>'0','mount_color'=>'0','mount_cost'=>'0','glass_type'=>'0','glass_cost'=>'0','price'=>$total_price,'updated_price'=>'','total_price'=>'','image_size'=>$print_size,'images_price'=>$images_price,'image_name'=>$images_filename,'create_date'=>$date, 'path'=>$path,'promo_code'=>$promo_code,'promo_discount'=>$promo_discount,'promo_price'=>$promo_price);
 				$check1=$this->frontend_model->check_cart_details($user_id,$img_id,$paper_surface,$print_size);			 
@@ -2475,6 +2477,8 @@ public function themes_lightbox($lightbox_id,$page_no,$category="none",$shape="n
 					echo $path = 1;
 				}	else{
 					echo $path = 0;
+				}if($this->input->post('path')==2){
+				$path=$this->input->post('path');
 				}
 				$res=array('cart_id'=>'', 'image_print_type'=>$paper_surface, 'image_id'=>$img_id, 'qty'=>1, 'user_id'=>$user_id, 'frame_size'=>$frameSize, 'frame_color'=>$frame_color, 'frame_cost'=>$FrameCost, 'mount_size'=>$mat_size,'mount_code'=>$mount_color, 'mount_color'=>$mat_color, 'mount_cost'=>$MountCost, 'glass_type'=>$glasses, 'glass_cost'=>$glasses_coste, 'price'=>$total_price,'total_price'=>$total_price, 'updated_price'=>'', 'image_size'=>$print_size,'framed_image_size'=>$final_frame_size,'images_price'=>$images_price, 'image_name'=>$images_filename, 'create_date'=>$date, 'path'=>$path,'size'=>$product_size,'promo_code'=>$promo_code,'promo_discount'=>$promo_discount,'promo_price'=>$promo_price);
 				$data=array_map('trim',$res);

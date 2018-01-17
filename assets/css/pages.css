@@ -222,7 +222,6 @@
 .frame-it  .lri{ width:29px; height:24px; background:url(../img/lr.jpg) no-repeat; display:inline-block;}
 .frame-it  .lr{ width:29px; height:24px; background:url(../img/rr.jpg) no-repeat; display:inline-block;}
 
-.checkout{margin:0; padding:0; content:''; overflow:hidden;}
 .checkout-r-c{ float:right; width:380px;}
 
 .checkout-l-c p{font-family:Arial, Helvetica, sans-serif; font-size:24px; color:#154599; border-bottom: dotted 1px #ccc;}
@@ -258,8 +257,10 @@
 .savencoti-btn{margin:0; padding:4px 20px; background:#f9a21a; text-decoration:none !important; font-size:18px; text-align:center; color:#fff; border-radius:4px;}
 .tac{width:200px !important; margin:0 auto !important;}
 
-.paymet{margin:0 0 20px 0; padding:0; content:''; overflow:hidden;}
-.paymet01{margin:0 0 20px 0; padding:0; content:''; overflow:hidden; border:solid 1px #ccc;}
+.paymet01 {
+	margin: 0 0 20px 0;
+	border: solid 1px #ccc;
+}
 .paymet-inner-l{margin:0; padding:0; float:left;}
 .paymet-inner-r{margin:0; padding:0; float:right;}
 .paymet-inner-r p{margin:0; padding:0;}
@@ -416,7 +417,13 @@ p.cartfare{font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#6d6d
 .gall-w p a:hover{background:#fff; border-color:#ff8400; color:#444;}
 
 
-.detail{margin:0; padding:10px; width:auto;} 
+.detail {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-top: 10px;
+	overflow-y: hidden;
+	overflow-x: auto;
+}
 .detail table{margin:0; border:1px solid #e0e0ed; background:#ffffff; padding:4px;}
 .detail table tr td{vertical-align:top; padding:10px;}
 .detail table tr:first-child{font-size:15px; color:#000;}
