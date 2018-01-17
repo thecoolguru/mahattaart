@@ -179,7 +179,7 @@ function price_details(){
         
         <!-- checkout -->
         <div class="checkout">
-        	<div class="checkout-l-c col-md-7 col-sm-7 col-xs-12">
+        	<div class="checkout-l-c col-md-12 col-sm-12 col-xs-12">
             <div id="uploader_popup_goofy_a" style="display: none;">
                     <div class="uploader_popup_header">
                     <h2 class="text-center">Promo Codes</h2>
@@ -508,7 +508,7 @@ function price_details(){
 							
                             <div class="row">
 		 <div id="no-more-tables">
-                           <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                           <table class="col-md-12 table table-bordered table-striped table-condensed cf">
                 	<thead class="cf">
                         <tr>
                             <th>S.No.</th>
