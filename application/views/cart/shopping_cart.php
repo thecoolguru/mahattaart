@@ -153,9 +153,11 @@
                                                                 <th>Description</th>
                                                                 <th>Detail</th>
                                                                 <th>Quantity</th>
-																<th>Price</th>
+																<th>Before D Price</th>
 																<th>Discount(%)</th>
-																<th>D Price</th>
+																<th>Price</th>
+																
+																<!--<th>D Price</th>-->
 																<th>Tax(%)</th>
 																<th>Tax Amt.</th>
                                                                 <th >Total Price</th>
@@ -318,6 +320,8 @@ $search_data_r=json_decode($search_data_file,TRUE);
 					  </form>
 					</div>
 				</td>
+				<td class="pri" >Rs.<?php  echo $old_price=round($image['old_price']*$image['qty']); ?></td>
+				<td><?php echo $promo_discount=$image['promo_discount']?></td>
                   <td class="pri" >Rs.<?php  echo $wd_tax_price=$image['price']; ?>
 					<input type="hidden" id="hidid<?=$i?>" value="<?= $image['cart_id'];?>" />
 						<input type="hidden" id="hidprice<?=$i?>" value="<?=$image['price'];?>" />
@@ -325,12 +329,13 @@ $search_data_r=json_decode($search_data_file,TRUE);
 							<?php
 							$updated_promo_price=$image['updated_promo_price'];
 							$dis_amt=round($image['promo_price']*$image['qty'],2);
+							 if($updated_promo_price=='' || $updated_promo_price=='0'){ $promo_price=$image['promo_price'];}                  else{
+					 $promo_price=round($image['promo_price']*$image['qty'],2);
+					}
 							?>
 				  </td>
-				  <td><?php echo $promo_discount=$image['promo_discount']?></td>
-					<td><?php if($updated_promo_price=='' || $updated_promo_price=='0'){echo $promo_price=$image['promo_price'];}                  else{
-					echo $promo_price=round($image['promo_price']*$image['qty'],2);
-					}?></td>
+				  
+					<!--<td></td>-->
 					 <td><?=$tax_prctg?></td>
 						<td><?php   
 								$tax_amt=(($wd_tax_price*$tax_prctg)/100);
@@ -363,7 +368,7 @@ $search_data_r=json_decode($search_data_file,TRUE);
 							//echo $i.'sss';
 							if($update_srno=='removed' || $image['tax_goods']=='' || $qty_update_tbl!=''){
 							//echo "ssss";
-							   $this->cart_model->update_serail_noforcart($this->session->userdata('userid'),$i,$cart_id,$tax_prctg,$tax_amt_fnl,$total_amt_product_fnl,$hsn_code,$dis_amt);
+							   $this->cart_model->update_serail_noforcart($this->session->userdata('userid'),$i,$cart_id,$tax_prctg,$tax_amt_fnl,$total_amt_product_fnl,$hsn_code,$dis_amt,$old_price);
 							  }
 							$i++; } ?>
 					</tbody>

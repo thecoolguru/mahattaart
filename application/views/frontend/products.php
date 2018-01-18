@@ -76,7 +76,6 @@
 				$('#18').html('');
 				$('#large_img3,.bshow').show();
 				$('#print_type').val('only_print');
-				$('#17').html(orig_image_size+'Print Only');
 				$('#type').val('3');
 				$('#print_sizes').html(orig_image_size);
 				get_quality('');
@@ -598,7 +597,7 @@ function calculate_cost(value,surface_type){
 		var type = value; 
  		if( type == 1){
 			if( $("input[id='museum']:checked").val()){
-	 			$('#17').html(image_size_final+'Canvas Print without border');
+				$('#17').html(image_size_final+' Canvas Print with border | '+orig_image_size+' Canvas Print without borderr');
 	 		}else if( $("input[id='gallery']:checked").val()){
 	 			$('#17').html(image_size_final+' Canvas Print');
 			}
@@ -658,7 +657,7 @@ function calculate_cost(value,surface_type){
 		$('.framing').show();
 		$('#print_paper').html($('#surfaces').val());
 		}else{
- 			$('#17').html(orig_image_size+' Print Only');
+ 			
  			$('.canvas,.framing').hide();
 			$('.print').show();
  			$('#print_h_w').val(width+'X'+height);
@@ -1063,6 +1062,7 @@ function calculate_cost(value,surface_type){
 						width: 2px;
 						background-color: #333;
 					}
+
 					.close::after {
 						transform: rotate(-45deg);
 					}
@@ -1120,6 +1120,7 @@ function calculate_cost(value,surface_type){
 					</a>
 			</div> 
     	</div>
+
 	</div>
 
 		<div id="canvas_show" style=" margin: 0 auto;text-align:center;padding-top:78px; width:120px">
@@ -2894,6 +2895,9 @@ function addToCart()
   var price=$('#print_price').html();
       price = price.split('.');
   	  price = price[1];
+var old_price=$('.old_price').html();
+      old_price = old_price.split('.');
+  	  old_price = old_price[1];	  
   var print_size=$('#print_h_w').val();
   var image_id=$('#image_id').val();
   var image_type= $('#surfaces').val();
@@ -2912,7 +2916,7 @@ function addToCart()
     $.ajax({
         type: "POST",
 	    url: "<?=base_url()?>frontend/frameit_addtocart",
-        data:"glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print+"&promo_code="+promo_name_code+"&promo_discount="+promo_discount+"&promo_price="+promo_amount,
+        data:"glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print+"&promo_code="+promo_name_code+"&promo_discount="+promo_discount+"&promo_price="+promo_amount+'&old_price='+old_price,
 		success:function(data)  
     	{   
     		swal({

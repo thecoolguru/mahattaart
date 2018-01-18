@@ -436,7 +436,24 @@
 			</div>
 		  </div>
           
-    
+<!--    <script>
+$(document).ready(function(){
+    $("#sign_up_btn2").click(function(){
+        $("#login-modal").removeClass("modal fade in");
+        $("#login-modal").addClass("modal fade");
+    });
+
+    $("#send_mail_btn2").click(function(){
+        $("#login-modal").removeClass("modal fade in");
+        $("#login-modal").addClass("modal fade");
+    });
+
+    $("#login-link2").click(function(){
+        $("#login-modal3").removeClass("modal fade in");
+        $("#login-modal3").addClass("modal fade");
+    });
+});
+</script>-->
 
      <div class="signup gall-w" id="addtointrestedgallery" style="display:none;">
          <div style="position: absolute;right: 10px;top: 0;"><a href="" onClick="allclose('');return false;" >Close</a></div><br>

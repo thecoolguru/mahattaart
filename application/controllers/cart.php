@@ -198,8 +198,8 @@ class Cart extends CI_Controller{
 
 	protected function CCAVENUE_DETAILTS()  {
             $marchent_id="64544";
-            $auth_code="AVUJ75EL29CN01JUNC";
-            $working_key="3267FC754BEB355D741CB81497D53302";
+            $auth_code="AVIZ70ED05AF29ZIFA";
+            $working_key="759A2FF4378D5CB2F8818E28CBCD2DDF";
             return array($marchent_id,$auth_code,$working_key);
     } 
 	public function CCAvenue_check_out(){
@@ -213,7 +213,7 @@ class Cart extends CI_Controller{
         $merchant_id=$ccavenue_data[0];
 	   $working_key=$ccavenue_data[2];//Shared by CCAVENUES
 		$access_code=$ccavenue_data[1];//Shared by CCAVENUES
-	    $encrypted_data=$this->encrypt(trim($merchant_data),trim($working_key));
+	    $encrypted_data=$this->encrypt($merchant_data,$working_key);
 		$action_url="https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction";
 ?>
 		<form method="post" name="redirect" action="<?=$action_url?>"> 

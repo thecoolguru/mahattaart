@@ -88,6 +88,8 @@ class Frontend extends CI_Controller
 		$promo_code = $this->input->post('promo_code');
 		$promo_discount = $this->input->post('promo_discount');
 		$promo_price = $this->input->post('promo_price');
+		$old_price = $this->input->post('old_price');
+		
 		if($img_id!=''){
 		 	if($print_value!='')	{
 				if($print_value=='canvas_only')	{
@@ -104,7 +106,7 @@ class Frontend extends CI_Controller
 				}	else{
 					echo $path = 0;
 				}
-				echo $data=array('cart_id'=>'','image_print_type'=>$paper_surface,'image_id'=>$img_id,'qty'=>1,'user_id'=>$user_id,'frame_size'=>'0','frame_color'=>$frame_c,'frame_cost'=>'0','mount_size'=>'0','mount_color'=>'0','mount_cost'=>'0','glass_type'=>'0','glass_cost'=>'0','price'=>$total_price,'updated_price'=>'','total_price'=>'','image_size'=>$print_size,'images_price'=>$images_price,'image_name'=>$images_filename,'create_date'=>$date, 'path'=>$path,'promo_code'=>$promo_code,'promo_discount'=>$promo_discount,'promo_price'=>$promo_price);
+				echo $data=array('cart_id'=>'','image_print_type'=>$paper_surface,'image_id'=>$img_id,'qty'=>1,'user_id'=>$user_id,'frame_size'=>'0','frame_color'=>$frame_c,'frame_cost'=>'0','mount_size'=>'0','mount_color'=>'0','mount_cost'=>'0','glass_type'=>'0','glass_cost'=>'0','price'=>$total_price,'updated_price'=>'','total_price'=>'','image_size'=>$print_size,'images_price'=>$images_price,'image_name'=>$images_filename,'create_date'=>$date, 'path'=>$path,'promo_code'=>$promo_code,'promo_discount'=>$promo_discount,'promo_price'=>$promo_price,'old_price'=>$old_price);
 				$check1=$this->frontend_model->check_cart_details($user_id,$img_id,$paper_surface,$print_size);			 
 			}	else{
 				if($this->session->userdata('page'))	{
@@ -112,7 +114,7 @@ class Frontend extends CI_Controller
 				}	else{
 					echo $path = 0;
 				}
-				$res=array('cart_id'=>'', 'image_print_type'=>$paper_surface, 'image_id'=>$img_id, 'qty'=>1, 'user_id'=>$user_id, 'frame_size'=>$frameSize, 'frame_color'=>$frame_color, 'frame_cost'=>$FrameCost, 'mount_size'=>$mat_size,'mount_code'=>$mount_color, 'mount_color'=>$mat_color, 'mount_cost'=>$MountCost, 'glass_type'=>$glasses, 'glass_cost'=>$glasses_coste, 'price'=>$total_price,'total_price'=>$total_price, 'updated_price'=>'', 'image_size'=>$print_size,'framed_image_size'=>$final_frame_size,'images_price'=>$images_price, 'image_name'=>$images_filename, 'create_date'=>$date, 'path'=>$path,'size'=>$product_size,'promo_code'=>$promo_code,'promo_discount'=>$promo_discount,'promo_price'=>$promo_price);
+				$res=array('cart_id'=>'', 'image_print_type'=>$paper_surface, 'image_id'=>$img_id, 'qty'=>1, 'user_id'=>$user_id, 'frame_size'=>$frameSize, 'frame_color'=>$frame_color, 'frame_cost'=>$FrameCost, 'mount_size'=>$mat_size,'mount_code'=>$mount_color, 'mount_color'=>$mat_color, 'mount_cost'=>$MountCost, 'glass_type'=>$glasses, 'glass_cost'=>$glasses_coste, 'price'=>$total_price,'total_price'=>$total_price, 'updated_price'=>'', 'image_size'=>$print_size,'framed_image_size'=>$final_frame_size,'images_price'=>$images_price, 'image_name'=>$images_filename, 'create_date'=>$date, 'path'=>$path,'size'=>$product_size,'promo_code'=>$promo_code,'promo_discount'=>$promo_discount,'promo_price'=>$promo_price,'old_price'=>$old_price);
 				$data=array_map('trim',$res);
 				$check1= $this->frontend_model->check_cart_details($user_id,trim($img_id),trim($paper_surface),$print_size,$frame_color,trim($mat_color),trim($glasses));
 			}
@@ -2452,6 +2454,7 @@ public function themes_lightbox($lightbox_id,$page_no,$category="none",$shape="n
 		$promo_code = $this->input->post('promo_code');
 		$promo_discount = $this->input->post('promo_discount');
 		$promo_price = $this->input->post('promo_price');
+		$old_price=$this->input->post('old_price');
 		if($img_id!=''){
 			if($print_value!='')	{
 				if($print_value=='canvas_only')	{
@@ -2470,7 +2473,7 @@ public function themes_lightbox($lightbox_id,$page_no,$category="none",$shape="n
 				}if($this->input->post('path')==2){
 				$path=$this->input->post('path');
 				}
-				$data=array('cart_id'=>'','image_print_type'=>$paper_surface,'image_id'=>$img_id,'qty'=>1,'user_id'=>$user_id,'frame_size'=>'0','frame_color'=>$frame_c,'frame_cost'=>'0','mount_size'=>'0','mount_color'=>'0','mount_cost'=>'0','glass_type'=>'0','glass_cost'=>'0','price'=>$total_price,'updated_price'=>'','total_price'=>'','image_size'=>$print_size,'images_price'=>$images_price,'image_name'=>$images_filename,'create_date'=>$date, 'path'=>$path,'promo_code'=>$promo_code,'promo_discount'=>$promo_discount,'promo_price'=>$promo_price);
+				$data=array('cart_id'=>'','image_print_type'=>$paper_surface,'image_id'=>$img_id,'qty'=>1,'user_id'=>$user_id,'frame_size'=>'0','frame_color'=>$frame_c,'frame_cost'=>'0','mount_size'=>'0','mount_color'=>'0','mount_cost'=>'0','glass_type'=>'0','glass_cost'=>'0','price'=>$total_price,'updated_price'=>'','total_price'=>'','image_size'=>$print_size,'images_price'=>$images_price,'image_name'=>$images_filename,'create_date'=>$date, 'path'=>$path,'promo_code'=>$promo_code,'promo_discount'=>$promo_discount,'promo_price'=>$promo_price,'old_price'=>$old_price);
 				$check1=$this->frontend_model->check_cart_details($user_id,$img_id,$paper_surface,$print_size);			 
 			}	else{
 				if($this->session->userdata('page'))	{
@@ -2480,7 +2483,7 @@ public function themes_lightbox($lightbox_id,$page_no,$category="none",$shape="n
 				}if($this->input->post('path')==2){
 				$path=$this->input->post('path');
 				}
-				$res=array('cart_id'=>'', 'image_print_type'=>$paper_surface, 'image_id'=>$img_id, 'qty'=>1, 'user_id'=>$user_id, 'frame_size'=>$frameSize, 'frame_color'=>$frame_color, 'frame_cost'=>$FrameCost, 'mount_size'=>$mat_size,'mount_code'=>$mount_color, 'mount_color'=>$mat_color, 'mount_cost'=>$MountCost, 'glass_type'=>$glasses, 'glass_cost'=>$glasses_coste, 'price'=>$total_price,'total_price'=>$total_price, 'updated_price'=>'', 'image_size'=>$print_size,'framed_image_size'=>$final_frame_size,'images_price'=>$images_price, 'image_name'=>$images_filename, 'create_date'=>$date, 'path'=>$path,'size'=>$product_size,'promo_code'=>$promo_code,'promo_discount'=>$promo_discount,'promo_price'=>$promo_price);
+				$res=array('cart_id'=>'', 'image_print_type'=>$paper_surface, 'image_id'=>$img_id, 'qty'=>1, 'user_id'=>$user_id, 'frame_size'=>$frameSize, 'frame_color'=>$frame_color, 'frame_cost'=>$FrameCost, 'mount_size'=>$mat_size,'mount_code'=>$mount_color, 'mount_color'=>$mat_color, 'mount_cost'=>$MountCost, 'glass_type'=>$glasses, 'glass_cost'=>$glasses_coste, 'price'=>$total_price,'total_price'=>$total_price, 'updated_price'=>'', 'image_size'=>$print_size,'framed_image_size'=>$final_frame_size,'images_price'=>$images_price, 'image_name'=>$images_filename, 'create_date'=>$date, 'path'=>$path,'size'=>$product_size,'promo_code'=>$promo_code,'promo_discount'=>$promo_discount,'promo_price'=>$promo_price,'old_price'=>$old_price);
 				$data=array_map('trim',$res);
 				$check1= $this->frontend_model->check_cart_details($user_id,trim($img_id),trim($paper_surface),$print_size,$frame_color,trim($mat_color),trim($glasses));
 			}

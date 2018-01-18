@@ -20,8 +20,8 @@ class Cart_model extends CI_Model
 	 return $query->result_array();
 	}
 		
-	function update_serail_noforcart($user_id,$i,$cart_id,$tax_prctg,$tax_amt_fnl,$total_amt_product_fnl,$hsn_code,$dis_amt){
-	$data=array('sr_no'=>$i,'tax_goods'=>$tax_prctg,'tax_amount'=>$tax_amt_fnl,'grand_price'=>$total_amt_product_fnl,'hsn_code'=>$hsn_code,'updated_promo_price'=>$dis_amt);
+	function update_serail_noforcart($user_id,$i,$cart_id,$tax_prctg,$tax_amt_fnl,$total_amt_product_fnl,$hsn_code,$dis_amt,$old_price){
+	$data=array('sr_no'=>$i,'tax_goods'=>$tax_prctg,'tax_amount'=>$tax_amt_fnl,'grand_price'=>$total_amt_product_fnl,'hsn_code'=>$hsn_code,'updated_promo_price'=>$dis_amt,'old_price_updated'=>$old_price);
 	$this->db->where('user_id',$user_id);
 	$this->db->where_in('cart_id',$cart_id);
 	$query=$this->db->update('tbl_cart',$data);
