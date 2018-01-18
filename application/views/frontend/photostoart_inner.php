@@ -234,9 +234,13 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 	var actual_price=$('.actual_price').html();
 	actual_price=actual_price.split('.');
 	actual_price=actual_price[1];
-	if(actual_price=='0'){
+	if(actual_price=='0' || actual_price=='NaN'){
 	return false;
 	}
+	var old_price=$('#old_price').val();
+	old_price=old_price.split('.');
+	old_price=old_price[1];
+	
 	var paper_surface = $('#paper_surface').val();
 	var final_frame_size  = '';
 	if($('#click').html() == 'canvas_click'){
@@ -319,7 +323,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 			$.ajax({
 				 type: "POST",
 				 url: "<?=base_url()?>index.php/frontend/frameit_myupload",
-				 data: "glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_color+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print+"&promo_code="+promo_name_code+"&promo_discount="+promo_discount+"&promo_price="+promo_amount,
+				 data: "glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_color+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print+"&promo_code="+promo_name_code+"&promo_discount="+promo_discount+"&promo_price="+promo_amount+'&old_price='+old_price,
 				 success:function(data)  
 				 {    
 					swal({
@@ -2055,17 +2059,15 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
     </div>
     	<div class="popup-default-message text-center dz-default dz-message" id='msg'>
             <h2>Drag and drop images here or click to browse</h2>
-            <p>Each image should be a minimum of 500 KB to ensure a high quality print. Up to 10 images are allowed.</p>
+			<p>Please upload the High Resolution image if you have to get the better print quality and bigger print size</p>
         </div>
       </div>
       
       <div class="modal-footer">
       	<div class="popup-default-footer col-md-12">
-        <p class="text-left pull-left">By uploading, I agree to the <span> <a href="#" id="termsofuselink" style="cursor: default; color: #ef9223">Terms of use</a> </span> </p>
+        <p class="text-left pull-left">By uploading, I agree to the <span> <a href="<?=base_url()?>frontend/terms_of_use" id="termsofuselink" style="cursor: default; color: #ef9223">Terms of use</a> </span> </p>
         <div class="popup-default-button pull-right">
             <input id="submit-all" value="Upload" type="button" data-dismiss="modal" class="popup-button">
-
-            <!-- <a id="submit-all" class="popup-button" href="#" style="color:#337ab7"> UPLOAD</a> -->
         </div>
     </div>
       </div>
@@ -2214,6 +2216,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         <canvas id="myCanvas3" height="301px" width="330px" style="width:100%;height:111px;"></canvas> 
         <script>
 		function apply_promo_code(total_amount){
+		$('#old_price').val(total_amount);
 		total_amount=total_amount.split('.');
 		total_amount=total_amount[1];
 		//alert(total_amount)
@@ -2357,6 +2360,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         </div>
         
         </form>
+		 <input type="hidden" name="old_price" id="old_price" value="">
         <input type="hidden" name="quality_rate" id="quality_rate" value="">
 		<input type="hidden" name="surface_type_code" id="surface_type_code" value="">
         <!--Image Div --> 

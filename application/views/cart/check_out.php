@@ -514,6 +514,8 @@ function price_details(){
                             <th>S.No.</th>
                             <th>Item</th>
                             <th>Quantity</th>
+							<th>Before D Price</th>
+							<th>Discount(%)</th>
 							<th>Price</th>
 							<th>Tax(%)</th>
 							<th>Tax Amt.</th>
@@ -527,7 +529,7 @@ function price_details(){
 					    $grand_total=$sub_total=$total_tax_amt=0;
 						$qty_update_tbl=$_REQUEST['qty_update'];
 		                $data=$this->cart_model->get_usercart($this->session->userdata('userid'));     $subtotal=0; $i=1;$sr=1;
-		                    $k = 0;
+		                    $k =$total_price_wo_tax=$dis_amt_total=$old_price_total=0;
                         foreach($data as $image){
 
                             if($cart_data[$k] == 0){
@@ -637,6 +639,12 @@ function price_details(){
                 </form>
 			</div>
 		</td>
+		<td class="pri" >Rs.<?php  echo $old_price=$image['old_price']*$image['qty']; ?></td>
+				<td><?php echo $promo_discount=$image['promo_discount'];
+				$promo_price=$image['promo_price'] *$image['qty'];
+				$dis_amt_total=$dis_amt_total + $promo_price;
+				$old_price_total=$old_price_total + $old_price;
+				?></td>
     <td>
     <?php if($image['updated_price']){?>
         <img src="<?=base_url()?>assets/images/rupee-img-price.gif" /> <?php echo $price_updt_ornot=$image['updated_price'];?>
@@ -651,11 +659,14 @@ function price_details(){
 				<td><?php echo $total_price_per=$tax_amt_fnl+$price_updt_ornot;?></td>
             </tr>
                 <?php 
+				$dis_amt=round($image['promo_price']*$image['qty'],2);
+				$total_price_wo_tax=$total_price_wo_tax + $old_price;
 				 $sub_total=$sub_total + $price_updt_ornot;
 				 $total_tax_amt=$total_tax_amt + $tax_amt_fnl;
 				 $grand_total=$grand_total+$total_price_per;
+				 $hsn_code=$image['hsn_code'];
 				 if($qty_update_tbl!=''){
-				 $this->cart_model->update_serail_noforcart($this->session->userdata('userid'),$sr,$cart_id,$tax_prctg,$tax_amt_fnl,$total_price_per);
+				 $this->cart_model->update_serail_noforcart($this->session->userdata('userid'),$sr,$cart_id,$tax_prctg,$tax_amt_fnl,$total_price_per,$hsn_code,$dis_amt,$old_price);
 				 }
 				$sr++; } } ?>
 				</tbody>
@@ -766,7 +777,14 @@ return false;
                             
                             
                             <table width="100%" cellpadding="10px;" cellspacing="0">
-
+                         <tr>
+                            <td class="data1">Amount before discount</td>
+                            <td class="data1"><?php echo $old_price_total;?></td>
+                          </tr>
+						  <tr>
+                            <td class="data2">Discount Amount</td>
+                            <td class="data2"><?php echo $dis_amt_total; ?></td>
+                          </tr>
                                 
                               <tr>
                                 <td>Sub Total Amount</td>
@@ -842,8 +860,8 @@ return false;
 	 $result= $this->cart_model->get_cart_user_details($this->session->userdata('userid'));
               
                 $billerName= $result[0]->first_name.' '.$result[0]->last_name;
-	$redirect_url='http://52.74.175.72/index.php/cart/response';
-       $cancel_url='http://52.74.175.72/index.php/cart/cancel_url';  
+	$redirect_url='http://mahattaart.com/index.php/cart/response';
+       $cancel_url='http://mahattaart.com/index.php/cart/cancel_url';  
 	?>
 	
 	<?php
@@ -1063,7 +1081,9 @@ if(values=='cod'){
 //alert(values)
 $('#payment_action').attr('action','<?=base_url()?>cart/payment_by_cod');
 }else if(values=='online'){
-$('#payment_action').attr('action','http://52.74.175.72/index.php/cart/CCAvenue_check_out');
+alert('Oops! Technical Problem For Online Payment We are working on it. So Please proceed the order with COD or contact us at +91-8800639075 or 011- 41828972 or email us at info@mahattaart.com to complete your payment.');
+return false;
+$('#payment_action').attr('action','http://mahattaart.com/index.php/cart/CCAvenue_check_out');
 }}
 </script>
 
