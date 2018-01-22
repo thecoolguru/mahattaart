@@ -393,7 +393,7 @@ return $query->result();
 		$this->db->where('cat_id',$cat_id);
 		$this->db->where('status','1');
 		$this->db->order_by('title','asc');
-		if($limit != 0)	{
+		if($limit != 0 && $cat_id!='5' )	{
 			$this->db->limit($limit,$start);
 		}
 		$query=$this->db->get('header_images');

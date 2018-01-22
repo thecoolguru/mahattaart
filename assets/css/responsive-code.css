@@ -81,7 +81,6 @@ h1.ttto::before {
 		font-size: 12px !important;
 		text-transform: uppercase;
 		color: #000;
-		font-family: 'BebasNeueRegular',Arial,Helvetica,sans-serif;
 		font-size: ;
 	}
 	.bg {
@@ -209,7 +208,6 @@ h1.ttto::before {
     h1.text-font {
         color: #fff;
         display: inline-block;
-        font-family: Oswald;
         font-size: 15pt;
         font-weight: normal;
         letter-spacing: 1px;
@@ -311,7 +309,6 @@ h1.ttto::before {
 	.menu-list li a {
 		color: #777;
 		display: inline-block;
-		font-family: "Open Sans",Arial,Helvetica,sans-serif;
 		font-size: 13px;
 		font-weight: normal;
 		padding: 15px 10px;
@@ -326,7 +323,6 @@ h1.ttto::before {
 	}
 	.thems-our1 p {
 		font-size: 13px !important;
-		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 		padding: 5px 0px !important;
 	}
 		#gal-customcombobox {
@@ -338,7 +334,6 @@ h1.ttto::before {
 		padding: 2px;
 		width: 233px;
 		height: 28px;
-		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 		border: 0;
 		font-size: 11px;
 		font-weight: normal;
@@ -368,12 +363,10 @@ h1.ttto::before {
 		padding: 0;
 		font-size: 14px;
 		color: #fff;
-		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 		text-transform: uppercase;
 	}
 	
 	.margn h5 {
-		font-family: "BebasNeueRegular" !important;
 		font-size: 20px;
 		font-weight: 500;
 		margin: 5px 0;
@@ -670,7 +663,6 @@ h1.ttto::before {
     }
     .footer-content div h1 {
         color: #fff;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 17px;
         margin: 0;
         padding: 0;
@@ -718,7 +710,6 @@ h1.ttto::before {
 	}
 	.margn{margin:2px 0;}
 	.margn h5 {
-		font-family: "BebasNeueRegular" !important;
 		font-size: 20px;
 		font-weight: 500;
 		margin: 5px 0;
@@ -731,7 +722,6 @@ h1.ttto::before {
 	.menu-list li a {
 		color: #777;
 		display: block;
-		font-family: "Open Sans",Arial,Helvetica,sans-serif;
 		font-size: 11px;
 		font-weight: normal;
 		padding: 10px;
@@ -746,7 +736,6 @@ h1.ttto::before {
 	}
 	.thems-our1 p {
 		font-size: 13px !important;
-		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 		padding: 5px 0px !important;
 	}
 
@@ -759,7 +748,6 @@ h1.ttto::before {
 		padding: 2px;
 		width: 233px;
 		height: 28px;
-		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 		border: 0;
 		font-size: 11px;
 		font-weight: normal;
@@ -842,7 +830,6 @@ h1.ttto::before {
 /* md */
 @media(min-width:992px) and (max-width:1199px) {
     .margn h5 {
-        font-family: "BebasNeueRegular" !important;;
         font-size: 20px !important;;
         font-weight: 500;
         margin: 5px 0;
@@ -987,7 +974,6 @@ h1.ttto::before {
 	.menu-list li a {
 		color: #777;
 		display: block;
-		font-family: "Open Sans",Arial,Helvetica,sans-serif;
 		font-size: 12px;
 		font-weight: normal;
 		padding: 15px 7px;
@@ -1003,13 +989,11 @@ h1.ttto::before {
 
 	.thems-our1 p {
 		font-size: 13px !important;
-		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 		padding: 5px 0px !important;
 	}
 	#menu ul li > a {
 		display: block;
 		color: #FFF;
-		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 		padding: 11px 16px 10px 0;
 		font-size: 10px;
 		letter-spacing: 1.25px;
@@ -1023,7 +1007,6 @@ h1.ttto::before {
 		padding: 2px;
 		width: 233px;
 		height: 28px;
-		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 		border: 0;
 		font-size: 11px;
 		font-weight: normal;
@@ -1116,7 +1099,6 @@ h1.ttto::before {
 		position: absolute  !important;;
 		width: 100%  !important;;
 		z-index: 2  !important;;
-		font-family: HelveticaNeue,"Helvetica Neue",Helvetica,Arial,sans-serif;
 	}
     .shopTopCategories {
         column-width: 15em
@@ -1155,7 +1137,6 @@ h1.ttto::before {
 	.menu-list li a {
 		color: #777;
 		display: block;
-		font-family: "Open Sans",Arial,Helvetica,sans-serif;
 		font-size: 13px;
 		font-weight: normal;
 		padding: 15px 5px;
@@ -1173,7 +1154,6 @@ h1.ttto::before {
         margin-top: 250px !important;
     }
     .margn h5 {
-        font-family: "BebasNeueRegular" !important;;
         font-size: 20px;
         font-weight: 500;
         margin: 5px 0;
@@ -1194,14 +1174,12 @@ h1.ttto::before {
 	#menu ul li > a {
 	  display: block;
 	  color: #FFF;
-	  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 	  padding: 11px 16px 10px 0;
 	  font-size: 13px;
 	  letter-spacing: 1.25px;
 	}
 	.thems-our1 p {
 		font-size: 13px !important;
-		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 		padding: 5px 0px !important;
 	}
 		#gal-customcombobox {
@@ -1213,8 +1191,8 @@ h1.ttto::before {
 		padding: 2px;
 		width: 233px;
 		height: 28px;
-		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 		border: 0;
+
 		font-size: 11px;
 		font-weight: normal;
 		color: #888;

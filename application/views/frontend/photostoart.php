@@ -450,15 +450,6 @@ a.lightbox-close::after {
 	transform: translate(-50%, -50%)
 }
 
-.uploader_popup_header>h2 {
-	font-size: 22px;
-	font-weight: 700;
-	text-transform: uppercase;
-	margin: 0;
-	font-family: BebasNeueRegular!important;
-	padding-top: 2px
-}
-
 .uploader_popup_upload-icon>img {
 	border: none;
 	bottom: 0;

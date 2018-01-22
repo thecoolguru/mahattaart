@@ -27,25 +27,33 @@ $continue_shopping_redirect=$this->session->userdata('continue_shopping');
 				$('#width').keyup(function(){
 						var real_value = $(this).val().replace(/[^0-9]/g,'');
 						$(this).val(real_value);
+						//
 						var real_width = $('#w_value').val();
 						var real_height = $('#h_value').val();
 						if($('#type').html() == 'horizontal')
 						var ratio = real_height/real_width;
 						if($('#type').html() == 'vertical')
 						var ratio = real_width/real_height;
-						var max_width = real_width/150;
-					    var max_height = real_height/150;
+						//var max_width = real_width/150;
+					   //var max_height = real_height/150;
+				  var max_width=$('#maximum_width').val();
 						var id = $(this).attr('id');
 						// setInterval(function(){ alert("Hello");
 						var value = $(this).val();	
-						
+						if(value==""){
+						$('#finished_size').html('');
+						return false;
+						}
+						if(value<=9){
+						value='0'+value;
+						}
 						if(id == 'width'){
 							if(value == ''){
 							$('.actual_price').val('Rs.0');
 							$('#height').val('');	
 							}
 						 }	
-							if( (value <= max_width) && (value != 0) && (value != '') ){
+							if( (value <= max_width) && (value != 0) && (value != '') && value > 3){
 							var input_height = ratio*value;
 							$('#height').val(Math.round(input_height));
 							setTimeout(function(){
@@ -53,9 +61,10 @@ $continue_shopping_redirect=$this->session->userdata('continue_shopping');
 							},200);
 						}else{
 						 $('#height').val('');
-						 setTimeout(function(){
 						 $('.actual_price').html('Rs.0');
-						 $('#finished_size').html('<p style="color:red;">Since the maximum printable width of your image is ('+Math.round(max_width)+') inch. Please enter value in width less than equal to ('+Math.round(max_width)+') inch. If you wish to print the image in high size, request you to please upload the hi-resolution image.</p>');},500);
+						 setTimeout(function(){
+						 if(value > '03'){
+						 $('#finished_size').html('<p style="color:red;">Since the maximum printable width of your image is ('+Math.round(max_width)+') inch. Please enter value in width less than equal to ('+Math.round(max_width)+') inch. If you wish to print the image in high size, request you to please upload the hi-resolution image.</p>');}else{$('#finished_size').html('<p style="color:red;">Since the minimum printable width of your image is 4 inch. Please enter value in width greater than equal to 4 inch.</p>');}},500);
 						}
 				});
 				
@@ -68,26 +77,36 @@ $continue_shopping_redirect=$this->session->userdata('continue_shopping');
 						var ratio = real_height/real_width;
 						if($('#type').html() == 'vertical')
 						var ratio = real_width/real_height;
-						var max_width = real_width/150;
-					    var max_height = real_height/150;
+						//var max_width = real_width/150;
+					  //  var max_height = real_height/150;
+						var max_height=$('#maximum_height').val();
 						var id = $(this).attr('id');
 						var value = $(this).val();	
+						if(value==""){
+						$('#finished_size').html('');
+						return false;
+						}
+						if(value<=9){
+						value='0'+value;
+						}
 						 if(id == 'height'){
 							if(value == ''){
 							$('.actual_price').val('Rs.0');
 							$('#width').val('');	
 							}
 						 }
-						    if( (value <= max_height) && (value != 0) && (value != '') ){
+						    if( (value <= max_height) && (value != 0) && (value != '') && (value > 3) ){
 								var input_width = ratio*value; 	
 								$('#width').val(Math.round(input_width));
 								setTimeout(function(){
 								calculate_cost('Customize Size');
 								},200);
 							}else{
-							 setTimeout(function(){
 							$('#width').val('');
-							$('#finished_size').html('<p style="color:red;">Since the maximum printable height of your image is ('+Math.round(max_height)+') inch. Please enter value in height less than equal to ('+Math.round(max_height)+') inch. If you wish to print the image in high size, request you to please upload the hi-resolution image.)</p>');},500);	
+							$('.actual_price').html('Rs.0');
+							 setTimeout(function(){
+							if(value > '03'){
+							$('#finished_size').html('<p style="color:red;">Since the maximum printable height of your image is ('+Math.round(max_height)+') inch. Please enter value in height less than equal to ('+Math.round(max_height)+') inch. If you wish to print the image in high size, request you to please upload the hi-resolution image.)</p>');}else{$('#finished_size').html('<p style="color:red;">Since the minimum printable height of your image is 4 inch. Please enter value in height greater than equal to 4 inch.</p>');}},500);	
 							}
 						});
 					})	
@@ -760,6 +779,9 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 				//alert(height)
 				td += '<option value="'+width+'X'+height+'">'+width+'"X'+height+'"</option>';
 				}
+				$('#maximum_width').attr('value', width);
+				$('#maximum_height').attr('value', height);
+				
 				td += '<option value="Customize Size">Customize Size</option>';
 				//alert(td)
 				$('#sizes').html(td);
@@ -2266,8 +2288,6 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 		}
         .form-modify .control-label {
         font-weight: normal;
-        color: #888;
-        text-transform: ;
         }
         #finished_size {
         color: #888;
@@ -2331,7 +2351,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         <div class="form-group dimention">
         <label for="country" class="col-sm-5 control-label dimention" > Height (Inch.):</label>
         <div class="col-sm-5">
-        <input id="height" maxlength="7" class="form-control by_keyup_update dimention input_control inputs" type="text">
+        <input id="height" maxlength="2" class="form-control by_keyup_update dimention input_control inputs" type="text">
         </div>
         </div> <!-- /.form-group -->
         
@@ -2360,6 +2380,8 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         </div>
         
         </form>
+		<input type="hidden" name="maximum_width" id="maximum_width" value="">
+        <input type="hidden" name="maximum_height" id="maximum_height" value="">
 		 <input type="hidden" name="old_price" id="old_price" value="">
         <input type="hidden" name="quality_rate" id="quality_rate" value="">
 		<input type="hidden" name="surface_type_code" id="surface_type_code" value="">
@@ -2933,30 +2955,8 @@ color:#000
 }
 
 .h2a_ms_photos > h3 {
-color: #000;
-font-family: "BebasNeueRegular";
-font-size: 18px;
-font-weight: bold;
-letter-spacing: 1px;
-text-transform: uppercase;
-}
-
-.panel-title > i {
-	background: #f7f7f7 none repeat scroll 0 0;
-	border: 1px solid #000;
-	border-radius: 50%;
-	color: #888;
-	display: block;
-	float: left;
-	height: 20px;
-	margin-right: 8px;
-	padding: 4px 7px;
-	position: relative;
-	width: 20px;
-	line-height: 1;
-	font-size: 12px;
-	font-weight: normal;
-	font-style: normal;
+	font-size: 14px;
+	text-transform: uppercase;
 }
 
 .panel.panel-primary.h2a_ms_selector {
@@ -3113,12 +3113,9 @@ color: #888;
 text-decoration: underline;
 }
 .addtocartcontainer_heading > h2 {
-font-family: "BebasNeueRegular";
-font-size: 18px;
-font-weight: bold;
-letter-spacing: 1px;
-text-transform: uppercase;
-margin:0
+	font-size: 14px;
+	text-transform: uppercase;
+	margin: 0;
 }
 .tabs-section .nav-tabs {
 border-bottom: medium none;
@@ -3229,14 +3226,6 @@ top: 0;
 	transform: translate(-50%, -50%);
 }
 
-.uploader_popup_header > h2 {
-	font-size: 22px;
-	font-weight: bold;
-	text-transform: uppercase;
-	margin: 0;
-	font-family: 'BebasNeueRegular' !important;
-	padding-top: 2px;
-}
 
 .uploader_popup_upload-icon > img {
 border: medium none;

@@ -1063,6 +1063,7 @@ function calculate_cost(value,surface_type){
 						background-color: #333;
 					}
 
+
 					.close::after {
 						transform: rotate(-45deg);
 					}
@@ -1111,23 +1112,23 @@ function calculate_cost(value,surface_type){
 				</script>
 	<img id="large_img3"  style="max-height:400px" src="<?php echo $image_path;?>" class="img-responsive">			
 	<div id="22" style="position: relative;background-color: #888;">
-		<div id="frame_show" style="text-align: center;">
+		<div id="frame_show" style=" margin-top: 78px; width: 120px;transform: translate(-50%,0);left: 50%;position: absolute;">
 		     <div  class="divimg mainhor2" style="border-image-source: url(&quot;http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg &quot;); border-image-slice: 58; border-image-width: initial; border-image-outset: initial; border-image-repeat: round; border-style: solid; border-width:10px; margin-top:20px; padding:0px; width:auto; display:inline-block; position:relative;">
 
 		    <div id="abc2" style="background:url('<?= base_url()?>images/uploaded_pdf/mount/DR 2091.jpg')  0% 0% / cover no-repeat;width:auto;padding:3px; background-attachment:scroll;position: relative;z-index: 1;">
 	            	<a href="javascript:" id="demo2" class="imglink img_shadow" target="_self">
-	               		<img id="frame_img" src="<?php echo $image_path;?>" style="width:70px" >
+	               		<img id="frame_img" src="<?php echo $image_path;?>" class="img-responsive" >
 					</a>
 			</div> 
     	</div>
 
 	</div>
 
-		<div id="canvas_show" style=" margin: 0 auto;text-align:center;padding-top:78px; width:120px">
+		<div id="canvas_show" style=" margin-top: 78px; width: 120px;transform: translate(-50%,0);left: 50%;position: absolute;">
 		    <img id="canvas_show_bs" style="box-shadow: -11px 4px 25px #555;" src="<?php echo $image_path; ?>" class="img-responsive">
 		</div>
         
-		<div id="printed" style=" margin:0 auto;text-align:center;padding-top: 78px; width: 120px">
+		<div id="printed" style=" margin-top: 78px; width: 120px;transform: translate(-50%,0);left: 50%;position: absolute;">
 			<img id="print" src="<?php echo $image_path; ?>" class="img-responsive">
 		</div>
         	
@@ -1681,7 +1682,7 @@ function right(width,height,x){
 	                	<div class="form-group">
                             <label for="country" class="col-sm-4 control-label">
                             	<a href="" data-toggle="modal" data-target="#myModal3" style="position: absolute;left: -5px;"><img id="img_hover" class="img-responsive" style="" src="http://cache1.artprintimages.com/images/photostoart/ART/info_off_v1.png"></a>
-                                <h4 style="margin:0; font-family:'BebasNeueRegular';font-size:20px">Print Type</h4>
+                                Print Type
                             </label>
                             <div class="col-sm-8">
                                 <select class="form-control input_control" id='print_type_main' onchange="paper_surface();" onclick="get_functions();return false;">
@@ -1698,7 +1699,7 @@ function right(width,height,x){
                         <div class="form-group">
                         	<label for="country" class="col-sm-4 control-label"">
                                 <a href="" data-toggle="modal" data-target="#myModal3" style="position: absolute;left: -5px;"><img id="img_hover" class="img-responsive" style="" src="http://cache1.artprintimages.com/images/photostoart/ART/info_off_v1.png"></a>
-                                <h4 style="margin:0; font-family:'BebasNeueRegular'; font-size:20px">Print Surface</h4>
+                                Print Surface
                             </label>
                             <div class="col-sm-8">
 	                            <select class="form-control input_control" id='surfaces' onclick="   get_functions();return false;">
@@ -1713,8 +1714,8 @@ function right(width,height,x){
                             </div>
                         </div>
                         <div class="form-group">
-                        	<label for="country" class="col-sm-4 control-label"">
-                            	<h4 style="margin:0; font-family:'BebasNeueRegular'; font-size:20px"> Size <span style="font-size: 12px;color: #888;"> (In Inches)</span></h4>
+                        	<label for="country" class="col-sm-4 control-label">
+                            	Size <span style="font-size: 12px;color: #888;"> (In Inches)</span>
                             </label>
                             <div class="col-sm-8">
 	                            <select name="print_sizes" id="sizes" class="form-control input_control" onclick=" get_quality('');return false;">
@@ -1816,11 +1817,7 @@ a.lightbox-close::after {
 	top: 40px;
 	display:none
 }
-.uploader_popup_header h2 {
-	text-transform: uppercase;
-	margin: 0;
-	font-family: 'BebasNeueRegular' !important;
-}
+
 
 .uploader_popup_upload-icon > img {
 border: medium none;

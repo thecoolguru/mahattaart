@@ -1,23 +1,26 @@
 <!--Frame it slider-->
-.tabs-section1 .nav-tabs {
+.tabs_section_header .nav-tabs {
   border-bottom: medium none;
 }
-.tabs-section1 .nav-tabs > li > a {
-  border-left: 1px solid #6d6e6c;
+.tabs_section_header .nav-tabs > li > a {
+  border-right: 1px solid #6d6e6c;
   border-radius: 0;
-  border-right: medium none transparent;
+  border-left: medium none transparent;
   border-top: medium none transparent;
-  font-family: "Helvetica Neue Regular",Helvetica,Arial,sans-serif;
-  font-size: 14px;
+  border-bottom: medium none transparent;
 }
-.tabs-section1 .nav > li > a:focus, .tabs-section1 .nav > li > a:hover
+.tabs_section_header .nav > li > a:focus, .tabs_section_header .nav > li > a:hover
  {
   background-color: #7f7d7e;
 }
-.tabs-section1 .nav-tabs > li.active > a, .tabs-section1 .nav-tabs > li.active > a:focus, .tabs-section1 .nav-tabs > li.active > a:hover {
+.tabs_section_header .nav-tabs > li.active > a, .tabs_section_header .nav-tabs > li.active > a:focus, .tabs_section_header .nav-tabs > li.active > a:hover {
 	background-color: #fff;
 }
-.tabs-section1 > ul a {
+.tabs_section_header .nav-tabs > li:first-child > a {
+  border-left: medium none transparent;
+}
+
+.tabs_section_header > ul a {
   color: #fff;
 }
 .choose-colors {
