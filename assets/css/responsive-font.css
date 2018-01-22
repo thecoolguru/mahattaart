@@ -1,0 +1,67 @@
+body{
+	font-family: "Open Sans",Arial,Helvetica,sans-serif !important;
+}
+
+h1,h2,h3,h4,h5,h6,label{
+	font-family:"Helvetica Neue" !important;	
+}
+label{
+	font-weight: normal !important;
+}
+.margn h4 {
+	font-family: "Helvetica Neue" !important;
+	font-size: 20px !important;
+}
+
+.top-cate h1 {
+	font-size: 30px !important;
+    color: #000;
+    text-transform: uppercase;
+}
+.margn h5 {
+	font-family:"Helvetica Neue" !important;	
+	font-size: 15px;
+	font-weight: normal;
+	margin: 5px 0;
+	text-transform: uppercase;
+}
+#menu ul li > a {
+	font-family: "Open Sans",Arial,Helvetica,sans-serif !important;
+}
+.abuth1 h1, .art-movements p, .career-page h2, .tab-content h3 {
+	font-family: "Helvetica Neue" !important;
+	font-size: 20px !important;
+	text-transform: uppercase !important;
+}
+
+.top_slider_content h1 {
+	font-family: "Helvetica Neue" !important;
+	font-size: 30px !important;
+	line-height: 30px !important;
+	font-weight: 500 !important;
+}
+
+.uploader_popup_header > h2 {
+	font-size: 22px !important;
+	font-weight: 500 !important;
+	font-family: "Helvetica Neue" !important;
+	text-transform: uppercase;
+	margin: 0;
+	padding-top: 2px
+
+}
+
+.panel-title > i {
+	background: #f7f7f7 none repeat scroll 0 0;
+	border: 1px solid #000;
+	border-radius: 50%;
+	color: #888;
+	display: inline-block;
+	height: 20px;
+	margin-right: 8px;
+	padding: 2px 6px;
+	width: 20px;
+	font-size: 12px;
+	font-style: normal;
+}
+

@@ -131,7 +131,6 @@ We empower artists to make use of our platform and processes to sell their artwo
     font-weight: normal;
     color:#FFF;
     margin: 5px 0 5px 0;
-    text-transform: lowercase !important;
 	background-color:#999;
 	padding: 4px;
    

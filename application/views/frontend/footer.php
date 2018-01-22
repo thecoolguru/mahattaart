@@ -164,12 +164,12 @@
 	</style>
 	
     <!-- login form -->    
-    <div class="modal fade" id="login-modal" role="dialog">
+    <div class="modal fade" id="myModal_registration" role="dialog">
     	  <div class="modal-dialog">
           	<div class="modal-content" style="border-radius:0">
             	<div class="modal-body">
                     <!-- login form-->
-                    <div class="loginmodal-container">
+                    <div class="loginmodal-container" id="login-modal" style="display:none">
                       <h1>User Sign In <a class="lightbox-close" data-dismiss="modal"></a> </h1>
                       <br>
                       <p> </p>
@@ -196,8 +196,8 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                     <p class="login-help">Don't have an account! <a href="#" style="color:#428bca" id="sign_up_btn2" data-dismiss="modal" data-toggle="modal" data-target="#login-modal3">Sign Up Here</a></p>
-                                     <p class="login-help">Forgot Password <a href="#" class="none" id="send_mail_btn2" style="color:#428bca" data-dismiss="modal" data-toggle="modal" data-target="#login-modal2">Click here</a></p>
+                                     <p class="login-help">Don't have an account! <a href="#" style="color:#428bca" id="sign_up_btn2">Sign Up Here</a></p>
+                                     <p class="login-help">Forgot Password <a href="#" class="none" id="send_mail_btn2" style="color:#428bca">Click here</a></p>
                                 </div>
                             </div>
                       </form>
@@ -207,18 +207,9 @@
                           <img src="http://www.mahattaart.com/assets/img/google.png">
                       </div>-->
                     </div>
-                </div>
-            </div>
-			</div>
-		  </div>
-          
-    <!-- forget password -->
-    <div class="modal fade" id="login-modal2" role="dialog">
-    	  <div class="modal-dialog">
-          	<div class="modal-content" style="border-radius:0">
-            	<div class="modal-body">
-                    <!-- forget password-->
-                    <div class="loginmodal-container">
+                    
+                    <!-- forget form-->
+                    <div class="loginmodal-container" id="login-modal2" style="display:none">
                       <h1>Forget Password <a class="lightbox-close" data-dismiss="modal"></a></h1><br>
                       <p></p>
                       <div id="error_msg" style="color:red;"></div>
@@ -227,18 +218,9 @@
                         <input type="button" name="login" class="login loginmodal-submit" value="Update Password" onclick="updateforpaswd();">
                       </form>
                     </div>
-                </div>
-            </div>
-			</div>
-		  </div>
-
-    <!-- signup form -->          
-    <div class="modal fade" id="login-modal3" role="dialog">
-    	  <div class="modal-dialog">
-          	<div class="modal-content" style="border-radius:0">
-            	<div class="modal-body">
+                    
                     <!-- signup form-->
-                    <div class="loginmodal-container">
+                    <div class="loginmodal-container" id="login-modal3" style="display:none">
                       <h1>User Sign Up <a class="lightbox-close" data-dismiss="modal"></a></h1><br>
                         <p></p>
                         <div style="color: red" id="email_error"></div>
@@ -378,7 +360,7 @@
                       </form>
                          <p>
                          	Already have an account?
-                         	<a href="#" style="color:#428bca" id="login-link2" data-dismiss="modal" data-toggle="modal" data-target="#login-modal"> &nbsp; Login Here</a>
+                         	<a href="#" style="color:#428bca" id="login-link2" class="login-link2"> &nbsp; Login Here</a>
                             <a href="#" class="none" onClick="demo_fn('')" style="color:#F00">Merchant Registration</a>
                          </p>
                       <div class="login-help">
@@ -388,7 +370,7 @@
             </div>
 			</div>
 		  </div>
-    
+
     <!-- Add to gallery -->          
     <div class="modal fade" id="login-modal4" role="dialog">
     	  <div class="modal-dialog"  style="width:400px">
@@ -436,24 +418,42 @@
 			</div>
 		  </div>
           
-<!--    <script>
+<script>
 $(document).ready(function(){
+	
+	<!-- login btn -->
+    $(".login_btn").click(function(){
+        $("#login-modal").css("display", "block");
+        $("#login-modal2").css("display", "none");
+        $("#login-modal3").css("display", "none");
+    });
+
+	<!-- signup btn -->
+    $(".signup_btn").click(function(){
+        $("#login-modal").css("display", "none");
+        $("#login-modal2").css("display", "none");
+        $("#login-modal3").css("display", "block");
+    });
+	
+	<!-- inside signup btn -->
     $("#sign_up_btn2").click(function(){
-        $("#login-modal").removeClass("modal fade in");
-        $("#login-modal").addClass("modal fade");
+        $("#login-modal").css("display", "none");
+        $("#login-modal3").css("display", "block");
     });
-
+	
+	<!-- inside forget btn -->
     $("#send_mail_btn2").click(function(){
-        $("#login-modal").removeClass("modal fade in");
-        $("#login-modal").addClass("modal fade");
+        $("#login-modal").css("display", "none");
+        $("#login-modal2").css("display", "block");
     });
-
-    $("#login-link2").click(function(){
-        $("#login-modal3").removeClass("modal fade in");
-        $("#login-modal3").addClass("modal fade");
+	
+	<!-- inside login btn -->
+    $(".login-link2").click(function(){
+        $("#login-modal").css("display", "block");
+        $("#login-modal3").css("display", "none");
     });
 });
-</script>-->
+</script>
 
      <div class="signup gall-w" id="addtointrestedgallery" style="display:none;">
          <div style="position: absolute;right: 10px;top: 0;"><a href="" onClick="allclose('');return false;" >Close</a></div><br>

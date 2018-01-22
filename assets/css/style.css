@@ -210,7 +210,6 @@ nav {
     color: #F4444B;
     text-decoration: none;
     font-weight: bold;
-    font-family: "BebasNeueRegular" !important;
     margin: 0;
 }
 #banner-terms-link {
@@ -222,7 +221,6 @@ nav {
     padding: 2px 0 0;
     line-height: 5px;
     text-decoration: underline;
-	font-family: "BebasNeueRegular" !important;
 }
 .bannerExpText {
     display: inline-block !important;
@@ -235,16 +233,8 @@ nav {
     text-indent: 0 !important;
     line-height: normal !important;
     cursor: pointer;
-	 font-family: "BebasNeueRegular" !important;
 }
 
-.top-cate h1 {
-	font-family: 'BebasNeueRegular' !important;
-    font-weight: bold;
-    color: #000;
-    text-transform: uppercase;
-    font-size: 39px;
-}
 .line {
 	position:relative;
 	/*width: 73%;*/

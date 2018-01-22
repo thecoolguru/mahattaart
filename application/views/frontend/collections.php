@@ -22,35 +22,31 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
         <div class="list">
           <ul>
             <li><a href="<?=base_url()?>search/dosearch/1/32/17/all">Danita Illustration </a></li>
-            <li><a href="<?=base_url()?>search/dosearch/1/32/20/all"> Deagostini Illustration </a></li>
             <li><a href="<?=base_url()?>search/dosearch/1/32/19/all"> Science Photo Library </a></li>
-            <li><a href="<?=base_url()?>search/dosearch/1/32/18/all"> Universal Images Group Illus </a></li>
+            <li><a href="<?=base_url()?>search/dosearch/1/32/18/all"> Universal Illustration </a></li>
           </ul>
         </div>
         <p>Paintings</p>
         <div class="list">
           <ul>
             <li><a href="<?=base_url()?>search/dosearch/1/32/1/all"> Danita Painting </a></li>
-            <li><a href="<?=base_url()?>search/dosearch/1/32/2/all"> Deagostini Painting </a></li>
-            <li><a href="<?=base_url()?>search/dosearch/1/32/4/all">Painting Shree </a></li>
+            <li><a href="<?=base_url()?>search/dosearch/1/32/4/all">Shree </a></li>
             <li><a href="<?=base_url()?>search/dosearch/1/32/23/all">Bridgeman</a></li>
-            <li><a href="<?=base_url()?>search/dosearch/1/32/3/all">Universal Images Group Paint </a></li>
+            <li><a href="<?=base_url()?>search/dosearch/1/32/3/all">Universal Painting </a></li>
+			 <li><a href="<?=base_url()?>search/dosearch/1/32/25/all">Everett Painting</a></li>
           </ul>
         </div>
         <p>Photography </p>
         <div class="list">
           <ul>
+		      <li><a href="<?=base_url()?>search/dosearch/1/32/5/all">Flower Photos </a></li>
+			   <li><a href="<?=base_url()?>search/dosearch/1/32/7/all">Universal Images Group Photo </a></li>
             <li><a href="<?=base_url()?>search/dosearch/1/32/8/all">Danita Photography</a></li>
-            <li><a href="<?=base_url()?>search/dosearch/1/32/6/all">Deagostini Photography </a></li>
-            <li><a href="<?=base_url()?>search/dosearch/1/32/12/all">Everett </a></li>
-            <li><a href="<?=base_url()?>search/dosearch/1/32/5/all">Flower Photos </a></li>
-            <li><a href="<?=base_url()?>search/dosearch/1/32/13/all">Kashmir </a></li>
+            <li><a href="<?=base_url()?>search/dosearch/1/32/12/all">Everett Photography</a></li>
             <li><a href="<?=base_url()?>search/dosearch/1/32/21/all">Tetra </a></li>
             <li><a href="<?=base_url()?>search/dosearch/1/32/22/all">Roop </a></li>
             <li><a href="<?=base_url()?>search/dosearch/1/32/24/all">Food Collection </a></li>
-            <li><a href="<?=base_url()?>search/dosearch/1/32/26/all">God </a></li>
-            <li><a href="<?=base_url()?>search/dosearch/1/32/10/all">Tips </a></li>
-            <li><a href="<?=base_url()?>search/dosearch/1/32/7/all">Universal Images Group Photo </a></li>
+            <li><a href="<?=base_url()?>search/dosearch/1/32/26/all">God </a></li>          
           </ul>
         </div>
         <p>Poster</p>
@@ -58,7 +54,7 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
           <ul>
             <li><a href="<?=base_url()?>search/dosearch/1/32/16/all">Danita Poster </a></li>
             <li><a href="<?=base_url()?>search/dosearch/1/32/14/all">Deagostini Poster </a></li>
-            <li><a href="<?=base_url()?>search/dosearch/1/32/15/all">Universal Images Group Poster </a></li>
+            <li><a href="<?=base_url()?>search/dosearch/1/32/15/all">Universal Poster </a></li>
           </ul>
         </div>
       </aside>
