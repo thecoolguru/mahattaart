@@ -41,7 +41,7 @@ class Cart_model extends CI_Model
 	}
 
 	function get_userDetails($userid){
-            $sql_1="select * from tbl_registration where customer_id='".$userid."' ";
+            $sql_1="select * from tbl_customer where customer_id='".$userid."' ";
             $Query=  mysql_query($sql_1);
             return $result = mysql_fetch_object($Query);
         }

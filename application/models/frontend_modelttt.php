@@ -5,35 +5,21 @@ class Frontend_model extends CI_Model
 	{
 		$this->load->database();
 	}
-	
-	public function get_cutomer_last_id()
-{
-      $this->db->select('customer_id');
-	  $this->db->order_by("id", "desc");
-	  $this->db->limit(1,0);
-      $query= $this->db->get('tbl_customer');
-	  //$sql = $this->db->last_query();
-	  #var_dump($sql); die;
-	  //echo "<pre>";
+		//main frontend of beta.mahattaart by mohan
+	public function get_kiosk_location($id)
+	{
+	  $this->db->where('vendor_types',$id);
+	  $query=$this->db->get('kiosk_users');
+	  //print_r($query->result());
 	  return $query->result();
-}
-	
-	
-	public function get_kiosk_location($vendor_type)
+	}
+	public function get_kiosk_locationid($id)
 	{
-	    $this->db->distinct();
-		$this->db->select('location');
-		$this->db->where('vendor_types',$vendor_type);
-		$query=$this->db->get('kiosk_users');
-	    return $query->result();
-	}	
-
-	public function get_kiosk_locationid($vendor_location)
-	{
-		  $this->db->select('location_id');
-		  $this->db->where('location',$vendor_location);
-	      $query=$this->db->get('kiosk_users');
-	      return $query->result();
+	
+	  $this->db->where('location',$id);
+	  $query=$this->db->get('kiosk_users');
+	  //print_r($query->result());
+	  return $query->result();
 	}
 	public function get_vender_detail()	{
 		$this->db->select('vendor_types');
@@ -277,9 +263,8 @@ return $query->result();
 		return $query->result();
 	}
 
-	public function insert_registeration($vendor_type,$vendor_location,$vendor_location_id,$first_name,$last_name,$email,$password,$company_name,$ima,$job_dec_details,$job_dec,$final_id)	{
+	public function insert_registeration($vendor_type,$vendor_location,$vendor_location_id,$first_name,$last_name,$email,$password,$ima,$job_dec_details,$job_dec)	{
 		$data=array(
-		'customer_id'=>$final_id,
 		'vendor_types'=>$vendor_type,
 		'vendor_location'=>$vendor_location,
 		'vendor_location_key_id'=>$vendor_location_id,
@@ -287,12 +272,12 @@ return $query->result();
 		'last_name'=>$last_name,
 		'email_id'=>$email,
 		'password'=>$password,
-		'company_name'=>$company_name,
-		'i_am_a'=>$ima,
-		'job_description_details'=>$job_dec_details,
-		'job_description'=>$job_dec
+		'customer_designation'=>$ima,
+		'desig_other'=>$job_dec_details,
+		'customer_position'=>$job_dec
 		);
-		$insert=$this->db->insert('tbl_customer',$data);
+		//print_r($data);die;
+		$insert=$this->db->insert('tbl_registration',$data);
 		if($insert)	{
 			echo "";
 		}
@@ -373,7 +358,7 @@ return $query->result();
 
 	public function check_email_exist($email)	{
 		//print_r($email);die;
-		$rows=mysql_query("select * from tbl_customer where email_id='".$email."'");
+		$rows=mysql_query("select * from tbl_registration where email_id='".$email."'");
 		//$query=$this->db->get_where('tbl_registration',array('email_id'=>$email));
 		//print_r($rows);die;
 		//die(num_rows($query));
@@ -440,7 +425,7 @@ return $query->result();
 		$this->db->where('email_id',$email);
 		$this->db->where('password',$password);
 		//$this->db->where('status','1');
-		$query=$this->db->get('tbl_customer');
+		$query=$this->db->get('tbl_registration');
 		$query->num_rows();
 		if($query->num_rows()>0)	{
 			return  $query->row();
@@ -1030,7 +1015,7 @@ return $query->result();
 	public function update_customer($data)	{
 	    $id=$this->session->userdata('userid');
 		$this->db->where('customer_id',$id);
-		$this->db->update('tbl_customer',$data);
+		$this->db->update('tbl_registration',$data);
 	}
 
 	public function update_qty_frame_for_cart($imgsize,$papersurface,$filenam,$qty,$frame_name,$mount_name,$glass)	{

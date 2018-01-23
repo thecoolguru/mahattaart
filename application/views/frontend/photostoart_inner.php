@@ -1778,7 +1778,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 <!-- pricing Details -->
 	
 <div class="modal fade" id="myModal3" role="dialog">
-  <div class="modal-dialog" style="width:auto">
+  <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header uploader_popup_header">
@@ -2179,7 +2179,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         <section class="container3D">
         <div id="cube">
         <figure class="front">
-        <img id="large_img2"  style="max-height:500px;" src="" class="img-responsive">
+        <img id="large_img2"  style="max-width:385px;" src="" class="img-responsive">
         <canvas id="myCanvas2" height="251px" width="330px" style="width:100%;height:100%;max-height:500px;"></canvas> 
         <script>
         function front(source_width,source_height){ 
@@ -2397,9 +2397,9 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         <a id='price_details' href='' data-toggle="modal" data-target="#myModal3">Price Details</a>
         </div>
         <div class="text-center addtocartcontainer_popup-button" style="margin-top: 20px;">
-        <button <?php if(!$this->session->userdata('userid')){?> data-toggle="modal" data-target="#login-modal" <?php }else{?> onclick="addToCart();return false;"<?php }?> type="button" class="popup-button2"> Add To Cart</button>
+        <button <?php if(!$this->session->userdata('userid')){?> data-toggle="modal" data-target="#myModal_registration" <?php }else{?> onclick="addToCart();return false;"<?php }?> type="button" class="popup-button2 login-link2"> Add To Cart</button>
         </div>
-        <div <?php if(!$this->session->userdata('userid')){?> data-toggle="modal" data-target="#login-modal" <?php }else{?> onclick="addTomyupload();return false;"<?php }?> class="text-center addtocartcontainer_popup-button" style="margin-top: 20px;">
+        <div <?php if(!$this->session->userdata('userid')){?> data-toggle="modal" data-target="#myModal_registration" <?php }else{?> onclick="addTomyupload();return false;"<?php }?> class="text-center addtocartcontainer_popup-button login-link2" style="margin-top: 20px;">
         <!--<button type="button" class="popup-button2"> Add To My Uploads</button>-->
         </div>
         <div class="addtocartcontainer_popup_details" style="margin-top: 20px;">
@@ -2710,7 +2710,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 	        	<h2>Sign In</h2>
             </div>
             <div class="addtocartcontainer_header">
-              <a target="_self" class="popup-button3" href="#" data-toggle="modal" data-target="#login-modal3"> Create New Account </a>
+              <a target="_self" class="popup-button3 login-link2" href="#" data-toggle="modal" data-target="#myModal_registration"> Create New Account </a>
             </div>
             <!--<style>
 			ul.checklist li::before {
@@ -2730,7 +2730,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
             </ul>
             <div class="addtocartcontainer_footer">
 	            <p>Already have an account?</p>
-                <p><a href="" data-toggle="modal" data-target="#login-modal">Login here</a></p>
+                <p><a href="" data-toggle="modal" data-target="#myModal_registration" class="login-link2">Login here</a></p>
 <!--                <p class="text-center">or</p>
 -->            </div>
             <!--<p class="text-center"><a href="#"><img src="../../../assets/img/photostoart_inner/facbook.jpg" style="margin-bottom:10px"></a></p>-->

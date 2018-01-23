@@ -361,8 +361,10 @@ $continue_shopping_redirect=$this->session->userdata('continue_shopping');
                     </div>
                     <div class="row">
                         <div class="col-md-12 frame-it-button">
-                            <button type="button" class="btn social_icon" <?php  if(!$this->session->userdata('userid')){?> onclick="login('');"<?php }else{?>  onclick="addToCart()" <?php  }?> style="background-color:#d3131b; color:#fff;"> Add to cart </button>
-                            <button type="button" class="btn social_icon" style="background-color:#555; color:#fff;"> Add to gallery </button>
+                            <button type="button" class="btn social_icon login-link2" <?php  if(!$this->session->userdata('userid')){?> data-toggle="modal" data-target="#myModal_registration" <?php }else{?>  onclick="addToCart()" <?php  }?> style="background-color:#d3131b; color:#fff;"> Add to cart </button>
+                            <button type="button" class="btn social_icon login-link2" style="background-color:#555; color:#fff;" <?php if($this->session->userdata('userid')){?>
+href="" data-toggle="modal" data-target="#login-modal4" onclick="addtogallery('<?=$api_image_id?>','<?=$image_id?>');return false;" id="tgl" style="color:#ef9223;" <?php }
+else {?> href="" data-toggle="modal" data-target="#myModal_registration" <?php }?>> Add to gallery </button>
                         </div>
                     </div>            
                 </div>

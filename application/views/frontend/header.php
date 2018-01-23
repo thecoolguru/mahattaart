@@ -698,7 +698,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
         -webkit-box-shadow: 0 6px 7px #CCC;
         -moz-box-shadow: 0 6px 7px #CCC;
         box-shadow: 0 6px 7px #CCC;
-        z-index: 9999
+        z-index: 1
     }
     #sub-pi img {
         float: left
@@ -1958,6 +1958,11 @@ $('#dsend').click(function(){
 </script>
   <style>
   	.mcolor{color:#ff9800 !important}
+		.nav > li > a:hover, .nav > li > a:focus {
+		text-decoration: none !important;
+		background-color: transparent;
+	}
+
   </style>
 <script>
     $(document).ready(function(){

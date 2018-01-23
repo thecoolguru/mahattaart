@@ -10,15 +10,13 @@
 <script src="<?php echo base_url();?>assets/js/sweetalert-dev.js" type="text/javascript" ></script>
 <script src="<?php print base_url();?>assets/js/zoom-image.js"></script>
 <?php 
-$userid=$this->session->userdata('userid');
- 	if($userid){
+ 	if($this->session->userdata('userid')){
 	 	$Obj = new Search();
 	 	$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 	 	$splitUrl=split('/', $_SERVER['REQUEST_URI']);
 	 	$ipaddress = getenv('HTTP_CLIENT_IP');
 	 	$Obj->Search_save_user_login_details($this->session->userdata('userid'),$url,$ipaddress);
  	}
-	 	
 ?>
 <script>
    $(document).ready(function(){
@@ -39,13 +37,56 @@ $userid=$this->session->userdata('userid');
 			$('#large_img2,#22').hide();
 		});
 		
-		$('.item_click').click(function(){});
+		$('.item_click').click(function(){
+			var type = $(this).attr('id');
+			$('#paper_type').val(type);
+			if(type==3){
+			//alert(type)
+			$('#paper_type').val(4);
+			}
+			var image_size=$( "#sizes" ).val();
+			var print_sizes=$( "#surfaces").val();
+			var quality_rate=$('#quality_rate').val();
+			var split = image_size.split('X');
+		  	var width=parseInt(split[0]);
+		  	var height=parseInt(split[1]);
+			var orig_image_size = width + '" X '+ height +'"';
+			if(type == '1'){
+				paper_surface(1);
+				$('#22,#frame_show,#zoom_image,#frame-it,#large_img3,#19,#12,#large_img6,#large_img5,#large_img7,#12,.bshow').hide();
+				$('#large_img2,.wrapped,#11,#15,#20,#canvas_show,#canvas3D').show();
+				$("#museum").prop('checked', true);
+				$('#18').html('Types Of Wrap');
+				$('#print_type').val('canvas_only');
+      			$('#type').val('1');
+      			$('#print_sizes').html(orig_image_size);
+      			get_quality('');
+				}else if(type == '2'){
+				paper_surface(2);	
+				$('#frame-it,#19,#12,#frame_show,.bshow').show();
+				$('#22,#12,#15,#large_img2,#zoom_image,.wrapped,#myCanvas,#myCanvas2,#myCanvas3,#large_img3,#20,#large_img5,#large_img6,#large_img7,#canvas_show,#canvas3D').hide();
+				$('#18').html('');
+				$('#print_type').val('');
+    			$('#type').val('2');
+    			$('#print_sizes').html(orig_image_size);
+    			get_quality('');
+			}else if(type == '3'){
+				paper_surface(4);	
+				$('#22,#12,#large_img2,#frame-it,.wrapped,#myCanvas,#myCanvas2,#myCanvas3,#12,#15,#19,#20,#large_img5,#large_img6,#large_img7,#canvas_show,#frame_show,#canvas3D').hide();
+				$('#18').html('');
+				$('#large_img3,.bshow').show();
+				$('#print_type').val('only_print');
+				$('#type').val('3');
+				$('#print_sizes').html(orig_image_size);
+				get_quality('');
+			}
+		});
 		
 		get_quality('');
-		//$('#f_name').html('Absolute Black');
+		$('#f_name').html('Absolute Black');
 		$('#check0').prop('checked',true);
-		//$('#glass_type').val('Regular');
-		//$('#frame_sized').html('26');
+		$('#glass_type').val('Regular');
+		$('#frame_sized').html('26');
 		$('#mount_width').val('1');
 		$('#mount_state').val(1);
 		$('#sizes').click();
@@ -126,8 +167,6 @@ $userid=$this->session->userdata('userid');
 <script>
    $(document).ready(function(){
 	   $(window).bind('scroll', function(){
-		    //console.log($(window).scrollTop());
-			
 			 if(parseInt($(window).scrollTop()) >= 0 && parseInt($(window).scrollTop()) <= 120){
 				$('.product-tabs').css({'position':'absolute','top':'20px','bottom':'auto'});
 			  }
@@ -148,35 +187,248 @@ $userid=$this->session->userdata('userid');
 	bottom: auto;
 }
 </style>
+<script>
 
+function paper_surface(type){
+		//var print_type= '';
+		//alert('should first')
+		if(!type){
+		type=$('#paper_type').val()
+		}
+		var print_type_main=$('#print_type_main').val();
+		//alert(print_type_main+','+type)
+		
+			$.ajax({
+	            type: "POST",
+	            url: "<?=base_url();?>index.php/frontend/get_surface_tbl_web_price",
+	            data:'print_type='+type+'&print_type_main='+print_type_main,
+				async:false,
+				success: function(data)
+	            {
+				//alert(data)
+				//alert('jjjj')
+				$('#surfaces').html(data);
+				}
+			});
+	}
+</script>
 <?php 
-//print_r($image_details);
-	$image_path="http://static.mahattaart.com/400x400/media/".$image_name;
+$image_data = '';
+$image_type=split('_',$image_name);
+if($image_type[0]=='BRID'){
+  $bridege_image_id=substr($image_detail[0]['image_filename'],8,-4);
+	$add_imgid= $bridege_image_id+3179;
+	$reverse_val=strrev($add_imgid);
+	$append_zero=$reverse_val.'0';
+	$bride_id=$append_zero;
+  	$image_path = "http://images2.bridgemanart.com/cgi-bin/bridgemanImage.cgi/600.XIR.".$bride_id.".7055475/".$bridege_image_id.".JPG";
 	$image_data = getimagesize($image_path);
+	}else{
+	$image_path="http://static.mahattaart.com/400x400/media/".$image_detail[0]['image_filename'];
+	$image_data = getimagesize($image_path);
+}
+
+$collection_name;
 $continue_shopping_redirect=$this->session->userdata('continue_shopping');
-//echo $continue_shopping_redirect
+//echo 'url'.$continue_shopping_redirect;
+$this->load->library('multipledb'); // loading library.
+// Loading second db and running query.
+$CI = &get_instance();
+//setting the second parameter to TRUE (Boolean) the function will return the database object.
+$this->indiapicture = $CI->load->database('indiapicture', TRUE);
+$sql_query="SELECT collection_range FROM tbl_category where portal='2' and collections like '%".trim($collection_name)."%'";
+$qry = $this->indiapicture->query($sql_query);
+$collection=$qry->result();
+$collection_range=$collection[0]->collection_range;
+$collection[0]->collection_range;
+$result_rate=$this->frontend_model->get_web_price($collection[0]->collection_range);
+$rate= $result_rate[0]->rate;
+$this->load->model('cart_model');
+$userid=$this->session->userdata('userid');
+$image_id=$image_detail[0]['image_id'];
+$lightbox= $this->frontend_model->get_light_boxName($images_id,$userid); 
+$max_w=$image_detail[0]['image_original_width'];
+$max_h=$image_detail[0]['image_original_height'];
+$s_height=$max_h;
+$s_width=$s_height*2;
+$v_height=2*$max_w;
+if($max_w>$max_h){
+  if($max_w<$s_width){
+     $f_shape="Horizontal";
+  }else{
+	 $f_shape="Panoramic";
+	}
+}else if($max_w<$max_h){
+  if($max_h>$v_height){
+	 $f_shape="Slim";
+	}else{
+	 $f_shape="Vertical";
+	}
+}else if($max_h==$max_w){
+  $f_shape="Square";
+}
+$click_to_enlarge = "http://api.indiapicture.in/wallsnart/function.php?param=click_to_enlarge&images_id=$api_image_id";
+$opts = array("http"=>array("header"=>"User-Agent:MyAgent/1.0\r\n"));
+$context = stream_context_create($opts);
+$search_data_raw = file_get_contents($click_to_enlarge, false, $context);
+$search_data = json_decode($search_data_raw,TRUE);
+$collection_id=$this->search_model->get_image_collection($images_id);
+$pricing_ran=$this->search_model->get_range($images_id);
+$pricing_range=$pricing_ran->pricing_range;
+$max_size=$this->search_model->get_max_size($images_id);
+$max_width_allowed=$max_w/150;
+$max_height_allowed=$max_h/150;
+// calcuulate image ratio
+$size_data = getimagesize($image_path);
+$image_alignment="";
+$image_width=$size_data[0];
+$image_height=$size_data[1];
+
+$size_data1 = getimagesize($image_path);
+$image_width1=$size_data1[0];
+$image_height1=$size_data1[1];
+
+$image_ratio=$image_width/$image_height;
+$size_array=array();
+$role_size = 64;
+$lower_value = 0;
+//print_r($size_data);
+if($size_data[0]>=$size_data[1])
+{ 
+    $size_array[0]['height']=10/$image_ratio;
+    $size_array[0]['width']=10;
+    $size_array[1]['height']=12/$image_ratio;
+    $size_array[1]['width']=12;
+    $size_array[2]['height']=18/$image_ratio;
+    $size_array[2]['width']=18;
+    $size_array[3]['height']=24/$image_ratio;
+    $size_array[3]['width']=24;
+    $size_array[4]['height']=30/$image_ratio;
+    $size_array[4]['width']=30;
+    $size_array[5]['height']=36/$image_ratio;
+    $size_array[5]['width']=36;
+    $size_array[6]['height']=44/$image_ratio;
+    $size_array[6]['width']=44;
+    $size_array[7]['height']=48/$image_ratio;
+    $size_array[7]['width']=48;
+    $size_array[8]['height']=50/$image_ratio;
+    $size_array[8]['width']=50;
+    $size_array[9]['height']=56/$image_ratio;
+    $size_array[9]['width']=56;
+    $size_array[10]['height']=60/$image_ratio;
+    $size_array[10]['width']=60;
+		$xx=in_array(round($max_width_allowed), array(10,12,18,24,30,36,44,48,50,56,60));
+		if($xx==''){
+		$size_array[11]['height']=round($max_width_allowed/$image_ratio);
+        $size_array[11]['width']=round($max_width_allowed);
+      }
+    $rollSize= choose_role_size($size_array[0]['width'],$size_array[0]['height']);
+    $actual_price=$size_array[0]['width']*$rollSize*$rate;
+    $size_array[0]['width'].'_'.$rollSize.'_'.$rate;
+    }else if($size_data[0]<=$size_data[1]){ 
+    $size_array[0]['width']=10*$image_ratio;
+    $size_array[0]['height']=10;
+    $size_array[1]['width']=12*$image_ratio;
+    $size_array[1]['height']=12;
+    $size_array[2]['width']=18*$image_ratio;
+    $size_array[2]['height']=18;
+    $size_array[3]['width']=24*$image_ratio;
+    $size_array[3]['height']=24;
+    $size_array[4]['width']=30*$image_ratio;
+    $size_array[4]['height']=30;
+    $size_array[5]['width']=36*$image_ratio;
+    $size_array[5]['height']=36;
+    $size_array[6]['width']=44*$image_ratio;
+    $size_array[6]['height']=44;
+    $size_array[7]['width']=48*$image_ratio;
+    $size_array[7]['height']=48;
+    $size_array[8]['width']=50*$image_ratio;
+    $size_array[8]['height']=50;
+    $size_array[9]['width']=56*$image_ratio;
+    $size_array[9]['height']=56;
+    $size_array[10]['width']=60*$image_ratio;
+    $size_array[10]['height']=60;
+		$yy=in_array(round($max_height_allowed),array(10,12,18,24,30,36,44,48,50,56,60));
+		if($yy==''){
+		 $size_array[11]['width']=round($max_height_allowed*$image_ratio);
+        $size_array[11]['height']=round($max_height_allowed);
+		}
+  $rollSize= choose_role_size($size_array[0]['width'],$size_array[0]['height']);
+  $size_array[0]['height'].'*'.$rollSize.'*'.$rate;
+}
+  $actual_price;
+  $size_array[0]['height'];
+  $size_array[0]['width'];
+
+function choose_role_size($width,$height){
+	if($width>$height){
+		$fix_val = $height;	
+	}else{
+		$fix_val = $width;
+
+	}
+      if($fix_val<=17){
+           return 17;
+        }else
+        if($fix_val<=24 && $fix_val>17){
+           return 24;
+        }else if($fix_val<=44 && $fix_val>24){
+           return 44;
+        }else if($fix_val<=50 && $fix_val>44){
+           return  50;
+        }else if($fix_val<=64 && $fix_val>50){
+           return  64;
+        }
+}/// end function
+
+function give_licence_price($pricing_range){
+    if($pricing_range=='mid'){
+      $tolalLic= $image_width*$image_height*2;  
+      return $totalPriceLic=$tolalLic*50/100;
+    }elseif($pricing_range=='low'){
+      $tolalLic=  $image_width*$image_height*2;  
+      return $totalPriceLic=$tolalLic*50/100;
+    }elseif($pricing_range=='high'){
+      $tolalLic=  $image_width*$image_height*2;  
+      return $totalPriceLic=$tolalLic*50/100;
+    }
+}
+// wastage calculation
+$lower_value = 12;
+$size_with_wastage = $role_size*$lower_value;
+$licence_base_price=give_licence_price($collection_id);
+if( $size_array[0]['width']> $size_array[0]['height'])
+{
+    $low_val=round($size_array[0]['height']);
+    $high_val=round($size_array[0]['width']);
+}else{
+    $low_val=round($size_array[0]['width']);
+    $high_val=round($size_array[0]['height']);
+}
+$s=round($size_array[0]['height']).'X'.round($size_array[0]['width']);
+$price=(round($size_array[0]['width'])*round($size_array[0]['height'])*2)+$wastage_cost+give_licence_price($pricing_range);
+$size_array[$i]['width'];
 ?>
 
 <?php //$continue_shopping_redirect=$this->session->userdata('continue_shopping');?>
 		<div class="frame-step-header-container" style="display:none">
 			<div class="container frame-step-header-wrapper">
-            	<div class="row">
-                	<div class="col-sm-6">
-						<div class="frame-step-header-text"></div>
-                    </div>
-                	<div class="col-sm-6">
-                        <div class="text-right">
-                                <a class="frame-step-continue-shopping-button btn " style="color:white" href="<?=base_url().$continue_shopping_redirect?>">CONTINUE SHOPPING</a>
-                                <a class="frame-step-proceed-to-cart-button btn " style="color:white" href="<?=base_url().'cart/cart_view'?>">  PROCEED TO CART</a>
-                        </div>
-                    </div>
-                </div>
+				<div class="frame-step-header-text"></div>
+				<div class="frame-step-button-wrapper">
+					<a style="color:white" href="<?=base_url()?><?=$continue_shopping_redirect?>"><div class="frame-step-continue-shopping-button">
+						<span style="color:white" ">CONTINUE SHOPPING</span>
+					</div></a>
+					<a style="color:white" href="<?=base_url().'cart/cart_view'?>"><div class="frame-step-proceed-to-cart-button">
+						<span style="color:white">  PROCEED TO CART</span>
+					</div></a>
+				</div>
 			</div>
 		</div>
 <style>
 .frame-step-header-container {
   background-color: #ececec;
-  padding:10px 0;
+  width: 100%;
+  padding: 10px 0;
 }
 
 .frame-step-header-text {
@@ -194,25 +446,246 @@ $continue_shopping_redirect=$this->session->userdata('continue_shopping');
 }
 
 .frame-step-continue-shopping-button {
-	background-color: #888;
-	padding: 15px;
-	border-radius: 0;
+  background-color: #888;
+  color: #fff;
+  cursor: pointer;
+  float: left;
+  font-size: 15px;
+  font-weight: bold;
+  margin-right: 14px;
+  min-width: 100px;
+  padding: 13px 16px;
+  position: relative;
+  text-align: center;
 }
 .frame-step-proceed-to-cart-button {
-	background-color: #ed9134;
-	padding: 15px;
-	border-radius: 0;
+  background-color: #ed9134;
+  color: #fff;
+  cursor: pointer;
+  float: right;
+
+  font-size: 15px;
+  font-weight: bold;
+  min-width: 180px;
+  padding: 12px;
+  position: relative;
+  text-align: center;
+}
+.container.frame-step-header-wrapper {
+  border: medium none;
+  margin: 0 auto;
 }
 </style>
 
 <script type="text/javascript">
-	function get_quality(value){}
+	function get_quality(value){
+	    var quality=$('#quality').val();
+		var paper = $('#surfaces').val();
+		//alert(value)
+		//alert(quality+','+paper);
+		$.ajax({
+      		type: 'post',
+      		url: '<?=base_url()?>frontend/get_web_price_detials',
+      		data:'print_paper='+paper+'&quality='+quality,
+      		success: function(response){
+			//alert(response)
+			var obj=JSON.parse(response);
+			var res=obj.split(',');
+        		$('#quality_rate').val(res[0]);
+      	   			throw_price(res[0],res[1]);
+           	}
+    	});
+  	}
     
-function throw_price(rate,surface_type){}
+function throw_price(rate,surface_type){
+	var image_size=$( "#sizes option:selected" ).val();
+	var split = image_size.split('X');
+	var width = parseInt(split[0]);
+	var height = parseInt(split[1]);
+	var surface = $('#surfaces').val();
+	var paper_type=$('#paper_type').val();
+	var ratesof = rate;
+	//alert(surface_type)
+	 if(surface_type=='1'){
+//alert('canvas')
+	//$('#test').val('canvas');
+	
+    var c_height=parseInt(height)+parseInt(4);
+    var c_width=parseInt(width)+parseInt(4);
+  	}
+	else if(surface_type=='2'){
+	
+	var c_width=width+parseInt(1);
+  	var c_height=height+parseInt(1);
+	}
+	/*if(surface_type=='1'){
+	//alert('jjj')
+	var image_size_final=c_width+'" X '+c_height+'"';
+	var orig_image_size=width+'" X '+height+'"';
+	$('#17').html(image_size_final+' Giclee Print |'+ orig_image_size +' Giclee Print without border');
+	}*/
+  	var role_size;
+  if(Number(c_width)<=17 && Number(c_height)<=17){
+    var role_size = 17;
+	}else if(c_width==c_height){
+    if(c_width<=17){
+      var role_size = 17;
+    }else if(c_width<=24 && c_width>17){
+      var role_size = 24;
+    }else if(c_width<=44 && c_width>24){
+      var role_size = 44;
+    }else if(c_width<=64 && c_width>44){
+      var role_size = 64;
+    }
+  }else if((Number(c_width)<=24 && Number(c_width)>17 ) && (Number(c_height) <=24 && Number(c_height) >17)){
+		var role_size = 24;
+	 }else if((Number(c_width)>17 && Number(c_width)<24 && Number(c_height)>24) || (Number(c_height)>17 && Number(c_height)<24 && Number(c_width)>24)){
+		var role_size = 24;
+	}else if((Number(c_width)>17 && Number(c_width)<24) || (Number(c_height)>17 && Number(c_height)<24)){
+	  var role_size = 17;
+	}else if(Number(c_width)<=44 && Number(c_width) >24 && (Number(c_height) >24 && Number(c_height)<=44 ))
+        {
+    var role_size = 44;
+  }else if((Number(c_width)>24 && Number(c_width)<44)|| (Number(c_height)>24 && Number(c_height)<44)){
+		 var role_size = 24;
+	}else if((Number(c_width)>44 && Number(c_width)<64) || (Number(c_height)>44 && Number(c_height)<64))
+   {
+    var role_size = 44;
+  }
+  //$('#test').val(c_width+'and rsz'+role_size);
+  if((Number(c_width) && Number(c_height))<=(role_size)){
+		  if(c_width < c_height){
+		// alert(c_width+'*'+role_size+'*'+ratesof)
+		// $('.shipping-note').html(c_width+'*'+role_size+'*'+ratesof);
+	     var cost=c_width*role_size*ratesof;
+		  }else if(c_width > c_height){
+		    var cost=c_height*role_size*ratesof;
+		  }
+	}
+	if(Number(c_width)>Number(role_size)|| Number(c_height)>Number(role_size)){
+    if(c_width>role_size){
+      var cost=(c_width*parseInt(role_size)*ratesof);
+	  // $('.shipping-note').html(c_width+'*'+role_size+'*'+ratesof);
+    }else if(c_height>role_size){
+	//$('.shipping-note').html(c_width+'*'+role_size+'*'+ratesof);
+    var cost=(c_height*parseInt(role_size)*ratesof);
+    }
+  }
+  if(c_height==c_width){
+ // alert(c_height+','+role_size+','+ratesof)
+    var cost=(c_height*parseInt(role_size)*ratesof);
+  }
+	$('#print_price').html('Rs.'+ Math.round(parseInt(cost),2));
+	calculate_cost($('#type').val(),surface_type);
+}
 
-function calculate_cost(value){}
+function calculate_cost(value,surface_type){
+		var image_size=$( "#sizes option:selected" ).val();
+ 		var print_sizes=$('#surfaces').val();
+ 		var ratesof=$('#quality_rate').val();
+	    var split = image_size.split('X');
+  		$('#image_size').val(print_sizes);
+    	var role_size,cost;
+		var width=parseInt(split[0]);
+		var height=parseInt(split[1]); 
+		var orig_image_size = width +'" X '+ height +'"';
+		var c_height=parseInt(height)+parseInt(4);
+		var c_width=parseInt(width)+parseInt(4);	
+		var image_size_final=c_width+'" X '+c_height+'"';
+		$('#print_sizes').html(orig_image_size);
+		var price = $('#print_price').html().split('.');
+		var type = value; 
+ 		if( type == 1){
+			if( $("input[id='museum']:checked").val()){
+				$('#17').html(image_size_final+' Canvas Print with border | '+orig_image_size+' Canvas Print without borderr');
+	 		}else if( $("input[id='gallery']:checked").val()){
+	 			$('#17').html(image_size_final+' Canvas Print');
+			}
+		$('#print_h_w').val(c_width+'X'+c_height);
+		var newwidth1 = parseInt(width)+(1*2);
+		var	newlenght1 = parseInt(height)+(1*2);
+		var CanvasFrameCost = parseInt( (parseInt((parseInt(width)+(1*2))*parseInt(2)) + parseInt((parseInt(height)+(1*2))*parseInt(2)))*75)/12;
+		CanvasFrameCost = Math.round(parseInt(CanvasFrameCost),2);
+		var total_cost = CanvasFrameCost + parseInt(price[1]); 
+		$('.framing,.print').hide();
+		$('.canvas').show();
+		$('#print_paper').html($('#surfaces').val());
+		$('#frame_type').html('Streched Canvas Gallary Wrap');
+		$('#CanvasCost').html('Rs.'+ Math.round(CanvasFrameCost,2));
+		$('#sub_total_price').html('Rs.' + Math.round(total_cost,2) );
+ 		apply_promo_code(Math.round(total_cost));
+ 		}else if(type == 2){
+ 		var c_height=parseInt(height)+parseInt(1);
+ 		var c_width=parseInt(width)+parseInt(1);
+ 		$('#print_h_w').val(c_width+'X'+c_height);
+ 		var image_size_final=c_width+'" X '+c_height+'"';
+ 		$('#17').html(image_size_final+' Giclee Print |'+ orig_image_size +' Giclee Print without border');
+ 		var mount = $('#mount_width').val();
+ 		var newmountheight = parseInt(split[0])+ mount * parseInt(2);
+    	var newmountwidth = parseInt(split[1])+ mount * parseInt(2);
+		var mount_rate = $('#mount_rate').val();
+		var m_cost=parseFloat(newmountheight)*parseFloat(newmountwidth)*parseFloat(mount_rate);
+		var MountCost=m_cost.toFixed(2);
+		var size = $('#frame_size').val();
+ 		var frame_rate = $('#frame_rate').val();
+ 		var OrgFrametRuningArea = ((parseFloat(newmountheight)+parseFloat(size)*2)*2) + ((parseFloat(newmountwidth)+ parseFloat(size*2))*2);
+ 		var OrgFramCost=((OrgFrametRuningArea)/(12)*frame_rate);
+ 		OrgFramCost = Math.round(OrgFramCost,2);
+ 		$('#FrameCost').html('Rs.'+OrgFramCost);
+ 		$('#mount_size').html($('#mount_width').val()+'"');
+ 		$('#MountCost').html('Rs.'+MountCost);
+ 		var glass_type = $('#glass_type').val();
+	 		$.ajax({
+				type:'post',
+	            url:'<?=base_url()?>index.php/frontend/get_web_price_detail',
+				data: {type: glass_type},
+				success:function(data){
+				glass_rate = data;
+				var glass_cost = newmountheight * newmountwidth * glass_rate;	
+					glass_cost = Math.round(glass_cost,2); 
+				$('#glass_cost').val(glass_cost);			
+				if($('#mount_state').val() == 0){
+					MountCost = 0;		
+				}
+				var total_cost = parseFloat(MountCost) + parseFloat(OrgFramCost) + glass_cost + parseInt(price[1]);
+				$('#sub_total_price').html('Rs.' + Math.round(total_cost,2) );
+				$('#glass_price').html('Rs.'+ glass_cost);
+				apply_promo_code(total_cost);				
+				}
+			})
+		$('.canvas,.print').hide();
+		$('.framing').show();
+		$('#print_paper').html($('#surfaces').val());
+		}else{
+ 			
+ 			$('.canvas,.framing').hide();
+			$('.print').show();
+ 			$('#print_h_w').val(width+'X'+height);
+ 			$('#print_paper').html($('#surfaces').val());
+ 			$('#sub_total_price').html('Rs.' + Math.round(price[1],2) );
+ 			apply_promo_code(Math.round(price[1],2));
+ 		}
+		//$('#test').val(surface_type);
+		//var paper_type=$('#paper_type').val();
+		if(type=='3' && surface_type=='1'){
+		var image_size_final=c_width+'" X '+c_height+'"';
+	//var orig_image_size=width+'" X '+height+'"';
+	//image_size_final+' Giclee Print |'+ orig_image_size +' Giclee Print without border'
+	$('#17').html(orig_image_size+'Print without border |' +image_size_final+ 'Print with border' );
+		}else if(type=='3' && surface_type=='2'){
+		$('#17').html(orig_image_size+'Print Only');
+		}
+	}
 
-	function apply_promo_code(total_amount){}
+	function apply_promo_code(total_amount){
+		$('#sub_total_price,.old_price').html('Rs.' + total_amount);
+		var promo_precentage=$('#promo_precentage').html();
+		promo_precentage = promo_precentage.split('%');
+		var promo_amount_final=parseFloat(Math.round((total_amount*parseFloat(promo_precentage))/100).toFixed(2));
+		$('#promo_amount').html('Rs.' + Math.round(promo_amount_final,2));
+		var total_amount_after_gst = parseFloat(total_amount)-parseFloat(promo_amount_final);
+		$('.total_cost,.actual_price').html('Rs.'+ Math.round(total_amount_after_gst,2));
+	}
 	// end function
 </script>
 <script>
@@ -224,17 +697,8 @@ function calculate_cost(value){}
 	$('#price_detail').hide();	
 	}
 </script>
-<!-- pricing Details -->
-<?php
-/*$CanvasFrameCost = parseInt( (parseInt((parseInt(width)+(1*2))*parseInt(2)) + parseInt((parseInt(height)+(1*2))*parseInt(2)))*75)/12;*/
-/*$width=$image_details[0]->width;
-$height=$image_details[0]->height;
-echo $CanvasFrameCost=((($width+(1*2))*2)+(($height+(1*2))*2))*75/12;*/
-$unit_price=$image_details[0]->unit_price;
-$promo_amount=round($image_details[0]->unit_price*20/100);
 
-?>
-
+<!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
@@ -245,72 +709,164 @@ $promo_amount=round($image_details[0]->unit_price*20/100);
       </div>
 
       <div class="modal-body">
+      <!-- pricing Details -->
         <div class="frame-it-pricing">
         	<div class="row canvas framing print">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
+                	<div class="col-md-6 col-sm-6 ">
                     	<p> Print Price</p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<p> Rs. <span id="print_price" class='canvas framing print'><?=($image_details[0]->unit_price)-275?></span></p>
+                    	<p> <span id="print_price" class='canvas framing print'></span></p>
                     </div>
                 </div>
             </div>
             <div class="row canvas framing print">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
+                	<div class="col-md-6 col-sm-6 ">
                     	<p> Print Size: </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<p> <span id="print_sizes" class='canvas framing print'><?php echo $image_details[0]->width.'x'.$image_details[0]->height;?> inches</span></p>
+                    	<p> <span id="print_sizes" class='canvas framing print'></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row canvas framing print">
+            	<div class="frame-it-content">
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p> Paper Print: </p>
+                    </div>
+                	<div class="col-md-6 col-sm-6 text-right">
+                    	<p> <span id="print_paper" class='canvas framing print'></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row framing">
+            	<div class="frame-it-content">
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p> Frame Size(mm): </p>
+                    </div>
+                	<div class="col-md-6 col-sm-6 text-right">
+                    	<p> <span id="frame_sized" class='framing'></span></p>
                     </div>
                 </div>
             </div>
             <div class="row canvas">
             	<div class="frame-it-content ">
-                	<div class="col-md-6 col-sm-6 text-left">
+                	<div class="col-md-6 col-sm-6 ">
                     	<p> Frame Type: </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<p><span class='canvas' id="frame_type">Streched Canvas Gallary Wrap</span></p>
+                    	<p><span class='canvas' id="frame_type"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row framing">
+            	<div class="frame-it-content">
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p> Frame Name: </p>
+                    </div>
+                	<div class="col-md-6 col-sm-6 text-right">
+                    	<p><span class='framing' id="f_name"></span></p>
                     </div>
                 </div>
             </div>
             <div class="row canvas ">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
+                	<div class="col-md-6 col-sm-6 ">
                     	<p> Frame Cost: </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right canvas ">
-                    	<p>Rs. <span id="CanvasCost">275</span></p>
+                    	<p><img src="" align="absmiddle" /><span id="CanvasCost"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row framing">
+            	<div class="frame-it-content">
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p> Frame Cost: </p>
+                    </div>
+                	<div class="col-md-6 col-sm-6 text-right framing">
+                    	<p><img src="" align="absmiddle" /><span id="FrameCost"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row framing mount">
+            	<div class="frame-it-content">
+                	<div class="col-md-6 col-sm-6  mount">
+                    	<p> Mount Size: </p>
+                    </div>
+                	<div class="col-md-6 col-sm-6 text-right mount">
+                    	<p> <span class='framing' id="mount_size"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            	<div class="frame-it-content framing mount">
+                	<div class="col-md-6 col-sm-6  mount">
+                    	<p> Mount Color: </p>
+                    </div>
+                	<div class="col-md-6 col-sm-6 text-right mount">
+                    	<p><span class='framing' id="mount_color">Ice White</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row framing">
+            	<div class="frame-it-content mount">
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p> Mount Cost: </p>
+                    </div>
+                	<div class="col-md-6 col-sm-6 text-right">
+                    	<p><img src="" align="absmiddle"/><span id="MountCost" class='framing mount'></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row framing">
+            	<div class="frame-it-content">
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p> Glass Type: </p>
+                    </div>
+                </div>
+            </div>  
+            <div class="row framing" >
+            	<div class="frame-it-content">
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p id="glass_type"> Regular </p>
+                    </div>
+                	<div class="col-md-6 col-sm-6 text-right framing">
+                    	<p> <span id="glass_price"> </span></p>
                     </div>
                 </div>
             </div>
             <div class="row">
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
+                	<div class="col-md-6 col-sm-6 ">
                     	<p style="color:#d3131b">Discount:</p>
                     </div>
+					<div class="col-md-6 col-sm-6 text-right">
+                    	<p style="color:#d3131b"> <span id="promo_discount">20</span>%</p>
+                    </div>
                 </div>
-            </div> 
+            </div>  
             <div class="row" >
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
-                    	<p style="color:#d3131b">Flat <span id="promo_precentage" style="color:#d3131b; vertical-align:top">20%</span></p>
-                    	<p style="color:#d3131b">Promo Code Applied</p> 	
+                	<div class="col-md-6 col-sm-6 ">
+                    	<p style="color:#d3131b">FLAT<span id="promo_precentage" style="color:#d3131b">20</span></p>
+						<input type="hidden" class="promo_name_code" value="FLAT20" />
+                    	<span style="color:#d3131b">Promo Code Applied</span> 	
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<p style="color:#d3131b">Rs. <span id="promo_amount" ><?=$promo_amount?></span></p>
+                    	<p> <span id="promo_amount" style="color:#d3131b"></span></p>
                     </div>
                 </div>
             </div>
-           <div class="row" >
+            <div class="row" >
             	<div class="frame-it-content">
-                	<div class="col-md-6 col-sm-6 text-left">
+                	<div class="col-md-6 col-sm-6 ">
                     	<p> Sub-Total  </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<p> <span id="sub_total_p<?php echo $unit_price;?>rice"></span></p>
+                    	<p> <span id="sub_total_price"> </span></p>
                     </div>
                 </div>
             </div>
@@ -318,48 +874,236 @@ $promo_amount=round($image_details[0]->unit_price*20/100);
       </div>
       
       <div class="modal-footer">
-        <div class="row">
+      	<div class="row">
             	<div class="frame-it-content col-md-12">
                 	<div class="row">
-                        <div class="col-md-6 col-sm-6 text-left">
-                            <p style="color:#d3131b"> Total Price </p>
+                        <div class="col-md-6 col-sm-6 ">
+                            <p style="color:#d3131b" class="text-left"> Total Price </p>
                         </div>
                         <div class="col-md-6 col-sm-6 text-right">
-                            <p> <span class='actual_price' style="color:#d3131b">Rs. <?php echo ($unit_price)-$promo_amount;?></span></p>
+                            <p> <span class='actual_price' style="color:#d3131b"></span></p>
                         </div>
                     </div>
                 </div>
             </div>
       </div>
-      
+
       <div class="modal-footer">
-      <div class="frame-it-button">
-                	<button <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing(); login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> type="button" class="btn social_icon" style="background-color:#d3131b; color:#fff;" data-dismiss="modal"> Add to cart </button>
-                	<button onclick="remove_pricing(); return false;" type="button" class="btn social_icon" style="background-color:#555; color:#fff; margin-right:10px" data-dismiss="modal"> Cancel </button>
-                </div>
+        <div class="frame-it-button">
+            <button <?php if(!$this->session->userdata('userid')){?> onclick="login('');return false;"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> type="button" class="btn social_icon" style="background-color:#d3131b;" data-dismiss="modal"> Add to cart </button>
+            <button type="button" class="btn social_icon" data-dismiss="modal" style="background-color:#555;"> Cancel </button>
+        </div>
       </div>
     </div>
     
   </div>
 </div>
 
-	
-<!-- end -->
+<!-- Modal2 -->
+<div class="modal fade" id="myModal2" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header uploader_popup_header">
+            <h2 class="text-center">Pricing Details</h2>
+            <a class="lightbox-close"  data-dismiss="modal" ></a>
+      </div>
+
+      <div class="modal-body">
+           <p>We offer two style of canvas wrap. Museum wrap stops the image at the front edge, has hand painted
+    black sides and is ideal for portraits or when you want to emphasize the photo. Gallery wrap
+    extends the image around the sides and is more informal Choose the style that suits your decor</p>
+			<div class="row">
+                <div class="col-sm-6 col-md-6 col-xs-6">
+                  <h4>Museum Wrap</h4>
+                  <img src="<?php print base_url();?>images/uploaded_pdf/canvas_img3.jpg" class="img-responsive" />
+                </div>    	 
+                <div class="col-sm-6 col-md-6 col-xs-6">
+                  <h4>Gallery Wrap</h4>
+                  <img src="<?php print base_url();?>images/uploaded_pdf/canvas_img2.jpg" class="img-responsive" />
+                </div>    	 
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal3 -->
+<div class="modal fade" id="myModal3" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header uploader_popup_header">
+            <h2 class="text-center">Pricing Details</h2>
+            <a class="lightbox-close"  data-dismiss="modal" ></a>
+      </div>
+
+      <div class="modal-body">
+			<p><strong>Archival Premium-</strong> Prints made on archival premium type paper are produced on the Hahnemühle print surfaces. All surfaces are made from alpha cell ulous wood pulp that is acid free. It shares the same vivid colors, accuracy, and exceptional resolution that makes giclee prints the standard for museums and galleries around the world. They are extremely age resistant – more than 100 years (highest life expectancy category). Premium archival ink in 8 colors (cyan, light cyan, magenta, light magenta, yellow, black, light black, light light black) are used to provide luxurious prints with wide color spectrum The smooth transitions of color gradients make giclee prints appear much more realistic than other prints. All giclee prints come with a 0.5" white border all around and are suitable for matting and framing if desired.</p>
+            <p><strong>Archival Standard-</strong> Prints made on archival standard type paper are produced on the archival surfaces from an imported brand. This high-quality reproduction represents the best of both worlds: quality and affordability. It shares the same vivid colors, accuracy, and exceptional resolution that makes giclee prints the standard for museums and galleries around the world. Premium archival ink in 8 colors (cyan, light cyan, magenta, light magenta, yellow, black, light black, light light black) are used to provide luxurious prints with wide color spectrum The smooth transitions of color gradients make giclee prints appear much more realistic than other prints. All giclee prints come with a 0.5" white border all around and are suitable for matting and framing if desired.</p>
+            
+            <div id="hahnemuhle_daguerre_canvas">
+                <p><strong>Hahnemuhle Daguerre Canvas</strong></p>
+                <p>GSM: 400 GSM</p>
+                <p>Description: Hahnemuhle's Daguerre Canvas offers a true canvas texture with a matte finish which can be stretched and varnished. It is particularly good for fine art photo printing. Its bright white point provides clear fresh colors and contrasts for black and white reproductions.</p>
+            </div>
+            
+            <div id="hahnemuhle_photo_canvas_320_gsm">
+            	<p><strong>Hahnemuhle Photo Canvas 320 GSM</strong> </p>
+                <p>GSM: 320 GSM </p>
+                <p>Description: Hahnemuhle's Photo Canvas is a bright poly-cotton canvas paper with a fine structure and matte surface, great for making large-format prints. The matt coating with its bright white point makes colors shine and provides high contrasts for black and white prints.</p>
+            </div>
+            
+            <div id="canvas_380_gsm">
+            	<p><strong>Canvas 380 GSM</strong></p>
+                <p>GSM: 380 GSM </p>
+                <p>Description: Bright white, cotton canvas with a smooth weave. It is best suited for highly detailed photographs and artwork, graphics and presentations, exhibition prints. It stretches easily for gallery wraps.</p>
+            </div>
+            
+            <div id="Hahnemuhle Matt Fine Art">
+            	<p><strong>Hahnemuhle Matt Fine Art</strong></p>
+                <p>GSM: 305 GSM </p>
+                <p>Description: A smooth 100% cotton white paper specifically designed for creative individuals using digital photographic output. It is one of Hahnemuhle's most popular papers and meets the highest industry standards regarding density, color gamut, color graduation and image sharpness. It is ideal for Photographic and Fine art reproduction.</p>
+            </div>
+            
+            <div id="Hahnemuhle Photo Luster">
+            	<p><strong>Hahnemuhle Photo Luster</strong></p>
+                <p>GSM: 260 GSM</p>
+                <p>Description: Hahnemuhle's Photo Luster is a microporous, resin coated photo paper with a beautiful luster surface, high opacity, excellent rigidity, bright with very consistent flatness. It guarantees a long-lasting fade resistant prints.</p>
+            </div>
+            
+            <div id="Hahnemuhle Photo Matt Fibre">
+            	<p><strong>Hahnemuhle Photo Matt Fibre</strong></p>
+                <p>GSM: 200 GSM</p>
+                <p>Description: Hahnemuhle's Photo Matt Fibre is a matt coated smooth InkJet paper with a warm tone paper shade, good opacity, a fine smooth surface, good rigidity and a consistent flatness. It provides an excellent fine art base to photograph and fine art reproductions.</p>
+            </div>
+            
+            <div id="Epson Enhanced Matt">
+                <p><strong>Epson Enhanced Matt</strong></p>
+                <p>GSM: 189 GSM</p>
+                <p>Description: A superior media that outputs images that are vivid and vibrant and accentuates shadowy areas, the enhanced matte paper is the perfect solution for museum quality photographic and fine art works. </p>
+            </div>
+            
+            <div id="Fine Art Luster">
+            	<p><strong>Fine Art Luster</strong></p>
+                <p>GSM: 315 GSM</p>
+                <p>Description: A natural white, softly textured, coated fine art luster paper ideal for fine art giclee reproduction. Archival - acid & lignin free, instant dry, aqueous pigment and dye ink compatible, excellent color gamut.</p>
+            </div>
+            
+            <div id="Fine Art Matt">
+            	<p><strong>Fine Art Matt</strong></p>
+                <p>GSM: 315 GSM</p>
+                <p>Description: A natural white, softly textured, coated fine art matt paper ideal for fine art giclee reproduction. Archival - acid & lignin free, instant dry, aqueous pigment and dye ink compatible, excellent color gamut.</p>
+            </div>
+            
+            <div id="RC Premium Luster Paper 255 GSM">
+            	<p><strong>RC Premium Luster Paper 255 GSM</strong></p>
+                <p>GSM: 255 GSM</p>
+                <p>Description: A natural white, softly textured, coated premium luster paper. Archival - acid & lignin free, instant dry, aqueous pigment and dye ink compatible, excellent color gamut.</p>
+            </div>
+            
+            <div id="Photographic Glossy Paper">
+            	<p><strong>Photographic Glossy Paper</strong></p>
+                <p>GSM: 260 GSM</p>
+                <p>Description: Water Resistant/Instant Dry. For TRUE Photographic feel, Ultimate versatility, Sharp image, Excellent Color rendition, Smooth feel, High speed and Reliability.</p>
+            </div>
+            
+            <div id="Vinyl">
+            	<p><strong>Vinyl</strong></p>
+                <p>GSM: 150 GSM</p>
+                <p>Description: Photo quality self-adhesive high gloss sticker paper. It is excellent for photo quality prints with an adhesive backing. Once printed the image is sealed on the paper and is water resistant and can be wiped clean with a wet cloth without harming the image.</p>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <div class="container">
    <div class="row">
-      <div class="col-md-6 col-sm-12 col-sm-12">
+      <div class="col-md-7 col-sm-12 col-sm-12">
          <div class="single-product-image">
          	<div class="single-product-image-inner" style="margin-top: 20px">
   <ul class="product-tabs" role="tablist">
                <li role="presentation" id="11"><img src="<?php echo $image_path;?>" class="img-responsive"></li>
-	    		<li role="presentation" id="13"><img src="<?= base_url() ?>assets/img/product/stock1.png" class="img-responsive" style="background-color: rgb(136, 136, 136);"></li>
-	            <li role="presentation" id="14"><img src="<?= base_url() ?>assets/img/product/stock2.png" class="img-responsive" style="background-color: rgb(136, 136, 136);"></li>
+               <li role="presentation" id="15">
+                   <img src="<?php echo $image_path;?>" style="transform: perspective( 900px ) rotateY( 15deg );  /*!width: 50px;*/padding-left: 5px;padding-right: 5px;" class="img-responsive">
+                    <figure style="background: linear-gradient(to right, rgba(227,227,227,0.4) 0%, rgba(255,255,255,1) 100%);position: absolute;height: 10px;width: 40px;transform: skewX(20deg) skewY(-3deg) translate(3px,-1px);bottom: 0;z-index: -1;">
+                    </figure>
+               </li>
+               <li role="presentation" id="19">
+               	<style>
+					.mainhor {
+						-moz-border-bottom-colors: none;
+						-moz-border-left-colors: none;
+						-moz-border-right-colors: none;
+						-moz-border-top-colors: none;
+						border-color: transparent;
+						border-style: solid;
+						border-width: 8px;
+						padding: 5px;
+					}
+					.close {
+						position: absolute;
+						right: 5px;
+						top: 4px;
+						width: 32px;
+						height: 32px;
+						opacity: 1;
+					}
+										.close::before {
+						transform: rotate(45deg);
+					}
+					.close::before, .close::after {
+						position: absolute;
+						left: 15px;
+						content: ' ';
+						height: 33px;
+						width: 2px;
+						background-color: #333;
+					}
+
+
+
+
+					.close::after {
+						transform: rotate(-45deg);
+					}
+					.edit_btn.active, .edit_btn:active {
+						-webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,0);
+						box-shadow: inset 0 3px 5px rgba(0,0,0,0);
+					}
+				</style>
+                <img src="<?php echo $image_path;?>" class="img-responsive mainhor" style="border-image: url('http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg') 30 30 30 30 round round;background:url('http://mahattaart.com/images/uploaded_pdf/mount/DR 2091.jpg') no-repeat scroll 0 0 / contain;">
+               </li>
+               <li role="presentation" id="12"><img src="<?= base_url() ?>assets/img/product/frame_left.jpg" class="img-responsive" ></li>
+                <li role="presentation" id="20" style="border:0px;">
+        			<section class="container3D">
+        				<div id="cube">
+	            			<figure class="front">
+	  					<img id="large_img4" src="<?php echo $image_path;?>" class="img-responsive">	
+							<figure class="right" style="transform: skewY(45deg) translate(7px,-3px);
+    					width: 7px;height: 100%;right: 0px;top: 0; position: absolute;"></figure>
+	    					<figure class="bottom" style="transform: skewX(45deg) translate(-5px,8px);
+    					height: 7px;width: 100%;bottom: 1px; position: absolute;"></figure>
+	    					</figure>
+						</div>
+					</section>
+   				 </li>
+    		<li role="presentation" id="13"><img src="<?= base_url() ?>assets/img/product/stock1.png" class="img-responsive" style="background-color: rgb(136, 136, 136);"></li>
+            <li role="presentation" id="14"><img src="<?= base_url() ?>assets/img/product/stock2.png" class="img-responsive" style="background-color: rgb(136, 136, 136);"></li>
 </ul>  
 <!-- Tab panes -->
 <div  style="margin-left: 90px;">
-	
+	<div class="divimg mainhor room_frame" id="frame-it" style="border-image-source: url('http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg'); border-image-slice: 58; border-image-width: initial; border-image-outset: initial; border-image-repeat: round; border-style: solid; border-width: 20px; padding: 0px; width: auto; display:inline-block; position: relative;">
+
+	    <div id="abc" class="room_mount" style="background:url('<?=base_url()?>images/uploaded_pdf/mount/DR 2091.jpg')  0% 0% / cover no-repeat;width:auto;padding:10px; background-attachment:scroll; position: relative; z-index: 1;">
+            	<a href="javascript:" id="demo2" class="imglink img_shadow " target="_self" >
+               		<img id="large_img" class="img-responsive" style="max-height: 400px" src="<?php echo $image_path;?>" />
+				  	<input type="hidden" id="frame_shape" value="<?=$f_shape?>"/>
+	        	</a>
+		</div>
+    </div>
     	<figure class="zoom-image" id="zoom_image">
             <figure style="background-position: -177.954px -226.251px;"></figure>        	    
                 </figure>
@@ -370,13 +1114,25 @@ $promo_amount=round($image_details[0]->unit_price*20/100);
 				</script>
 	<img id="large_img3"  style="max-height:400px" src="<?php echo $image_path;?>" class="img-responsive">			
 	<div id="22" style="position: relative;background-color: #888;">
-		
+		<div id="frame_show" style=" margin-top: 78px; width: 120px;transform: translate(-50%,0);left: 50%;position: absolute;">
+		     <div  class="divimg mainhor2" style="border-image-source: url(&quot;http://mahattaart.com/images/uploaded_pdf/frames/horizontal/Absolute Black.jpg &quot;); border-image-slice: 58; border-image-width: initial; border-image-outset: initial; border-image-repeat: round; border-style: solid; border-width:10px; margin-top:20px; padding:0px; width:auto; display:inline-block; position:relative;">
 
-		<div id="canvas_show" style="width:190px;position: absolute;transform: translate(-50%, 0%);left: 50%;top: 5%;">
-		    <img id="canvas_show_bs" src="<?php echo $image_path; ?>" class="img-responsive">
+		    <div id="abc2" style="background:url('<?= base_url()?>images/uploaded_pdf/mount/DR 2091.jpg')  0% 0% / cover no-repeat;width:auto;padding:3px; background-attachment:scroll;position: relative;z-index: 1;">
+	            	<a href="javascript:" id="demo2" class="imglink img_shadow" target="_self">
+	               		<img id="frame_img" src="<?php echo $image_path;?>" class="img-responsive" >
+					</a>
+			</div> 
+    	</div>
+
+	</div>
+
+		<div id="canvas_show" style=" margin-top: 78px; width: 120px;transform: translate(-50%,0);left: 50%;position: absolute;">
+		    <img id="canvas_show_bs" style="box-shadow: -11px 4px 25px #555;" src="<?php echo $image_path; ?>" class="img-responsive">
 		</div>
         
-		
+		<div id="printed" style=" margin-top: 78px; width: 120px;transform: translate(-50%,0);left: 50%;position: absolute;">
+			<img id="print" src="<?php echo $image_path; ?>" class="img-responsive">
+		</div>
         	
 		<div id="sa" class="showhidenew" style="display: flex; position: absolute; background-position: 69.87px 168.871px; width: 100%; bottom: 0px; flex-direction: column; z-index: 1">
                 <div class="btn btn-default edit_btn color_btn" href="javascript:void(0)" style=" position: absolute; text-align: center; margin: 0px auto;  background-color: rgba(255, 255, 255, 0.65); width: 220px; text-transform: capitalize; color: rgb(68, 68, 68); border: medium none;bottom: 0px; margin-left: -110px; left:50%;" >
@@ -416,7 +1172,6 @@ $promo_amount=round($image_details[0]->unit_price*20/100);
                                   <td><a href="javascript:;" class="color14" onclick="javascript:change_wallcolor(this);"></a></td>
                                   <td><a href="javascript:;" class="color15" onclick="javascript:change_wallcolor(this);"></a></td>
                                   <td><a href="javascript:;" class="color16" onclick="javascript:change_wallcolor(this);"></a></td>
-
                                   
                                 </tr>
                                 <tr>
@@ -730,14 +1485,14 @@ $promo_amount=round($image_details[0]->unit_price*20/100);
         </div>
                 </div>
 	<div id="large_img7"  class="3dwrap" style="transform: perspective(1001px) rotateY(22deg) translate(49px, 10px); width: 300px; position: relative; display: block;">
-		<div class="3dwrap_front" style="background-color: #fff;border: 1px solid #ddd;border-left-style: none;">
+		<div class="3dwrap_front" >
 			<img src="<?php echo $image_path; ?>" style=" max-height: 400px;" class="img-responsive">
 			<div class="3dwrap_left" style="transform: perspective(1001px) rotateY(-40deg) translate(-20px, 0px);width: 40px;left: -20px;position: absolute;height: 100%;top: 0; background-color: #000"></div>
 			<div class="3dwrap_shadow" style="transform: perspective(1001px) rotateX(-65deg) translate(-55px, 85px);width: 100%;position: absolute;height: 120px;bottom: 0;z-index: -1; background-color: #ddd; box-shadow: 0 15px 20px rgba(0,0,0,0.3)"></div>
 		</div>
 	</div>
 
-	<section  id="canvas3D" class="container3D" style="border: 1px solid #ddd;border-right-style: none;">
+	<section  id="canvas3D" class="container3D">
         <div id="cube">
             <figure class="front">
   		<img id="large_img2"  style="max-height: 400px" src="<?php echo $image_path; ?>" class="img-responsive">	
@@ -827,25 +1582,6 @@ function right(width,height,x){
     position: relative;
     z-index: -1;
 	}
-.modal {
-  text-align: center;
-  padding: 0!important;
-}
-
-.modal:before {
-  content: '';
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
-  margin-right: -4px;
-}
-
-.modal-dialog {
-  display: inline-block;
-  text-align: left;
-  vertical-align: middle;
-}
-
     </style>
         </div>
          </div>
@@ -866,7 +1602,31 @@ function right(width,height,x){
    });
 });
 </script>
-<style>
+      <div class="col-md-5 col-sm-12 col-xs-12">
+         <div class="single-product-details">
+         	<div class="row">
+                <ul class="media-list main-list col-md-9">
+                  <li class="media item_click active2" id="1" onclick="return false;">
+                    <span> Canvas</span>
+                      <img class="media-object pull-left" src="<?php print base_url();?>images/uploaded_pdf/canvas_img2.jpg" >
+                  </li>
+                  <li class="media item_click" id="2" onclick="return false;">
+                    <span> Framing</span>
+                       <img class="media-object pull-left" src="<?php print base_url();?>images/uploaded_pdf/frame_img2.jpg">
+                  </li>
+                  <li class="media item_click" id="3" onclick="return false;">
+                    <span> Art Print</span>
+                      <img class="media-object pull-left" src="<?php print base_url();?>images/uploaded_pdf/print_img2.jpg">
+                  </li>
+                  <li class="media" id="4">
+                    <span> Recommended Frames</span>
+                    <a class="pull-left" href="" onclick="return false;">
+                      <img class="media-object" src="<?php print base_url();?>images/uploaded_pdf/recommendedframes.jpg">
+                    </a>
+                  </li>
+                </ul>
+            </div>
+            <style>
 				   	.input_control {
 						height: 35px;
 						padding: 4px 2px;
@@ -910,64 +1670,81 @@ function right(width,height,x){
 						margin-top: -32px;
 					}
 				   </style>
-      <div class="col-md-6 col-sm-12 col-xs-12">
-         <div class="single-product-details">
-         	<?php
-			$panel=substr($image_details[0]->image_id,8,-7);
-			
-			?>
-            
-            
             <div class="row">
-            <div class="col-md-12">
-            <h2 style="margin-top:0"><?=$panel?> Panel Wall Art Set</h2>
-            <hr style="margin-top:0" />
-            	<form class="form-horizontal">
-                        <div class="form-group">
-                        	<label for="country" class="col-sm-4 menu-heading-text">
-                            	Panel Size
-                                <span class="menu-selection-text">(In Inches)</span>
-                            </label>
-                            <div class="col-sm-8">
-	                       	<span name="print_dimension" id="dimension" class="form-control-static">
-							<?php echo $image_details[0]->dimension;?>
-                        </span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                        	<label for="country" class="col-sm-4 menu-heading-text">
-                            	Total Size<span class="menu-selection-text">(In Inches)</span>
-                            </label>
-                            <div class="col-sm-8">
-	                       	<span class="form-control-static" name="print_sizes" id="sizes"><?php echo $image_details[0]->width.'x'.$image_details[0]->height;?></span><span> inches</span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                        	<label for="country" class="col-sm-4 menu-heading-text">
-                            	Price
-                            </label>
-                            <div class="col-sm-8">
-	                       	<p class="price" style="display: block;">
-                            <span class="old_price" style="font-size: 15px;color:Tomato;"></span> 
-                            <span class="total_cost">Rs. <?=$unit_price-275?></span> </p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                        	<label for="country" class="col-sm-4" style="font-size:15px"> </label>
-                            <div class="col-sm-8">                    
-                                <p class="bottom-bar-crop" style="display: block;" id="17"></p>
-                                <p class="shipping-note" style="margin-bottom:0">Ships in 1-2 days</p>
-                                <p><a href='' onclick="get_functions(''); price_details();return false;" data-toggle="modal" data-target="#myModal">Price Details</a> </p>
-                                <p><input type="button" class="call-to-action-1-button btn btn-default login-link2" <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing();" data-toggle="modal" data-target="#myModal_registration" <?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> value="ADD TO CART" ></p>
-                                <div id="save-to-gallery-text">
-                	<span> <i class="fa fa-heart-o" aria-hidden="true"></i>
-                		<a <?php  if($this->session->userdata('userid')){?>
-href="" data-toggle="modal" data-target="#login-modal4" onclick="addtogallery('<?=$api_image_id?>','<?=$image_id?>');return false;" id="tgl" style="color:#ef9223;" <?php }
-else {?> href="" data-toggle="modal" data-target="#myModal_registration" <?php }?> style="color:#ef9223;" class="login-link2">Add to Gallery </a>
-                	</span>
+            	<div class="col-md-9">
+                	<div class="row" id="5">
+                        <div class="col-md-6">No. of edition <strong>10 </strong></div>
+                        <div class="col-md-6 text-right">Left <strong>10 </strong></div>
+                    </div>
                 </div>
+            </div>
+            <div class="row">
+            <div class="col-md-9">
+            	<form class="form-horizontal">
+	                	<div class="form-group">
+                            <label for="country" class="col-sm-4 control-label">
+                            	<a href="" data-toggle="modal" data-target="#myModal3" style="position: absolute;left: -5px;"><img id="img_hover" class="img-responsive" style="" src="http://cache1.artprintimages.com/images/photostoart/ART/info_off_v1.png"></a>
+                                Print Type
+                            </label>
+                            <div class="col-sm-8">
+                                <select class="form-control input_control" id='print_type_main' onchange="paper_surface();" onclick="get_functions();return false;">
+                                <?php 
+                                foreach($papper_type as $results){?>
+                                <option value="<?=$results->paper_type_name?>"><?=$results->paper_type_name?></option>
+                                
+                                <?php
+                                }
+                                ?>
+                                </select>
+                            </div>
+	                    </div>
+                        <div class="form-group">
+                        	<label for="country" class="col-sm-4 control-label"">
+                                <a href="" data-toggle="modal" data-target="#myModal3" style="position: absolute;left: -5px;"><img id="img_hover" class="img-responsive" style="" src="http://cache1.artprintimages.com/images/photostoart/ART/info_off_v1.png"></a>
+                                Print Surface
+                            </label>
+                            <div class="col-sm-8">
+	                            <select class="form-control input_control" id='surfaces' onclick="   get_functions();return false;">
+						<?php
+						foreach($display_p_name as $d_p_name){
+	echo "<option value='".$d_p_name->paper."'>".$d_p_name->display_p_name."</option>";
+	//print_r($res->paper);
+	}
+						
+						?>
+	                    </select>
                             </div>
                         </div>
+                        <div class="form-group">
+                        	<label for="country" class="col-sm-4 control-label">
+                            	Size <span style="font-size: 12px;color: #888;"> (In Inches)</span>
+                            </label>
+                            <div class="col-sm-8">
+	                            <select name="print_sizes" id="sizes" class="form-control input_control" onclick=" get_quality('');return false;">
+                    <?php for($i=0;$i<=count($size_array)-1;$i++){
+              			if($size_array[$i]['width']<=round($max_width_allowed) && $size_array[$i]['height']<= round($max_height_allowed)){ ?>
+          			<option value="<?php print round(number_format($size_array[$i]['width'],1,'.','')).'X'.round(number_format($size_array[$i]['height'],1,'.',''));?>" ><?php print round(number_format($size_array[$i]['width'],1,'.','')).'" X '. round(number_format($size_array[$i]['height'])).'"';?></option>
+          			<?php }} ?>
+                    <!-- <option value="Own Size">Choose Your Own Size</option> -->
+          			</select>
+                            </div>
+                        </div>
+                    	<div class="form-group">
+	                        <h4 class="col-md-9" id="18" style="margin-bottom: 0;">Types Of Wrap</h4>
+                        	<div class="col-md-4 col-sm-3 col-xs-4 wrapped">
+                                <label class="checkbox-inline whiteTxt" onclick="get_quality('');"style="font-size: 14px;padding-left: 0;display: block;">
+                                    <input name="canvas_type" type="radio" id="museum"> Museum
+                                </label>
+                                <img src="<?php print base_url();?>images/uploaded_pdf/canvas_img3.jpg" class="img-responsive" style="margin-top: 5px;">
+                            </div>
+	                        <div class="col-md-4 col-sm-3 col-xs-4 wrapped">
+                        	<label class="checkbox-inline whiteTxt" onclick="get_quality('');"style="font-size: 14px;padding-left: 0;display: block;">
+                                <input name="canvas_type" type="radio" id="gallery"> Gallery
+                                <a href="" data-toggle="modal" data-target="#myModal2"><img id="img_hover" class="img-responsive" style="margin-top: 5px;float: right;" src="http://cache1.artprintimages.com/images/photostoart/ART/info_off_v1.png"></a>
+                            </label>
+	                            <img src="<?php print base_url();?>images/uploaded_pdf/canvas_img2.jpg" class="img-responsive" style="margin-top: 5px;">
+                        </div>
+                    </div>
 				</form>
 <style>
 a.lightbox-close {
@@ -1005,30 +1782,24 @@ a.lightbox-close::after {
 	transform: rotate(-45deg);
 	width: 1px;
 }
-.frame-it-pricing {
-	padding: 10px;
-}
-.frame-it-content span {
-	vertical-align:top
-}
-.frame-it-button {
-	float:right
+.frame-it-content strong {
+	margin: 5px 0;
+	font-family: inherit;
 }
 .btn.social_icon {
 	border-radius: 0;
-	box-shadow: none;
-	padding: 2px 0;
-	position: relative;
-	min-width: 110px;
+	color:#fff
 }
-.uploader_popup_header {
+.uploader_popup_header{
 	background-color: #f1f1f1;
-	position: relative;
-	border-bottom: none;
+	position:relative;
+	border-bottom:none
 }
+
 #uploader_popup_goofy_a {
 	background: white none repeat scroll 0 0;
 	display: block;
+	font-family: Arial;
 	left: 50%;
 	position: absolute;
 	top: 50%;
@@ -1048,6 +1819,7 @@ a.lightbox-close::after {
 	top: 40px;
 	display:none
 }
+
 
 .uploader_popup_upload-icon > img {
 border: medium none;
@@ -1108,33 +1880,40 @@ display: none;
 	clear: both;
 	margin: 10px;
 }
-#save-to-gallery-text > span {
-	margin: 5px 0;
-	text-align: left;
+.modal {
+  text-align: center;
+  padding: 0!important;
 }
-.single-product-details {
-	margin-top: 20px;
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
 }
-h1, h2, h3, h4, h5, h6 {
-	font-family: 'BebasNeueRegular';
-}
-label.menu-heading-text {
-	font-size: 15px;
-	font-weight: 500;
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
 }
 </style>
-<script>
-$(document).ready(function(){
-        $("#img_hover").hover(function(){
-        $("#uploader_popup_goofy_b").css("display", "block");
-        },function(){
-        $("#uploader_popup_goofy_b").css("display", "none");
-        });
-        });
-</script>
+            </div>
+            	<div class="col-md-9" id="selector-step">
+                    <p class="price" style="display: block;"><span class="old_price" style="font-size: 15px;color:Tomato;"></span><span class="total_cost"></span> </p>
+                    <p class="bottom-bar-crop" style="display: block;" id="17"></p>
+                    <p class="shipping-note">Ships in 1-2 days</p>
+                   	<h5><a href='' onclick=" get_functions(''); price_details();return false;" data-toggle="modal" data-target="#myModal">Price Details</a> </h5>
+                    <p><input type="button" class="call-to-action-1-button btn btn-default login-link2" <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing();" data-toggle="modal" data-target="#myModal_registration" <?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> value="ADD TO CART" ></p>
                 </div>
-            	
-                
+                <div id="save-to-gallery-text" class="col-md-9">
+                	<span> <i class="fa fa-heart-o" aria-hidden="true"></i>
+                		<a <?php if($this->session->userdata('userid')){?>
+href="" data-toggle="modal" data-target="#login-modal4" onclick="addtogallery('<?=$api_image_id?>','<?=$image_id?>');return false;" id="tgl" style="color:#ef9223;" <?php }
+else {?> href="" data-toggle="modal" data-target="#login-modal" style="color:#ef9223;"<?php }?> >Add to Gallery </a>
+                	</span>
+                </div>
                 
                 <div class="col-md-9" id="9">
                   <div class="col-md-6"><a target="_self" class="btn btn-default edit_btn" href="">Edit This Frame</a></div>
@@ -1198,11 +1977,104 @@ $(document).ready(function(){
   </div>
 </div>
 </section>
-
+<div class="container bshow" style="display:none">
+<div class="row" style="background-color:#7f7d7e; margin-top:20px">
+        <div class="col-md-10 col-md-offset-2">
+          <div class="tabs-section tabs_section_header">
+            <ul class="nav nav-tabs">
+                <li class="active"><a class="nav_hover" id="hover1" href="#tab-1" data-toggle="tab" aria-expanded="false"><img src="<?php print base_url();?>/assets/img/product/frame.jpg" style="margin-right:5px" /></i>Frames</a></li>
+                <li class=""><a class="nav_hover" id="hover2" href="#tab-2" data-toggle="tab" aria-expanded="false"><img id="hover2_img" src="<?php print base_url();?>/assets/img/product/mat.jpg" style="margin-right:5px"/>Add Mount</a></li>
+                <li class=""><a class="nav_hover remove-mount" id="hover4" href="#tab-6" data-toggle="tab"><img src="<?php print base_url();?>/assets/img/product/removemat.png" style="margin-right:5px"  />Remove Mount</a></li>
+                <li class=""><a class="nav_hover" id="hover5" href="#tab-3" data-toggle="tab" aria-expanded="false"><img id="hover5_img" src="<?php print base_url();?>/assets/img/product/glass.jpg" style="margin-right:5px"  />Glass</a></li>
+              </ul>
+            </div>
+        </div>
+    </div>
+<div class="row" style="margin-bottom:20px">
+    <div class="tab-content">
+    <!-- Tab Content 1 -->
+      <div class="tab-pane fade active in row" id="tab-1" style="margin-top:5px">
+        	<div class="col-md-2 col-sm-2">
+                <h4 class="choose-colors"> Select frame style</h4>
+                <ul class="choose-colors-type">
+                <?php 
+					foreach($frame_cat as $frame_c){ ?>
+					<li><a href="javascript:" onclick=" showTable('<?=$frame_c->frame_category;?>');" class="active"><?=$frame_c->frame_category;?></a></li>
+				<?php }	?>
+                </ul>
+                <h4 class="choose-colors"> Choose by Size(mm) </h4>
+                <ul class="choose-colors-type">
+                    <?php
+					 foreach($frame_sizze as $frame_s){  ?>
+                      <li><a href="javascript:" onClick="Frame_Size('<?=$frame_s->frame_size_inch;?>','<?=$frame_s->frame_size;?>');">
+					  <?php	 echo  $frame_s->frame_size; ?></a></li>
+					  <?php } ?>
+                </ul>
+                <h4 class="choose-colors"> Choose by Color </h4>
+                <ul class="choose-colors-type">
+                	<?php foreach($frame_color as $frame_co){ ?>
+					<li><a href="javascript:" onclick="get_frame_color('<?=$frame_co->frame_color;?>');"><?=$frame_co->frame_color;?></a>
+					</li>
+					<?php } ?>
+                </ul>
+            </div>
+        <div id="frame_slider"></div>
+    </div>
+    <!-- Tab Content 2 -->
+    <div class="tab-pane fade row" id="tab-2" style="margin-top:5px">
+        <div class="col-md-2 col-sm-2">
+            <h4 class="choose-colors"> CHOOSE BY COLOR: </h4>
+                <ul class="choose-colors-type">
+                    <?php foreach($mount_name as $mount_t) { ?>
+						<li><a href="javascript:" onclick="return show_mat('<?=$mount_t->mount;?>');">	<?=$mount_t->mount;?></a></li>
+						<?php }?>
+                </ul>
+                        <h4 class="choose-colors"> Select Width: </h4>
+                <select id="mount_width"onchange="return change_mount(this.value);" style="padding:5px; width:100%;">
+                    <option value="0">--Select--</option>
+                    <option value="0.5">0.5"</option>
+                    <option value="1">1"</option>
+                    <option value="1.5">1.5"</option>
+                    <option value="2">2"</option>
+                    <option value="2.5">2.5"</option>
+                    <option value="3">3"</option>
+                    <option value="3.5">3.5"</option>
+                    <option value="4">4"</option>
+                    <option value="4.5">4.5"</option>
+                    <option value="5">5"</option>
+                    <option value="5.5">5.5"</option>
+                    <option value="6">6"</option>
+                </select>
+       	</div>
+    		<div id="mount_slider"></div>   
+   </div>
+    <!-- Tab Content 3 -->
+             <div class="tab-pane fade row" id="tab-3" style="margin-top:5px">
+            <div class="col-md-6">
+            <h4 class="choose-colors regul-glass">REGULAR Glass </h4>
+            <ul class="choose-colors-type">
+            	<li>Protect prints from protects dust and scratches
+                 <span class="pull-right"><input id="check0" name="regular" onclick="selectOnlyThis(this.id);" type="checkbox"> </span>
+                </li>
+                <li>Regular Glass </li>
+            </ul>
+            <h4 class="choose-colors regul-glass"> Acrylic Glass   </h4>
+            <ul class="choose-colors-type">
+            	<li> Lightweight, Transparent, Shatter- resistance
+				<br/>Recommended for frames more than 10"x12" in size.
+                 <span class="pull-right"><input id="check1" name="acrylic" onclick="selectOnlyThis(this.id);" type="checkbox"> </span>
+                </li>
+                <li>Acrylic Glass  </li>
+            </ul>
+            </div>
+     </div>
+         
+    </div>
+</div>
 <input type="hidden" id="frame_name" value="Absolute Black">
 <input type="hidden" id="frame_size" value="1">
 <input type="hidden" id="frame_rate" value="66">
-<input type="hidden" id="mount_name" value="">
+<input type="hidden" id="mount_name" value="DR 2091">
 <input type="hidden" id="mount_sized" value="1">
 <input type="hidden" id="mount_rate" value="">
 <input type="hidden" id="type" value="1">
@@ -1211,9 +2083,34 @@ $(document).ready(function(){
 <input type="hidden" id="mount_state" value="">
 <input type="hidden" id="mount_style" value="">
 <input type="hidden" id="mount_style2" value="3px">
+<input type="hidden" id="test" value="3px">
+</div>
 <section>
 	<div class="container">
     	<div class="row">
+        	<div class="col-md-6">
+            	<div class="product-detail-wrapper">
+				<div class="tabs-section" id="tabs-section2">
+              <!-- Nav Tabs -->
+	              <ul class="nav nav-tabs">
+	                <li class="active"><a href="#tab-7" data-toggle="tab" aria-expanded="true">About This Piece</a></li>
+	              </ul>
+              <!-- Tab panels -->
+	            <div class="tab-content">
+	                <!-- Tab Content 1 -->
+	                <div class="tab-pane fade active in" id="tab-7">
+	                	<h3>Portrait of&nbsp;<?php echo $image_detail[0]['image_photographer'];?></h3>
+	                	<p><strong>Item # :<?php print $image_detail[0]['image_filename'];?></strong></p>
+	      				<p><?php print $image_detail[0]['image_description'];?></p>
+	     				<!--<h4> KEYWORDS:-</h4>
+				     	<p><?php //print $image_detail[0]['image_keywords'];?></p> -->
+	                </div>
+	            </div>
+              <!-- End Tab Panels -->
+        	</div>
+    	</div>
+	</div>
+        	
         	<div class="col-md-6">
             	<div class="product-detail-wrapper">
 				<div class="tabs-section" id="tabs-section3">
@@ -1564,7 +2461,6 @@ background: #ddd;
 			var bottom_height = height*0.22779;
 			var sourceY = Math.round(height*0.77220);
 			bottom(bottom_width,bottom_height,sourceY); 
-
 			$('#myCanvas3').attr('width',bottom_width+'px');
 			$('#myCanvas3').attr('height',bottom_height+'px'); 
 			$('#myCanvas3').css('height','20px');
@@ -1572,40 +2468,355 @@ background: #ddd;
 	});	
 </script>
 
-<input type="hidden" name="image_id" id="image_id" value="<?=$image_details[0]->image_id?>">
-<input type="hidden" name="image_filename" id="image_filename" value="<?=$image_details[0]->image_id?>">
+<input type="hidden" name="image_id" id="image_id" value="<?=$image_id?>">
+<input type="hidden" name="image_filename" id="image_filename" value="<?=$image_detail[0]['image_filename']?>">
 <input type="hidden" name="user_id" id="user_id" value="<?=$userid?>">
 <input type="hidden" name="api_image_id" id="api_image_id" >
 <input type="hidden" name="quality_rate" id="quality_rate" value="">
 <input type="hidden" name="image_size" id="image_size" value="">
 <input type="hidden" name="quality" id="quality" value="<?=$collection_range;?>">
-<input type="hidden" name="img_id" id="img_id" value="<?=$image_details[0]->image_id?>" />
-<input type="hidden" name="img_id" id="gallery_img_id" value="<?=$image_details[0]->image_id?>" />
+<input type="hidden" name="img_id" id="img_id" value="<?php echo $images_id;?>" />
+<input type="hidden" name="img_id" id="gallery_img_id" value="<?=$image_detail[0]['images_id'];?>" />
 <input type="hidden" name="paper_type" id="paper_type" value="1">
 
 <script type="text/javascript">
 		function showTable(frame_cat){
-			$.ajax({});
+			$.ajax({
+	            type: "POST",
+	            url: "<?=base_url();?>index.php/frontend/get_frame_code_web_price",
+	            data:'frame_cat='+frame_cat,
+				beforeSend: function(){
+				},
+				success: function(data)
+	            {
+				var obj=JSON.parse(data);
+				var total_items = obj.length; 
+				var i,j,toal_slide,total_s,rem_slide,req_slide,td_inner="";
+				total_s = (obj.length/6);
+				rem_slide = (obj.length%6);
+				total_s = Math.round(total_s);			
+				if(rem_slide){
+				req_slide = total_s +1;	
+				}else{
+				req_slide = total_s;	
+				}
+				var image = 0;	
+				td_inner += '<div class="product-detail-content col-md-10 col-sm-10">';
+	            td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider1">';
+	            td_inner += '<div class="carousel-inner">'; 
+				for(j=0;j<=req_slide-1;j++){
+					if(j==0){
+						td_inner += '<div class="item active">';
+					}else{
+						td_inner += '<div class="item">';
+					}
+					for(i=0;i<=5;i++){
+				if(image < total_items){
+				var val=obj[image];
+				var explode=val.split(',');
+				var f_code=explode[0];
+				var explode1=explode[1];
+				var f_name="'"+explode1+"'";
+				var explode2=explode[2];
+				var f_size="'"+explode2+"'";
+				var explode3=explode[3];
+				var f_color="'"+explode3+"'";
+				var explode4=explode[4];
+				var f_rate="'"+explode4+"'";
+				var explode5=explode[5];
+				var f_name="'"+explode5+"'";
+				var explode6=explode[6];
+				var f_name_mm="'"+explode6+"'";
+				if(explode[7]=='0'){
+				mount_avail='Out of stock';
+				}else{
+				mount_avail='';
+				}
+				var f_shape=$('#frame_shape').val();
+				var frame_shape="'"+f_shape+"'";
+				td_inner += '<div class="col-xs-12 col-sm-2 col-md-2 frame" id="frame'+image+'" onclick=" myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+','+image+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block img3"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
+					image++;
+				}
+				} td_inner +='</div>';
+			    }
+				if(total_items>4){
+				td_inner += '<div id="slider-control">';
+		        td_inner += '<a class="left carousel-control arrowclick" id="frame_left" href="#itemslider1" data-slide="prev">';
+		        td_inner += '<i class="fa fa-angle-left" style="font-size:3em"></i></a>';
+		        td_inner += '<a class="right carousel-control arrowclick" id="frame_right" href="#itemslider1" data-slide="next">';
+		        td_inner += '<i class="fa fa-angle-right" style="font-size:3em"></i></a>';
+		        td_inner += '</div>';
+				}
+				td_inner += '</div></div></div>';	
+				$('#frame_slider').html(td_inner);
+				}
+			});
     	}
 
     	function show_mat(obj){
-			$.ajax({});
+			$.ajax({
+			    type:"post",
+				url:"<?=base_url()?>index.php/frontend/get_all_mount_for_slide",
+				data:'mount='+obj,
+				beforeSend: function(){
+				},
+				success: function(success){
+				var array=JSON.parse(success);
+				var total_s,total_slide="";
+				total_s=(array.length)/6;
+				rem_slide = (array.length)%6;
+				total_slide=Math.round(total_s);
+				if(rem_slide){
+					total_slide = total_slide+1; 
+				}else{
+				total_slide = total_slide;
+				}
+				var breaks,mount_code,mount_rate,mount_name,mount_avail,td_inner='';
+				var image=0;	
+				td_inner += '<div class="product-detail-content col-md-10 col-sm-10">';
+		        td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider4">';
+		        td_inner += '<div class="carousel-inner">';
+				for(var i=0;i<total_slide;i++){
+					if(i==0){
+							td_inner += '<div class="item active">';
+						}else{
+							td_inner += '<div class="item">';
+						}
+				for(var j=0;j<=5;j++){
+					if(image<array.length){
+				breaks=array[image].split(',');
+				mount_rate="'"+breaks[1]+"'";
+				mount_code="'"+breaks[0]+"'";
+				mount_name="'"+breaks[2]+"'";
+				if(breaks[3]=='0'){
+				mount_avail='Out of stock';
+				}else{
+				mount_avail='';
+				}
+				td_inner +='<div class="col-xs-12 col-sm-2 col-md-2 mount_data" id="mount'+image+'" onclick=" state_change(); return mount_select('+mount_rate+','+mount_code+','+mount_name+','+image+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
+				image++;
+					}
+						}td_inner +='</div>';
+					}	
+				td_inner += '<div id="slider-control">';
+		        td_inner += '<a class="left carousel-control arrowclick"  href="#itemslider4" data-slide="prev">';
+		        td_inner += '<i class="fa fa-angle-left" style="font-size:3em"></i></a>';
+		        td_inner += '<a class="right carousel-control arrowclick"  href="#itemslider4" data-slide="next">';
+		        td_inner += '<i class="fa fa-angle-right" style="font-size:3em"></i></a>';
+		        td_inner += '</div>';
+				td_inner += '</div></div></div>';	
+				$('#mount_slider').html(td_inner);
+				}
+			});
    		}
 
-   		function state_change(){}
+   		function state_change(){
+   			$('#mount_state').val(1);
+   			var mount = $('#mount_sized').val();  
+   			$('#mount_width').val(mount);
+   			var change_mount = mount*10;
+			$('#abc').css({'width':'auto','padding':change_mount,'background-attachment':'scroll','position': 'relative','z-index':'1'});
+   			$('#mount_state').val(1);
+   			$('.mount').show();
+   		}
 
-   		function Frame_Size(FrameSize,frame_size_mm){}	
+   		function Frame_Size(FrameSize,frame_size_mm){
+			$.ajax({
+		      type:'post',
+			  url:'<?=base_url()?>index.php/frontend/get_frame_by_frame_color',
+			  data:'FrameSize='+frame_size_mm,
+			  beforeSend: function(){
+				$('#load_buffer').show();
+				},
+			  success:function(response){
+			  var array= JSON.parse(response);
+			  var td_inner = '';
+			  var total_s,total_slide="";
+			  total_s=(array.length)/4;
+			  rem_slide = (array.length)%4;
+			  total_slide=Math.round(total_s);
+			if(rem_slide){
+				total_slide = total_slide+1; 
+			}else{
+			total_slide = total_slide;
+			}
+			var breaks,mount_code,mount_rate,mount_name,mount_avail,td_inner='';
+			var image=0;	
+			td_inner += '<div class="product-detail-content col-md-10 col-sm-10">';
+	        td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider6">';
+	        td_inner += '<div class="carousel-inner">';
+			 	for(var j=0;j<total_slide;j++){
+					if(j==0){
+						td_inner += '<div class="item active">';
+					}else{
+						td_inner += '<div class="item">';
+					}
+			    for(var i=0;i<=3;i++){
+				if(image<array.length){
+					var val = array[image];
+					var explode = val.split(',');
+					var f_code=explode[0];
+					var explode1=explode[1];
+					var f_name="'"+explode1+"'";
+					var explode2=explode[2];
+					var f_size="'"+explode2+"'";
+					var explode3=explode[3];
+					var f_color="'"+explode3+"'";
+					var explode4=explode[4];
+					var f_rate="'"+explode4+"'";
+					var explode5=explode[5];
+					var f_name="'"+explode5+"'";
+					var explode6=explode[6];
+					var f_name_mm="'"+explode6+"'";
+						if(explode[7]=='0'){
+						mount_avail='Out of stock';
+						}else{
+						mount_avail='';
+						}
+						var f_shape=$('#frame_shape').val();
+						var frame_shape="'"+f_shape+"'";	
+				td_inner += '<div class="col-xs-12 col-sm-2 col-md-2 frame" id="frame'+image+'" onClick=" myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
+				}
+					image++;
+					}td_inner +='</div>';
+				}	
+				if(array.length>4){
+			td_inner += '<div id="slider-control">';
+	        td_inner += '<a class="left carousel-control arrowclick"  href="#itemslider2" data-slide="prev">';
+	        td_inner += '<i class="fa fa-angle-left" style="font-size:3em"></i></a>';
+	        td_inner += '<a class="right carousel-control arrowclick"  href="#itemslider2" data-slide="next">';
+	        td_inner += '<i class="fa fa-angle-right" style="font-size:3em"></i></a>';
+	        td_inner += '</div>';
+			}
+			td_inner += '</div></div></div>';	
+			$('#frame_slider').html(td_inner);
+				    $('#load_buffer').hide();
+	 			}
+			});
+		}	
 		
-		function get_frame_color(frame_color){}
+		function get_frame_color(frame_color){
+			var total_slide,total_s="";
+			$.ajax({
+            type:"post",
+			url:"<?=base_url()?>index.php/frontend/get_frame_by_frame_color",
+			data:'frame_color='+frame_color,
+			beforeSend: function(){
+			$('#load_buffer').show();
+			},
+			success: function(response){
+			var array= JSON.parse(response);
+		  	var td_inner = '';
+		  	var total_s,total_slide="";
+		  	total_s=(array.length)/4;
+		  	rem_slide = (array.length)%4;
+		  	total_slide=Math.round(total_s);
+		  	if(rem_slide){
+			total_slide = total_slide+1; 
+		  	}else{
+		  	total_slide = total_slide;
+		  	}
+		  	var breaks,mount_code,mount_rate,mount_name,mount_avail,td_inner='';
+		 	 var image=0;	
+			td_inner += '<div class="product-detail-content col-md-10 col-sm-10">';
+            td_inner += '<div class="carousel carousel-showmanymoveone slide" id="itemslider5">';
+            td_inner += '<div class="carousel-inner">';
+		    for(var j=0;j<total_slide;j++){
+				if(j==0){
+					td_inner += '<div class="item active">';
+				}else{
+					td_inner += '<div class="item">';
+				}
+		  	for(var i=0;i<=3;i++){
+				if(image<array.length){
+				var val = array[image];
+				var explode = val.split(',');
+				var f_code=explode[0];
+				var explode1=explode[1];
+				var f_name="'"+explode1+"'";
+				var explode2=explode[2];
+				var f_size="'"+explode2+"'";
+				var explode3=explode[3];
+				var f_color="'"+explode3+"'";
+				var explode4=explode[4];
+				var f_rate="'"+explode4+"'";
+				var explode5=explode[5];
+				var f_name="'"+explode5+"'";
+				var explode6=explode[6];
+				var f_name_mm="'"+explode6+"'";
+					if(explode[7]=='0'){
+					mount_avail='Out of stock';
+					}else{
+					mount_avail='';
+					}
+				var f_shape=$('#frame_shape').val();
+				var frame_shape="'"+f_shape+"'";	
+				td_inner += '<div class="col-xs-12 col-sm-2 col-md-2 frame" id="frame'+image+'" onClick="myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
+				}
+					image++;
+				}td_inner +='</div>';
+			}	
+			if(array.length>4){
+				td_inner += '<div id="slider-control">';
+        		td_inner += '<a class="left carousel-control arrowclick"  href="#itemslider3" data-slide="prev">';
+        		td_inner += '<i class="fa fa-angle-left" style="font-size:3em"></i></a>';
+        		td_inner += '<a class="right carousel-control arrowclick"  href="#itemslider3" data-slide="next">';
+        		td_inner += '<i class="fa fa-angle-right" style="font-size:3em"></i></a>';
+        		td_inner += '</div>';
+			}
+				td_inner += '</div></div></div>';	
+				$('#frame_slider').html(td_inner);
+				    $('#load_buffer').hide();
+ 				}
+			});
+		}
 
-		function myfun(color,size,shape,f_code,f_rate,f_size_mm){}
+		function myfun(color,size,shape,f_code,f_rate,f_size_mm,image){
+			
+			$('.frame').removeClass("active2");
+			$('#frame'+image).addClass("active2");
+
+			$('#frame_name').val(f_code);
+			$('#frame_size').val(size);
+			$('#frame_rate').val(f_rate);
+			$('#frame_sized').html(f_size_mm);
+			$('#f_name').html(f_code);
+
+			if(f_code){
+		       var dert= "<?php echo base_url()?>images/uploaded_pdf/frames/horizontal/";
+			   var border_width="";
+			   var border_width2="";
+			   if(f_size_mm<=40){
+			   border_width=20;
+			   border_width2=10;
+			   }else if(f_size_mm>40 && f_size_mm<=50){
+			   border_width=30;
+			   border_width2=15;
+			   }else if(f_size_mm>50 && f_size_mm<=66){
+			   border_width=40;
+			   border_width2=20;
+			   }else if(f_size_mm>66){
+			   border_width=55;
+			   border_width2=25;
+			   }
+			   $('div.mainhor').css({'border-image':'url("'+dert+f_code+'.jpg") 58 58 58 58 round round','border-style':'solid','border-width':''+ border_width+'px'});
+			   $('div.mainhor2').css({'border-image':'url("'+dert+f_code+'.jpg") 58 58 58 58 round round','border-style':'solid','border-width':''+ border_width2+'px'});
+			   $('#frame_name').val(f_code);
+			}
+			get_quality('');
+		}
 	$(document).ready(function(){
 		$('#hover2').click(function(){
 			show_mat('');			
 		});
 	})
 
-	function mount_select(mount_rate,mount_code,mount_name){
+	function mount_select(mount_rate,mount_code,mount_name,image){
+		
+		$('.mount_data').removeClass("active2");
+		$('#mount'+image).addClass("active2");
+
+		
 		$('#mount_rate').val(mount_rate);
 		$('#mount_name').val(mount_code);
 		$('#mount_color').val(mount_name);
@@ -1660,7 +2871,7 @@ function addToCart()
   if(only_print == ''){
   	frame_name = $('#frame_name').val();
   }else{
-  //	frame_name = 'Streched Canvas Gallary Wrap';	
+  	frame_name = 'Streched Canvas Gallary Wrap';	
   }
   var mount_name,mount_color,mat1_size;
   if($('#mount_state').val() == 0 ){
@@ -1672,40 +2883,50 @@ function addToCart()
   	mount_color=$('#mount_color').html();
   	  mat1_size=$('#mount_width').val()+'"';
   }
+  //alert(mat1_size)
   var glasses= $('#glass_type').html();
   var glasses_coste= $('#glass_price').html();
-      //glasses_coste = glasses_coste.split('.');		
-     // glasses_coste = glasses_coste[1];
+      glasses_coste = glasses_coste.split('.');		
+      glasses_coste = glasses_coste[1];
   var total_price=$('.total_cost').html();
- // alert(total_price)
-     // total_price = total_price.split('.');
-  	  //total_price = total_price[1];	
+      total_price = total_price.split('.');
+  	  total_price = total_price[1];	
+	  if(total_price=='' || total_price=='0'){
+	  return false;
+	  }
   var MountCost=$('#MountCost').html();
-    //  MountCost = MountCost.split('.');
-  	 // MountCost = MountCost[1];
+      MountCost = MountCost.split('.');
+  	  MountCost = MountCost[1];
   var FrameCost=$('#FrameCost').html();
-  	  //FrameCost = FrameCost.split('.');		
-  	 // FrameCost = FrameCost[1];
+  	  FrameCost = FrameCost.split('.');		
+  	  FrameCost = FrameCost[1]; // if streched canvas gallary wrap then we need to save frame cost is left
   var price=$('#print_price').html();
-     // price = price.split('.');
-  	 // price = price[1];
+      price = price.split('.');
+  	  price = price[1];
+var old_price=$('.old_price').html();
+      old_price = old_price.split('.');
+  	  old_price = old_price[1];	  
   var print_size=$('#print_h_w').val();
   var image_id=$('#image_id').val();
   var image_type= $('#surfaces').val();
   var user_id=$('#user_id').val();
-  //alert(user_id)
   var mat1_color=$('#mount_color').html();
   var image_namee=$('#image_filename').val();
   var frameSize=$('#frame_sized').html();
-var url="glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print;
-//alert(url)
+ // alert(frameSize+'')
+  var promo_discount=$('#promo_discount').html();
+  var promo_name_code=$('.promo_name_code').val();
+  //alert(promo_name_code)
+  var promo_amount=$('#promo_amount').html();
+  promo_amount = promo_amount.split('.');		
+  	  promo_amount = promo_amount[1];
+
     $.ajax({
         type: "POST",
 	    url: "<?=base_url()?>frontend/frameit_addtocart",
-        data: url,
+        data:"glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print+"&promo_code="+promo_name_code+"&promo_discount="+promo_discount+"&promo_price="+promo_amount+'&old_price='+old_price,
 		success:function(data)  
     	{   
-		//alert(data)
     		swal({
 				  title: 'CART STATUS',
 				  text: 'Item Added Successfully',

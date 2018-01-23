@@ -164,19 +164,19 @@
 	</style>
 	
     <!-- login form -->    
-    <div class="modal fade" id="myModal_registration" role="dialog">
+    <div class="modal fade" id="login-modal" role="dialog">
     	  <div class="modal-dialog">
           	<div class="modal-content" style="border-radius:0">
             	<div class="modal-body">
                     <!-- login form-->
-                    <div class="loginmodal-container" id="login-modal" style="display:none">
+                    <div class="loginmodal-container">
                       <h1>User Sign In <a class="lightbox-close" data-dismiss="modal"></a> </h1>
                       <br>
                       <p> </p>
                       <div style="color: red;" id="password_login_error"></div>
                       <div style="color: red;" id="email_login_error"></div>
                       <div style="color: red;" id="login_error"></div> 
-                      <form action="#" id="login_id" name="login_id" method="post" class="form-horizontal"><input type="hidden" name="wsid" value="04b82a005a3f55b8b5c91c486b740875ef9bb951" />
+                      <form action="#" id="login_id" name="login_id" method="post" class="form-horizontal">
                             <div class="form-group">
                                 <label class="col-sm-2" for="email">Email </label>
                                 <div class="col-sm-10">
@@ -196,8 +196,8 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                     <p class="login-help">Don't have an account! <a href="#" style="color:#428bca" id="sign_up_btn2">Sign Up Here</a></p>
-                                     <p class="login-help">Forgot Password <a href="#" class="none" id="send_mail_btn2" style="color:#428bca">Click here</a></p>
+                                     <p class="login-help">Don't have an account! <a href="#" style="color:#428bca" id="sign_up_btn2" data-dismiss="modal" data-toggle="modal" data-target="#login-modal3">Sign Up Here</a></p>
+                                     <p class="login-help">Forgot Password <a href="#" class="none" id="send_mail_btn2" style="color:#428bca" data-dismiss="modal" data-toggle="modal" data-target="#login-modal2">Click here</a></p>
                                 </div>
                             </div>
                       </form>
@@ -207,43 +207,65 @@
                           <img src="http://www.mahattaart.com/assets/img/google.png">
                       </div>-->
                     </div>
-                    
-                    <!-- forget form-->
-                    <div class="loginmodal-container" id="login-modal2" style="display:none">
+                </div>
+            </div>
+			</div>
+		  </div>
+          
+    <!-- forget password -->
+    <div class="modal fade" id="login-modal2" role="dialog">
+    	  <div class="modal-dialog">
+          	<div class="modal-content" style="border-radius:0">
+            	<div class="modal-body">
+                    <!-- forget password-->
+                    <div class="loginmodal-container">
                       <h1>Forget Password <a class="lightbox-close" data-dismiss="modal"></a></h1><br>
                       <p></p>
                       <div id="error_msg" style="color:red;"></div>
-                      <form action="#" id="" name="sign_id" method="post" class="form-horizontal"><input type="hidden" name="wsid" value="04b82a005a3f55b8b5c91c486b740875ef9bb951" />
+                      <form action="#" id="" name="sign_id" method="post" class="form-horizontal">
                         <input name="email_regd" type="text" id="email_regd" placeholder="Email Address" value="<?php echo $forget_emlid;?>">
                         <input type="button" name="login" class="login loginmodal-submit" value="Update Password" onclick="updateforpaswd();">
                       </form>
                     </div>
-                    
+                </div>
+            </div>
+			</div>
+		  </div>
+
+    <!-- signup form -->          
+    <div class="modal fade" id="login-modal3" role="dialog">
+    	  <div class="modal-dialog">
+          	<div class="modal-content" style="border-radius:0">
+            	<div class="modal-body">
                     <!-- signup form-->
-                    <div class="loginmodal-container" id="login-modal3" style="display:none">
+                    <div class="loginmodal-container">
                       <h1>User Sign Up <a class="lightbox-close" data-dismiss="modal"></a></h1><br>
-                        <p></p>
+                        <p><?php  if(isset($exist_email)) echo $exist_email;?></p>
                         <div style="color: red" id="email_error"></div>
                         <div style="color: red" id="password_error"></div> 
                         <div style="color: red" id="cpassword_error"></div>
                         <div style="color: green" id="success_result"></div>
-                      <form action="#" id="signup_form" name="sign_id" method="post" class="form-horizontal"><input type="hidden" name="wsid" value="04b82a005a3f55b8b5c91c486b740875ef9bb951" />
+                      <form action="#" id="signup_form" name="sign_id" method="post" class="form-horizontal">
                         <div class="form-group">
                                 <label class="col-sm-3" for="first_name">First Name </label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="first_name" id="first_name" placeholder="First Name">
+  <input type="text" name="first_name" id="first_name" placeholder="First Name" 
+ value="<?php if($this->input->post('first_name')){echo $this->input->post('first_name'); }?>"  />
                                 </div>
                             </div>
                         <div class="form-group">
                                 <label class="col-sm-3" for="last_name">Last Name </label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="last_name" id="last_name" placeholder="Last Name">
+  <input type="text" name="last_name" id="last_name" placeholder="Last Name"
+  value="<?php if($this->input->post('last_name')){echo $this->input->post('last_name'); }?>">
                                 </div>
                             </div>
                         <div class="form-group">
                                 <label class="col-sm-3" for="email_reg">Email </label>
                                 <div class="col-sm-9">
-                                    <input type="text" name="email_reg" id="email_reg" placeholder="Email Address">
+ <input type="text" name="email_reg" id="email_reg" placeholder="Email Address"
+ value="<?php if($this->input->post('email_reg')){echo $this->input->post('vemail_reg'); }?>"
+                                    >
                                 </div>
                             </div>
                         <div class="form-group">
@@ -261,7 +283,9 @@
                         <div class="form-group">
                                 <label class="col-sm-3" for="password">Comapny Name </label>
                                 <div class="col-sm-9">
-                                    <input name="company_name" type="text" id="company_name" placeholder="company name">
+                                    <input name="company_name" type="text" id="company_name" placeholder="company name"
+                                    value="<?php if($this->input->post('company_name')){echo $this->input->post('company_name'); }?>"
+                                    >
                                 </div>
                             </div>
 
@@ -310,27 +334,57 @@
                         <div class="form-group  demo_bx" style="display: none;">
                                 <label class="col-sm-3" for="">Vendor Type </label>
                                 <div class="col-sm-9">
-                                    <select onchange="showlocation(this.value)" name="vendor_type" id="vendor_type" class="form-control">
-                                        <option>--Select--</option>
-                                    </select>
+                      <select  name="vendor_type" id="vendor_type" class="form-control">
+                             <option value="">--Select--</option>
+                      </select>
                                 </div>
                             </div>
+ <script type ="text/javascript">
+    $(document).ready(function(){
+ 	    $('#vendor_type').change(function(){						
+       var vendor_type = $('#vendor_type').val();
+	   //alert(vendor_type);
+ 		    $.ajax({
+		    type:"POST",
+		    url:"<?php echo  base_url('frontend/vendor_location') ?>",
+			data:"vendor_type="+vendor_type,
+			success:function(response2)
+			 {
+            //alert(response2)
+				$("#vendor_location").html(response2);
+			 }	 
+		    })	
+       });
+	});
+</script>
 
+<script type ="text/javascript">
+    $(document).ready(function()
+	{
+ 	    $('#vendor_location').change(function(){						
+       var vendor_location = $('#vendor_location').val();
+	       //alert(vendor_location);
+ 		    $.ajax({
+		    type:"POST",
+		    url:"<?php echo base_url('frontend/vendor_location_id') ?>",
+			data:"vendor_location="+vendor_location,
+			success:function(response3)
+			 {
+           // alert(response3)
+				$("#vendor_location_id").html(response3);
+			 }	 
+		    })	
+       });
+	});
+</script>
 
-                        <div class="form-group  demo_bx" style="display: none;">
+                      <div class="form-group  demo_bx" style="display: none;">
                                 <label class="col-sm-3" for="">Location</label>
                                 <div class="col-sm-9">
-                                    <select onclick="showlocation_id(this.value)" name="vendor_location" id="vendor_location" class="form-control">
-                                        <option>--Select--</option>
-                                        <?php
-                                            foreach($data as $location) {
-                                        ?>
-                                        <option value="<?php echo $location["location"]; ?>"><?php echo $location["location"]; ?></option>
-                                        <?php
-                                            }
-                                        ?>
+                                    <select  name="vendor_location" id="vendor_location" class="form-control">
+                                        <option value="">--Select--</option>
                                     </select>
-                                    <a href="?wsid=04b82a005a3f55b8b5c91c486b740875ef9bb951" onclick="demo_fn2('');return false;" style="position: absolute;right: 5px;top: 5px;"> <span>x</span></a>
+          <a href="" onclick="demo_fn2('');return false;" style="position: absolute;right: 5px;top: 5px;"> <span>x</span></a>
                                 </div>
                             </div>
 
@@ -338,17 +392,12 @@
                                 <label class="col-sm-3" for="">Location ID</label>
                                 <div class="col-sm-9">
                                     <select name="vendor_location_id" id="vendor_location_id" class="form-control">
-                                        <option>--Select--</option>
-                                        <?php
-                                            foreach($data as $loc_id) {
-                                        ?>
-                                        <option value="<?php echo $loc_id["location_id"]; ?>"><?php echo $loc_id["location_id"]; ?></option>
-                                        <?php
-                                            }
-                                        ?>
+                                        <option value="">--Select--</option>
+                                       
                                     </select>
                                 </div>
                             </div>
+          
 
                         <div class="form-group">
                                 <label class="col-sm-3" for="" style="visibility:hidden"></label>
@@ -360,7 +409,7 @@
                       </form>
                          <p>
                          	Already have an account?
-                         	<a href="#" style="color:#428bca" id="login-link2" class="login-link2"> &nbsp; Login Here</a>
+                         	<a href="#" style="color:#428bca" id="login-link2" data-dismiss="modal" data-toggle="modal" data-target="#login-modal"> &nbsp; Login Here</a>
                             <a href="#" class="none" onClick="demo_fn('')" style="color:#F00">Merchant Registration</a>
                          </p>
                       <div class="login-help">
@@ -370,7 +419,7 @@
             </div>
 			</div>
 		  </div>
-
+    
     <!-- Add to gallery -->          
     <div class="modal fade" id="login-modal4" role="dialog">
     	  <div class="modal-dialog"  style="width:400px">
@@ -382,7 +431,7 @@
                       <br>
                       <span id="lightbox_error" style="color: red;margin-left: 48px;"></span>
                       <br>
-                      <form name="lightbox_submit" id="lightbox_submit"><input type="hidden" name="wsid" value="04b82a005a3f55b8b5c91c486b740875ef9bb951" />
+                      <form name="lightbox_submit" id="lightbox_submit">
                           <input type="hidden" id="image_id" name="image_id">
                           <div class="form-group">
                             <input type="text" name="lightbox_name" id="lightbox_name" placeholder="Gallery name">
@@ -395,7 +444,7 @@
                           </div>
                       </form>
 					  <h1 style="margin-bottom:10px">Choose existing Gallery</h1>
-                      <form name="lightbox_submit" id="lightbox_submit"><input type="hidden" name="wsid" value="04b82a005a3f55b8b5c91c486b740875ef9bb951" />
+                      <form name="lightbox_submit" id="lightbox_submit">
                           <div class="form-group">
                             <select id="lightbox_list_dropdown" onchange="check_exist_img(this.value);" class="form-control">
                             <option
@@ -418,53 +467,30 @@
 			</div>
 		  </div>
           
-<script>
+<!--    <script>
 $(document).ready(function(){
-	
-	<!-- login btn -->
-    $(".login_btn").click(function(){
-        $("#login-modal").css("display", "block");
-        $("#login-modal2").css("display", "none");
-        $("#login-modal3").css("display", "none");
-    });
-
-	<!-- signup btn -->
-    $(".signup_btn").click(function(){
-        $("#login-modal").css("display", "none");
-        $("#login-modal2").css("display", "none");
-        $("#login-modal3").css("display", "block");
-    });
-	
-	<!-- inside forget btn -->
-    $("#send_mail_btn2").click(function(){
-        $("#login-modal").css("display", "none");
-        $("#login-modal2").css("display", "block");
-        $("#login-modal3").css("display", "none");
-    });
-
-
-	<!-- inside signup btn -->
     $("#sign_up_btn2").click(function(){
-        $("#login-modal").css("display", "none");
-        $("#login-moda2").css("display", "none");
-        $("#login-modal3").css("display", "block");
+        $("#login-modal").removeClass("modal fade in");
+        $("#login-modal").addClass("modal fade");
     });
-	
-	
-	<!-- inside login btn -->
-    $(".login-link2").click(function(){
-        $("#login-modal").css("display", "block");
-        $("#login-modal2").css("display", "none");
-        $("#login-modal3").css("display", "none");
+
+    $("#send_mail_btn2").click(function(){
+        $("#login-modal").removeClass("modal fade in");
+        $("#login-modal").addClass("modal fade");
+    });
+
+    $("#login-link2").click(function(){
+        $("#login-modal3").removeClass("modal fade in");
+        $("#login-modal3").addClass("modal fade");
     });
 });
-</script>
+</script>-->
 
      <div class="signup gall-w" id="addtointrestedgallery" style="display:none;">
-         <div style="position: absolute;right: 10px;top: 0;"><a href="?wsid=04b82a005a3f55b8b5c91c486b740875ef9bb951" onClick="allclose('');return false;" >Close</a></div><br>
+         <div style="position: absolute;right: 10px;top: 0;"><a href="" onClick="allclose('');return false;" >Close</a></div><br>
         <p>Submit the details below and our client executive will get in touch with you.</p>
         <span id="lightbox_error_image" style="color: red;margin-left: 48px;"></span><br>
-         <form name="lightbox_submit" id="intrested_image_submit"><input type="hidden" name="wsid" value="04b82a005a3f55b8b5c91c486b740875ef9bb951" />
+         <form name="lightbox_submit" id="intrested_image_submit">
              <input type="hidden" id="image_id_intrested"  name="image_id_intrested">
            
               <input type="hidden" id="" name="api_image_id">
@@ -519,7 +545,8 @@ $(document).ready(function(){
 });
     
 
-    function login_verification(){
+    function login_verification()
+	{
         var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
         if($('#email_login').val()=="")
         {
@@ -542,7 +569,6 @@ $(document).ready(function(){
          $('#email_login_error').html("");
         $('#password_login_error').html("");
             var email= $('#email_login').val();
-
             var password= $('#password_login').val();
      //alert('yess')
            var datastring='email='+ email + ' &password=' + password;
@@ -551,22 +577,18 @@ $(document).ready(function(){
                type:"POST",
                url:"<?=base_url()?>frontend/login",
                data:datastring,
-              
-                success: function(response)
+               success: function(response)
                 { 
                 //alert(response)
                 var obj=JSON.parse(response);
-        
-          // alert(obj.result);
-            if(obj.result=='1')
+               // alert(obj.result);
+               if(obj.result=='1')
                     {
                          //alert(response);
                        // window.location.href('<?php echo base_url()?>index.php');
                        window.location.replace('<?=$actual_link;?>');
                         allclose('');
-                   
-                    
-                    }
+                     }
                      else 
                     {
                         $('#login_error').html("<br>Invalid Email or Password");
@@ -734,22 +756,19 @@ function checkRegisterValidation(){
 					//alert(response)
 					if(response=='1')
 					{
-					//alert(response)
+						//alert(response)
                       $('#cpassword_error').html("Email Already Exist.");
 					}
                     var obj=$.parseJSON(response);
                     
-                    if(obj.result=='1'){
+                    if(obj.result=='0'){
                         //alert(response);
                         $("#success_result").html("<p> Welcome to Mahattaart!</p>");
                         window.setTimeout(function(){location.reload()},3000)
                         window.location.replace('<?php echo base_url()?>index.php');
                         allclose('');
                     }
-                
-				
-				
-				}
+                }
             });
             $('#signup_form')[0].reset();
             return false;
@@ -757,33 +776,23 @@ function checkRegisterValidation(){
 }   // end registration function    
     function demo_fn(){
         $(".demo_bx").css("display","block");
+		
         $.ajax({
             url:"<?php print base_url() ?>frontend/vendor_type",
             data:"value='value'",
             success :function(data){
-                //alert(data)
+               
                 $("#vendor_type").html(data);
             }
         })
     }
 
-    function showlocation(){
+
+    function showlocation_id()
+	{
         $.ajax({
             type: "POST",
-            url:"<?php print base_url() ?>frontend/vendor_location",
-            data:"vendor_type="+$("#vendor_type").val(),
-            success :function(data){
-                //alert(data)
-                $("#vendor_location").html(data);
-            }
-
-        })
-    }
-
-    function showlocation_id(){
-        $.ajax({
-            type: "POST",
-            url:"<?php print base_url() ?>frontend/vendor_location_id",
+            url:"<?php echo base_url() ?>frontend/vendor_location_id",
             data:'vendor_location='+$("#vendor_location").val(),
             success :function(data){
                 //alert(data)
@@ -812,3 +821,12 @@ function checkRegisterValidation(){
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+

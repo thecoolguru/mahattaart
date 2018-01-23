@@ -153,9 +153,9 @@
                                                                 <th>Description</th>
                                                                 <th>Detail</th>
                                                                 <th>Quantity</th>
-																<th>Before D Price</th>
+																<th>Amount Before Discount</th>
 																<th>Discount(%)</th>
-																<th>Price</th>
+																<th>Amount After Discount</th>
 																
 																<!--<th>D Price</th>-->
 																<th>Tax(%)</th>

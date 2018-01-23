@@ -1064,6 +1064,8 @@ function calculate_cost(value,surface_type){
 					}
 
 
+
+
 					.close::after {
 						transform: rotate(-45deg);
 					}
@@ -1903,13 +1905,13 @@ display: none;
                     <p class="bottom-bar-crop" style="display: block;" id="17"></p>
                     <p class="shipping-note">Ships in 1-2 days</p>
                    	<h5><a href='' onclick=" get_functions(''); price_details();return false;" data-toggle="modal" data-target="#myModal">Price Details</a> </h5>
-                    <p><input type="button" class="call-to-action-1-button btn btn-default" <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing();" data-toggle="modal" data-target="#login-modal"<?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> value="ADD TO CART" ></p>
+                    <p><input type="button" class="call-to-action-1-button btn btn-default login-link2" <?php if(!$this->session->userdata('userid')){?> onclick="remove_pricing();" data-toggle="modal" data-target="#myModal_registration" <?php }else{?> onclick="remove_pricing();addToCart();return false;"<?php }?> value="ADD TO CART" ></p>
                 </div>
                 <div id="save-to-gallery-text" class="col-md-9">
                 	<span> <i class="fa fa-heart-o" aria-hidden="true"></i>
                 		<a <?php if($this->session->userdata('userid')){?>
 href="" data-toggle="modal" data-target="#login-modal4" onclick="addtogallery('<?=$api_image_id?>','<?=$image_id?>');return false;" id="tgl" style="color:#ef9223;" <?php }
-else {?> href="" data-toggle="modal" data-target="#login-modal" style="color:#ef9223;"<?php }?> >Add to Gallery </a>
+else {?> href="" data-toggle="modal" data-target="#myModal_registration" style="color:#ef9223;"<?php }?> class="login-link2">Add to Gallery </a>
                 	</span>
                 </div>
                 
@@ -2532,7 +2534,7 @@ background: #ddd;
 				}
 				var f_shape=$('#frame_shape').val();
 				var frame_shape="'"+f_shape+"'";
-				td_inner += '<div class="col-xs-12 col-sm-2 col-md-2 frame" id="frame'+image+'" onclick=" myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block img3"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
+				td_inner += '<div class="col-xs-12 col-sm-2 col-md-2 frame" id="frame'+image+'" onclick=" myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+','+image+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block img3"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
 					image++;
 				}
 				} td_inner +='</div>';
@@ -2591,7 +2593,7 @@ background: #ddd;
 				}else{
 				mount_avail='';
 				}
-				td_inner +='<div class="col-xs-12 col-sm-2 col-md-2 mount_data" id="mount'+image+'" onclick=" state_change(); return mount_select('+mount_rate+','+mount_code+','+mount_name+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
+				td_inner +='<div class="col-xs-12 col-sm-2 col-md-2 mount_data" id="mount'+image+'" onclick=" state_change(); return mount_select('+mount_rate+','+mount_code+','+mount_name+','+image+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
 				image++;
 					}
 						}td_inner +='</div>';
@@ -2769,7 +2771,11 @@ background: #ddd;
 			});
 		}
 
-		function myfun(color,size,shape,f_code,f_rate,f_size_mm){
+		function myfun(color,size,shape,f_code,f_rate,f_size_mm,image){
+			
+			$('.frame').removeClass("active2");
+			$('#frame'+image).addClass("active2");
+
 			$('#frame_name').val(f_code);
 			$('#frame_size').val(size);
 			$('#frame_rate').val(f_rate);
@@ -2805,7 +2811,12 @@ background: #ddd;
 		});
 	})
 
-	function mount_select(mount_rate,mount_code,mount_name){
+	function mount_select(mount_rate,mount_code,mount_name,image){
+		
+		$('.mount_data').removeClass("active2");
+		$('#mount'+image).addClass("active2");
+
+		
 		$('#mount_rate').val(mount_rate);
 		$('#mount_name').val(mount_code);
 		$('#mount_color').val(mount_name);

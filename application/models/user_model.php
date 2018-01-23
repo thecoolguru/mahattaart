@@ -9,7 +9,7 @@ class User_model extends CI_Model
 	{
 		$this->db->select('*');
 		$this->db->where('customer_id',$user_id);
-		$query=$this->db->get('tbl_registration');
+		$query=$this->db->get('tbl_customer');
 		return $query->row();
 	}
 
