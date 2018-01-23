@@ -240,13 +240,13 @@ function price_details(){
                         <div class="form-group row">
                             <label for="firstName" class="col-sm-3 col-form-label">GST NO.</label>
                             <div class="col-sm-9">
-                                <input type="text" name="c_gst_no" value="<?=$userName->shipping_gst_number;?>" id="c_gst_no"  class="form-control" />
+                                <input type="text" name="c_gst_no" value="<?=$userName->gst_no;?>" id="c_gst_no"  class="form-control" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="firstName" class="col-sm-3 col-form-label">PAN NO.</label>
                             <div class="col-sm-9">
-                                <input type="text" name="c_pan_no" value="<?=$userName->shipping_pan_number;?>" id="c_pan_no"  class="form-control" />
+                                <input type="text" name="c_pan_no" value="<?=$userName->pan_no;?>" id="c_pan_no"  class="form-control" />
                             </div>
                         </div>
                         <div class="form-group row">

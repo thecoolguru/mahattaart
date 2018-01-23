@@ -168,7 +168,7 @@
             <p class="p_top-slider">Turn cherished memories and extra-special occasions into something you'll enjoy each day. Upload photos and choose from a variety of customizable looks. Put the moments that define you on display in the perfect place&mdash;your home.</p>
             <div id="val"></div>
             <a target="_self" class="button-slider-upload para btn" href="" onclick="dropzone_box(); return false;" data-toggle="" data-target="" id="para"> </a>
-            <p class="p_top-slider" style="text-align:center"><a href="#" data-toggle="modal" data-target="#login-modal" style="color:#41484c">Login/Register</a></p>
+            <p class="p_top-slider" style="text-align:center"><a href="#" data-toggle="modal" data-target="#myModal_registration" style="color:#41484c" class="login-link2">Login/Register</a></p>
          </div>
       </div>
    </div>

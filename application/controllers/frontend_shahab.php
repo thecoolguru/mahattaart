@@ -992,7 +992,6 @@ public function themes_lightbox($lightbox_id,$page_no,$category="none",$shape="n
 		if($maill==1)	
 		{
 			echo 1;
-			return false;
 		}	else	{
 			$first_name=$this->input->post('first_name');
 			$last_name=$this->input->post('last_name');
@@ -2579,7 +2578,8 @@ public function themes_lightbox($lightbox_id,$page_no,$category="none",$shape="n
 		$state=$this->input->post('state');
 		$phone=$this->input->post('phone');
 		$email_reciept=$this->input->post('email_reciept');
-		$data=array('first_name'=>$name,'zip_code'=>$pincode,'address'=>$address,'city'=>$city,'state'=>$state,'contact'=>$phone,'last_name'=>$lastname,'email_id'=>$email_reciept,'purpose'=>$getpurpose
+		$data=array('first_name'=>$name,
+		'zip_code'=>$pincode,'address'=>$address,'city'=>$city,'state'=>$state,'contact'=>$phone,'last_name'=>$lastname,'email_reciept'=>$email_reciept,'purpose'=>$getpurpose
 		);
 		//print_r($data);
 		$this->frontend_model->update_customer($data);

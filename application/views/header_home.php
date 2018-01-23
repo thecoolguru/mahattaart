@@ -507,7 +507,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
 <p class="inline_text">Submit the details below and our client executive will get in touch with you.</p>
 <input class="formtex" type="text" name="dname" placeholder="Your Name *" id="dname">
 <input class="formtex" type="text" name="demail" placeholder="Your Email *" id="demail">
-<input class="formtex" type="text" name="dmobile" placeholder="Your Mobile Number *" id="dmobile">
+<input class="formtex" type="text" name="dmobile" placeholder="Your Mobile Number" id="dmobile">
 <input class="formtex" type="text" name="dcompany" placeholder="Your Company" id="dcompany">
 <input class="formtex" type="text" name="dcity" placeholder="Your City" id="dcity">
 <textarea class="formtex" placeholder="Your Query" name="dtarea" id="dtarea"></textarea>

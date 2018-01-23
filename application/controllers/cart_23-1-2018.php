@@ -119,7 +119,7 @@ class Cart extends CI_Controller{
 	  $c_gst_no=$this->input->post('c_gst_no');
 	  $c_pan_no=$this->input->post('c_pan_no');
 	  $email_reciept=$this->input->post('email_reciept');
-	  $data=array('first_name'=>$name,'zip_code'=>$pincode,'address'=>$address,'city'=>$city,'state'=>$state,'contact'=>$phone,'last_name'=>$lastname,'email_id'=>$email_reciept,'purpose'=>$getpurpose,'shipping_gst_number'=>$c_gst_no,'shipping_pan_number'=>$c_pan_no,'company_name'=>$company_name
+	  $data=array('first_name'=>$name,'zip_code'=>$pincode,'address'=>$address,'city'=>$city,'state'=>$state,'contact'=>$phone,'last_name'=>$lastname,'email_id'=>$email_reciept,'purpose'=>$getpurpose,'shipping_gst_number'=>$c_gst_no,'shipping_pan_number'=>$c_pan_no
 	 );
 	 $this->frontend_model->update_customer($data,$state);
 	 $cart_det=$this->cart_model->get_usercart($user_id);
