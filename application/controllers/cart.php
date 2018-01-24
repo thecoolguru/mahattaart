@@ -251,7 +251,8 @@ class Cart extends CI_Controller{
 	 	mcrypt_generic_deinit($openMode);
 		return $decryptedText;
 	}
-	public function validate_apply_coupon(){
+	public function validate_apply_coupon()
+	{
 	//echo "sajid";
 	$apply_coupon=$this->input->post('apply_coupon');
 	$xx=$this->cart_model->validate_apply_coupon($apply_coupon);

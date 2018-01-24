@@ -6,10 +6,11 @@ class Contact extends CI_Controller {
  { 
     $demail=$this->input->post('demail');
     $this->load->library('email');
+    //grab the post data
     $this->email->from($this->input->post('demail'), $this->input->post('dname'));
     $this->email->to('info@mahattaart.com'); 
-    $this->email->to('tamjsay7@gmail.com'); 
-    $this->email->cc('marketing@indiapicture.in'); 
+    // $this->email->to('tamjsay7@gmail.com'); 
+    //$this->email->cc('marketing@indiapicture.in'); 
     $this->email->cc('tamjsay7@gmail.com');
     $this->email->subject('Enquiry From Contact Us ');
     $this->email->message($this->input->post('dmobile'),$this->input->post('dcity')); 

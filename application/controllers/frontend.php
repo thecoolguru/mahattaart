@@ -1094,8 +1094,8 @@ public function themes_lightbox($lightbox_id,$page_no,$category="none",$shape="n
 		$password=$_POST['password'];
 		$user=$this->frontend_model->login_verification($email,$password);
 		if($user->customer_id<>'')	{
-			$this->session->set_userdata('userid',$user->customer_id);
-			$this->session->set_userdata('email',$user->email_id);
+			$this->session->set_userdata('userid',$user->email_id);
+			//$this->session->set_userdata('email',$user->email_id);
 			$user_id= $this->session->userdata('userid');
 			$user_login= $this->frontend_model->check_user_login_sesion($user_id);
 			$login_session_detals= $user_login[0]->login_session_detals; 
