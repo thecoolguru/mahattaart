@@ -2048,6 +2048,21 @@ document.getElementById(value).style.border = "1px solid #ff0000";
 				return false;
                 } 
 		}
+		if($('#dmobile').val()=="")
+        {
+			$('#results').html('Enter Your Contact Number.');
+			$( "#dmobile" ).focus();
+			return false;
+        }
+		if($('#dmobile').val().length<10){
+		validation_for_forminfo('dmobile');
+		$('#results').html('Enter valid contact number.');
+		
+		return false;
+		}
+		else{
+		
+		
 		
 		$.ajax({
 			type:"POST",
@@ -2060,8 +2075,9 @@ document.getElementById(value).style.border = "1px solid #ff0000";
 			//$(".myform")[0].reset();
 			
 		});
-	
-		
+		$('#contactus_save')[0].reset();
+		return false;
+		}
 		
 	});
   </script>

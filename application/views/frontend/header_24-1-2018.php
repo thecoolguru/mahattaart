@@ -1926,7 +1926,20 @@ $('#dsend').click(function(){
 				return false;
                 } 
 		}
-			$.ajax({
+		if($('#dmobile').val()=="")
+        {
+			$('#results').html('Enter Your Contact Number.');
+			$( "#dmobile" ).focus();
+			return false;
+        }
+		if($('#dmobile').val().length<10){
+		validation_for_forminfo('dmobile');
+		$('#results').html('Enter valid contact number.');
+		
+		return false;
+		}
+		else{
+		$.ajax({
 			type:"POST",
 			url:"<?php print base_url() ?>contact/process",
 			data:$("#contactus_save").serialize(),
@@ -1937,7 +1950,9 @@ $('#dsend').click(function(){
 			//$(".myform")[0].reset();
 			
 		});
-		
+		$('#contactus_save')[0].reset();
+		return false;
+		}
 		
 	});
 </script>
