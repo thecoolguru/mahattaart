@@ -229,8 +229,6 @@ $search_data_r=json_decode($search_data_file,TRUE);
 				<td class="item showforprintonly">
                     <?php   
 						if($image['frame_color']=='Streched Canvas Gallary Wrap'){?>
-							 
-
 		<section class="container3D" style="min-height:<?= $size_data[1]+20?>px;min-width:<?= $size_data[0]+20?>px">
             <div id="cube">
                  <figure class="front">
@@ -347,6 +345,8 @@ $search_data_r=json_decode($search_data_file,TRUE);
 							echo $total_amt_product_fnl=round($total_amt_product,2);?>
 						</td>
                        	<td class="text-center">
+                        
+    <!--           <a href="<?=base_url()?>index.php/cart/Cart_remove/<? //  $image['user_id']?>/<? // $image['cart_id'];?>"> --->
 							<a href="<?=base_url()?>index.php/cart/Cart_remove/<?=$image['user_id']?>/<?=$image['cart_id'];?>">
 								<div>
 									<span class="fnl-cart-wishopt cart-removepopupshow">

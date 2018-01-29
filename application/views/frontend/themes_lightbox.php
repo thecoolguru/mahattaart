@@ -347,7 +347,7 @@ foreach($search_cat as $cat_dets){
 </a>
 
 <div class="product-details">
-		<a href="<?=base_url()."search/".$link."/".$image_filename."/".$image_id."/".$image_collection_id;  ?>" style="float:left"> 
+	<a href="<?php echo base_url();?>search/<?=$link?>/<?=$cat_dets['image_filename'];?>/<?=$cat_dets['image_id']?>/<?=$cat_dets['image_collection_id']?>">
     <div class="icon-cart" style="clear: left; float: left">
     <div class="cart-line-1" style="background-color: rgb(44, 195, 181);"></div>
     <div class="cart-line-2" style="background-color: #2CC3B5"></div>

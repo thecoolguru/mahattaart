@@ -178,6 +178,9 @@ $continue_shopping_redirect=$this->session->userdata('continue_shopping');
 </div>
 <style>
 	.frame-step-header-container{background-color:#ececec;width:100%;padding:10px 0}.frame-step-header-text{color:#6abb4c;float:left;font-family:BebasNeueRegular,Helvetica,Arial,sans-serif;font-size:42px;letter-spacing:-.5px;position:relative}.frame-step-continue-shopping-button,.frame-step-proceed-to-cart-button{color:#fff;cursor:pointer;font-size:15px;font-weight:700;position:relative;text-align:center}.frame-step-button-wrapper{float:right;padding:6px 0;position:relative}.frame-step-continue-shopping-button{background-color:#888;float:left;margin-right:14px;min-width:100px;padding:13px 16px}.frame-step-proceed-to-cart-button{background-color:#ed9134;float:right;min-width:180px;padding:12px}.container.frame-step-header-wrapper{border:none;margin:0 auto}
+.active2 {
+	border: 1px solid #ef9223 !important;
+}
 </style>
 
 <script>
@@ -1027,7 +1030,11 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
         $('#load_buffer').hide();
     }
 	
-  function mount_select(mount_rate,mount_code,mount_name){
+  function mount_select(mount_rate,mount_code,mount_name,image){
+		
+		$('.mount_data').removeClass("active2");
+		$('#mount'+image).addClass("active2");
+		
 		mount_details(mount_rate,mount_name,mount_code);
 		if(mount_code){
 		var dert= "<?php echo base_url()?>images/uploaded_pdf/mount/";
@@ -1045,7 +1052,11 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
    }// end function
  
   
-    function myfun(color,size,shape,f_code,f_rate,f_size_mm){
+    function myfun(color,size,shape,f_code,f_rate,f_size_mm,image){
+	
+	$('.frame').removeClass("active2");
+	$('#frame'+image).addClass("active2");
+
 	frame_details(f_rate,f_size_mm,f_code,color);
 	if(f_code){
        var dert= "<?php echo base_url()?>images/uploaded_pdf/frames/horizontal/";
@@ -1284,7 +1295,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 		}else{
 		mount_avail='';
 		}
-		td_inner +='<div class="col-xs-12 col-sm-3 col-md-3 mount_data" id="mount'+image+'" onclick="mount_store(this.id);return mount_select('+mount_rate+','+mount_code+','+mount_name+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
+		td_inner +='<div class="col-xs-12 col-sm-3 col-md-3 mount_data" id="mount'+image+'" onclick="mount_store(this.id);return mount_select('+mount_rate+','+mount_code+','+mount_name+','+image+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/mount/'+breaks[0]+'.jpg" class="img-responsive center-block"></a><h5 class="text-center">'+breaks[2]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>'
 		image++;
 			}
 				}td_inner +='</div>';
@@ -1385,7 +1396,7 @@ var _0xd968=["\x6D\x79\x44\x72\x6F\x70\x7A\x6F\x6E\x65","\x6F\x70\x74\x69\x6F\x6
 		}
 			var f_shape=$('#frame_shape').val();
 			var frame_shape="'"+f_shape+"'";
-			td_inner += '<div class="col-xs-12 col-sm-3 col-md-3 frame" id="frame'+image+'" onclick="id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block img3"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
+			td_inner += '<div class="col-xs-12 col-sm-3 col-md-3 frame" id="frame'+image+'" onclick="id_store(this.id); myfun('+f_color+','+f_size+','+frame_shape+','+f_name+','+f_rate+','+f_name_mm+','+image+');"><a><img src="<?php echo base_url()?>images/uploaded_pdf/frames/frames_angle/'+f_code+'.jpg" class="img-responsive center-block img3"></a><h5 class="text-center">'+explode[5]+'</h5><div style="color:red;" class="out_stock text-center">'+mount_avail+'</div></div>';
 			image++;
 		}
 		 } td_inner +='</div>';
@@ -2973,11 +2984,6 @@ margin-top: -15px;
 color: #888;
 font-size: 12px;
 text-decoration: underline;
-}
-#itemslider3 h5 {
-font-size: 9px;
-font-weight: bold;
-text-transform: uppercase;
 }
 .addtocartcontainer_page {
 background: #f1f1f1 none repeat scroll 0 0;
