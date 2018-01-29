@@ -504,7 +504,7 @@ function price_details(){
                 	<p>Order Details <a id="select1" href="javascript:void(0)" onClick="drop('slidedrop1','select1')" class="drop disablofstep"><i id="disablefordetails" class="ci"></i></a></p>
                     <div class="paymet01" style="display:none;" id="slidedrop1">
                         
-               	
+               	    <div class="clr"><center><p id="promo_message" style="color:red;font-size:11px"></p></center></div>
                             <div class="clr"></div>
                             <div class="detail">
 							
@@ -719,53 +719,45 @@ function price_details(){
 	
 	//alert('jjj')
 	var apply_coupon=$('#apply_coupon').val();
-	//alert(apply_coupon)
+	alert(apply_coupon)
 	if(apply_coupon){
 	$.ajax({
 	      type:'post',
 		  url:'<?=base_url()?>index.php/cart/validate_apply_coupon',
 		  data:'apply_coupon='+apply_coupon,
 		 // dataType: "json",
-		  success: function(response){
-		//alert(response);
-		//var myJSON = JSON.stringify(response);
-		//alert(myJSON)
-	var res=$.parseJSON(response);
-	//alert(res)
-	var string='"'+res+'"';
-	var result=string.split(",");
-	//alert(result[0])
-	
-	 var first_array=result[0].replace(/"/g,"");
-		  var last_array=result[result.length-1].replace(/"/g,"");
-		 // alert(last_array)
-		 
-		  var today = new Date();
-var dd = today.getDate();
-
-var mm = today.getMonth()+1; 
-var yyyy = today.getFullYear();
-
-//alert(current_date)
-if(dd<10) 
-{
-    dd='0'+dd;
-} 
-
-if(mm<10) 
-{
-    mm='0'+mm;
-} 
-var current_date = dd+'-'+mm+'-'+yyyy;
-if(current_date<=last_array && apply_coupon==first_array && result[2]=='1' ){
-//alert('yes date')
-appply_promo_code('1',result[1],first_array)
-}else{
-//alert('sorry');
-return false;
-}
-//console.log(tt);
-//alert(tt)
+		  success: function(response)
+		  {
+		      alert(response);
+		      //var myJSON = JSON.stringify(response);
+		      //alert(myJSON)
+	          var res=$.parseJSON(response);
+	          //alert(res)
+	          var string='"'+res+'"';
+	          var result=string.split(",");
+	          //alert(result[0])
+	          var first_array=result[0].replace(/"/g,"");
+		      var last_array=result[result.length-1].replace(/"/g,"");
+		      // alert(last_array)
+	    	  var today = new Date();
+              var dd = today.getDate();
+              var mm = today.getMonth()+1; 
+              var yyyy = today.getFullYear();
+              //alert(current_date)
+			  if(dd<10) {dd='0'+dd;}
+              if(mm<10) {mm='0'+mm;} 
+              var current_date = dd+'-'+mm+'-'+yyyy;
+              if(current_date<=last_array && apply_coupon==first_array && result[2]=='1' )
+			     {
+                       //alert('yes date')
+                       appply_promo_code('1',result[1],first_array)
+                 }else{
+                        //alert('sorry');
+                         return false;
+                       }
+                     //console.log(tt);
+                     //alert(tt)
+			//$("#promo_message").html(response);		 
 		  }
 	
 	});

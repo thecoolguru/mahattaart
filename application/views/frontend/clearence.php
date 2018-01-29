@@ -614,7 +614,7 @@ Framed Painting <?=$avl_glass?>
 <div class="product-details">
 	<div class="row">
     	<div class="col-sm-6">
-            <a href="<?=base_url()."search/".$link."/".$image_filename."/".$image_id."/".$image_collection_id;  ?>"> 
+            <a href="<?=base_url()."frontend/".$link."/".$image_filename."/".$size."/".$image_id ?>">
                 <div class="icon-cart">
                 <div class="cart-line-1" style="background-color: rgb(44, 195, 181);"></div>
                 <div class="cart-line-2" style="background-color: #2CC3B5"></div>

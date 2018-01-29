@@ -2,32 +2,59 @@
 
 class Contact extends CI_Controller {
 
- function process()
- { 
-    $demail=$this->input->post('demail');
-    $this->load->library('email');
-    $this->email->from($this->input->post('demail'), $this->input->post('dname'));
-    $this->email->to('info@mahattaart.com'); 
-    $this->email->to('tamjsay7@gmail.com'); 
-    $this->email->cc('marketing@indiapicture.in'); 
-    $this->email->cc('tamjsay7@gmail.com');
-    $this->email->subject('Enquiry From Contact Us ');
-    $this->email->message($this->input->post('dmobile'),$this->input->post('dcity')); 
-    $this->email->message('Hi, This Enquiry is from client side.'."\n"."\n"
-    .'Email:  '.$this->input->post('demail')
-    ."\n"."\n"
-    .'Name:  '.$this->input->post('dname')
-    ."\n"."\n"
-    .'Description:  '.$this->input->post('dtarea')
-    ."\n"."\n"
-    .'Mobile:  '.$this->input->post('dmobile')
-    ."\n"."\n"
-    .'Company:  '.$this->input->post('dcompany')
-    ."\n"."\n"
-    .'City    :  '.$this->input->post('dcity')
-    );
 
-    $frntfrgtpwd='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+public function __construct()
+{
+  parent::__construct();
+  $this->load->library(array('email'));
+}
+
+
+
+function process()
+ {
+	 
+	 $dname=$this->input->post('dname');
+	 $user_email=$this->input->post('demail');
+	 $dmobile=$this->input->post('dmobile');
+	 $dcity=$this->input->post('dcity');
+	 $dtarea=$this->input->post('dtarea');
+	 
+	$admin_message= '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <title>india</title>
+      <style> p { text-align:justify; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;font-size:14px;} </style>
+    </head>
+
+    <body style="background:#f2f2f2; font-size:14px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;">
+      <table width="880" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td bgcolor="#ede2ea"><table width="100%" border="0" cellspacing="0" cellpadding="0"></table></td>
+        </tr>
+        <tr>
+          <td>Name:</td><td>'.$dname.'</td>
+        </tr>
+		<tr>
+          <td>Email:</td><td>'.$user_email.'</td>
+        </tr>
+		<tr>
+          <td>Mobile:</td><td>'.$dmobile.'</td>
+        </tr>
+		<tr>
+          <td>City:</td><td>'.$dcity.'</td>
+        </tr>
+		<tr>
+          <td>Message:</td><td>'.$dtarea.'</td>
+        </tr>
+        
+      </table>
+    </body>
+    </html>';
+	
+	
+	 $message='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -42,7 +69,7 @@ class Contact extends CI_Controller {
         </tr>
         <tr>
           <td>
-            <p>  Dear '.$this->input->post('dname').' ,</p>
+            <p>  Dear '.$dname.' ,</p>
             <p>Welcome to Mahatta art ! </p> 
             <p> We found that you we facing some problem regarding our services  and even mailed us . Our specialized team was trying to call you to fix your problem but was not able to get through. We apologize for that. Please contact us on <a href="#">+91-8800639075 </a> or you can even email us at <a href="mailto:info@wallsnart.com"> info@mahattaart.com </a>  So that we can solve your queries and serve you better. </p>
             <p>Thanks for co-operating !</p>
@@ -59,21 +86,46 @@ class Contact extends CI_Controller {
     </body>
     </html>';
 
-    $to=$demail;   
-    $headers  = 'MIME-Version: 1.0' . "\r\n";
-    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-    $headers .= 'From:MahattaArt<info@mahattaart.com>' . "\r\n";
-    $subject = 'Welcome to Mahatta Art';
-    $send=mail($demail,$subject,$frntfrgtpwd,$headers);
-    if($this->email->send() && $send)
-    {
-      echo 'Thank you for contacting us. We will get back to you shortly';
-    }
-    else
-    {
-      echo "Some problem occurred.";
-    }   
- }
+	                  /*Send Mail To Admin*/
+					  
+					    $this->email->from($user_email, 'Mahataart');
+						//$this->email->to('tamjsay7@gmail.com');
+						$this->email->to('shahabalam3628@gmail.com');
+						$this->email->subject('Enquiry From Contact Us');
+                        $this->email->message($admin_message);
+					
+					    $this->email->from($user_email, 'Mahataart');
+						//$this->email->to('info@mahattaart.com');
+						$this->email->subject('Enquiry From Contact Us');
+                        $this->email->message($admin_message);
+						
+						/*Send Mail To the User*/
+						
+						
+						$this->email->subject('Mail From Mahattaart');
+						$this->email->to($user_email);
+                        $this->email->message($message);
+                      if($this->email->send())
+					  {
+                           echo 'Thank you for contacting us. We will get back to you shortly';
+                      }
+                      else
+                      {
+                            echo "Some problem occurred.";
+	
+					  }
+}
+
+
+
+
+
+
+
+
+
+
+
  
  
  function sendprocess()
