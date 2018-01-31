@@ -378,7 +378,7 @@ body{background-color:#fff}
     <div class="form-group">
       <label class="col-sm-3 control-label">Bill No<span class="text-danger"></span></label>
       <div class="col-sm-9">
-        <input name="bill_no" value="" class="form-control" id="bill_no" type="text">
+        <input name="bill_no"  class="form-control" id="bill_no" type="text"  value="<?php if(isset($customer_details[0]->bill_no)){echo $customer_details[0]->bill_no;} else {echo set_value('bill_no');} ?>"   >
 
 	  </div>
     </div>

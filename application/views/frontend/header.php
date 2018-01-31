@@ -698,7 +698,7 @@ Online Shopping of Paintings, Commissioned Art, Customized Art, Big Large Painti
         -webkit-box-shadow: 0 6px 7px #CCC;
         -moz-box-shadow: 0 6px 7px #CCC;
         box-shadow: 0 6px 7px #CCC;
-        z-index: 1
+        z-index: 3
     }
     #sub-pi img {
         float: left

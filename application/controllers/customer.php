@@ -79,16 +79,17 @@ public function get_kiosk_users_details()
        $this->form_validation->set_rules('person_mobile','Person Mobile','required');
        $this->form_validation->set_rules('person_email','Person Email','required|valid_email');
 	   $verdor_types=$this->input->post('verdor_types');
+	   
+	   //echo $verdor_types; 
 	   $location=$this->input->post('location');
 	   $person_name=$this->input->post('person_name');
 	   $person_mobile=$this->input->post('person_mobile');
 	   $person_email=$this->input->post('person_email');
 	  //get Last id of table 
 	   $result=$this->customer_model->create_location_id($verdor_types);
-	
-		  $lastInsertedUId=$result[0]->location_id;
+	   $lastInsertedUId=$result[0]->location_id;
 		  
-		 // echo $lastInsertedUId; die();		  
+				  
 		  #$location_id2=$ki.$uid;
 		  if($verdor_types=='kiosk')
 		  {
@@ -231,81 +232,85 @@ public function get_kiosk_users_details()
      		
 		$customer_register=$this->input->post('customer_register');
 		
+
+		
 	if($id!='')
 		  {
 		 $query['kiosk_location']=$this->customer_model->get_kiosk_location($id);
 		 $query['customer_details']=$this->customer_model->get_customer_details($id);
 		  }
+		  
+		  
 	       if($this->form_validation->run()==true)
 		   {
-			
-			  $data=array(
-		                'vendor_types'=>$vendor_types,
-						'location'=>$vendor_location,
-						'vendor_location_key_id'=>$vendor_location_id,   
-					    'customer_name'=>$name,
-	                    'customer_email'=>$email,
-	                    'customer_mobile'=>$mobile,
-						'gender'=>$gender,
-	                    'cutomer_interest'=>$pinterest,
-	                    'cutomer_feadback'=>$feadback,
-						'experience'=>$experience,
-						'active_coupon'=>$active_coupon,
-						'bill_no'=>$bill_no,
-						'customer_register'=>$customer_register
-				  
-				   );
-				   
-				   
+			        
+					
+					 $data=array(
+									'vendor_types'=>$vendor_types,
+									'location'=>$vendor_location,
+									'vendor_location_key_id'=>$vendor_location_id,   
+									'customer_name'=>$name,
+									'customer_email'=>$email,
+									'customer_mobile'=>$mobile,
+									'gender'=>$gender,
+									'cutomer_interest'=>$pinterest,
+									'cutomer_feadback'=>$feadback,
+									'experience'=>$experience,
+									'active_coupon'=>$active_coupon,
+									'bill_no'=>$bill_no,
+									'customer_register'=>$customer_register
+							  
+							   );
 				  /****Create seqence id**/   
-				  $get_customer_last_id=$this->customer_model->get_cutomer_last_id();
-				  $last_id=$get_customer_last_id[0]->customer_id;
-				  $ki='MA00';				  
-				  $lastUId = intval(str_replace("MA","",$last_id));
-				  $currentUId = $lastUId + 1;	
-				  $final_id=$ki.$currentUId;	
-				 // echo $final_id; die();	 
-				   
-				   
-				   $submit_from="c_q_f"; 
-				   $customer_type="Retail";
-				   $customer_data=array(
-	              
-				   'submit_from'=>$submit_from,
-				   'customer_type'=>$customer_type,
-				   'vendor_types'=>$vendor_types,
-				   'vendor_location'=>$vendor_location,
-				   'vendor_location_key_id'=>$vendor_location_id,
-				   'customer_id'=>$final_id,
-				   'first_name'=>$name,
-				   'contact'=>$mobile,
-				   'email_id'=>$email,
-				   'experience'=>$experience,
-				   'active_coupon'=>$active_coupon,	 
-				   'user_registered'=>$customer_register
-		
-	  
-	         ); 
+				 
+						  $get_customer_last_id=$this->customer_model->get_cutomer_last_id();
+						  $last_id=$get_customer_last_id[0]->customer_id;
+						  //echo $get_customer_last_id[0]->customer_id; die();
+						  $ki='MA00';				  
+						  $lastUId = intval(str_replace("MA","",$last_id));
+						  $currentUId = $lastUId + 1;	
+						  $final_id=$ki.$currentUId;	
+						 // echo $final_id; die();	 
+						   
+						   
+						   $submit_from="c_q_f"; 
+						   $customer_type="Retail";
+						   $customer_data=array(
+						  
+						   'submit_from'=>$submit_from,
+						   'customer_type'=>$customer_type,
+						   'vendor_types'=>$vendor_types,
+						   'vendor_location'=>$vendor_location,
+						   'vendor_location_key_id'=>$vendor_location_id,
+						   'customer_id'=>$final_id,
+						   'first_name'=>$name,
+						   'contact'=>$mobile,
+						   'email_id'=>$email,
+						   'experience'=>$experience,
+						   'active_coupon'=>$active_coupon,	 
+						   'user_registered'=>$customer_register
+				
+			  
+					 ); 
 			 
-			 //print_r($customer_dat); die();
-		$query['message_success']="Customer Query successfully Submitted";
-		$query['message_Failed']="Customer Query Not Submit,Please Check?";
-		if($id!='')
-		  {
-	       		  
-		   
-		   $x=$this->customer_model->update_customer_details($id,$data);
-		   redirect('index.php/customer/view_cutomer_query');
-		 }else{
-			
-			if($customer_register=='yes')
-			{
-				
-             $get_promo_code_validation=$this->customer_model->get_promo_code_validation($active_coupon);	
-			 //print_r($get_promo_code_validation);	
-			 //echo $get_promo_code_validation[0]->valid_from_date.$get_promo_code_validation[0]->valid_end_date;		
-				
-			$message='<html>
+			// print_r($customer_data); die();
+					$query['message_success']="Customer Query successfully Submitted";
+					$query['message_Failed']="Customer Query Not Submit,Please Check?";
+					if($id!='')
+					  {
+					   $x=$this->customer_model->update_customer_details($id,$data);
+					   redirect('index.php/customer/view_cutomer_query');
+					 }else{
+						
+						if($customer_register=='yes')
+						{
+						 $get_promo_code_validation=$this->customer_model->get_promo_code_validation($active_coupon);	
+						 //print_r($get_promo_code_validation);	
+						 //echo $get_promo_code_validation[0]->valid_from_date.$get_promo_code_validation[0]->valid_end_date;		
+							
+						//Mail Code here
+						
+						$message='<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title> signup email</title>
@@ -355,39 +360,28 @@ table td a.a_link{font-size:3em; padding:0 20px}
 </table>
 </body>
 </html>';
-				
-				
-				
 		                $this->email->from('info@mahataart.com', 'Mahattaart');
    					    //$this->email->to($email);
 						$this->email->to($email);
                         $this->email->subject('Test');
                         $this->email->message($message);
                         $this->email->send();
-                   		
-				
-					
-				
-			$query['add_customer']=$this->customer_model->add_customer_query_mod($data);
-	        $this->customer_model->add_to_customer_model($customer_data);	
-			}else{
-			
-			$query['add_customer']=$this->customer_model->add_customer_query_mod($data);
-			//SEND EMAILS HERE	
-				
-				}
-	$query['add_success']="Customer Query Added Success Fully,";
+
+						//$query['add_customer']=$this->customer_model->add_customer_query_mod($data);
+						$this->customer_model->add_to_customer_model($customer_data);	
+						}else{
+						$query['add_customer']=$this->customer_model->add_customer_query_mod($data);
+							}
+				        $query['add_success']="Customer Query Added Success Fully,";
 			 }
 	 }
+	 
+	 
 	 
 	  $this->load->view('backend/dashboard_header');
       $this->load->view('backend/customer/add_customer_query',$query);     
       $this->load->view('backend/footer');
-    
-		   
-		
-	     
-	   }
+}
 
 
 

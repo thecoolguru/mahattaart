@@ -195,7 +195,8 @@ return $query->result();
 	}
 	// End
 
-	public function get_all_lightboxes_gallery($user_id)	{
+	public function get_all_lightboxes_gallery($user_id)	
+	{
 		$this->db->select('*');
 		$this->db->where('user_id',$user_id);
 		$this->db->order_by("lightbox_name");

@@ -719,7 +719,7 @@ function price_details(){
 	
 	//alert('jjj')
 	var apply_coupon=$('#apply_coupon').val();
-	alert(apply_coupon)
+	//alert(apply_coupon)
 	if(apply_coupon){
 	$.ajax({
 	      type:'post',
@@ -728,7 +728,7 @@ function price_details(){
 		 // dataType: "json",
 		  success: function(response)
 		  {
-		      alert(response);
+		     // alert(response);
 		      //var myJSON = JSON.stringify(response);
 		      //alert(myJSON)
 	          var res=$.parseJSON(response);
@@ -746,8 +746,10 @@ function price_details(){
               //alert(current_date)
 			  if(dd<10) {dd='0'+dd;}
               if(mm<10) {mm='0'+mm;} 
-              var current_date = dd+'-'+mm+'-'+yyyy;
-              if(current_date<=last_array && apply_coupon==first_array && result[2]=='1' )
+              var current_date = dd+'/'+mm+'/'+yyyy;
+              last_array_sep=last_array.split('/');
+			// alert(last_array[])
+              if((current_date <=last_array) || (mm <=last_array_sep[1] && yyyy <=last_array_sep[2]) && (apply_coupon==first_array) && (result[2]=='1') )
 			     {
                        //alert('yes date')
                        appply_promo_code('1',result[1],first_array)

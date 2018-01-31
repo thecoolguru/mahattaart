@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" href="<?php print base_url();?>assets/css/light-box-model.css" type="text/css"/>
 <link href="<?php print base_url();?>assets/css/zoom-image.css" rel="stylesheet" />
 <link href="<?php print base_url();?>assets/css/products/product.css" rel="stylesheet" />
@@ -283,6 +284,8 @@ $size_data = getimagesize($image_path);
 $image_alignment="";
 $image_width=$size_data[0];
 $image_height=$size_data[1];
+
+
 
 $size_data1 = getimagesize($image_path);
 $image_width1=$size_data1[0];
