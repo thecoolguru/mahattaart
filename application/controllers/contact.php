@@ -13,7 +13,6 @@ public function __construct()
 
 function process()
  {
-	 
 	 $dname=$this->input->post('dname');
 	 $user_email=$this->input->post('demail');
 	 $dmobile=$this->input->post('dmobile');
@@ -88,19 +87,20 @@ function process()
 
 	                  /*Send Mail To Admin*/
 					  
-					    $this->email->from($user_email, 'Mahataart');
-						//$this->email->to('tamjsay7@gmail.com');
-						$this->email->to('shahabalam3628@gmail.com');
+					    
+						$this->email->from($user_email, 'Mahataart');
+						$this->email->to('tamjsay7@gmail.com');
 						$this->email->subject('Enquiry From Contact Us');
                         $this->email->message($admin_message);
-					
-					    $this->email->from($user_email, 'Mahataart');
-						//$this->email->to('info@mahattaart.com');
+						$this->email->send();
+					    
+						$this->email->from($user_email, 'Mahataart');
+						$this->email->to('info@mahattaart.com');
 						$this->email->subject('Enquiry From Contact Us');
                         $this->email->message($admin_message);
+						$this->email->send();
 						
 						/*Send Mail To the User*/
-						
 						
 						$this->email->subject('Mail From Mahattaart');
 						$this->email->to($user_email);
@@ -111,22 +111,13 @@ function process()
                       }
                       else
                       {
-                            echo "Some problem occurred.";
-	
+                        echo "Something Errorr.Please Check";
+						//echo $this->email->print_debugger(); 
+						sleep(600);
+	                  
 					  }
 }
 
-
-
-
-
-
-
-
-
-
-
- 
  
  function sendprocess()
  { 

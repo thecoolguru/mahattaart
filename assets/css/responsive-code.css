@@ -782,8 +782,8 @@ h1.ttto::before {
 /*	photostoart
 */
 	.top_slider_content {
-		width: 240px !important;
-		right:40px !important
+		width: 288px !important;
+		bottom: 60px !important;
 	}
 	.top_slider_content h1 {
 		font-size: 35px !important;
@@ -1061,6 +1061,10 @@ h1.ttto::before {
 	}
 	#imaginary_container #searchtext {
 		font-size: 12px;
+	}
+	.top_slider_content {
+		width: 374px !important;
+		bottom: 85px !important;
 	}
 }
 /* lg */

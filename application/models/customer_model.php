@@ -26,7 +26,14 @@ class Customer_model extends CI_Model
 	   
     }
 	
-	
+	public function get_kiosk_location($id)
+	{
+	  $this->db->where('id',$id);
+	  $query=$this->db->get('kiosk_users');
+	  //print_r($query->result());
+	  return $query->result();
+	}
+		
 	
 	
 	public function get_kiosk_details($id)
@@ -40,14 +47,18 @@ class Customer_model extends CI_Model
 	
 	public function create_location_id($verdor_types)
 	{
-	  $this->db->select_max('id');
+	  $this->db->select('location_id');
       $this->db->where('vendor_types',$verdor_types);
+	  $this->db->order_by("id", "desc");
+	  $this->db->limit(1,0);
       $query= $this->db->get('kiosk_users');
-	 // print_r($query->result());
+	  //$sql = $this->db->last_query();
+	  #var_dump($sql); die;
+	  //echo "<pre>";
+	  //print_r($query->result()); die;
 	  return $query->result();
 	
 	}
-	
 	
 	
 	//
@@ -197,12 +208,32 @@ class Customer_model extends CI_Model
 	
 	//22-12-2017
 	
+
+
+public function get_promo_code_validation($active_coupon)
+{
+
+$this->db->select('*');
+$this->db->where('promo_name_code',$active_coupon);
+$query=$this->db->get('tbl_promo_code');
+return $query->result();
+
+}	
 	
 	
 	
 	
-	
-	
+public function get_cutomer_last_id()
+{
+      $this->db->select('customer_id');
+	  $this->db->order_by("id", "desc");
+	  $this->db->limit(1,0);
+      $query= $this->db->get('tbl_customer');
+	  //$sql = $this->db->last_query();
+	  #var_dump($sql); die;
+	  //echo "<pre>";
+	  return $query->result();
+}	
 	
 	
 	
@@ -214,7 +245,6 @@ class Customer_model extends CI_Model
 	
 	public function add_customer_query_mod($data)
     {
-	
 	 $query=$this->db->insert('tbl_customer_query',$data);
 	 	  
 	} 

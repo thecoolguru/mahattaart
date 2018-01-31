@@ -1561,7 +1561,8 @@ public function themes_lightbox($lightbox_id,$page_no,$category="none",$shape="n
 			
 	}
 	/*==================================================lightbox_start===============================================================================================================*/
-	public function lightbox_dropdown()	{
+	public function lightbox_dropdown()	
+	{
 		if(isset($_POST['lightbox_id'])&& isset($_POST['image_id'])&& isset($_POST['check']))	{
 			$bol=$this->frontend_model->check_gall_to_ltbox($_POST['lightbox_id'],$_POST['image_id']);
 			if($bol)	{
@@ -1650,7 +1651,8 @@ public function themes_lightbox($lightbox_id,$page_no,$category="none",$shape="n
 
 
 
-	public function lightbox($page_no=0,$offset=0)	{
+	public function lightbox($page_no=0,$offset=0)	
+	{
 		$check="";
 		$lt_nm="";
 		$lt_des="";
@@ -1686,6 +1688,11 @@ public function themes_lightbox($lightbox_id,$page_no,$category="none",$shape="n
 				$data['success']="Gallery updated.";
 			}
 		}
+		
+		
+		//Pagination Code
+		
+		
 		$per_page = 10;  
 		$config['first_link'] = false;
 		$config['last_link'] = false;
@@ -1703,7 +1710,8 @@ public function themes_lightbox($lightbox_id,$page_no,$category="none",$shape="n
 			$this->data['pagermessage'] = 'Showing '.((($this->pagination->cur_page-1)*$this->pagination->per_page)+1).' to '.($this->pagination->cur_page*$this->pagination->per_page).' of '.$this->pagination->total_rows;
 		}   
 		$qry .= "limit {$per_page} offset {$offset} ";
-		$data["result"] = $this->frontend_model->get_all_lightboxes($user_id,$config["per_page"], $offset); 
+		$data["result"] = $this->frontend_model->get_all_lightboxes($user_id,$config["per_page"], $offset);
+		
 		//$data["images"] = $this->frontend_model->get_all_lightboxes_images($user_id); 
 		$this->load->view("frontend/header");
 		$this->load->view("frontend/lightbox",$data);
