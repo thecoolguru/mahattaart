@@ -2174,7 +2174,7 @@ public function themes_lightbox($lightbox_id,$page_no,$category="none",$shape="n
 	public function delete_lightbox($lightbox_id,$page_no)	{
 		$this->frontend_model->delete_lightbox($lightbox_id);
 		$this->frontend_model->delete_lightbox_images($lightbox_id);
-		redirect('lightbox/'.$page_no);
+		redirect('frontend/lightbox/'.$page_no);
 	}
 
 	public function share_lightbox()	{

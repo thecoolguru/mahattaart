@@ -193,7 +193,7 @@ function price_details(){
 
 
 
-					if($clearence_dets->active=='1'){
+					if($clearence_dets->active=='2'){
 					$validation="Apply";
 					}else{
 					$validation="Not Aplicable";

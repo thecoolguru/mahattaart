@@ -393,6 +393,7 @@ var price=$('#total_price').val();
 var paper_surface=$('#surface').html();
 var image_namee=$('#filename').val()+'.JPG';
 //alert(frame_name+','+final_frame_size);
+var old_price=$('.old_price').html();
 var product_size=$('#product_size').val();
 var only_print='';
  var promo_discount=$('#promo_discount').val();
@@ -402,8 +403,9 @@ var only_print='';
   promo_amount = promo_amount.split('.');		
   	  promo_amount = promo_amount[1];
 	 // var path=2;
+	// alert(old_price)
 //alert(image_namee);
-var url="glasses_coste"+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_color+"&mount_color="+mount_name+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print+'&product_size='+product_size+"&promo_code="+promo_name_code+"&promo_discount="+promo_discount+"&promo_price="+promo_amount+'&path=2';
+var url="glasses_coste"+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_color+"&mount_color="+mount_name+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print+'&product_size='+product_size+"&promo_code="+promo_name_code+"&promo_discount="+promo_discount+"&promo_price="+promo_amount+'&old_price='+old_price+'&path=2';
 //alert(url)
  $.ajax({
 		//final_frame_size

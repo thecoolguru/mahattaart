@@ -1,6 +1,8 @@
+<IfModule mod_php5.c>
+php_value max_execution_time 60
+</IfModule>
 <IfModule mod_rewrite.c>
-php_value max_execution_time 1
-php_value max_input_time 30
+php_value max_input_time 60
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

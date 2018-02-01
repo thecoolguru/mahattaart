@@ -33,7 +33,7 @@ function edit(a,b,c,d)
 {	 
 	 $.ajax({
 		type: "GET",
-	       url: "<?php print base_url();?>frontend/edit_lightbox?lightbox_id="+a +"&lightbox_name="+b+"&filename="+d,
+	       url: "<?php echo  base_url();?>frontend/edit_lightbox?lightbox_id="+a +"&lightbox_name="+b+"&filename="+d,
 	       success: function(data)
 		   {   
               //alert(data);		   
@@ -67,7 +67,7 @@ $(document).ready(function($){
       var de=$('#desc').val();
 	  var ck='1';
       var url='<?php echo base_url();?>frontend/lightbox?check='+ck +'&lt_nm='+ nm +'&lt_des='+de;
-	  //alert(url);
+	  alert(url);
       window.location.assign(url);
 	  //alert("Gallery created");
 	 }
@@ -139,11 +139,11 @@ function Genrate_images_id(lightbox_id)
 function call_remove(imageid,name,page_no)
 {	
 	var user_input=confirm("Are you sure you want to delete gallery" +name);
-	var url="<?php print base_url();?>frontend/delete_lightbox/"+imageid+"/"+page_no;
+	var url="<?php echo base_url();?>frontend/delete_lightbox/"+imageid+"/"+page_no;
 	if(user_input==true)
 		window.location=url;
 }
-x
+
 function ShareGalleryValidation()
     {
         if($('#email_to').val()=='')
@@ -398,7 +398,7 @@ textarea {
 
 						<td>
                                                 <?php if($rows){?>
-                                               <a href="javascript:edit('<?php echo $results->lightbox_id;?>','<?php echo $results->lightbox_name;?>','<?php echo $i;?>','<?php print $resultant;?>');"
+ <a href="javascript:edit('<?php echo $results->lightbox_id;?>','<?php echo $results->lightbox_name;?>','<?php echo $i;?>','<?php echo $resultant;?>');"
 							id="ed-lt-bx">Edit</a>
                                                   <?}else {
 
@@ -410,7 +410,7 @@ textarea {
                                                          <?}else {
 
                                                        }?>
-							 <a href="javascript:call_remove('<?php echo $results->lightbox_id;?>','<?php echo $results->lightbox_name;?>','<?=$page_no?>');">Remove</a>
+	<a href="javascript:call_remove('<?php echo $results->lightbox_id;?>','<?php echo $results->lightbox_name;?>','<?=$page_no?>');">Remove</a>
 							 <a href="javascript:share_gallery('<?php echo $results->lightbox_id;?>');">Share Gallery</a>
                                                          <a href="javascript:Genrate_images_id('<?php echo $results->lightbox_id;?>');">Generate Image Id</a>
 						</td>
