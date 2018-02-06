@@ -1,0 +1,23 @@
+
+ul.menu {list-style:none; margin:0; padding:0; font-size:12px;}
+ul.menu * {margin:0; padding:0}
+ul.menu a { display:block; font-size:14px; padding:12px 24px; color:#fffefe; text-decoration:none; text-transform:uppercase; 	 }
+ul.menu a:hover {}
+ul.menu .fst{border-left:1px solid #857258;}
+ul.menu li {position:relative; float:left; margin;0;  padding:0;  display:block; border-right:1px solid #857258; /*background:url(images/seperator.gif) right center no-repeat;*/}
+ul.menu li:hover{background:#1a1a1a}
+ul.menu .last {position:relative; float:left; margin;0;  padding:0;  display:block; background:none}
+ul.menu ul {position:absolute; top:40px; left:0; background: url(../images/nav-bg.png); display:none; list-style:none;  }
+ul.menu ul li {position:relative; border-bottom:1px dotted #666; width:250px; margin:0;  background:none}
+ul.menu ul li a {display:block;color:#b8b7b7;/*background-color:#d1d1d1*/ text-transform:none; padding:8px 10px 8px 20px;}
+ul.menu ul li a:hover {color:#fff/*background-color:#c5c5c5*/}
+ul.menu ul ul {left:200px; top:-1px}
+ul.menu .menulink { padding:5px 7px 7px; font-weight:bold; /*background:url(images/header.gif); border:1px solid #aaa; */width:200px}
+ul.menu .menulink:hover, ul.menu .menuhover {/*background:url(images/header_over.gif)*/ color:#fff}
+ul.menu .subtop {padding-right:20px; background: url(../images/down-arrow.png) right 16px no-repeat;}
+ul.menu .sub {background: url(../images/arrow.gif) right 8px no-repeat}
+ul.menu .topline {border-top:1px solid #aaa}
+
+ul.menu .logout-w{width:200px; border:none;padding-top:3px;}
+ul.menu .logout-w:hover{background:none}
+ul.menu .logout{margin:0; padding:0; text-align:right }

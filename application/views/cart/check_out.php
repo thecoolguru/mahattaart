@@ -865,9 +865,9 @@ function price_details(){
 	 $order_date=date("Y-m-d H:i:s");
 	?>
 	
-	<input type="hidden" name="merchant_id" value="<?php echo '64544'; ?>">
+	<input type="hidden" name="merchant_id" value='64544'>
   
- <input type="hidden" name="currency" value="INR">
+ <input type="hidden" name="currency" value='INR'>
  <input type="hidden" name="amount" class="grand_total_amt" value="<?php echo $grand_total; ?>">
   <input type="hidden" name="order_id" value="<?=$order_id_auto?>">
   <input type="hidden" name="redirect_url" value="<?=$redirect_url?>" />
@@ -1078,8 +1078,7 @@ if(values=='cod'){
 $('#payment_action').attr('action','<?=base_url()?>cart/payment_by_cod');
 }else if(values=='online'){
 alert('Oops! Technical Problem For Online Payment We are working on it. So Please proceed the order with COD or contact us at +91-8800639075 or 011- 41828972 or email us at info@mahattaart.com to complete your payment.');
-return false;
-$('#payment_action').attr('action','http://mahattaart.com/index.php/cart/CCAvenue_check_out');
+$('#payment_action').attr('action','<?=base_url()?>cart/CCAvenue_check_out');
 }}
 </script>
 

@@ -196,31 +196,33 @@ class Cart extends CI_Controller{
 	}
 
 	protected function CCAVENUE_DETAILTS()  {
-            $marchent_id="64544";
-            $auth_code="AVIZ70ED05AF29ZIFA";
-            $working_key="759A2FF4378D5CB2F8818E28CBCD2DDF";
+            $marchent_id='64544';
+            $auth_code='AVIZ70ED05AF29ZIFA';
+            $working_key='759A2FF4378D5CB2F8818E28CBCD2DDF';
             return array($marchent_id,$auth_code,$working_key);
     } 
 	public function CCAvenue_check_out(){
-	error_reporting(0);
-           $result= $this->cart_model->get_cart_user_details($this->session->userdata('userid'));
-	       $billerName= $result[0]->first_name.' '.$result[0]->last_name;
-           $ccavenue_data= $this->CCAVENUE_DETAILTS();
-	     foreach ($_POST as $key => $value){
-		$merchant_data.=$key.'='.urlencode($value).'&amp;';
-		}
-        $merchant_id=$ccavenue_data[0];
-	   $working_key=$ccavenue_data[2];//Shared by CCAVENUES
-		$access_code=$ccavenue_data[1];//Shared by CCAVENUES
-	    $encrypted_data=$this->encrypt($merchant_data,$working_key);
-		$action_url="https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction";
+	error_reporting(E_ALL);
+	$merchant_data='';
+	$working_key='759A2FF4378D5CB2F8818E28CBCD2DDF';//Shared by CCAVENUES
+	$access_code='AVIZ70ED05AF29ZIFA';//Shared by CCAVENUES
+	foreach ($_POST as $key => $value){
+	 echo $merchant_data.=$key.'='.$value.'&amp;';
+	}
+
+	$encrypted_data=$this->encrypt($merchant_data,$working_key); // Method for encrypting the data.
+
 ?>
-		<form method="post" name="redirect" action="<?=$action_url?>"> 
-			<input type="hidden" name="encRequest" value="<?=$encrypted_data?>" />
-				<input type="hidden" name="access_code" value="<?=$access_code?>" />
-		</form>
+<form method="post" name="redirect" action="https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction"> 
+<?php
+echo "<input type=hidden name=encRequest value=$encrypted_data>";
+echo "<input type=hidden name=access_code value=$access_code>";
+?>
+</form>
+</center>
 <script language='javascript'>document.redirect.submit();</script>
-     <?php }
+	<?php }
+	 
 	    function encrypt($plainText,$key){
 	 	$secretKey=$this->hextobin(md5($key));
         //print_r($secretKey);

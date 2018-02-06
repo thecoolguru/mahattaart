@@ -343,13 +343,16 @@ $('.change_model').click(function(){
            type:'post',
            url: '<?php echo base_url();?>index.php/backend/get_invoice_sku_id',
            data:'values='+id,
-		   dataType : 'json',
+		  //dataType : 'json',
            success:function(response){
-		// alert(response);
-		
-            //var ff= $('#sku_id').val(response);
+		   //alert(response)
+		   var result="'"+response+"'";
+		   alert(result)
+			var myJSON = JSON.stringify(response);
+             var res=JSON.parse(result);
+			alert(res);
+			sku_table(res);
 			
-			sku_table(response);
                
            }
            
