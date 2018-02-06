@@ -16,7 +16,7 @@ $rows = mysql_fetch_assoc($query);
 		 	$number=1;
 		}
  $str=str_pad($number, 5, "0", STR_PAD_LEFT);  //00002
- $customerid="MA".$str;
+ $customerid="WAL".$str;
 ?>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-1.6.1.min.js"></script>
 <script type="text/javascript">

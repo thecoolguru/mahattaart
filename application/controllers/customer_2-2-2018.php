@@ -576,6 +576,7 @@ table td a.a_link{font-size:3em; padding:0 20px}
     }
 	public function add_customer()
     {
+	   
 	    $data['get_vendor']=$this->customer_model->get_vendor_types_model(); 
 		//$data['get_details']=$this->customer_model->get_kiosk_details($id);
         //$data['vtypes']=$this->customer_model->get_vendor_types_model(); 
@@ -583,6 +584,7 @@ table td a.a_link{font-size:3em; padding:0 20px}
 		$this->load->view('backend/dashboard_header');
         $this->load->view('backend/customer/add_customer',$data);
         $this->load->view('backend/footer');
+    	
 	}
     public function add_customer_final()
     {
@@ -692,7 +694,7 @@ elseif($selecthospitality<>'')
           if($this->form_validation->run()==false)
 		  {
             
-			
+			 echo "in false"; die;
 			//echo $this->input->post('vendor_types'); die();			  
 			  
 			  //$data['get_vendor']=$this->customer_model->get_vendor_types_model();
@@ -777,7 +779,7 @@ $verdor_types=$this->input->post('verdor_types');
 		   //end by sajid
         if($this->form_validation->run()==true)
         {
-		 			 
+		 			 echo "in true"; die;
 		$data['get_vendor']=$this->customer_model->get_vendor_types_model();
 
             $data=array(

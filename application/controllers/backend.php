@@ -2157,14 +2157,15 @@ public function get_invoice_sku_id(){
  
  $sql="select * from tbl_invoice_details where invoice_id ='".$values."' order by sr_id asc";
     $rows=  mysql_query($sql);
-    while($result=  mysql_fetch_assoc($rows)){
-       //$sku_id= $result['sku_id'];
-	   $sr_id=$result['sr_id'];
-  $invoice_id=$result['invoice_id'];
-	   //$image_size=$result['image_size'];
-	  $new_result[]=$sr_id.','.$invoice_id;
-      //$new_surface[]=$surface;
-	}
+	$this->db->select('*');
+        $this->db->order_by('sr_id','asc');
+        $this->db->where('invoice_id',$values);
+        $query=$this->db->get('tbl_invoice_details');
+        $xx=$query->result();
+		foreach($xx as $result){
+		$new_result[]=$result->sr_id.','.$result->invoice_id;
+		}
+  
     echo json_encode($new_result);
 	//echo json_encode($new_surface);
 	

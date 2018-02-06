@@ -1,5 +1,5 @@
 <?php
-
+//echo phpinfo();
 $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>
 <script defer src="<?php echo base_url()?>assets/js/jquery.flexslider.js"></script>   
 <script type="text/javascript">
