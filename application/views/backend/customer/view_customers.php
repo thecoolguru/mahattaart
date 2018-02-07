@@ -2,7 +2,7 @@
 <?php $data=$this->customer_model->get_parent_customers();?>
 <?php $companyName=$this->customer_model->get_customers_company();?>
 <?php $customer_type=$this->customer_model->get_customers_type();
-//print_r($customer_type);die;
+//print_r($companyName);die;
 
 ?>
 
@@ -129,7 +129,7 @@
         <tr>
           <td>Region</td>
           <td>
-           <select name="region" id="region" onchange="return customer();" class="selectpicker" data-hide-disabled="true" data-live-search="true">
+ <select name="region" id="region" onchange="return customer();" class="selectpicker" data-hide-disabled="true" data-live-search="true">
 <optgroup >
     <option value="">--Select Region--</option>
 </optgroup>
@@ -141,18 +141,16 @@
 </select>  
           
           
-          
-          
-          </td>
+</td>
           <td>Company name</td>
           <td style="font-size:12px">
-              <select name="company" id="company" onchange="return customer();" class="selectpicker" data-hide-disabled="true" data-live-search="true">
+  <select name="company" id="company" onchange="return customer();" class="selectpicker" data-hide-disabled="true" data-live-search="true">
 <optgroup >
-    <option value="">--Select Company--</option>
+    <option value="" selected>--Select Company--</option>
 </optgroup>
 
    <?php  foreach($companyName as $companies){?>
-              <option value="<?= $companies['company_name'];?>" <?php if($_REQUEST['company']==$companies['company_name']){?>  <?php }?>>
+              <option value="<?= $companies['company_name'];?>" <?php if($_REQUEST['company']==$companies['company_name']){?>selected=""  <?php }?>>
               <?= $companies['company_name'];?>
               </option>
               <?php } ?>
@@ -163,17 +161,16 @@
 		<tr>
 		<td>Customer Type</td>
           <td>
-              <select id="customer_type" name="customer_type" onchange="return customer();" class="selectpicker" data-hide-disabled="true" data-live-search="true">
-<optgroup >
-<option value="">--Select Customer--</option>
+<select id="customer_type" name="customer_type" onchange="return customer();" class="selectpicker" data-hide-disabled="true" data-live-search="true">
+<optgroup>
+    <option value="">--Select Customer--</option>
 </optgroup>
-
              <?php 
 			$cusnamme=$cusname['customer_type'];
 			//echo $cusnamme;die;
 			 
 			  foreach($customer_type as $cusname){?>
-              <option value="<?= $cusname['customer_type'];?>" <?php if($_REQUEST['customer_type']==$cusname['customer_type']){?>  <?php }?>>
+              <option value="<?= $cusname['customer_type'];?>" <?php if($_REQUEST['customer_type']==$cusname['customer_type']){?>selected=""  <?php }?>>
               <?= $cusname['customer_type'];?>
               </option>
               <?php } ?>
@@ -294,7 +291,7 @@
                     <td><?=$customer_data['region'];?></td>
                     <td><?php if($customer_data['status']=='1'){ print "Active";} else{ print "Inactive";}?></td>
                     <td><?=$customer_data['date_account_create'];?></td>
-                    <td><a href="<?=base_url()?>index.php/customer/edit_customer/<?=$customer_data['id'];?>">View/Edit</a></td>
+                    <td><a href="<?=base_url()?>index.php/customer/add_customer/<?=$customer_data['id'];?>">View/Edit</a></td>
                     <!--  <td><a href="#" class="menuanchorclass" rel="anylinkmenu1">More..</a></td> -->
                   </tr>
                   <?php }  ?>

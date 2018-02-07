@@ -45,7 +45,21 @@ class Frontend extends CI_Controller
 	}
 
 
+public function invoice_view($invoice_id)
+{
+//print_r($invoice_id);die;
+    $data['invoice_data']= $this->frontend_model->get_view_invoice_details($invoice_id);
+	$data['invoice_details']= $this->frontend_model->get_all_invoice_details($invoice_id);
+     $data['invoice']= $this->frontend_model->get_all_invoice($invoice_id);
+	  $data['order_details']=$this->frontend_model->get_order_details_after_payment($invoice_id);
+    
 
+
+        $this->load->view('backend/invoice_details',$data);
+
+
+
+}
 	public function vendor_location() 
 	{
 		$vendor_type=$this->input->post('vendor_type');

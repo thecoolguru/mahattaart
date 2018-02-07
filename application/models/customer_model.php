@@ -251,18 +251,12 @@ public function get_cutomer_last_id()
 	
 
     public function get_parent_customers()
-
     {
-
         $this->db->select('*');
-
+		$this->db->distinct();
         $this->db->where('customer_created_by','admin');
-
        // $this->db->where('customer_parent_id','0');
-
         $query = $this->db->get('tbl_customer');
-		
-
         return $query->result_array();
 
 
@@ -271,11 +265,11 @@ public function get_cutomer_last_id()
 
 public function All_get_customers()
 {
-    
-    $sql="select * from tbl_registration order by customer_id desc limit 0,20 ";
-	
-	return mysql_query($sql);
-
+    $this->db->select('*');
+	$this->db->distinct();
+	$query=$this->db->get('tbl_customer');
+	//print_r($query->result()); die();
+	return $query->result();
 }
 
 
@@ -283,10 +277,9 @@ public function All_get_customers()
 
     {
 
-        $this->db->select('*');
-
+        $this->db->distinct();
+		$this->db->select('*');
         $query = $this->db->get('tbl_customer');
-
         return $query->result_array();
 
     }
@@ -356,97 +349,53 @@ public function All_get_customers()
     {
 
         $this->db->limit($limit,$start);
-
-        $this->db->select('*');
-
-        
-
+		$this->db->distinct();
+      $this->db->select('*');
         if($status!='')
-
         {
-
             $this->db->where('status' ,$status);
-
         }
-
         if($company)
-
         {
-
             $this->db->where('company_name' ,$company);
-
         }
-
         if($mail)
-
         {
             $this->db->like('email_id',$mail);
            // $this->db->where('email_id',$mail);
-
         }
-
         if($city)
-
         {
-
             $this->db->where('city',$city);
-
         }
 
         if($customer_id){
 
             $this->db->where('customer_id',$customer_id);
-
-        }
-
-        
-
+      }
         if($region){
-
             $this->db->where('region',$region);
-
         }
-
         if($customer_name)
-
         {
             $this->db->like('first_name',$customer_name);
            // $this->db->where('first_name',$customer_name);
-
         }
-
         if($start_date)
-
         {
-
             $this->db->where('date_account_create >=',$start_date);
-
         }
-
         if($end_date)
-
-        {
-
+       {
             $this->db->where('date_account_create <=',$end_date);
-
         }
-
-
-
         $query=$this->db->get('tbl_customer');
-
         if($query->result_array()){
-
             return $query->result_array();
-
         }
-
         else
-
         {
-
             return '-1';
-
         }
 
 
@@ -468,85 +417,51 @@ public function All_get_customers()
     }
 
     public function record_count_customer()
-
     {
-
         $this->db->select('*');
-
+		$this->db->distinct();
         // $this->db->where('convert_to_invoice','0');
-
         //$this->db->or_where('convert_to_invoice','1');
-
         $query=$this->db->get('tbl_customer');
-
         return $query->num_rows();
-
     }
 
 
 
-    public function count_rows_customer_search($customer_type,$status,$company,$mail,$city,$customer_id,$account_type,$region,$customer_name,$start_date,$end_date)
+ public function count_rows_customer_search($customer_type,$status,$company,$mail,$city,$customer_id,$account_type,$region,$customer_name,$start_date,$end_date)
+   {
 
-    {
 
         $this->db->select('*');
-  
+		$this->db->distinct();
         if($customer_type){
-
-            $this->db->where('customer_business_type',$customer_type);
-
+            $this->db->where('customer_type',$customer_type);
         }
-
         if($status!='')
-
         {
-
             $this->db->where('status' ,$status);
-
         }
-
         if($company)
-
         {
-                
             $this->db->where('company_name' ,$company);
-
         }
-
         if($mail)
-
         {
-
             $this->db->where('email_id',$mail);
-
         }
-
         if($city)
-
         {
-
             $this->db->where('city',$city);
-
         }
-
-        if($customer_id){
-
+      if($customer_id){
             $this->db->where('customer_id',$customer_id);
-
         }
-
         if($account_type){
-
             $this->db->where('customers_account_type',$account_type);
-
         }
-
         if($region){
-
             $this->db->where('region',$region);
-
         }
-
         if($customer_name)
 
         {
@@ -640,15 +555,11 @@ public function All_get_customers()
     public function get_customer_data($id)
 
     {
-
         $this->db->select('*');
-
         $this->db->where('id',$id);
-
         $query = $this->db->get('tbl_customer');
-
-        return $query->row();
-
+		//print_r($query->result()); die();
+        return $query->result();
     }
 
     public function get_customer_by_id($id)
