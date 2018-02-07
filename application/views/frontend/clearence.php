@@ -115,6 +115,12 @@
     .wrap-inner img {
         margin: auto;
     }
+	.wrap {
+	position: relative;
+	margin-bottom: 30px;
+	height: 390px;
+	display: inline-block;
+}
     .ourd li {
         float: left;
         padding: 0 4px

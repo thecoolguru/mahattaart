@@ -869,7 +869,7 @@ function price_details(){
 	<input type="hidden" name="merchant_id" value='64544'>
   
  <input type="hidden" name="currency" value="<?=$currency?>">
- <input type="hidden" name="amount" class="grand_total_amt" value="<?php echo $grand_total; ?>">
+ <input type="hidden" name="amount" class="grand_total_amt" value="<?php echo "1"; ?>">
   <input type="hidden" name="order_id" value="<?=$order_id_auto?>">
   <input type="hidden" name="redirect_url" value="<?=$redirect_url?>" />
 <input type="hidden" name="cancel_url" value="<?=$cancel_url?>" />

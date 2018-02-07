@@ -1211,7 +1211,6 @@ return $query->result();
 	//main frontend_model of mahattart by sajid
 
 	public  function insert_into_cart($data2)	{
-		//print_r($data2); die();
 		$result = $this->db->insert('tbl_cart',$data2);
 		return $result; 
 	}
