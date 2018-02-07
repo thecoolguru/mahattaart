@@ -576,6 +576,16 @@ table td a.a_link{font-size:3em; padding:0 20px}
     }
 	public function add_customer()
     {
+	   $customer_id=$this->uri->segment(3);
+	  
+	   
+         if(!empty($customer_id))
+		 {
+		    $data['customer']=$this->customer_model->get_customer_data($customer_id);
+			//print_r($data['customer']); die();
+		 }	   
+	   
+	  //echo $customer_id; die(); 
 	    $data['get_vendor']=$this->customer_model->get_vendor_types_model(); 
 		//$data['get_details']=$this->customer_model->get_kiosk_details($id);
         //$data['vtypes']=$this->customer_model->get_vendor_types_model(); 
@@ -583,10 +593,14 @@ table td a.a_link{font-size:3em; padding:0 20px}
 		$this->load->view('backend/dashboard_header');
         $this->load->view('backend/customer/add_customer',$data);
         $this->load->view('backend/footer');
+    	
 	}
-    public function add_customer_final()
+   
+   
+       public function add_customer_final()
     {
-	   
+	  $customer_id=$this->uri->segment(3);
+	 
 			$data['get_vendor']=$this->customer_model->get_vendor_types_model();
 			$verdor_types_id=$this->input->post('verdor_types');
 		   
@@ -608,11 +622,16 @@ table td a.a_link{font-size:3em; padding:0 20px}
         $this->form_validation->set_rules('contact','Contact','required');
 		
 		
+        
+  
+ 
  if($this->input->post('customer_type')=='B2B')
  {
 	if($this->input->post('occupation')=='Hospitality')
     {
+        
      ////// Hospitality//////////
+        
         $hospitality=$this->input->post('hospitality');
         if($hospitality)
         {
@@ -691,33 +710,26 @@ elseif($selecthospitality<>'')
 		
           if($this->form_validation->run()==false)
 		  {
-            
-			
-			//echo $this->input->post('vendor_types'); die();			  
-			  
-			  //$data['get_vendor']=$this->customer_model->get_vendor_types_model();
-			  
-$verdor_types=$this->input->post('verdor_types');			
-//$data['vtypes']=$this->customer_model->get_vendor_types_model();
-//$data['get_details']=$this->customer_model->get_kiosk_details($id);
-//$data['vtypes']=$this->customer_model->get_vendor_types_model(); 
-
-			  
-			  
-			  
-            $data=array(
+            // echo "in False"; die();
+			 
+			 
+			 $verdor_types=$this->input->post('verdor_types');			
+             $data=array(
                     'customer_id'=>$this->input->post('customer_id'),
-  				    'vendor_types'=>$this->input->post('vendor_types'),
+                    
+					'vendor_types'=>$this->input->post('vendor_types'),
 					'vendor_location'=>$this->input->post('location'),
 					'vendor_location_key_id'=>$this->input->post('location_key_id'),
 					'client_service'=>$this->input->post('client_service'),	
+					
 					'first_name'=>$this->input->post('fname'),
                     'last_name'=>$this->input->post('lname'),
                     'email_id'=>$this->input->post('email'),
                     'customer_type'=>$this->input->post('customer_type'),
-					'industry'=>$this->input->post('occupationb2cp'),
+					'b2b_industry'=>$this->input->post('occupation'),				
+                    'retail_industry'=>$this->input->post('occupationb2cp'),
                     'selected_industry'=>$Indusry,
-                    'relation_manager'=>$this->input->post('relationshipmanage'),
+					'relation_manager'=>$this->input->post('relationshipmanage'),
                     'account_type'=>$this->input->post('account_type'),
                     'registered_from'=>$this->input->post('Registered_from'),
                     'vender_contract'=>$this->input->post('vender_contract'),
@@ -737,7 +749,9 @@ $verdor_types=$this->input->post('verdor_types');
                     'customer_created_by'=>'admin','date_account_create'=>date('y:m:d h:m:s'),
                     /*'company_type'=>$this->input->post('company_type')*/ 
                      'status'=>'1',
+					 
 					 /*Mailing Infomation*/
+					 
 					'mailing_street_address'=>$this->input->post('mailstreetaddress'),
                     'mailing_city'=>$this->input->post('mainlingcity'),
                     'mailing_state'=>$this->input->post('mailingstate'),
@@ -745,39 +759,66 @@ $verdor_types=$this->input->post('verdor_types');
                     'mailing_country'=>$this->input->post('mailingcountry'),
                     'mailing_telephone'=>$this->input->post('mailingphone'),
                     'mailing_mobile'=>$this->input->post('mailingmobile'), 
+					 
+					 
 					 /*End Mailing*/
+					 
 					 /* Billing Infomation */
+					 
 					'billing_company_name'=>$this->input->post('billingcomname'),
                     'billing_region'=>$this->input->post('billingregion'),
                     'billing_city'=>$this->input->post('billingcity'),
                     'billing_cus_ac_type'=>$this->input->post('bactype'),
                     'billing_contact_person'=>$this->input->post('billing_con_person'),
                     'billing_comp_address'=>$this->input->post('billing_comp_address'),
-					'billing_cus_gst_num'=>$this->input->post('billing_gst_number'),
-					'billing_pan_number'=>$this->input->post('billing_pan_number'),
-					'billing_place_supply'=>$this->input->post('billing_place_supply'),
+					'billing_cus_gst_num'=>trim($this->input->post('billing_gst_number')),
+					'billing_pan_number'=>trim($this->input->post('billing_pan_number')),
+					'billing_place_supply'=>trim($this->input->post('billing_place_supply')),
+					 
+					 
 					 /*End Billig*/
+					 
+					 
 					 /* Shipping Infomation */
+					 
 					'shipping_company_name'=>$this->input->post('shipping_comp_name'),
                     'shipping_region'=>$this->input->post('shipping_comp_region'),
                     'shipping_city'=>$this->input->post('shipping_city'),
                     'shipping_contact_person'=>$this->input->post('shipping_com_con_person'),
-                    'shipping_com-address'=>$this->input->post('shipping_comp_address'),
+                    'shipping_com_address'=>$this->input->post('shipping_comp_address'),
 					'shipping_gst_number'=>$this->input->post('shipping_gst_num'),
 					'shipping_pan_number'=>$this->input->post('shipping_pan_num'),
 					'shipping_place_supply'=>$this->input->post('shipping_place_supply'),
 					'shipping_perpose'=>$this->input->post('shipping_purpose'),
 					 /*End Billig*/
 					 );
-				$this->customer_model->insert_customer($data);
-                $data['msg']="Customer Has Been Successfully Added.";
-				$data['msg_for_b2cp']="b2cp";
+					 
+					 if(empty($customer_id))
+					 {
+						$this->customer_model->insert_customer($data);
+                        $data['msg']="Customer Has Been Successfully Added.";
+				        $data['msg_for_b2cp']="b2cp";
+					 }else
+					 {
+						 
+						  $this->customer_model->update_customer($data,$customer_id);
+				          $data['msg']="Successfully Changed";
+					 
+					 }
+					 
 				}
 					 }
+
+		   
 		   //end by sajid
+         
+         
+         
         if($this->form_validation->run()==true)
         {
-		 			 
+		   	
+         // echo $this->input->post('customer_id'); die();
+		
 		$data['get_vendor']=$this->customer_model->get_vendor_types_model();
 
             $data=array(
@@ -789,9 +830,11 @@ $verdor_types=$this->input->post('verdor_types');
                     'first_name'=>$this->input->post('fname'),
                     'last_name'=>$this->input->post('lname'),
                     'email_id'=>$this->input->post('email'),
-                    'customer_type'=>$this->input->post('customer_type'),				
-                    'industry'=>$this->input->post('occupationb2cp'),
+                    'customer_type'=>$this->input->post('customer_type'),
+					'b2b_industry'=>$this->input->post('occupation'),				
+                    'retail_industry'=>$this->input->post('occupationb2cp'),
                     'selected_industry'=>$Indusry,
+					'selected_industry'=>$this->input->post('occupation'),
                     'relation_manager'=>$this->input->post('relationshipmanage'),
                     'account_type'=>$this->input->post('account_type'),
                     'registered_from'=>$this->input->post('Registered_from'),
@@ -834,9 +877,10 @@ $verdor_types=$this->input->post('verdor_types');
                     'billing_cus_ac_type'=>$this->input->post('bactype'),
                     'billing_contact_person'=>$this->input->post('billing_con_person'),
                     'billing_comp_address'=>$this->input->post('billing_comp_address'),
-					'billing_cus_gst_num'=>$this->input->post('billing_gst_number'),
-					'billing_pan_number'=>$this->input->post('billing_pan_number'),
-					'billing_place_supply'=>$this->input->post('billing_place_supply'),
+					'billing_cus_gst_num'=>trim($this->input->post('billing_gst_number')),
+					'billing_pan_number'=>trim($this->input->post('billing_pan_number')),
+					'billing_place_supply'=>trim($this->input->post('billing_place_supply')),
+
 					 
 					 
 					 /*End Billig*/
@@ -849,44 +893,30 @@ $verdor_types=$this->input->post('verdor_types');
                     'shipping_city'=>$this->input->post('shipping_city'),
                     'shipping_cus_busi_type'=>$this->input->post('shipping_cus_busi_type'),
                     'shipping_contact_person'=>$this->input->post('shipping_com_con_person'),
-                    'shipping_com-address'=>$this->input->post('shipping_comp_address'),
+                    'shipping_com_address'=>$this->input->post('shipping_comp_address'),
 					'shipping_gst_number'=>$this->input->post('shipping_gst_num'),
 					'shipping_pan_number'=>$this->input->post('shipping_pan_num'),
 					'shipping_place_supply'=>$this->input->post('shipping_place_supply'),
 					'shipping_perpose'=>$this->input->post('shipping_purpose'),
-					 
-					 
 					 /*End Billig*/
-
-					 
-					 
-					 
 					 );
-					
-										 
-					 
-			
-           // print_r($data);die;
-		   //start by saji
-		      $name_valid=$this->customer_model->check_existing_name($this->input->post('company_name'));
+     	    $name_valid=$this->customer_model->check_existing_name($this->input->post('company_name'));
             $mail_valid=$this->customer_model->check_customer_email($this->input->post('email'));
 
-
-//              if($this->input->post('password')!=$this->input->post('new_password')) 
-//              {
-//                  $data['msg']="Enter password not match ";
-//              }
-
-            if($mail_valid && $name_valid)
+        // print_r($data); die();
+			
+			//Call Edit Fumction  if condition is false
+			if(empty($customer_id))
+			{
+				if($mail_valid && $name_valid)
             {
-                $this->customer_model->insert_customer($data);
+ 				$this->customer_model->insert_customer($data);
                 $data['msg']="Customer Has Been Successfully Added.";
-            }
+		    }
 
             else if(!$mail_valid && $name_valid)
             {
-                $data['msg']="Customer Email Id Has Been Used.";
-
+    			$data['msg']="Customer Email Id Has Been Used.";
             }
             else if($mail_valid && !$name_valid)
             {
@@ -900,8 +930,11 @@ $verdor_types=$this->input->post('verdor_types');
             {
                 $data['msg']="";
             }
-
-
+			}else{
+				   $this->customer_model->update_customer($data,$customer_id);
+				   $data['msg']="Successfully Changed";
+				   
+				 }
         }
         $this->load->view('backend/dashboard_header');
         $this->load->view('backend/customer/add_customer',$data);
@@ -912,14 +945,8 @@ $verdor_types=$this->input->post('verdor_types');
         header('location:index');
     }
     		
-		
-		
-	
-	
-	
-	
-		
-	}
+}
+   
 
 
     public function get_parent_customer_detail()

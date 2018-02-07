@@ -195,19 +195,20 @@ class Cart extends CI_Controller{
 		$this->load->view('frontend/footer');
 	}
 
-	protected function CCAVENUE_DETAILTS()  {
+	/*protected function CCAVENUE_DETAILTS()  {
             $marchent_id='64544';
             $auth_code='AVIZ70ED05AF29ZIFA';
             $working_key='759A2FF4378D5CB2F8818E28CBCD2DDF';
             return array($marchent_id,$auth_code,$working_key);
-    } 
+    } */
 	public function CCAvenue_check_out(){
 	error_reporting(E_ALL);
 	$merchant_data='';
-	$working_key='759A2FF4378D5CB2F8818E28CBCD2DDF';//Shared by CCAVENUES
-	$access_code='AVIZ70ED05AF29ZIFA';//Shared by CCAVENUES
+	$working_key='00B07223D4994230D1F2D04C4CB2E389';//Shared by CCAVENUES
+	$access_code='AVML76FB03AL61LMLA';//Shared by CCAVENUES
+	//print_r($_POST);
 	foreach ($_POST as $key => $value){
-	 echo $merchant_data.=$key.'='.$value.'&amp;';
+	  $merchant_data.=$key.'='.$value.'&';
 	}
 
 	$encrypted_data=$this->encrypt($merchant_data,$working_key); // Method for encrypting the data.
@@ -380,7 +381,7 @@ echo "<input type=hidden name=access_code value=$access_code>";
                  $order_date=$information[1];
                 }
 			}
-       die;
+       
 			if($order_status==="Success"){
 			//$order_date=date('Y-m-d h:t');
 			$sql="insert into order_details set  inv_order_id='".$order_id."',customer_id='".$user_id."', customer_name='".$billing_name."', customer_address='".$billing_address."', customer_city='".$billing_city."', customer_state='".$billing_state."', customer_country='".$billing_country."', customer_pincode='".$billing_zip."', customer_contact='".$billing_tel."', customer_email='".$billing_email."',delivery_name='".$delivery_name."',delivery_address='".$delivery_address."',delivery_city='".$delivery_city."',delivery_state='".$delivery_state."',delivery_zip='".$delivery_zip."',delivery_country='".$delivery_country."',delivery_tel='".$delivery_tel."', order_amount='".$amount."', bank_ref_no='".$bank_ref_no."', bank_name='".$card_name."', payment_mode='".$payment_mode."', order_date='".$date."',order_status='".$order_status."', order_comments='".$order_status."',company_name='".$merchant_param3."',invoice_no='".$merchant_param2."',gst_no='".$merchant_param4."',pan_no='".$merchant_param5."'";      
@@ -390,13 +391,13 @@ echo "<input type=hidden name=access_code value=$access_code>";
 			$this->cart_model->order_id_update_for_cart($data,$user_id);
 			$copytoinvoice_details="insert into tbl_invoice_details (
 invoice_id,surface,qty,customer_id,frame_size_height,frame_size_width,frame_color,frame_cost,mount_size_height,mount_size_width,mount_color,mount_cost,glass_name ,glass_cost,price,image_size,image_id,sku_id,customer_type,created_date,sr_id,paid_status,region,updated_status,tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price)	
-		SELECT order_id, image_print_type,qty,user_id,frame_size,frame_size,frame_color,frame_cost,mount_size,mount_size,mount_color,mount_cost,glass_type,glass_cost,price,image_size,image_name,image_name,'B2C',order_date,sr_no,'1','Online','Processing',
+		SELECT order_id, image_print_type,qty,user_id,frame_size,frame_size,frame_color,frame_cost,mount_size,mount_size,mount_color,mount_cost,glass_type,glass_cost,price,image_size,image_name,image_name,'Online',order_date,sr_no,'1','Online','Processing',
 tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price
 				from tbl_cart where user_id='".$user_id."'";
 			$insert1=  mysql_query($copytoinvoice_details);
 			$copytoinvoice="insert into tbl_invoice (
 invoice_id,customer_type,price,total_paid_with_tax )
-		SELECT invoice_id,'B2C',sum(price),'".$amount."'
+		SELECT invoice_id,'Online',sum(price),'".$amount."'
 				from tbl_invoice_details where invoice_id='".$order_id."'";
 			$insert2=  mysql_query($copytoinvoice);
 			$udate_tbl_invoice="update tbl_invoice_details set company_name='".$merchant_param3."',customer_city='".$delivery_city."',created_date='".$date."' where invoice_id='".$order_id."'";
@@ -405,7 +406,7 @@ invoice_id,customer_type,price,total_paid_with_tax )
 																 
 			$copytoorder_details="insert into tbl_orders_details (
 			order_id,surface,quantity,customer_id,frame_size_height,frame_size_width,frame_color,frame_cost,mount_size_height,mount_size_width,mount_color,mount_cost,glass_name ,glass_cost,price,image_size,image_id,sku_id,customer_type,created_date,sr_id,region,paid_status,sales_person,client_servicing,convert_to_order,tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price)	
-			SELECT order_id,image_print_type,qty,user_id,frame_size,frame_size,frame_color,frame_cost,mount_size,mount_size,mount_color,mount_cost,glass_type,glass_cost,price,image_size,image_name,image_name,'B2C',order_date,sr_no,'Online','1','Online','Online','6',tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price
+			SELECT order_id,image_print_type,qty,user_id,frame_size,frame_size,frame_color,frame_cost,mount_size,mount_size,mount_color,mount_cost,glass_type,glass_cost,price,image_size,image_name,image_name,'Online',order_date,sr_no,'Online','1','Online','Online','6',tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price
 			from tbl_cart where order_id='".$order_id."'";
 			$insert3=  mysql_query($copytoorder_details);
 			$udate_tbl_orders="update tbl_orders_details set company_name='".$merchant_param3."',customer_city='".$delivery_city."',created_date='".$date."',order_id2='".$merchant_param2."' where order_id='".$order_id."'";
@@ -518,14 +519,14 @@ invoice_id,customer_type,price,total_paid_with_tax )
 		$this->cart_model->order_id_update_for_cart($data,$user_id);
 		$copytoinvoice_details="insert into tbl_invoice_details (
 		invoice_id,surface,qty,customer_id,frame_size_height,frame_size_width,frame_color,frame_cost,mount_size_height,mount_size_width,mount_color,mount_cost,glass_name ,glass_cost,price,image_size,image_id,sku_id,customer_type,created_date,sr_id,paid_status,region,updated_status,tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price)	
-		SELECT order_id, image_print_type,qty,user_id,frame_size,frame_size,frame_color,frame_cost,mount_size,mount_size,mount_color,mount_cost,glass_type,glass_cost,price,image_size,image_name,image_name,'B2C',order_date,sr_no,'0','Online','Processing',
+		SELECT order_id, image_print_type,qty,user_id,frame_size,frame_size,frame_color,frame_cost,mount_size,mount_size,mount_color,mount_cost,glass_type,glass_cost,price,image_size,image_name,image_name,'Online',order_date,sr_no,'0','Online','Processing',
 		tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price
 		from tbl_cart where user_id='".$user_id."'";
 		$insert1=  mysql_query($copytoinvoice_details);
 
 		$copytoinvoice="insert into tbl_invoice (
 		invoice_id,customer_type,price,total_paid_with_tax )
-		SELECT invoice_id,'B2C',sum(price),'".$amount."'
+		SELECT invoice_id,'Online',sum(price),'".$amount."'
 		from tbl_invoice_details where invoice_id='".$order_id."'";
 		$insert2=  mysql_query($copytoinvoice);
 		$udate_tbl_invoice="update tbl_invoice_details set company_name='".$merchant_param3."',customer_city='".$delivery_city."',created_date='".$date."',payment_mode='COD' where invoice_id='".$order_id."'";
@@ -534,7 +535,7 @@ invoice_id,customer_type,price,total_paid_with_tax )
 
 		$copytoorder_details="insert into tbl_orders_details (
 		order_id,surface,quantity,customer_id,frame_size_height,frame_size_width,frame_color,frame_cost,mount_size_height,mount_size_width,mount_color,mount_cost,glass_name ,glass_cost,price,image_size,image_id,sku_id,customer_type,created_date,sr_id,region,paid_status,sales_person,client_servicing,convert_to_order,tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price)	
-		SELECT order_id,image_print_type,qty,user_id,frame_size,frame_size,frame_color,frame_cost,mount_size,mount_size,mount_color,mount_cost,glass_type,glass_cost,price,image_size,image_name,image_name,'B2C',order_date,sr_no,'Online','0','Online','Online','6',tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price
+		SELECT order_id,image_print_type,qty,user_id,frame_size,frame_size,frame_color,frame_cost,mount_size,mount_size,mount_color,mount_cost,glass_type,glass_cost,price,image_size,image_name,image_name,'Online',order_date,sr_no,'Online','0','Online','Online','6',tax_goods,hsn_code,tax_amount,tax_cgst,tax_amt_cgst,tax_sgst,tax_amt_sgst,tax_igst,tax_amt_igst,grand_price
 		from tbl_cart where order_id='".$order_id."'";
 		$insert3=  mysql_query($copytoorder_details);
 

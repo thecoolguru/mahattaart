@@ -20,10 +20,10 @@ $url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 <div id="myCarousel" class="carousel slide col-md-12" data-ride="carousel" style="margin-top:2px">
 <div class="carousel-inner" role="listbox">
 
-    <div class="item active">
+    <!--<div class="item">
         <a href="<?=base_url()?>frontend/themes_lightbox/27"><img src="<?php echo base_url();?>assets/img/slider/home_slider12.jpg" border="0" /></a>
-    </div>
-    <div class="item">
+    </div>-->
+    <div class="item active">
         <a href="<?=base_url()?>frontend/photostoframe"><img src="<?php echo base_url();?>assets/img/slider/unlock_slider4.jpg" border="0" /></a>
     </div>
     <div class="item">

@@ -2863,6 +2863,8 @@ background: #ddd;
         
 function addToCart()
 {  
+  var final_sizes=$('#sizes').val();
+  alert(final_sizes);
   var paper_surface = $('#surfaces').val();
   var framed_art = $('#sizes').val();
   var print = framed_art.split('X'); 
@@ -2906,7 +2908,7 @@ function addToCart()
   var price=$('#print_price').html();
       price = price.split('.');
   	  price = price[1];
-var old_price=$('.old_price').html();
+  var old_price=$('.old_price').html();
       old_price = old_price.split('.');
   	  old_price = old_price[1];	  
   var print_size=$('#print_h_w').val();
@@ -2927,7 +2929,7 @@ var old_price=$('.old_price').html();
     $.ajax({
         type: "POST",
 	    url: "<?=base_url()?>frontend/frameit_addtocart",
-        data:"glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print+"&promo_code="+promo_name_code+"&promo_discount="+promo_discount+"&promo_price="+promo_amount+'&old_price='+old_price,
+        data:"glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print+"&promo_code="+promo_name_code+"&promo_discount="+promo_discount+"&promo_price="+promo_amount+'&old_price='+old_price,"final_size"+final_size,
 		success:function(data)  
     	{   
     		swal({

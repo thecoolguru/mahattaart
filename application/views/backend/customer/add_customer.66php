@@ -1,7 +1,7 @@
 <?php // echo $customer[0]->first_name; die;?>
 
 
-<?php //print_r($customer) ;	die();?>
+<?php // print_r($customer) ;	die();?>
 <?php 
 $data=$this->customer_model->get_parent_customers();
 
@@ -424,10 +424,6 @@ String.prototype.killWhiteSpace = function() {
 
 
 <!--MIDDLE PAGE WRAPPER STARTS-->
-
-<?php  //echo $customer[0]->id; die(); ?>
-
-
 <div id="middle-wrapper">
   <div id="middle-container">
     <div class="main-hdr"> Add New Customer</div>
