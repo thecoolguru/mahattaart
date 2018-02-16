@@ -419,10 +419,10 @@ $size_array[$i]['width'];
 				<div class="frame-step-header-text"></div>
 				<div class="frame-step-button-wrapper">
 					<a style="color:white" href="<?=base_url()?><?=$continue_shopping_redirect?>"><div class="frame-step-continue-shopping-button">
-						<span style="color:white" ">CONTINUE SHOPPING</span>
+						<span style="color:white">CONTINUE SHOPPING</span>
 					</div></a>
 					<a style="color:white" href="<?=base_url().'cart/cart_view'?>"><div class="frame-step-proceed-to-cart-button">
-						<span style="color:white">  PROCEED TO CART</span>
+						<span style="color:white">PROCEED TO CART</span>
 					</div></a>
 				</div>
 			</div>

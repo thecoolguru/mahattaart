@@ -1,10 +1,16 @@
 <?php $mail=$this->customer_model->get_customers_email();?>
 <?php $data=$this->customer_model->get_parent_customers();?>
 <?php $companyName=$this->customer_model->get_customers_company();?>
-<?php $customer_type=$this->customer_model->get_customers_type();
-//print_r($companyName);die;
+<?php $customer_type=$this->customer_model->get_customers_type();?>
+
+
+<?php // print_r($get_city); die();
+
+//echo $get_city[0]->city;
 
 ?>
+
+
 
 <?php $status=$this->input->get('status'); if($this->input->get('status')=='' ){$status='';}  $get_mail= $this->input->get('mail');$customer_id=$this->input->get('cust_id');  $region=$this->input->get('region'); $customer_name=$this->input->get('cust_name')?>
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/css/anylinkmenu.css" />
@@ -25,7 +31,7 @@
     //var customer_id=  document.getElementById('customer_id').value;
     //alert(customer_id);customer_name  customer_type
     var city=$('#city').val();       
-      var customer_type=$('#customer_type').val();
+    var customer_type=$('#customer_type').val();
 	  //alert(customer_type);
     var mail= $('#mail').val();      
     var customer_id=$('#customer_id').val();       
@@ -70,7 +76,7 @@
 
 </select>     
               
-              
+   <?php // print_r($city_name); ?>           
               
           </td>
           <td>City</td>
@@ -80,10 +86,10 @@
 <option value="">--Select City--</option>
 </optgroup>
 
-              <?php  foreach($mail as $email){?>
-<option value="<?= $email['city'];?>" <?php if($_REQUEST['city']==$email['city']){?> selected=""  <?php } ?>>
-              <?= $email['city'];?>
-              </option>
+              <?php  foreach($city_name as $city)
+			  {?>
+              
+<option  value="<?php  echo  $city->city; ?>"<?php  if($_REQUEST['city']==$city->city){?> selected=""  <?php } ?> ><?php echo  $city->city;?></option>
               <?php } ?>
 
 </select>  

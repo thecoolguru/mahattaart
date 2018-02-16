@@ -291,16 +291,19 @@ $promo_amount=round($image_details[0]->unit_price*20/100);
                 	<div class="col-md-6 col-sm-6 text-left">
                     	<p style="color:#d3131b">Discount:</p>
                     </div>
+					<div class="col-md-6 col-sm-6 text-right">
+                    	<p style="color:#d3131b"><span id="promo_precentage">20%</span></p>
+                    </div>
                 </div>
             </div> 
             <div class="row" >
             	<div class="frame-it-content">
                 	<div class="col-md-6 col-sm-6 text-left">
-                    	<p style="color:#d3131b">Flat <span id="promo_precentage" style="color:#d3131b; vertical-align:top">20%</span></p>
+                    	<p style="color:#d3131b"><span id="promo_code">Flat20</span></p>
                     	<p style="color:#d3131b">Promo Code Applied</p> 	
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<p style="color:#d3131b">Rs. <span id="promo_amount" ><?=$promo_amount?></span></p>
+                    	<p style="color:#d3131b">Rs. <span id="promo_amount"><?=$promo_amount?></span></p>
                     </div>
                 </div>
             </div>
@@ -310,7 +313,7 @@ $promo_amount=round($image_details[0]->unit_price*20/100);
                     	<p> Sub-Total  </p>
                     </div>
                 	<div class="col-md-6 col-sm-6 text-right">
-                    	<p> <span id="sub_total_p<?php echo $unit_price;?>rice"></span></p>
+                    	<p> <span id="sub_total_price">Rs. <?php echo $image_details[0]->unit_price?></span></p>
                     </div>
                 </div>
             </div>
@@ -949,7 +952,7 @@ function right(width,height,x){
                             <div class="col-sm-8">
 	                       	<p class="price" style="display: block;">
                             <span class="old_price" style="font-size: 15px;color:Tomato;"></span> 
-                            <span class="total_cost">Rs. <?=$unit_price-275?></span> </p>
+                            <span class="total_cost">Rs. <?php echo ($unit_price)-$promo_amount;?></span> </p>
                             </div>
                         </div>
                         <div class="form-group">
@@ -1577,7 +1580,7 @@ background: #ddd;
 <input type="hidden" name="user_id" id="user_id" value="<?=$userid?>">
 <input type="hidden" name="api_image_id" id="api_image_id" >
 <input type="hidden" name="quality_rate" id="quality_rate" value="">
-<input type="hidden" name="image_size" id="image_size" value="">
+<input type="hidden" name="image_size" id="image_size" value="<?=$image_details[0]->dimension?>">
 <input type="hidden" name="quality" id="quality" value="<?=$collection_range;?>">
 <input type="hidden" name="img_id" id="img_id" value="<?=$image_details[0]->image_id?>" />
 <input type="hidden" name="img_id" id="gallery_img_id" value="<?=$image_details[0]->image_id?>" />
@@ -1657,6 +1660,7 @@ function addToCart()
   var final_frame_size = framed_art;
   var only_print = $('#print_type').val();
   var frame_name = '';
+  
   if(only_print == ''){
   	frame_name = $('#frame_name').val();
   }else{
@@ -1686,9 +1690,14 @@ function addToCart()
   var FrameCost=$('#FrameCost').html();
   	  //FrameCost = FrameCost.split('.');		
   	 // FrameCost = FrameCost[1];
-  var price=$('#print_price').html();
-     // price = price.split('.');
-  	 // price = price[1];
+  var price=$('.actual_price').html();
+      price = price.split('. ');
+  	 price = price[1];
+	 var old_price=$('#sub_total_price').html();
+	  old_price = old_price.split('. ');
+  	 old_price = old_price[1];
+	// alert(price)
+	// alert(old_price)
   var print_size=$('#print_h_w').val();
   var image_id=$('#image_id').val();
   var image_type= $('#surfaces').val();
@@ -1697,15 +1706,20 @@ function addToCart()
   var mat1_color=$('#mount_color').html();
   var image_namee=$('#image_filename').val();
   var frameSize=$('#frame_sized').html();
-var url="glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print;
-//alert(url)
-    $.ajax({
+  var promo_code=$('#promo_code').html();
+  var promo_discount=$('#promo_precentage').html();
+  promo_discount = promo_discount.split('%');
+  	promo_discount = promo_discount[0];
+  var promo_price=$('#promo_amount').html();
+  var url="glasses_coste="+glasses_coste+"&glasses="+glasses+"&FrameCost="+FrameCost+"&MountCost="+MountCost+"&total_price="+total_price+"&user_id="+user_id+"&img_id="+image_id+"&image_type="+image_type+"&mat_color="+mount_name+"&mount_color="+mount_color+"&mat_size="+mat1_size+"&frame_color="+frame_name+"&frameSize="+frameSize+"&images_size="+print_size+"&images_price="+price+"&paper_surface="+paper_surface+"&final_frame_size="+final_frame_size+"&image_namee="+image_namee+'&print_v='+only_print+"&promo_code="+promo_code+"&promo_discount="+promo_discount+"&promo_price="+promo_price+"&old_price="+old_price+"&total_price="+price+"&path=3";
+ //alert(url);
+      $.ajax({
         type: "POST",
 	    url: "<?=base_url()?>frontend/frameit_addtocart",
-        data: url,
+        data:url,
 		success:function(data)  
-    	{   
-		//alert(data)
+    	{
+			
     		swal({
 				  title: 'CART STATUS',
 				  text: 'Item Added Successfully',

@@ -25,12 +25,6 @@ class Search extends CI_Controller
 
 	}
 	
-	
-
-
-
-	
- 
 	public function filter($page="none",$limit="none",$search_text="none",$category_id="none",$shap="?#!",$color="%@$#")
 	{
 	
@@ -385,12 +379,14 @@ $search_data_r = json_decode($search_data_file,TRUE);
 		$this->load->view('frontend/products',$data);
 		$this->load->view('frontend/footer');
 	}
-	public function products_lightbox($filename="",$images_id="",$collection_id=""){
+	public function products_lightbox($filename="",$images_id="",$collection_id="")
+	{
 	    
 		//$data['api_image_id']=$images_id;
-	//	$data['images_id']=$images_id;
+	    //$data['images_id']=$images_id;
 		$data['image_name']=$filename;
-	 $data['image_details']=$this->search_model->get_tbl_art_print($filename);
+	    $data['image_details']=$this->search_model->get_tbl_art_print($filename);
+		//print_r($data['image_details']);
 
 		$this->load->view('frontend/header');
 		$this->load->view('frontend/products_lightbox',$data);

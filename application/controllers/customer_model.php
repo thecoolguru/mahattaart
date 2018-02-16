@@ -268,6 +268,7 @@ public function get_city()
    
    $this->db->distinct();
    $this->db->select('city');
+   $this->db->where('city!',null);
    $query=$this->db->get('tbl_customer');
    return $query->result();
 }	
