@@ -797,8 +797,18 @@ function price_details(){
                                 <td><img src="<?=base_url()?>assets/images/rupee-img-price.gif" />&nbsp;<span id="discounted_amount"></span></td>
                               </tr>
                                                           <tr>
-                                <td>GST Tax Amount</td>
-                                <td><img
+                                <td><span id="tax_type_cgst" style="display:none">Tax calculation for Print Only:<br>
+                                      SGST (6%)<br>
+                                      CGST (6%)<br>
+                                      Tax calculation for Framed Art:<br>
+                                      SGST (9%)<br>
+                                       CGST (9%)<br></span>
+				     <span id="tax_type_igst" style="display:none">Tax calculation for Print Only:<br>
+                                       IGST (12%)<br>
+                                       Tax calculation for Framed Art:</br>
+                                       IGST (18%)</span>
+                                   </span></td>
+                                <td><br><img
                     src="<?=base_url()?>assets/images/rupee-img-price.gif" /> <span id="total_gst_amount"><?= $total_tax_amt;?></span></td>
                               </tr>
 							   
@@ -856,8 +866,8 @@ function price_details(){
 	 $result= $this->cart_model->get_cart_user_details($this->session->userdata('userid'));
               
                 $billerName= $result[0]->first_name.' '.$result[0]->last_name;
-	$redirect_url='http://mahattaart.com/index.php/cart/response';
-       $cancel_url='http://mahattaart.com/index.php/cart/cancel_url';  
+	$redirect_url='http://www.mahattaart.com/index.php/cart/response';
+       $cancel_url='http://www.mahattaart.com/index.php/cart/cancel_url';  
 	?>
 	
 	<?php
@@ -869,7 +879,7 @@ function price_details(){
 	<input type="hidden" name="merchant_id" value='64544'>
   
  <input type="hidden" name="currency" value="<?=$currency?>">
- <input type="hidden" name="amount" class="grand_total_amt" value="<?php echo "1"; ?>">
+ <input type="hidden" name="amount" class="grand_total_amt" value="<?php echo $grand_total; ?>">
   <input type="hidden" name="order_id" value="<?=$order_id_auto?>">
   <input type="hidden" name="redirect_url" value="<?=$redirect_url?>" />
 <input type="hidden" name="cancel_url" value="<?=$cancel_url?>" />
@@ -942,6 +952,7 @@ function price_details(){
                     </ul>
                 </div>
                 
+
                 <div class="cart-deatils bgc-even">
 				<?php if($this->session->userdata('userid')){ 
 		$data=$this->cart_model->get_usercart($this->session->userdata('userid')); 
@@ -1019,6 +1030,7 @@ function price_details(){
 						<a href="#" class="shoplnks" onClick="update('<?=$i?>');">Update</a>
 						<a
 						href="<?=base_url()?>index.php/cart/remove_cart/<?= $image['rowid'];?>/<?= $key;?>"
+
 						class="shoplnks">Remove</a></li>
                         <li class="pri"><? if($image['updated_price']){?>
             <img
@@ -1228,7 +1240,6 @@ function checkValidateSelect1()
 	 var lastname=result[1];
 	 $('#billing_name').val(firstname+' '+lastname);
 	 var company_name=$('#company_name').val();
-	 
 	  var pincode=$('#pincode').val();
 	  $('#billing_zip').val(pincode);
 	  var address=$('#address').val();
@@ -1237,6 +1248,8 @@ function checkValidateSelect1()
 	  $('#billing_city').val(city);
 	 var state=$('#state').val();
 	 $('#billing_state').val(state);
+	 //var billing_state=$('#billing_state').val();
+	// alert(billing_state)
 	  var phone=$('#phone').val();
 	  $('#billing_tel').val(phone);
 	
@@ -1274,7 +1287,14 @@ function checkValidateSelect1()
 	  $('#delivery_tel').val(phone);
 	  $('#merchant_param4').val(c_gst_no);
 	  $('#merchant_param5').val(c_pan_no);
-	  
+	  var delivery_state_for_tax=$('#delivery_state').val();
+      if(delivery_state_for_tax=='Delhi'){
+	  $('#tax_type_cgst').show();
+	  $('#tax_type_igst').hide();
+	  }else{
+	   $('#tax_type_cgst').hide();
+	  $('#tax_type_igst').show();
+	  }	  
 	 }
   if(setaddress=='no'){
 // alert('no')
@@ -1330,7 +1350,14 @@ function checkValidateSelect1()
 	  $('#delivery_city').val(city);
 	 var state=$('#s_state').val();
 	 $('#delivery_state').val(state);
-	  var phone=$('#s_phone').val();
+	  var delivery_state_for_tax=$('#delivery_state').val();
+         if(delivery_state_for_tax=='Delhi'){
+	  $('#tax_type_cgst').show();
+	  $('#tax_type_igst').hide();
+	  }else{
+	   $('#tax_type_cgst').hide();
+	  $('#tax_type_igst').show();
+	  }	  	  var phone=$('#s_phone').val();
 	  $('#delivery_tel').val(phone);
 	  var gst_number=$('#s_c_gst_no').val();
 	  $('#merchant_param4').val(gst_number);
@@ -1347,7 +1374,7 @@ function checkValidateSelect1()
         drop('slidedrop1','select1');
          return true;
      }
-      
+     // alert(state)
      
 }// end function ...
 

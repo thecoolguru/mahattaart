@@ -21,7 +21,7 @@ th, td {
  
 </head>
 <body>
-<center><h2>User Contact Detals</h2><a href="<?php  echo base_url('Form_Controller/show_record');?>">Back</a></center>
+<center><h2>User Contact Detals</h2><a href="<?php  echo base_url('backend/show_query');?>">Back</a></center>
 
 <table style="width:100%">
   <tr>

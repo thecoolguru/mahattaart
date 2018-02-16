@@ -202,11 +202,13 @@ class Cart extends CI_Controller{
             return array($marchent_id,$auth_code,$working_key);
     } */
 	public function CCAvenue_check_out(){
-	error_reporting(E_ALL);
+	//error_reporting(E_ALL);
 	$merchant_data='';
-	$working_key='00B07223D4994230D1F2D04C4CB2E389';//Shared by CCAVENUES
-	$access_code='AVML76FB03AL61LMLA';//Shared by CCAVENUES
+	$working_key='FE6AB80B300129152A93ABD38A49FDCF';//Shared by CCAVENUES
+	$access_code='AVML76FB03AL60LMLA';//Shared by CCAVENUES
 	//print_r($_POST);
+	$result= $this->cart_model->get_cart_user_details($this->session->userdata('userid'));
+	       $billerName= $result[0]->first_name.' '.$result[0]->last_name;
 	foreach ($_POST as $key => $value){
 	  $merchant_data.=$key.'='.$value.'&';
 	}
@@ -287,14 +289,14 @@ echo "<input type=hidden name=access_code value=$access_code>";
 
 	public function response(){
 		error_reporting(0);
-		$workingKey='2A428B0140B214C429873D2057713571';		//Working Key should be provided here.
+		$workingKey='FE6AB80B300129152A93ABD38A49FDCF';		//Working Key should be provided here.
 		$encResponse=$_POST["encResp"];			//This is the response sent by the CCAvenue Server
 		$rcvdString=$this->decrypt($encResponse,$workingKey);		//Crypto Decryption used as per the specified working key.
 		//print_r($rcvdString);
 		$order_status="";
 		$decryptValues=explode('&', $rcvdString);
 		$dataSize=sizeof($decryptValues);
-		print_r($decryptValues);
+		//print_r($decryptValues);
         date_default_timezone_set('Asia/Kolkata');
 		// $date=date('d-m-Y H:i');
 		$date=date('Y-m-d H:i:s');

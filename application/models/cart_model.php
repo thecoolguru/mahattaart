@@ -12,11 +12,16 @@ class Cart_model extends CI_Model
 		$this->db->insert('tbl_cart',$data1);
 	}
 
-	function get_usercart($user_id){
+	function get_usercart($user_id)
+	{
+
 	 $this->db->select('*');
      $this->db->where('user_id',$user_id);
      $this->db->order_by('cart_id',"desc");
 	 $query=$this->db->get('tbl_cart');
+	 
+	 //echo '<pre>',var_dump($query->result_array()),'</pre>';
+	 
 	 return $query->result_array();
 	}
 		
@@ -40,11 +45,12 @@ class Cart_model extends CI_Model
 			return $query->result_array();
 	}
 
-	function get_userDetails($userid){
+	function get_userDetails($userid)
+	{
             $sql_1="select * from tbl_customer where customer_id='".$userid."' ";
             $Query=  mysql_query($sql_1);
             return $result = mysql_fetch_object($Query);
-        }
+    }
 
          public function update_crt($data1,$cart_id){
 			$this->db->where('cart_id',$cart_id);

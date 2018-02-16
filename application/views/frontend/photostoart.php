@@ -542,12 +542,12 @@ a.lightbox-close::after {
    	 if( (myDropzone.files.length+1) > 0){
    $('#msg').hide(); 
    }
-   if(file.size<100){
+   if(file.size<17000){
    	   $('#upload').hide();
     this.removeFile(file);
    swal({
     title: "",
-    text: "Please Upload Images Greater Than 500kB",
+    text: "Please Upload Images Greater Than 17kB",
     type: "error",
     timer: 1000
     })

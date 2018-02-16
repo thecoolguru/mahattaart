@@ -1058,7 +1058,10 @@ elseif($selecthospitality<>'')
             $start_date=$this->input->get('start');
             $end_date=$this->input->get('end');
             $data['customer']="";
-              $data['rows_data']=$this->customer_model->All_get_customers();
+            $data['rows_data']=$this->customer_model->All_get_customers();
+
+			$data['city_name']=$this->customer_model->get_city();
+			//print_r($data['city_name']); die();
 			  
             if($customer_type||$status||$company||$mail||$city||$customer_id||$account_type||$region||$customer_name||$start_date||$end_date)
             {

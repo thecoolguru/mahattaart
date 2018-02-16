@@ -217,7 +217,9 @@ $search_data_r=json_decode($search_data_file,TRUE);
 ?>
 <?php if($image['size']!=''){
 	$redirect_details=base_url().'frontend/product_detail/'.$file_name.'/'.$image['size'].'/'.$image['image_id'];
-	 } else{ 
+	 } else if($image['path']==3){
+	 $redirect_details=base_url().'search/products_lightbox/'.$file_name.'/'.$image['image_id'].'/'.$collection_id;
+	 }else{ 
 	 $redirect_details=base_url().'search/products/'.$file_name.'/'.$image['image_id'].'/'.$collection_id;
 	 }?>
            <tr>
@@ -248,7 +250,7 @@ $search_data_r=json_decode($search_data_file,TRUE);
 				 ?> 
 				 <div  id="topa2">
 				   <a href="<?=$redirect_details?>"> 
-					 <img src="<?php if($image['path'] == 1){ echo base_url()."application/views/frontend/upload_images/".$file_name;}else{ echo"http://static.mahattaart.com/158/".$image['image_name'];};?>" class="img-responsive mainhor" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/<?=$image['frame_color']?>.jpg') 30 30 30 30 round round;background:url('<?=base_url()?>images/uploaded_pdf/mount/<?=$image['mount_color']?>.jpg') no-repeat scroll 0 0 / cover; padding:<?=$padding?>px" /></a>
+					 <img src="<?php if($image['path'] == 1){ echo base_url()."application/views/frontend/upload_images/".$file_name;}else{ echo"http://static.mahattaart.com/media/".$image['image_name'];};?>" class="img-responsive mainhor" style="border-image: url('<?=base_url()?>images/uploaded_pdf/frames/horizontal/<?=$image['frame_color']?>.jpg') 30 30 30 30 round round;background:url('<?=base_url()?>images/uploaded_pdf/mount/<?=$image['mount_color']?>.jpg') no-repeat scroll 0 0 / cover; padding:<?=$padding?>px" /></a>
 				 </div>
             <?php } ?>
           </td>

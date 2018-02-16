@@ -17,7 +17,7 @@ class User_model extends CI_Model
 	{
 
 	$this->db->where('customer_id',$userid);
-	$this->db->update('tbl_registration',$data);	
+	$this->db->update('tbl_customer',$data);	
 	}
 
 

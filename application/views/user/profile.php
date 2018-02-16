@@ -184,13 +184,20 @@
 <div class="form-group">
 <label class="col-md-3 control-label">Country</label>
 <div class="col-md-9">
-<?php $country_list=get_country_name();?>
 <select id="country" name="country" class="country form-control">
-<?php foreach($country_list as $key=>$country)	{?>
-<option value="<?php echo $key;?>" <?php if($detail->country==$key){?> selected="selected" <?php }?>>
-<?php print $country; ?>
+<!---
+<?php  // $country_list=get_country_name();  ?>
+<select id="country" name="country" class="country form-control">
+<?php // foreach($country_list as $key=>$country)	{?>
+<option value="<?php // echo $key;?>" <?php if($detail->country==$key){?> selected="selected" <?php }?>>
+<?php // print $country; ?>
 </option> 
-<?php	} ?>
+<?php//	} ?>
+
+--->
+
+<option value="india" <?php  if($detail->country!='NULL'){echo 'selected';} ?>>india</option>
+
 </select>
 </div>
 </div>
