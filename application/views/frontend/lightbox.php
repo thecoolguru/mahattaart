@@ -385,9 +385,33 @@ textarea {
 								}
 							}
 							?>
-                            <tr id="entry_no<?php echo $i;?>">
-						<td><?php if($resultant){?>
-                                  <a href="<?php echo base_url();?>frontend/lightbox_view/<?php echo $results->lightbox_id;?>"><img src="http://static.mahattaart.com/158/<?php print $resultant;?>" style="width: 100px" /></a>
+<tr id="entry_no<?php echo $i;?>">
+<td>
+
+<?php 
+if($images)
+{
+$bride=split('_',$images[0]->images_filename);
+if($bride[0]=='BRID')
+   {
+	 $data= str_split($images[0]->images_filename,8);
+     $bridege_image_id=substr($images[0]->images_filename,8,-4);
+	 $add_imgid= $bridege_image_id+3179;
+	 $reverse_val=strrev($add_imgid);
+	 $append_zero=$reverse_val.'0';
+	 $bride_id=$append_zero;
+	 $img_src= "http://images2.bridgemanart.com/cgi-bin/bridgemanImage.cgi/150.XIR.".$bride_id.".7055475/".$bridege_image_id.".JPG";
+  }
+  else
+  {
+	 $img_src= "http://static.mahattaart.com/158/".$resultant;
+  }	
+?>
+
+
+<a href="<?php echo base_url();?>frontend/lightbox_view/<?php echo $results->lightbox_id;?>">
+    <img src="<?php echo $img_src;  ?>" style="width: 100px" />
+</a>
 							<?php }else{ echo "No Image";}?></td>
 						<td><a href="<?php echo base_url();?>frontend/lightbox_view/<?php echo $results->lightbox_id;?>"><?php echo $results->lightbox_name;?></a></td>
 						<td><?php if($results->lightbox_description)echo $results->lightbox_description;else echo "--";?>
@@ -465,6 +489,9 @@ textarea {
 							}
 							?>
 					<tr id="entry_no<?php echo $i;?>">
+                    
+                    
+                    
 						<td><?php if($resultant){?>
                                   <a href="<?php echo base_url();?>frontend/lightbox_view/<?php echo $results->lightbox_id;?>"><img src="http://static.mahattaart.com/158/<?php print $resultant;?>" style="width: 100px" /></a>
 							<?php }else{ echo "No Image";}?></td>

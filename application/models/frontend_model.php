@@ -949,8 +949,10 @@ return $query->result();
 		return $query->num_rows();
 	}
 
-	public function get_all_lightboxes($user_id,$limit, $start)	{
+	public function get_all_lightboxes($user_id,$limit, $start)
+	{
 		$this->db->select('*');
+		$this->db->order_by('lightbox_id','DESC');
 		$this->db->where('user_id',$user_id);
 		$this->db->limit($limit, $start);
 		$this->db->order_by("lightbox_name");
