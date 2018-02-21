@@ -35,7 +35,165 @@ class Frontend extends CI_Controller
 		parse_str( $_SERVER['QUERY_STRING'], $_REQUEST );
 		$this->user = $this->facebook->getUser();
 	}
+	
+	
 
+
+
+
+
+
+
+/*-----------------------------------------------Slot Booking-----------------------------------------------------------------------------*/
+
+public function check_slot_booking_times()
+{
+   $selected_time=$this->input->post('slot_time');
+   $count_total_time= $this->frontend_model->count_slot_time($selected_time);
+   echo  $count_total_time;
+}
+
+
+public function users_slot_booking()
+{
+	 $this->form_validation->set_rules('name','Name','required');
+	 $name= $this->input->post('name');
+	 if($this->form_validation->run()==FALSE)
+	 {
+	   
+	   //$this->load->view('frontend/header');
+	    $this->load->view('frontend/booking_slot/booking_slot_view');
+	   //$this->load->view('frontend/footer');
+	  
+	 }
+}
+public function users_slot_booking2()
+{
+ $time=$this->input->post('time_selected');
+ $name=$this->input->post('name');
+ $email=$this->input->post('email'); 
+ $mobile=$this->input->post('mobile');
+ $day=$this->input->post('day');
+ $month=$this->input->post('month');
+ $year=$this->input->post('year');
+ $dob=$day.'/'.$month.'/'.$year;
+ $gender=$this->input->post('gender');
+ $event_place=$this->input->post('event_place');
+ $user_register=$this->input->post('register');
+ //echo $user_register; die();
+ if(!empty($user_register)){$user_register=$user_register;} else{$user_register='No';}
+ $slot_date='25/3/2018';
+ $slot_time=$this->input->post('slot_time');
+ $this->session->set_userdata('users_time',$slot_time);
+ $users_time = $this->session->userdata('users_time');
+ 
+ /*----Booked Time----*/
+ $count_total_time= $this->frontend_model->count_slot_time($time);
+/*----------------------------------Create seqence id---------------------------------------------------------*/   
+$get_customer_last_id=$this->frontend_model->get_cutomer_last_id();
+$last_id=$get_customer_last_id[0]->customer_id;
+//echo $get_customer_last_id[0]->customer_id; die();
+$ki='MA00';				  
+$lastUId = intval(str_replace("MA","",$last_id));
+$currentUId = $lastUId + 1;	
+$final_id=$ki.$currentUId;	
+//echo $final_id; die();	 
+/*----------------------------------End Create seqence id---------------------------------------------------------*/ 
+ $data=array(
+              'name'=>$name,
+			  'email'=>$email,
+			  'mobile'=>$mobile,
+			  'dob'=>$dob,
+			  'gender'=>$gender,
+			  'event_place'=>$event_place,
+			  'slot_date'=>$slot_date,
+			  'customer_register'=>$user_register,
+			  'slot_time'=>$time
+			);
+   $submit_from="slot_registration";		
+   $data2=array(
+              'submit_from'=>$submit_from,
+			  'customer_type'=>'Retail',
+			  'customer_id'=>$final_id,
+			  'first_name'=>$name,
+			  'email_id'=>$email,
+			  'contact'=>$mobile,
+			  'cus_dob'=>$dob,
+			  'gender'=>$gender,
+			  'event_place'=>$event_place,
+			  'slot_date'=>$slot_date,
+			  'user_registered'=>$user_register,
+			  'slot_time'=>$time
+			);			
+   if($this->form_validation->run()==TRUE)
+   {
+	  $query['booking_success']=$this->frontend_model->users_slot_booking($data);
+	  $query['success_message']="You Slot Successfully Added";
+	  $this->load->view('frontend/header');
+	  $this->load->view('frontend/booking_slot/booking_slot_view',$query);
+	  $this->load->view('frontend/footer');
+   }
+   else
+   {
+	 if(!empty($name)&& !empty($email)&& !empty($mobile))
+	 {
+           /*----Check Exist Email-----*/
+           $count_email= $this->frontend_model->chck_exist_email($email);
+           //print_r("in Controller=".$count_email); die();
+	if($count_email>=1)
+	{
+	echo '<script>alert("Email Allready Exist.")</script>';
+	$this->load->view('frontend/header');
+	$this->load->view('frontend/booking_slot/booking_slot_view');	
+	$this->load->view('frontend/footer');
+		
+	}else
+	{
+		   if($count_total_time<2)
+	   {
+	   	 if($user_register=='YES')
+	     {
+		 /*Mail Code Here*/	 
+			 
+	     /*End Mail code*/
+			 
+	  /*Add to Customer Table*/
+	  $query['add_customer']=$this->frontend_model->add_users_slot_customer($data2);
+	  /*Add to slot  Table*/	 
+	  $query['booking_success']=$this->frontend_model->users_slot_booking($data);
+	  if($query['add_customer']==1)
+	  {
+		  ?>
+          <script>alert('Thanks to connecting with us.');</script>
+		  <?php
+	  }
+	  $query['success_message']="You Slot Successfully Added";
+	  $this->load->view('frontend/header');
+	  $this->load->view('frontend/booking_slot/booking_slot_view',$query);
+	  $this->load->view('frontend/footer');
+	     }else
+		 {
+			  //echo "in true"; die;
+	  $query['booking_success']=$this->frontend_model->users_slot_booking($data);
+	  $query['success_message']="You Slot Successfully Added";
+	  $this->load->view('frontend/header');
+	  $this->load->view('frontend/booking_slot/booking_slot_view',$query);
+	  $this->load->view('frontend/footer');
+	  echo '<script>alert("Your Order Successfully Submitted")</script>';
+		 }
+	   }
+	   else
+	   {
+		 	  $this->load->view('frontend/header');
+			  $this->load->view('frontend/booking_slot/booking_slot_view');
+			  $this->load->view('frontend/footer');
+			  echo "<script>alert('Your Order Not Submit,Please Choose Anothe Slot Time.')</script>";
+	   }	
+	}	 
+	 }
+   }
+}
+/*------------------------------------------------End Slot Booking------------------------------------------------------------------------*/
 	public function vendor_type() {
     	$result=$this->frontend_model->get_vender_detail();
     	echo '<option>--select--</option>';
@@ -422,111 +580,35 @@ public function themes_lightbox($lightbox_id,$page_no,$category="none",$shape="n
 		$image_width  = $image_dimention[0]; 
 		$image_height = $image_dimention[1];
 		$image_status = '';  
-		$max_width = $image_width/150;
-		$max_height= $image_height/150;
+		$width_in_inch = $image_width/150;
+		$max_width = $width_in_inch <= 64 ? $width_in_inch : 64;
+		$height_in_inch = $image_height/150;
+		$max_height = $height_in_inch <= 64 ? $height_in_inch : 64;
 		$size_array = array();
+		$data_rec = array();
 		$surface = 1;
 		if($image_width >= $image_height)	{
-			$image_ratio = $image_height/$image_width; 
-			$image_alignment="horizontal";
-			if($surface==1)	{			// canvas
-				$size_array[0]['height']=4*$image_ratio;
-				$size_array[0]['width']=4;
-				$size_array[1]['height']=5*$image_ratio;
-				$size_array[1]['width']=5;
-				$size_array[2]['height']=6*$image_ratio;
-				$size_array[2]['width']=6;
-				$size_array[3]['height']=7*$image_ratio;
-				$size_array[3]['width']=7;	
-
-				$size_array[4]['height']=8*$image_ratio;
-				$size_array[4]['width']=8;
-				$size_array[5]['height']=10*$image_ratio;
-				$size_array[5]['width']=10;
-				$size_array[6]['height']=12*$image_ratio;
-				$size_array[6]['width']=12;
-				$size_array[7]['height']=16*$image_ratio;
-				$size_array[7]['width']=16;
-				$size_array[8]['height']=18*$image_ratio;
-				$size_array[8]['width']=18;
-				$size_array[9]['height']=20*$image_ratio;
-				$size_array[9]['width']=20;
-				$size_array[10]['height']=24*$image_ratio;
-				$size_array[10]['width']=24;
-				$size_array[11]['height']=28*$image_ratio;
-				$size_array[11]['width']=28;
-				$size_array[12]['height']=32*$image_ratio;
-				$size_array[12]['width']=32;
-				$size_array[13]['height']=36*$image_ratio;
-				$size_array[13]['width']=36;
-				$size_array[14]['height']=40*$image_ratio;
-				$size_array[14]['width']=40;
-				$size_array[15]['height']=44*$image_ratio;
-				$size_array[15]['width']=44;
-				$size_array[16]['height']=48*$image_ratio;
-				$size_array[16]['width']=48;
-				$size_array[17]['height']=50*$image_ratio;
-				$size_array[17]['width']=50;
-				$size_array[18]['height']=56*$image_ratio;
-				$size_array[18]['width']=56;
-				$size_array[19]['height']=60*$image_ratio;
-				$size_array[19]['width']=60;
-		
-			}
-			for($i=0;$i<=19;$i++)	{
-				if($size_array[$i]['width']<= $max_width && $size_array[$i]['height']<=$max_height )	{
-					$data_rec[]=round($size_array[$i]['width']).'X'.round($size_array[$i]['height']);
+			$image_ratio = $image_height/$image_width;
+			$last_size_height = "";
+			for($size_width=5;$size_width<=$max_width;$size_width++){
+				$size_height = floor($size_width * $image_ratio);
+				if($size_height >= 3 && $size_height!=$last_size_height){
+					$data_rec[]=$size_width.'X'.$size_height;
+					$last_size_height = $size_height;
 				}
 			}
-			$data_rec[]=$imagewidth.'X'.$imageheight;
-			$data_rec[]=$max_width.'X'.$max_height;
 			echo json_encode($data_rec);
 		}
 		else if($image_width<$image_height)	{
-			$image_ratio = $image_width/$image_height; 
-			$size_array[0]['width']=4*$image_ratio;
-			$size_array[0]['height']=4;
-			$size_array[1]['width']=5*$image_ratio;
-			$size_array[1]['height']=5;
-			$size_array[2]['width']=6*$image_ratio;
-			$size_array[2]['height']=6;
-			$size_array[3]['width']=7*$image_ratio;
-			$size_array[3]['height']=7;
-
-			$size_array[4]['width']=8*$image_ratio;
-			$size_array[4]['height']=8;
-			$size_array[5]['width']=10*$image_ratio;
-			$size_array[5]['height']=10;
-			$size_array[6]['width']=12*$image_ratio;
-			$size_array[6]['height']=12;
-			$size_array[7]['width']=16*$image_ratio;
-			$size_array[7]['height']=16;
-			$size_array[8]['width']=18*$image_ratio;
-			$size_array[8]['height']=18;
-			$size_array[9]['width']=24*$image_ratio;
-			$size_array[9]['height']=24;
-			$size_array[10]['width']=30*$image_ratio;
-			$size_array[10]['height']=30;
-			$size_array[11]['width']=36*$image_ratio;
-			$size_array[11]['height']=36;
-			$size_array[12]['width']=44*$image_ratio;
-			$size_array[12]['height']=44;
-			$size_array[13]['width']=48*$image_ratio;
-			$size_array[13]['height']=48;
-			$size_array[14]['width']=50*$image_ratio;
-			$size_array[14]['height']=50;
-			$size_array[15]['width']=56*$image_ratio;
-			$size_array[15]['height']=56;
-			$size_array[16]['width']=60*$image_ratio;
-			$size_array[16]['height']=60;
-
-			for($i=0;$i<=16;$i++)	{
-				if($size_array[$i]['width']<= $max_width && $size_array[$i]['height']<=$max_height )	{
-					$data_rec[]=round($size_array[$i]['width']).'X'.round($size_array[$i]['height']);
+			$image_ratio = $image_width/$image_height;
+			$last_size_width = "";
+			for($size_height=5;$size_height<=$max_height;$size_height++){
+				$size_width = floor($size_height * $image_ratio);
+				if($size_width >= 3 && $size_width!=$last_size_width){
+					$data_rec[]=$size_width.'X'.$size_height;
+					$last_size_width = $size_width;
 				}
 			}
-			$data_rec[]=$imagewidth.'X'.$imageheight;
-			$data_rec[]=$max_width.'X'.$max_height;
 			echo json_encode($data_rec);
 		}
 	}
@@ -1092,7 +1174,12 @@ public function themes_lightbox($lightbox_id,$page_no,$category="none",$shape="n
 				//echo "welcome to mahattaart";
 				//print "1";
 				//echo  $email;
-				echo json_encode(array("result"=>"1"));
+				$this->session->set_userdata('userid',$result);
+				$this->session->set_userdata('email',$email);
+				$user_id= $this->session->userdata('userid');
+				$user_login= $this->frontend_model->check_user_login_sesion($user_id);
+				$login_session_detals= $user_login[0]->login_session_detals;
+				echo json_encode(array("result"=>"1","user_id"=>"$user_id"));
 			}	else{
 				// print "0";
 				echo json_encode(array("result"=>"0"));
@@ -1113,7 +1200,7 @@ public function themes_lightbox($lightbox_id,$page_no,$category="none",$shape="n
 			$user_id= $this->session->userdata('userid');
 			$user_login= $this->frontend_model->check_user_login_sesion($user_id);
 			$login_session_detals= $user_login[0]->login_session_detals; 
-			echo json_encode(array("result"=>"1"));
+			echo json_encode(array("result"=>"1","user_id"=>"$user_id"));
 		}	else{
 			echo json_encode(array("result"=>"0"));//echo 'error';  
 		}

@@ -85,26 +85,30 @@ function process()
     </body>
     </html>';
 
-	                  /*Send Mail To Admin*/
+/*Send Mail To Admin*/
 					  
-					    
-						$this->email->from($user_email, 'Mahataart');
-						$this->email->to('tamjsay7@gmail.com');
-						$this->email->subject('Enquiry From Contact Us');
-                        $this->email->message($admin_message);
-						$this->email->send();
-					    
-						$this->email->from($user_email, 'Mahataart');
-						$this->email->to('info@mahattaart.com');
-						$this->email->subject('Enquiry From Contact Us');
-                        $this->email->message($admin_message);
-						$this->email->send();
+
+$config = Array( 
+'protocol' => 'smtp', 
+'smtp_host' => 'ssl://smtp.googlemail.com', 
+'smtp_port' => 465, 
+'smtp_user' => 'shahabalam78@gmail.com', // here goes your mail 
+'smtp_pass' => '7870364530', // here goes your mail password 
+'mailtype' => 'html', 
+'charset' => 'iso-8859-1', 
+'wordwrap' => TRUE 
+);
+
+$this->email->initialize($config);    
+$this->email->set_newline("rn"); 
+$this->email->from('mahattaart.com'); // here goes your mail 
+$this->email->to('shahabalam3628@gmail.com');// here goes your mail 
+$this->email->subject('This is s testing Email from mahattaart.com'); 
+$this->email->message($message); 
+//$this->email->send();
+ 							
 						
-						/*Send Mail To the User*/
 						
-						$this->email->subject('Mail From Mahattaart');
-						$this->email->to($user_email);
-                        $this->email->message($message);
                       if($this->email->send())
 					  {
                            echo 'Thank you for contacting us. We will get back to you shortly';
@@ -112,9 +116,8 @@ function process()
                       else
                       {
                         echo "Something Errorr.Please Check";
-						//echo $this->email->print_debugger(); 
-						sleep(600);
-	                  
+						echo $this->email->print_debugger(); 
+					  
 					  }
 }
 

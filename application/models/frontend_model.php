@@ -6,6 +6,81 @@ class Frontend_model extends CI_Model
 		$this->load->database();
 	}
 	
+	
+	
+	
+	
+/*----------------------------------------------------Slot Booking Query------------------------------------------------------*/
+
+	public function chck_exist_email($email)
+	{
+		$this->db->select('email');
+		$this->db->where('email',$email);
+		$query=$this->db->get('tbl_slot_booking');
+		$num=$query->num_rows();
+	    return $num;
+	
+	}
+	
+	
+	
+	public function count_slot_time($selected_time)
+	{ 
+		$this->db->select('slot_time');
+		$this->db->where('slot_time',$selected_time);
+		$query=$this->db->get('tbl_slot_booking');
+		$count=$query->result();
+		return count($count);
+	}
+	public function add_users_slot_customer($data2)
+	{
+		$query=$this->db->insert("tbl_customer",$data2);
+		if($query){return true;}else{return false;}
+	}
+	
+	
+	public function check_slot_times($time_slot)
+	{
+	  $this->db->select('email');
+	  $this->db->where('slot_time',$time_slot);
+	  $query = $this->db->get('tbl_slot_booking');
+	  return $query->result();
+	   
+	}
+	
+	public function check_user_email($email)
+	{
+	  $this->db->select('email');
+	  $this->db->where('email',$email);
+	  $this->db->affected_rows();
+	  $query=$this->db->get('tbl_slot_booking');
+	  return $query->result();
+	}
+	
+	public function users_slot_booking($data)
+	{
+	  //print_r($data); die();
+	  $this->db->insert('tbl_slot_booking',$data);
+	}
+	
+	
+	/*----------------------------------------------------End Slot Booking Query--------------------------------------------------*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public function get_cutomer_last_id()
 {
       $this->db->select('customer_id');
@@ -403,6 +478,7 @@ return $query->result();
 		'vendor_location_key_id'=>$vendor_location_id,
 		'first_name'=>$first_name,
 		'last_name'=>$last_name,
+		'customer_type'=>'Online',
 		'email_id'=>$email,
 		'password'=>$password,
 		'company_name'=>$company_name,
@@ -414,6 +490,8 @@ return $query->result();
 		if($insert)	{
 			echo "";
 		}
+		$insert_id = $this->db->insert_id();
+		return $insert_id;
 	}
 public function get_surface_tbl_web_price($print_type,$print_type_name){
 if($print_type==4){
@@ -489,7 +567,8 @@ return $query->result();
 		$this->db->insert('tbl_registration',$data);
 	}
 
-	public function check_email_exist($email)	{
+	public function check_email_exist($email)	
+	{
 		//print_r($email);die;
 		$rows=mysql_query("select * from tbl_customer where email_id='".$email."'");
 		//$query=$this->db->get_where('tbl_registration',array('email_id'=>$email));
@@ -570,7 +649,7 @@ return $query->result();
 	public function verify_email($email)	{
 		$this->db->select('*');
 		$this->db->where('email_id',$email);
-		$query=$this->db->get('tbl_registration');
+		$query=$this->db->get('tbl_customer');
 		if($query->num_rows()>0)	{
 			return $query->row();
 		}	else	{

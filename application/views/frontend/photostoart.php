@@ -144,7 +144,7 @@
             </div>
             <div class="popup-default-message text-center dz-default dz-message" id='msg'>
                <h2>Drag and drop images here or click to browse</h2>
-               <p>Each image must be a minimum of 500 KB to ensure a high quality print. Up to 10 images are allowed.</p>
+               <p>Each image must be a minimum of 750x450 or 450x750 resolution to ensure a high quality print. Up to 10 images are allowed.</p>
             </div>
          </div>
          <div class="modal-footer">
@@ -512,55 +512,59 @@ a.lightbox-close::after {
 	margin: 10px
 }
 
+.dz-progress {
+	display: none
+}
+
 </style>
 
 
 <script>
-   Dropzone.options.myDropzone = {
-     autoProcessQueue: false,
-    init: function() {
-       var submitButton = document.querySelector("#submit-all")
-           myDropzone = this; // closure
-       submitButton.addEventListener("click", function() {
-         myDropzone.processQueue(); // Tell Dropzone to process all queued files.
-       });
-       
-   this.on("queuecomplete", function (file) {
-            $('#load_buffer').show();
-            $('#dropzone_images').hide();
-            Dropzone.forElement("#my-dropzone").removeAllFiles(true);
-        window.location.href = '<?=base_url()?>index.php/frontend/photostoart_inner';
-       });
-       
-   this.on("removedfile",function(file){
-   if( (myDropzone.files.length) == 0){
-   $('#msg').show(); 
-   }
-   });	
-   
-   this.on("addedfile", function(file) {
-   	 if( (myDropzone.files.length+1) > 0){
-   $('#msg').hide(); 
-   }
-   if(file.size<17000){
-   	   $('#upload').hide();
-    this.removeFile(file);
-   swal({
-    title: "",
-    text: "Please Upload Images Greater Than 17kB",
-    type: "error",
-    timer: 1000
-    })
-    setTimeout(function(){
-     dropzone_box();
-    },1000);
-   
-   }else{
-   alert('The image Uploaded by you is of low resolution, please upload the High Resolution image if you have to get the better print quality and bigger print size.')
-   }
-       });
-      }
-   };
+	Dropzone.options.myDropzone = {
+		autoProcessQueue: false,
+		init: function () {
+			var submitButton = document.querySelector( "#submit-all" )
+			myDropzone = this; // closure
+			submitButton.addEventListener( "click", function () {
+				myDropzone.processQueue(); // Tell Dropzone to process all queued files.
+			} );
+			this.on( "queuecomplete", function ( file ) {
+				$( '#load_buffer' ).show();
+				$( '#dropzone_images' ).hide();
+				Dropzone.forElement( "#my-dropzone" ).removeAllFiles( true );
+				window.location.href = '<?=base_url()?>index.php/frontend/photostoart_inner';
+			} );
+
+			this.on( "removedfile", function ( file ) {
+				if ( ( myDropzone.files.length ) == 0 ) {
+					$( '#msg' ).show();
+				}
+			} );
+
+			this.on( "addedfile", function ( file ) {
+				if ( ( myDropzone.files.length + 1 ) > 0 ) {
+					$( '#msg' ).hide();
+				}
+			} );
+			
+			this.on( "thumbnail", function ( file ) {
+				if ( ( file.width >= file.height && ( file.width < 750 || file.height < 450 ) ) || ( file.height >= file.width && ( file.width < 450 || file.height < 750 ) ) ) {
+					
+					$( '#upload' ).hide();
+					this.removeFile( file );
+					swal( {
+						title: "",
+						text: "Please Upload Images Larger Than 750x450 or 450x750 resolution. Or if you still wish to get it printed from us, kindly contact at info@mahattaart.com.",
+						type: "error"
+					} )
+					setTimeout( function () {
+						dropzone_box();
+					}, 4000 );
+
+				}
+			});
+		}
+	};
 </script>
 <style>
    #itemslider h5 {

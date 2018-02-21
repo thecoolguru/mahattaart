@@ -120,10 +120,17 @@
 </li>
 
 <li><a href="<?=base_url();?>index.php/customer/add_kiosk_users">Add  kiosk Vendor Types</a>
-<ul>
-<li><a href="<?=base_url();?>index.php/customer/view_kiosk_users">View Kiosk Vendor Types</a></li>
-</ul>
+  <ul>
+     <li><a href="<?=base_url();?>index.php/customer/view_kiosk_users">View Kiosk Vendor Types</a></li>
+   </ul>
 </li>
+
+<li><a href="#">Manage Booking Slot</a>
+   <ul>
+        <li><a href="<?=base_url();?>index.php/customer/view_slot_ordered_list">View Booking Slot Orders</a></li>
+  </ul>
+</li>
+
 </ul>
 
 </div>

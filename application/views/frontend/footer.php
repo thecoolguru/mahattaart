@@ -564,7 +564,11 @@ $(document).ready(function(){
                     {
                          //alert(response);
                        // window.location.href('<?php echo base_url()?>index.php');
-                       window.location.replace('<?=$actual_link;?>');
+						if('<?=$_SERVER[REQUEST_URI];?>' == "/frontend/photostoart_inner"){
+							addToCart(obj.user_id);
+						}else{
+                       		window.location.replace('<?=$actual_link;?>');
+						}
                         allclose('');
                    
                     
@@ -654,8 +658,9 @@ function mail_registration_confirm(){
             type:"post",
            url:"<?=base_url()?>frontend/updateforpassword",
              data:"email_regd="+email_regd,
-             success:function(response){
-             
+             success:function(response)
+			 {
+             alert(response);
                 $('#error_msg').html(response); 
              }
          });
@@ -744,8 +749,14 @@ function checkRegisterValidation(){
                     if(obj.result=='1'){
                         //alert(response);
                         $("#success_result").html("<p> Welcome to Mahattaart!</p>");
-                        window.setTimeout(function(){location.reload()},3000)
-                        window.location.replace('<?php echo base_url()?>index.php');
+						var page_uri = '<?=$_SERVER[REQUEST_URI];?>';
+						if(page_uri.indexOf('frontend/photostoart_inner') != -1){
+							addToCart(obj.user_id);
+						}else{
+                       		window.location.replace('<?=$actual_link;?>');
+						}
+                        /*window.setTimeout(function(){location.reload()},3000)
+                        window.location.replace('<?php echo base_url()?>index.php');*/
                         allclose('');
                     }
                 

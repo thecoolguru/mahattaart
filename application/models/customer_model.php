@@ -11,6 +11,55 @@ class Customer_model extends CI_Model
         $this->load->database();
 
     }
+
+
+/*-----------------------------------------------------------------Manage Slot Order-------------------------------------------------------*/
+
+  public function view_slot_customer_details_model($id)
+  {
+	  $this->db->select("*");
+	  $this->db->where('id',$id);
+	  $query=$this->db->get('tbl_slot_booking');
+	  return $query->result();
+	  
+  
+  }
+	
+	public function add_users_slot_customer($data2)
+	{
+		print_r($data2); die();
+		$this->db->insert("tbl_customer",$data2);
+		
+	}
+	
+	public function view_slot_ordered_list_model()
+	{
+		$this->db->select('*');
+		$this->db->order_by('id','DESC');
+		$query=$this->db->get('tbl_slot_booking');
+		return $query->result();
+	
+	}
+	public function delete_slot_order_model($order_id)
+	{
+	  //echo "id=".$order_id; die();
+	   $this->db->where('id',$order_id);
+	   $this->db->delete('tbl_slot_booking');
+	}
+	
+	
+/*-----------------------------------------------------------------End Slot Order-----------------------------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
 	
 	//29-12-2017
 	

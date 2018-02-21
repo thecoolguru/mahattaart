@@ -464,8 +464,8 @@ String.prototype.killWhiteSpace = function() {
             <td><select name="customer_type" id="customer_type" onchange="ChangeCustomerType()"  class="inputbxs">
 <option  value="0" >Select</option>
 <option value="B2B"<?php  if($customer[0]->customer_type=='B2B'){echo 'selected';}else{if($this->input->post('customer_type')=="B2B"){echo'selected';};} ?>>B2B</option>
-<option value="ONLINE" <?php  if($customer[0]->customer_type=='ONLINE'){echo 'selected';}else{if($this->input->post('customer_type')=="ONLINE"){echo'selected';};} ?> >ONLINE</option>
-<option value="RETAIL" <?php  if($customer[0]->customer_type=='RETAIL'){echo 'selected';}else{if($this->input->post('customer_type')=="RETAIL"){echo'selected';};} ?>>RETAIL</option>
+<option value="Online" <?php  if($customer[0]->customer_type=='ONLINE'){echo 'selected';}else{if($this->input->post('customer_type')=="ONLINE"){echo'selected';};} ?> >ONLINE</option>
+<option value="Retail" <?php  if($customer[0]->customer_type=='RETAIL'){echo 'selected';}else{if($this->input->post('customer_type')=="RETAIL"){echo'selected';};} ?>>RETAIL</option>
                </select></td>
 <td ><span id="Industry_text" style="display:none;">Industry<span class="mndaty_aptrp" style="color:#FF0000;" >*</span></td>
                <td >
