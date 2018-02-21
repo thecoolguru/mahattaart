@@ -2054,7 +2054,7 @@ document.getElementById(value).style.border = "1px solid #ff0000";
 			url:"<?php print base_url() ?>contact/process",
 			data:$("#contactus_save").serialize(),
 			success:function(data){
-				//alert(data);
+			alert(data);
 					 $('#results').html(data);
 					 //$('#frm_contact')[0].reset();
 			}

@@ -17,6 +17,63 @@ class Customer extends CI_Controller
         $this->load->database();
     }
 	
+	
+/*--------------------------------------------Slot Booking-----------------------------------------------------------------------------*/
+
+public function view_slot_customer_detals()
+{
+     $id=$this->uri->segment(4);
+	 $result['success']=$this->customer_model->view_slot_customer_details_model($id);
+	 $this->load->view('backend/dashboard_header');
+	 $this->load->view('backend/booking/customer_details',$result);
+     $this->load->view('backend/footer');
+}
+
+
+public function view_slot_ordered_list()
+{
+	
+	 $result['success']=$this->customer_model->view_slot_ordered_list_model();
+	 $this->load->view('backend/dashboard_header');
+	 $this->load->view('backend/booking/view_slot_ordered_list',$result);
+     $this->load->view('backend/footer');
+  
+}
+public function delete_slot_order()
+{
+	$order_id=$this->uri->segment(4);
+	$result['delete_success']=$this->customer_model->delete_slot_order_model($order_id);
+	redirect('customer/view_slot_ordered_list');
+	//echo $order_id; die();
+
+}
+
+
+
+
+
+	
+
+/*-------------------------------------------------End Slot Booking------------------------------------------------------------------------*/	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	  //22-12-2017
 	  
 	  public function get_kiosk_id()

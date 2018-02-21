@@ -5,6 +5,14 @@ class User_model extends CI_Model
 	{
 		$this->load->database();
 	}
+	public function change_user_password($passwordnew,$email)
+	{
+	  $this->db->where('email_id',$email);
+	  $this->db->update('tbl_customer',array('password' =>$passwordnew));
+	  
+	}
+	
+	
 	public function get_user_details($user_id)
 	{
 		$this->db->select('*');
@@ -34,7 +42,8 @@ public function order_details_of_history($order_id){
 
 	
 	}
-public function get_tracking_id($sub_tracking_id,$order_id){
+public function get_tracking_id($sub_tracking_id,$order_id)
+{
 //echo $sub_tracking_id.$order_id;
 //$id=$this->session->userdata('userid');
 $this->db->select('*');
@@ -54,12 +63,10 @@ $this->db->where('order_id',$order_id);
 	function update_user_password($passwordnew,$email)
 	{
   // echo $passwordnew.'and'.$email;die;
-   $data=array('password'=>$passwordnew
-   
-   );
+          $data=array('password'=>$passwordnew);
   //  $this->db->set('password',$passwordnew);
 	$this->db->where('email_id',$email);
-	$this->db->update('tbl_registration',$data);	
+	$this->db->update('tbl_customer',$data);	
    
 	}
 	

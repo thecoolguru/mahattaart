@@ -92,20 +92,13 @@ class User extends CI_Controller
 // starts for update profile
 public function update_password()
 	{
-            $passwordnew=$this->input->post('passwordnew');
+        $passwordnew=$this->input->post('passwordnew');
 		$data['emailid']=$_REQUEST['emailid'];
-                 
-                //$passwordnew=$_REQUEST['passwordnew'];
-        //echo $emailid;die;
 		if($this->session->userdata('userid'))
 		{
 			redirect('frontend/index');
 		}
 		else { 
-			
-			
-		
-
 		$this->load->view('frontend/header');
 		$this->load->view('user/update_pwd',$data);
 		$this->load->view('frontend/footer');
@@ -135,41 +128,35 @@ public function order_details_of_history($order_id){
 // Ends shorlisted methode from beta.mahattart to mahattaart by sajid
 public function update_pwd()
 	{
-            $passwordnew=$this->input->post('passwordnew');
+           $passwordnew=$this->input->post('passwordnew');
+           $passwordconfirm=$this->input->post('passwordconfirm');
+           $emaill=$this->input->post('email');
+	     	if($this->session->userdata('userid'))
+		    {
+			   redirect('frontend/index');
+		    }
+		   else 
+		   { 
+               $verify_email=$this->frontend_model->verify_email($emaill);
+               $first=$verify_email->first_name;
+               $last=$verify_email->last_name;
+               if(!empty($first)||!empty($last))
+			    {
+                    $first_name=$first;
+                    $last_name=$last;
+                }
+               else
+			   {
+                 $first_name="User";
+               }
+          		 $this->user_model->update_user_password($passwordnew,$emaill);
+		         $data['msg']="You Have Successfully Updated Your Password";
 
-             $passwordconfirm=$this->input->post('passwordconfirm');
-        
-		 $emaill=$this->input->post('email');
-              
-
-   //echo $emaill;die;
-                
-		if($this->session->userdata('userid'))
-		{
-			redirect('frontend/index');
-		}
-		else { 
-                   $verify_email=$this->frontend_model->verify_email($emaill);
-       $first=$verify_email->first_name;
-       $last=$verify_email->last_name;
-if(!empty($first)||!empty($last)){
-   $first_name=$first;
-    $last_name=$last;
-   }
-else{
-  $first_name="User";
-
-}
-    
-			
-			$this->user_model->update_user_password($passwordnew,$emaill);
-		$data['msg']="You Have Successfully Updated Your Password";
-                //$data['msg']="Please Password donot Match";
-
-		$this->load->view('frontend/header');
-		$this->load->view('user/update_pwd',$data);
-		$this->load->view('frontend/footer');
-			 if($emaill!=''){
+          		$this->load->view('frontend/header');
+		        $this->load->view('user/update_pwd',$data);
+		        $this->load->view('frontend/footer');
+			    if($emaill!='')
+				{
         
 $frntfrgtpwd='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
