@@ -157,53 +157,112 @@ public function update_pwd()
 		        $this->load->view('frontend/footer');
 			    if($emaill!='')
 				{
+                    $data = array(
+                      'template_name' => 'mahattaart-update-pwd',
+                      'message' =>
+                      array (
+                        'from_email' => 'info@mahattaart.com',
+                        'from_name' => 'Info Mahattaart',
+                        'global_merge_vars' =>
+                        array (
+                          0 =>
+                          array (
+                            'name' => 'fist_name',
+                            'content' => $first_name,
+                          ),
+                          1 =>
+                          array (
+                            'name' => 'last_name',
+                            'content' => $last_name,
+                          ),
+                          2 =>
+                          array (
+                            'name' => 'passwordnew',
+                            'content' => $passwordnew,
+                          ),
+                        ),
+                        'headers' =>
+                        array (
+                          'Reply-To' => 'info@mahattaart.com',
+                        ),
+                        'subject' => 'Welcome to Mahatta Art',
+                        'to' =>
+                        array (
+                          0 =>
+                          array (
+                            'email' => $emaill,
+                            'name' => $first_name,
+                            'type' => 'to',
+                          ),
+                          1 =>
+                          array (
+                            'email' => "operations@mahattart.com",
+                            'name' => "Operations",
+                            'type' => 'cc',
+                          ),
+                        ),
+                      ),
+                    );
+                    $data_string = json_encode($data);
+
+                    $ch = curl_init('http://mailing.service.mahatta.com/');
+                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                        'Content-Type: application/json',
+                        'Auth-Token: sldf89y3hrkjf98y91hj2k',
+                        'Content-Length: ' . strlen($data_string))
+                    );
+
+                    $result = curl_exec($ch);
         
-$frntfrgtpwd='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>india</title>
-<style> p { text-align:justify; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;font-size:14px;} </style>
-</head>
-<body style="background:#f2f2f2; font-size:14px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;">
-<table width="880" border="0" align="center" cellpadding="0" cellspacing="0">
-<tr>
-	<td colspan="4"><p><img src="'.base_url().'images/mahattaArt_logo.png" width="300"></p></td>
-</tr>
-  <tr>
-    <td bgcolor="#ede2ea"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-    </table></td>
-  </tr>
-    <tr><td><p>Dear '.ucfirst($first_name).'  '.ucfirst($last_name).', </p></td></tr>
-  <tr><td><p>Your Password has been successfully changed !</p></td></tr>
-  <tr><td><p>Your new password is - <a href="#">'.$passwordnew.'</a></p></td></tr>
-  <tr>
-    <td><p>Keep exploring the Mahatta art gallery, an online art gallery with 2500+ Indian & International artists and more content from archival museum collections with over 5 lac+ art works.</p></td>
-  </tr>
-  <tr>
-    <td> 
-	 <p>For any queries  email us at  <a href="mailto:info@mahattaart.com">info@mahattaart.com</a> or contact us at <a href="#">+91-8800639075, +91-11-41828972</a> </p>
-<p>Regards,</p> 
-<p>Mahattaart Team</p>
-</td>
- </tr>
-  <tr>
-    <td> 
-<p><a href="https://www.facebook.com/mahattaart"> <img style="padding: 0px 8px 0px 0px;" src="'.base_url().'assets/img/facbook.png" /> </a> <a href="https://twitter.com/mahattaart"> <img style="padding: 0px 8px 0px 0px;" src="'.base_url().'assets/img/twitter.png" /> </a> <a href="https://www.instagram.com/mahattaart"> <img src="'.base_url().'assets/img/instagram.png" /> </a> <a href="https://www.linkedin.com/company/13458390"> <img src="'.base_url().'assets/img/linkdin.png" /> </a></p>
-	</td>
-  </tr>
-</table>
-</body>
-</html>';
-         
-        
-      $to=$emaill;   
-$headers  = 'MIME-Version: 1.0' . "\r\n";
-$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-$headers .= 'From:MahattaArt<info@mahattaart.com>' . "\r\n";
-$headers .= 'Cc: operations@mahattaart.com' . "\r\n";
-$subject = 'Welcome to Mahatta Art';
-        $send=mail($emaill,$subject,$frntfrgtpwd,$headers);
+#$frntfrgtpwd='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+#<html xmlns="http://www.w3.org/1999/xhtml">
+#<head>
+#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+#<title>india</title>
+#<style> p { text-align:justify; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;font-size:14px;} </style>
+#</head>
+#<body style="background:#f2f2f2; font-size:14px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;">
+#<table width="880" border="0" align="center" cellpadding="0" cellspacing="0">
+#<tr>
+#	<td colspan="4"><p><img src="'.base_url().'images/mahattaArt_logo.png" width="300"></p></td>
+#</tr>
+#  <tr>
+#    <td bgcolor="#ede2ea"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+#    </table></td>
+#  </tr>
+#    <tr><td><p>Dear '.ucfirst($first_name).'  '.ucfirst($last_name).', </p></td></tr>
+#  <tr><td><p>Your Password has been successfully changed !</p></td></tr>
+#  <tr><td><p>Your new password is - <a href="#">'.$passwordnew.'</a></p></td></tr>
+#  <tr>
+#    <td><p>Keep exploring the Mahatta art gallery, an online art gallery with 2500+ Indian & International artists and more content from archival museum collections with over 5 lac+ art works.</p></td>
+#  </tr>
+#  <tr>
+#    <td> 
+#	 <p>For any queries  email us at  <a href="mailto:info@mahattaart.com">info@mahattaart.com</a> or contact us at <a href="#">+91-8800639075, +91-11-41828972</a> </p>
+#<p>Regards,</p> 
+#<p>Mahattaart Team</p>
+#</td>
+# </tr>
+#  <tr>
+#    <td> 
+#<p><a href="https://www.facebook.com/mahattaart"> <img style="padding: 0px 8px 0px 0px;" src="'.base_url().'assets/img/facbook.png" /> </a> <a href="https://twitter.com/mahattaart"> <img style="padding: 0px 8px 0px 0px;" src="'.base_url().'assets/img/twitter.png" /> </a> <a href="https://www.instagram.com/mahattaart"> <img src="'.base_url().'assets/img/instagram.png" /> </a> <a href="https://www.linkedin.com/company/13458390"> <img src="'.base_url().'assets/img/linkdin.png" /> </a></p>
+#	</td>
+#  </tr>
+#</table>
+#</body>
+#</html>';
+#         
+#        
+#      $to=$emaill;   
+#$headers  = 'MIME-Version: 1.0' . "\r\n";
+#$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+#$headers .= 'From:MahattaArt<info@mahattaart.com>' . "\r\n";
+#$headers .= 'Cc: operations@mahattaart.com' . "\r\n";
+#$subject = 'Welcome to Mahatta Art';
+#        $send=mail($emaill,$subject,$frntfrgtpwd,$headers);
         //$this->session->set_flashdata('You Have Successfully Updated Your Password.");
         redirect('frontend/index');
      }
