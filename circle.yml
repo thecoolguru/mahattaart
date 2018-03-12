@@ -1,0 +1,6 @@
+deployment:
+  staging:
+    branch: master
+    codedeploy:
+      mahattaart:
+        deployment_group: mahattaart-production
