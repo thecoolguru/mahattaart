@@ -1,4 +1,6 @@
-version: 1
+test:
+    override:
+        - php ./test.php
 deployment:
   production:
     branch: master
