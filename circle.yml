@@ -5,7 +5,7 @@ deployment:
   production:
     branch: master
     codedeploy:
-      my-app:
+      mahattaart:
         application_root: /
         revision_location:
           revision_type: S3
