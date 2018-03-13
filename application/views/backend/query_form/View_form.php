@@ -41,7 +41,7 @@ function del()
         <th>Sno</th>
 		<th>Name</th>
         <th>Mobile</th>
-        <th>Landline</th>
+        <th>General Theme</th>
 		<th>Email</th>
 		<th>Edit</th>
 		<th>Delete</th>
@@ -62,7 +62,7 @@ function del()
                      <td><?php echo $i; ?></td>
 					 <td><?php echo $rowa->contact_person; ?></td>
                      <td><?php echo $rowa->contact_number; ?></td>
-                     <td><?php echo $rowa->landline_number; ?></td>
+                     <td><?php echo $rowa->general_theme; ?></td>
 					 <td><?php echo $rowa->email; ?></td>
 <td><a href="<?php echo base_url('backend/edit/'.$rowa->id); ?>">Edit</a></td>
 <td><a href="<?php echo base_url('backend/delete_record/'.$rowa->id);?>"   onClick="return del()" >Delete</a></td>
