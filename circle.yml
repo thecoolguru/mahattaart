@@ -1,8 +1,14 @@
-version: 2
-job:
-  deployment:
-    staging:
-      branch: master
-      codedeploy:
-        mahattaart:
-          deployment_group: mahattaart-production
+deployment:
+  production:
+    branch: master
+    codedeploy:
+      my-app:
+        application_root: /
+        revision_location:
+          revision_type: S3
+          s3_location:
+            bucket: mahatta-codedeploy
+            key_pattern: mahattaart/mahattaart-production-{SHORT_COMMIT}-{BUILD_NUM}
+        region: ap-southeast-1
+        deployment_group: mahattaart-production
+        deployment_config: CodeDeployDefault.AllAtOnce
