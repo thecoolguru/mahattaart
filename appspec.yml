@@ -3,3 +3,8 @@ os: linux
 files:
   - source: /
     destination: /home/ubuntu/workspace/code/mahattaart/
+permissions:
+  - object: /home/ubuntu/workspace/code/mahattaart
+    pattern: "*"
+    owner: ubuntu
+    group: www-data
