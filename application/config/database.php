@@ -48,9 +48,9 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'indiapicture.cjgqyv6rnqde.ap-southeast-1.rds.amazonaws.com';
-$db['default']['username'] = 'mahattaartnew';
-$db['default']['password'] = 'j2foj39FS#012#';
+$db['default']['hostname'] = 'dev-db.cs3bfrngcfc9.ap-south-1.rds.amazonaws.com';
+$db['default']['username'] = 'sa_tech';
+$db['default']['password'] = 'Fel1xfel1c1s';
 $db['default']['database'] = 'mahattaart';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
