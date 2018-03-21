@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'dev-db.cs3bfrngcfc9.ap-south-1.rds.amazonaws.com';
-$db['default']['username'] = 'sa_tech';
-$db['default']['password'] = 'Fel1xfel1c1s';
-$db['default']['database'] = 'mahattaart';
+$db['default']['hostname'] = 'hostname';
+$db['default']['username'] = 'username';
+$db['default']['password'] = 'password';
+$db['default']['database'] = 'database';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
@@ -70,10 +70,10 @@ $db['default']['stricton'] = FALSE;
 /* Location: ./application/config/database.php */
 
 
-$db['indiapicture']['hostname'] = 'indiapicture.cjgqyv6rnqde.ap-southeast-1.rds.amazonaws.com';
-$db['indiapicture']['username'] = 'indiapicturenew';
-$db['indiapicture']['password'] = 'fh238hf@FC#Cdie';
-$db['indiapicture']['database'] = 'indiapicture';
+$db['indiapicture']['hostname'] = 'hostname';
+$db['indiapicture']['username'] = 'username';
+$db['indiapicture']['password'] = 'password';
+$db['indiapicture']['database'] = 'database';
 $db['indiapicture']['dbdriver'] = 'mysql';
 $db['indiapicture']['dbprefix'] = '';
 $db['indiapicture']['pconnect'] = FALSE;
