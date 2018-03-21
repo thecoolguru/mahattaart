@@ -2,7 +2,7 @@
 die('mohan');
 require_once('check_files_exist.php');
 //include("class.smtp.php"); // optional, gets called from within class.phpmailer.php if not already loaded
-//comment added
+//comment added 1
 
 $from = '<fromaddress@gmail.com>';
 $to = 'mohansinghmca0912@gmail.com';
