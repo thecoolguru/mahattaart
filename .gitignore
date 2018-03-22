@@ -3,3 +3,4 @@ error_log
 *.pdf
 vendor/
 application/config/database.php
+application/views/frontend/upload_images/*
